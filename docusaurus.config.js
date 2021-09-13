@@ -18,8 +18,8 @@ module.exports = {
         src: 'https://www.dyte.io/images/Dyte-Logo.svg',
       },
       items: [
-        {to: '/guide', label: 'Client SDK Reference', position: 'left'},
-        {to: '/api', label: 'API Reference', position: 'left'},
+        { to: '/guide', label: 'Client SDK Reference', position: 'left' },
+        { to: '/api', label: 'API Reference', position: 'left' },
         {
           href: 'https://github.com/dyte-in/',
           label: 'GitHub',
@@ -95,4 +95,6 @@ module.exports = {
       },
     ],
   ],
+  plugins: ['tailwind-plugin'],
+  clientModules: [require.resolve('./src/css/tailwind.css')],
 };
