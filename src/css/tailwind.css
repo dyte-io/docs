@@ -2,6 +2,104 @@
 @tailwind utilities;
 @tailwind components;
 
-body {
-  @apply antialiased;
+@layer base {
+  ol,
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  *,
+  ::before,
+  ::after {
+    box-sizing: border-box; /* 1 */
+    border-width: 0; /* 2 */
+    border-style: solid; /* 2 */
+    border-color: currentColor; /* 2 */
+  }
+  button {
+    background-color: transparent;
+    background-image: none;
+  }
+  /**
+ * Undo the `border-style: none` reset that Normalize applies to images so that
+ * our `border-{width}` utilities have the expected effect.
+ *
+ * The Normalize reset is unnecessary for us since we default the border-width
+ * to 0 on all elements.
+ *
+ * https://github.com/tailwindcss/tailwindcss/issues/362
+ */
+
+  img {
+    border-style: solid;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    opacity: 1;
+    color: #9ca3af;
+  }
+
+  button,
+  [role='button'] {
+    cursor: pointer;
+  }
+  /**
+ * Reset form element properties that are easy to forget to
+ * style explicitly so you don't inadvertently introduce
+ * styles that deviate from your design system. These styles
+ * supplement a partial reset that is already applied by
+ * normalize.css.
+ */
+
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    padding: 0;
+    line-height: inherit;
+    color: inherit;
+  }
+
+  body {
+    @apply antialiased;
+  }
+
+  /**
+  Define default colors below and colors for dark mode below it.
+*/
+
+  :root {
+    --color-primary: #2160fd;
+
+    --color-text: #000000;
+    --color-text-100: #646464;
+
+    --color-border: #dadde1;
+
+    --color-background: #ffffff;
+    --color-background-100: #f8f8f8;
+    --color-background-200: #efefef;
+  }
+
+  html[data-theme='dark'] {
+    --color-text: #ffffff;
+
+    --color-text-100: #b4b4b4;
+
+    --color-border: #606770;
+
+    --ifm-background-color: #121212;
+
+    --color-background: #121212;
+    --color-background-100: #1c1c1c;
+    --color-background-200: #2a2a2a;
+  }
 }

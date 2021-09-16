@@ -1,8 +1,14 @@
+const isProd = process.env.NODE_ENV === 'production';
+
+// Pattern to only include files which do not have `*.hide.*`
+// filenames like private.hide.md will not be published, but visible in dev mode
+const includePattern = '**/!(*.hide.*)';
+
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'Dyte Docs',
-  tagline: 'Audio - Video SDKs ready to go',
-  url: 'https://dyte.io',
+  tagline: 'Real-time audio & video SDKs, ready to launch 🚀',
+  url: 'https://docs.dyte.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -11,66 +17,14 @@ module.exports = {
   projectName: 'dev-docs', // Usually your repo name.
   themeConfig: {
     navbar: {
-      style: 'dark',
-      title: 'Docs',
+      hideOnScroll: true,
       logo: {
-        alt: 'Dyte Logo',
-        src: 'https://www.dyte.io/images/Dyte-Logo.svg',
+        alt: 'Dyte Docs Logo',
+        src: '/img/logo.svg',
       },
-      items: [
-        { to: '/guide', label: 'Client SDK Reference', position: 'left' },
-        { to: '/api', label: 'API Reference', position: 'left' },
-        {
-          href: 'https://github.com/dyte-in/',
-          label: 'GitHub',
-          position: 'right',
-        },
-      ],
     },
-    footer: {
-      style: 'dark',
-      links: [
-        {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Tutorial',
-              to: '/docs/intro',
-            },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/dyte',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/dyteio',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/dyteio',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Blog',
-              to: 'blog.dyte.in',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/dyte-in',
-            },
-          ],
-        },
-      ],
-      copyright: `Copyright © ${new Date().getFullYear()} Dyte`,
+    prism: {
+      additionalLanguages: ['dart'],
     },
   },
   presets: [
@@ -78,16 +32,13 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
+          path: 'docs/main',
+          id: 'docs',
+          routeBasePath: 'docs',
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/',
         },
         blog: {
           showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -95,6 +46,32 @@ module.exports = {
       },
     ],
   ],
-  plugins: ['tailwind-plugin'],
+  plugins: [
+    'tailwind-plugin',
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        path: 'docs/react',
+        routeBasePath: 'react',
+        id: 'react',
+        sidebarPath: require.resolve('./sidebars.js'),
+        ...(isProd && {
+          include: [includePattern],
+        }),
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        path: 'docs/flutter',
+        routeBasePath: 'flutter',
+        id: 'flutter',
+        ...(isProd && {
+          include: [includePattern],
+        }),
+        sidebarPath: require.resolve('./sidebars.js'),
+      },
+    ],
+  ],
   clientModules: [require.resolve('./src/css/tailwind.css')],
 };
