@@ -312,7 +312,6 @@ function DocSidebar({
   isHidden,
 }) {
   const showAnnouncementBar = useShowAnnouncementBar();
-  const [showContextSwitcher, setShowContextSwitcher] = useState(false);
   const {
     navbar: { hideOnScroll },
     hideableSidebar,
@@ -324,13 +323,6 @@ function DocSidebar({
     closeResponsiveSidebar,
     toggleResponsiveSidebar,
   } = useResponsiveSidebar();
-
-  useEffect(() => {
-    const [doc] = getCurrentPageInfo();
-    if (doc !== 'docs') {
-      setShowContextSwitcher(true);
-    }
-  }, []);
 
   return (
     <div
@@ -344,7 +336,9 @@ function DocSidebar({
           <Logo tabIndex={-1} className={clsx('h-8 self-start')} />
         </div>
       )}
-      {showContextSwitcher && <ContextSwitcher className="hidden lg:block" />}
+      {!showResponsiveSidebar && (
+        <ContextSwitcher className="hidden lg:block" />
+      )}
       <div
         className={clsx(
           'menu',
@@ -363,7 +357,7 @@ function DocSidebar({
           onClick={toggleResponsiveSidebar}
         />
         <ul className="menu__list">
-          {showContextSwitcher && <ContextSwitcher className="lg:hidden" />}
+          {showResponsiveSidebar && <ContextSwitcher className="lg:hidden" />}
           <DocSidebarItems
             items={sidebar}
             onItemClick={closeResponsiveSidebar}

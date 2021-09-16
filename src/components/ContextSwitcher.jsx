@@ -1,7 +1,8 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect, Fragment, memo } from 'react';
 import clsx from 'clsx';
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
+import { withRouter } from '@docusaurus/router';
 
 const CONTEXTS = [
   {
@@ -22,7 +23,7 @@ export const getCurrentPageInfo = () => {
   return window.location.pathname.split('/').slice(1);
 };
 
-const ContextSwitcher = ({ className }) => {
+const ContextSwitcher = ({ className, history }) => {
   const [context, setContext] = useState(CONTEXTS[0]);
 
   useEffect(() => {
@@ -37,13 +38,18 @@ const ContextSwitcher = ({ className }) => {
   const handleChange = (newValue) => {
     setContext(newValue);
 
-    const [, docId] = getCurrentPageInfo();
+    const [, ...docPath] = getCurrentPageInfo();
 
-    let path = `/${newValue.id}/${docId}`;
+    let path = `/${newValue.id}/${docPath.join('/')}`;
     if (window.location.hash) path += window.location.hash;
-    
-    window.location.href = path;
+
+    history.push(path);
   };
+
+  if (history.location.pathname.split('/')[1] === 'docs') {
+    // don't show contextSwitcher for /docs
+    return null;
+  }
 
   return (
     <Listbox
@@ -123,4 +129,4 @@ const ContextSwitcher = ({ className }) => {
   );
 };
 
-export default ContextSwitcher;
+export default memo(withRouter(ContextSwitcher));
