@@ -5,13 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React, {
-  useState,
-  useCallback,
-  useEffect,
-  useRef,
-  memo,
-} from 'react';
+import React, { useState, useCallback, useEffect, useRef, memo } from 'react';
 import clsx from 'clsx';
 import { useThemeConfig, isSamePath } from '@docusaurus/theme-common';
 import useUserPreferencesContext from '@theme/hooks/useUserPreferencesContext';
@@ -333,7 +327,6 @@ function DocSidebar({
 
   useEffect(() => {
     const [doc] = getCurrentPageInfo();
-    console.log(doc);
     if (doc !== 'docs') {
       setShowContextSwitcher(true);
     }
@@ -370,9 +363,7 @@ function DocSidebar({
           onClick={toggleResponsiveSidebar}
         />
         <ul className="menu__list">
-          <ContextSwitcher
-            className={clsx(showResponsiveSidebar ? 'block' : 'hidden')}
-          />
+          {showContextSwitcher && <ContextSwitcher className="lg:hidden" />}
           <DocSidebarItems
             items={sidebar}
             onItemClick={closeResponsiveSidebar}
