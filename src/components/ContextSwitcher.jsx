@@ -36,11 +36,12 @@ const ContextSwitcher = ({ className }) => {
 
   const handleChange = (newValue) => {
     setContext(newValue);
-    // RegExp below matches:
-    // `/<prevDoc>/<docId>`
-    const [_, prevDoc, docId] = window.location.pathname.match(/\/(.*)\/(.*)/);
+
+    const [, docId] = getCurrentPageInfo();
+
     let path = `/${newValue.id}/${docId}`;
     if (window.location.hash) path += window.location.hash;
+    
     window.location.href = path;
   };
 
