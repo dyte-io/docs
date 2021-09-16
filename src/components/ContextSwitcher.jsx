@@ -65,7 +65,7 @@ const ContextSwitcher = ({ className, history }) => {
             alt={context.name}
             aria-hidden="true"
           />
-          <span className="block truncate">{context.name}</span>
+          <span className="block truncate text-text">{context.name}</span>
           <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
             <SelectorIcon
               className="w-5 h-5 text-gray-400"
@@ -85,8 +85,10 @@ const ContextSwitcher = ({ className, history }) => {
                 <Listbox.Option
                   key={context.id}
                   className={({ active }) =>
-                    `${active ? 'bg-background' : ''}
-                          cursor-pointer select-none relative py-2 px-4`
+                    clsx(
+                      'cursor-pointer select-none relative py-2 px-4',
+                      active && 'bg-background-200'
+                    )
                   }
                   value={context}
                 >
@@ -95,25 +97,21 @@ const ContextSwitcher = ({ className, history }) => {
                       <div className="flex items-center">
                         <img
                           src={context.icon}
-                          className="w-8 h-8 object-cover mr-2"
+                          className="w-8 h-8 object-fit mr-2"
                           alt={context.name}
                           aria-hidden="true"
                         />
                         <span
-                          className={`${
+                          className={clsx(
+                            'block truncate',
                             selected ? 'font-medium' : 'font-normal'
-                          } block truncate`}
+                          )}
                         >
                           {context.name}
                         </span>
                       </div>
                       {selected ? (
-                        <span
-                          className={`${
-                            active ? 'text-blue-600' : 'text-blue-600'
-                          }
-                                eft-0 flex items-center pl-3`}
-                        >
+                        <span className="text-blue-600 left-0 flex items-center pl-3">
                           <CheckIcon className="w-5 h-5" aria-hidden="true" />
                         </span>
                       ) : null}

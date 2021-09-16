@@ -24,7 +24,7 @@ const ThemeSwitcher = () => {
 const SearchButton = () => {
   return (
     <button
-      className="flex items-center justify-between lg:w-full lg:max-w-xs h-12 px-4 py-2 text-text bg-background-200 rounded-md"
+      className="flex items-center justify-between lg:w-full lg:max-w-xs h-12 px-4 py-2 text-text bg-background-200 rounded-md cursor-pointer"
       onClick={() => {}}
     >
       <div className="flex items-center space-x-3">
