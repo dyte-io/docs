@@ -29,7 +29,7 @@ export default function Footer(props) {
                 type="text"
                 name="email"
                 placeholder="Enter your email"
-                className="flex-1 h-10 bg-background-100 text-text text-sm border border-border rounded-l-md focus:ring-0"
+                className="flex-1 h-10 bg-background-100 text-text text-sm border border-r-0 border-border rounded-l-md focus:ring-0"
               />
               <button
                 type="submit"
@@ -42,7 +42,7 @@ export default function Footer(props) {
           <div className="flex-1 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 lg:mt-0">
             <div>
               <h5 className="font-sans font-normal text-text-100">Product</h5>
-              <ul className="space-y-2 text-sm">
+              <ul className="space-y-2 text-sm list-none p-0">
                 <li>
                   <a href="#" className="text-current hover:no-underline">
                     Features
@@ -62,7 +62,7 @@ export default function Footer(props) {
             </div>
             <div>
               <h5 className="font-sans font-normal text-text-100">Company</h5>
-              <ul className="space-y-2 text-sm">
+              <ul className="space-y-2 text-sm list-none p-0">
                 <li>
                   <a href="#" className="text-current hover:no-underline">
                     Features
@@ -82,7 +82,7 @@ export default function Footer(props) {
             </div>
             <div>
               <h5 className="font-sans font-normal text-text-100">Help</h5>
-              <ul className="space-y-2 text-sm">
+              <ul className="space-y-2 text-sm list-none p-0">
                 <li>
                   <a href="#" className="text-current hover:no-underline">
                     Features

@@ -10,7 +10,7 @@ const ThemeSwitcher = () => {
 
   return (
     <button
-      className="w-10 h-10 p-2 cursor-pointer text-text-100"
+      className="w-10 h-10 p-2 cursor-pointer text-text-100 bg-transparent"
       onClick={() => {
         isDarkTheme ? setLightTheme() : setDarkTheme();
       }}
