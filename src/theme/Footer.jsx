@@ -1,4 +1,6 @@
 import React from 'react';
+import Link from '@docusaurus/Link';
+
 import DyteLogo from '../components/DyteLogo';
 
 export default function Footer(props) {
@@ -6,7 +8,9 @@ export default function Footer(props) {
     <footer className="lg:px-12 py-6 bg-background-100">
       <div className="flex flex-col items-start w-full max-w-6xl p-4 md:px-12 mx-auto">
         <div className="flex flex-col items-start space-y-4">
-          <DyteLogo className="h-10" />
+          <Link href="https://dyte.io">
+            <DyteLogo className="h-10" />
+          </Link>
           <p className="text-sm text-text-100 leading-relaxed">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum,
             illum. Facere hic cupiditate molestiae, illum perferendis maxime
