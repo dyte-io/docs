@@ -10,7 +10,7 @@ const ThemeSwitcher = () => {
 
   return (
     <button
-      className="w-10 h-10 p-2 cursor-pointer text-text-100 bg-transparent"
+      className="w-10 h-10 p-2 cursor-pointer text-text-100 hover:text-text bg-transparent"
       onClick={() => {
         isDarkTheme ? setLightTheme() : setDarkTheme();
       }}
@@ -78,7 +78,7 @@ export default function Navbar() {
             target="_blank"
             className="w-12 h-12 p-2"
           >
-            <Discord className="w-full h-full text-text-100" />
+            <Discord className="w-full h-full text-text-100 hover:text-text" />
           </a>
 
           <a
@@ -86,7 +86,7 @@ export default function Navbar() {
             target="_blank"
             className="w-12 h-12 p-2"
           >
-            <Github className="w-full h-full text-text-100" />
+            <Github className="w-full h-full text-text-100 hover:text-text" />
           </a>
 
           <ThemeSwitcher />
