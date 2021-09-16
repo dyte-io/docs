@@ -2,32 +2,159 @@
 sidebar_position: 1
 ---
 
-import Link from '@docusaurus/Link';
-
 # Introduction
+
+import Link from '@docusaurus/Link';
+import {
+  DeviceTabletIcon,
+  CodeIcon,
+  QuestionMarkCircleIcon,
+} from '@heroicons/react/solid';
+import { Discord, Github } from '@styled-icons/boxicons-logos';
 
 Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil ullam vero eligendi eos doloribus officiis repellat rerum voluptatum eum, maxime, facilis adipisci, necessitatibus architecto at ducimus est veniam reiciendis distinctio.
 
 <div className="grid md:grid-cols-6 gap-4">
 
-  <Link to="/react/quickstart" className="md:col-span-3">
-    <div className="p-4 rounded-md bg-primary text-white">React</div>
-  </Link>
+<Link
+  to="/react/quickstart"
+  className="md:col-span-3 flex items-center p-4 rounded-md bg-background-200 text-text hover:text-text border border-border transition hover:border-primary hover:no-underline hover:dyte-shadow"
+>
+  <DeviceTabletIcon className="h-12 md:h-16 mr-3" />
+  <div className="flex flex-col space-y-1">
+    <div className="font-medium">Client SDKs</div>
+    <p className="text-xs text-text-100">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    </p>
+  </div>
+</Link>
 
-  <Link to="/flutter/quickstart" className="md:col-span-3">
-    <div className="p-4 rounded-md bg-primary text-white">Flutter</div>
-  </Link>
+<Link
+  to="/api"
+  className="md:col-span-3 flex items-center p-4 rounded-md bg-background-200 text-text hover:text-text border border-border transition hover:border-primary hover:no-underline hover:dyte-shadow"
+>
+  <CodeIcon className="h-12 md:h-16 mr-3" />
+  <div className="flex flex-col space-y-1">
+    <div className="font-medium">API Reference</div>
+    <p className="text-xs text-text-100">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    </p>
+  </div>
+</Link>
 
-  <Link to="/react/quickstart" className="md:col-span-2">
-    <div className="p-4 rounded-md bg-primary text-white">Some more</div>
-  </Link>
+<Link
+  to="/api"
+  className="md:col-span-2 flex items-center p-4 rounded-md bg-background-200 text-text hover:text-text border border-border transition hover:border-primary hover:no-underline hover:dyte-shadow"
+>
+  <QuestionMarkCircleIcon className="h-12 md:h-16 mr-3" />
+  <div className="flex flex-col space-y-1">
+    <div className="font-medium">FAQs</div>
+    <p className="text-xs text-text-100">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    </p>
+  </div>
+</Link>
 
-  <Link to="/react/quickstart" className="md:col-span-2">
-    <div className="p-4 rounded-md bg-primary text-white">Second</div>
-  </Link>
+<Link
+  href="https://discord.com/invite/pxRcdNufvk"
+  className="md:col-span-2 flex items-center p-4 rounded-md bg-background-200 text-text hover:text-text border border-border transition hover:border-primary hover:no-underline hover:dyte-shadow"
+>
+  <Discord className="h-12 md:h-16 mr-3" />
+  <div className="flex flex-col space-y-1">
+    <div className="font-medium">Community</div>
+    <p className="text-xs text-text-100">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    </p>
+  </div>
+</Link>
 
-  <Link to="/react/quickstart" className="md:col-span-2">
-    <div className="p-4 rounded-md bg-primary text-white">Third</div>
-  </Link>
+<Link
+  href="https://github.com/dyte-in"
+  className="md:col-span-2 flex items-center p-4 rounded-md bg-background-200 text-text hover:text-text border border-border transition hover:border-primary hover:no-underline hover:dyte-shadow"
+>
+  <Github className="h-12 md:h-16 mr-3" />
+  <div className="flex flex-col space-y-1">
+    <div className="font-medium">Examples</div>
+    <p className="text-xs text-text-100">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    </p>
+  </div>
+</Link>
+
+</div>
+
+## Getting Started
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil ullam vero eligendi eos doloribus officiis repellat rerum voluptatum eum, maxime, facilis adipisci, necessitatibus architecto at ducimus est veniam reiciendis distinctio.
+
+<div className="grid md:grid-cols-6 gap-4">
+
+<Link
+  to="/react/quickstart"
+  className="md:col-span-2 flex items-center p-4 rounded-md bg-background-200 text-text hover:text-text border border-border transition hover:border-primary hover:no-underline hover:dyte-shadow"
+>
+  <img className="h-12 md:h-14 mr-3" src="/icons/react.svg"/>
+  <div className="flex flex-col space-y-1">
+    <div className="font-medium">React</div>
+    <p className="text-xs text-text-100">
+      Web
+    </p>
+  </div>
+</Link>
+
+<Link
+  to="/react/quickstart"
+  className="md:col-span-2 flex items-center p-4 rounded-md bg-background-200 text-text hover:text-text border border-border transition hover:border-primary hover:no-underline hover:dyte-shadow"
+>
+  <img className="h-12 md:h-14 mr-3" src="/icons/js.svg"/>
+  <div className="flex flex-col space-y-1">
+    <div className="font-medium">Vanilla JS</div>
+    <p className="text-xs text-text-100">Web</p>
+  </div>
+</Link>
+
+<Link
+  to="/flutter/quickstart"
+  className="md:col-span-2 flex items-center p-4 rounded-md bg-background-200 text-text hover:text-text border border-border transition hover:border-primary hover:no-underline hover:dyte-shadow"
+>
+  <img className="h-12 md:h-14 mr-3" src="/icons/flutter.svg"/>
+  <div className="flex flex-col space-y-1">
+    <div className="font-medium">Flutter</div>
+    <p className="text-xs text-text-100">Android + iOS</p>
+  </div>
+</Link>
+
+<Link
+  to="/react/quickstart"
+  className="md:col-span-2 flex items-center p-4 rounded-md bg-background-200 text-text hover:text-text border border-border transition hover:border-primary hover:no-underline hover:dyte-shadow"
+>
+  <img className="h-12 md:h-14 mr-3" src="/icons/kotlin.svg"/>
+  <div className="flex flex-col space-y-1">
+    <div className="font-medium">Kotlin/Java</div>
+    <p className="text-xs text-text-100">Android</p>
+  </div>
+</Link>
+
+<Link
+  to="/react/quickstart"
+  className="md:col-span-2 flex items-center p-4 rounded-md bg-background-200 text-text hover:text-text border border-border transition hover:border-primary hover:no-underline hover:dyte-shadow"
+>
+  <img className="h-12 md:h-14 mr-3" src="/icons/swift.svg"/>
+  <div className="flex flex-col space-y-1">
+    <div className="font-medium">Swift/Objective C</div>
+    <p className="text-xs text-text-100">iOS</p>
+  </div>
+</Link>
+
+<Link
+  to="/react/quickstart"
+  className="md:col-span-2 flex items-center p-4 rounded-md bg-background-200 text-text hover:text-text border border-border transition hover:border-primary hover:no-underline hover:dyte-shadow"
+>
+  <img className="h-12 md:h-14 mr-3" src="/icons/react.svg"/>
+  <div className="flex flex-col space-y-1">
+    <div className="font-medium">React Native</div>
+    <p className="text-xs text-text-100">Android + iOS</p>
+  </div>
+</Link>
 
 </div>
