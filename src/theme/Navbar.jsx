@@ -10,7 +10,7 @@ const ThemeSwitcher = () => {
 
   return (
     <button
-      className="w-10 h-10 p-2 cursor-pointer text-text-100 hover:text-text bg-transparent"
+      className="fixed bottom-20 right-4 lg:bottom-4 w-12 h-12 p-2 cursor-pointer text-gray-100 hover:text-white transition bg-primary rounded-full shadow-md hover:shadow-xl"
       onClick={() => {
         isDarkTheme ? setLightTheme() : setDarkTheme();
       }}
@@ -37,61 +37,63 @@ const SearchButton = () => {
 
 export default function Navbar() {
   return (
-    <header className="relative flex items-center justify-between px-4 py-2 z-10 bg-background border-b !border-border">
-      <div className="flex items-center space-x-8 font-medium">
-        <Link to="/" className="flex">
-          <Logo />
-        </Link>
+    <div>
+      <header className="relative flex items-center justify-between px-4 py-2 z-10 bg-background border-b !border-border">
+        <div className="flex items-center space-x-10 font-medium">
+          <Link to="/" className="flex">
+            <Logo />
+          </Link>
 
-        <div className="hidden lg:flex space-x-4 text-text-100">
-          <Link
-            to="/docs/guides/introduction"
-            className="text-sm text-current hover:no-underline"
-          >
-            Guides
-          </Link>
-          <Link
-            to="/react/quickstart"
-            className="text-sm text-current hover:no-underline"
-          >
-            Client SDK
-          </Link>
-          <Link to="/api" className="text-sm text-current hover:no-underline">
-            API Reference
-          </Link>
-          <a
-            href="https://dev.dyte.in"
-            target="_blank"
-            className="text-sm text-current hover:no-underline"
-          >
-            Developer Portal
-          </a>
+          <div className="hidden lg:flex space-x-4 text-text-100">
+            <Link
+              to="/docs/guides/introduction"
+              className="text-sm text-current hover:no-underline"
+            >
+              Guides
+            </Link>
+            <Link
+              to="/react/quickstart"
+              className="text-sm text-current hover:no-underline"
+            >
+              Client SDK
+            </Link>
+            <Link to="/api" className="text-sm text-current hover:no-underline">
+              API Reference
+            </Link>
+          </div>
         </div>
-      </div>
 
-      <div className="flex-1 flex items-center justify-end space-x-4">
-        <SearchButton />
+        <div className="flex-1 flex items-center justify-end space-x-4">
+          <SearchButton />
 
-        <div className="hidden lg:flex items-center">
-          <a
-            href="https://discord.com/invite/pxRcdNufvk"
-            target="_blank"
-            className="w-12 h-12 p-2"
-          >
-            <Discord className="w-full h-full text-text-100 hover:text-text" />
-          </a>
+          <div className="hidden lg:flex items-center">
+            <a
+              href="https://discord.com/invite/pxRcdNufvk"
+              target="_blank"
+              className="w-12 h-12 p-2"
+            >
+              <Discord className="w-full h-full text-text-100 hover:text-text" />
+            </a>
 
-          <a
-            href="https://github.com/dyte-in"
-            target="_blank"
-            className="w-12 h-12 p-2"
-          >
-            <Github className="w-full h-full text-text-100 hover:text-text" />
-          </a>
+            <a
+              href="https://github.com/dyte-in"
+              target="_blank"
+              className="w-12 h-12 p-2"
+            >
+              <Github className="w-full h-full text-text-100 hover:text-text" />
+            </a>
 
-          <ThemeSwitcher />
+            <a
+              href="https://dev.dyte.in"
+              target="_blank"
+              className="ml-4 bg-primary text-white px-4 py-2 text-xs font-bold rounded-md hover:no-underline hover:text-white"
+            >
+              Login/Sign Up
+            </a>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+      <ThemeSwitcher />
+    </div>
   );
 }
