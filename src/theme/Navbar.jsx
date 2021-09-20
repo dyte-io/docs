@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useThemeContext from '@theme/hooks/useThemeContext';
 import Link from '@docusaurus/Link';
+import { parse as parseBrowser } from 'bowser';
+import clsx from 'clsx';
 import { MoonIcon, SearchIcon, SunIcon } from '@heroicons/react/outline';
 import { Discord, Github } from '@styled-icons/boxicons-logos';
-import Logo from '../components/Logo';
+
+import Logo from '@site/src/components/Logo';
 
 const ThemeSwitcher = () => {
   const { isDarkTheme, setLightTheme, setDarkTheme } = useThemeContext();
@@ -22,20 +25,61 @@ const ThemeSwitcher = () => {
 };
 
 const SearchButton = () => {
+  const {
+    os: { name: os },
+  } = parseBrowser(window.navigator.userAgent);
+
   return (
     <button
-      className="flex items-center justify-between lg:w-full lg:max-w-xs h-12 px-4 py-2 text-text bg-background-200 rounded-md cursor-pointer"
+      className="flex items-center justify-between lg:w-full lg:max-w-[16rem] h-10 px-4 py-2 text-text bg-background-200 rounded-md cursor-pointer"
       onClick={() => {}}
     >
-      <div className="flex items-center space-x-3">
+      <div className="flex items-center space-x-2">
         <SearchIcon className="w-6 h-6" />
-        <span className="hidden md:block">Search</span>
+        <span className="hidden md:block text-sm">Search</span>
+      </div>
+      <div className="hidden lg:flex items-center space-x-1 ">
+        <kbd>
+          {os === 'macOS' ? (
+            <abbr title="Command" className="no-underline">
+              ⌘
+            </abbr>
+          ) : (
+            <abbr title="Control" className="no-underline">
+              Ctrl
+            </abbr>
+          )}
+        </kbd>
+        <kbd>K</kbd>
       </div>
     </button>
   );
 };
 
+const getPage = () => {
+  const { pathname } = window.location;
+
+  if (pathname === '/api') {
+    return 'api';
+  } else if (pathname.startsWith('/docs/guides')) {
+    return 'guides';
+  }
+
+  const [, doc] = pathname.split('/');
+
+  if (['react', 'flutter'].includes(doc)) {
+    return 'sdk';
+  } else return null;
+};
+
+/**
+ * Contains the Navbar and the ThemeSwitcher
+ */
 export default function Navbar() {
+  const page = getPage();
+
+  console.log(page);
+
   return (
     <div>
       <header className="relative flex items-center justify-between px-4 py-2 z-10 bg-background border-b !border-border">
@@ -47,17 +91,29 @@ export default function Navbar() {
           <div className="hidden lg:flex space-x-4 text-text-100">
             <Link
               to="/docs/guides/introduction"
-              className="text-sm text-current hover:no-underline"
+              className={clsx(
+                'text-sm text-text hover:no-underline',
+                page === 'guides' && 'text-primary'
+              )}
             >
               Guides
             </Link>
             <Link
               to="/react/quickstart"
-              className="text-sm text-current hover:no-underline"
+              className={clsx(
+                'text-sm text-text hover:no-underline',
+                page === 'sdk' && 'text-primary'
+              )}
             >
               Client SDK
             </Link>
-            <Link to="/api" className="text-sm text-current hover:no-underline">
+            <Link
+              to="/api"
+              className={clsx(
+                'text-sm text-text hover:no-underline',
+                page === 'api' && 'text-primary'
+              )}
+            >
               API Reference
             </Link>
           </div>
@@ -72,7 +128,7 @@ export default function Navbar() {
               target="_blank"
               className="w-12 h-12 p-2"
             >
-              <Discord className="w-full h-full text-text-100 hover:text-text" />
+              <Discord className="w-full h-full text-text-100 hover:text-primary" />
             </a>
 
             <a
@@ -80,7 +136,7 @@ export default function Navbar() {
               target="_blank"
               className="w-12 h-12 p-2"
             >
-              <Github className="w-full h-full text-text-100 hover:text-text" />
+              <Github className="w-full h-full text-text-100 hover:text-primary" />
             </a>
 
             <a

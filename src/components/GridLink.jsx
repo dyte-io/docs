@@ -12,7 +12,7 @@ export default function GridLink({
   return (
     <Link
       className={clsx(
-        'flex items-center p-4 rounded-md bg-background-200 text-text break-words hover:text-text border border-border transition hover:border-primary hover:no-underline hover:dyte-shadow',
+        'flex items-center p-4 rounded-md bg-background-200 text-text break-words hover:text-text border-2 border-border transition hover:border-primary hover:no-underline hover:dyte-shadow',
         className
       )}
       {...props}
@@ -20,7 +20,7 @@ export default function GridLink({
       {typeof Icon === 'string' ? (
         <img src={Icon} className="h-10 md:h-12 mr-3" />
       ) : (
-        <Icon className="h-12 md:h-16 mr-3" />
+        <Icon className="h-12 md:h-16 mr-3 text-primary" />
       )}
 
       <div className="flex flex-col space-y-px">
