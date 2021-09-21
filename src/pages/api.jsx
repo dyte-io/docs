@@ -9,7 +9,12 @@ export default function APIPage(props) {
       <div className="w-full text-center my-24">
         API Page this is. Will be back.
       </div>
-      <API apiDescriptionDocument="/openapi.yaml" />
+      <API
+        apiDescriptionUrl="/openapi.yaml"
+        router="history"
+        basePath="/api"
+        layout="sidebar"
+      />
     </Layout>
   );
 }
