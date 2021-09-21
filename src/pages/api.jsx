@@ -1,11 +1,15 @@
 import React from 'react';
+import Layout from '@site/src/theme/Layout';
+
+// import { API } from '@stoplight/elements';
 
 export default function APIPage(props) {
   return (
-    <div>
+    <Layout>
       <div className="w-full text-center my-24">
         API Page this is. Will be back.
       </div>
-    </div>
+      {/* <API apiDescriptionDocument="/openapi.yaml" /> */}
+    </Layout>
   );
 }

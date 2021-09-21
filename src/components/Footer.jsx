@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
 
-import DyteLogo from '../components/DyteLogo';
+import DyteLogo from './DyteLogo';
 
 export default function Footer(props) {
   return (
@@ -44,8 +44,8 @@ export default function Footer(props) {
             </form>
           </div>
           <div className="flex-1 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 lg:mt-0">
-            <div>
-              <h5 className="font-sans font-normal text-text-100">Product</h5>
+            <div className="space-y-2">
+              <div className="font-sans font-normal text-sm text-text-100">Product</div>
               <ul className="space-y-2 text-sm list-none p-0">
                 <li>
                   <a href="#" className="text-current hover:no-underline">
@@ -64,8 +64,8 @@ export default function Footer(props) {
                 </li>
               </ul>
             </div>
-            <div>
-              <h5 className="font-sans font-normal text-text-100">Company</h5>
+            <div className="space-y-2">
+              <div className="font-sans font-normal text-sm text-text-100">Company</div>
               <ul className="space-y-2 text-sm list-none p-0">
                 <li>
                   <a href="#" className="text-current hover:no-underline">
@@ -84,8 +84,8 @@ export default function Footer(props) {
                 </li>
               </ul>
             </div>
-            <div>
-              <h5 className="font-sans font-normal text-text-100">Help</h5>
+            <div className="space-y-2">
+              <div className="font-sans font-normal text-sm text-text-100">Help</div>
               <ul className="space-y-2 text-sm list-none p-0">
                 <li>
                   <a href="#" className="text-current hover:no-underline">

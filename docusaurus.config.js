@@ -23,6 +23,7 @@ module.exports = {
         src: '/img/logo.svg',
       },
     },
+    hideableSidebar: true,
     prism: {
       additionalLanguages: ['dart'],
     },
@@ -33,7 +34,7 @@ module.exports = {
       {
         docs: {
           path: 'docs/main',
-          id: 'docs',
+          id: 'default',
           routeBasePath: 'docs',
           sidebarPath: require.resolve('./sidebars.js'),
         },
