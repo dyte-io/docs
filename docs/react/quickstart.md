@@ -6,7 +6,7 @@ sidebar_position: 1
 
 Hello world! :smile: :earth_asia:
 
-```jsx
+```jsx {3}
 import React from 'react';
 
 const Comp = () => {

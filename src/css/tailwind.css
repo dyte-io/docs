@@ -3,6 +3,8 @@
 @tailwind components;
 
 @layer base {
+  /* CSS Reset */
+
   *,
   ::before,
   ::after {
@@ -11,10 +13,6 @@
     border-style: solid; /* 2 */
     border-color: currentColor; /* 2 */
   }
-  /* button {
-    background-color: transparent;
-    background-image: none;
-  } */
 
   body {
     @apply antialiased;
@@ -25,6 +23,19 @@
   */
 
   :root {
+    --ifm-color-primary: #2160fd;
+    --ifm-color-primary-dark: #1959fc;
+    --ifm-color-primary-darker: #0f51f8;
+    --ifm-color-primary-darkest: #0042e7;
+    --ifm-color-primary-light: #3d72f8;
+    --ifm-color-primary-lighter: #477af8;
+    --ifm-color-primary-lightest: #6791fc;
+    --ifm-code-font-size: 95%;
+
+    --ifm-background-color: #ffffff;
+
+    --doc-sidebar-width: 340px;
+
     --color-primary: #2160fd;
 
     --color-text: #000000;
@@ -38,13 +49,13 @@
   }
 
   html[data-theme='dark'] {
-    
+    --ifm-color-primary: #1a90ff;
+
     --color-text: #ffffff;
     --color-text-100: #b4b4b4;
-    
+
     --color-border: #606770;
-    
-    
+
     --color-background: #161616;
     --color-background-100: #1c1c1c;
     --color-background-200: #2a2a2a;
@@ -55,6 +66,17 @@
 
 @layer utilities {
   .dyte-shadow {
-    box-shadow: 0 4px 14px -6px #2160FD;
+    box-shadow: 0 4px 14px -6px #2160fd;
   }
+}
+
+.docusaurus-highlight-code-line {
+  background-color: #1b1b1b;
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
+
+html[data-theme='dark'] .docusaurus-highlight-code-line {
+  background-color: #1b1b1b;
 }
