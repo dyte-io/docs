@@ -30,7 +30,7 @@ module.exports = function (context, options) {
         ],
         resolve: {
           fallback: {
-            buffer: require.resolve('buffer'),
+            buffer: false,
             stream: false,
             path: false,
             process: false,
