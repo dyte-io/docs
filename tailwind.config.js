@@ -15,16 +15,16 @@ module.exports = {
         lg: '997px',
       },
       colors: {
-        primary: 'var(--color-primary)',
+        primary: 'var(--docs-color-primary)',
         text: {
-          DEFAULT: 'var(--color-text)',
-          100: 'var(--color-text-100)',
+          DEFAULT: 'var(--docs-color-text)',
+          100: 'var(--docs-color-text-100)',
         },
-        border: 'var(--color-border)',
+        border: 'var(--docs-color-border)',
         background: {
-          DEFAULT: 'var(--color-background)',
-          100: 'var(--color-background-100)',
-          200: 'var(--color-background-200)',
+          DEFAULT: 'var(--docs-color-background)',
+          100: 'var(--docs-color-background-100)',
+          200: 'var(--docs-color-background-200)',
         },
       },
     },
@@ -32,5 +32,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [],
 };

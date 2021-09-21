@@ -1,4 +1,4 @@
-const webpack = require('webpack');
+const { ProvidePlugin } = require('webpack');
 
 module.exports = function (context, options) {
   return {
@@ -13,29 +13,27 @@ module.exports = function (context, options) {
     },
     configureWebpack(config) {
       return {
-        plugins: [
-          // fixes process is not defined error
-          new webpack.DefinePlugin({
-            process: {
-              env: {},
+        module: {
+          rules: [
+            {
+              test: /\.m?js/,
+              resolve: {
+                fullySpecified: false,
+              },
             },
+          ],
+        },
+        plugins: [
+          new ProvidePlugin({
+            process: require.resolve('process/browser'),
           }),
         ],
         resolve: {
           fallback: {
             buffer: require.resolve('buffer'),
-            events: require.resolve('events'),
-            stream: require.resolve('stream-browserify'),
-
-            // doesn't work in browser when you visit /api
-            lodash: require.resolve('lodash'),
-
-            // build time errors
-            '@stoplight/http-spec/oas2': false,
-            '@stoplight/http-spec/oas3': false,
-
-            // cannot solve this
-            'abort-controller': require.resolve('abortcontroller-polyfill'),
+            stream: false,
+            path: false,
+            process: false,
           },
         },
       };
