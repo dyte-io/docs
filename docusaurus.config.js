@@ -37,6 +37,7 @@ module.exports = {
           id: 'default',
           routeBasePath: 'docs',
           sidebarPath: require.resolve('./sidebars.js'),
+          sidebarCollapsible: false,
         },
         blog: {
           showReadingTime: true,

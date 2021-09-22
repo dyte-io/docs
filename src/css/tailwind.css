@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+
 @tailwind base;
 @tailwind utilities;
 @tailwind components;
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
 
 @layer base {
   /* CSS Reset */
@@ -92,4 +92,48 @@
 
 html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: #1b1b1b;
+}
+
+.menu > .menu__list > .menu__list-item:first-child {
+  margin-top: 16px;
+}
+
+/* Sidebar nav header  */
+.menu > .menu__list > .menu__list-item > .menu__link {
+  @apply mb-1 text-text-100 font-medium;
+  font-size: 12px;
+
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.menu > .menu__list > .menu__list-item {
+  margin-bottom: 16px;
+}
+
+div[class^='sidebar_']
+  .menu__link.menu__link--active:not(.menu__link--sublist) {
+  border-radius: 0;
+  border-right: 2px solid var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+}
+
+.menu {
+  padding: 0 !important;
+}
+
+.menu > .menu__list-item > .menu__list > .menu__link {
+  padding-left: 0.5rem;
+  padding-right: 0;
+}
+
+/* Optional style for only one link which acts as nav section header */
+
+.menu > .menu__list > .menu__list-item > .menu__link:only-child {
+  @apply text-base normal-case tracking-normal;
+  color: var(--ifm-menu-color);
+}
+
+.menu > .menu__list > .menu__list-item > .menu__link--active:only-child {
+  color: var(--ifm-color-primary);
 }
