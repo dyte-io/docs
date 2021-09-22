@@ -7,7 +7,7 @@ import BrowserOnly from '@docusaurus/BrowserOnly';
 
 export default function APIPage(props) {
   return (
-    <BrowserOnly fallback={<div>Loading...</div>}>
+    <BrowserOnly>
       {() => {
         return (
           <Layout>
@@ -22,7 +22,7 @@ export default function APIPage(props) {
             <API
               apiDescriptionUrl="/openapi.yaml"
               router="hash"
-              basePath="/api"
+              basePath="/"
               layout="sidebar"
             />
           </Layout>
