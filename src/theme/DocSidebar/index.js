@@ -21,6 +21,7 @@ import styles from './styles.module.css';
 
 import Link from '@docusaurus/Link';
 import DocsLogo from '@site/src/components/Logo';
+import ContextSwitcher from '@site/src/components/ContextSwitcher';
 
 function useShowAnnouncementBar() {
   const { isClosed } = useAnnouncementBar();
@@ -77,7 +78,6 @@ function DocSidebarDesktop({ path, sidebar, onCollapse, isHidden }) {
           <DocsLogo tabIndex={-1} className={clsx('h-7 self-start')} />
         </Link>
       )}
-      {/* {hideOnScroll && <Logo tabIndex={-1} className={styles.sidebarLogo} />} */}
       <nav
         className={clsx('menu thin-scrollbar', styles.menu, {
           [styles.menuWithAnnouncementBar]:
@@ -85,6 +85,7 @@ function DocSidebarDesktop({ path, sidebar, onCollapse, isHidden }) {
         })}
       >
         <ul className={clsx(ThemeClassNames.docs.docSidebarMenu, 'menu__list')}>
+          <ContextSwitcher />
           <DocSidebarItems items={sidebar} activePath={path} />
         </ul>
       </nav>
@@ -96,6 +97,7 @@ function DocSidebarDesktop({ path, sidebar, onCollapse, isHidden }) {
 const DocSidebarMobileSecondaryMenu = ({ toggleSidebar, sidebar, path }) => {
   return (
     <ul className={clsx(ThemeClassNames.docs.docSidebarMenu, 'menu__list')}>
+      <ContextSwitcher />
       <DocSidebarItems
         items={sidebar}
         activePath={path}

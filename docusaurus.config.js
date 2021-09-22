@@ -16,12 +16,30 @@ module.exports = {
   organizationName: 'dyte-in', // Usually your GitHub org/user name.
   projectName: 'dev-docs', // Usually your repo name.
   themeConfig: {
+    colorMode: {
+      disableSwitch: true,
+    },
     navbar: {
       hideOnScroll: true,
       logo: {
-        alt: 'Dyte Docs Logo',
-        src: '/img/logo.svg',
+        alt: 'Dyte Docs',
+        src: '/logo.svg',
       },
+      items: [
+        {
+          label: 'Guides',
+          to: '/',
+          activeBaseRegex: '(^/docs)',
+        },
+        {
+          label: 'Client SDK',
+          to: '/react/quickstart',
+        },
+        {
+          label: 'API Reference',
+          to: '/api',
+        },
+      ],
     },
     hideableSidebar: true,
     prism: {
