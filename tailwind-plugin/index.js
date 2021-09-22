@@ -26,11 +26,11 @@ module.exports = function (context, options) {
         plugins: [
           new ProvidePlugin({
             process: require.resolve('process/browser'),
+            Buffer: ['buffer', 'Buffer'],
           }),
         ],
         resolve: {
           fallback: {
-            buffer: false,
             stream: false,
             path: false,
             process: false,
