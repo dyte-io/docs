@@ -12,7 +12,7 @@ module.exports = {
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
+  favicon: 'favicon.ico',
   organizationName: 'dyte-in', // Usually your GitHub org/user name.
   projectName: 'dev-docs', // Usually your repo name.
   themeConfig: {
