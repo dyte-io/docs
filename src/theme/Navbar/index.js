@@ -226,7 +226,7 @@ const SearchButton = () => {
         <span className="hidden md:block text-sm">Search</span>
       </div>
       <div className="hidden lg:flex items-center space-x-1">
-        <kbd className="w-6 text-text-100 font-sans bg-transparent border border-gray-600 outline-none text-sm shadow-none">
+        <kbd className="text-text-100 font-sans bg-transparent border border-gray-600 outline-none text-sm shadow-none">
           {os === 'macOS' ? (
             <abbr title="Command" className="no-underline">
               ⌘
@@ -275,7 +275,7 @@ function Navbar() {
         mobileSidebar.shown && 'navbar-sidebar--show'
       )}
     >
-      <header className="relative flex items-center justify-between px-4 py-2 z-10 bg-background border-b !border-border">
+      <header className="relative flex h-14 items-center justify-between px-4 py-2 z-10 bg-background border-b !border-border">
         <div className="flex items-center space-x-10 font-medium">
           <div className="flex items-center space-x-2">
             <button

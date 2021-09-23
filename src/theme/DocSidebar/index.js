@@ -22,6 +22,7 @@ import styles from './styles.module.css';
 import Link from '@docusaurus/Link';
 import DocsLogo from '@site/src/components/Logo';
 import ContextSwitcher from '@site/src/components/ContextSwitcher';
+import { ChevronLeftIcon } from '@heroicons/react/outline';
 
 function useShowAnnouncementBar() {
   const { isClosed } = useAnnouncementBar();
@@ -36,26 +37,17 @@ function useShowAnnouncementBar() {
 
 function HideableSidebarButton({ onClick }) {
   return (
-    <button
-      type="button"
-      title={translate({
-        id: 'theme.docs.sidebar.collapseButtonTitle',
-        message: 'Collapse sidebar',
-        description: 'The title attribute for collapse button of doc sidebar',
-      })}
-      aria-label={translate({
-        id: 'theme.docs.sidebar.collapseButtonAriaLabel',
-        message: 'Collapse sidebar',
-        description: 'The title attribute for collapse button of doc sidebar',
-      })}
-      className={clsx(
-        'button button--secondary button--outline',
-        styles.collapseSidebarButton
-      )}
-      onClick={onClick}
-    >
-      <IconArrow className={styles.collapseSidebarButtonIcon} />
-    </button>
+    <div className="absolute top-0 right-0 w-1 h-full flex ">
+      <button
+        className="absolute right-[-10px] w-5 h-5 mt-24 rounded-md bg-background-200 cursor-pointer"
+        onClick={onClick}
+        onKeyDown={onClick}
+        tabIndex={0}
+        aria-label="Collapse sidebar"
+      >
+        <ChevronLeftIcon className="h-2 text-text" />
+      </button>
+    </div>
   );
 }
 

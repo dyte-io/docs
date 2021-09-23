@@ -13,7 +13,7 @@ export default function GridLink({
   return (
     <Link
       className={clsx(
-        'flex items-center p-6 rounded-md bg-background-100 text-text break-words hover:text-text border-2 border-border transition hover:border-primary hover:no-underline hover:dyte-shadow',
+        'flex items-center p-6 rounded-md bg-background-100 text-text break-words hover:text-text border-[1.5px] border-border transition hover:border-primary hover:no-underline hover:dyte-shadow',
         className
       )}
       {...props}
