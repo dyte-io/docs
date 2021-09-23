@@ -163,10 +163,14 @@ hr {
 }
 
 .navbar__item {
-  display: block !important;
+  display: block;
 }
 
 .dropdown {
   min-width: 3rem;
   text-align: right;
+}
+
+.dropdown {
+  @apply flex-1 flex justify-end items-center rounded-md h-12;
 }
