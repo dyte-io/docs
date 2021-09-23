@@ -59,17 +59,18 @@ const getDocId = () => {
 };
 
 const DocManager = () => {
-  if (window.location.pathname.split('/')[1] === 'docs') {
+  
+  const isBrowser = useIsBrowser();
+  const docId = isBrowser ? getDocId() : 'default';
+  
+  if (isBrowser && window.location.pathname.split('/')[1] === 'docs') {
     // don't show DocManager for /docs
     return null;
   }
-
-  const isBrowser = useIsBrowser();
-  const docId = isBrowser ? getDocId() : 'default';
-
+  
   return (
     <div className="flex items-center justify-end px-4 my-4">
-      <ContextSwitcher className="flex-[4]" />
+      <ContextSwitcher className="flex-[3]" />
       <VersionDropdown
         dropdownItemsBefore={[]}
         dropdownItemsAfter={[]}
