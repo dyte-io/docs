@@ -218,11 +218,11 @@ const SearchButton = () => {
 
   return (
     <button
-      className="flex items-center justify-between md:w-full md:max-w-[12rem] h-10 px-2 lg:px-4 py-2 text-text bg-background-200 rounded-md cursor-pointer"
+      className="flex items-center justify-between md:w-full md:max-w-[12rem] h-9 px-2 py-2 text-text bg-background-200 rounded-md cursor-pointer"
       onClick={() => {}}
     >
       <div className="flex items-center space-x-2">
-        <SearchIcon className="w-6 h-6 text-text-100" />
+        <SearchIcon className="w-5 h-5 text-text-100" />
         <span className="hidden md:block text-sm">Search</span>
       </div>
       <div className="hidden lg:flex items-center space-x-1">
@@ -290,11 +290,11 @@ function Navbar() {
             </Link>
           </div>
 
-          <div className="hidden lg:flex space-x-4 text-text-100">
+          <div className="hidden lg:flex space-x-6 text-text-100">
             <Link
               to="/docs/guides/introduction"
               className={clsx(
-                'text-sm hover:no-underline',
+                'text-sm hover:no-underline font-medium',
                 page === 'guides' ? '!text-primary' : 'text-text-100'
               )}
             >
@@ -303,7 +303,7 @@ function Navbar() {
             <Link
               to="/react/quickstart"
               className={clsx(
-                'text-sm text-text-100 hover:no-underline',
+                'text-sm hover:no-underline font-medium',
                 page === 'sdk' ? 'text-primary' : 'text-text-100'
               )}
             >
@@ -312,7 +312,7 @@ function Navbar() {
             <Link
               to="/api"
               className={clsx(
-                'text-sm hover:no-underline',
+                'text-sm hover:no-underline font-medium',
                 page === 'api' ? 'text-primary' : 'text-text-100'
               )}
             >
@@ -320,34 +320,41 @@ function Navbar() {
             </Link>
 
             <Link
-              className="flex items-center text-sm text-text-100 hover:no-underline"
+              className="flex items-center text-sm text-text-100 hover:no-underline font-medium"
               href="https://github.com/dyte-in"
             >
-              <Github className="w-4 mr-1" />
+              <Github className="h-5 mr-1" aria-hidden={true} />
               GitHub
             </Link>
 
             <Link
-              className="flex items-center text-sm text-text-100 hover:no-underline"
+              className="flex items-center text-sm text-text-100 hover:no-underline font-medium"
               href="https://discord.com/invite/pxRcdNufvk"
             >
-              <Discord className="w-4 mr-1" />
+              <svg
+                viewBox="0 0 28 22"
+                className="h-4 mr-1 fill-current"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden={true}
+              >
+                <path d="M17.967 0c-.278.497-.525 1.01-.741 1.537a20.488 20.488 0 0 0-6.401 0A14.164 14.164 0 0 0 10.085 0c-1.998.341-3.94.953-5.773 1.817A24.22 24.22 0 0 0 .12 18.015a23.2 23.2 0 0 0 7.085 3.62 18.01 18.01 0 0 0 1.552-2.432 13.48 13.48 0 0 1-2.39-1.16c.207-.138.404-.293.587-.462a16.296 16.296 0 0 0 14.143 0c.196.168.392.322.587.462-.76.46-1.56.853-2.39 1.174.433.87.938 1.702 1.51 2.487a22.977 22.977 0 0 0 7.072-3.62 24.066 24.066 0 0 0-4.193-16.197A22.487 22.487 0 0 0 17.967 0ZM9.386 14.745a2.712 2.712 0 0 1-2.516-2.796 2.697 2.697 0 0 1 2.516-2.795A2.697 2.697 0 0 1 11.9 11.95a2.697 2.697 0 0 1-2.515 2.796Zm9.28 0a2.712 2.712 0 0 1-2.516-2.796 2.698 2.698 0 0 1 2.515-2.795 2.684 2.684 0 0 1 2.516 2.795 2.684 2.684 0 0 1-2.516 2.796Z" />
+              </svg>
               Community
             </Link>
           </div>
         </div>
 
-        <div className="flex-1 flex items-center justify-end space-x-4">
+        <div className="flex-1 flex items-center justify-end">
           <SearchButton />
 
           <div className="hidden lg:flex items-center">
-            <a
+            <Link
               href="https://dev.dyte.in"
               target="_blank"
-              className="ml-4 bg-primary text-white px-4 py-2 text-xs font-bold rounded-md hover:no-underline hover:text-white"
+              className="flex items-center h-9 ml-4 bg-primary text-white px-4 text-xs font-bold rounded-md hover:no-underline hover:text-white"
             >
               Login/Sign Up
-            </a>
+            </Link>
           </div>
         </div>
         <ThemeSwitcher />
