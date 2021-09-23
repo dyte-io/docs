@@ -50,25 +50,24 @@
     --docs-color-background: #ffffff;
     --docs-color-background-100: #f8f8f8;
     --docs-color-background-200: #efefef;
-    --docs-color-background-300: #DCDCDC;
+    --docs-color-background-300: #dcdcdc;
 
     --ifm-toc-border-color: var(--docs-color-border);
   }
 
   html[data-theme='dark'] {
     --ifm-link-color: #1a90ff;
-    /* --ifm-toc-link-color: var(--ifm-link-color);  */
+    --ifm-color-primary: #1a90ff;
 
     --docs-color-text: #ffffff;
     --docs-color-text-100: #b4b4b4;
 
-    --docs-color-border: #2E2E2E;
+    --docs-color-border: #2e2e2e;
 
     --docs-color-background: #161616;
     --docs-color-background-100: #1c1c1c;
     --docs-color-background-200: #2a2a2a;
     --docs-color-background-300: #696969;
-    
 
     --ifm-background-color: var(--docs-color-background);
   }
@@ -76,16 +75,17 @@
 
 @layer utilities {
   .dyte-shadow {
-    box-shadow: 0 4px 14px -6px #2160fd;
+    box-shadow: 4px 2px 32px 8px rgba(33, 96, 253, 0.16),
+      0px 8px 24px rgba(33, 96, 253, 0.08);
   }
 }
 
 @layer components {
   .dyte-image-showcase {
-    @apply w-full p-6 bg-gradient-to-r from-blue-700 to-blue-600 my-12;
+    @apply w-full px-4 py-14 bg-gradient-to-r from-blue-700 to-blue-500 my-12 rounded-md;
   }
   .dyte-image-showcase > * {
-    @apply block mx-auto shadow-xl;
+    @apply block mx-auto shadow-xl rounded-md;
   }
 }
 
@@ -119,7 +119,7 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
 div[class^='sidebar_']
   .menu__link.menu__link--active:not(.menu__link--sublist) {
-  border-radius: 0;
+  border-radius: 4px 0 0 4px;
   border-right: 2px solid var(--ifm-color-primary);
   color: var(--ifm-color-primary);
   background: rgba(33, 96, 253, 0.16);
@@ -153,3 +153,4 @@ div[class^='sidebar_']
 .navbar-sidebar {
   z-index: 15;
 }
+
