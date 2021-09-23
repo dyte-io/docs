@@ -75,7 +75,7 @@ const ContextSwitcher = ({ className, history }) => {
       className={clsx('relative', className)}
     >
       <div className="relative mt-1">
-        <Listbox.Button className="relative flex items-center w-full py-2 pl-3 pr-10 text-left bg-background-100 rounded-lg cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm outline-none border-none">
+        <Listbox.Button className="relative flex items-center w-full h-12 py-2 pl-3 pr-10 text-left bg-background-100 rounded-lg cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm outline-none border-none">
           <img
             src={context.icon}
             className="w-8 h-8 object-cover mr-2"
