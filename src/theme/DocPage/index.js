@@ -78,7 +78,7 @@ function DocPageContent({ currentDocRoute, versionMetadata, children }) {
             {hiddenSidebar && (
               <div className="sticky top-0 h-full flex border border-border">
                 <button
-                  className="absolute right-[-10px] w-5 h-5 mt-24 rounded-md bg-background-200 cursor-pointer"
+                  className="absolute right-[-10px] w-5 h-5 mt-20 rounded-md bg-background-200 cursor-pointer"
                   onClick={toggleSidebar}
                   onKeyDown={toggleSidebar}
                   tabIndex={0}

@@ -39,7 +39,7 @@ function HideableSidebarButton({ onClick }) {
   return (
     <div className="absolute top-0 right-0 w-1 h-full flex ">
       <button
-        className="absolute right-[-10px] w-5 h-5 mt-24 rounded-md bg-background-200 cursor-pointer"
+        className="absolute right-[-10px] w-5 h-5 mt-20 rounded-md bg-background-200 cursor-pointer"
         onClick={onClick}
         onKeyDown={onClick}
         tabIndex={0}
