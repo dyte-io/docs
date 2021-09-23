@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
 import { withRouter } from '@docusaurus/router';
+import { useAllDocsData } from '@theme/hooks/useDocs';
 
 const CONTEXTS = [
   {
@@ -23,8 +24,13 @@ export const getCurrentPageInfo = () => {
   return window.location.pathname.split('/').slice(1);
 };
 
+const pathExists = (path, data) => {
+  return data.docs.some((doc) => doc.path === path);
+};
+
 const ContextSwitcher = ({ className, history }) => {
   const [context, setContext] = useState(CONTEXTS[0]);
+  const data = useAllDocsData();
 
   useEffect(() => {
     const [doc] = getCurrentPageInfo();
@@ -40,10 +46,21 @@ const ContextSwitcher = ({ className, history }) => {
 
     const [, ...docPath] = getCurrentPageInfo();
 
-    let path = `/${newValue.id}/${docPath.join('/')}`;
-    if (window.location.hash) path += window.location.hash;
+    const newDoc = newValue.id;
 
-    history.push(path);
+    let path = `/${newDoc}/${docPath.join('/')}`;
+
+    const lastVersion = data[newDoc].versions.find(
+      (version) => version.isLast === true
+    );
+
+    if (pathExists(path, lastVersion)) {
+      if (window.location.hash) path += window.location.hash;
+      history.push(path);
+    } else {
+      const { mainDocId } = lastVersion;
+      history.push(`/${newDoc}/${mainDocId}`);
+    }
   };
 
   if (history.location.pathname.split('/')[1] === 'docs') {
