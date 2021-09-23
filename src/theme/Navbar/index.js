@@ -218,7 +218,7 @@ const SearchButton = () => {
 
   return (
     <button
-      className="flex items-center justify-between md:w-full md:max-w-[12rem] h-9 px-2 py-2 text-text bg-background-200 rounded-md cursor-pointer"
+      className="flex items-center justify-between md:w-full md:max-w-[12rem] h-9 px-2 py-2 text-text bg-background-200 rounded-[4px] cursor-pointer"
       onClick={() => {}}
     >
       <div className="flex items-center space-x-2">
@@ -351,7 +351,7 @@ function Navbar() {
             <Link
               href="https://dev.dyte.in"
               target="_blank"
-              className="flex items-center h-9 ml-4 bg-primary text-white px-4 text-xs font-bold rounded-md hover:no-underline hover:text-white"
+              className="flex items-center h-9 ml-4 bg-primary text-white px-4 text-sm font-bold rounded-[4px] hover:no-underline hover:text-white"
             >
               Login/Sign Up
             </Link>

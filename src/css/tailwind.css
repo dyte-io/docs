@@ -70,6 +70,9 @@
     --docs-color-background-300: #464646;
 
     --ifm-background-color: var(--docs-color-background);
+
+    --ifm-heading-color: #dcdcdc;
+    --ifm-font-color-base: #e7e7e7;
   }
 }
 
@@ -109,12 +112,13 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   @apply mb-1 text-text-100 font-medium;
   font-size: 12px;
 
-  letter-spacing: 1px;
+  letter-spacing: 0px;
   text-transform: uppercase;
 }
 
 .menu > .menu__list > .menu__list-item {
   margin-bottom: 16px;
+  font-size: 14px;
 }
 
 div[class^='sidebar_']
@@ -127,11 +131,6 @@ div[class^='sidebar_']
 
 .menu {
   padding: 0 !important;
-}
-
-.menu > .menu__list-item > .menu__list > .menu__link {
-  padding-left: 0.5rem;
-  padding-right: 0;
 }
 
 /* Optional style for only one link which acts as nav section header */
@@ -154,3 +153,6 @@ div[class^='sidebar_']
   z-index: 15;
 }
 
+hr {
+  @apply border border-border;
+}

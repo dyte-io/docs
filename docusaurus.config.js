@@ -50,6 +50,7 @@ module.exports = {
     hideableSidebar: true,
     prism: {
       additionalLanguages: ['dart'],
+      theme: require('prism-react-renderer/themes/oceanicNext'),
     },
   },
   presets: [
