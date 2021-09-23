@@ -14,8 +14,6 @@ import {
 } from '@docusaurus/theme-common';
 import useWindowSize from '@theme/hooks/useWindowSize';
 import useScrollPosition from '@theme/hooks/useScrollPosition';
-import IconArrow from '@theme/IconArrow';
-import { translate } from '@docusaurus/Translate';
 import { DocSidebarItems } from '@theme/DocSidebarItem';
 import styles from './styles.module.css';
 

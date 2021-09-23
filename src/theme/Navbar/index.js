@@ -180,7 +180,7 @@ function NavbarMobileSidebar({ sidebarShown, toggleSidebar }) {
             </li>
             <li className="menu__list-item">
               <Link href="https://github.com/dyte-in" className="menu__link">
-                Examples
+                GitHub
               </Link>
             </li>
           </ul>
@@ -275,7 +275,7 @@ function Navbar() {
         mobileSidebar.shown && 'navbar-sidebar--show'
       )}
     >
-      <header className="relative flex h-14 items-center justify-between px-4 py-2 z-10 bg-background border-b !border-border">
+      <header className="relative flex h-14 items-center justify-between px-6 lg:px-4 py-2 z-10 bg-background border-b !border-border">
         <div className="flex items-center space-x-10 font-medium">
           <div className="flex items-center space-x-2">
             <button
@@ -294,8 +294,8 @@ function Navbar() {
             <Link
               to="/docs/guides/introduction"
               className={clsx(
-                'text-sm text-text hover:no-underline',
-                page === 'guides' && 'text-primary'
+                'text-sm hover:no-underline',
+                page === 'guides' ? '!text-primary' : 'text-text-100'
               )}
             >
               Guides
@@ -303,8 +303,8 @@ function Navbar() {
             <Link
               to="/react/quickstart"
               className={clsx(
-                'text-sm text-text hover:no-underline',
-                page === 'sdk' && 'text-primary'
+                'text-sm text-text-100 hover:no-underline',
+                page === 'sdk' ? 'text-primary' : 'text-text-100'
               )}
             >
               Client SDK
@@ -312,11 +312,27 @@ function Navbar() {
             <Link
               to="/api"
               className={clsx(
-                'text-sm text-text hover:no-underline',
-                page === 'api' && 'text-primary'
+                'text-sm hover:no-underline',
+                page === 'api' ? 'text-primary' : 'text-text-100'
               )}
             >
               API Reference
+            </Link>
+
+            <Link
+              className="flex items-center text-sm text-text-100 hover:no-underline"
+              href="https://github.com/dyte-in"
+            >
+              <Github className="w-4 mr-1" />
+              GitHub
+            </Link>
+
+            <Link
+              className="flex items-center text-sm text-text-100 hover:no-underline"
+              href="https://discord.com/invite/pxRcdNufvk"
+            >
+              <Discord className="w-4 mr-1" />
+              Community
             </Link>
           </div>
         </div>
@@ -325,22 +341,6 @@ function Navbar() {
           <SearchButton />
 
           <div className="hidden lg:flex items-center">
-            <a
-              href="https://discord.com/invite/pxRcdNufvk"
-              target="_blank"
-              className="w-12 h-12 p-2"
-            >
-              <Discord className="w-full h-full text-text-100 hover:text-primary" />
-            </a>
-
-            <a
-              href="https://github.com/dyte-in"
-              target="_blank"
-              className="w-12 h-12 p-2"
-            >
-              <Github className="w-full h-full text-text-100 hover:text-primary" />
-            </a>
-
             <a
               href="https://dev.dyte.in"
               target="_blank"
