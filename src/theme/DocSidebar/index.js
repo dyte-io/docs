@@ -22,6 +22,9 @@ import DocsLogo from '@site/src/components/Logo';
 import ContextSwitcher from '@site/src/components/ContextSwitcher';
 import { ChevronLeftIcon } from '@heroicons/react/outline';
 
+import VersionDropdown from '@theme/NavbarItem/DocsVersionDropdownNavbarItem';
+import useIsBrowser from '@docusaurus/useIsBrowser';
+
 function useShowAnnouncementBar() {
   const { isClosed } = useAnnouncementBar();
   const [showAnnouncementBar, setShowAnnouncementBar] = useState(!isClosed);
@@ -49,6 +52,28 @@ function HideableSidebarButton({ onClick }) {
   );
 }
 
+const getDocId = () => {
+  const [, doc] = window.location.pathname.split('/');
+  if (doc === 'docs') return 'default';
+  return doc;
+};
+
+const DocManager = () => {
+  const isBrowser = useIsBrowser();
+  const docId = isBrowser ? getDocId() : 'default';
+
+  return (
+    <div className="flex items-center justify-end px-4 my-4">
+      <ContextSwitcher className="flex-1" />
+      <VersionDropdown
+        dropdownItemsBefore={[]}
+        dropdownItemsAfter={[]}
+        docsPluginId={docId}
+      />
+    </div>
+  );
+};
+
 function DocSidebarDesktop({ path, sidebar, onCollapse, isHidden }) {
   const showAnnouncementBar = useShowAnnouncementBar();
   const {
@@ -56,6 +81,7 @@ function DocSidebarDesktop({ path, sidebar, onCollapse, isHidden }) {
     hideableSidebar,
   } = useThemeConfig();
   const { isClosed: isAnnouncementBarClosed } = useAnnouncementBar();
+
   return (
     <div
       className={clsx(styles.sidebar, {
@@ -69,13 +95,18 @@ function DocSidebarDesktop({ path, sidebar, onCollapse, isHidden }) {
         </Link>
       )}
       <nav
-        className={clsx('menu thin-scrollbar', styles.menu, {
-          [styles.menuWithAnnouncementBar]:
-            !isAnnouncementBarClosed && showAnnouncementBar,
-        })}
+        className={clsx(
+          'menu thin-scrollbar',
+          'overflow-x-visible',
+          styles.menu,
+          {
+            [styles.menuWithAnnouncementBar]:
+              !isAnnouncementBarClosed && showAnnouncementBar,
+          }
+        )}
       >
         <ul className={clsx(ThemeClassNames.docs.docSidebarMenu, 'menu__list')}>
-          <ContextSwitcher />
+          <DocManager />
           <DocSidebarItems items={sidebar} activePath={path} />
         </ul>
       </nav>
@@ -87,7 +118,7 @@ function DocSidebarDesktop({ path, sidebar, onCollapse, isHidden }) {
 const DocSidebarMobileSecondaryMenu = ({ toggleSidebar, sidebar, path }) => {
   return (
     <ul className={clsx(ThemeClassNames.docs.docSidebarMenu, 'menu__list')}>
-      <ContextSwitcher />
+      <DocManager />
       <DocSidebarItems
         items={sidebar}
         activePath={path}
