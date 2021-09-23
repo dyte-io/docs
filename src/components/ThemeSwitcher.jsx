@@ -9,7 +9,7 @@ export default function ThemeSwitcher() {
 
   return (
     <button
-      className="fixed bottom-20 right-[1.3rem] w-12 h-12 p-2 cursor-pointer text-gray-100 hover:text-white transition bg-primary rounded-full shadow-md hover:shadow-xl"
+      className="fixed bottom-[1.3rem] right-[1.3rem] w-12 h-12 p-2 cursor-pointer text-gray-100 hover:text-white transition bg-primary rounded-full shadow-md hover:shadow-xl"
       onClick={toggleTheme}
     >
       {isDarkTheme ? (

@@ -30,6 +30,7 @@ module.exports = {
           DEFAULT: 'var(--docs-color-background)',
           100: 'var(--docs-color-background-100)',
           200: 'var(--docs-color-background-200)',
+          300: 'var(--docs-color-background-300)',
         },
       },
     },

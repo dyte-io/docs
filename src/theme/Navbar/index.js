@@ -226,7 +226,7 @@ const SearchButton = () => {
         <span className="hidden md:block text-sm">Search</span>
       </div>
       <div className="hidden lg:flex items-center space-x-1">
-        <kbd className="text-text-100 font-sans bg-transparent border border-gray-600 outline-none text-sm shadow-none">
+        <kbd className="text-text font-sans border-none bg-background-300 outline-none text-sm shadow-none">
           {os === 'macOS' ? (
             <abbr title="Command" className="no-underline">
               ⌘
@@ -238,7 +238,7 @@ const SearchButton = () => {
           )}
         </kbd>
 
-        <kbd className="w-6 text-text-100 font-sans bg-transparent border border-gray-600 outline-none text-sm shadow-none">
+        <kbd className="w-6 text-text font-sans border-none bg-background-300 outline-none text-sm shadow-none">
           K
         </kbd>
       </div>
