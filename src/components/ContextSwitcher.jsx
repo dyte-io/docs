@@ -4,17 +4,18 @@ import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
 import { withRouter } from '@docusaurus/router';
 import { useAllDocsData } from '@theme/hooks/useDocs';
+import { ReactIcon, FlutterIcon } from '../assets/icons';
 
 const CONTEXTS = [
   {
     id: 'react',
     name: 'React',
-    icon: '/icons/react.svg',
+    icon: ReactIcon,
   },
   {
     id: 'flutter',
     name: 'Flutter',
-    icon: '/icons/flutter.svg',
+    icon: FlutterIcon,
   },
 ];
 
@@ -76,11 +77,10 @@ const ContextSwitcher = ({ className, history }) => {
     >
       <div className="relative mt-1">
         <Listbox.Button className="relative flex items-center w-full h-12 py-2 pl-3 pr-10 text-left bg-background-100 rounded-lg cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm outline-none border-none">
-          <img
-            src={context.icon}
-            className="w-8 h-8 object-cover mr-2"
-            alt={context.name}
+          <context.icon
+            className="h-8 mr-2"
             aria-hidden="true"
+            alt={context.name}
           />
           <span className="block truncate text-text">{context.name}</span>
           <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -112,9 +112,8 @@ const ContextSwitcher = ({ className, history }) => {
                   {({ selected, active }) => (
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
-                        <img
-                          src={context.icon}
-                          className="w-8 h-8 object-fit mr-2"
+                        <context.icon
+                          className="h-8 mr-2"
                           alt={context.name}
                           aria-hidden="true"
                         />

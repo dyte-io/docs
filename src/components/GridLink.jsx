@@ -7,7 +7,6 @@ export default function GridLink({
   title,
   subtitle,
   className,
-  iconClassName,
   ...props
 }) {
   return (
@@ -18,13 +17,14 @@ export default function GridLink({
       )}
       {...props}
     >
-      {typeof Icon === 'string' ? (
+      {Icon}
+      {/* {typeof Icon === 'string' ? (
         <img src={Icon} className={clsx('h-8 mr-6', iconClassName)} />
       ) : (
         <Icon
           className={clsx('h-12 md:h-16 mr-4 text-primary', iconClassName)}
         />
-      )}
+      )} */}
 
       <div className="flex flex-col space-y-px">
         {title && <div className="font-medium">{title}</div>}
