@@ -39,12 +39,6 @@ module.exports = {
           label: 'API Reference',
           to: '/api',
         },
-        {
-          type: 'docsVersionDropdown',
-          position: 'left',
-          dropdownItemsAfter: [{ to: '/versions', label: 'All versions' }],
-          dropdownActiveClassDisabled: true,
-        },
       ],
     },
     hideableSidebar: true,
