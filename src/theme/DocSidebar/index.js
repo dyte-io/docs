@@ -60,12 +60,15 @@ const getDocId = () => {
 
 const DocManager = () => {
   const isBrowser = useIsBrowser();
-  const docId = isBrowser ? getDocId() : 'default';
 
   if (isBrowser && window.location.pathname.split('/')[1] === 'docs') {
     // don't show DocManager for /docs
     return null;
   }
+
+  const docId = isBrowser ? getDocId() : 'default';
+
+  console.log('docId', docId);
 
   return (
     <div className="flex items-center justify-end px-4 my-4">
