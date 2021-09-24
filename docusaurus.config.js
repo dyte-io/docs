@@ -21,7 +21,7 @@ module.exports = {
       },
       items: [
         {
-          label: 'Guides',
+          label: 'Home',
           to: '/',
           activeBaseRegex: '(^/docs)',
         },
