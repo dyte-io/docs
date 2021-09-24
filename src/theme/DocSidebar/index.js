@@ -38,15 +38,15 @@ function useShowAnnouncementBar() {
 
 function HideableSidebarButton({ onClick }) {
   return (
-    <div className="absolute top-0 right-0 w-1 h-full flex ">
+    <div className="absolute top-0 right-0 w-1 h-full flex">
       <button
-        className="absolute right-[-10px] w-5 h-5 mt-20 rounded-md bg-background-200 cursor-pointer"
+        className="absolute w-6 h-6 flex items-center justify-center right-[-12px] mt-20 rounded-md bg-background-200 cursor-pointer"
         onClick={onClick}
         onKeyDown={onClick}
         tabIndex={0}
         aria-label="Collapse sidebar"
       >
-        <ChevronLeftIcon className="h-2 text-text" />
+        <ChevronLeftIcon className="h-3 text-text" />
       </button>
     </div>
   );
@@ -59,15 +59,14 @@ const getDocId = () => {
 };
 
 const DocManager = () => {
-  
   const isBrowser = useIsBrowser();
   const docId = isBrowser ? getDocId() : 'default';
-  
+
   if (isBrowser && window.location.pathname.split('/')[1] === 'docs') {
     // don't show DocManager for /docs
     return null;
   }
-  
+
   return (
     <div className="flex items-center justify-end px-4 my-4">
       <ContextSwitcher className="flex-[3]" />

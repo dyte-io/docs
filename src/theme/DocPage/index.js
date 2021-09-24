@@ -76,15 +76,14 @@ function DocPageContent({ currentDocRoute, versionMetadata, children }) {
             />
 
             {hiddenSidebar && (
-              <div className="sticky top-0 h-full flex border border-border">
+              <div className="relative top-0 h-full flex border border-border">
                 <button
-                  className="absolute right-[-10px] w-5 h-5 mt-20 rounded-md bg-background-200 cursor-pointer"
+                  className="fixed top-20 left-[16px] w-6 h-6 flex items-center justify-center rounded-md bg-background-200 cursor-pointer"
                   onClick={toggleSidebar}
-                  onKeyDown={toggleSidebar}
                   tabIndex={0}
-                  aria-label="Expand sidebar"
+                  aria-label="Collapse sidebar"
                 >
-                  <ChevronRightIcon className="h-2 text-text" />
+                  <ChevronRightIcon className="h-3 text-text" />
                 </button>
               </div>
             )}
