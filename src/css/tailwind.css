@@ -85,19 +85,6 @@
   }
 }
 
-.token.punctuation {
-  @apply !text-yellow-600;
-}
-
-.token.operator {
-  @apply !text-red-500;
-}
-
-.token.string,
-.token.property {
-  @apply !text-primary-100;
-}
-
 @layer utilities {
   .dyte-shadow {
     box-shadow: 4px 2px 16px 4px rgb(33 96 253 / 8%),
@@ -227,4 +214,32 @@ hr {
 
 .sl-overflow-x-hidden.sl-overflow-y-auto.sl-flex-1.sl-w-full.sl-px-24.sl-bg-canvas {
   background-color: var(--docs-color-background);
+}
+
+/**
+  Syntax highlighting
+*/
+
+.sl-elements .token.punctuation {
+  @apply !text-text-100;
+}
+
+.sl-elements .token.operator {
+  @apply !text-text-100;
+}
+
+.sl-elements :is(.token.string, .token.property) {
+  @apply !text-primary-100;
+}
+
+.sl-elements :is(.token.boolean, .token.number) {
+  @apply !text-red-600;
+}
+
+.sl-elements .token.function {
+  @apply !text-primary-100;
+}
+
+html[data-theme='dark'] .sl-elements :is(.token.boolean, .token.number) {
+  @apply !text-red-500;
 }
