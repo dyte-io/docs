@@ -78,7 +78,24 @@
 
     --ifm-heading-color: #dcdcdc;
     --ifm-font-color-base: #e7e7e7;
+
+    --color-canvas-100: var(--docs-color-background-100);
+    --color-canvas-200: var(--docs-color-background-200);
+    --color-canvas-300: var(--docs-color-background-300);
   }
+}
+
+.token.punctuation {
+  @apply !text-yellow-600;
+}
+
+.token.operator {
+  @apply !text-red-500;
+}
+
+.token.string,
+.token.property {
+  @apply !text-primary-100;
 }
 
 @layer utilities {
