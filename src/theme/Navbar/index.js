@@ -300,7 +300,7 @@ function Navbar() {
               to="/docs/guides/introduction"
               className={clsx(
                 'text-sm hover:no-underline font-medium',
-                page === 'guides' ? '!text-primary' : 'text-text-100'
+                page === 'guides' ? 'text-primary-100' : 'text-text-100'
               )}
             >
               Guides
@@ -309,7 +309,7 @@ function Navbar() {
               to="/react/quickstart"
               className={clsx(
                 'text-sm hover:no-underline font-medium',
-                page === 'sdk' ? 'text-primary' : 'text-text-100'
+                page === 'sdk' ? 'text-primary-100' : 'text-text-100'
               )}
             >
               Client SDK
@@ -318,7 +318,7 @@ function Navbar() {
               to="/api"
               className={clsx(
                 'text-sm hover:no-underline font-medium',
-                page === 'api' ? 'text-primary' : 'text-text-100'
+                page === 'api' ? 'text-primary-100' : 'text-text-100'
               )}
             >
               API Reference

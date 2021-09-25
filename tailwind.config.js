@@ -20,7 +20,10 @@ module.exports = {
         lg: '997px',
       },
       colors: {
-        primary: 'var(--docs-color-primary)',
+        primary: {
+          DEFAULT: 'var(--docs-color-primary)',
+          100: 'var(--docs-color-primary-100)',
+        },
         text: {
           DEFAULT: 'var(--docs-color-text)',
           100: 'var(--docs-color-text-100)',
