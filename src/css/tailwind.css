@@ -80,7 +80,7 @@
 
 @layer utilities {
   .dyte-shadow {
-    box-shadow: 4px 2px 16px 4px rgb(33 96 253 / 8%), 
+    box-shadow: 4px 2px 16px 4px rgb(33 96 253 / 8%),
       0 8px 24px rgb(33 96 253 / 8%);
   }
 }
@@ -173,9 +173,32 @@ hr {
 }
 
 .dropdown {
-  min-width: 3rem;
-  text-align: right;
+  min-width: 72px;
+  /* text-align: right; */
   @apply !flex justify-end items-center rounded-md h-12;
+}
+
+.dropdown__menu {
+  padding-left: 0;
+  padding-right: 0;
+  @apply bg-background-100;
+}
+
+.dropdown__link {
+  border-radius: 0;
+  margin: 0;
+  @apply flex items-center justify-between px-3 py-2 hover:bg-background-200;
+}
+
+.dropdown__link--active {
+  @apply bg-background-100;
+}
+
+.dropdown__link--active::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  @apply block bg-primary rounded-full;
 }
 
 .navbar-sidebar__back {

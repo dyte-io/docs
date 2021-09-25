@@ -2,12 +2,8 @@ import React from 'react';
 import Link from '@docusaurus/Link';
 
 import DyteLogo from './DyteLogo';
-import {
-  Github,
-  Linkedin,
-  Medium,
-  Twitter,
-} from '@styled-icons/boxicons-logos';
+import { Github, Linkedin, Twitter } from '@styled-icons/boxicons-logos';
+import { BlogIcon } from '../assets/icons';
 
 export default function Footer(props) {
   return (
@@ -53,26 +49,26 @@ export default function Footer(props) {
 
             <div className="flex items-center mt-8 space-x-3 text-text-100">
               <Link
-                href="#"
-                className="text-current hover:text-primary transition"
+                href="https://twitter.com/dyte_io"
+                className="inline-flex text-current hover:text-primary transition"
               >
                 <Twitter className="h-8" />
               </Link>
               <Link
-                href="#"
-                className="text-current hover:text-primary transition"
+                href="https://blog.dyte.io"
+                className="inline-flex text-current hover:text-primary transition"
               >
-                <Medium className="h-8" />
+                <BlogIcon className="h-8" />
               </Link>
               <Link
-                href="#"
-                className="text-current hover:text-primary transition"
+                href="https://www.linkedin.com/company/dyteio"
+                className="inline-flex text-current hover:text-primary transition"
               >
                 <Linkedin className="h-8" />
               </Link>
               <Link
-                href="#"
-                className="text-current hover:text-primary transition"
+                href="https://github.com/dyte-in"
+                className="inline-flex text-current hover:text-primary transition"
               >
                 <Github className="h-8" />
               </Link>

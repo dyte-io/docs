@@ -4,5 +4,14 @@ import FlutterIcon from './FlutterIcon';
 import KotlinIcon from './KotlinIcon';
 import JSIcon from './JSIcon';
 import DiscordIcon from './DiscordIcon';
+import BlogIcon from './BlogIcon';
 
-export { ReactIcon, SwiftIcon, FlutterIcon, JSIcon, KotlinIcon, DiscordIcon };
+export {
+  ReactIcon,
+  SwiftIcon,
+  FlutterIcon,
+  JSIcon,
+  KotlinIcon,
+  DiscordIcon,
+  BlogIcon,
+};

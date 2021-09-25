@@ -27,7 +27,11 @@ import Logo from '@site/src/components/Logo';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import bowser from 'bowser';
 
-import { SearchIcon, MenuIcon } from '@heroicons/react/outline';
+import {
+  SearchIcon,
+  MenuIcon,
+  ExternalLinkIcon,
+} from '@heroicons/react/outline';
 import { Github } from '@styled-icons/boxicons-logos';
 import { DiscordIcon } from '../../assets/icons';
 import ThemeSwitcher from '@site/src/components/ThemeSwitcher';
@@ -171,14 +175,14 @@ function NavbarMobileSidebar({ sidebarShown, toggleSidebar }) {
             {items.map((item, i) => (
               <NavbarItem mobile {...item} onClick={toggleSidebar} key={i} />
             ))}
-            <li className="menu__list-item">
+            {/* <li className="menu__list-item">
               <Link
                 href="https://discord.com/invite/pxRcdNufvk"
                 className="menu__link"
               >
                 Community
               </Link>
-            </li>
+            </li> */}
             <li className="menu__list-item">
               <Link href="https://github.com/dyte-in" className="menu__link">
                 GitHub
@@ -328,13 +332,13 @@ function Navbar() {
               GitHub
             </Link>
 
-            <Link
+            {/* <Link
               className="flex items-center text-sm text-text-100 hover:no-underline font-medium"
               href="https://discord.com/invite/pxRcdNufvk"
             >
               <DiscordIcon className="h-4 mr-1" />
               Community
-            </Link>
+            </Link> */}
           </div>
         </div>
 
@@ -348,6 +352,7 @@ function Navbar() {
               className="flex items-center h-9 ml-4 bg-primary text-white px-4 text-sm font-bold rounded-[4px] hover:no-underline hover:text-white"
             >
               Login/Sign Up
+              <ExternalLinkIcon className="h-4 ml-2" aria-hidden={true} />
             </Link>
           </div>
         </div>
