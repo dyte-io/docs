@@ -80,8 +80,8 @@
 
 @layer utilities {
   .dyte-shadow {
-    box-shadow: 4px 2px 32px 8px rgba(33, 96, 253, 0.16),
-      0px 8px 24px rgba(33, 96, 253, 0.08);
+    box-shadow: 4px 2px 16px 4px rgb(33 96 253 / 8%), 
+      0 8px 24px rgb(33 96 253 / 8%);
   }
 }
 
@@ -180,4 +180,8 @@ hr {
 
 .navbar-sidebar__back {
   @apply text-sm font-medium;
+}
+
+.sl-overflow-x-hidden.sl-overflow-y-auto.sl-flex-1.sl-w-full.sl-px-24.sl-bg-canvas {
+  background-color: var(--docs-color-background);
 }
