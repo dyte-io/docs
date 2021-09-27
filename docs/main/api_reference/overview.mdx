@@ -1,0 +1,128 @@
+---
+sidebar_position: 1000
+---
+
+# Overview
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import TOCInline from "@theme/TOCInline";
+
+## Inline TOC
+
+<TOCInline toc={toc} />
+
+## Admonitions
+
+:::note With title
+
+Some **content** with _markdown_ `syntax`. Check [this `api`](#).
+
+:::
+
+:::tip
+
+Some **content** with _markdown_ `syntax`. Check [this `api`](#).
+
+:::
+
+:::info
+
+Some **content** with _markdown_ `syntax`. Check [this `api`](#).
+
+:::
+
+:::caution
+
+Some **content** with _markdown_ `syntax`. Check [this `api`](#).
+
+:::
+
+:::danger
+
+Some **content** with _markdown_ `syntax`. Check [this `api`](#).
+
+:::
+
+### Details element example
+
+<details>
+  <summary>Toggle me!</summary>
+  <div>
+    <div>This is the detailed content</div>
+    <details>
+      <summary> Nested toggle! Some surprise inside... </summary>
+      <div>😲😲😲😲😲</div>
+    </details>
+  </div>
+</details>
+
+## React in Markdown (MDX)
+
+<button onClick={() => alert("you clicked me!")}>Click me</button>
+
+## Tabs
+
+<Tabs
+  defaultValue="apple"
+  values={[
+    { label: "Apple", value: "apple" },
+    { label: "Orange", value: "orange" },
+    { label: "Banana", value: "banana" },
+  ]}
+  className="unique-tabs"
+>
+  <TabItem value="apple">This is an apple 🍎</TabItem>
+  <TabItem value="orange">This is an orange 🍊</TabItem>
+  <TabItem value="banana">This is a banana 🍌</TabItem>
+</Tabs>
+
+## Code blocks
+
+### With Title
+
+```jsx {1,2} title="/src/components/HelloCodeTitle.js"
+function HelloCodeTitle(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+```
+
+### Multi Language Code blocks
+
+<Tabs
+  defaultValue="js"
+  values={[
+    { label: 'JavaScript', value: 'js', },
+    { label: 'Python', value: 'py', },
+    { label: 'Java', value: 'java', },
+  ]
+}>
+<TabItem value="js">
+
+```js
+function helloWorld() {
+  console.log("Hello, world!");
+}
+```
+
+</TabItem>
+<TabItem value="py">
+
+```py
+def hello_world():
+  print 'Hello, world!'
+```
+
+</TabItem>
+<TabItem value="java">
+
+```java
+class HelloWorld {
+  public static void main(String args[]) {
+    System.out.println("Hello, World");
+  }
+}
+```
+
+</TabItem>
+</Tabs>
