@@ -36,11 +36,11 @@ export default function Footer(props) {
                   type="text"
                   name="email"
                   placeholder="Enter your email"
-                  className="flex-1 h-10 px-3 bg-background-100 text-text text-sm border border-r-0 border-border rounded-l-md focus:outline-none focus:ring-0 focus:border-primary"
+                  className="flex-1 h-10 px-3 pr-24 bg-background-100 text-text text-sm border border-border rounded-md focus:outline-none focus:ring-0 focus:border-primary"
                 />
                 <button
                   type="submit"
-                  className="h-10 px-4 bg-primary text-white rounded-r-md cursor-pointer"
+                  className="w-20 h-8 ml-[-84px] bg-primary text-white rounded-md cursor-pointer"
                 >
                   Sign Up
                 </button>
