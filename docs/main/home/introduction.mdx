@@ -4,19 +4,93 @@ sidebar_position: 1
 
 # Introduction
 
-import Link from '@docusaurus/Link';
-import GridLink from '@site/src/components/GridLink';
+import Link from "@docusaurus/Link";
+import GridLink from "@site/src/components/GridLink";
 import {
   DeviceTabletIcon,
   CodeIcon,
   QuestionMarkCircleIcon,
-} from '@heroicons/react/solid';
+} from "@heroicons/react/solid";
 import {
   Discord as DiscordIcon,
   Github as GithubIcon,
-} from '@styled-icons/boxicons-logos';
+} from "@styled-icons/boxicons-logos";
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil ullam vero eligendi eos doloribus officiis repellat rerum voluptatum eum, maxime, facilis adipisci, necessitatibus architecto at ducimus est veniam reiciendis distinctio.
+Dyte provides the easiest way to add real-time communications using video and audio to your apps and platforms.
+
+Working with Dyte will require an integration with your application server as well as the participant-facing client (mobile or web) app where you want to deliver the video.
+
+Keep reading to know more about how Dyte works, or jump to our [guides](#quickstart) that get you started.
+
+## How Dyte works
+
+<!-- ![Diagram explaining how Dyte works](/how-dyte-works.png) -->
+
+![Diagram explaining how Dyte works](./how-dyte-works.png)
+
+Dyte is based largely on the WebRTC protocol, and the features and optimizations we build on top of it. Although the protocol is supposed to be peer-to-peer, anyone who has tried implementing it by themselves would know that the implementions get real messy, real fast. To have a real working solution, servers with SFU, STUN, TURN, etc capabilities are required to optimize for user bandwidth and performance, route the data packets correctly and maintain state of certain client side configurations and preferences.
+
+On top of managing this basic communication using media streams, Dyte offers additional features on top such as chat, polls, plugins, recording and streaming, and many others.
+
+Dyte's mission is to make this technology available to developers for easy use, and towards that we provide several implementations of Dyte's real-time communications services, which enable developers to integrate a meeting within a few lines of code without having any previous knowledge about media, streaming, or RTC, but also allow them to go deeper if they so wish. The features offered on top of the basic communication service are also in a developer's control - which ones do they want to pick and to what level do they want to customize it.
+Pick from one of the [below available options](#quickstart) to suit your platform.
+
+Meeting initialization, customizations, and most other features remain the same across all clients. You can select a client platform from the [quickstart](#quickstart) section below and use the switcher at the top left to access the guides specific to other frameworks you might want to build your client app on.
+
+The reference for the server APIs can be found [here](#read-about-our-server-apis).
+
+## Glossary
+
+- **Meeting** - every communication channel created on Dyte is termed as a `meeting`
+- **Participant** - anyone who joins the `meeting`, whether as an actual user or programatically / robo user
+- **Permission** - a specific action allowed or not for a `participant`
+- **Role** - a set of `permissions` saved together form a `role`. An existing `role` can be assigned to any `participant` to describe their level of control and limit their actions within the `meeting`.
+- **Preset** - a combination of `role`, the UI elements, buttons and configurations that define the look and feel of your meeting for a particular `participant`.
+- **Recording** - you can record the `meeting`, and get a video / audio file.
+- **Live streaming** - you can live stream the `meeting` to other streaming platforms that support RTMP, like YouTube, Twitch, etc.
+- **Analytics** - get analytics data around your `meetings`, like number of minutes, number of recorded minutes, number of participants, etc.
+
+For a guided tutorial on how to start from scratch, pick from one of the below available options or pick one of the SDK guides to read in detail.
+
+## Quickstart
+
+<div className="grid xl:grid-cols-6 gap-4">
+
+<GridLink
+  to="/react/quickstart"
+  Icon="/icons/client-sdks.svg"
+  className="xl:col-span-3 py-6"
+  title="Web app using client SDK with React"
+  iconClassName="xl:h-14"
+/>
+
+<GridLink
+  to="/react/quickstart"
+  Icon="/icons/client-sdks.svg"
+  className="xl:col-span-3 py-6"
+  title="Mobile app using client SDK with React Native"
+  iconClassName="xl:h-14"
+/>
+
+<GridLink
+  to="/react/quickstart"
+  Icon="/icons/client-sdks.svg"
+  className="xl:col-span-3 py-6"
+  title="Mobile app using client SDK with Kotlin"
+  iconClassName="xl:h-14"
+/>
+
+<GridLink
+  to="/react/quickstart"
+  Icon="/icons/client-sdks.svg"
+  className="xl:col-span-3 py-6"
+  title="Mobile app using client SDK with Swift"
+  iconClassName="xl:h-14"
+/>
+
+</div>
+
+### Pick a client SDK
 
 <div className="grid xl:grid-cols-6 gap-4">
 
@@ -25,108 +99,133 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil ullam vero eligen
   Icon="/icons/client-sdks.svg"
   className="xl:col-span-3 py-6"
   title="Client SDK"
-  subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit."
   iconClassName="xl:h-14"
-/>
-
-<GridLink
-  to="/api"
-  Icon="/icons/api.svg"
-  className="xl:col-span-3 py-6"
-  title="API Reference"
-  subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit."
-  iconClassName="xl:h-14"
-/>
-
-<GridLink
-  to="/api"
-  Icon="/icons/faq.svg"
-  title="FAQs"
-  className="xl:col-span-2"
-/>
-
-<GridLink
-  href="https://discord.com/invite/pxRcdNufvk"
-  to="/api"
-  Icon="/icons/community.svg"
-  title="Community"
-  className="xl:col-span-2"
-/>
-
-<GridLink
-  to="https://github.com/dyte-in"
-  Icon="/icons/examples.svg"
-  title="Examples"
-  className="xl:col-span-2"
 />
 
 </div>
 
-## Getting Started
+### Pick a platform or framework
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil ullam vero eligendi eos doloribus officiis repellat rerum voluptatum eum, maxime, facilis adipisci, necessitatibus architecto at ducimus est veniam reiciendis distinctio.
+**Web**
 
 <div className="grid xl:grid-cols-6 gap-4">
 
 <GridLink
   to="/react/quickstart"
   Icon="/icons/react.svg"
-  className="md:col-span-2"
-  title="React"
-  subtitle="Web"
-  iconClassName="h-12"
-/>
-
-<GridLink
-  to="/react/quickstart"
-  Icon="/icons/js.svg"
-  className="md:col-span-2"
-  title="Vanilla JS"
-  subtitle="Web"
-  iconClassName="h-12"
-/>
-
-<GridLink
-  to="/flutter/quickstart"
-  Icon="/icons/flutter.svg"
-  className="md:col-span-2"
-  title="Flutter"
-  subtitle="Android + iOS"
-  iconClassName="h-12"
-/>
-
-<GridLink
-  to="/react/quickstart"
-  Icon="/icons/kotlin.svg"
-  className="md:col-span-2"
-  title="Kotlin / Java"
-  subtitle="Android"
-  iconClassName="h-12"
-/>
-
-<GridLink
-  to="/react/quickstart"
-  Icon="/icons/swift.svg"
-  className="md:col-span-2"
-  title="Swift / Objective C"
-  subtitle="iOS"
-  iconClassName="h-12"
+  title="React / Vue / Svelte"
+  className="xl:col-span-3"
 />
 
 <GridLink
   to="/react/quickstart"
   Icon="/icons/react.svg"
-  className="md:col-span-2"
-  title="React Native"
-  subtitle="Android + iOS"
-  iconClassName="h-12"
+  title="Angular"
+  className="xl:col-span-3"
+/>
+
+<GridLink
+  to="/react/quickstart"
+  Icon="/icons/react.svg"
+  title="Next.js"
+  className="xl:col-span-3"
+/>
+
+<GridLink
+  to="/react/quickstart"
+  Icon="/icons/js.svg"
+  title="JavaScript"
+  className="xl:col-span-3"
 />
 
 </div>
 
-<div className="dyte-image-showcase">
-  <img
-    src="https://source.unsplash.com/random/900x400"
-    alt="Random image from Unsplash"
-  />
+**Mobile**
+
+<div className="grid xl:grid-cols-6 gap-4">
+
+<GridLink
+  to="/react/quickstart"
+  Icon="/icons/kotlin.svg"
+  title="Kotlin"
+  subtitle="Android"
+  className="xl:col-span-3"
+/>
+
+<GridLink
+  to="/react/quickstart"
+  Icon="/icons/swift.svg"
+  title="Swift"
+  subtitle="iOS"
+  className="xl:col-span-3"
+/>
+
+<GridLink
+  to="/react/quickstart"
+  Icon="/icons/react.svg"
+  title="React Native"
+  subtitle="Android + iOS"
+  className="xl:col-span-3"
+/>
+
+<GridLink
+  to="/react/quickstart"
+  Icon="/icons/flutter.svg"
+  title="Flutter"
+  subtitle="Android + iOS"
+  className="xl:col-span-3"
+/>
+
+</div>
+
+### Read about our server APIs
+
+<div className="grid xl:grid-cols-6 gap-4">
+
+<GridLink
+  to="/api"
+  Icon="/icons/api.svg"
+  title="API Reference"
+  className="xl:col-span-3"
+/>
+
+</div>
+
+<!-- or pick from one of our official API client packages -->
+
+<!-- You can also use our developer portal to perform many of the actions usually performed via API, and much more. -->
+
+<!-- {/_ <div className="grid xl:grid-cols-6 gap-4"></div> _/} -->
+
+## How to use these docs
+
+<div className="grid xl:grid-cols-6 gap-4">
+
+<GridLink
+  to="/react/quickstart"
+  Icon="/icons/client-sdks.svg"
+  className="xl:col-span-2 py-4"
+  title="Product Integration Guides"
+  subtitle="End to end tutorials on getting started from scratch on specific use cases."
+  iconClassName="xl:h-14"
+/>
+
+<GridLink
+  to="/react/quickstart"
+  Icon="/icons/client-sdks.svg"
+  className="xl:col-span-2 py-4"
+  title="Client SDK Guides"
+  subtitle="Complete reference to our client SDKs for various client platforms."
+  iconClassName="xl:h-14"
+/>
+
+<GridLink
+  to="/api"
+  Icon="/icons/api.svg"
+  className="xl:col-span-2 py-4"
+  title="API Reference"
+  subtitle="Complete reference to our HTTP APIs that you can use to interact with the Dyte platform."
+  iconClassName="xl:h-14"
+/>
+
 </div>
