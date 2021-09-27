@@ -169,6 +169,7 @@ hr {
 .dropdown__menu {
   left: initial;
   right: 0;
+  @apply shadow-lg;
 }
 
 .dropdown .navbar__link {
@@ -228,18 +229,28 @@ hr {
   @apply !text-text-100;
 }
 
-.sl-elements :is(.token.string, .token.property) {
+.sl-elements .token.property {
   @apply !text-primary-100;
 }
 
-.sl-elements :is(.token.boolean, .token.number) {
-  @apply !text-red-600;
+.sl-elements .token.string {
+  @apply !text-text;
 }
 
 .sl-elements .token.function {
   @apply !text-primary-100;
 }
 
-html[data-theme='dark'] .sl-elements :is(.token.boolean, .token.number) {
-  @apply !text-red-500;
+.sl-elements .token.boolean,
+.sl-elements .token.number {
+  @apply !text-yellow-700;
+}
+
+html[data-theme='dark'] .sl-elements .token.boolean,
+html[data-theme='dark'] .sl-elements .token.number {
+  @apply !text-yellow-400;
+}
+
+html[data-theme='dark'] .sl-elements .token.null.keyword {
+  @apply !text-red-400;
 }
