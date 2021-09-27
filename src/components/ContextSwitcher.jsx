@@ -2,7 +2,8 @@ import React, { useState, useEffect, Fragment, memo } from 'react';
 import clsx from 'clsx';
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
-import { withRouter } from '@docusaurus/router';
+// import { withRouter } from '@docusaurus/router';
+import { useHistory } from 'react-router-dom';
 import { useAllDocsData } from '@theme/hooks/useDocs';
 import { ReactIcon, FlutterIcon } from '../assets/icons';
 
@@ -29,9 +30,10 @@ const pathExists = (path, data) => {
   return data.docs.some((doc) => doc.path === path);
 };
 
-const ContextSwitcher = ({ className, history }) => {
+const ContextSwitcher = ({ className }) => {
   const [context, setContext] = useState(CONTEXTS[0]);
   const data = useAllDocsData();
+  const history = useHistory();
 
   useEffect(() => {
     const [doc] = getCurrentPageInfo();
@@ -143,4 +145,4 @@ const ContextSwitcher = ({ className, history }) => {
   );
 };
 
-export default memo(withRouter(ContextSwitcher));
+export default memo(ContextSwitcher);
