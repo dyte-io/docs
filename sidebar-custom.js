@@ -4,6 +4,9 @@ module.exports = {
             type: 'category',
             label: 'Home',
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> e7b60db... update sidebar
             items: [
                 'home/introduction',
                 {
@@ -27,9 +30,12 @@ module.exports = {
                     href: '/home/introduction#how-to-use-these-docs'
                 }
             ],
+<<<<<<< HEAD
 =======
             items: ['home/introduction'],
 >>>>>>> 74672cf... customize sidebar for home
+=======
+>>>>>>> e7b60db... update sidebar
         },
         {
             type: 'category',
@@ -40,6 +46,9 @@ module.exports = {
                     label: 'Installation',
                     href: '/react/installation'
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> e7b60db... update sidebar
                 },
                 {
                     type: 'link',
@@ -72,9 +81,12 @@ module.exports = {
                     label: 'Entities',
                     href: '/api/schemas'
                 },
+<<<<<<< HEAD
 =======
                 }
 >>>>>>> 74672cf... customize sidebar for home
+=======
+>>>>>>> e7b60db... update sidebar
             ]
         },
     ],
