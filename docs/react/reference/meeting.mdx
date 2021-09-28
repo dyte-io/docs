@@ -1,0 +1,29 @@
+---
+sidebar_position: 3
+---
+
+# Meeting
+
+## Properties
+
+| Property name    | Data type                                      | Use                                                                                                                                             |
+| ---------------- | ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| connectionConfig | DyteConnectionConfig                           | Connection info about the current meeting in progress, as defined below                                                                         |
+| uiConfig         | DyteUIConfig                                   | The UI and layout of the current meeting (see [UI layout](doc:configuring-ui) for available options)                                            |
+| controlBar       | DyteControlBar                                 | Control bar at the bottom of the default UI (see [control bar button options](doc:custom-controls#adding-control-bar-buttons) for more details) |
+| grid             | DyteGrid                                       | Participant video grid (see [Grid layout](doc:grid-layout) for more details)                                                                    |
+| participants     | Array <DyteSelfParticipant \| DyteParticipant> | Array of participants, including the current participant (see [Participant controls](doc:participants) for more info)                           |
+| self             | DyteSelfParticipant                            | The current participant (see [Participant controls](doc:participants) for more info)                                                            |
+| plugins          | DytePlugin[]                                   | Array of plugins enabled for the current meeting                                                                                                |
+| Events           | Enum (typeof Events)                           | Enum of events emitted by the meeting component (see [Event listeners](doc:event-listeners) for more details)                                   |
+| showSetupScreen  | boolean                                        | Whether the participants should be shown the setup screen or not                                                                                |
+
+## Methods
+
+| Method name     | Params (with data type)                 | Use                                                                                                                                                                                     |
+| --------------- | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| sendRoomMessage | message: any                            | Send a custom event to the room                                                                                                                                                         |
+| sendMessage     | peerId: string, message: any            | Send a message to specified peer                                                                                                                                                        |
+| on              | event: DyteMeetingEvent, data: function | Capture the event specified by the `event` and execute `data` as the callback function with params supported by the event (see [Event listeners](doc:event-listeners) for more details) |
+| leaveRoom       |                                         | Makes the current participant leave the meeting                                                                                                                                         |
+| updateUIConfig  | uiConfig: DyteUIConfig                  | Change the UI and layout of the current meeting according to the relevant params specified in the object (see [UI layout](doc:configuring-ui) for available options)                    |

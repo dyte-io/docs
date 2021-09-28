@@ -1,0 +1,17 @@
+---
+sidebar_position: 1
+---
+
+# DyteMeeting (React component)
+
+DyteMeeting is a React component that can be included in your React application to show the Dyte Meeting UI.
+
+## Props
+
+| Prop name     | Data type                      | Required | Use                                                                                                                                                        |
+| ------------- | ------------------------------ | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| onInit        | function(meeting: DyteMeeting) | Yes      | On successful meeting creation, returns the meeting to the callback function provided (see [Meeting object](doc:dytemeeting-object) for more details)      |
+| onError       | function(error: Error)         | No       | On error during meeting creation, returns the relevant error to the callback function provided (see [Error handling](doc:error-handling) for more details) |
+| clientId      | string                         | Yes      | The `orgId` obtained from Dyte                                                                                                                             |
+| meetingConfig | ConnectionConfig               | Yes      | Meeting config object used to start the meeting (see [Connection config](doc:meeting-config) for more details)                                             |
+| uiConfig      | DyteUIConfig                   | No       | UI configuration options (see [UI layout](doc:configuring-ui) for more details)                                                                            |
