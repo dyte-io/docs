@@ -192,7 +192,7 @@ waitingRoom: {
 }
 ```
 
-### Add overlay to meeting video
+### Add overlay / filter to meeting video
 
 You can add an overlay or filter to the meeting videos. You can add them to the individual participant videos or to the entire meeting grid at once. You would generally need to listen to the meeting events, such as `roomMessage` <insert_link>, to determine when to show an overlay, or you could build your own custom logic around this.
 
@@ -674,15 +674,15 @@ You can zoom on to a participant's video for everyone in the meeting. You would 
 p.zoom({ scale: , x: , y: });
 ```
 
-#### Set an overlay on the participant video
+#### Set an overlay / filter on the participant video
 
-You can add overlays to individual participants. For this, you can do `participant.setOverlay(ReactNode)` where you pass either a React Component or HTML string to the function.
+You can add overlays or filters to individual participants. For this, you can do `participant.setOverlay(ReactNode)` where you pass either a React Component or HTML string to the function.
 
 Let's say you find the `participant` using their `id` or something similar, and then
 
 ```javascript
 const targetPeer = meeting.participants.find((p) => p.id === peerId);
-// find a peer you want to overlay
+// find a peer you want to add overlay to
 if (targetPeer) {
   targetPeer.setOverlay(
     '< canvas id="reaction-1" style={{width:"100%",height:"100%"}} />'
