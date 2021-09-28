@@ -33,6 +33,7 @@ export default function APIPage(props) {
               router="hash"
               basePath="/"
               layout="sidebar"
+              hideSchemas
             />
           );
         }}

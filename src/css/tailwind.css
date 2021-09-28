@@ -53,6 +53,10 @@
     --docs-color-background-200: #efefef;
     --docs-color-background-300: #dcdcdc;
 
+    --color-canvas-100: var(--docs-color-background-100);
+    --color-canvas-200: var(--docs-color-background-200);
+    --color-canvas-300: var(--docs-color-background-300);
+
     --ifm-toc-border-color: var(--docs-color-border);
   }
 
@@ -218,7 +222,7 @@ hr {
 }
 
 /**
-  Syntax highlighting
+  Syntax highlighting styles for API reference only
 */
 
 .sl-elements .token.punctuation {
@@ -261,4 +265,41 @@ html[data-theme='dark'] .sl-elements .token.null.keyword {
 
 .sl-elements .TextRequestBody .token.string {
   @apply !text-gray-200;
+}
+
+.HttpOperation__Parameters .sl-flex-1,
+.JsonSchemaViewer .sl-flex-1 {
+  flex: none;
+}
+
+.sl-text-warning {
+  @apply font-medium;
+}
+
+html[data-theme='dark'] .sl-text-warning {
+  @apply !text-red-500;
+}
+
+.sl-text-primary-dark {
+  @apply !text-primary-100;
+}
+
+.sl-panel__titlebar .sl-h-lg {
+  height: auto;
+  padding: 12px 0;
+}
+
+.ElementsTableOfContentsItem .sl-bg-primary-tint {
+  border-radius: 4px 0 0 4px;
+  border-right: 2px solid var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+  background: rgba(33, 96, 253, 0.16);
+}
+
+.sl-text-success {
+  @apply !text-green-600;
+}
+
+.sl-text-primary {
+  @apply !text-primary-100;
 }
