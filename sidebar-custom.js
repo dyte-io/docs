@@ -3,6 +3,7 @@ module.exports = {
         {
             type: 'category',
             label: 'Home',
+<<<<<<< HEAD
             items: [
                 'home/introduction',
                 {
@@ -26,6 +27,9 @@ module.exports = {
                     href: '/home/introduction#how-to-use-these-docs'
                 }
             ],
+=======
+            items: ['home/introduction'],
+>>>>>>> 74672cf... customize sidebar for home
         },
         {
             type: 'category',
@@ -35,6 +39,7 @@ module.exports = {
                     type: 'link',
                     label: 'Installation',
                     href: '/react/installation'
+<<<<<<< HEAD
                 },
                 {
                     type: 'link',
@@ -67,6 +72,9 @@ module.exports = {
                     label: 'Entities',
                     href: '/api/schemas'
                 },
+=======
+                }
+>>>>>>> 74672cf... customize sidebar for home
             ]
         },
     ],
