@@ -10,10 +10,10 @@
   *,
   ::before,
   ::after {
-    box-sizing: border-box; /* 1 */
-    border-width: 0; /* 2 */
-    border-style: solid; /* 2 */
-    border-color: currentColor; /* 2 */
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: currentColor;
   }
 
   body {
@@ -25,6 +25,7 @@
   */
 
   :root {
+    /* Docusaurus themeing */
     --ifm-color-primary: #2160fd;
     --ifm-color-primary-dark: #1959fc;
     --ifm-color-primary-darker: #0f51f8;
@@ -38,7 +39,12 @@
 
     --ifm-background-color: #ffffff;
 
+    --ifm-toc-border-color: var(--docs-color-border);
+
+    /* Increased sidebar width */
     --doc-sidebar-width: 340px;
+
+    /* Tailwind theming */
 
     --docs-color-primary: #2160fd;
     --docs-color-primary-100: #2160fd;
@@ -53,11 +59,11 @@
     --docs-color-background-200: #efefef;
     --docs-color-background-300: #dcdcdc;
 
+    /* Elements theming */
+
     --color-canvas-100: var(--docs-color-background-100);
     --color-canvas-200: var(--docs-color-background-200);
     --color-canvas-300: var(--docs-color-background-300);
-
-    --ifm-toc-border-color: var(--docs-color-border);
   }
 
   html[data-theme='dark'] {
@@ -90,6 +96,7 @@
 }
 
 @layer utilities {
+  /* A dyte themed box shadow */
   .dyte-shadow {
     box-shadow: 4px 2px 16px 4px rgb(33 96 253 / 8%),
       0 8px 24px rgb(33 96 253 / 8%);
@@ -122,16 +129,11 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
 /* Sidebar nav header  */
 .menu > .menu__list > .menu__list-item > .menu__link {
-  @apply mb-1 text-text-100 font-medium;
-  font-size: 12px;
-
-  letter-spacing: 0px;
-  text-transform: uppercase;
+  @apply mb-1 text-xs tracking-normal uppercase text-text-100 font-medium;
 }
 
 .menu > .menu__list > .menu__list-item {
-  margin-bottom: 16px;
-  font-size: 14px;
+  @apply mb-4 text-sm;
 }
 
 div[class^='sidebar_']
@@ -144,6 +146,7 @@ div[class^='sidebar_']
 
 .menu {
   padding: 0 !important;
+  @apply !p-0;
 }
 
 /* Optional style for only one link which acts as nav section header */
@@ -186,7 +189,6 @@ hr {
 
 .dropdown {
   min-width: 72px;
-  /* text-align: right; */
   @apply !flex justify-end items-center rounded-md h-12;
 }
 
@@ -217,8 +219,39 @@ hr {
   @apply text-sm font-medium;
 }
 
+/* Styles for @stoplight/elements */
+
+.sl-elements {
+  font-size: 14px !important;
+}
+
 .sl-overflow-x-hidden.sl-overflow-y-auto.sl-flex-1.sl-w-full.sl-px-24.sl-bg-canvas {
   background-color: var(--docs-color-background);
+}
+
+.HttpOperation__Parameters .sl-flex-1,
+.JsonSchemaViewer .sl-flex-1 {
+  flex: none;
+}
+
+.sl-text-warning {
+  @apply font-medium;
+}
+
+.sl-panel__titlebar .sl-h-lg {
+  height: auto;
+  padding: 12px 0;
+}
+
+.ElementsTableOfContentsItem > div {
+  border-radius: 4px 0 0 4px;
+  border-right: 2px solid transparent;
+}
+
+.ElementsTableOfContentsItem .sl-bg-primary-tint {
+  border-right: 2px solid var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+  background: rgba(33, 96, 253, 0.16);
 }
 
 /**
@@ -259,21 +292,8 @@ html[data-theme='dark'] .sl-elements .token.null.keyword {
   @apply !text-red-400;
 }
 
-.sl-elements {
-  font-size: 14px !important;
-}
-
 .sl-elements .TextRequestBody .token.string {
   @apply !text-gray-200;
-}
-
-.HttpOperation__Parameters .sl-flex-1,
-.JsonSchemaViewer .sl-flex-1 {
-  flex: none;
-}
-
-.sl-text-warning {
-  @apply font-medium;
 }
 
 html[data-theme='dark'] .sl-text-warning {
@@ -284,22 +304,14 @@ html[data-theme='dark'] .sl-text-warning {
   @apply !text-primary-100;
 }
 
-.sl-panel__titlebar .sl-h-lg {
-  height: auto;
-  padding: 12px 0;
-}
-
-.ElementsTableOfContentsItem .sl-bg-primary-tint {
-  border-radius: 4px 0 0 4px;
-  border-right: 2px solid var(--ifm-color-primary);
-  color: var(--ifm-color-primary);
-  background: rgba(33, 96, 253, 0.16);
-}
-
 .sl-text-success {
   @apply !text-green-600;
 }
 
 .sl-text-primary {
   @apply !text-primary-100;
+}
+
+.sl-text-danger {
+  @apply !text-red-500;
 }
