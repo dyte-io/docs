@@ -1,3 +1,9 @@
+const isProd = process.env.NODE_ENV === 'production';
+
+// Pattern to only include files which do not have `*.hide.*`
+// filenames like private.hide.md will not be published, but visible in dev mode
+const includePattern = '**/!(*.hide.*)';
+
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'Dyte Docs',
@@ -38,7 +44,7 @@ module.exports = {
     hideableSidebar: true,
     prism: {
       additionalLanguages: ['dart'],
-      theme: require('prism-react-renderer/themes/dracula'),
+      theme: require('prism-react-renderer/themes/oceanicNext'),
     },
   },
   presets: [
@@ -49,7 +55,7 @@ module.exports = {
           path: 'docs/main',
           id: 'default',
           routeBasePath: 'docs',
-          sidebarPath: require.resolve('./sidebars/sidebars-docs.js'),
+          sidebarPath: require.resolve('./sidebar-custom.js'),
           sidebarCollapsible: false,
         },
         blog: {
@@ -69,8 +75,10 @@ module.exports = {
         path: 'docs/react',
         routeBasePath: 'react',
         id: 'react',
-        sidebarPath: require.resolve('./sidebars/sidebars-react.js'),
-        sidebarCollapsible: false,
+        sidebarPath: require.resolve('./sidebars.js'),
+        ...(isProd && {
+          include: [includePattern],
+        }),
       },
     ],
     [
@@ -79,8 +87,10 @@ module.exports = {
         path: 'docs/flutter',
         routeBasePath: 'flutter',
         id: 'flutter',
-        sidebarPath: require.resolve('./sidebars/sidebars-flutter.js'),
-        sidebarCollapsible: false,
+        ...(isProd && {
+          include: [includePattern],
+        }),
+        sidebarPath: require.resolve('./sidebars.js'),
       },
     ],
   ],
