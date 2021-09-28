@@ -1,9 +1,3 @@
-const isProd = process.env.NODE_ENV === 'production';
-
-// Pattern to only include files which do not have `*.hide.*`
-// filenames like private.hide.md will not be published, but visible in dev mode
-const includePattern = '**/!(*.hide.*)';
-
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'Dyte Docs',
@@ -44,7 +38,7 @@ module.exports = {
     hideableSidebar: true,
     prism: {
       additionalLanguages: ['dart'],
-      theme: require('prism-react-renderer/themes/oceanicNext'),
+      theme: require('prism-react-renderer/themes/dracula'),
     },
   },
   presets: [
@@ -76,9 +70,7 @@ module.exports = {
         routeBasePath: 'react',
         id: 'react',
         sidebarPath: require.resolve('./sidebars.js'),
-        ...(isProd && {
-          include: [includePattern],
-        }),
+        sidebarCollapsible: false,
       },
     ],
     [
@@ -87,10 +79,8 @@ module.exports = {
         path: 'docs/flutter',
         routeBasePath: 'flutter',
         id: 'flutter',
-        ...(isProd && {
-          include: [includePattern],
-        }),
         sidebarPath: require.resolve('./sidebars.js'),
+        sidebarCollapsible: false,
       },
     ],
   ],
