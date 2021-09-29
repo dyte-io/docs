@@ -14,7 +14,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', defaultTheme.fontFamily.sans],
+        sans: ['"Source Sans Pro"', defaultTheme.fontFamily.sans],
+        mono: ['"Source Code Pro"', defaultTheme.fontFamily.mono],
       },
       screens: {
         lg: '997px',

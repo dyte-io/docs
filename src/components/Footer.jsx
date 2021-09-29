@@ -76,9 +76,7 @@ export default function Footer(props) {
           </div>
           <div className="flex-1 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 lg:mt-0">
             <div className="space-y-2">
-              <div className="font-sans font-normal text-sm text-text-100">
-                Product
-              </div>
+              <div className="font-normal text-sm text-text-100">Product</div>
               <ul className="space-y-2 text-sm list-none p-0">
                 <li>
                   <a href="#" className="text-current hover:no-underline">
@@ -98,9 +96,7 @@ export default function Footer(props) {
               </ul>
             </div>
             <div className="space-y-2">
-              <div className="font-sans font-normal text-sm text-text-100">
-                Company
-              </div>
+              <div className="font-normal text-sm text-text-100">Company</div>
               <ul className="space-y-2 text-sm list-none p-0">
                 <li>
                   <a href="#" className="text-current hover:no-underline">
@@ -120,9 +116,7 @@ export default function Footer(props) {
               </ul>
             </div>
             <div className="space-y-2">
-              <div className="font-sans font-normal text-sm text-text-100">
-                Help
-              </div>
+              <div className="font-normal text-sm text-text-100">Help</div>
               <ul className="space-y-2 text-sm list-none p-0">
                 <li>
                   <a href="#" className="text-current hover:no-underline">
