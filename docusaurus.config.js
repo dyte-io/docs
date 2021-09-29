@@ -10,7 +10,7 @@ module.exports = {
   tagline: 'Real-time audio & video SDKs, ready to launch 🚀',
   url: 'https://docs.dyte.io',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'favicon.ico',
   organizationName: 'dyte-in', // Usually your GitHub org/user name.

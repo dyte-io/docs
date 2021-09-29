@@ -12,22 +12,22 @@ module.exports = {
                 {
                     type: 'link',
                     label: 'How Dyte works',
-                    href: '/home/introduction#how-dyte-works'
+                    href: '/docs/home/introduction#how-dyte-works'
                 },
                 {
                     type: 'link',
                     label: 'Supported Platforms',
-                    href: '/home/introduction#pick-a-platform-or-framework'
+                    href: '/docs/home/introduction#pick-a-platform-or-framework'
                 },
                 {
                     type: 'link',
                     label: 'API',
-                    href: '/home/introduction#read-about-our-server-apis'
+                    href: '/docs/home/introduction#read-about-our-server-apis'
                 },
                 {
                     type: 'link',
                     label: 'How to use the docs',
-                    href: '/home/introduction#how-to-use-these-docs'
+                    href: '/docs/home/introduction#how-to-use-these-docs'
                 }
             ],
 <<<<<<< HEAD
