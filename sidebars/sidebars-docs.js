@@ -65,7 +65,7 @@ module.exports = {
         {
           type: 'link',
           label: 'Entities',
-          href: '/api/schemas',
+          href: '/api#schemas',
         },
       ],
     },

@@ -223,8 +223,8 @@ const SearchButton = () => {
 
   return (
     <button
-      className="flex items-center justify-between md:w-full md:max-w-[12rem] h-9 px-2 py-2 text-text bg-background-200 rounded-[4px] cursor-pointer"
-      onClick={() => { }}
+      className="flex items-center justify-between md:w-full md:max-w-[12rem] h-9 px-2 py-2 text-text bg-background-200 rounded-[4px] ring-2 ring-transparent hover:ring-primary active:ring-primary transition duration-300 cursor-pointer"
+      onClick={() => {}}
     >
       <div className="flex items-center space-x-2">
         <SearchIcon className="w-5 h-5 text-text-100" />
@@ -300,7 +300,7 @@ function Navbar() {
               to="/docs/home/introduction"
               className={clsx(
                 'text-sm hover:no-underline font-medium',
-                page === 'home' ? '!text-primary' : 'text-text-100'
+                page === 'home' ? 'text-primary-100' : 'text-text-100'
               )}
             >
               Home

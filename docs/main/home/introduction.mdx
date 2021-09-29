@@ -4,17 +4,26 @@ sidebar_position: 1
 
 # Introduction
 
-import Link from "@docusaurus/Link";
-import GridLink from "@site/src/components/GridLink";
+import Link from '@docusaurus/Link';
+import GridLink from '@site/src/components/GridLink';
 import {
   DeviceTabletIcon,
   CodeIcon,
   QuestionMarkCircleIcon,
-} from "@heroicons/react/solid";
+} from '@heroicons/react/solid';
 import {
   Discord as DiscordIcon,
   Github as GithubIcon,
-} from "@styled-icons/boxicons-logos";
+} from '@styled-icons/boxicons-logos';
+import {
+  ReactIcon,
+  FlutterIcon,
+  JSIcon,
+  KotlinIcon,
+  SwiftIcon,
+  SDKIcon,
+  APIIcon,
+} from '@site/src/assets/icons';
 
 Dyte provides the easiest way to add real-time communications using video and audio to your apps and platforms.
 
@@ -62,34 +71,30 @@ For a guided tutorial on how to start from scratch, pick from one of the below a
 
 <GridLink
   to="/react/quickstart"
-  Icon="/icons/client-sdks.svg"
   className="xl:col-span-3 py-6"
   title="Web app using client SDK with React"
-  iconClassName="xl:h-14"
+  Icon={<SDKIcon className="h-12 mr-6" />}
 />
 
 <GridLink
   to="/react/quickstart"
-  Icon="/icons/client-sdks.svg"
   className="xl:col-span-3 py-6"
   title="Mobile app using client SDK with React Native"
-  iconClassName="xl:h-14"
+  Icon={<SDKIcon className="h-12 mr-6" />}
 />
 
 <GridLink
   to="/react/quickstart"
-  Icon="/icons/client-sdks.svg"
   className="xl:col-span-3 py-6"
   title="Mobile app using client SDK with Kotlin"
-  iconClassName="xl:h-14"
+  Icon={<SDKIcon className="h-12 mr-6" />}
 />
 
 <GridLink
   to="/react/quickstart"
-  Icon="/icons/client-sdks.svg"
   className="xl:col-span-3 py-6"
   title="Mobile app using client SDK with Swift"
-  iconClassName="xl:h-14"
+  Icon={<SDKIcon className="h-12 mr-6" />}
 />
 
 </div>
@@ -100,10 +105,11 @@ For a guided tutorial on how to start from scratch, pick from one of the below a
 
 <GridLink
   to="/react/quickstart"
-  Icon="/icons/client-sdks.svg"
   className="xl:col-span-3 py-6"
   title="Client SDK"
-  iconClassName="xl:h-14"
+  Icon={
+    <ReactIcon className="h-10 mr-4" />
+  }
 />
 
 </div> -->
@@ -116,30 +122,30 @@ For a guided tutorial on how to start from scratch, pick from one of the below a
 
 <GridLink
   to="/react/quickstart"
-  Icon="/icons/react.svg"
   title="React / Vue / Svelte"
   className="xl:col-span-3"
+  Icon={<ReactIcon className="h-10 mr-4" />}
 />
 
 <GridLink
   to="/react/quickstart"
-  Icon="/icons/react.svg"
   title="Angular"
   className="xl:col-span-3"
+  Icon={<ReactIcon className="h-10 mr-4" />}
 />
 
 <GridLink
   to="/react/quickstart"
-  Icon="/icons/react.svg"
   title="Next.js"
   className="xl:col-span-3"
+  Icon={<ReactIcon className="h-10 mr-4" />}
 />
 
 <GridLink
   to="/react/quickstart"
-  Icon="/icons/js.svg"
   title="JavaScript"
   className="xl:col-span-3"
+  Icon={<JSIcon className="h-10 mr-4" />}
 />
 
 </div>
@@ -150,34 +156,34 @@ For a guided tutorial on how to start from scratch, pick from one of the below a
 
 <GridLink
   to="/react/quickstart"
-  Icon="/icons/kotlin.svg"
   title="Kotlin"
   subtitle="Android"
   className="xl:col-span-3"
+  Icon={<KotlinIcon className="h-10 mr-4" />}
 />
 
 <GridLink
   to="/react/quickstart"
-  Icon="/icons/swift.svg"
   title="Swift"
   subtitle="iOS"
   className="xl:col-span-3"
+  Icon={<SwiftIcon className="h-10 mr-4" />}
 />
 
 <GridLink
   to="/react/quickstart"
-  Icon="/icons/react.svg"
   title="React Native"
   subtitle="Android + iOS"
   className="xl:col-span-3"
+  Icon={<ReactIcon className="h-10 mr-4" />}
 />
 
 <GridLink
   to="/react/quickstart"
-  Icon="/icons/flutter.svg"
   title="Flutter"
   subtitle="Android + iOS"
   className="xl:col-span-3"
+  Icon={<FlutterIcon className="h-10 mr-4" />}
 />
 
 </div>
@@ -188,9 +194,9 @@ For a guided tutorial on how to start from scratch, pick from one of the below a
 
 <GridLink
   to="/api"
-  Icon="/icons/api.svg"
   title="API Reference"
   className="xl:col-span-3"
+  Icon={<APIIcon className="h-10 mr-6" />}
 />
 
 </div>
@@ -207,29 +213,26 @@ For a guided tutorial on how to start from scratch, pick from one of the below a
 
 <GridLink
   to="/react/quickstart"
-  Icon="/icons/client-sdks.svg"
   className="xl:col-span-2 py-4"
   title="Product Integration Guides"
   subtitle="End to end tutorials on getting started from scratch on specific use cases."
-  iconClassName="xl:h-14"
+  Icon={<SDKIcon className="h-10 md:w-14 mr-6" />}
 />
 
 <GridLink
   to="/react/quickstart"
-  Icon="/icons/client-sdks.svg"
   className="xl:col-span-2 py-4"
   title="Client SDK Guides"
   subtitle="Complete reference to our client SDKs for various client platforms."
-  iconClassName="xl:h-14"
+  Icon={<SDKIcon className="h-10 md:w-14 mr-6" />}
 />
 
 <GridLink
   to="/api"
-  Icon="/icons/api.svg"
   className="xl:col-span-2 py-4"
   title="API Reference"
   subtitle="Complete reference to our HTTP APIs that you can use to interact with the Dyte platform."
-  iconClassName="xl:h-14"
+  Icon={<SDKIcon className="h-10 md:w-14 mr-6" />}
 />
 
 </div>

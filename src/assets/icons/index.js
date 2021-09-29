@@ -15,3 +15,6 @@ export {
   DiscordIcon,
   BlogIcon,
 };
+
+export { SDKIcon } from './SDKIcon';
+export { APIIcon } from './APIIcon';
