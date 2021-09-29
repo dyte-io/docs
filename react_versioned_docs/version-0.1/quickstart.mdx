@@ -1,0 +1,55 @@
+---
+sidebar_position: 2
+---
+
+# Quickstart
+
+Get the `roomName` for the meeting and the participant's `authToken` from our backend APIs (read more about our server APIs [here](/api) <insert_link>), and pass them as props to Dyte's `DyteMeeting` React component.
+
+You can initialize a meeting in your React app, using this component, like below.
+
+- JavaScript
+
+```jsx
+import { DyteMeeting } from "dyte-client";
+
+function App() {
+  return (
+    <div className="App">
+      <DyteMeeting
+        onInit={(meeting) => {}}
+        clientId={`orgId || clientId`}
+        meetingConfig={{
+          roomName: `roomName`,
+          authToken: `authToken`,
+        }}
+      />
+    </div>
+  );
+}
+
+export default App;
+```
+
+- TypeScript
+
+```tsx
+import { DyteMeeting, Meeting } from "dyte-client";
+
+function App() {
+  return (
+    <div className="App">
+      <DyteMeeting
+        onInit={(meeting: Meeting) => {}}
+        clientId={`orgId || clientId`}
+        meetingConfig={{
+          roomName: `roomName`,
+          authToken: `authToken`,
+        }}
+      />
+    </div>
+  );
+}
+
+export default App;
+```
