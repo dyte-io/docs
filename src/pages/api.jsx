@@ -1,9 +1,8 @@
 import React from 'react';
-import Layout from '@site/src/theme/Layout';
-
-import { API } from '@stoplight/elements';
 import Head from '@docusaurus/Head';
 import BrowserOnly from '@docusaurus/BrowserOnly';
+
+import Layout from '@site/src/theme/Layout';
 
 export default function APIPage(props) {
   return (
@@ -27,6 +26,7 @@ export default function APIPage(props) {
         }
       >
         {() => {
+          const { API } = require('@stoplight/elements');
           return (
             <API
               apiDescriptionUrl="/openapi.yaml"

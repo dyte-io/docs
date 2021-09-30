@@ -1,3 +1,5 @@
+const { tailwindPlugin, webpackPlugin } = require('./src/plugins');
+
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'Dyte Docs',
@@ -9,6 +11,7 @@ module.exports = {
   favicon: 'favicon.ico',
   organizationName: 'dyte-in', // Usually your GitHub org/user name.
   projectName: 'dyte-docs', // Usually your repo name.
+  clientModules: [require.resolve('./src/css/tailwind.css')],
   themeConfig: {
     colorMode: {
       disableSwitch: true,
@@ -56,13 +59,14 @@ module.exports = {
           showReadingTime: true,
         },
         theme: {
-          customCss: require.resolve('./src/css/tailwind.css'),
+          // customCss: require.resolve("./src/css/tailwind.css"),
         },
       },
     ],
   ],
   plugins: [
-    'tailwind-plugin',
+    tailwindPlugin,
+    webpackPlugin,
     [
       '@docusaurus/plugin-content-docs',
       {
