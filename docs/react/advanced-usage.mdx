@@ -8,7 +8,7 @@ sidebar_position: 5
 
 The audio / video setup screen that appears for the participant right before getting into the meeting is turned off by default. You can set `showSetupScreen` in `meetingConfig` to `true` to turn it on (default value is `false`).
 
-```jsx
+```jsx {7}
 <DyteMeeting
     onInit={(meeting) => { }}
     clientId=`yourClientID`
@@ -24,7 +24,7 @@ The audio / video setup screen that appears for the participant right before get
 
 Dyte uses VP9 codec by default, but switches to H264/VP8 depending on participants' video codec support. VP9 is a superior codec but not all browsers support it. If you set `autoTune` in `meetingConfig` to `false`, Dyte will use VP8 only for all participants (default value is `true`).
 
-```jsx
+```jsx {7}
 <DyteMeeting
     onInit={(meeting) => { }}
     clientId=`yourClientID`
@@ -40,7 +40,7 @@ Dyte uses VP9 codec by default, but switches to H264/VP8 depending on participan
 
 You can optionally choose to subscribe to the error details, in case an error occurs while joining a meeting from the client app, by passing an `onError` prop to `DyteMeeting`. `onError` expects a function which has a single param of type `Error` and is not expected to return anything.
 
-```jsx
+```jsx {8}
 <DyteMeeting
     onInit={(meeting) => { }}
     clientId=`yourClientID`
@@ -70,10 +70,10 @@ sets the value of `config` to the following:
 
 ```javascript
 {
-  clientId: string;
-  roomName: string;
-  showSetupScreen: boolean;
-  autoTune: boolean;
+  clientId: string,
+  roomName: string,
+  showSetupScreen: boolean,
+  autoTune: boolean,
 }
 ```
 
@@ -498,12 +498,14 @@ Now all the methods that you can call on `meeting.self` (as described under [rep
 
 ## Errors
 
-There are 3 types of errors emitted when a meeting cannot be initialized.
+There are 3 types of errors emitted when a meeting cannot be initialized. Read more about these on the [`DyteErrors`](./reference/dyte-errors) page in the reference section.
 
-```javascript
-CLIENTID_INVALID;
-MEETING_UNAUTHORIZED;
-MEETING_NOTFOUND;
+```tsx
+enum DyteErrors {
+  CLIENTID_INVALID,
+  MEETING_UNAUTHORIZED,
+  MEETING_NOTFOUND,
+}
 ```
 
 An example of handling such errors:

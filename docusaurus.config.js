@@ -1,9 +1,3 @@
-const isProd = process.env.NODE_ENV === 'production';
-
-// Pattern to only include files which do not have `*.hide.*`
-// filenames like private.hide.md will not be published, but visible in dev mode
-const includePattern = '**/!(*.hide.*)';
-
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'Dyte Docs',
@@ -14,7 +8,7 @@ module.exports = {
   onBrokenMarkdownLinks: 'warn',
   favicon: 'favicon.ico',
   organizationName: 'dyte-in', // Usually your GitHub org/user name.
-  projectName: 'dev-docs', // Usually your repo name.
+  projectName: 'dyte-docs', // Usually your repo name.
   themeConfig: {
     colorMode: {
       disableSwitch: true,
@@ -44,7 +38,7 @@ module.exports = {
     hideableSidebar: true,
     prism: {
       additionalLanguages: ['dart'],
-      theme: require('prism-react-renderer/themes/oceanicNext'),
+      theme: require('prism-react-renderer/themes/vsDark'),
     },
   },
   presets: [
@@ -55,7 +49,7 @@ module.exports = {
           path: 'docs/main',
           id: 'default',
           routeBasePath: 'docs',
-          sidebarPath: require.resolve('./sidebar-custom.js'),
+          sidebarPath: require.resolve('./sidebars/sidebars-docs.js'),
           sidebarCollapsible: false,
         },
         blog: {
@@ -75,10 +69,8 @@ module.exports = {
         path: 'docs/react',
         routeBasePath: 'react',
         id: 'react',
-        sidebarPath: require.resolve('./sidebars.js'),
-        ...(isProd && {
-          include: [includePattern],
-        }),
+        sidebarPath: require.resolve('./sidebars/sidebars-react.js'),
+        sidebarCollapsible: false,
       },
     ],
     [
@@ -87,10 +79,8 @@ module.exports = {
         path: 'docs/flutter',
         routeBasePath: 'flutter',
         id: 'flutter',
-        ...(isProd && {
-          include: [includePattern],
-        }),
-        sidebarPath: require.resolve('./sidebars.js'),
+        sidebarPath: require.resolve('./sidebars/sidebars-flutter.js'),
+        sidebarCollapsible: false,
       },
     ],
   ],
