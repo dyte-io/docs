@@ -4,33 +4,19 @@ sidebar_position: 4
 
 # Customize the meeting UI
 
-Dyte offers a host of customizations for the UI of meetings, some of which also defines the interactions the participants can have within a meeting room. While the initial values for these options are picked up from the [`preset`](/docs/home/introduction#glossary) used to generate the `authToken`, you can override them at the client end based on specific use cases or events. There are 2 ways to update the config:
+Dyte offers a host of customizations for the UI of meetings, some of which also defines the interactions the participants can have within a meeting room. While the initial values for these options are picked up from the [`preset`](/docs/home/introduction#glossary) used to generate the `authToken`, you can override them at the client end based on specific use cases or events.
 
-1. pass the config options at the time of initiating a meeting.
+Call the `updateUIConfig` method on [`meeting` instance](./reference/meeting) and pass the [`uiConfigOptions`](./reference/dyte-ui-config) as a parameter to this call.
 
-```jsx {8}
-<DyteMeeting
-    onInit={(meeting) => { }}
-    clientId=`yourClientID`
-    meetingConfig={{
-        roomName: `roomName`,
-        authToken: `authToken`
-    }}
-    uiConfig={uiConfigOptions}
-    >
-```
-
-2. call the `updateUIConfig` method on [`meeting` instance](./reference/meeting) and pass the [`uiConfigOptions`](./reference/dyte-ui-config) as a parameter to this call
-
-```javascript
+```dart
 meeting.updateUIConfig(uiConfigOptions);
 ```
+
+where `uiConfigOptions` is a `Map` of type `<String, dynamic>`.
 
 Described below are various different options that you can customize in a meeting. The complete reference for UI config options can be found [here](./reference/dyte-ui-config).
 
 Here is a pictorial representation of all the config options defined below.
-
-<!-- ![meeting UI screenshot with labeled parts](./meeting-ui.png) -->
 
 ![meeting UI screenshot with labeled parts](/meeting-ui.png)
 
@@ -38,8 +24,8 @@ Here is a pictorial representation of all the config options defined below.
 
 You can change the logo in the meeting room to reflect your brand or your organization.
 
-```tsx
-logo: logoUrlString;
+```dart
+meeting.updateUIConfig({ 'logo': '<logoUrlString>' });
 ```
 
 ## Change the color scheme to your brand / theme
@@ -53,34 +39,40 @@ You can change the color scheme of the meeting to reflect your brand and theme. 
 
 The default values for each of these are shown in the below example. Remember to specify all the colors, otherwise this feature won't work.
 
-```tsx
-colors: {
-    primary:         '#2160FD',
-    secondary:       '#262626',
-    textPrimary:     '#EEEEEE',
-    videoBackground: '#1A1A1A'
-}
+```dart
+meeting.updateUIConfig({
+    'colors': {
+        'primary':         '#2160FD',
+        'secondary':       '#262626',
+        'textPrimary':     '#EEEEEE',
+        'videoBackground': '#1A1A1A'
+    }
+});
 ```
 
 ## Adjust the meeting size to a custom container
 
 The default behaviour of a meeting on Dyte is to take up the full viewport. However, if you want to customize the size of a meeting to fit within a certain container or `div`, you can do so by specifying the `width` and `height` under `dimensions` as numerical values which are taken as pixels (`px` in CSS). Remember to specify both, otherwise this feature won't work.
 
-```tsx
-dimensions?: {
-    width:  400,
-    height: 800
-}
+```dart
+meeting.updateUIConfig({
+    'dimensions': {
+        'width':  400,
+        'height': 800
+    }
+});
 ```
 
 ## Make the meeting fit your container size (dynamic)
 
 Similarly, if you want to make the size of a meeting dynamically fit to within the bounds of its parent container or `div`, you can do so by specifying the `mode` under `dimensions` and set the value to `fillParent`.
 
-```tsx
-dimensions?: {
-    mode: 'fillParent'
-}
+```dart
+meeting.updateUIConfig({
+    'dimensions': {
+        'mode': 'fillParent'
+    }
+});
 ```
 
 :::caution
@@ -93,64 +85,66 @@ Use either the `width` and `height` OR the `mode` under `dimensions`, but not bo
 
 You can hide the bottom control bar by setting `controlBar` to `false` in config. The default value is `true`, which means the control bar is visible.
 
-```tsx
-{
-  controlBar: true,
-}
+```dart
+meeting.updateUIConfig({ 'controlBar': true });
 ```
 
 ## Hide individual controls from the bottom control bar
 
 You can hide individual controls from the bottom control bar by setting their respective options to `false` in the config. The default value is `true` for all controls, which means all the controls are visible.
 
-```tsx
-controlBarElements: {
-    fullscreen:   true,
-    share:        true,
-    screenShare:  true,
-    layout:       true,
-    chat:         true,
-    polls:        true,
-    participants: true,
-    plugins:      true
-}
+```dart
+meeting.updateUIConfig({
+    'controlBarElements': {
+        'fullscreen':   true,
+        'share':        true,
+        'screenShare':  true,
+        'layout':       true,
+        'chat':         true,
+        'polls':        true,
+        'participants': true,
+        'plugins':      true
+    }
+});
 ```
 
 ## Hide the header bar
 
 You can hide the header bar by setting `header` to `false` in config. The default value is `true`, which means the header is visible.
 
-```tsx
-{
-  header: true,
-}
+```dart
+meeting.updateUIConfig({ 'header': true });
 ```
 
 ## Hide individual controls from the header bar
 
 You can hide individual elements from the header bar by setting their respective options to `false` in the config. The default value is `true` for all elements, which means all the elements are visible.
 
-```tsx
-headerElements: {
-    logo:             true,
-    title:            true,
-    participantCount: true,
-    clock:            true
-}
+```dart
+meeting.updateUIConfig({
+    'headerElements': {
+        'logo':             true,
+        'title':            true,
+        'participantCount': true,
+        'clock':            true
+    }
+});
 ```
 
-## Customize waiting room
+<!-- ## Customize waiting room
 
 If you have enabled waiting room in the `role`, the participant will be put in an empty zone until the host joins and / or lets them in. You can choose the exact HTML to be rendered while the participant is in the waiting room (such as an infographic or play a video or display info about your org) by setting the `element` to a ReactNode or an HTMLElement, and whether the participant sees their own video while in the waiting room using `showSelfVideo` (which is `true` by default).
 
-```tsx
-waitingRoom: {
-    showSelfVideo: true,
-    element:       ReactNode|HTMLElement
-}
-```
+```dart
+meeting.updateUIConfig({
+    'waitingRoom': {
+        'showSelfVideo': true,
+        'element':       ReactNode|HTMLElement
+    }
+});
+``` -->
 
-## Add overlay / filter to meeting video
+<!-- ## Add overlay / filter to meeting video
 
 You can add an overlay or filter to the meeting videos. You can add them to the individual participant videos or to the entire meeting grid at once. You would generally need to listen to the meeting events, such as [`roomMessage`](./advanced-usage#send-a-custom-message-to-other-participants-in-the-meeting-p2p-message--data-exchange), to determine when to show an overlay, or you could build your own custom logic around this.
 
@@ -180,4 +174,4 @@ meeting.grid.setOverlay(null);
 
 ### Participant video overlay
 
-[Check this section](./advanced-usage#set-an-overlay--filter-on-the-participant-video).
+[Check this section](./advanced-usage#set-an-overlay--filter-on-the-participant-video). -->

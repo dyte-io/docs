@@ -40,7 +40,7 @@ module.exports = {
     },
     hideableSidebar: true,
     prism: {
-      additionalLanguages: ['dart'],
+      additionalLanguages: ['dart', 'ruby'],
       theme: require('prism-react-renderer/themes/vsDark'),
     },
   },
