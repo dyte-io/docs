@@ -97,5 +97,15 @@ module.exports = {
         sidebarCollapsible: false,
       },
     ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        path: 'docs/javascript',
+        routeBasePath: 'javascript',
+        id: 'javascript',
+        sidebarPath: require.resolve('./sidebars/sidebars-javascript.js'),
+        sidebarCollapsible: false,
+      },
+    ],
   ],
 };
