@@ -87,5 +87,15 @@ module.exports = {
         sidebarCollapsible: false,
       },
     ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        path: 'docs/react-native',
+        routeBasePath: 'react-native',
+        id: 'react-native',
+        sidebarPath: require.resolve('./sidebars/sidebars-react-native.js'),
+        sidebarCollapsible: false,
+      },
+    ],
   ],
 };

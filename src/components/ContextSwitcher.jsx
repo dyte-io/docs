@@ -1,21 +1,26 @@
-import React, { useState, useEffect, Fragment, memo } from 'react';
-import clsx from 'clsx';
-import { Listbox, Transition } from '@headlessui/react';
-import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
+import React, { useState, useEffect, Fragment, memo } from "react";
+import clsx from "clsx";
+import { Listbox, Transition } from "@headlessui/react";
+import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 // import { withRouter } from '@docusaurus/router';
-import { useHistory } from 'react-router-dom';
-import { useAllDocsData } from '@theme/hooks/useDocs';
-import { ReactIcon, FlutterIcon } from '../assets/icons';
+import { useHistory } from "react-router-dom";
+import { useAllDocsData } from "@theme/hooks/useDocs";
+import { ReactIcon, FlutterIcon } from "../assets/icons";
 
 const CONTEXTS = [
   {
-    id: 'react',
-    name: 'React',
+    id: "react",
+    name: "React",
     icon: ReactIcon,
   },
   {
-    id: 'flutter',
-    name: 'Flutter',
+    id: "react-native",
+    name: "React Native",
+    icon: ReactIcon,
+  },
+  {
+    id: "flutter",
+    name: "Flutter",
     icon: FlutterIcon,
   },
 ];
@@ -23,7 +28,7 @@ const CONTEXTS = [
 const getContext = (id) => CONTEXTS.find((context) => context.id === id);
 
 export const getCurrentPageInfo = () => {
-  return window.location.pathname.split('/').slice(1);
+  return window.location.pathname.split("/").slice(1);
 };
 
 const pathExists = (path, data) => {
@@ -51,7 +56,7 @@ const ContextSwitcher = ({ className }) => {
 
     const newDoc = newValue.id;
 
-    let path = `/${newDoc}/${docPath.join('/')}`;
+    let path = `/${newDoc}/${docPath.join("/")}`;
 
     const lastVersion = data[newDoc].versions.find(
       (version) => version.isLast === true
@@ -66,7 +71,7 @@ const ContextSwitcher = ({ className }) => {
     }
   };
 
-  if (history.location.pathname.split('/')[1] === 'docs') {
+  if (history.location.pathname.split("/")[1] === "docs") {
     // don't show contextSwitcher for /docs
     return null;
   }
@@ -75,7 +80,7 @@ const ContextSwitcher = ({ className }) => {
     <Listbox
       value={context}
       onChange={handleChange}
-      className={clsx('relative', className)}
+      className={clsx("relative", className)}
     >
       <div className="relative mt-1">
         <Listbox.Button className="relative flex items-center w-full h-12 py-2 pl-3 pr-10 text-left bg-background-100 rounded-lg cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm outline-none border-none">
@@ -105,8 +110,8 @@ const ContextSwitcher = ({ className }) => {
                   key={context.id}
                   className={({ active }) =>
                     clsx(
-                      'cursor-pointer select-none relative py-2 px-4',
-                      active && 'bg-background-200'
+                      "cursor-pointer select-none relative py-2 px-4",
+                      active && "bg-background-200"
                     )
                   }
                   value={context}
@@ -121,8 +126,8 @@ const ContextSwitcher = ({ className }) => {
                         />
                         <span
                           className={clsx(
-                            'block truncate',
-                            selected ? 'font-medium' : 'font-normal'
+                            "block truncate",
+                            selected ? "font-medium" : "font-normal"
                           )}
                         >
                           {context.name}
