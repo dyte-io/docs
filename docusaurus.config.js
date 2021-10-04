@@ -107,5 +107,15 @@ module.exports = {
         sidebarCollapsible: false,
       },
     ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        path: 'docs/android',
+        routeBasePath: 'android',
+        id: 'android',
+        sidebarPath: require.resolve('./sidebars/sidebars-android.js'),
+        sidebarCollapsible: false,
+      },
+    ],
   ],
 };
