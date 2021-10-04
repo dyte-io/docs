@@ -67,7 +67,7 @@ colors: {
 The default behaviour of a meeting on Dyte is to take up the full viewport. However, if you want to customize the size of a meeting to fit within a certain container or `div`, you can do so by specifying the `width` and `height` under `dimensions` as numerical values which are taken as pixels (`px` in CSS). Remember to specify both, otherwise this feature won't work.
 
 ```tsx
-dimensions?: {
+dimensions: {
     width:  400,
     height: 800
 }
@@ -78,8 +78,8 @@ dimensions?: {
 Similarly, if you want to make the size of a meeting dynamically fit to within the bounds of its parent container or `div`, you can do so by specifying the `mode` under `dimensions` and set the value to `fillParent`.
 
 ```tsx
-dimensions?: {
-    mode: 'fillParent'
+dimensions: {
+  mode: "fillParent";
 }
 ```
 
@@ -94,9 +94,7 @@ Use either the `width` and `height` OR the `mode` under `dimensions`, but not bo
 You can hide the bottom control bar by setting `controlBar` to `false` in config. The default value is `true`, which means the control bar is visible.
 
 ```tsx
-{
-  controlBar: true,
-}
+controlBar: true;
 ```
 
 ## Hide individual controls from the bottom control bar
@@ -121,9 +119,7 @@ controlBarElements: {
 You can hide the header bar by setting `header` to `false` in config. The default value is `true`, which means the header is visible.
 
 ```tsx
-{
-  header: true,
-}
+header: true;
 ```
 
 ## Hide individual controls from the header bar
