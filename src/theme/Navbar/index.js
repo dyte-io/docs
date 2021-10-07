@@ -258,7 +258,7 @@ function Navbar() {
             <Link
               to="/docs/home/introduction"
               className={clsx(
-                'text-sm hover:no-underline font-medium',
+                'lv0_link text-sm hover:no-underline font-medium',
                 page === 'home' ? 'text-primary-100' : 'text-text-100'
               )}
             >
@@ -267,7 +267,7 @@ function Navbar() {
             <Link
               to="/react/quickstart"
               className={clsx(
-                'text-sm hover:no-underline font-medium',
+                'lv0_link text-sm hover:no-underline font-medium',
                 page === 'sdk' ? 'text-primary-100' : 'text-text-100'
               )}
             >
@@ -276,7 +276,7 @@ function Navbar() {
             <Link
               to="/api"
               className={clsx(
-                'text-sm hover:no-underline font-medium',
+                'lv0_link text-sm hover:no-underline font-medium',
                 page === 'api' ? 'text-primary-100' : 'text-text-100'
               )}
             >
@@ -284,7 +284,7 @@ function Navbar() {
             </Link>
 
             <Link
-              className="flex items-center text-sm text-text-100 hover:no-underline font-medium"
+              className="lv0_link flex items-center text-sm text-text-100 hover:no-underline font-medium"
               href="https://github.com/dyte-in"
             >
               <Github className="h-5 mr-1" aria-hidden={true} />
@@ -292,7 +292,7 @@ function Navbar() {
             </Link>
 
             <Link
-              className="flex items-center text-sm text-text-100 hover:no-underline font-medium"
+              className="lv0_link flex items-center text-sm text-text-100 hover:no-underline font-medium"
               href="https://community.dyte.io"
             >
               <DiscordIcon className="h-4 mr-1" />
@@ -308,7 +308,7 @@ function Navbar() {
             <Link
               href="https://dev.dyte.in"
               target="_blank"
-              className="flex items-center h-9 ml-4 bg-primary text-white px-4 text-sm font-bold rounded-[4px] hover:no-underline hover:text-white"
+              className="lv0_link flex items-center h-9 ml-4 bg-primary text-white px-4 text-sm font-bold rounded-[4px] hover:no-underline hover:text-white"
             >
               Login/Sign Up
               <ExternalLinkIcon className="h-4 ml-2" aria-hidden={true} />
