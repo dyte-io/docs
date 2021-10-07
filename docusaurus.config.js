@@ -1,5 +1,7 @@
 const { tailwindPlugin, webpackPlugin } = require('./src/plugins');
 
+const isDev = process.env.NODE_ENV === 'development';
+
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'Dyte Docs',
@@ -53,7 +55,7 @@ module.exports = {
     },
     algolia: {
       apiKey: process.env.ALGOLIA_API_KEY,
-      indexName: 'docs',
+      indexName: 'prod_docs',
       contextualSearch: true,
       appId: process.env.ALGOLIA_APP_ID,
       searchParameters: {},
@@ -85,6 +87,9 @@ module.exports = {
         id: 'react',
         sidebarPath: require.resolve('./sidebars/sidebars-react.js'),
         sidebarCollapsible: false,
+        onlyIncludeVersions: !isDev
+          ? require('./react_versions.json')
+          : undefined,
       },
     ],
     [
@@ -95,6 +100,9 @@ module.exports = {
         id: 'flutter',
         sidebarPath: require.resolve('./sidebars/sidebars-flutter.js'),
         sidebarCollapsible: false,
+        onlyIncludeVersions: !isDev
+          ? require('./flutter_versions.json')
+          : undefined,
       },
     ],
     [
@@ -105,6 +113,9 @@ module.exports = {
         id: 'react-native',
         sidebarPath: require.resolve('./sidebars/sidebars-react-native.js'),
         sidebarCollapsible: false,
+        onlyIncludeVersions: !isDev
+          ? require('./react-native_versions.json')
+          : undefined,
       },
     ],
     [
@@ -115,6 +126,9 @@ module.exports = {
         id: 'javascript',
         sidebarPath: require.resolve('./sidebars/sidebars-javascript.js'),
         sidebarCollapsible: false,
+        onlyIncludeVersions: !isDev
+          ? require('./javascript_versions.json')
+          : undefined,
       },
     ],
     [
@@ -125,6 +139,9 @@ module.exports = {
         id: 'android',
         sidebarPath: require.resolve('./sidebars/sidebars-android.js'),
         sidebarCollapsible: false,
+        onlyIncludeVersions: !isDev
+          ? require('./android_versions.json')
+          : undefined,
       },
     ],
     [
@@ -135,6 +152,9 @@ module.exports = {
         id: 'ios',
         sidebarPath: require.resolve('./sidebars/sidebars-ios.js'),
         sidebarCollapsible: false,
+        onlyIncludeVersions: !isDev
+          ? require('./ios_versions.json')
+          : undefined,
       },
     ],
   ],
