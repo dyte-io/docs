@@ -52,10 +52,10 @@ module.exports = {
       theme: require('prism-react-renderer/themes/vsDark'),
     },
     algolia: {
-      apiKey: 'YOUR_API_KEY',
-      indexName: 'YOUR_INDEX_NAME',
+      apiKey: process.env.ALGOLIA_API_KEY,
+      indexName: 'docs',
       contextualSearch: true,
-      appId: 'YOUR_APP_ID',
+      appId: process.env.ALGOLIA_APP_ID,
       searchParameters: {},
     },
   },
@@ -70,12 +70,7 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars/sidebars-docs.js'),
           sidebarCollapsible: false,
         },
-        blog: {
-          showReadingTime: true,
-        },
-        theme: {
-          // customCss: require.resolve("./src/css/tailwind.css"),
-        },
+        blog: false,
       },
     ],
   ],
