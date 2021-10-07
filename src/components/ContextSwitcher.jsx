@@ -5,7 +5,13 @@ import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 // import { withRouter } from '@docusaurus/router';
 import { useHistory } from "react-router-dom";
 import { useAllDocsData } from "@theme/hooks/useDocs";
-import { ReactIcon, FlutterIcon, JSIcon, KotlinIcon } from "../assets/icons";
+import {
+  ReactIcon,
+  FlutterIcon,
+  JSIcon,
+  KotlinIcon,
+  SwiftIcon,
+} from "../assets/icons";
 
 const CONTEXTS = [
   {
@@ -27,6 +33,11 @@ const CONTEXTS = [
     id: "android",
     name: "Android",
     icon: KotlinIcon,
+  },
+  {
+    id: "ios",
+    name: "iOS",
+    icon: SwiftIcon,
   },
   {
     id: "flutter",

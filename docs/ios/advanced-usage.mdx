@@ -1,0 +1,183 @@
+---
+sidebar_position: 5
+---
+
+# Advanced usage
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+## Turn on the setup / preview screen
+
+The audio / video setup screen that appears for the participant right before getting into the meeting is turned off by default. You can set `showSetupScreen` in `meetingConfig` to `true` to turn it on (default value is `false`).
+
+<Tabs
+  defaultValue="swift"
+  values={[
+    { label: 'Swift', value: 'swift', },
+    { label: 'Obj-C', value: 'obj-c', },
+  ]
+}>
+<TabItem value="swift">
+
+```swift {8}
+import DyteSdk;
+
+let  config = DyteMeetingConfig();
+meetingConfig.roomName = "YOUR_ROOM_NAME";
+meetingConfig.authToken = "YOUR_AUTH_TOKEN";
+meetingConfig.width = self.view.frame.size.width
+meetingConfig.height = self.view.frame.size.height
+meetingConfig.showSetupScreen = true
+```
+
+</TabItem>
+<TabItem value="obj-c">
+
+```objectivec {8}
+@import DyteSdk;
+
+DyteMeetingConfig *meetingConfig = [[DyteMeetingConfig alloc] init];
+meetingConfig.roomName = @"YOUR_ROOM_NAME";
+meetingConfig.authToken = @"YOUR_AUTH_TOKEN";
+meetingConfig.width = self.view.frame.size.width;
+meetingConfig.height = self.view.frame.size.height;
+meetingConfig.showSetupScreen = YES;
+```
+
+</TabItem>
+</Tabs>
+
+## Dynamic codec switching
+
+Dyte uses VP9 codec by default, but switches to H264/VP8 depending on participants' video codec support. VP9 is a superior codec but not all browsers support it. If you set `autoTune` in `meetingConfig` to `false`, Dyte will use VP8 only for all participants (default value is `true`).
+
+<Tabs
+  defaultValue="swift"
+  values={[
+    { label: 'Swift', value: 'swift', },
+    { label: 'Obj-C', value: 'obj-c', },
+  ]
+}>
+<TabItem value="swift">
+
+```swift {8}
+import DyteSdk;
+
+let  config = DyteMeetingConfig();
+meetingConfig.roomName = "YOUR_ROOM_NAME";
+meetingConfig.authToken = "YOUR_AUTH_TOKEN";
+meetingConfig.width = self.view.frame.size.width
+meetingConfig.height = self.view.frame.size.height
+meetingConfig.autoTune = true
+```
+
+</TabItem>
+<TabItem value="obj-c">
+
+```objectivec {8}
+@import DyteSdk;
+
+DyteMeetingConfig *meetingConfig = [[DyteMeetingConfig alloc] init];
+meetingConfig.roomName = @"YOUR_ROOM_NAME";
+meetingConfig.authToken = @"YOUR_AUTH_TOKEN";
+meetingConfig.width = self.view.frame.size.width;
+meetingConfig.height = self.view.frame.size.height;
+meetingConfig.autoTune = YES;
+```
+
+</TabItem>
+</Tabs>
+
+## Control the meeting, and take meeting & participant actions
+
+The `DyteMeetingView` instance (referenced as `dyteView`) helps you interact with the meeting. You can take actions on the meeting as well as the participants. You can also setup custom controls to that interact with the meeting in certain ways that help you send events and messages across to other participants in the meeting. You can find the complete reference to the `DyteMeetingView` type [here](./reference/meeting). Read on to understand how to use these individual controls.
+
+## Replace the meeting control buttons with your own buttons
+
+Let's say you don't want to give many options to the participants in a meeting, other than the basic audio and video turning on, or you don't like our buttons and control bar design (you really should give us feedback too, in this case), or for any other reason - you just want to build your own buttons for basic meeting controls. This is possible with Dyte, with the minor caveat that you will need to put some validations at your end.
+
+First thing in such a scenario would be to do away with our control bar using [`preset`](/docs/home/introduction#glossary).
+
+Now you can perform the basic functions of a meeting, like below. These functions can be used as the `onClick` handlers of your own buttons.
+
+### Mic control
+
+To turn the mic on / off
+
+<Tabs
+  defaultValue="swift"
+  values={[
+    { label: 'Swift', value: 'swift', },
+    { label: 'Obj-C', value: 'obj-c', },
+  ]
+}>
+<TabItem value="swift">
+
+```swift
+dyteView.toggleAudio()
+```
+
+</TabItem>
+<TabItem value="obj-c">
+
+```objectivec
+[dyteView toggleAudio];
+```
+
+</TabItem>
+</Tabs>
+
+### Camera control
+
+To turn the camera on / off
+
+<Tabs
+  defaultValue="swift"
+  values={[
+    { label: 'Swift', value: 'swift', },
+    { label: 'Obj-C', value: 'obj-c', },
+  ]
+}>
+<TabItem value="swift">
+
+```swift
+dyteView.toggleVideo()
+```
+
+</TabItem>
+<TabItem value="obj-c">
+
+```objectivec
+[dyteView toggleVideo];
+```
+
+</TabItem>
+</Tabs>
+
+### Screenshare control
+
+To turn screenshare on / off
+
+<Tabs
+  defaultValue="swift"
+  values={[
+    { label: 'Swift', value: 'swift', },
+    { label: 'Obj-C', value: 'obj-c', },
+  ]
+}>
+<TabItem value="swift">
+
+```swift
+dyteView.selfToggleScreenShare()
+```
+
+</TabItem>
+<TabItem value="obj-c">
+
+```objectivec
+[dyteView selfToggleScreenShare];
+```
+
+</TabItem>
+</Tabs>

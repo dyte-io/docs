@@ -40,7 +40,7 @@ module.exports = {
     },
     hideableSidebar: true,
     prism: {
-      additionalLanguages: ['dart', 'ruby', 'groovy', 'kotlin', 'java'],
+      additionalLanguages: ['dart', 'ruby', 'groovy', 'kotlin', 'java', 'swift', 'objectivec'],
       theme: require('prism-react-renderer/themes/vsDark'),
     },
   },
@@ -114,6 +114,16 @@ module.exports = {
         routeBasePath: 'android',
         id: 'android',
         sidebarPath: require.resolve('./sidebars/sidebars-android.js'),
+        sidebarCollapsible: false,
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        path: 'docs/ios',
+        routeBasePath: 'ios',
+        id: 'ios',
+        sidebarPath: require.resolve('./sidebars/sidebars-ios.js'),
         sidebarCollapsible: false,
       },
     ],

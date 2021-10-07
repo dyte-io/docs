@@ -1,0 +1,254 @@
+---
+sidebar_position: 6
+---
+
+# Events
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+To integrate well with modern workflows, Dyte SDK also emits a rich set of events on meeting events and state changes. Using these events on the client side, you can make your app event driven and respond to changes in the meeting in real-time. You can subscribe to the following events on the [`DyteMeetingViewDelegate`](./reference/meeting). To do this, you need to set the `delegate` for `DyteMeetingView` to an object (such as `self`) that implements the `DyteMeetingViewDelegate` protocol. The methods in this protocol correspond to events for the given meeting.
+
+<Tabs
+  defaultValue="swift"
+  values={[
+    { label: "Swift", value: "swift" },
+    { label: "Obj-C", value: "obj-c" },
+  ]}
+>
+<TabItem value="swift">
+
+```swift
+dyteView.delegate = self
+```
+
+</TabItem>
+<TabItem value="obj-c">
+
+```objectivec
+dyteView.delegate = self;
+```
+
+</TabItem>
+</Tabs>
+
+While the delegate methods can now directly be implemented by the class that `self` refers to if you are using Objective-C, you will have to go a little roundabout way if you are using Swift. You would need to create an extension of the class that extends the class using the protocol, and then from the delegate method inside this extension you would need to call a private function of the base class.
+
+Remember the golden rule of thumb for iOS: all UI related operations need to be dispatched on the `mainQueue`. Since delegates are asynchronous and are not guaranteed to be called on the `mainQueue`, any delegates methods that deal with UI need to explicitly specify the thread for such operations.
+
+### Connected to the meeting
+
+This event is triggered when the participant has connected to the meeting but hasn't started producing or consuming content streams. Think of this as establishing a successful connection to the meeting and nothing else.
+
+<Tabs
+  defaultValue="swift"
+  values={[
+    { label: "Swift", value: "swift" },
+    { label: "Obj-C", value: "obj-c" },
+  ]}
+>
+<TabItem value="swift">
+
+```swift
+extension ViewController: DyteMeetingViewDelegate {
+    func meetingConnected() {
+    }
+}
+```
+
+</TabItem>
+<TabItem value="obj-c">
+
+```objectivec
+- (void) meetingConnected {
+}
+```
+
+</TabItem>
+</Tabs>
+
+### Joined the meeting
+
+This event is triggered when the participant actually joins the meeting, and can start producing as well as consuming content streams.
+
+<Tabs
+  defaultValue="swift"
+  values={[
+    { label: "Swift", value: "swift" },
+    { label: "Obj-C", value: "obj-c" },
+  ]}
+>
+<TabItem value="swift">
+
+```swift
+extension ViewController: DyteMeetingViewDelegate {
+    func meetingJoined() {
+    }
+}
+```
+
+</TabItem>
+<TabItem value="obj-c">
+
+```objectivec
+- (void) meetingJoined {
+}
+```
+
+</TabItem>
+</Tabs>
+
+### Disconnected from the meeting
+
+This event is triggered when the participant gets disconnected from the meeting for any reason. It could be a bad network connection, the meeting being exited by the participant manually, the meeting tab / browser / app being closed by the participant, or just any other reason.
+
+<Tabs
+  defaultValue="swift"
+  values={[
+    { label: "Swift", value: "swift" },
+    { label: "Obj-C", value: "obj-c" },
+  ]}
+>
+<TabItem value="swift">
+
+```swift
+extension ViewController: DyteMeetingViewDelegate {
+    func meetingDisconnect() {
+    }
+}
+```
+
+</TabItem>
+<TabItem value="obj-c">
+
+```objectivec
+- (void) meetingDisconnect {
+}
+```
+
+</TabItem>
+</Tabs>
+
+### End of the meeting
+
+This event is triggered when the meeting is ended by the host or by the organization (as an admin function). In this case, all the participants are kicked out and you can take actions such as asking for feedback or redirecting to an exercise.
+
+<Tabs
+  defaultValue="swift"
+  values={[
+    { label: "Swift", value: "swift" },
+    { label: "Obj-C", value: "obj-c" },
+  ]}
+>
+<TabItem value="swift">
+
+```swift
+extension ViewController: DyteMeetingViewDelegate {
+    func meetingEnded() {
+    }
+}
+```
+
+</TabItem>
+<TabItem value="obj-c">
+
+```objectivec
+- (void) meetingEnded {
+}
+```
+
+</TabItem>
+</Tabs>
+
+### Another participant joins the meeting
+
+This event is triggered when another participant joins the meeting. "Join" here as the same context as the `meetingJoined` event: so when that event triggers for the a participant, this event triggers for all other participants that have already joined the meeting.
+
+<Tabs
+  defaultValue="swift"
+  values={[
+    { label: "Swift", value: "swift" },
+    { label: "Obj-C", value: "obj-c" },
+  ]}
+>
+<TabItem value="swift">
+
+```swift
+extension ViewController: DyteMeetingViewDelegate {
+    func participantJoin(participant) {
+    }
+}
+```
+
+</TabItem>
+<TabItem value="obj-c">
+
+```objectivec
+- (void) participantJoin: (DyteParticipant *) participant {
+}
+```
+
+</TabItem>
+</Tabs>
+
+### Another participant leaves the meeting
+
+This event is triggered when another participant disconnects from the meeting. "Disconnect" here as the same context as the `disconnect` event: so when that event triggers for the a participant, this event triggers for all other participants that have already joined the meeting.
+
+<Tabs
+  defaultValue="swift"
+  values={[
+    { label: "Swift", value: "swift" },
+    { label: "Obj-C", value: "obj-c" },
+  ]}
+>
+<TabItem value="swift">
+
+```swift
+extension ViewController: DyteMeetingViewDelegate {
+    func participantLeave(participant) {
+    }
+}
+```
+
+</TabItem>
+<TabItem value="obj-c">
+
+```objectivec
+- (void) participantLeave: (DyteParticipant *) participant {
+}
+```
+
+</TabItem>
+</Tabs>
+
+### Detecting change in active speaker
+
+This event is triggered when the active speaker in the meeting changes. Active speaker is the participant whose audio level has most recently been the highest (kind of like LRU with the selection factor being audio level). The `participant` is an instance of `Participant`, whose prototype is defined below in the reference section and can be directly used as a type if you prefer using TypeScript bindings.
+
+<Tabs
+  defaultValue="swift"
+  values={[
+    { label: "Swift", value: "swift" },
+    { label: "Obj-C", value: "obj-c" },
+  ]}
+>
+<TabItem value="swift">
+
+```swift
+extension ViewController: DyteMeetingViewDelegate {
+    func activeSpeaker(peerId) {
+    }
+}
+```
+
+</TabItem>
+<TabItem value="obj-c">
+
+```objectivec
+- (void) activeSpeaker: (NSString *) peerId {
+}
+```
+
+</TabItem>
+</Tabs>
