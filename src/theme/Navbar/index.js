@@ -302,7 +302,7 @@ function Navbar() {
         </div>
 
         <div className="flex-1 flex items-center justify-end">
-          {/* <SearchBar /> */}
+          <SearchBar />
 
           <div className="hidden lg:flex items-center">
             <Link
