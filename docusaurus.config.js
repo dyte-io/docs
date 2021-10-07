@@ -40,8 +40,23 @@ module.exports = {
     },
     hideableSidebar: true,
     prism: {
-      additionalLanguages: ['dart', 'ruby', 'groovy', 'kotlin', 'java', 'swift', 'objectivec'],
+      additionalLanguages: [
+        'dart',
+        'ruby',
+        'groovy',
+        'kotlin',
+        'java',
+        'swift',
+        'objectivec',
+      ],
       theme: require('prism-react-renderer/themes/vsDark'),
+    },
+    algolia: {
+      apiKey: 'YOUR_API_KEY',
+      indexName: 'YOUR_INDEX_NAME',
+      contextualSearch: true,
+      appId: 'YOUR_APP_ID',
+      searchParameters: {},
     },
   },
   presets: [

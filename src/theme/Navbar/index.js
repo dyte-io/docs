@@ -25,7 +25,6 @@ import Link from '@docusaurus/Link';
 import Logo from '@site/src/components/Logo';
 
 import useIsBrowser from '@docusaurus/useIsBrowser';
-import bowser from 'bowser';
 
 import {
   SearchIcon,
@@ -35,6 +34,7 @@ import {
 import { Github } from '@styled-icons/boxicons-logos';
 import { DiscordIcon } from '../../assets/icons';
 import ThemeSwitcher from '@site/src/components/ThemeSwitcher';
+import SearchBar from '@theme/SearchBar';
 
 function useNavbarItems() {
   // TODO temporary casting until ThemeConfig type is improved
@@ -175,14 +175,11 @@ function NavbarMobileSidebar({ sidebarShown, toggleSidebar }) {
             {items.map((item, i) => (
               <NavbarItem mobile {...item} onClick={toggleSidebar} key={i} />
             ))}
-            {/* <li className="menu__list-item">
-              <Link
-                href="https://discord.com/invite/pxRcdNufvk"
-                className="menu__link"
-              >
+            <li className="menu__list-item">
+              <Link href="https://community.dyte.io" className="menu__link">
                 Community
               </Link>
-            </li> */}
+            </li>
             <li className="menu__list-item">
               <Link href="https://github.com/dyte-in" className="menu__link">
                 GitHub
@@ -212,44 +209,6 @@ function NavbarMobileSidebar({ sidebarShown, toggleSidebar }) {
     </div>
   );
 }
-
-const getOS = (userAgent) => {
-  return bowser.parse(userAgent).os.name ?? '';
-};
-
-const SearchButton = () => {
-  const isBrowser = useIsBrowser();
-  const os = isBrowser ? getOS(window.navigator.userAgent) : 'Windows';
-
-  return (
-    <button
-      className="flex items-center justify-between md:w-full md:max-w-[12rem] h-9 px-2 py-2 text-text bg-background-200 rounded-[4px] ring-2 ring-transparent hover:ring-primary active:ring-primary transition duration-300 cursor-pointer"
-      onClick={() => {}}
-    >
-      <div className="flex items-center space-x-2">
-        <SearchIcon className="w-5 h-5 text-text-100" />
-        <span className="hidden md:block text-sm">Search</span>
-      </div>
-      <div className="hidden lg:flex items-center space-x-1">
-        <kbd className="text-text font-sans border-none bg-background-300 outline-none text-sm shadow-none">
-          {os === 'macOS' ? (
-            <abbr title="Command" className="no-underline">
-              ⌘
-            </abbr>
-          ) : (
-            <abbr title="Control" className="no-underline">
-              Ctrl
-            </abbr>
-          )}
-        </kbd>
-
-        <kbd className="w-6 text-text font-sans border-none bg-background-300 outline-none text-sm shadow-none">
-          K
-        </kbd>
-      </div>
-    </button>
-  );
-};
 
 const getPage = () => {
   const [, doc] = window.location.pathname.split('/');
@@ -332,18 +291,18 @@ function Navbar() {
               GitHub
             </Link>
 
-            {/* <Link
+            <Link
               className="flex items-center text-sm text-text-100 hover:no-underline font-medium"
-              href="https://discord.com/invite/pxRcdNufvk"
+              href="https://community.dyte.io"
             >
               <DiscordIcon className="h-4 mr-1" />
               Community
-            </Link> */}
+            </Link>
           </div>
         </div>
 
         <div className="flex-1 flex items-center justify-end">
-          <SearchButton />
+          {/* <SearchBar /> */}
 
           <div className="hidden lg:flex items-center">
             <Link
