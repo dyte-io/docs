@@ -1,6 +1,6 @@
 import React from 'react';
 
-function FlutterIcon(props) {
+export function FlutterIcon(props) {
   return (
     <svg
       viewBox="0 0 48 48"
@@ -57,5 +57,3 @@ function FlutterIcon(props) {
     </svg>
   );
 }
-
-export default FlutterIcon;

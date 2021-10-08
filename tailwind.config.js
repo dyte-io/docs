@@ -6,6 +6,7 @@ module.exports = {
     './src/pages/**/*.{js,jsx}',
     './src/components/**/*.{js,jsx}',
     './src/theme/**/*.{js,jsx}',
+    './src/assets/**/*.{js,jsx}',
     './docs/**/**/*.{md,mdx}',
   ],
   corePlugins: {

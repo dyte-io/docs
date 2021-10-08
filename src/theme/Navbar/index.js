@@ -274,7 +274,7 @@ function Navbar() {
               Client SDK
             </Link>
             <Link
-              to="/api"
+              to="/api/"
               className={clsx(
                 'lv0_link text-sm hover:no-underline font-medium',
                 page === 'api' ? 'text-primary-100' : 'text-text-100'

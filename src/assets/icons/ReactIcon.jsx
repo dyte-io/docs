@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ReactIcon(props) {
+export function ReactIcon(props) {
   return (
     <svg
       viewBox="0 0 48 48"
@@ -28,5 +28,3 @@ function ReactIcon(props) {
     </svg>
   );
 }
-
-export default ReactIcon;

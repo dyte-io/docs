@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-function BlogIcon(props) {
+export function BlogIcon(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,5 +16,3 @@ function BlogIcon(props) {
     </svg>
   );
 }
-
-export default BlogIcon;

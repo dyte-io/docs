@@ -1,6 +1,6 @@
 import React from 'react';
 
-function DiscordIcon(props) {
+export function DiscordIcon(props) {
   return (
     <svg
       viewBox="0 0 28 22"
@@ -15,5 +15,3 @@ function DiscordIcon(props) {
     </svg>
   );
 }
-
-export default DiscordIcon;

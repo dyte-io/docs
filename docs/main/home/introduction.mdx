@@ -4,26 +4,26 @@ sidebar_position: 1
 
 # Introduction
 
-import Link from "@docusaurus/Link";
-import GridLink from "@site/src/components/GridLink";
+import Link from '@docusaurus/Link';
+import GridLink from '@site/src/components/GridLink';
 import {
   DeviceTabletIcon,
   CodeIcon,
   QuestionMarkCircleIcon,
-} from "@heroicons/react/solid";
+} from '@heroicons/react/solid';
 import {
   Discord as DiscordIcon,
   Github as GithubIcon,
-} from "@styled-icons/boxicons-logos";
+} from '@styled-icons/boxicons-logos';
 import {
   ReactIcon,
   FlutterIcon,
   JSIcon,
-  KotlinIcon,
-  SwiftIcon,
+  AndroidIcon,
+  AppleIcon,
   SDKIcon,
   APIIcon,
-} from "@site/src/assets/icons";
+} from '@site/src/assets/icons';
 
 Dyte provides the easiest way to add real-time communications using video and audio to your apps and platforms.
 
@@ -77,21 +77,21 @@ For a guided tutorial on how to start from scratch, pick from one of the below a
 />
 
 <GridLink
-  to="/react/quickstart"
+  to="/react-native/quickstart"
   className="xl:col-span-3 py-6"
   title="Mobile app using client SDK with React Native"
   Icon={<SDKIcon className="h-12 mr-6" />}
 />
 
 <GridLink
-  to="/react/quickstart"
+  to="/android/quickstart"
   className="xl:col-span-3 py-6"
   title="Mobile app using client SDK with Kotlin"
   Icon={<SDKIcon className="h-12 mr-6" />}
 />
 
 <GridLink
-  to="/react/quickstart"
+  to="/ios/quickstart"
   className="xl:col-span-3 py-6"
   title="Mobile app using client SDK with Swift"
   Icon={<SDKIcon className="h-12 mr-6" />}
@@ -142,7 +142,7 @@ For a guided tutorial on how to start from scratch, pick from one of the below a
 />
 
 <GridLink
-  to="/react/quickstart"
+  to="/javascript/quickstart"
   title="JavaScript"
   className="xl:col-span-3"
   Icon={<JSIcon className="h-10 mr-4" />}
@@ -155,23 +155,23 @@ For a guided tutorial on how to start from scratch, pick from one of the below a
 <div className="grid xl:grid-cols-6 gap-4">
 
 <GridLink
-  to="/react/quickstart"
-  title="Kotlin"
-  subtitle="Android"
+  to="/android/quickstart"
+  title="Android"
+  subtitle="Kotlin / Java"
   className="xl:col-span-3"
-  Icon={<KotlinIcon className="h-10 mr-4" />}
+  Icon={<AndroidIcon className="h-10 mr-4" />}
 />
 
 <GridLink
-  to="/react/quickstart"
-  title="Swift"
-  subtitle="iOS"
+  to="/ios/quickstart"
+  title="iOS"
+  subtitle="Swift / Objective C"
   className="xl:col-span-3"
-  Icon={<SwiftIcon className="h-10 mr-4" />}
+  Icon={<AppleIcon className="h-10 mr-4" />}
 />
 
 <GridLink
-  to="/react/quickstart"
+  to="/react-native/quickstart"
   title="React Native"
   subtitle="Android + iOS"
   className="xl:col-span-3"
@@ -179,7 +179,7 @@ For a guided tutorial on how to start from scratch, pick from one of the below a
 />
 
 <GridLink
-  to="/react/quickstart"
+  to="/flutter/quickstart"
   title="Flutter"
   subtitle="Android + iOS"
   className="xl:col-span-3"
@@ -193,7 +193,7 @@ For a guided tutorial on how to start from scratch, pick from one of the below a
 <div className="grid xl:grid-cols-6 gap-4">
 
 <GridLink
-  to="/api"
+  to="/api/"
   title="API Reference"
   className="xl:col-span-3"
   Icon={<APIIcon className="h-10 mr-6" />}
@@ -228,7 +228,7 @@ For a guided tutorial on how to start from scratch, pick from one of the below a
 />
 
 <GridLink
-  to="/api"
+  to="/api/"
   className="xl:col-span-2 py-4"
   title="API Reference"
   subtitle="Complete reference to our HTTP APIs that you can use to interact with the Dyte platform."
