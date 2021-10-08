@@ -27,27 +27,31 @@ import {
 import { HashChange } from '@site/src/components/HashChange';
 
 <!-- Hack for highlighting menu links with anchor tags -->
+
 <HashChange
   onLoad={() => {
-    document.querySelector(
+    const topLink = document.querySelector(
       'a.menu__link[href="/docs/home/introduction"]'
-    ).onclick = (e) => {
-      document
-        .querySelectorAll('a.menu__link')
-        .forEach((link) => link.classList.remove('menu__link--active'));
-      e.target.classList.add('menu__link--active');
-    };
+    );
+    if (topLink) {
+      topLink.onclick = (e) => {
+        document
+          .querySelectorAll('a.menu__link')
+          ?.forEach((link) => link?.classList.remove('menu__link--active'));
+        e.target.classList.add('menu__link--active');
+      };
+    }
   }}
   onChange={() => {
     const { hash } = window.location;
     if (hash < 2) return;
     document
       .querySelectorAll('a.menu__link')
-      .forEach((link) => link.classList.remove('menu__link--active'));
+      ?.forEach((link) => link.classList.remove('menu__link--active'));
     let link =
       document.querySelector(`a.menu__link[href="${hash}"]`) ??
       document.querySelector('a.menu__link[href="/docs/home/introduction"]');
-    link.classList.add('menu__link--active');
+    link?.classList.add('menu__link--active');
   }}
 />
 
