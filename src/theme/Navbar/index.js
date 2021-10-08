@@ -248,7 +248,7 @@ function Navbar() {
         mobileSidebar.shown && 'navbar-sidebar--show'
       )}
     >
-      <header className="relative flex h-14 items-center justify-between px-6 lg:px-4 py-2 z-10 bg-background border-b !border-border">
+      <header className="relative flex h-14 items-center justify-between px-4 py-2 z-10 bg-background border-b !border-border">
         <div className="flex items-center space-x-10 font-medium">
           <div className="flex items-center space-x-2">
             <button
