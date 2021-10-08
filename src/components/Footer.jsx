@@ -123,7 +123,7 @@ export default function Footer(props) {
                 <li>
                   <Link
                     href="https://dyte.freshteam.com/jobs"
-                    className="text-current hover:no-underline"
+                    className="text-current hover:no-underline dot-after"
                   >
                     Join Us
                   </Link>
@@ -165,7 +165,7 @@ export default function Footer(props) {
                 <li>
                   <Link
                     href="https://community.dyte.io"
-                    className="text-current hover:no-underline"
+                    className="text-current hover:no-underline dot-after"
                   >
                     Community
                   </Link>
