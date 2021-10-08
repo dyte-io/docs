@@ -16,6 +16,7 @@ module.exports = {
   clientModules: [require.resolve('./src/css/tailwind.css')],
   themeConfig: {
     colorMode: {
+      defaultMode: 'dark',
       disableSwitch: true,
     },
     navbar: {
