@@ -24,6 +24,32 @@ import {
   SDKIcon,
   APIIcon,
 } from '@site/src/assets/icons';
+import { HashChange } from '@site/src/components/HashChange';
+
+<!-- Hack for highlighting menu links with anchor tags -->
+<HashChange
+  onLoad={() => {
+    document.querySelector(
+      'a.menu__link[href="/docs/home/introduction"]'
+    ).onclick = (e) => {
+      document
+        .querySelectorAll('a.menu__link')
+        .forEach((link) => link.classList.remove('menu__link--active'));
+      e.target.classList.add('menu__link--active');
+    };
+  }}
+  onChange={() => {
+    const { hash } = window.location;
+    if (hash < 2) return;
+    document
+      .querySelectorAll('a.menu__link')
+      .forEach((link) => link.classList.remove('menu__link--active'));
+    let link =
+      document.querySelector(`a.menu__link[href="${hash}"]`) ??
+      document.querySelector('a.menu__link[href="/docs/home/introduction"]');
+    link.classList.add('menu__link--active');
+  }}
+/>
 
 Dyte provides the easiest way to add real-time communications using video and audio to your apps and platforms.
 

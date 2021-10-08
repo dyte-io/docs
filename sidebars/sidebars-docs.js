@@ -8,22 +8,22 @@ module.exports = {
         {
           type: 'link',
           label: 'How Dyte works',
-          href: '/docs/home/introduction#how-dyte-works',
+          href: '#how-dyte-works',
         },
         {
           type: 'link',
           label: 'Supported Platforms',
-          href: '/docs/home/introduction#pick-a-platform-or-framework',
+          href: '#pick-a-platform-or-framework',
         },
         {
           type: 'link',
           label: 'API',
-          href: '/docs/home/introduction#read-about-our-server-apis',
+          href: '#read-about-our-server-apis',
         },
         {
           type: 'link',
           label: 'How to use the docs',
-          href: '/docs/home/introduction#how-to-use-these-docs',
+          href: '#how-to-use-these-docs',
         },
       ],
     },
