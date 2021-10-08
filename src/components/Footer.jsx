@@ -85,7 +85,7 @@ export default function Footer(props) {
               <ul className="space-y-2 text-sm list-none p-0">
                 <li>
                   <Link
-                    href="https://demo.dyte.io"
+                    href="https://app.dyte.in"
                     className="text-current hover:no-underline"
                   >
                     Demo
