@@ -14,10 +14,15 @@ export default function Footer(props) {
             <DyteLogo className="h-10" />
           </Link>
           <p className="text-sm text-text-100 leading-relaxed">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum,
-            illum. Facere hic cupiditate molestiae, illum perferendis maxime
-            quod nisi, unde error voluptatibus nobis rerum ad. Mollitia magnam
-            deserunt nulla vel.
+            Dyte aims to be a gamechanger in the space of real-time audio/video
+            SDKs. We build ready to use, high quality SDKs which can be adapted
+            in any way imaginable to suit a use-case. That means, 1-1 calls,
+            recording, webinars, livestreams can all be personalised and
+            delivered with a variety of options to enhance user and developer
+            experience! The goal is to reimagine what can be achieved with these
+            APIs and continue to push the envelope, going above and beyond.
+            We're looking for inventive minds to join us on this journey to
+            build the new.
           </p>
         </div>
         <div className="flex flex-col lg:flex-row w-full mt-8">
@@ -79,19 +84,28 @@ export default function Footer(props) {
               <div className="font-normal text-sm text-text-100">Product</div>
               <ul className="space-y-2 text-sm list-none p-0">
                 <li>
-                  <a href="#" className="text-current hover:no-underline">
-                    Features
-                  </a>
+                  <Link
+                    href="https://demo.dyte.io"
+                    className="text-current hover:no-underline"
+                  >
+                    Demo
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="text-current hover:no-underline">
+                  <Link
+                    href="https://dev.dyte.in"
+                    className="text-current hover:no-underline"
+                  >
                     Developer Portal
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="text-current hover:no-underline">
+                  <Link
+                    href="https://dyte.io/#pricing"
+                    className="text-current hover:no-underline"
+                  >
                     Pricing
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -99,40 +113,68 @@ export default function Footer(props) {
               <div className="font-normal text-sm text-text-100">Company</div>
               <ul className="space-y-2 text-sm list-none p-0">
                 <li>
-                  <a href="#" className="text-current hover:no-underline">
-                    Features
-                  </a>
+                  <Link
+                    href="https://dyte.io"
+                    className="text-current hover:no-underline"
+                  >
+                    About Us
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="text-current hover:no-underline">
-                    Developer Portal
-                  </a>
+                  <Link
+                    href="https://dyte.freshteam.com/jobs"
+                    className="text-current hover:no-underline"
+                  >
+                    Join Us
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="text-current hover:no-underline">
-                    Pricing
-                  </a>
+                  <Link
+                    href="https://dyte.io/privacy-policy.html"
+                    className="text-current hover:no-underline"
+                  >
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="mailto:support@dyte.in"
+                    className="text-current hover:no-underline"
+                  >
+                    Contact Us
+                  </Link>
                 </li>
               </ul>
             </div>
             <div className="space-y-2">
-              <div className="font-normal text-sm text-text-100">Help</div>
+              <div className="font-normal text-sm text-text-100">Resources</div>
               <ul className="space-y-2 text-sm list-none p-0">
                 <li>
-                  <a href="#" className="text-current hover:no-underline">
-                    Features
-                  </a>
+                  <Link to="/" className="text-current hover:no-underline">
+                    Documentation
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="text-current hover:no-underline">
-                    Developer Portal
-                  </a>
+                  <Link
+                    href="https://blog.dyte.io"
+                    className="text-current hover:no-underline"
+                  >
+                    Blog
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="text-current hover:no-underline">
-                    Pricing
-                  </a>
+                  <Link
+                    href="https://community.dyte.io"
+                    className="text-current hover:no-underline"
+                  >
+                    Community
+                  </Link>
                 </li>
+                {/* <li>
+                  <a href="#" className="text-current hover:no-underline">
+                    API Status
+                  </a>
+                </li> */}
               </ul>
             </div>
           </div>
