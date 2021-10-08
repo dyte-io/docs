@@ -92,11 +92,6 @@ const ContextSwitcher = ({ className }) => {
     }
   };
 
-  if (history.location.pathname.split('/')[1] === 'docs') {
-    // don't show contextSwitcher for /docs
-    return null;
-  }
-
   return (
     <Listbox
       value={context}

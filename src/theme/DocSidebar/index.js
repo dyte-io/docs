@@ -23,7 +23,7 @@ import ContextSwitcher from '@site/src/components/ContextSwitcher';
 import { ChevronLeftIcon } from '@heroicons/react/outline';
 
 import VersionDropdown from '@theme/NavbarItem/DocsVersionDropdownNavbarItem';
-import useIsBrowser from '@docusaurus/useIsBrowser';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 function useShowAnnouncementBar() {
   const { isClosed } = useAnnouncementBar();
@@ -54,19 +54,17 @@ function HideableSidebarButton({ onClick }) {
 
 const getDocId = () => {
   const [, doc] = window.location.pathname.split('/');
-  if (doc === 'docs') return 'default';
+  if (doc === 'docs' || doc === '') return 'default';
   return doc;
 };
 
 const DocManager = () => {
-  const isBrowser = useIsBrowser();
+  const docId = getDocId();
 
-  if (isBrowser && window.location.pathname.split('/')[1] === 'docs') {
-    // don't show DocManager for /docs
+  if (docId === 'default') {
+    // don't show docs for `/docs` or `/`
     return null;
   }
-
-  const docId = isBrowser ? getDocId() : 'default';
 
   return (
     <div className="flex items-center justify-end px-4 my-4">
@@ -112,7 +110,7 @@ function DocSidebarDesktop({ path, sidebar, onCollapse, isHidden }) {
         )}
       >
         <ul className={clsx(ThemeClassNames.docs.docSidebarMenu, 'menu__list')}>
-          <DocManager />
+          <BrowserOnly>{() => <DocManager />}</BrowserOnly>
           <DocSidebarItems items={sidebar} activePath={path} />
         </ul>
       </nav>
@@ -124,7 +122,7 @@ function DocSidebarDesktop({ path, sidebar, onCollapse, isHidden }) {
 const DocSidebarMobileSecondaryMenu = ({ toggleSidebar, sidebar, path }) => {
   return (
     <ul className={clsx(ThemeClassNames.docs.docSidebarMenu, 'menu__list')}>
-      <DocManager />
+      <BrowserOnly>{() => <DocManager />}</BrowserOnly>
       <DocSidebarItems
         items={sidebar}
         activePath={path}
