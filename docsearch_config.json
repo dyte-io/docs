@@ -3,94 +3,64 @@
   "sitemap_urls": ["https://docs.dyte.io/sitemap.xml"],
   "start_urls": [
     {
-      "url": "https://docs.dyte.io/react/quickstart/",
+      "url": "http://docs.dyte.io/",
+      "tags": ["docs"]
+    },
+    {
+      "url": "http://docs.dyte.io/react/quickstart/",
       "selectors_key": "react",
       "tags": ["react"]
     },
     {
-      "url": "https://docs.dyte.io/react-native/quickstart/",
+      "url": "http://docs.dyte.io/react-native/quickstart/",
       "selectors_key": "react-native",
       "tags": ["react-native"]
     },
     {
-      "url": "https://docs.dyte.io/javascript/quickstart/",
+      "url": "http://docs.dyte.io/javascript/quickstart/",
       "selectors_key": "javascript",
       "tags": ["javascript"]
     },
     {
-      "url": "https://docs.dyte.io/flutter/quickstart/",
+      "url": "http://docs.dyte.io/flutter/quickstart/",
       "selectors_key": "flutter",
       "tags": ["flutter"]
     },
     {
-      "url": "https://docs.dyte.io/android/quickstart/",
+      "url": "http://docs.dyte.io/android/quickstart/",
       "selectors_key": "android",
       "tags": ["android"]
     },
     {
-      "url": "https://docs.dyte.io/ios/quickstart/",
+      "url": "http://docs.dyte.io/ios/quickstart",
       "selectors_key": "ios",
       "tags": ["ios"]
+    },
+    {
+      "url": "http://docs.dyte.io/",
+      "tags": ["docs"]
     }
   ],
   "stop_urls": [],
   "selectors": {
+    "default": {
+      "lvl0": {
+        "selector": "(//ul[contains(@class,'menu__list')]//a[contains(@class, 'menu__link menu__link--sublist menu__link--active')]/text() | //nav[contains(@class, 'navbar')]//a[contains(@class, 'navbar__link--active')]/text())[last()]",
+        "type": "xpath",
+        "default_value": "Documentation"
+      },
+      "lvl1": "header h1",
+      "lvl2": "article h2",
+      "lvl3": "article h3",
+      "lvl4": "article h4",
+      "lvl5": "article h5, article td:first-child",
+      "lvl6": "article h6",
+      "text": "article p, article li, article td:last-child"
+    },
     "react": {
       "lvl0": {
-        "selector": "",
+        "selector": ".lv0_link",
         "default_value": "React"
-      },
-      "lvl1": "header h1",
-      "lvl2": "article h2",
-      "lvl3": "article h3",
-      "lvl4": "article h4",
-      "lvl5": "article h5, article td:first-child",
-      "lvl6": "article h6",
-      "text": "article p, article li, article td:last-child"
-    },
-    "react-native": {
-      "lvl0": {
-        "selector": "",
-        "default_value": "React Native"
-      },
-      "lvl1": "header h1",
-      "lvl2": "article h2",
-      "lvl3": "article h3",
-      "lvl4": "article h4",
-      "lvl5": "article h5, article td:first-child",
-      "lvl6": "article h6",
-      "text": "article p, article li, article td:last-child"
-    },
-    "javascript": {
-      "lvl0": {
-        "selector": "",
-        "default_value": "JavaScript"
-      },
-      "lvl1": "header h1",
-      "lvl2": "article h2",
-      "lvl3": "article h3",
-      "lvl4": "article h4",
-      "lvl5": "article h5, article td:first-child",
-      "lvl6": "article h6",
-      "text": "article p, article li, article td:last-child"
-    },
-    "android": {
-      "lvl0": {
-        "selector": "",
-        "default_value": "Android"
-      },
-      "lvl1": "header h1",
-      "lvl2": "article h2",
-      "lvl3": "article h3",
-      "lvl4": "article h4",
-      "lvl5": "article h5, article td:first-child",
-      "lvl6": "article h6",
-      "text": "article p, article li, article td:last-child"
-    },
-    "ios": {
-      "lvl0": {
-        "selector": "",
-        "default_value": "iOS"
       },
       "lvl1": "header h1",
       "lvl2": "article h2",
@@ -102,7 +72,7 @@
     },
     "flutter": {
       "lvl0": {
-        "selector": "",
+        "selector": ".lv0_link",
         "default_value": "Flutter"
       },
       "lvl1": "header h1",

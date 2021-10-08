@@ -218,10 +218,19 @@ const getPage = () => {
       return 'api';
     case 'docs':
       return 'home';
-    case 'react':
-    case 'flutter':
-      return 'sdk';
     default:
+      if (
+        [
+          'react',
+          'react-native',
+          'flutter',
+          'javascript',
+          'android',
+          'ios',
+        ].includes(doc)
+      ) {
+        return 'sdk';
+      }
       return null;
   }
 };
@@ -258,7 +267,7 @@ function Navbar() {
             <Link
               to="/docs/home/introduction"
               className={clsx(
-                'lv0_link text-sm hover:no-underline font-medium',
+                'text-sm hover:no-underline font-medium',
                 page === 'home' ? 'text-primary-100' : 'text-text-100'
               )}
             >
@@ -267,7 +276,7 @@ function Navbar() {
             <Link
               to="/react/quickstart"
               className={clsx(
-                'lv0_link text-sm hover:no-underline font-medium',
+                'text-sm hover:no-underline font-medium',
                 page === 'sdk' ? 'text-primary-100' : 'text-text-100'
               )}
             >
@@ -276,7 +285,7 @@ function Navbar() {
             <Link
               to="/api/"
               className={clsx(
-                'lv0_link text-sm hover:no-underline font-medium',
+                'text-sm hover:no-underline font-medium',
                 page === 'api' ? 'text-primary-100' : 'text-text-100'
               )}
             >
@@ -284,7 +293,7 @@ function Navbar() {
             </Link>
 
             <Link
-              className="lv0_link flex items-center text-sm text-text-100 hover:no-underline font-medium"
+              className="flex items-center text-sm text-text-100 hover:no-underline font-medium"
               href="https://github.com/dyte-in"
             >
               <Github className="h-5 mr-1" aria-hidden={true} />
@@ -292,7 +301,7 @@ function Navbar() {
             </Link>
 
             <Link
-              className="lv0_link flex items-center text-sm text-text-100 hover:no-underline font-medium"
+              className="flex items-center text-sm text-text-100 hover:no-underline font-medium"
               href="https://community.dyte.io"
             >
               <DiscordIcon className="h-4 mr-1" />
@@ -308,7 +317,7 @@ function Navbar() {
             <Link
               href="https://dev.dyte.in"
               target="_blank"
-              className="lv0_link flex items-center h-9 ml-4 bg-primary text-white px-4 text-sm font-bold rounded-[4px] hover:no-underline hover:text-white"
+              className="flex items-center h-9 ml-4 bg-primary text-white px-4 text-sm font-bold rounded-[4px] hover:no-underline hover:text-white"
             >
               Login/Sign Up
               <ExternalLinkIcon className="h-4 ml-2" aria-hidden={true} />
