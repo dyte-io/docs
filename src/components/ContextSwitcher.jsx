@@ -84,9 +84,12 @@ const ContextSwitcher = ({ className }) => {
     );
 
     if (pathExists(path, lastVersion)) {
+      // navigate to same document in the last version
+      // append hash to path for navigating to anchor tags, if they exist
       if (window.location.hash) path += window.location.hash;
       history.push(path);
     } else {
+      // navigate to the main doc of the last version.
       const { mainDocId } = lastVersion;
       history.push(`/${newDoc}/${mainDocId}`);
     }

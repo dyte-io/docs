@@ -1,10 +1,15 @@
+import { useEffect } from 'react';
 import { useActiveDocContext } from '@theme/hooks/useDocs';
 import { useDocsPreferredVersion } from '@docusaurus/theme-common';
 import { useHistory } from 'react-router-dom';
 
+// TODO: The below doc doesn't work as expected
+// It should only redirect to the new path on the first page load (the first time),
+// and not on every path change or change in `preferredVersion`.
+
 /**
  * Working code for handling preferred documentation version.
- * @param {docId} docId
+ * @param {string} docId
  */
 export const handlePreferredDoc = (docId) => {
   const pluginId = docId;
@@ -13,12 +18,13 @@ export const handlePreferredDoc = (docId) => {
   const history = useHistory();
 
   useEffect(() => {
-    if (preferredVersion && activeVersion.name !== preferredVersion.name) {
-      if (preferredVersion.docs.find((doc) => doc.id === activeDoc.id)) {
-        // check if the doc with the id exists and go to that id
-        history.push(`${preferredVersion.path}/${activeDoc.id}`);
+    if (preferredVersion && preferredVersion.name !== activeVersion?.name) {
+      const doc = docIdExists(activeDoc?.id, preferredVersion.docs);
+      if (doc) {
+        // navigate to the same route in preferred version
+        history.push(doc.path);
       } else {
-        // go to main doc id if the id doesn't exist
+        // navigate to mainDocId
         history.push(`${preferredVersion.path}/${preferredVersion.mainDocId}`);
       }
     }
