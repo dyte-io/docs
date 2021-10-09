@@ -282,15 +282,15 @@ function Navbar() {
             >
               Client SDK
             </Link>
-            <Link
-              to="/api/"
+            <a
+              href="/api/"
               className={clsx(
                 'text-sm hover:no-underline font-medium',
                 page === 'api' ? 'text-primary-100' : 'text-text-100'
               )}
             >
               API Reference
-            </Link>
+            </a>
 
             <Link
               className="flex items-center text-sm text-text-100 hover:no-underline font-medium"
