@@ -17,7 +17,7 @@ const GetStartedCard = ({
   return (
     <div
       className={clsx(
-        'relative flex flex-col p-4 cursor-pointer bg-gradient-to-r rounded-md space-y-4 overflow-hidden shadow-md hover:shadow-xl',
+        'relative flex flex-col p-4 bg-gradient-to-r rounded-[0.25rem] space-y-4 overflow-hidden shadow-md hover:shadow-xl',
         className
       )}
     >
