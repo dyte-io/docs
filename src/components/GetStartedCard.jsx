@@ -21,7 +21,7 @@ const GetStartedCard = ({
         className
       )}
     >
-      <div className="text-lg text-white font-bold">{title}</div>
+      <div className="text-lg text-white font-bold z-[1]">{title}</div>
       <div className="flex items-center space-x-4">
         <Link
           className="px-3 py-2 text-sm rounded-sm bg-white text-black hover:text-gray-800 hover:no-underline"
@@ -35,7 +35,7 @@ const GetStartedCard = ({
       </div>
       <BGIcon
         className={clsx(
-          'absolute block h-24 mix-blend-luminosity',
+          'absolute block h-24 mix-blend-luminosity z-0 bg-scroll',
           bgClassName
         )}
       />
