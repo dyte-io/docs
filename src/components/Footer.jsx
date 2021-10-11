@@ -14,15 +14,12 @@ export default function Footer(props) {
             <DyteLogo className="h-10" />
           </Link>
           <p className="text-sm text-text-100 leading-relaxed">
-            Dyte aims to be a gamechanger in the space of real-time audio/video
-            SDKs. We build ready to use, high quality SDKs which can be adapted
-            in any way imaginable to suit a use-case. That means, 1-1 calls,
-            recording, webinars, livestreams can all be personalised and
-            delivered with a variety of options to enhance user and developer
-            experience! The goal is to reimagine what can be achieved with these
-            APIs and continue to push the envelope, going above and beyond.
-            We're looking for inventive minds to join us on this journey to
-            build the new.
+            Dyte provides developer friendly live video SDKs that allows you to
+            easily add 1:1 calls, group calls and webinars right within your
+            platform. Our low code approach and user friendly documentation
+            means you are ready to go live with less lines of code. We support
+            use cases such as live classes, telehealth, online fitness, remote
+            work, social meetups, dating and B2B sales.
           </p>
         </div>
         <div className="flex flex-col lg:flex-row w-full mt-8">
@@ -31,7 +28,13 @@ export default function Footer(props) {
               <p className="m-0 text-sm">
                 Signup to get 10,000 minutes free every month!
               </p>
-              <form
+              <Link
+                href="https://dev.dyte.in/signup"
+                className="text-center w-full md:max-w-sm py-1 bg-primary text-white rounded-md cursor-pointer hover:no-underline hover:text-gray-300"
+              >
+                Sign Up
+              </Link>
+              {/* <form
                 method="GET"
                 action="https://dev.dyte.in/signup"
                 target="_blank"
@@ -41,15 +44,15 @@ export default function Footer(props) {
                   type="text"
                   name="email"
                   placeholder="Enter your email"
-                  className="flex-1 h-10 px-3 pr-24 bg-background-100 text-text text-sm border border-border rounded-md focus:outline-none focus:ring-0 focus:border-primary"
+                  className="flex-1 h-10 px-3 pr-[106px] bg-background-100 text-text text-sm border border-border rounded-md focus:outline-none focus:ring-0 focus:border-primary"
                 />
                 <button
                   type="submit"
-                  className="w-20 h-8 ml-[-84px] bg-primary text-white rounded-md cursor-pointer"
+                  className="w-24 h-8 ml-[-100px] bg-primary text-white rounded-md cursor-pointer"
                 >
                   Sign Up
                 </button>
-              </form>
+              </form> */}
             </div>
 
             <div className="flex items-center mt-8 space-x-3 text-text-100">
