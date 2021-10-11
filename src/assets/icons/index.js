@@ -22,3 +22,7 @@ export { JSIcon } from './JSIcon';
 export { DiscordIcon } from './DiscordIcon';
 
 export { AndroidIcon, AppleIcon };
+
+export { ReactRevolveIcon } from './ReactRevolveIcon';
+export { KotlinIcon } from './KotlinIcon';
+export { SwiftIcon } from './SwiftIcon';

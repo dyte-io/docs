@@ -6,6 +6,7 @@ sidebar_position: 1
 
 import Link from '@docusaurus/Link';
 import GridLink from '@site/src/components/GridLink';
+import GetStartedCard from '@site/src/components/GetStartedCard';
 import {
   DeviceTabletIcon,
   CodeIcon,
@@ -23,6 +24,9 @@ import {
   AppleIcon,
   SDKIcon,
   APIIcon,
+  ReactRevolveIcon,
+  KotlinIcon,
+  SwiftIcon,
 } from '@site/src/assets/icons';
 import { HashChange } from '@site/src/components/HashChange';
 
@@ -99,32 +103,42 @@ For a guided tutorial on how to start from scratch, pick from one of the below a
 
 <div className="grid xl:grid-cols-6 gap-4">
 
-<GridLink
-  to="/react/quickstart"
-  className="xl:col-span-3 py-6"
-  title="Web app using client SDK with React"
-  Icon={<SDKIcon className="h-12 mr-6" />}
+<GetStartedCard
+  title="Mobile app using Client SDK with React"
+  className="xl:col-span-3 from-[#4B6CB7] to-[#182848]"
+  getStartedLink="https://example.com"
+  repoLink="https://github.com/dyte-in"
+  BGIcon={ReactRevolveIcon}
+  bgClassName="rotate-[32deg] right-[-8px] bottom-[-2.25rem]"
 />
 
-<GridLink
-  to="/react-native/quickstart"
-  className="xl:col-span-3 py-6"
-  title="Mobile app using client SDK with React Native"
-  Icon={<SDKIcon className="h-12 mr-6" />}
+<GetStartedCard
+  title="Web app using Client SDK with React"
+  className="xl:col-span-3 from-[#1488CC] to-[#2B32B2]"
+  getStartedLink="https://example.com"
+  repoLink="https://github.com/dyte-in"
+  BGIcon={ReactRevolveIcon}
+  bgClassName="rotate-[32deg] right-[-8px] bottom-[-2.25rem]"
 />
 
-<GridLink
-  to="/android/quickstart"
-  className="xl:col-span-3 py-6"
-  title="Mobile app using client SDK with Kotlin"
-  Icon={<SDKIcon className="h-12 mr-6" />}
+<GetStartedCard
+  title="Mobile app using Client SDK with Kotlin"
+  className="xl:col-span-3 bg-gradient-to-rl from-[#CB55C0] to-[#F28E0E]"
+  getStartedLink="https://example.com"
+  repoLink="https://github.com/dyte-in"
+  bgClassName=""
+  BGIcon={KotlinIcon}
+  bgClassName="block rotate-[-5deg] right-[-24px] bottom-[-0.75rem]"
 />
 
-<GridLink
-  to="/ios/quickstart"
-  className="xl:col-span-3 py-6"
-  title="Mobile app using client SDK with Swift"
-  Icon={<SDKIcon className="h-12 mr-6" />}
+<GetStartedCard
+  title="Mobile app using Client SDK with Swift"
+  className="xl:col-span-3 bg-gradient-to-rl from-[#FF512F] to-[#F09819]"
+  getStartedLink="https://example.com"
+  repoLink="https://github.com/dyte-in"
+  bgClassName=""
+  BGIcon={SwiftIcon}
+  bgClassName="block rotate-[-5deg] right-1 bottom-[-0.5rem]"
 />
 
 </div>
