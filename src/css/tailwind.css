@@ -59,9 +59,6 @@ b {
 
     --ifm-toc-border-color: var(--docs-color-border);
 
-    /* Increased sidebar width */
-    --doc-sidebar-width: 340px;
-
     /* Tailwind theming */
 
     --docs-color-primary: #2160fd;
@@ -387,4 +384,8 @@ html[data-theme='dark'] .sl-text-warning {
 /* Fixes hidden dropdown in mobile sidebar */
 .footer__link-separator, .navbar__item {
   display: block !important;
+}
+
+.container {
+  @apply px-4 lg:pl-7;
 }
