@@ -15,6 +15,7 @@ module.exports = {
   projectName: 'dyte-docs', // Usually your repo name.
   clientModules: [require.resolve('./src/css/tailwind.css')],
   themeConfig: {
+    image: '/dyte-docs-card.png',
     colorMode: {
       defaultMode: 'dark',
       disableSwitch: true,
