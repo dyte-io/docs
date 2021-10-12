@@ -30,7 +30,7 @@ export default function Footer(props) {
               </p>
               <Link
                 href="https://dev.dyte.in/signup"
-                className="text-center w-full md:max-w-sm py-1 bg-primary text-white rounded-md cursor-pointer hover:no-underline hover:text-gray-300"
+                className="px-8 py-1 text-left bg-primary text-sm text-white rounded-md cursor-pointer hover:no-underline hover:text-gray-300"
               >
                 Sign Up
               </Link>
