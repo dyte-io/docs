@@ -24,13 +24,13 @@ const GetStartedCard = ({
       <div className="text-lg text-white font-bold z-[1]">{title}</div>
       <div className="flex items-center space-x-4">
         <Link
-          className="px-3 py-2 text-sm rounded-sm bg-white text-black hover:text-gray-800 hover:no-underline"
+          className="px-3 py-2 text-sm rounded-sm bg-white text-black hover:text-gray-800 hover:no-underline hover:shadow-lg transition z-[1]"
           to={getStartedLink}
         >
           {getStartedText}
         </Link>
-        <Link to={repoLink} className="text-white hover:text-gray-300">
-          <Icon className="h-8" />
+        <Link to={repoLink} className="text-white hover:text-gray-300 transition z-[1]">
+          <Icon className="h-8 z-[1]" />
         </Link>
       </div>
       <BGIcon

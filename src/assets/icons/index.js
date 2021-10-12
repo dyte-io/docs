@@ -26,3 +26,4 @@ export { AndroidIcon, AppleIcon };
 export { ReactRevolveIcon } from './ReactRevolveIcon';
 export { KotlinIcon } from './KotlinIcon';
 export { SwiftIcon } from './SwiftIcon';
+export { ReactNativeIcon } from './ReactNativeIcon';
