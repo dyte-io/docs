@@ -1,1713 +1,1698 @@
 openapi: 3.0.0
 info:
   version: 0.1.0
-  title: Dyte REST API
+  title: dyte-rest-api
+  description: Create and manage your Dyte meetings easily using Dyte APIs
+  contact:
+    name: Dyte Developer Support
+    url: "https://dyte.io"
+    email: dev@dyte.io
 servers:
-  - url: 'https://api.cluster.dyte.in/v1/'
+  - url: "https://api.cluster.dyte.in/v1"
     description: Production server
 paths:
-  '/organizations/{organizationId}/stats':
+  "/organizations/{organizationID}/preset-role":
+    summary: Add a role
+    post:
+      summary: Create a role
+      description: |
+        Add a role for given organization
+      tags:
+        - Roles
+      operationId: create_role
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreatePresetRoleRequestBody"
+        description: Sample request
+      responses:
+        "200":
+          $ref: "#/components/responses/CreatePresetRole"
+        "400":
+          $ref: "#/components/responses/GenericFailure"
+      security:
+        - APIKEY: []
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: organizationID
+        in: path
+        required: true
+        description: ID of the organization
+  "/organizations/{organizationID}/preset-roles":
+    summary: Get all roles
+    get:
+      summary: Get all roles
+      description: Get all roles for given organization
+      tags:
+        - Roles
+      operationId: get_all_roles
+      responses:
+        "200":
+          $ref: "#/components/responses/GetRoles"
+        "400":
+          $ref: "#/components/responses/GenericFailure"
+      security:
+        - APIKEY: []
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: limit
+          description: The numbers of items to return
+        - schema:
+            type: integer
+          in: query
+          name: offset
+          description: The number of items to skip before starting the result set
+    parameters:
+      - schema:
+          type: string
+        name: organizationID
+        in: path
+        required: true
+        description: ID of the organization
+  "/organizations/{organizationId}/preset":
+    summary: Add a preset
+    post:
+      summary: Add a preset
+      description: Add a preset for that organization
+      tags:
+        - Presets
+      operationId: add_preset
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreatePresetRequestBody"
+      responses:
+        "200":
+          $ref: "#/components/responses/CreatePreset"
+        "400":
+          $ref: "#/components/responses/GenericFailure"
+      security:
+        - APIKEY: []
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: organizationId
+        in: path
+        required: true
+        description: ID of the organization
+  "/organizations/{organizationId}/presets":
+    summary: Get all presets
+    get:
+      summary: Get all presets
+      description: Get all presets for given organization
+      tags:
+        - Presets
+      operationId: get_all_presets
+      parameters:
+        - in: query
+          name: offset
+          schema:
+            type: integer
+          description: The number of items to skip before starting to collect the result set
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: The numbers of items to return
+      responses:
+        "200":
+          $ref: "#/components/responses/GetPresets"
+        "400":
+          $ref: "#/components/responses/GenericFailure"
+      security:
+        - APIKEY: []
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: organizationId
+        in: path
+        required: true
+        description: ID of the organization
+  "/organizations/{organizationId}/meeting":
+    summary: Create meeting
+    post:
+      summary: Create a meeting
+      description: Create a meeting for given organization
+      tags:
+        - Meetings
+      operationId: create_meeting
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateMeetingRequestBody"
+      responses:
+        "200":
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateMeetingResponse"
+        "400":
+          $ref: "#/components/responses/GenericFailure"
+      security:
+        - APIKEY: []
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: organizationId
+        in: path
+        required: true
+        description: ID of the organization
+  "/organizations/{organizationId}/meetings":
+    summary: Meetings
+    get:
+      summary: Get all meetings
+      description: Get all meetings for given organization
+      tags:
+        - Meetings
+      operationId: get_all_meetings
+      parameters:
+        - in: query
+          name: offset
+          schema:
+            type: integer
+          description: The number of items to skip before starting to collect the result set
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: The numbers of items to return
+      responses:
+        "200":
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetMeetingsResponse"
+        "400":
+          $ref: "#/components/responses/GenericFailure"
+      security:
+        - APIKEY: []
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: organizationId
+        in: path
+        required: true
+        description: ID of the organization
+  "/organizations/{organizationId}/meetings/{meetingId}":
+    summary: Meetings
+    get:
+      summary: Get a meeting
+      description: Get a specific meeting in the given organization
+      tags:
+        - Meetings
+      operationId: getMeeting
+      responses:
+        "200":
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetMeetingResponse"
+        "400":
+          $ref: "#/components/responses/GenericFailure"
+      security:
+        - APIKEY: []
+    parameters:
+      - name: organizationId
+        in: path
+        description: ID of the organization
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: meetingId
+        in: path
+        description: ID of the meeting
+        required: true
+        schema:
+          type: string
+          format: uuid
+  "/organizations/{organizationId}/meetings/{meetingId}/participant":
+    summary: Add a participant
+    post:
+      summary: Add a participant
+      description: Add a participant to the given meeting
+      tags:
+        - Participants
+      operationId: add_participant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddParticipantRequestBody"
+      responses:
+        "200":
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddParticipantResponse"
+        "400":
+          $ref: "#/components/responses/GenericFailure"
+      security:
+        - APIKEY: []
+    parameters:
+      - name: organizationId
+        in: path
+        description: ID of the organization
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: meetingId
+        in: path
+        description: ID of the meeting
+        required: true
+        schema:
+          type: string
+          format: uuid
+  "/organizations/{organizationId}/meetings/{meetingId}/participants":
+    summary: Add a participant
+    get:
+      summary: Get all participants
+      description: Get all participants for the given meeting
+      tags:
+        - Participants
+      operationId: get_all_participants
+      parameters:
+        - in: query
+          name: offset
+          schema:
+            type: integer
+          description: The number of items to skip before starting to collect the result set
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: The numbers of items to return
+      responses:
+        "200":
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetParticipantsResponse"
+        "400":
+          $ref: "#/components/responses/GenericFailure"
+      security:
+        - APIKEY: []
+    parameters:
+      - name: organizationId
+        in: path
+        description: ID of the organization
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: meetingId
+        in: path
+        description: ID of the meeting
+        required: true
+        schema:
+          type: string
+          format: uuid
+  "/organizations/{organizationId}/meetings/{meetingId}/participant/{participantId}":
+    summary: participant
+    delete:
+      summary: Delete a participant
+      description: Delete the given participant from the given meeting
+      tags:
+        - Participants
+      operationId: delete_participant
+      responses:
+        "200":
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/APIResponse"
+        "400":
+          $ref: "#/components/responses/GenericFailure"
+      security:
+        - APIKEY: []
+    parameters:
+      - name: organizationId
+        in: path
+        description: ID of the organization
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: meetingId
+        in: path
+        description: ID of the meeting
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: participantId
+        in: path
+        description: ID of the participant
+        required: true
+        schema:
+          type: string
+          format: uuid
+  "/organizations/{organizationId}/meetings/{meetingId}/recording":
+    summary: Start a recording
+    post:
+      summary: Start a recording
+      description: |
+        Start recording for a given meeting
+      tags:
+        - Recordings
+      operationId: start_recording
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StartRecordingRequestBody"
+      responses:
+        "200":
+          $ref: "#/components/responses/CreateRecording"
+        "400":
+          $ref: "#/components/responses/GenericFailure"
+      security:
+        - APIKEY: []
+    parameters:
+      - name: organizationId
+        in: path
+        description: ID of the organization
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: meetingId
+        in: path
+        description: ID of the meeting
+        required: true
+        schema:
+          type: string
+          format: uuid
+  "/organizations/{organizationId}/meetings/{meetingId}/recordings":
+    summary: Get all recording
+    get:
+      summary: Get all recordings of a meeting
+      description: Get all recordings for a given meeting
+      tags:
+        - Recordings
+      operationId: get_all_recordings
+      parameters:
+        - in: query
+          name: offset
+          schema:
+            type: integer
+          description: The number of items to skip before starting to collect the result set
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: The numbers of items to return
+      responses:
+        "200":
+          $ref: "#/components/responses/GetRecordings"
+        "400":
+          $ref: "#/components/responses/GenericFailure"
+      security:
+        - APIKEY: []
+    parameters:
+      - name: organizationId
+        in: path
+        description: ID of the organization
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: meetingId
+        in: path
+        description: ID of the meeting
+        required: true
+        schema:
+          type: string
+          format: uuid
+  "/organizations/{organizationId}/rooms/{roomName}/active-recording":
+    summary: Get active recordings for a room
+    get:
+      summary: Get all active recordings
+      description: Get all recordings currently active for a given meeting
+      tags:
+        - Recordings
+      operationId: get_all_active_recordings
+      responses:
+        "200":
+          $ref: "#/components/responses/GetRecordings"
+        "400":
+          $ref: "#/components/responses/GenericFailure"
+      security:
+        - APIKEY: []
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: offset
+          description: The number of items to skip before starting to collect the result set
+        - schema:
+            type: integer
+          in: query
+          name: limit
+          description: The numbers of items to return
+    parameters:
+      - name: organizationId
+        in: path
+        description: ID of the organization
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: roomName
+        in: path
+        description: Room name of the meeting
+        required: true
+        schema:
+          type: string
+  "/organizations/{organizationId}/meetings/{meetingId}/recordings/{recordingId}":
+    summary: Operations on a recording
+    get:
+      summary: Get a recording
+      description: Get a specific recording
+      tags:
+        - Recordings
+      operationId: get_recording
+      responses:
+        "200":
+          $ref: "#/components/responses/CreateRecording"
+        "400":
+          $ref: "#/components/responses/GenericFailure"
+      security:
+        - APIKEY: []
+    put:
+      summary: Stop recording
+      description: Stop the given recording
+      tags:
+        - Recordings
+      operationId: stop_recording
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateRecordingRequestBody"
+      responses:
+        "200":
+          $ref: "#/components/responses/CreateRecording"
+        "400":
+          $ref: "#/components/responses/GenericFailure"
+      security:
+        - APIKEY: []
+    parameters:
+      - name: organizationId
+        in: path
+        description: ID of the organization
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: meetingId
+        in: path
+        description: ID of the meeting
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: recordingId
+        in: path
+        description: ID of the recording
+        required: true
+        schema:
+          type: string
+          format: uuid
+  "/organizations/{organizationId}/webhook":
+    summary: Add a webhook
+    post:
+      summary: Create a webhook
+      description: |
+        Create a webhook for given organization
+      tags:
+        - Webhooks
+      operationId: create_webhook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WebhookRequestBody"
+      responses:
+        "200":
+          $ref: "#/components/responses/CreateWebhook"
+        "400":
+          $ref: "#/components/responses/GenericFailure"
+      security:
+        - APIKEY: []
+    parameters:
+      - name: organizationId
+        in: path
+        description: ID of the organization
+        required: true
+        schema:
+          type: string
+          format: uuid
+  "/organizations/{organizationId}/webhooks":
+    summary: Get all webhooks
+    get:
+      summary: Get all webhooks
+      description: |
+        Get all webhooks for the given organization
+      tags:
+        - Webhooks
+      operationId: get_all_webhooks
+      responses:
+        "200":
+          $ref: "#/components/responses/GetWebhooks"
+        "400":
+          $ref: "#/components/responses/GenericFailure"
+      security:
+        - APIKEY: []
+      parameters: []
+    parameters:
+      - name: organizationId
+        in: path
+        description: ID of the organization
+        required: true
+        schema:
+          type: string
+          format: uuid
+  "/organizations/{organizationId}/webhooks/{webhookId}":
+    summary: Operations on a webhook
+    get:
+      summary: Get a webhook
+      description: Get a specific webhook
+      tags:
+        - Webhooks
+      operationId: get_webhook
+      responses:
+        "200":
+          $ref: "#/components/responses/CreateWebhook"
+        "400":
+          $ref: "#/components/responses/GenericFailure"
+      security:
+        - APIKEY: []
+    put:
+      summary: Update a webhook
+      description: |
+        Update the given webhook
+      tags:
+        - Webhooks
+      operationId: update_webhook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WebhookRequestBody"
+      responses:
+        "200":
+          $ref: "#/components/responses/CreateWebhook"
+        "400":
+          $ref: "#/components/responses/GenericFailure"
+      security:
+        - APIKEY: []
+    delete:
+      summary: Delete a webhook
+      description: |
+        Delete a specific webhook
+      tags:
+        - Webhooks
+      operationId: delete_webhook
+      responses:
+        "200":
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/APIResponse"
+        "400":
+          $ref: "#/components/responses/GenericFailure"
+      security:
+        - APIKEY: []
+    parameters:
+      - name: organizationId
+        in: path
+        description: ID of the organization
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: webhookId
+        in: path
+        description: ID of the webhook
+        required: true
+        schema:
+          type: string
+          format: uuid
+  "/organizations/{organizationId}/webhooks/{webhookId}/logs":
+    summary: webhook
+    get:
+      summary: Get all logs for a webhook
+      description: |
+        Get all logs for requests sent out to the given webhook
+      tags:
+        - Webhooks
+      operationId: get_webhook_logs
+      parameters:
+        - name: startTime
+          in: query
+          description: Unix timestamp to get the logs only after the specified time
+          required: true
+          schema:
+            type: integer
+            format: date-time
+        - name: endTime
+          in: query
+          description: Unix timestamp to get the logs only before the specified time
+          required: true
+          schema:
+            type: integer
+            format: date-time
+        - in: query
+          name: offset
+          schema:
+            type: integer
+          description: The number of items to skip before starting to collect the result set
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: The numbers of items to return
+      responses:
+        "200":
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WebhookLogs"
+        "400":
+          $ref: "#/components/responses/GenericFailure"
+      security:
+        - APIKEY: []
+    parameters:
+      - name: organizationId
+        in: path
+        description: ID of the organization
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: webhookId
+        in: path
+        description: ID of the webhook
+        required: true
+        schema:
+          type: string
+          format: uuid
+  "/organizations/{organizationId}/user":
+    summary: Give user access to organization
+    post:
+      summary: Create a user under the organization
+      description: Create a user under an organization to give them access
+      tags:
+        - Team Management
+      operationId: create_user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddOrgUserBody"
+      responses:
+        "200":
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/APIResponse"
+        "400":
+          $ref: "#/components/responses/GenericFailure"
+      security:
+        - APIKEY: []
+    parameters:
+      - name: organizationId
+        in: path
+        description: ID of the organization
+        required: true
+        schema:
+          type: string
+          format: uuid
+  "/organizations/{organizationId}/users":
+    summary: Organization Users
+    description: Organization Users
+    get:
+      summary: Get all users under the organization
+      tags:
+        - Team Management
+      description: Get all users under an organization who have access
+      operationId: get_users
+      parameters:
+        - in: query
+          name: offset
+          schema:
+            type: integer
+          description: The number of items to skip before starting to collect the result set
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: The numbers of items to return
+      responses:
+        "200":
+          $ref: "#/components/responses/GetUsers"
+        "400":
+          $ref: "#/components/responses/GenericFailure"
+      security:
+        - APIKEY: []
+    parameters:
+      - name: organizationId
+        in: path
+        description: ID of organization
+        required: true
+        schema:
+          type: string
+          format: uuid
+  "/organizations/{organizationId}/stats":
     summary: Get stats
     description: Get all stats
     get:
       summary: Get all stats
       tags:
         - Stats
-      description: >
-        Get stats for that organization like total minutes, total sessions and
-        stats for each session
-      operationId: getOrgStats
+      description: |
+        Get all stats for the given organization
+      operationId: get_stats
       parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
-          schema:
-            type: string
-            format: uuid
         - name: startTime
           in: query
-          description: >-
-            Get stats for rooms that were created only between startTime and
-            endTime
+          description: Unix timestamp to get the stats only for meetings that were live after the specified time
           schema:
-            type: string
+            type: integer
             format: date-time
         - name: endTime
           in: query
-          description: >-
-            Get stats for rooms that were created only between startTime and
-            endTime
+          description: Unix timestamp to get the stats only for meetings that were live before the specified time
           schema:
-            type: string
+            type: integer
             format: date-time
       responses:
-        '200':
-          description: successful operation
+        "200":
+          description: Success response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetStatsResponseSchema'
-              example: |
-                {
-                  "success": true,
-                  "totalMinutes": 0,
-                  "totalSessions": 1,
-                  "totalRecordingMinutes": 0,
-                  "dayStats": [{
-                    "day": "2021-03-21T00:00:00.000Z",
-                    "totalMinutes": 0,
-                    "totalSessions": 1,
-                    "totalRecordingMinutes": 0
-                  }]
-                }
-        '400':
-          description: Invalid Org ID supplied
+                $ref: "#/components/schemas/GetStatsResponseSchema"
+        "400":
+          $ref: "#/components/responses/GenericFailure"
       security:
-        - api_key: []
-  '/organizations/{organizationId}/recordings':
+        - APIKEY: []
+    parameters:
+      - name: organizationId
+        in: path
+        description: ID of the organization
+        required: true
+        schema:
+          type: string
+          format: uuid
+  "/organizations/{organizationId}/recordings":
     summary: Get recording stats
     description: Get all recording stats
     get:
       summary: Get all recording stats
       tags:
         - Stats
-      description: >
-        Get recording stats for that organization like roomName, status, start
-        time and endtime
-      operationId: getRecordingStats
+      description: Get all recording stats for the given organization
+      operationId: get_recording_stats
       parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
-          schema:
-            type: string
-            format: uuid
         - name: startTime
           in: query
-          description: >-
-            Get recording stats for recordings that were started only between
-            startTime and endTime
+          description: Unix timestamp to get the stats only for the recordings that were started after the specified time
           schema:
-            type: string
+            type: integer
             format: date-time
         - name: endTime
           in: query
-          description: >-
-            Get recording stats for recordings that were started only between
-            startTime and endTime
+          description: Unix timestamp to get the stats only for the recordings that were started before the specified time
           schema:
-            type: string
+            type: integer
             format: date-time
         - in: query
           name: offset
           schema:
             type: integer
-          description: >-
-            The number of items to skip before starting to collect the result
-            set
+          description: The number of items to skip before starting to collect the result set
         - in: query
           name: limit
           schema:
             type: integer
           description: The numbers of items to return
       responses:
-        '200':
-          description: successful operation
+        "200":
+          description: Success response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RecordingStatsSchema'
-              example: |
-                {
-                  "success": true,
-                  "message": "",
-                  "data": {
-                    "total": 1,
-                    "recordingStats": [{
-                      "status":"RECORDING",
-                      "startedTime":"2021-03-23T21:57:59.608Z",
-                      "stoppedTime":null,
-                      "roomName":"onyx-produce"
-                    }]
-                  }
-                }
-        '400':
-          description: Invalid Org ID supplied
+                $ref: "#/components/schemas/RecordingStatsSchema"
+        "400":
+          $ref: "#/components/responses/GenericFailure"
       security:
-        - api_key: []
-  '/organizations/{organizationId}/rooms':
-    summary: Get Rooms
-    description: Get all rooms
+        - APIKEY: []
+    parameters:
+      - name: organizationId
+        in: path
+        description: ID of the organization
+        required: true
+        schema:
+          type: string
+          format: uuid
+  "/organizations/{organizationId}/analytics":
+    summary: Get Organization Peer analytics
+    description: Get analytics (peer events) across all meetings in an organization
     get:
-      summary: Get all rooms
+      summary: Get all peer events
       tags:
         - Stats
-      description: |
-        Get rooms for that organization
-      operationId: getOrgRooms
+      description: Get all peer joining and leaving events for the given organization
+      operationId: get_all_peer_events
       parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
-          schema:
-            type: string
-            format: uuid
         - name: startTime
           in: query
-          description: Get rooms that were created only between startTime and endTime
+          description: Unix timestamp to get the events only after the specified time
           schema:
-            type: string
+            type: integer
             format: date-time
         - name: endTime
           in: query
-          description: Get rooms that were created only between startTime and endTime
+          description: Unix timestamp to get the events only before the specified time
+          schema:
+            type: integer
+            format: date-time
+        - name: clientSpecificId
+          in: query
+          description: Get events only for the client with the specified ID
           schema:
             type: string
-            format: date-time
-        - in: query
-          name: offset
-          schema:
-            type: integer
-          description: >-
-            The number of items to skip before starting to collect the result
-            set
-        - in: query
-          name: limit
-          schema:
-            type: integer
-          description: The numbers of items to return
       responses:
-        '200':
-          description: successful operation
+        "200":
+          description: Success response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OrgRoomsResponse'
-              example: |
-                {
-                  "success": true,
-                  "message": "",
-                  "data": {
-                    "total": 10,
-                    "rooms": [{
-                        "id": "1c0a34cd-76cb-48b1-8be0-30afa2831565",
-                        "roomUUID": "123e4567-e89b-12d3-a456-426614174000",
-                        "roomURL": "brick-fibula",
-                        "roomDisplayTitle": "An example meeting",
-                        "createdBy": "Steve Jobs",
-                        "maxUsers": 10,
-                        "currentUsers": 3,
-                        "minutesConsumed": 100,
-                        "createdAt": "2021-01-11T15:58:29.266Z",
-                        "updatedAt": "2021-01-11T15:59:29.266Z"
-                      }]
-                  }
-                }
-        '400':
-          description: Invalid Org ID supplied
+                $ref: "#/components/schemas/PeerEvents"
+        "400":
+          $ref: "#/components/responses/GenericFailure"
       security:
-        - api_key: []
-  '/organizations/{organizationId}/meetings/{meetingId}/rooms':
-    summary: Get meeting rooms
-    description: Get all meeting rooms
+        - APIKEY: []
+    parameters:
+      - name: organizationId
+        in: path
+        description: ID of the organization
+        required: true
+        schema:
+          type: string
+          format: uuid
+  "/organizations/{organizationId}/meetings/{meetingId}/analytics":
+    summary: Get meeting analytics
+    description: Get analytics (peer events) for a meeting
     get:
-      summary: Get all meeting rooms
+      summary: Get peer events for a meeting
       tags:
         - Stats
-      description: |
-        Get rooms for that organization meeting
-      operationId: getMeetingRooms
+      description: Get all peer joining and leaving events for the given meeting
+      operationId: get_meeting_peer_events
       parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
+        - name: startTime
+          in: query
+          description: Unix timestamp to get the events only after the specified time
+          schema:
+            type: integer
+            format: date-time
+        - name: endTime
+          in: query
+          description: Unix timestamp to get the events only before the specified time
+          schema:
+            type: integer
+            format: date-time
+        - name: clientSpecificId
+          in: query
+          description: Get events only for the client with the specified ID
           schema:
             type: string
-            format: uuid
-        - name: meetingId
-          in: path
-          description: ID of meeting
-          required: true
-          schema:
-            type: string
-            format: uuid
       responses:
-        '200':
-          description: successful operation
+        "200":
+          description: Success response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OrgMeetingRoomsResponse'
-              example: |
-                {
-                  "success": true,
-                  "message": "",
-                  "data": {
-                    "rooms": [{
-                        "id": "1c0a34cd-76cb-48b1-8be0-30afa2831565",
-                        "roomUUID": "123e4567-e89b-12d3-a456-426614174000",
-                        "roomURL": "brick-fibula",
-                        "roomDisplayTitle": "An example meeting",
-                        "createdBy": "Steve Jobs",
-                        "maxUsers": 10,
-                        "currentUsers": 3,
-                        "minutesConsumed": 100,
-                        "createdAt": "2021-01-11T15:58:29.266Z",
-                        "updatedAt": "2021-01-11T15:59:29.266Z"
-                      }]
-                  }
-                }
-        '400':
-          description: Invalid Org ID or Meeting ID supplied
+                $ref: "#/components/schemas/PeerEvents"
+        "400":
+          $ref: "#/components/responses/GenericFailure"
       security:
-        - api_key: []
-  '/organizations/{organizationId}/users':
-    summary: Organization Users
-    description: Organization Users
-    get:
-      summary: Get all users
-      tags:
-        - Team Management
-      description: |
-        Get users for that organization with their roles in it
-      operationId: getAllOrgUsers
-      parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - in: query
-          name: offset
-          schema:
-            type: integer
-          description: >-
-            The number of items to skip before starting to collect the result
-            set
-        - in: query
-          name: limit
-          schema:
-            type: integer
-          description: The numbers of items to return
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetUsersResponse'
-              example: |
-                {
-                  "success": true,
-                  "message": "",
-                  "data": {
-                    "total": 2,
-                    "users": [
-                      {
-                        "id": "1c0a34cd-76cb-48b1-8be0-30afa2831565",
-                        "name": "Master",
-                        "email": "dev@dyte.in",
-                        "createdAt": "2021-01-11T15:58:29.266Z",
-                        "role": "Owner"
-                      },
-                      {
-                        "id": "b1633745-4077-47e2-951e-83614ca9a69b",
-                        "name": "Kushagra Vaish",
-                        "email": "client-id-2@Kyt-test.dyte.in",
-                        "createdAt": "2021-01-11T17:40:11.311Z",
-                        "role": "Client"
-                      }
-                    ]
-                  }
-                }
-        '400':
-          description: Invalid Org ID supplied
-      security:
-        - api_key: []
-  '/organizations/{organizationId}/user':
-    summary: Give user access to organization
-    post:
-      summary: Give user access to organization
-      description: |
-        Give user access to organization as owner
-      tags:
-        - Team Management
-      operationId: addOrgUser
-      parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
-          schema:
-            type: string
-            format: uuid
-      requestBody:
+        - APIKEY: []
+    parameters:
+      - name: organizationId
+        in: path
+        description: ID of the organization
         required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AddOrgUserBody'
-            example: |
-              {
-                "email": "dev@dyte.in",
-                "role": "Owner"
-              }
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResponse'
-              example: |
-                {
-                  "success": true,
-                  "message": "",
-                  "data": {}
-                }
-        '400':
-          description: Invalid Org ID supplied
-      security:
-        - api_key: []
-  '/organizations/{organizationId}/meeting':
-    summary: Create meeting
-    post:
-      summary: Create meeting
-      description: |
-        Create a meeting for that organization
-      tags:
-        - Meetings
-      operationId: createMeeting
-      parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
-          schema:
-            type: string
-            format: uuid
-      requestBody:
+        schema:
+          type: string
+          format: uuid
+      - name: meetingId
+        in: path
+        description: ID of the meeting
         required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateMeetingRequestBody'
-            example: |
-              {
-                "title": "Monday Sprint Planning",
-                "authorization":{
-                    "waitingRoom":true
-                }
-              }
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CreateMeetingResponse'
-              example: |
-                {
-                  "success": true,
-                  "message": "",
-                  "data": {
-                    "meeting": {
-                      "id": "cddfd4a8-d6fb-4d15-be6b-269c6dedfa70",
-                      "title": "Monday Sprint planning",
-                      "roomName": "octagonal-trip",
-                      "status": "LIVE",
-                      "createdAt": "2021-01-11T17:38:30.697Z",
-                      "participants": []
-                    }
-                  }
-                }
-        '400':
-          description: Invalid Org ID supplied
-      security:
-        - api_key: []
-  '/organizations/{organizationId}/meetings':
-    summary: Meetings
-    get:
-      summary: Get all meetings
-      description: |
-        Get meetings for that organization
-      tags:
-        - Meetings
-      operationId: getAllMeetings
-      parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - in: query
-          name: offset
-          schema:
-            type: integer
-          description: >-
-            The number of items to skip before starting to collect the result
-            set
-        - in: query
-          name: limit
-          schema:
-            type: integer
-          description: The numbers of items to return
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetMeetingsResponse'
-              example: |
-                {
-                  "success": true,
-                  "message": "",
-                  "data": {
-                    "total": 2,
-                    "meetings": [
-                      {
-                        "id": "cddfd4a8-d6fb-4d15-be6b-269c6dedfa70",
-                        "title": "new meeting",
-                        "roomName": "octagonal-trip",
-                        "status": "LIVE",
-                        "createdAt": "2021-01-11T17:38:30.697Z"
-                      },
-                      {
-                        "id": "de3c4102-6ff9-4ba7-b98a-53df934ee305",
-                        "title": "new meeting",
-                        "roomName": "nonstop-flight",
-                        "status": "LIVE",
-                        "createdAt": "2021-01-11T16:31:28.336Z"
-                      }
-                    ]
-                  }
-                }
-        '400':
-          description: Invalid Org ID supplied
-      security:
-        - api_key: []
-  '/organizations/{organizationId}/meetings/{meetingId}':
-    summary: Meetings
-    get:
-      summary: Meetings
-      description: |
-        Get a specific meeting in that organization
-      tags:
-        - Meetings
-      operationId: getMeeting
-      parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: meetingId
-          in: path
-          description: ID for the meeting
-          required: true
-          schema:
-            type: string
-            format: uuid
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetMeetingResponse'
-              example: |
-                {
-                  "success": true,
-                  "message": "",
-                  "data": {
-                    "meeting": {
-                      "id": "cddfd4a8-d6fb-4d15-be6b-269c6dedfa70",
-                      "title": "new meeting",
-                      "roomName": "octagonal-trip",
-                      "status": "LIVE",
-                      "createdAt": "2021-01-11T17:38:30.697Z"
-                    }
-                  }
-                }
-        '400':
-          description: Invalid Org ID supplied
-      security:
-        - api_key: []
-  '/organizations/{organizationId}/meetings/{meetingId}/participant':
-    summary: Add a participant
-    post:
-      summary: Add a particpant
-      description: |
-        Add a particpant for a specific meeting
-      tags:
-        - Meetings
-      operationId: addParticipant
-      parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: meetingId
-          in: path
-          description: ID for the meeting
-          required: true
-          schema:
-            type: string
-            format: uuid
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AddParticipantBody'
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AddParticipantResponse'
-              example: |
-                {
-                  "success":true,
-                  "message":"",
-                  "data": {
-                    "authResponse": {
-                      "userAdded": true,
-                      "authToken": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFmNjIzMjhiLTMxYjgtNDNkZi1iOTU4LTk2NzhlOTQ4ZWYwYSIsImxvZ2dlZEluIjp0cnVlLCJpYXQiOjE2MTAzMjA3OTgsImV4cCI6MTYxMDQwNzE5OH0.cQ9WsmDpKy4FRE7i7is4iDVH5ObphHq-C2CqBkomlFl9gGMACrbDs9J35uvrRk8Pv2CT-fqr1tVGrhcEDMKKWae-ugML1D-Cq64oRXqTb2Lk2RRQIGSWXFRe3264GOVL38l61XVltDSKh7cRTCuds-MfT1vCd9SYi-VDA328xVGWPPk22hM7MDvUnPmZaKv0ngEJjj0Z0TrBAaAXZKEnLtjTy06uut6Fi57qOdKr400U3pCCn55sGVDJusQsrqF4oBizRNMcrjeikGbDZghUMn_DiSIZ_Dk7JIXK6lGRqJKCrYwwe7WUJmjXEnFTdFIXYQLYODhQcvvy0P39vwPqBA"
-                    }
-                  }
-                }
-        '400':
-          description: Invalid Org ID supplied
-      security:
-        - api_key: []
-  '/organizations/{organizationId}/meetings/{meetingId}/participant/{participantId}':
-    summary: participant
-    delete:
-      summary: Delete a particpant
-      description: |
-        Delete a particpant for a specific meeting
-      tags:
-        - Meetings
-      operationId: deleteParticipant
-      parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: meetingId
-          in: path
-          description: ID for the meeting
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: participantId
-          in: path
-          description: ID for the participant
-          required: true
-          schema:
-            type: string
-            format: uuid
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResponse'
-              example: |
-                {
-                  "success":true,
-                  "message":"participant deleted",
-                }
-        '400':
-          description: Invalid Org ID supplied
-      security:
-        - api_key: []
-  '/organizations/{organizationId}/meetings/{meetingId}/participants':
-    summary: Add a participant
-    get:
-      summary: Get All Participant
-      description: |
-        Get all particpants for a specific meeting
-      tags:
-        - Meetings
-      operationId: getAllParticipants
-      parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: meetingId
-          in: path
-          description: ID for the meeting
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - in: query
-          name: offset
-          schema:
-            type: integer
-          description: >-
-            The number of items to skip before starting to collect the result
-            set
-        - in: query
-          name: limit
-          schema:
-            type: integer
-          description: The numbers of items to return
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetParticipantsResponse'
-              example: |
-                {
-                  "success": true,
-                  "message": "",
-                  "data": {
-                    "total": 1,
-                    "participants": [
-                      {
-                        "id": "b1633745-4077-47e2-951e-83614ca9a69b",
-                        "name": "Kushagra Vaish",
-                        "picture": null,
-                        "email": "client-id-2@Kyt-test.dyte.in",
-                        "createdAt": "2021-01-11T17:40:11.337Z"
-                      }
-                    ]
-                  }
-                }
-        '400':
-          description: Invalid Org ID supplied
-      security:
-        - api_key: []
-  '/organizations/{organizationId}/preset':
-    summary: Add a preset
-    post:
-      summary: Add a preset
-      description: |
-        Add a preset for that organization
-      tags:
-        - Presets
-      operationId: addPreset
-      parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
-          schema:
-            type: string
-            format: uuid
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreatePresetRequestBody'
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResponse'
-              example: |
-                {
-                  "success": true,
-                  "message": "",
-                  "data": {
-                    "preset": {
-                      "name": "preset_teacher",
-                      "description": "Preset for teachers",
-                      "s3URL": "https://dyte-uploads.s3.ap-south-1.amazonaws.com/b0021c1e-d96e-45ca-8c87-021921c69ca1/preset_teacher.json",
-                      "organization": {
-                        "id": "b0021c1e-d96e-45ca-8c87-021921c69ca1",
-                        "name": "test",
-                        "description": "Testing account"
-                      },
-                      "id": "3dfe526a-f7e1-446c-b462-0105513cd532"
-                    }
-                  }
-                }
-        '400':
-          description: Invalid Org ID supplied
-      security:
-        - api_key: []
-  '/organizations/{organizationId}/presets':
-    summary: Get all presets
-    get:
-      summary: Get all presets
-      description: |
-        Get all presets for an organization
-      tags:
-        - Presets
-      operationId: getParticipant
-      parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - in: query
-          name: offset
-          schema:
-            type: integer
-          description: >-
-            The number of items to skip before starting to collect the result
-            set
-        - in: query
-          name: limit
-          schema:
-            type: integer
-          description: The numbers of items to return
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResponse'
-              example: |
-                {
-                  "success": true,
-                  "message": "",
-                  "data": {
-                    "total": 7,
-                    "presets": [
-                      {
-                        "id": "3dfe526a-f7e1-446c-b462-0105513cd532",
-                        "name": "preset_teacher",
-                        "description": "Preset for teachers",
-                        "s3URL": "https://dyte-uploads.s3.ap-south-1.amazonaws.com/b0021c1e-d96e-45ca-8c87-021921c69ca1/preset_teacher.json"
-                      },
-                      {
-                        "id": "3dfe526a-f7e1-446c-b462-0105513cd532",
-                        "name": "preset_student",
-                        "description": "Preset for students",
-                        "s3URL": "https://dyte-uploads.s3.ap-south-1.amazonaws.com/b0021c1e-d96e-45ca-8c87-021921c69ca1/preset_teacher.json"
-                      }
-                    ]
-                  }
-                }
-        '400':
-          description: Invalid Org ID supplied
-      security:
-        - api_key: []
-  '/organizations/{organizationId}/preset-role':
-    summary: Add a role
-    post:
-      summary: Add a role
-      description: |
-        Add a role for that organization
-      tags:
-        - Roles
-      operationId: addRole
-      parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
-          schema:
-            type: string
-            format: uuid
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreatePresetRoleRequestBody'
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResponse'
-              example: |
-                {
-                  "success": true,
-                  "message": "",
-                  "data": {
-                    "role": {
-                      "name": "hidden-student",
-                      "description": "Hidden student",
-                      "s3URL": "https://dyte-configs.s3.ap-south-1.amazonaws.com/4dd942ea-80d1-4cf8-ad34-9eb058f231fe/roles/preset_teacher.json",
-                      "id": "ca95d742-3326-4807-80f8-a8b9c54cb38d"
-                    },
-                    "override": false
-                  }
-                }
-        '400':
-          description: Invalid Org ID supplied
-      security:
-        - api_key: []
-  '/organizations/{organizationId}/preset-roles':
-    summary: Get all roles
-    get:
-      summary: Get all roles
-      description: |
-        Get all roles for an organization
-      tags:
-        - Roles
-      operationId: getRoles
-      parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - in: query
-          name: offset
-          schema:
-            type: integer
-          description: >-
-            The number of items to skip before starting to collect the result
-            set
-        - in: query
-          name: limit
-          schema:
-            type: integer
-          description: The numbers of items to return
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResponse'
-              example: |
-                {
-                  "success": true,
-                  "message": "",
-                  "data": {
-                    "total": 2,
-                    "roles": [
-                      {
-                        "id": "6483d3be-ca80-4b95-b7fd-9cdc32188501",
-                        "name": "host",
-                        "s3URL": "https://dyte-configs.s3.ap-south-1.amazonaws.com/default/roles/host.json",
-                        "description": "Default host role"
-                      },
-                      {
-                        "id": "656597ee-c71a-4b52-9f8a-2f19faf85c47",
-                        "name": "participant",
-                        "s3URL": "https://dyte-configs.s3.ap-south-1.amazonaws.com/default/roles/participant.json",
-                        "description": "Default participant role"
-                      }
-                    ]
-                  }
-                }
-        '400':
-          description: Invalid Org ID supplied
-      security:
-        - api_key: []
-  '/organizations/{organizationId}/meetings/{meetingId}/recording':
-    summary: Start a recording
-    post:
-      summary: Start a recording
-      description: |
-        Start a recording for a given meeting
-      tags:
-        - Recording
-      operationId: startRecordingByMeetingId
-      parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: meetingId
-          in: path
-          description: ID for the meeting
-          required: true
-          schema:
-            type: string
-            format: uuid
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/StartRecordingRequestBody'
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResponse'
-              example: |
-                {
-                  "data": {
-                    "recording": {
-                      "status": "INVOKED",
-                      "downloadUrlExpiry": null,
-                      "downloadUrl": null,
-                      "startedTime": null,
-                      "stoppedTime": null,
-                      "id": "12352ba4-e41c-450e-a467-0ca3229225a3",
-                      "outputFileName": "room_name_1612521000945.mp4"
-                    }
-                  },
-                  "message": "Recording started",
-                  "success": true
-                }
-        '400':
-          description: Invalid Org ID supplied
-      security:
-        - api_key: []
-  '/organizations/{organizationId}/rooms/{roomName}/recording':
-    summary: Start a recording
-    post:
-      summary: Start a recording
-      description: |
-        Start a recording for a given meeting
-      tags:
-        - Recording
-      operationId: startRecordingByRoomName
-      parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: roomName
-          in: path
-          description: room name for the meeting
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/StartRecordingRequestBody'
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResponse'
-              example: |
-                {
-                  "data": {
-                    "recording": {
-                      "status": "INVOKED",
-                      "downloadUrlExpiry": null,
-                      "downloadUrl": null,
-                      "startedTime": null,
-                      "stoppedTime": null,
-                      "id": "12352ba4-e41c-450e-a467-0ca3229225a3",
-                      "outputFileName": "room_name_1612521000945.mp4"
-                    }
-                  },
-                  "message": "Recording started",
-                  "success": true
-                }
-        '400':
-          description: Invalid Org ID supplied
-      security:
-        - api_key: []
-  '/organizations/{organizationId}/meetings/{meetingId}/recordings':
-    summary: Get all recording
-    get:
-      summary: Get all recording
-      description: |
-        Get all recordings for a given meeting
-      tags:
-        - Recording
-      operationId: getAllRecordings
-      parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: meetingId
-          in: path
-          description: ID for the meeting
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - in: query
-          name: offset
-          schema:
-            type: integer
-          description: >-
-            The number of items to skip before starting to collect the result
-            set
-        - in: query
-          name: limit
-          schema:
-            type: integer
-          description: The numbers of items to return
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResponse'
-              example: |
-                {
-                  "message": "",
-                  "success": true,
-                  "data": {
-                    "total": 2,
-                    "recordings": [
-                      {
-                        "id": "fbf69dd8-768f-4b1b-949f-0463dc96ed98",
-                        "downloadUrlExpiry": "2021-01-21T21:23:34.480Z",
-                        "downloadUrl": "https://dyte-recordings.s3.ap-south-1.amazonaws.com/some_url",
-                        "status": "UPLOADED",
-                        "startedTime": "2021-01-21T19:22:27.539Z",
-                        "stoppedTime": "2021-01-21T19:23:34.490Z"
-                      },
-                      {
-                        "id": "37ea3784-97e6-41f8-b4fa-efc7c0656294",
-                        "downloadUrlExpiry": null,
-                        "downloadUrl": null,
-                        "status": "RECORDING",
-                        "startedTime": "2021-01-21T19:33:07.283Z",
-                        "stoppedTime": null
-                      }
-                    ]
-                  }
-                }
-        '400':
-          description: Invalid Org ID or Meeting ID supplied
-      security:
-        - api_key: []
-  '/organizations/{organizationId}/meetings/{meetingId}/recordings/{recordingId}':
-    summary: Get/update a specific recording
-    get:
-      summary: Get recording
-      description: |
-        Get a recording for a given meeting
-      tags:
-        - Recording
-      operationId: getRecording
-      parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: meetingId
-          in: path
-          description: ID for the meeting
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: recordingId
-          in: path
-          description: ID for the recording
-          required: true
-          schema:
-            type: string
-            format: uuid
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResponse'
-              example: |
-                {
-                  "message": "",
-                  "success": true,
-                  "data": {
-                    "recording": {
-                      "id": "fbf69dd8-768f-4b1b-949f-0463dc96ed98",
-                      "downloadUrlExpiry": null,
-                      "downloadUrl": null,
-                      "status": "UPLOADING",
-                      "startedTime": "2021-01-21T19:22:27.539Z",
-                      "stoppedTime": "2021-01-21T19:23:34.490Z"
-                    }
-                  }
-                }
-        '400':
-          description: Invalid Org ID or Meeting ID supplied
-      security:
-        - api_key: []
-    put:
-      summary: Update/Stop recording
-      description: |
-        Update/Stop a recording for a given meeting
-      tags:
-        - Recording
-      operationId: updateRecording
-      parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: meetingId
-          in: path
-          description: ID for the meeting
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: recordingId
-          in: path
-          description: ID for the meeting
-          required: true
-          schema:
-            type: string
-            format: uuid
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateRecordingRequestBody'
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResponse'
-              example: |
-                {
-                  "data": {
-                    "recording": {
-                      "id": "12352ba4-e41c-450e-a467-0ca3229225a3",
-                      "downloadUrlExpiry": null,
-                      "downloadUrl": null,
-                      "status": "UPLOADING",
-                      "startedTime": "2021-01-21T20:25:36.194Z",
-                      "stoppedTime": "2021-01-21T20:27:23.180Z"
-                    }
-                  },
-                  "message": "Recording stopped",
-                  "success": true
-                }
-        '400':
-          description: Invalid Org ID supplied
-      security:
-        - api_key: []
-  '/organizations/{organizationId}/rooms/{roomName}/recordings/{recordingId}':
-    summary: Update a specific recording
-    put:
-      summary: Update/Stop recording
-      description: |
-        Update/Stop a recording for a given meeting
-      tags:
-        - Recording
-      operationId: updateRecordingByRoomName
-      parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: roomName
-          in: path
-          description: room name for the meeting
-          required: true
-          schema:
-            type: string
-        - name: recordingId
-          in: path
-          description: ID for the meeting
-          required: true
-          schema:
-            type: string
-            format: uuid
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateRecordingRequestBody'
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResponse'
-              example: |
-                {
-                  "data": {
-                    "recording": {
-                      "id": "12352ba4-e41c-450e-a467-0ca3229225a3",
-                      "downloadUrlExpiry": null,
-                      "downloadUrl": null,
-                      "status": "UPLOADING",
-                      "startedTime": "2021-01-21T20:25:36.194Z",
-                      "stoppedTime": "2021-01-21T20:27:23.180Z"
-                    }
-                  },
-                  "message": "Recording stopped",
-                  "success": true
-                }
-        '400':
-          description: Invalid Org ID supplied
-      security:
-        - api_key: []
-  '/organizations/{organizationId}/rooms/{roomName}/active-recording':
-    summary: Get active recordings for a room
-    get:
-      summary: Get all Get active recordings for a room
-      description: |
-        Get all Get active recordings for a room
-      tags:
-        - Recording
-      operationId: getActiveRecording
-      parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: roomName
-          in: path
-          description: room name of the meeting
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResponse'
-              example: |
-                {
-                  "success":true,
-                  "data":{
-                    "recording":{
-                        "status":"INVOKED",
-                        "outputFileName":"aboard-saw_1620021373339.mp4",
-                        "downloadUrlExpiry":null,
-                        "roomUUID":null,
-                        "downloadUrl":null,
-                        "errMessage":null,
-                        "startedTime":null,
-                        "stoppedTime":null,
-                        "id":"290e505d-75ed-406b-8792-fd97cad7dbaf"
-                    }
-                  }
-                }
-        '400':
-          description: Invalid Org ID supplied
-      security:
-        - api_key: []
-  '/organizations/{organizationId}/webhook':
-    summary: Add a webhook
-    post:
-      summary: Add a webhook
-      description: |
-        Add a webhook for that organization
-      tags:
-        - Webhooks
-      operationId: addWebHook
-      parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
-          schema:
-            type: string
-            format: uuid
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/WebhookRequestBody'
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResponse'
-              example: |
-                {
-                  "success": true,
-                  "data": {
-                      "webhook": {
-                        "id": "a3044f50-a805-457d-a237-b243d1381b1c",
-                        "name": "myWebhook1",
-                        "url": "https://myOrganization.com/webhook",
-                        "events": [
-                            "meeting.started",
-                            "meeting.ended",
-                            "meeting.participantJoined",
-                            "meeting.participantLeft",
-                            "recording.statusUpdate"
-                        ],
-                        "organizationId": "a784edbb-d96d-4fb0-98c7-8f5c8e4c6b9d"
-                      }
-                    }
-                }
-        '400':
-          description: Invalid Org ID supplied
-      security:
-        - api_key: []
-  '/organizations/{organizationId}/webhooks':
-    summary: Get all webhooks
-    get:
-      summary: Get all webhooks
-      description: |
-        Get all webhooks for an organization
-      tags:
-        - Webhooks
-      operationId: getWebhooks
-      parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
-          schema:
-            type: string
-            format: uuid
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResponse'
-              example: |
-                {
-                  "success":true,
-                  "data":{
-                    "webhooks":[
-                      {
-                        "id":"a3044f50-a805-457d-a237-b243d1381b1c",
-                        "name":"myWebhook1",
-                        "url":"https://myOrganization.com/webhook",
-                        "events":[
-                          "meeting.started",
-                          "meeting.ended",
-                          "meeting.participantJoined",
-                          "meeting.participantLeft",
-                          "recording.statusUpdate"
-                        ],
-                        "organizationId":"a784edbb-d96d-4fb0-98c7-8f5c8e4c6b9d"
-                      },
-                      {
-                        "id":"4ef7fb10-d76b-42fa-8158-60ae44f1cfe3",
-                        "name":"myWebhook2",
-                        "url":"https://myOrganization.com/webhook2",
-                        "events":[
-                          "meeting.started",
-                          "meeting.ended",
-                          "recording.statusUpdate"
-                        ],
-                        "organizationId":"a784edbb-d96d-4fb0-98c7-8f5c8e4c6b9d"
-                      }
-                    ]
-                  }
-                }
-        '400':
-          description: Invalid Org ID supplied
-      security:
-        - api_key: []
-  '/organizations/{organizationId}/webhooks/{webhookId}':
-    summary: webhook
-    get:
-      summary: Get webhook
-      description: |
-        Get a webhook for an organization
-      tags:
-        - Webhooks
-      operationId: getWebhook
-      parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: webhookId
-          in: path
-          description: ID of webhook
-          required: true
-          schema:
-            type: string
-            format: uuid
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResponse'
-              example: |
-                {
-                  "success":true,
-                  "data":{
-                    "webhook":{
-                      "id":"a3044f50-a805-457d-a237-b243d1381b1c",
-                      "name":"myWebhook1",
-                      "url":"https://myOrganization.com/webhook",
-                      "events":[
-                        "meeting.started",
-                        "meeting.ended",
-                        "meeting.participantJoined",
-                        "meeting.participantLeft",
-                        "recording.statusUpdate"
-                      ],
-                      "organizationId":"a784edbb-d96d-4fb0-98c7-8f5c8e4c6b9d"
-                    }
-                  }
-                }
-        '400':
-          description: Invalid Org ID supplied
-      security:
-        - api_key: []
-    put:
-      summary: Update webhook
-      description: |
-        Update a webhook for an organization
-      tags:
-        - Webhooks
-      operationId: deleteWebhook
-      parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: webhookId
-          in: path
-          description: ID of webhook
-          required: true
-          schema:
-            type: string
-            format: uuid
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/WebhookRequestBody'
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResponse'
-              example: |
-                {
-                  "success":true,
-                  "data":{
-                    "webhook":{
-                      "id":"a3044f50-a805-457d-a237-b243d1381b1c",
-                      "name":"myWebhook1",
-                      "url":"https://myOrganization.com/webhook",
-                      "events":[
-                        "meeting.started",
-                        "meeting.ended",
-                        "meeting.participantJoined",
-                        "meeting.participantLeft",
-                        "recording.statusUpdate"
-                      ],
-                      "organizationId":"a784edbb-d96d-4fb0-98c7-8f5c8e4c6b9d"
-                    }
-                  }
-                }
-        '400':
-          description: Invalid Org ID supplied
-      security:
-        - api_key: []
-    delete:
-      summary: Delete webhook
-      description: |
-        Delete a specific webhook for an organization
-      tags:
-        - Webhooks
-      operationId: updateWebhook
-      parameters:
-        - name: organizationId
-          in: path
-          description: ID of organization
-          required: true
-          schema:
-            type: string
-            format: uuid
-        - name: webhookId
-          in: path
-          description: ID of webhook
-          required: true
-          schema:
-            type: string
-            format: uuid
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResponse'
-              example: |
-                {
-                  "success":true,
-                  "data":{
-                    "webhook":{
-                      "id":"a3044f50-a805-457d-a237-b243d1381b1c"
-                    }
-                  }
-                }
-        '400':
-          description: Invalid Org ID supplied
-      security:
-        - api_key: []
+        schema:
+          type: string
+          format: uuid
 components:
   schemas:
-    AddParticipantBody:
-      type: object
-      required:
-        - clientSpecificId
-      properties:
-        clientSpecificId:
-          type: string
-        userDetails:
-          type: object
-          properties:
-            name:
-              type: string
-            picture:
-              type: string
-              format: url
-        presetName:
-          type: string
-        roleName:
-          type: string
     CreateMeetingRequestBody:
       type: object
+      x-examples:
+        example-1:
+          title: meeting_1
+        example-2:
+          title: meeting_2
+          presetName: preset_1
+        example-3:
+          title: meeting_3
+          authorization:
+            waitingRoom: true
+        example-4:
+          title: meeting_4
+          presetName: preset_1
+          authorization:
+            closed: true
       properties:
         title:
           type: string
+          description: Name of the meeting that appears to participants as they join the meeting and in the top bar after joining
         presetName:
           type: string
           description: Preset to be used for all participants of this meeting
         authorization:
           type: object
+          description: Object defining various authorization related parameters for the meeting
           properties:
             waitingRoom:
               type: boolean
-              description: >-
-                Host can accept/reject the participants joining the meeting.
-                False by default.
+              description: "Should the host accept / reject the participants joining the meeting? Default: `false`."
+              default: false
             closed:
               type: boolean
-              description: >-
-                Invite only meeting. Requires a valid auth token to join the
-                meeting. False by default.
-    CreatePresetRequestBody:
+              description: "Should the meeting require a valid auth token to join? Default: `false`."
+              default: false
+    AddParticipantRequestBody:
+      title: ""
+      description: ""
+      x-examples:
+        example-1:
+          clientSpecificId: my_user_1
+        example-2:
+          clientSpecificId: my_user_2
+          userDetails:
+            name: Mangoman
+            picture: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png"
+        example-3:
+          clientSpecificId: my_user_3
+          userDetails:
+            name: Mangoman
+            picture: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png"
+          presetName: preset_1
+        example-4:
+          clientSpecificId: my_user_4
+          userDetails:
+            name: Mangoman
+            picture: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png"
+          roleName: role_1
       type: object
+      properties:
+        clientSpecificId:
+          type: string
+          description: "An ID that you can use to identify a meeting participant in your system. We do not perform any validations on this, and return this value for all participants in a meeting in the client SDK."
+        userDetails:
+          type: object
+          description: Optional object to add details of the participant
+          properties:
+            name:
+              type: string
+              description: Participant display name for the meeting
+            picture:
+              type: string
+              format: uri
+              description: "Publicly accessible link to the participant display picture for the meeting, used as thumbnail when the video is off and in the participant list"
+        presetName:
+          type: string
+          description: Name of the preset this user should join with
+        roleName:
+          type: string
+          description: Name of the role this user should join with
       required:
-        - name
-        - preset
+        - clientSpecificId
+    CreatePresetRoleRequestBody:
+      description: ""
+      type: object
+      x-examples:
+        example-1:
+          name: role_1
+          description: Example role 1
+          role:
+            permissions:
+              acceptWaitingRequests: true
+              disableParticipantAudio: true
+              disableParticipantScreensharing: true
+              disableParticipantVideo: true
+              kickParticipants: true
+              pinParticipant: true
+              allowRecording: true
+            waitingRoom: skip
+            plugins:
+              close: true
+              start: true
+            produce:
+              video:
+                allow: true
+                quality: vga
+                frameRate: 24
+              audio: true
+              screenshare:
+                allow: true
+                quality: full-hd
+                frameRate: 5
+              polls: true
+              chat:
+                text: true
+                files: true
+              reactions: true
+            flags:
+              hiddenParticipant: false
+        example-2:
+          name: role_2
+          description: Example role 2
+          role:
+            permissions:
+              acceptWaitingRequests: false
+              disableParticipantAudio: false
+              disableParticipantScreensharing: false
+              disableParticipantVideo: false
+              kickParticipants: false
+              pinParticipant: false
+              allowRecording: true
+            waitingRoom: skipOnAccept
+            plugins:
+              close: false
+              start: false
+            produce:
+              video:
+                allow: false
+                quality: vga
+                frameRate: 5
+              audio: true
+              screenshare:
+                allow: true
+                quality: full-hd
+                frameRate: 24
+              polls: true
+              reactions: false
       properties:
         name:
           type: string
+          description: Name of the role you want to create
         description:
           type: string
-        preset:
+          description: Description of the role that you can later use for your own reference
+        role:
           type: object
-    CreatePresetRoleRequestBody:
-      type: object
+          required:
+            - permissions
+            - waitingRoom
+            - plugins
+            - produce
+          description: Object containing settings that role controls
+          properties:
+            permissions:
+              type: object
+              required:
+                - acceptWaitingRequests
+                - disableParticipantAudio
+                - disableParticipantScreensharing
+                - disableParticipantVideo
+                - kickParticipants
+                - pinParticipant
+              description: Object containing overall meeting level permissions
+              properties:
+                acceptWaitingRequests:
+                  type: boolean
+                  description: Should this participant be able to accept joining requests for other participants in the waiting room?
+                disableParticipantAudio:
+                  type: boolean
+                  description: Should this participant be able to mute other participants' audio?
+                disableParticipantScreensharing:
+                  type: boolean
+                  description: Should this participant be able to stop other participants' screenshare?
+                disableParticipantVideo:
+                  type: boolean
+                  description: Should this participant be able to turn off other participants' video?
+                kickParticipants:
+                  type: boolean
+                  description: Should this participant be able to kick other participants from the meeting?
+                pinParticipant:
+                  type: boolean
+                  description: Should this participant be able to pin other participants' video stream on the meeting grid?
+                allowRecording:
+                  type: boolean
+                  description: Should this participant be able to record the meeting?
+            waitingRoom:
+              type: string
+              enum:
+                - skip
+                - skipOnPrivilegeduserEntry
+                - skipOnAccept
+              description: |-
+                Set the waiting room behavior for this participant to one of the pre-defined modes.
+                - `skip`: no waiting room for the participant, enters the meeting directly
+                - `skipOnPrivilegeduserEntry`: the participant has to wait in the meeting room until a participant with `acceptWaitingRequests` joins the meeting, at which point everyone in the waiting room is automatically entered into the meeting
+                - `skipOnAccept`: the participant has to wait in the meeting room until a participant with `acceptWaitingRequests` allows them to enter the meeting
+            plugins:
+              type: object
+              required:
+                - close
+                - start
+              description: Object containing permissions related to plugins
+              properties:
+                close:
+                  type: boolean
+                  description: Should this participant be able to close / stop a plugin?
+                start:
+                  type: boolean
+                  description: Should this participant be able to open / start a plugin?
+            produce:
+              type: object
+              required:
+                - video
+                - audio
+                - screenshare
+                - polls
+                - reactions
+              description: Object containing settings related to communication streams produced by the participant
+              properties:
+                video:
+                  type: object
+                  required:
+                    - allow
+                    - quality
+                    - frameRate
+                  description: Object containing settings related to video stream produced by the participant
+                  properties:
+                    allow:
+                      type: boolean
+                      description: Should this participant be able to produce video stream?
+                    quality:
+                      type: string
+                      enum:
+                        - hd
+                        - vga
+                        - qvga
+                      default: vga
+                      description: |-
+                        Quality / resolution at which the video is streamed to other participants.
+                        - `hd`: 1280 x 720
+                        - `vga`: 640 x 480
+                        - `qvga`: 320 x 240
+                    frameRate:
+                      type: number
+                      default: 24
+                      description: Number of frames per second that are streamed to other participants
+                audio:
+                  type: boolean
+                  description: Should this participant be able to produce audio stream?
+                screenshare:
+                  required:
+                    - allow
+                    - quality
+                    - frameRate
+                  type: object
+                  description: Object containing settings related to screenshare stream produced by the participant
+                  properties:
+                    allow:
+                      type: boolean
+                      description: Should this participant be able to share their screen?
+                    quality:
+                      type: string
+                      enum:
+                        - full-hd
+                        - hd
+                        - vga
+                      default: full-hd
+                      description: |-
+                        Quality / resolution at which the screen is streamed to other participants.
+                        - `full-hd`: 1920 x 1080
+                        - `hd`: 1280 x 720
+                        - `vga`: 640 x 480
+                    frameRate:
+                      type: number
+                      default: 5
+                      description: Number of frames per second that are streamed to other participants
+                polls:
+                  type: boolean
+                  description: Should this participant be able to participate in polls during in-meeting chat?
+                chat:
+                  type: object
+                  required:
+                    - text
+                    - files
+                  description: Object containing settings related to in-meeting chat produced by the participant
+                  properties:
+                    text:
+                      type: boolean
+                      description: Should this participant be able to send text messages in the in-meeting chat?
+                    files:
+                      type: boolean
+                      description: Should this participant be able to send files in the in-meeting chat?
+                reactions:
+                  type: boolean
+                  description: Should this participant be able to respond with reactions (overlay with emoji flying across the screen)?
+            flags:
+              type: object
+              description: Special flags for the participant
+              properties:
+                hiddenParticipant:
+                  type: boolean
+                  description: "Should this participant be invisible to other participants? Default: `false`."
+                  default: false
       required:
         - name
         - role
+    CreatePresetRequestBody:
+      description: ""
+      type: object
+      x-examples:
+        example-1:
+          name: preset_1
+          description: Example preset 1
+          preset:
+            role: role_1
+            uiConfig:
+              waitingRoom:
+                showSelf: true
+              controlBar: true
+              controlBarElements:
+                fullscreen: true
+                share: true
+                screenShare: true
+                layout: true
+                chat: true
+                polls: true
+                participants: true
+                plugins: true
+              header: true
+              headerElements:
+                logo: true
+                title: true
+                participantCount: true
+                clock: true
+              aloneHereElement: true
+              logo: "https://www.dyte.io/images/Dyte-Logo.svg"
+              colors:
+                primary: "#2160FD"
+                secondary: "#262626"
+                textPrimary: "#EEEEEE"
+                videoBackground: "#1A1A1A"
+              grid:
+                defaultView: multi
+                multi:
+                  maxVideoCount: 6
+                  videoFit: contain
+                single:
+                  videoFit: contain
+        example-2:
+          name: preset_2
+          description: Sample preset 2
+          preset:
+            role: role_1
+            uiConfig:
+              waitingRoom:
+                showSelf: true
+              controlBar: true
+              controlBarElements:
+                fullscreen: true
+                share: false
+                screenShare: true
+                layout: false
+                chat: true
+                polls: true
+                participants: false
+                plugins: true
+              header: true
+              headerElements:
+                logo: true
+                title: true
+                participantCount: true
+                clock: true
+              aloneHereElement: false
+              logo: "https://www.dyte.io/images/Dyte-Logo.svg"
+              colors:
+                primary: "#2160FD"
+                secondary: "#262626"
+                textPrimary: "#EEEEEE"
+                videoBackground: "#1A1A1A"
+              dimensions:
+                mode: fillParent
+              grid:
+                defaultView: multi
+                multi:
+                  maxVideoCount: 6
+                  videoFit: contain
+                single:
+                  videoFit: contain
+        example-3:
+          name: preset_3
+          description: Sample preset 3
+          preset:
+            role: role_2
+            uiConfig:
+              controlBarElements:
+                share: false
+                screenShare: false
+                layout: false
+                plugins: false
+              logo: "https://www.dyte.io/images/Dyte-Logo.svg"
+              colors:
+                primary: "#2A9D8F"
+                secondary: "#F4A261"
+                textPrimary: "#E9C46A"
+                videoBackground: "#264653"
+      title: ""
       properties:
         name:
           type: string
+          description: Name of the preset you want to create
         description:
           type: string
-        role:
+          description: Description of the preset that you can later use for your own reference
+        preset:
           type: object
+          description: Object containing settings that preset controls
+          required:
+            - role
+          properties:
+            role:
+              type: string
+              description: Associated role of the participant
+            uiConfig:
+              type: object
+              description: UI configuration options under preset
+              properties:
+                waitingRoom:
+                  type: object
+                  description: "Object containing waiting room settings to be used if enabled. Custom HTML can also be shown in the meeting room, please check the client SDK guide to see how."
+                  properties:
+                    showSelf:
+                      type: boolean
+                      description: "Should the participant see their own video while in waiting room? Default: `true`."
+                      default: true
+                controlBar:
+                  type: boolean
+                  default: true
+                  description: "Should the control bar (at the bottom of the meeting) be visible to the participant? Default: `true`."
+                controlBarElements:
+                  type: object
+                  description: Object containing element list from control bar to be able to customize what all controls should be visible to the participant
+                  properties:
+                    fullscreen:
+                      type: boolean
+                      default: true
+                      description: "Should the button to make meeting fullscreen be visible? Default: `true`."
+                    share:
+                      type: boolean
+                      description: "Should the button to invite other participants to the meeting be visible? Default: `true`."
+                      default: true
+                    screenShare:
+                      type: boolean
+                      default: true
+                      description: "Should the button to share screen be visible? Default: `true`."
+                    layout:
+                      type: boolean
+                      description: "Should the button to change meeting layout be visible? Default: `true`."
+                      default: true
+                    chat:
+                      type: boolean
+                      default: true
+                      description: "Should the button to open in-meeting chat be visible? Default: `true`."
+                    polls:
+                      type: boolean
+                      default: true
+                      description: "Should the button to display in-meeting polls be visible? Default: `true`."
+                    participants:
+                      type: boolean
+                      default: true
+                      description: "Should the button to display participant list be visible? Default: `true`."
+                    plugins:
+                      type: boolean
+                      default: true
+                      description: "Should the button to activate plugins in a meeting be visible? Default: `true`."
+                header:
+                  type: boolean
+                  default: true
+                  description: "Should the header bar be visible to the participant? Default: `true`."
+                headerElements:
+                  type: object
+                  description: Object containing element list from header to be able to customize what all should be visible to the participant
+                  properties:
+                    logo:
+                      type: boolean
+                      default: true
+                      description: "Should a logo be visible in the meeting? Default: `true`."
+                    title:
+                      type: boolean
+                      default: true
+                      description: "Should a title be visible in the meeting? Default: `true`."
+                    participantCount:
+                      type: boolean
+                      default: true
+                      description: "Should the participant count be visible in the meeting? Default: `true`."
+                    clock:
+                      type: boolean
+                      default: true
+                      description: "Should a timer be visible in the meeting? Default: `true`."
+                aloneHereElement:
+                  type: boolean
+                  default: true
+                  description: "Should an element displaying custom HTML to the participant be visible, when they are alone in / first to the meeting? Default: `true`. Please check the client SDK guide to see how to set the custom HTML for this."
+                logo:
+                  type: string
+                  format: uri
+                  description: Publicly accessible link to the logo that needs to be shown in the meeting
+                colors:
+                  type: object
+                  description: Object containing color values to be used as the theme for the meeting
+                  properties:
+                    primary:
+                      type: string
+                      format: color_hex
+                      default: "#2160FD"
+                      description: Color of the primary elements like participant name box
+                    secondary:
+                      type: string
+                      format: color_hex
+                      default: "#262626"
+                      description: "Color of the secondary elements like control bar, control buttons, hover"
+                    textPrimary:
+                      type: string
+                      format: color_hex
+                      default: "#EEEEEE"
+                      description: Color of the text elements
+                    videoBackground:
+                      type: string
+                      format: color_hex
+                      default: "#1A1A1A"
+                      description: Color behind the video when the video is turned off
+                  required:
+                    - primary
+                    - secondary
+                    - textPrimary
+                    - videoBackground
+                dimensions:
+                  type: object
+                  description: "Object containing info about meeting dimensions within the container. If omitted, the meeting takes up the complete area of the root display element."
+                  properties:
+                    width:
+                      type: integer
+                      description: "Desired width of the meeting element, in pixels"
+                    height:
+                      type: integer
+                      description: "Desired height of the meeting element, in pixels"
+                    mode:
+                      type: string
+                      enum:
+                        - fillParent
+                      description: |-
+                        Set the mode to one of the pre-defined values.
+                        - `fillParent`: takes up entire area available to the parent container, instead of root container
+                grid:
+                  type: object
+                  description: Object containing options to customize the meeting grid
+                  properties:
+                    defaultView:
+                      type: string
+                      enum:
+                        - multi
+                        - single
+                      description: |-
+                        Set the grid view to one of the view options.
+                        - `single`: show a single participant in majority area of the meeting grid, which will be the active speaker or the pinned participant
+                        - `multi`: show multiple participants in the meeting grid
+                    multi:
+                      type: object
+                      description: Object containing options for `multi` view meeting
+                      properties:
+                        maxVideoCount:
+                          type: integer
+                          description: "Desired number of maximum participant video streams to be shown on a single screen. Default: `6`. Maximum: `9`."
+                          default: 6
+                          minimum: 1
+                          maximum: 9
+                        videoFit:
+                          type: string
+                          enum:
+                            - contain
+                            - cover
+                          description: |-
+                            Set the aspect ratio for fitting the video streams of participants into their container.
+                            - `contain`: this option maintains the aspect ratio and fits the video inside the container in such a way that the longer side matches the container size and leaves margins around the shorter side
+                            - `cover`: this option ignores the aspect ratio and expands the video inside the container in such a way that the shorter side matches the container size to fill the container and there are no margins
+                    single:
+                      type: object
+                      description: Object containing options for `single` view meeting
+                      properties:
+                        videoFit:
+                          type: string
+                          enum:
+                            - contain
+                            - cover
+                          description: |-
+                            Set the aspect ratio for fitting the video streams of participants into their container.
+                            - `contain`: this option maintains the aspect ratio and fits the video inside the container in such a way that the longer side matches the container size and leaves margins around the shorter side
+                            - `cover`: this option ignores the aspect ratio and expands the video inside the container in such a way that the shorter side matches the container size to fill the container and there are no margins
+      required:
+        - name
+        - preset
     StartRecordingRequestBody:
       type: object
+      x-examples:
+        example-1:
+          liveStreamingConfig:
+            rtmpUrl: "rtmp://live.restream.io/live/your-stream-key"
+        example-2:
+          storageConfig:
+            type: aws
+            accessKey: aws_access_key
+            secret: aws_secret
+            bucket: aws_bucket_name
+            region: aws_region
+          videoConfig:
+            codec: VP9
+        example-3:
+          storageConfig:
+            type: azure
+            accessKey: azure_storage_account
+            secret: azure_storage_key
+            bucket: azure_storage_container_name
+            region: azure
+          videoConfig:
+            codec: VP8
+        example-4:
+          storageConfig:
+            type: digitalocean
+            accessKey: do_spaces_key
+            secret: do_spaces_secret
+            bucket: do_space_or_bucket_name
+            region: do_spaces_region
+        example-5:
+          storageConfig:
+            type: aws
+            accessKey: aws_access_key
+            secret: aws_secret
+            bucket: aws_bucket_name
+            region: aws_region
+          videoConfig:
+            codec: VP9
+          liveStreamingConfig:
+            rtmpUrl: "rtmp://live.restream.io/live/your-stream-key"
+      description: ""
       properties:
         storageConfig:
           type: object
+          description: "Object containing details of the cloud storage, where you want the recording to be uploaded. In case this is not provided, recording will be stored on Dyte's servers for a period of 7 days from the day of recording and a link will be shared using which you can download the file in between that period."
+          properties:
+            type:
+              type: string
+              enum:
+                - aws
+                - azure
+                - digitalocean
+              description: "Name of the cloud storage service the recording should be stored to. Currently supports `aws`, `azure` and `digitalocean`."
+            accessKey:
+              type: string
+              description: |-
+                Primary access key, relevant to the chosen storage service.
+                - AWS: `aws_access_key`
+                - Azure: `azure_storage_account`
+                - DigitalOcean: `do_spaces_key`
+            secret:
+              type: string
+              description: |-
+                Secret key, relevant to the chosen storage service.
+                - AWS: `aws_secret`
+                - Azure: `azure_storage_key`
+                - DigitalOcean: `do_spaces_secret`
+            bucket:
+              type: string
+              description: |-
+                Container namespace system under which your recording would be uploaded, relevant to the chosen storage service.
+                - AWS: `aws_bucket_name`
+                - Azure: `azure_storage_container_name`
+                - DigitalOcean: `do_space_or_bucket_name`
+            region:
+              type: string
+              description: |-
+                Geographic region for your `bucket`, relevant to the chosen storage service.
+                - AWS: `aws_region`
+                - Azure: `azure`
+                - DigitalOcean: `do_spaces_region`
+            path:
+              type: string
+              description: "Directory path to upload your recording, relative to the `bucket`."
           required:
             - type
             - accessKey
             - secret
             - bucket
             - region
-          properties:
-            type:
-              type: string
-              enum:
-                - aws
-                - digitalocean
-            accessKey:
-              type: string
-            secret:
-              type: string
-            region:
-              type: string
-            bucket:
-              type: string
-            path:
-              type: string
         videoConfig:
           type: object
+          description: Object containing configuration regarding the video that is being recorded.
           properties:
             codec:
               type: string
@@ -1715,35 +1700,49 @@ components:
                 - H264
                 - VP8
                 - VP9
+              description: |-
+                Codec used to record the meeting video.
+                - `H264`: [sample recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/h264_sample.webm)
+                - `VP8`: [sample recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/vp8_sample.webm)
+                - `VP9`: [sample recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/vp9_sample.webm)
+              default: H264
         liveStreamingConfig:
           type: object
+          description: Object containing configuration regarding live streaming the meeting video to a platform that supports RTMP input.
           properties:
             rtmpUrl:
               type: string
-              format: url
+              format: uri
+              pattern: '^rtmp:\/\/(.*?)(:(\d+))?\/(.*)$'
+              description: The RTMP input URL to which the meeting video should be streamed.
     UpdateRecordingRequestBody:
       type: object
-      required:
-        - recordingAction
       properties:
         recordingAction:
           type: string
           enum:
             - stop
+          description: Action to be taken on a recording.
+      required:
+        - recordingAction
+      x-examples:
+        example-1:
+          recordingAction: stop
     WebhookRequestBody:
       type: object
-      required:
-        - name
-        - url
-        - events
+      description: ""
       properties:
         name:
           type: string
+          description: Name to help easily identify the webhook.
         url:
           type: string
-          format: url
+          format: uri
+          description: The URI to be used for delivering the webhook.
         events:
           type: array
+          description: The events that should be delivered to the given URI.
+          uniqueItems: true
           items:
             type: string
             enum:
@@ -1752,271 +1751,1397 @@ components:
               - meeting.participantJoined
               - meeting.participantLeft
               - recording.statusUpdate
+      required:
+        - name
+        - url
+        - events
+      x-examples:
+        example-1:
+          name: webhook_1
+          url: "https://mywebhook.site/path/to/webhook"
+          events:
+            - meeting.started
+        example-2:
+          name: webhook_2
+          url: "https://mywebhook.site/path/to/webhook"
+          events:
+            - meeting.started
+            - meeting.ended
     AddOrgUserBody:
       type: object
-      required:
-        - email
-        - role
       properties:
         email:
           type: string
           format: email
+          description: Email ID of the user being added to the organization.
         role:
           type: string
           enum:
             - Owner
+          description: Role of the user being added to the organization.
+      required:
+        - email
+        - role
+      x-examples:
+        example-1:
+          email: user@example.com
+          role: Owner
     APIResponse:
       type: object
+      x-examples:
+        example-1:
+          success: true
+          data:
+            sample: success
+        example-2:
+          success: false
+          message: sample failure
       properties:
-        succces:
+        success:
           type: boolean
+          description: Execution status of the request made by the API call.
         message:
           type: string
+          description: Error message in case of errors.
         data:
           type: object
+          description: Data produced as the response to API request.
+      required:
+        - success
     GetStatsResponseSchema:
       type: object
+      x-examples:
+        example-1:
+          success: true
+          totalMinutes: 12345
+          totalSessions: 123
+          totalRecordingMinutes: 1234
+          dayStats:
+            - totalMinutes: 1234
+              totalSessions: 12
+              totalRecordingMinutes: 123
+              day: "2021-12-21T00:00:00.000Z"
       properties:
-        succces:
+        success:
           type: boolean
+          description: Execution status of the request made by the API call.
         totalMinutes:
           type: integer
+          description: Total number of meeting minutes used by an organization.
         totalSessions:
           type: integer
+          description: Total number of meeting sessions started by an organization.
         totalRecordingMinutes:
           type: integer
+          description: Total number of recording minutes used by an organization.
         dayStats:
           type: array
+          description: Array containing objects that define the data points for daily stats.
+          uniqueItems: true
           items:
             type: object
+            description: Object defining the data points for daily stats.
             properties:
               totalMinutes:
                 type: integer
+                description: Total number of meeting minutes used in a day.
               totalSessions:
                 type: integer
+                description: Total number of meeting sessions started in a day.
               totalRecordingMinutes:
                 type: integer
+                description: Total number of recording minutes used in a day.
               day:
                 type: string
-                format: date-time
+                format: date
+                description: Date (in ISO 8601 format with UTC timezone) for which the corresponding data is displayed.
+                pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
+            required:
+              - totalMinutes
+              - totalSessions
+              - totalRecordingMinutes
+              - day
+      required:
+        - success
+        - totalMinutes
+        - totalSessions
+        - totalRecordingMinutes
+        - dayStats
     RecordingStatsSchema:
       allOf:
-        - $ref: '#/components/schemas/APIResponse'
-      type: object
-      properties:
-        data:
-          type: object
+        - $ref: "#/components/schemas/APIResponse"
+        - type: object
           properties:
-            total:
-              type: integer
+            data:
+              type: object
+              required:
+                - total
+                - recordingStats
+              properties:
+                total:
+                  type: integer
+                  description: Total number of recording minutes used by an organization.
+                recordingStats:
+                  type: array
+                  description: Array containing objects that define the data points for each recording.
+                  uniqueItems: true
+                  items:
+                    type: object
+                    description: Object defining the data points for each recording.
+                    properties:
+                      startedTime:
+                        type: string
+                        format: date-time
+                        description: Timestamp (in ISO 8601 format with UTC timezone) when the recording was started.
+                        pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
+                        nullable: true
+                      stoppedTime:
+                        type: string
+                        format: date-time
+                        description: Timestamp (in ISO 8601 format with UTC timezone) when the recording was stopped.
+                        pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
+                        nullable: true
+                      roomName:
+                        type: string
+                        description: The meeting room name from which this recording was created.
+                      status:
+                        type: string
+                        enum:
+                          - INVOKED
+                          - RECORDING
+                          - UPLOADING
+                          - UPLOADED
+                          - ERRORED
+                        description: |-
+                          Status of the recording.
+                          - `INVOKED`: The recording function has been invoked and will start recording the meeting very shortly.
+                          - `RECORDING`: The meeting is currently being recorded.
+                          - `UPLOADING`: The recording has been stopped and the file is being uploaded to cloud storage. The storage would be Dyte's if no storage parameters are passed in the recording API call.
+                          - `UPLOADED`: The recording file upload is complete.
+                          - `ERRORED`: There was an error while recording the meeting and the file wouldn't be available.
+                    required:
+                      - startedTime
+                      - stoppedTime
+                      - roomName
+                      - status
+          required:
+            - data
+      x-examples:
+        example-1:
+          success: true
+          data:
+            total: 1234
             recordingStats:
-              type: array
-              items:
-                type: object
-                properties:
-                  startedTime:
-                    type: string
-                    format: date-time
-                    nullable: true
-                  stoppedTime:
-                    type: string
-                    format: date-time
-                    nullable: true
-                  roomName:
-                    type: string
-                  status:
-                    type: string
-                    enum:
-                      - INVOKED
-                      - RECORDING
-                      - UPLOADING
-                      - UPLOADED
-                      - ERRORED
+              - startedTime: "2021-12-21T14:15:22Z"
+                stoppedTime: "2021-12-21T14:45:22Z"
+                roomName: unique-roomname
+                status: UPLOADED
+        example-2:
+          success: true
+          data:
+            total: 1234
+            recordingStats:
+              - startedTime: "2019-08-24T14:15:22Z"
+                stoppedTime: null
+                roomName: unique-roomname
+                status: RECORDING
     RoomStatsBody:
       type: array
+      description: Array containing objects that define the data points for each meeting room.
+      uniqueItems: true
       items:
         type: object
+        description: Object defining the data points for each meeting room.
         properties:
           createdAt:
             type: string
             format: date-time
+            pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
+            description: Timestamp (in ISO 8601 format with UTC timezone) when the meeting room was created.
           updatedAt:
             type: string
             format: date-time
+            pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
+            description: Timestamp (in ISO 8601 format with UTC timezone) when the meeting room was last updated.
           minutesConsumed:
             type: integer
+            description: Number of minutes used by the meeting room.
           id:
             type: string
             format: uuid
+            description: Unique ID of this record.
           roomUUID:
             type: string
             format: uuid
+            description: Unique ID of the meeting room.
           roomURL:
             type: string
+            description: Unique URL of the meeting room.
+            format: uri
           roomDisplayTitle:
             type: string
+            description: Title of the meeting room that is displayed on the screen.
           maxUsers:
             type: integer
+            description: Maximum number of users that have connected to the meeting room.
           currentUsers:
             type: integer
+            description: Current number of users that are connected to the meeting room.
           createdBy:
             type: string
+            description: Display name of the participant who first connected to the meeting room.
+        required:
+          - createdAt
+          - updatedAt
+          - minutesConsumed
+          - id
+          - roomUUID
+          - roomURL
+          - roomDisplayTitle
+          - maxUsers
+          - currentUsers
+          - createdBy
+      x-examples:
+        example-1:
+          - createdAt: "2021-12-21T14:15:22Z"
+            updatedAt: "2021-12-21T14:45:22Z"
+            minutesConsumed: 123
+            id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+            roomUUID: 31eca195-b13b-4986-b6c9-6b60e53d7f58
+            roomURL: "https://app.dyte.io/meeting/unique-roomname"
+            roomDisplayTitle: Meeting Title
+            maxUsers: 123
+            currentUsers: 12
+            createdBy: Mangoman
     OrgRoomsResponse:
       allOf:
-        - $ref: '#/components/schemas/APIResponse'
-      type: object
-      properties:
-        data:
-          type: object
+        - $ref: "#/components/schemas/APIResponse"
+        - type: object
           properties:
-            total:
-              type: integer
+            data:
+              type: object
+              required:
+                - total
+                - rooms
+              properties:
+                total:
+                  type: integer
+                  description: Total number of meeting rooms created by the organization.
+                rooms:
+                  $ref: "#/components/schemas/RoomStatsBody"
+          required:
+            - data
+      x-examples:
+        example-1:
+          success: true
+          data:
+            total: 1234
             rooms:
-              $ref: '#/components/schemas/RoomStatsBody'
+              - createdAt: "2021-12-21T14:15:22Z"
+                updatedAt: "2021-12-21T14:45:22Z"
+                minutesConsumed: 123
+                id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                roomUUID: 31eca195-b13b-4986-b6c9-6b60e53d7f58
+                roomURL: "https://app.dyte.io/meeting/unique-roomname"
+                roomDisplayTitle: Meeting Title
+                maxUsers: 123
+                currentUsers: 12
+                createdBy: Mangoman
     OrgMeetingRoomsResponse:
       allOf:
-        - $ref: '#/components/schemas/APIResponse'
-      type: object
-      properties:
-        data:
-          type: object
+        - $ref: "#/components/schemas/APIResponse"
+        - type: object
           properties:
+            data:
+              type: object
+              required:
+                - rooms
+              properties:
+                rooms:
+                  $ref: "#/components/schemas/RoomStatsBody"
+          required:
+            - data
+      x-examples:
+        example-1:
+          success: true
+          data:
             rooms:
-              $ref: '#/components/schemas/RoomStatsBody'
+              - createdAt: "2021-12-21T14:15:22Z"
+                updatedAt: "2021-12-21T14:45:22Z"
+                minutesConsumed: 123
+                id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                roomUUID: 31eca195-b13b-4986-b6c9-6b60e53d7f58
+                roomURL: "https://app.dyte.io/meeting/unique-roomname"
+                roomDisplayTitle: Meeting Title
+                maxUsers: 123
+                currentUsers: 12
+                createdBy: Mangoman
     GetUsersResponse:
       allOf:
-        - $ref: '#/components/schemas/APIResponse'
-      type: object
-      properties:
-        data:
-          type: object
+        - $ref: "#/components/schemas/APIResponse"
+        - type: object
           properties:
+            data:
+              type: object
+              required:
+                - users
+              properties:
+                users:
+                  type: array
+                  description: Array containing objects that define a user in Dyte system.
+                  uniqueItems: true
+                  items:
+                    $ref: "#/components/schemas/OrgUser"
+          required:
+            - data
+      x-examples:
+        example-1:
+          success: true
+          data:
             users:
-              type: array
-              items:
-                $ref: '#/components/schemas/OrgUser'
+              - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                name: Appleman
+                email: user@example.com
+                createdAt: "2021-12-21T14:15:22Z"
+                role: Owner
     GetMeetingsResponse:
       allOf:
-        - $ref: '#/components/schemas/APIResponse'
-      type: object
-      properties:
-        data:
-          type: object
+        - $ref: "#/components/schemas/APIResponse"
+        - type: object
           properties:
+            data:
+              type: object
+              required:
+                - meetings
+              properties:
+                meetings:
+                  type: array
+                  description: Array containing objects that contain details of a meeting room.
+                  uniqueItems: true
+                  items:
+                    $ref: "#/components/schemas/Meeting"
+          required:
+            - data
+      x-examples:
+        example-1:
+          success: true
+          data:
             meetings:
-              type: array
-              items:
-                $ref: '#/components/schemas/Meeting'
+              - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                title: Meeting Title
+                roomName: unique-roomname
+                status: CREATED
+                createdAt: "2021-12-21T14:15:22Z"
     GetMeetingResponse:
       allOf:
-        - $ref: '#/components/schemas/APIResponse'
-      type: object
-      properties:
-        data:
-          type: object
+        - $ref: "#/components/schemas/APIResponse"
+        - type: object
           properties:
+            data:
+              type: object
+              required:
+                - meeting
+              properties:
+                meeting:
+                  $ref: "#/components/schemas/Meeting"
+          required:
+            - data
+      x-examples:
+        example-1:
+          success: true
+          data:
             meeting:
-              $ref: '#/components/schemas/Meeting'
+              id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+              title: Meeting Title
+              roomName: unique-roomname
+              status: CREATED
+              createdAt: "2021-12-21T14:15:22Z"
     CreateMeetingResponse:
       allOf:
-        - $ref: '#/components/schemas/APIResponse'
-      type: object
-      properties:
-        data:
-          type: object
+        - $ref: "#/components/schemas/APIResponse"
+        - type: object
           properties:
+            data:
+              required:
+                - meeting
+              type: object
+              properties:
+                meeting:
+                  allOf:
+                    - $ref: "#/components/schemas/Meeting"
+                    - type: object
+                      properties:
+                        participants:
+                          type: array
+                          items: {}
+          required:
+            - data
+      x-examples:
+        example-1:
+          success: true
+          message: string
+          data:
             meeting:
-              $ref: '#/components/schemas/Meeting'
+              id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+              title: Meeting Title
+              roomName: unique-roomname
+              status: CREATED
+              createdAt: "2021-12-21T14:15:22Z"
     AddParticipantResponse:
       allOf:
-        - $ref: '#/components/schemas/APIResponse'
-      type: object
-      properties:
-        data:
-          type: object
+        - $ref: "#/components/schemas/APIResponse"
+        - type: object
           properties:
+            data:
+              type: object
+              required:
+                - authResponse
+              properties:
+                authResponse:
+                  $ref: "#/components/schemas/AuthResponse"
+          required:
+            - data
+      x-examples:
+        example-1:
+          success: true
+          message: string
+          data:
             authResponse:
-              $ref: '#/components/schemas/AuthResponse'
+              userAdded: true
+              authToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzYW1wbGUiLCJpYXQiOjE2MzQwNDIwMDd9.RM5syXw4o2KhG6l-8uVieS0T-XBRHI4OvgbvbXtUoRI
     GetParticipantsResponse:
       allOf:
-        - $ref: '#/components/schemas/APIResponse'
-      type: object
-      properties:
-        data:
-          type: object
+        - $ref: "#/components/schemas/APIResponse"
+        - type: object
           properties:
+            data:
+              type: object
+              required:
+                - participants
+              properties:
+                participants:
+                  type: array
+                  description: Array containing objects that contain details of a participant.
+                  items:
+                    $ref: "#/components/schemas/Participant"
+          required:
+            - data
+      x-examples:
+        example-1:
+          success: true
+          message: string
+          data:
             participants:
-              type: array
-              items:
-                $ref: '#/components/schemas/Participant'
+              - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                name: Mangoman
+                picture: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png"
+                createdAt: "2019-08-24T14:15:22Z"
     OrgUser:
       type: object
+      description: Object containing details of a user in Dyte system.
+      x-examples:
+        example-1:
+          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+          name: Appleman
+          email: user@example.com
+          createdAt: "2021-12-21T14:15:22Z"
+          role: Owner
       properties:
         id:
           type: string
           format: uuid
+          description: Unique ID of the user in Dyte system.
         name:
           type: string
+          description: Name of the user.
         email:
           type: string
           format: email
+          description: Email ID of the user.
         createdAt:
           type: string
           format: date-time
+          pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
+          description: Timestamp (in ISO 8601 format with UTC timezone) when the user was created.
         role:
           type: string
           enum:
             - Owner
             - Client
             - Member
+          description: |-
+            Role of the user.
+            - `Owner`: The user that created that organization.
+            - `Client`: A user that is added as participant.
+            - `Member`: A user that belongs to the organization, can access internal stuff.
+        pending:
+          type: boolean
+          default: null
+          description: Status of the request to join the organization.
+          nullable: true
+      required:
+        - id
+        - name
+        - email
+        - createdAt
+        - role
     Participant:
       type: object
+      description: Object containing details of a participant.
       properties:
         id:
           type: string
           format: uuid
+          description: Unique ID of the participant in Dyte system.
         name:
           type: string
+          description: Name of the participant.
         email:
           type: string
           format: email
+          description: Email of the participant.
         picture:
           type: string
-          format: url
+          format: uri
+          description: Publicly accessible URL for the participant display picture.
         createdAt:
           type: string
           format: date-time
+          pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
+          description: Timestamp (in ISO 8601 format with UTC timezone) when the participant was created.
+      required:
+        - id
+        - createdAt
+      x-examples:
+        example-1:
+          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+          createdAt: "2021-12-21T14:15:22Z"
+        example-2:
+          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+          name: Mangoman
+          createdAt: "2019-08-24T14:15:22Z"
+        example-3:
+          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+          name: Mangoman
+          picture: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png"
+          createdAt: "2019-08-24T14:15:22Z"
     AuthResponse:
       type: object
+      description: "Object containing auth details of a participant, used to join a specific meeting."
       properties:
         userAdded:
           type: boolean
+          description: Status representing whether the participant was added successfully.
         authToken:
           type: string
+          description: Auth token to be used by client SDK to connect to the meeting as this particular participant.
+      required:
+        - userAdded
+        - authToken
+      x-examples:
+        example-1:
+          userAdded: true
+          authToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzYW1wbGUiLCJpYXQiOjE2MzQwNDIwMDd9.RM5syXw4o2KhG6l-8uVieS0T-XBRHI4OvgbvbXtUoRI
     Meeting:
       type: object
+      description: Object containing details of a meeting room.
       properties:
         id:
           type: string
           format: uuid
+          description: Unique ID of the meeting room.
         title:
           type: string
+          description: Display title of the meeting room.
         roomName:
           type: string
+          description: Unique room name of the meeting room.
         status:
           type: string
           enum:
             - LIVE
             - CREATED
+          description: Status of the meeting room.
         createdAt:
           type: string
           format: date-time
+          pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
+          description: Timestamp (in ISO 8601 format with UTC timezone) when the meeting room was created.
+      required:
+        - id
+        - roomName
+        - status
+        - createdAt
+      x-examples:
+        example-1:
+          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+          roomName: unique-roomname
+          status: LIVE
+          createdAt: "2021-12-21T14:15:22Z"
+        example-2:
+          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+          title: Meeting Title
+          roomName: unique-roomname
+          status: CREATED
+          createdAt: "2021-12-21T14:15:22Z"
+    CreatePresetRoleResponse:
+      allOf:
+        - $ref: "#/components/schemas/APIResponse"
+        - type: object
+          properties:
+            data:
+              required:
+                - role
+                - override
+              type: object
+              properties:
+                role:
+                  allOf:
+                    - $ref: "#/components/schemas/PresetRole"
+                    - type: object
+                      properties:
+                        organization:
+                          $ref: "#/components/schemas/Organization"
+                      required:
+                        - organization
+                override:
+                  type: boolean
+          required:
+            - data
+      x-examples:
+        example-1:
+          success: true
+          data:
+            role:
+              name: role_1
+              description: Example role 1
+              s3URL: "https: //dyte-configs.s3.ap-south-1.amazonaws.com/{organizationId}/roles/role_1.json"
+              organization:
+                id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                name: org_1
+                description: Example org 1
+                contact: "9898989898"
+                website: "https://example.com"
+                accessToken: uniqueAccessToken
+                createdAt: "2021-12-21T14:15:22Z"
+              id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+            override: false
+      title: ""
+    CreatePresetResponse:
+      allOf:
+        - $ref: "#/components/schemas/APIResponse"
+        - type: object
+          properties:
+            data:
+              type: object
+              required:
+                - preset
+                - override
+              properties:
+                preset:
+                  allOf:
+                    - $ref: "#/components/schemas/PresetRole"
+                    - type: object
+                      properties:
+                        organization:
+                          $ref: "#/components/schemas/Organization"
+                      required:
+                        - organization
+                override:
+                  type: boolean
+          required:
+            - data
+      x-examples:
+        example-1:
+          success: true
+          data:
+            role:
+              name: role_1
+              description: Example role 1
+              s3URL: "https: //dyte-configs.s3.ap-south-1.amazonaws.com/{organizationId}/roles/role_1.json"
+              organization:
+                id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                name: org_1
+                description: Example org 1
+                contact: "9898989898"
+                website: "https://example.com"
+                accessToken: uniqueAccessToken
+                createdAt: "2021-12-21T14:15:22Z"
+              id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+            override: false
+      title: ""
+    GetRolesResponse:
+      allOf:
+        - $ref: "#/components/schemas/APIResponse"
+        - type: object
+          properties:
+            data:
+              type: object
+              required:
+                - roles
+              properties:
+                roles:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/PresetRole"
+          required:
+            - data
+      x-examples:
+        example-1:
+          success: true
+          message: string
+          data:
+            roles:
+              - name: role_1
+                description: Example role 1
+                s3URL: "https: //dyte-configs.s3.ap-south-1.amazonaws.com/{organizationId}/roles/role_1.json"
+                id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+    GetPresetsResponse:
+      allOf:
+        - $ref: "#/components/schemas/APIResponse"
+        - type: object
+          properties:
+            data:
+              type: object
+              required:
+                - presets
+              properties:
+                presets:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/PresetRole"
+          required:
+            - data
+      x-examples:
+        example-1:
+          success: true
+          message: string
+          data:
+            roles:
+              - name: role_1
+                description: Example role 1
+                s3URL: "https: //dyte-configs.s3.ap-south-1.amazonaws.com/{organizationId}/roles/role_1.json"
+                id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+    PresetRole:
+      title: PresetRole
+      type: object
+      description: Object containing details of the role.
+      required:
+        - name
+        - description
+        - s3URL
+        - organization
+        - id
+      properties:
+        name:
+          type: string
+          description: Name of the role.
+        description:
+          type: string
+          description: "Description of the role, for reference purpose only."
+          nullable: true
+        s3URL:
+          type: string
+          format: uri
+          description: Publicly accessible URL where the corresponding JSON for the role is stored.
+        id:
+          type: string
+          format: uuid
+          description: Unique ID of the role.
+    Organization:
+      title: Organization
+      type: object
+      description: Object containing details of the organization.
+      required:
+        - id
+        - name
+        - description
+        - contact
+        - website
+        - accessToken
+        - createdAt
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: "Unique ID of the organization, same as supplied in the URL while making the API call."
+        name:
+          type: string
+          description: Name of the organization.
+        description:
+          type: string
+          description: "Description of the organization, for reference purpose only."
+          nullable: true
+        contact:
+          type: string
+          description: Contact number of the organization.
+        website:
+          type: string
+          format: uri
+          description: URL to the website of the organiaztion.
+        accessToken:
+          type: string
+          description: "API key for the organization, same as supplied in the `Authorization` header."
+        createdAt:
+          type: string
+          pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
+          format: date-time
+          description: Timestamp (in ISO 8601 format with UTC timezone) when the organization was created.
+    CreateWebhookResponse:
+      allOf:
+        - $ref: "#/components/schemas/APIResponse"
+        - type: object
+          properties:
+            data:
+              type: object
+              required:
+                - webhook
+              properties:
+                webhook:
+                  $ref: "#/components/schemas/Webhook"
+          required:
+            - data
+      x-examples:
+        example-1:
+          success: true
+          data:
+            webhook:
+              name: webhook_1
+              events:
+                - meeting.started
+              url: "https://mywebhook.site/path/to/webhook"
+              organizationId: cd0ede6e-7202-4e8e-87a5-c203fe41843d
+              enabled: true
+              id: d0f51c71-c5ac-456f-b5a8-d2de9410df5e
+              createdAt: "2021-10-13T17:01:12.747Z"
+              updatedAt: "2021-10-13T17:01:12.747Z"
+      title: ""
+    GetWebhooksResponse:
+      allOf:
+        - $ref: "#/components/schemas/APIResponse"
+        - type: object
+          properties:
+            data:
+              type: object
+              required:
+                - webhooks
+              properties:
+                webhooks:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/Webhook"
+          required:
+            - data
+      x-examples:
+        example-1:
+          success: true
+          data:
+            webhooks:
+              - name: webhook_1
+                events:
+                  - meeting.started
+                url: "https://mywebhook.site/path/to/webhook"
+                organizationId: cd0ede6e-7202-4e8e-87a5-c203fe41843d
+                enabled: true
+                id: d0f51c71-c5ac-456f-b5a8-d2de9410df5e
+                createdAt: "2021-10-13T17:01:12.747Z"
+                updatedAt: "2021-10-13T17:01:12.747Z"
+    Webhook:
+      title: Webhook
+      allOf:
+        - $ref: "#/components/schemas/WebhookRequestBody"
+        - type: object
+          description: ""
+          properties:
+            organizationId:
+              type: string
+              format: uuid
+              description: "Unique ID of the organization, same as supplied in the URL while making the API call."
+            enabled:
+              type: boolean
+              description: Status of the webhook.
+            id:
+              type: string
+              format: uuid
+              description: Unique ID of the webhook.
+            createdAt:
+              type: string
+              format: date-time
+              description: Timestamp (in ISO 8601 format with UTC timezone) when the webhook was created.
+              pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
+            updatedAt:
+              type: string
+              format: date-time
+              description: Timestamp (in ISO 8601 format with UTC timezone) when the webhook was updated.
+              pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
+          required:
+            - organizationId
+            - enabled
+            - id
+            - createdAt
+            - updatedAt
+      x-examples:
+        example-1:
+          name: webhook_1
+          events:
+            - meeting.started
+          url: "https://mywebhook.site/path/to/webhook"
+          organizationId: cd0ede6e-7202-4e8e-87a5-c203fe41843d
+          enabled: true
+          id: d0f51c71-c5ac-456f-b5a8-d2de9410df5e
+          createdAt: "2021-10-13T17:01:12.747Z"
+          updatedAt: "2021-10-13T17:01:12.747Z"
+    Recording:
+      description: ""
+      type: object
+      x-examples:
+        example-1:
+          status: INVOKED
+          outputFileName: filename.mp4
+          downloadUrlExpiry: "2021-10-13T17:01:12.747Z"
+          roomUUID: 31eca195-b13b-4986-b6c9-6b60e53d7f58
+          downloadUrl: "https://some.url/pointing/to/recording/filename.mp4"
+          errMessage: null
+          startedTime: "2021-10-13T14:15:22Z"
+          stoppedTime: "2021-10-13T14:45:22Z"
+          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+      properties:
+        status:
+          type: string
+          enum:
+            - INVOKED
+            - RECORDING
+            - UPLOADING
+            - UPLOADED
+            - ERRORED
+          description: |-
+            Status of the recording.
+            - `INVOKED`: The recording function has been invoked and will start recording the meeting very shortly.
+            - `RECORDING`: The meeting is currently being recorded.
+            - `UPLOADING`: The recording has been stopped and the file is being uploaded to cloud storage. The storage would be Dyte's if no storage parameters are passed in the recording API call.
+            - `UPLOADED`: The recording file upload is complete.
+            - `ERRORED`: There was an error while recording the meeting and the file wouldn't be available.
+        outputFileName:
+          type: string
+          description: Filename for the recording.
+        downloadUrlExpiry:
+          type: string
+          format: date-time
+          pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
+          description: Timestamp (in ISO 8601 format with UTC timezone) when the `downloadUrl` will stop working and the recording file will not be available for download anymore.
+          nullable: true
+        roomUUID:
+          type: string
+          format: uuid
+          description: The unique ID of the meeting room for which this recording was created.
+        downloadUrl:
+          type: string
+          format: uri
+          description: Publicly accessible URL to download the recording.
+          nullable: true
+        errMessage:
+          type: string
+          description: "Error message during recording, if any."
+          nullable: true
+        startedTime:
+          type: string
+          format: date-time
+          pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
+          description: Timestamp (in ISO 8601 format with UTC timezone) when the recording was started.
+        stoppedTime:
+          type: string
+          format: date-time
+          pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
+          description: Timestamp (in ISO 8601 format with UTC timezone) when the recording was stopped.
+        id:
+          type: string
+          format: uuid
+          description: Unique ID of the recording.
+      required:
+        - status
+        - outputFileName
+        - downloadUrlExpiry
+        - roomUUID
+        - downloadUrl
+        - errMessage
+        - startedTime
+        - stoppedTime
+        - id
+    CreateRecordingResponse:
+      title: CreateRecordingResponse
+      allOf:
+        - $ref: "#/components/schemas/APIResponse"
+        - type: object
+          properties:
+            data:
+              type: object
+              required:
+                - recording
+              properties:
+                recording:
+                  $ref: "#/components/schemas/Recording"
+          required:
+            - data
+    GetRecordingsResponse:
+      title: ""
+      allOf:
+        - $ref: "#/components/schemas/APIResponse"
+        - type: object
+          properties:
+            data:
+              type: object
+              required:
+                - recordings
+              properties:
+                recordings:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/Recording"
+          required:
+            - data
+    WebhookLogs:
+      description: ""
+      type: object
+      x-examples:
+        example-1:
+          success: true
+          logs:
+            - webhookId: ed71eef4-4c34-46dc-81fe-954e560454fd
+              name: webhook_1
+              logId: d2062bfa-97e3-46e4-80bf-86fffbf5d060
+              headers:
+                dyte-signature: random_secure_signature
+              payload:
+                event: meeting.started
+                meeting:
+                  id: 3bede250-cf6b-4344-bf72-a901ea30d442
+                  roomName: unique-roomname
+                  status: LIVE
+                  createdAt: "2021-10-13T17:01:12.747Z"
+                participants:
+                  - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                    name: Mangoman
+                    picture: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png"
+                    createdAt: "2021-10-13T17:01:12.747Z"
+              timestamp: "2021-10-13T17:01:12.747Z"
+              statusCode: 500
+            - webhookId: ed71eef4-4c34-46dc-81fe-954e560454fd
+              name: webhook_1
+              logId: ae6fa0d8-9273-4f36-ad65-d049ca73805f
+              headers:
+                dyte-signature: random_secure_signature
+              payload:
+                event: meeting.started
+                meeting:
+                  id: 3bede250-cf6b-4344-bf72-a901ea30d442
+                  roomName: unique-roomname
+                  status: LIVE
+                  createdAt: "2021-10-13T17:01:12.747Z"
+                participants:
+                  - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                    name: Mangoman
+                    picture: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png"
+                    createdAt: "2021-10-13T17:01:12.747Z"
+              timestamp: "2021-10-14T17:01:12.747Z"
+              statusCode: 500
+        example-2:
+          success: true
+          logs:
+            - webhookId: ed71eef4-4c34-46dc-81fe-954e560454fd
+              name: webhook_2
+              logId: d2062bfa-97e3-46e4-80bf-86fffbf5d060
+              headers:
+                dyte-signature: random_secure_signature
+              payload:
+                event: meeting.participantJoined
+                meeting:
+                  id: 3bede250-cf6b-4344-bf72-a901ea30d442
+                  roomName: unique-roomname
+                  status: LIVE
+                  createdAt: "2021-10-13T17:01:12.747Z"
+                participant:
+                  peerId: 60a07d40-746d-414c-b70b-908ca16e7459
+                  userDisplayName: Appleman
+                participants:
+                  - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                    name: Mangoman
+                    picture: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png"
+                    createdAt: "2021-10-13T17:01:12.747Z"
+              timestamp: "2021-10-13T17:01:12.747Z"
+              statusCode: 500
+            - webhookId: ed71eef4-4c34-46dc-81fe-954e560454fd
+              name: webhook_2
+              logId: ae6fa0d8-9273-4f36-ad65-d049ca73805f
+              headers:
+                dyte-signature: random_secure_signature
+              payload:
+                event: meeting.participantJoined
+                meeting:
+                  id: 3bede250-cf6b-4344-bf72-a901ea30d442
+                  roomName: unique-roomname
+                  status: LIVE
+                  createdAt: "2021-12-21T14:15:22Z"
+                participant:
+                  peerId: 384538f7-55ef-4770-823b-f3a433c1cf35
+                  userDisplayName: Orangeman
+                participants:
+                  - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                    name: Mangoman
+                    picture: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png"
+                    createdAt: "2021-10-13T17:01:12.747Z"
+                  - id: 60a07d40-746d-414c-b70b-908ca16e7459
+                    name: Appleman
+                    createdAt: "2021-10-13T17:01:12.747Z"
+              timestamp: "2021-10-13T17:01:12.747Z"
+              statusCode: 500
+      properties:
+        success:
+          type: boolean
+          description: Execution status of the request made by the API call.
+        logs:
+          type: array
+          uniqueItems: true
+          description: Array containing objects that contain a unique webhook log.
+          items:
+            type: object
+            description: Object containing a unique webhook log.
+            properties:
+              webhookId:
+                type: string
+                format: uuid
+                description: Unique ID of the webhook to which the current event was sent.
+              name:
+                type: string
+                description: Name of the webhook as set during the webhook creation.
+              logId:
+                type: string
+                description: Unique ID of the current webhook log.
+                format: uuid
+              headers:
+                type: object
+                description: Headers for the given webhook request.
+                required:
+                  - dyte-signature
+                properties:
+                  dyte-signature:
+                    type: string
+                    description: "Signature generated for the webhook request, using Dyte's private keys. Refer webhooks guide <insert_link> for more details."
+              payload:
+                type: object
+                description: Event payload data for the given webhook request.
+                required:
+                  - event
+                  - meeting
+                  - participant
+                  - participants
+                properties:
+                  event:
+                    type: string
+                    enum:
+                      - meeting.started
+                      - meeting.ended
+                      - meeting.participantJoined
+                      - meeting.participantLeft
+                      - recording.statusUpdate
+                    description: The event for which the current webhook was triggered.
+                  meeting:
+                    $ref: "#/components/schemas/Meeting"
+                  participant:
+                    type: object
+                    required:
+                      - peerId
+                      - userDisplayName
+                    description: Object defining the participant corresponding to whom the event was generated.
+                    properties:
+                      peerId:
+                        type: string
+                        format: uuid
+                        description: Unique ID of the participant in Dyte system.
+                      userDisplayName:
+                        type: string
+                        description: "Name of the participant, as displayed in the meeting room."
+                  participants:
+                    type: array
+                    uniqueItems: true
+                    description: Array containing objects that define the participants which were present in the meeting room at the time when the event was triggered.
+                    items:
+                      $ref: "#/components/schemas/Participant"
+              timestamp:
+                type: string
+                description: Timestamp (in ISO 8601 format with UTC timezone) when the current event was triggered.
+                pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
+                format: date-time
+              statusCode:
+                type: number
+                description: HTTP status code received by Dyte when trying to connect with the webhook to send this particular event.
+            required:
+              - webhookId
+              - name
+              - logId
+              - headers
+              - payload
+              - timestamp
+              - statusCode
+      required:
+        - success
+        - logs
+    PeerEvents:
+      description: ""
+      type: object
+      x-examples:
+        example-1:
+          success: true
+          analytics:
+            - clientSpecificId: "1"
+              events:
+                - event: PEER_JOINING
+                  time: "2021-10-13T17:01:12.747Z"
+                  details: {}
+                - event: PEER_LEAVING
+                  time: "2021-10-13T17:01:12.747Z"
+                  details:
+                    minutesConsumed: 30
+              totalMinutes: 30
+      properties:
+        success:
+          type: boolean
+          description: Execution status of the request made by the API call.
+        analytics:
+          type: array
+          uniqueItems: true
+          description: Array containing objects that contain analytics data grouped by `clientSpecificId`.
+          items:
+            type: object
+            description: Object containing analytics data grouped by `clientSpecificId`.
+            properties:
+              clientSpecificId:
+                type: string
+                description: ID provided at the time of generating auth token to add the participant to the meeting.
+              events:
+                type: array
+                uniqueItems: true
+                description: Array containing objects that define individual join and leave events for a participant.
+                items:
+                  type: object
+                  description: Object defining individual join and leave events for a participant.
+                  properties:
+                    event:
+                      type: string
+                      enum:
+                        - PEER_JOINING
+                        - PEER_LEAVING
+                      description: |-
+                        Name of the event.
+                        - `PEER_JOINING`: When a participant joins the meeting
+                        - `PEER_LEAVING`: When a participant leaves the meeting
+                    time:
+                      type: string
+                      pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
+                      description: Timestamp (in ISO 8601 format with UTC timezone) when the event occurred.
+                    details:
+                      type: object
+                      description: Object containing relevant details for the event.
+                      properties:
+                        minutesConsumed:
+                          type: integer
+                          description: Number of minutes consumed by the participant in the recently ended session.
+                  required:
+                    - event
+                    - time
+                    - details
+              totalMinutes:
+                type: integer
+                description: Total number of minutes consumed by the participant.
+            required:
+              - clientSpecificId
+              - events
+              - totalMinutes
+      required:
+        - success
+        - analytics
   securitySchemes:
-    api_key:
+    APIKEY:
       type: apiKey
       name: Authorization
       in: header
-x-readme:
-  explorer-enabled: true
-  proxy-enabled: true
-  samples-enabled: true
+  responses:
+    CreatePresetRole:
+      description: Success response
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/CreatePresetRoleResponse"
+          examples: {}
+    GenericFailure:
+      description: Failure response
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: "#/components/schemas/APIResponse"
+              - type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+    GetRoles:
+      description: Success response
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/GetRolesResponse"
+    CreatePreset:
+      description: Success response
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/CreatePresetResponse"
+    GetPresets:
+      description: Success response
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/GetPresetsResponse"
+    CreateWebhook:
+      description: Success response
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/CreateWebhookResponse"
+          examples: {}
+    GetWebhooks:
+      description: Success response
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/GetWebhooksResponse"
+    CreateRecording:
+      description: Success response
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/CreateRecordingResponse"
+    GetRecordings:
+      description: Success response
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/GetRecordingsResponse"
+    GetUsers:
+      description: Success response
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/GetUsersResponse"
+security:
+  - api_key: []
+tags:
+  - name: "Roles"
+  - name: "Presets"
+  - name: "Meetings"
+  - name: "Participants"
+  - name: "Recordings"
+  - name: "Webhooks"
+  - name: "Stats"
+  - name: "Team Management"
