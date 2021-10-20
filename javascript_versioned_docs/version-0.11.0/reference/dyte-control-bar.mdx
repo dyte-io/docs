@@ -1,0 +1,21 @@
+---
+sidebar_position: 10
+---
+
+# DyteControlBar
+
+## Methods
+
+| Method name  | Params (with data type)           | Use                                                                                                                         |
+| ------------ | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| addButton    | button: [ButtonProp](#buttonprop) | Adds a button with the given config to the control bar at the bottom and returns the index number of the newly added button |
+| removeButton | button: number                    | Removes the button with given index number from the bottom control bar                                                      |
+
+## ButtonProp
+
+| Property name | Data type   | Use                                                                                                                                                                  |
+| ------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| icon          | HTMLElement | The icon to show on the button                                                                                                                                       |
+| label         | string      | The text label to show on the button                                                                                                                                 |
+| position      | string      | Position of the button with respect to the button groups on the control bar - `left`, `center` and `right` (the button is always added to the end of chosen section) |
+| onClick       | Function    | Your handler for the click of this button                                                                                                                            |
