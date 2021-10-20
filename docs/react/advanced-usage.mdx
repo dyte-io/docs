@@ -54,19 +54,19 @@ You can optionally choose to subscribe to the error details, in case an error oc
 
 You can refer to [this section](#errors) for info on errors.
 
-## Control the meeting, and take meeting & participant actions
-
-The `Meeting` instance (referenced as `meeting` above) helps you interact with the meeting. You can take actions on the meeting as well as the participants. You can also setup custom controls to that interact with the meeting in certain ways that help you send events and messages across to other participants in the meeting. You can find the complete reference to the `Meeting` type [here](./reference/meeting). Read on to understand how to use these individual controls.
-
 ## Get the Dyte client version
 
 You can get the version of the Dyte client SDK being used to help with logging and debugging purposes.
 
 ```javascript
-let version = meeting.version;
+let version = DyteMeeting.version;
 ```
 
 sets the value of `version` to a semver compliant string.
+
+## Control the meeting, and take meeting & participant actions
+
+The `Meeting` instance (referenced as `meeting` above) helps you interact with the meeting. You can take actions on the meeting as well as the participants. You can also setup custom controls to that interact with the meeting in certain ways that help you send events and messages across to other participants in the meeting. You can find the complete reference to the `Meeting` type [here](./reference/meeting). Read on to understand how to use these individual controls.
 
 ## Get info about meeting's connection configuration
 
