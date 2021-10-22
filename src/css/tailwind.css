@@ -1,13 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=Fira+Sans:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=Source+Sans:wght@400;600;700&display=swap');
 
 @tailwind base;
 @tailwind utilities;
 @tailwind components;
-
-strong,
-b {
-  @apply font-extrabold;
-}
 
 @layer base {
   /* CSS Reset */
@@ -19,10 +14,6 @@ b {
     border-width: 0;
     border-style: solid;
     border-color: currentColor;
-  }
-
-  body {
-    @apply antialiased font-sans;
   }
 
   /**
@@ -45,7 +36,7 @@ b {
     --font-code: var(--ifm-font-family-monospace) !important;
     --font-mono: var(--ifm-font-family-monospace) !important;
 
-    --font-ui: 'Fira Sans', ui-sans-serif, system-ui, -apple-system,
+    --font-ui: 'Source Sans', ui-sans-serif, system-ui, -apple-system,
       BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
       'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
       'Segoe UI Symbol', 'Noto Color Emoji';
@@ -58,6 +49,8 @@ b {
     --ifm-background-color: #ffffff;
 
     --ifm-toc-border-color: var(--docs-color-border);
+
+    --doc-sidebar-width: 280px !important;
 
     /* Tailwind theming */
 
@@ -79,6 +72,9 @@ b {
     --color-canvas-100: var(--docs-color-background-100);
     --color-canvas-200: var(--docs-color-background-200);
     --color-canvas-300: var(--docs-color-background-300);
+
+    --docsearch-key-shadow: none !important;
+    --docsearch-key-gradient: #dcdcdc !important;
   }
 
   html[data-theme='dark'] {
@@ -86,6 +82,8 @@ b {
     --ifm-tabs-color-active-border: #1a90ff;
     --ifm-tabs-color-active: #1a90ff;
     --ifm-color-primary: #1a90ff;
+    --ifm-menu-color: #999 !important;
+    --ifm-toc-link-color: #999 !important;
 
     --docs-color-primary-100: #1a90ff;
 
@@ -107,6 +105,9 @@ b {
     --color-canvas-100: var(--docs-color-background-100);
     --color-canvas-200: var(--docs-color-background-200);
     --color-canvas-300: var(--docs-color-background-300);
+
+    --docsearch-key-gradient: #696969 !important;
+    --docsearch-searchbox-background: #2a2a2a !important;
   }
 }
 
@@ -131,11 +132,17 @@ b {
   }
 }
 
+/* Docusaurus styles */
+
 .docusaurus-highlight-code-line {
   background-color: #353535;
   display: block;
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
+}
+
+.menu {
+  @apply !p-0 overflow-y-auto;
 }
 
 .menu > .menu__list > .menu__list-item:first-child {
@@ -159,15 +166,15 @@ div[class^='sidebar_']
   background: rgba(33, 96, 253, 0.16);
 }
 
-.menu {
-  @apply !p-0 overflow-y-auto;
-}
-
 /* Optional style for only one link which acts as nav section header */
 
 .menu > .menu__list > .menu__list-item > .menu__link:only-child {
   @apply text-base normal-case tracking-normal;
   color: var(--ifm-menu-color);
+}
+
+.menu > .menu__list > .menu__list-item > .menu__link {
+  @apply mt-3 text-sm text-text-100 font-normal;
 }
 
 .menu > .menu__list > .menu__list-item > .menu__link--active:only-child {
@@ -233,9 +240,40 @@ hr {
   @apply text-sm font-medium;
 }
 
-/* Styles for @stoplight/elements */
+.DocSearch.DocSearch-Button {
+  @apply rounded-full md:rounded-[4px];
+}
 
-/* Make stoplight elements responsive */
+/* Fixes hidden dropdown in mobile sidebar */
+.footer__link-separator,
+.navbar__item {
+  display: flex !important;
+}
+
+.menu > .menu__list > .menu__list-item > .menu__link:only-child {
+  font-size: 14px;
+  margin: 0;
+}
+
+.menu > .menu__list > .menu__list-item {
+  margin-bottom: 0rem;
+  line-height: 1rem;
+}
+
+.theme-doc-version-badge {
+  @apply bg-background-100 text-text-100 border-border;
+}
+
+.DocSearch-Button-Key {
+  box-shadow: none !important;
+  --docsearch-muted-color: rgba(0, 0, 0, 0.87) !important;
+}
+
+html[data-theme='dark'] .DocSearch-Button-Key {
+  --docsearch-muted-color: rgba(255, 255, 255, 0.87) !important;
+}
+
+/* Styles for @stoplight/elements */
 
 .sl-elements a {
   color: inherit !important;
@@ -294,11 +332,6 @@ hr {
   @apply !text-primary-100;
 }
 
-.sl-elements .token.boolean,
-.sl-elements .token.number {
-  @apply !text-yellow-700;
-}
-
 html[data-theme='dark'] .sl-elements .token.boolean,
 html[data-theme='dark'] .sl-elements .token.number {
   @apply !text-yellow-400;
@@ -332,6 +365,8 @@ html[data-theme='dark'] .sl-text-warning {
   @apply !text-red-500;
 }
 
+/* Scrollbar styles */
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
@@ -364,15 +399,32 @@ html[data-theme='dark'] .sl-text-warning {
   scrollbar-width: none;
 }
 
-.DocSearch.DocSearch-Button {
-  @apply rounded-full md:rounded-[4px];
-}
-
-/* Fixes hidden dropdown in mobile sidebar */
-.footer__link-separator, .navbar__item {
-  display: block !important;
-}
-
 .container {
   @apply px-4 lg:pl-7;
+}
+
+/* Markdown styles */
+
+.markdown {
+  --ifm-h2-vertical-rhythm-top: 3;
+  --ifm-h3-vertical-rhythm-top: 3;
+  --ifm-heading-vertical-rhythm-bottom: 1.5;
+  @apply antialiased font-sans leading-7;
+}
+
+.markdown h1:first-child {
+  margin-top: 1rem;
+}
+
+code {
+  @apply px-1;
+}
+
+strong,
+b {
+  @apply font-extrabold;
+}
+
+.prism-code > code {
+  font-size: 14px;
 }
