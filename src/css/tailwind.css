@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=Source+Sans:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=Source+Sans:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind utilities;
@@ -41,8 +41,6 @@
       'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
       'Segoe UI Symbol', 'Noto Color Emoji';
     --font-prose: var(--font-ui);
-    --fs-paragraph: 16px !important;
-    --fs-code: 16px !important;
 
     --ifm-heading-font-family: var(--font-ui);
 
@@ -149,9 +147,13 @@
   margin-top: 16px;
 }
 
+.menu {
+  @apply font-light;
+}
+
 /* Sidebar nav header  */
 .menu > .menu__list > .menu__list-item > .menu__link {
-  @apply mb-1 text-xs tracking-normal uppercase text-text-100 font-medium;
+  @apply mb-1 text-xs tracking-normal uppercase text-text-100 font-light;
 }
 
 .menu > .menu__list > .menu__list-item {
@@ -274,6 +276,20 @@ html[data-theme='dark'] .DocSearch-Button-Key {
 }
 
 /* Styles for @stoplight/elements */
+
+.sl-elements {
+  --fs-paragraph: 18px !important;
+  --fs-code: 16px !important;
+  @apply !text-base;
+}
+
+.sl-elements-api > .sl-px-24 {
+  @apply pl-14 pr-10;
+}
+
+.sl-text-base {
+  @apply !text-sm;
+}
 
 .sl-elements a {
   color: inherit !important;
