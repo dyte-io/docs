@@ -2704,6 +2704,8 @@ components:
           errMessage: null
           startedTime: "2021-10-13T14:15:22Z"
           stoppedTime: "2021-10-13T14:45:22Z"
+          invokedTime: "2021-10-13T14:15:22Z"
+          fileSize: 2134.32
           id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
       properties:
         status:
@@ -2753,6 +2755,15 @@ components:
           format: date-time
           pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
           description: Timestamp (in ISO 8601 format with UTC timezone) when the recording was stopped.
+        invokedTime:
+          type: string
+          format: date-time
+          pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
+          description: Timestamp (in ISO 8601 format with UTC timezone) when the recording was invoked.
+        fileSize:
+          type: number
+          format: double
+          description: Recording file size in MB
         id:
           type: string
           format: uuid
