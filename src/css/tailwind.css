@@ -284,7 +284,7 @@ html[data-theme='dark'] .DocSearch-Button-Key {
 }
 
 .sl-elements-api > .sl-px-24 {
-  @apply pl-14 pr-10;
+  @apply pl-10 pr-6;
 }
 
 .sl-text-base {
@@ -322,6 +322,26 @@ html[data-theme='dark'] .DocSearch-Button-Key {
   border-right: 2px solid var(--ifm-color-primary);
   color: var(--ifm-color-primary);
   background: rgba(33, 96, 253, 0.16);
+}
+
+.sl-elements {
+  scrollbar-width: thin;
+}
+
+.HttpOperation > .sl-flex.sl-mt-12 > .sl-flex-1 > div:not(.sl-prose) {
+  @apply p-4 pt-6 bg-background-100 rounded-lg;
+}
+
+.sl-absolute.sl--left-4 {
+  @apply static pr-2;
+}
+
+.sl-elements-api > div:first-child {
+  @apply !pl-0 !max-w-[240px];
+}
+
+.sl-elements-api > div:last-child > div {
+  @apply mx-auto;
 }
 
 /**
@@ -383,23 +403,24 @@ html[data-theme='dark'] .sl-text-warning {
 
 /* Scrollbar styles */
 
-/* width */
 ::-webkit-scrollbar {
-  width: 10px;
+  border-radius: 8px;
+  width: 8px;
+  height: 8px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
-  background: var(--docs-color-background);
+  border-radius: 6px;
 }
 
-/* Handle */
+::-webkit-scrollbar-corner {
+}
+
 ::-webkit-scrollbar-thumb {
   background: var(--docs-color-border);
   border-radius: 6px;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: var(--docs-color-text-100);
 }
