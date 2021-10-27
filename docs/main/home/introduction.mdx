@@ -8,18 +8,18 @@ Dyte provides the easiest way to add real-time communications using video and au
 
 <!--truncate-->
 
-import Link from '@docusaurus/Link';
-import GridLink from '@site/src/components/GridLink';
-import GetStartedCard from '@site/src/components/GetStartedCard';
+import Link from "@docusaurus/Link";
+import GridLink from "@site/src/components/GridLink";
+import GetStartedCard from "@site/src/components/GetStartedCard";
 import {
   DeviceTabletIcon,
   CodeIcon,
   QuestionMarkCircleIcon,
-} from '@heroicons/react/solid';
+} from "@heroicons/react/solid";
 import {
   Discord as DiscordIcon,
   Github as GithubIcon,
-} from '@styled-icons/boxicons-logos';
+} from "@styled-icons/boxicons-logos";
 import {
   ReactIcon,
   FlutterIcon,
@@ -32,8 +32,8 @@ import {
   KotlinIcon,
   SwiftIcon,
   ReactNativeIcon,
-} from '@site/src/assets/icons';
-import { HashChange } from '@site/src/components/HashChange';
+} from "@site/src/assets/icons";
+import { HashChange } from "@site/src/components/HashChange";
 
 <!-- Hack for highlighting menu links with anchor tags -->
 
@@ -45,9 +45,9 @@ import { HashChange } from '@site/src/components/HashChange';
     if (topLink) {
       topLink.onclick = (e) => {
         document
-          .querySelectorAll('a.menu__link')
-          ?.forEach((link) => link?.classList.remove('menu__link--active'));
-        e.target.classList.add('menu__link--active');
+          .querySelectorAll("a.menu__link")
+          ?.forEach((link) => link?.classList.remove("menu__link--active"));
+        e.target.classList.add("menu__link--active");
       };
     }
   }}
@@ -55,12 +55,12 @@ import { HashChange } from '@site/src/components/HashChange';
     const { hash } = window.location;
     if (hash < 2) return;
     document
-      .querySelectorAll('a.menu__link')
-      ?.forEach((link) => link.classList.remove('menu__link--active'));
+      .querySelectorAll("a.menu__link")
+      ?.forEach((link) => link.classList.remove("menu__link--active"));
     let link =
       document.querySelector(`a.menu__link[href="${hash}"]`) ??
       document.querySelector('a.menu__link[href="/docs/home/introduction"]');
-    link?.classList.add('menu__link--active');
+    link?.classList.add("menu__link--active");
   }}
 />
 

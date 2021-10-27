@@ -17,7 +17,7 @@ Dyte offers a host of customizations for the UI of meetings, some of which also 
         authToken: `authToken`
     }}
     uiConfig={uiConfigOptions}
-    >
+>
 ```
 
 2. call the `updateUIConfig` method on [`meeting` instance](./reference/meeting) and pass the [`uiConfigOptions`](./reference/dyte-ui-config) as a parameter to this call
@@ -162,7 +162,7 @@ Use `meeting.grid.setOverlay(ReactNode)` to set overlay on top of the entire vid
 
 ```javascript
 meeting.grid.setOverlay(
-  '< canvas id="reaction-1" style={{width:"100%",height:"100%"}} />'
+  '<canvas id="reaction-1" style="width: 100%; height: 100%;" />'
 );
 ```
 
