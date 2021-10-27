@@ -1,7 +1,6 @@
 import React from 'react';
 import Head from '@docusaurus/Head';
 import BrowserOnly from '@docusaurus/BrowserOnly';
-import '@stoplight/elements/styles.min.css';
 
 import Layout from '@site/src/theme/Layout';
 
@@ -12,6 +11,11 @@ export default function APIPage() {
         <title>API Reference | Dyte Docs</title>
         <meta name="description" content="Dyte REST API Reference" />
         <meta name="og:description" content="Dyte REST API Reference" />
+        {/* Loading styles for elements this way so it doesn't interfere with other styles */}
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/@stoplight/elements@7.3.7/styles.min.css"
+        />
       </Head>
       <BrowserOnly
         fallback={
