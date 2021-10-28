@@ -12,8 +12,8 @@ import {
   useLatestVersion,
   useActiveDocContext,
 } from '@theme/hooks/useDocs';
-import {useDocsPreferredVersion} from '@docusaurus/theme-common';
-import {translate} from '@docusaurus/Translate';
+import { useDocsPreferredVersion } from '@docusaurus/theme-common';
+import { translate } from '@docusaurus/Translate';
 
 const getVersionMainDoc = (version) =>
   version.docs.find((doc) => doc.id === version.mainDocId);
@@ -29,9 +29,8 @@ export default function DocsVersionDropdownNavbarItem({
   const activeDocContext = useActiveDocContext(docsPluginId);
   const versions = useVersions(docsPluginId);
   const latestVersion = useLatestVersion(docsPluginId);
-  const {preferredVersion, savePreferredVersionName} = useDocsPreferredVersion(
-    docsPluginId,
-  );
+  const { preferredVersion, savePreferredVersionName } =
+    useDocsPreferredVersion(docsPluginId);
 
   function getItems() {
     const versionLinks = versions.map((version) => {

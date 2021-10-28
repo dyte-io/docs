@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect } from '@docusaurus/router';
 import Head from '@docusaurus/Head';
 
-export default function Homepage(props) {
+export default function Homepage() {
   return (
     <>
       <Head>
@@ -10,15 +10,15 @@ export default function Homepage(props) {
         <meta property="og:title" content="Dyte Docs" />
         <meta
           property="og:description"
-          content="Real-time audio & video SDKs, ready to launch 🚀"
+          content="Real-time audio &amp; video SDKs, ready to launch 🚀"
         />
         <meta
           property="description"
-          content="Real-time audio & video SDKs, ready to launch 🚀"
+          content="Real-time audio &amp; video SDKs, ready to launch 🚀"
         />
         <link rel="canonical" href="https://docs.dyte.io" />
       </Head>
-      <Redirect to="/docs/home/introduction" />;
+      <Redirect to="/docs/home/introduction" />
     </>
   );
 }

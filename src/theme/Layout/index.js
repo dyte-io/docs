@@ -13,11 +13,11 @@ import Footer from '@theme/Footer';
 import LayoutProviders from '@theme/LayoutProviders';
 import LayoutHead from '@theme/LayoutHead';
 import useKeyboardNavigation from '@theme/hooks/useKeyboardNavigation';
-import {ThemeClassNames} from '@docusaurus/theme-common';
+import { ThemeClassNames } from '@docusaurus/theme-common';
 import './styles.css';
 
 function Layout(props) {
-  const {children, noFooter, wrapperClassName, pageClassName} = props;
+  const { children, noFooter, wrapperClassName, pageClassName } = props;
   useKeyboardNavigation();
   return (
     <LayoutProviders>
@@ -33,8 +33,9 @@ function Layout(props) {
         className={clsx(
           ThemeClassNames.wrapper.main,
           wrapperClassName,
-          pageClassName,
-        )}>
+          pageClassName
+        )}
+      >
         {children}
       </div>
 

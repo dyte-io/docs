@@ -29,7 +29,10 @@ const GetStartedCard = ({
         >
           {getStartedText}
         </Link>
-        <Link to={repoLink} className="text-white hover:text-gray-300 transition z-[1]">
+        <Link
+          to={repoLink}
+          className="text-white hover:text-gray-300 transition z-[1]"
+        >
           <Icon className="h-8 z-[1]" />
         </Link>
       </div>

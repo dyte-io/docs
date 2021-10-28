@@ -5,27 +5,27 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React, {useState, useRef, useCallback, useMemo} from 'react';
-import {createPortal} from 'react-dom';
+import React, { useState, useRef, useCallback, useMemo } from 'react';
+import { createPortal } from 'react-dom';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import {useHistory} from '@docusaurus/router';
-import {useBaseUrlUtils} from '@docusaurus/useBaseUrl';
+import { useHistory } from '@docusaurus/router';
+import { useBaseUrlUtils } from '@docusaurus/useBaseUrl';
 import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
 import useSearchQuery from '@theme/hooks/useSearchQuery';
-import {DocSearchButton, useDocSearchKeyboardEvents} from '@docsearch/react';
+import { DocSearchButton, useDocSearchKeyboardEvents } from '@docsearch/react';
 import useAlgoliaContextualFacetFilters from '@theme/hooks/useAlgoliaContextualFacetFilters';
-import {translate} from '@docusaurus/Translate';
+import { translate } from '@docusaurus/Translate';
 import styles from './styles.module.css';
 
 let DocSearchModal = null;
 
-function Hit({hit, children}) {
+function Hit({ hit, children }) {
   return <Link to={hit.url}>{children}</Link>;
 }
 
-function ResultsFooter({state, onClose}) {
-  const {generateSearchPageLink} = useSearchQuery();
+function ResultsFooter({ state, onClose }) {
+  const { generateSearchPageLink } = useSearchQuery();
 
   return (
     <Link to={generateSearchPageLink(state.query)} onClick={onClose}>
@@ -34,8 +34,8 @@ function ResultsFooter({state, onClose}) {
   );
 }
 
-function DocSearch({contextualSearch, ...props}) {
-  const {siteMetadata} = useDocusaurusContext();
+function DocSearch({ contextualSearch, ...props }) {
+  const { siteMetadata } = useDocusaurusContext();
 
   const contextualSearchFacetFilters = useAlgoliaContextualFacetFilters();
 
@@ -53,7 +53,7 @@ function DocSearch({contextualSearch, ...props}) {
     facetFilters,
   };
 
-  const {withBaseUrl} = useBaseUrlUtils();
+  const { withBaseUrl } = useBaseUrlUtils();
   const history = useHistory();
   const searchContainer = useRef(null);
   const searchButtonRef = useRef(null);
@@ -69,7 +69,7 @@ function DocSearch({contextualSearch, ...props}) {
       import('@docsearch/react/modal'),
       import('@docsearch/react/style'),
       import('./styles.css'),
-    ]).then(([{DocSearchModal: Modal}]) => {
+    ]).then(([{ DocSearchModal: Modal }]) => {
       DocSearchModal = Modal;
     });
   }, []);
@@ -79,7 +79,7 @@ function DocSearch({contextualSearch, ...props}) {
       searchContainer.current = document.createElement('div');
       document.body.insertBefore(
         searchContainer.current,
-        document.body.firstChild,
+        document.body.firstChild
       );
       setIsOpen(true);
     });
@@ -97,11 +97,11 @@ function DocSearch({contextualSearch, ...props}) {
         setInitialQuery(event.key);
       });
     },
-    [importDocSearchModalIfNeeded, setIsOpen, setInitialQuery],
+    [importDocSearchModalIfNeeded, setIsOpen, setInitialQuery]
   );
 
   const navigator = useRef({
-    navigate({itemUrl}) {
+    navigate({ itemUrl }) {
       history.push(itemUrl);
     },
   }).current;
@@ -123,19 +123,19 @@ function DocSearch({contextualSearch, ...props}) {
 
   const resultsFooterComponent = useMemo(
     () => (footerProps) => <ResultsFooter {...footerProps} onClose={onClose} />,
-    [onClose],
+    [onClose]
   );
 
   const transformSearchClient = useCallback(
     (searchClient) => {
       searchClient.addAlgoliaAgent(
         'docusaurus',
-        siteMetadata.docusaurusVersion,
+        siteMetadata.docusaurusVersion
       );
 
       return searchClient;
     },
-    [siteMetadata.docusaurusVersion],
+    [siteMetadata.docusaurusVersion]
   );
 
   useDocSearchKeyboardEvents({
@@ -193,14 +193,14 @@ function DocSearch({contextualSearch, ...props}) {
             {...props}
             searchParameters={searchParameters}
           />,
-          searchContainer.current,
+          searchContainer.current
         )}
     </>
   );
 }
 
 function SearchBar() {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
   return <DocSearch {...siteConfig.themeConfig.algolia} />;
 }
 

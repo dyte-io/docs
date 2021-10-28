@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {useHistory, useLocation} from '@docusaurus/router';
+import { useHistory, useLocation } from '@docusaurus/router';
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
@@ -14,7 +14,7 @@ const SEARCH_PARAM_QUERY = 'q';
 function useSearchQuery() {
   const history = useHistory();
   const location = useLocation();
-  const {siteConfig: {baseUrl} = {}} = useDocusaurusContext();
+  const { siteConfig: { baseUrl } = {} } = useDocusaurusContext();
 
   return {
     searchValue:

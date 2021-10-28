@@ -16,4 +16,4 @@ export const SwiftIcon = (props) => {
       />
     </svg>
   );
-}
+};

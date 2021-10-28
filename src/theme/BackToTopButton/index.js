@@ -4,9 +4,9 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import React, {useRef, useState} from 'react';
+import React, { useRef, useState } from 'react';
 import clsx from 'clsx';
-import {useLocation} from '@docusaurus/router';
+import { useLocation } from '@docusaurus/router';
 import useScrollPosition from '@theme/hooks/useScrollPosition';
 import styles from './styles.module.css';
 const threshold = 300; // Not all have support for smooth scrolling (particularly Safari mobile iOS)
@@ -60,10 +60,10 @@ function useSmoothScrollToTop() {
 
 function BackToTopButton() {
   const location = useLocation();
-  const {smoothScrollTop, cancelScrollToTop} = useSmoothScrollToTop();
+  const { smoothScrollTop, cancelScrollToTop } = useSmoothScrollToTop();
   const [show, setShow] = useState(false);
   useScrollPosition(
-    ({scrollY: scrollTop}, lastPosition) => {
+    ({ scrollY: scrollTop }, lastPosition) => {
       // No lastPosition means component is just being mounted.
       // Not really a scroll event from the user, so we ignore it
       if (!lastPosition) {
@@ -93,7 +93,7 @@ function BackToTopButton() {
         setShow(false);
       }
     },
-    [location],
+    [location]
   );
   return (
     <button
@@ -101,7 +101,8 @@ function BackToTopButton() {
         [styles.backToTopButtonShow]: show,
       })}
       type="button"
-      onClick={() => smoothScrollTop()}>
+      onClick={() => smoothScrollTop()}
+    >
       <svg viewBox="0 0 24 24" width="28">
         <path
           d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"
