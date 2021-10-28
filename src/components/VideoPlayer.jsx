@@ -1,9 +1,10 @@
 import React from 'react';
+import clsx from 'clsx';
 
-const VideoPlayer = ({ src, ...rest }) => {
+const VideoPlayer = ({ src, mobile, ...rest }) => {
   return (
     <video
-      className="dyte-video-showcase"
+      className={clsx("dyte-video-showcase", mobile && 'mobile')}
       src={src}
       autoPlay
       loop

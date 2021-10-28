@@ -4,6 +4,8 @@ sidebar_position: 4
 
 # Customize the meeting UI
 
+import VideoPlayer from '@site/src/components/VideoPlayer';
+
 Dyte offers a host of customizations for the UI of meetings, some of which also defines the interactions the participants can have within a meeting room. While the initial values for these options are picked up from the [`preset`](/docs/home/introduction#glossary) used to generate the `authToken`, you can override them at the client end based on specific use cases or events. There are 2 ways to update the config:
 
 1. pass the config options at the time of initiating a meeting.
@@ -30,7 +32,7 @@ Described below are various different options that you can customize in a meetin
 
 Here is a pictorial representation of all the config options defined below.
 
-![Meeting UI screenshot with labeled parts](/meeting-ui-mobile.png)
+![meeting UI screenshot with labeled parts](/meeting-ui.png)
 
 ## Set your logo in the meeting room
 
@@ -59,6 +61,8 @@ colors: {
     videoBackground: '#1A1A1A'
 }
 ```
+
+<VideoPlayer src="/ui-customizations/mobile/mobile-themes.mp4" mobile />
 
 ## Adjust the meeting size to a custom container
 
@@ -95,6 +99,8 @@ You can hide the bottom control bar by setting `controlBar` to `false` in config
 controlBar: true;
 ```
 
+<VideoPlayer src="/ui-customizations/mobile/mobile-control-bar.mp4" mobile />
+
 ## Hide individual controls from the bottom control bar
 
 You can hide individual controls from the bottom control bar by setting their respective options to `false` in the config. The default value is `true` for all controls, which means all the controls are visible.
@@ -112,6 +118,11 @@ controlBarElements: {
 }
 ```
 
+<VideoPlayer
+  src="/ui-customizations/mobile/mobile-control-bar-elements.mp4"
+  mobile
+/>
+
 ## Hide the header bar
 
 You can hide the header bar by setting `header` to `false` in config. The default value is `true`, which means the header is visible.
@@ -119,6 +130,8 @@ You can hide the header bar by setting `header` to `false` in config. The defaul
 ```tsx
 header: true;
 ```
+
+<VideoPlayer src="/ui-customizations/mobile/mobile-header.mp4" mobile />
 
 ## Hide individual controls from the header bar
 

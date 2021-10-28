@@ -4,6 +4,8 @@ sidebar_position: 4
 
 # Customize the meeting UI
 
+import VideoPlayer from '@site/src/components/VideoPlayer';
+
 Dyte offers a host of customizations for the UI of meetings, some of which also defines the interactions the participants can have within a meeting room. While the initial values for these options are picked up from the [`preset`](/docs/home/introduction#glossary) used to generate the `authToken`, you can override them at the client end based on specific use cases or events.
 
 Call the `updateUIConfig` method on [`DyteMeeting` instance](./reference/meeting) and pass the [`uiConfigOptions`](./reference/dyte-ui-config) as a stringified JSON parameter to this call.
@@ -46,6 +48,8 @@ The default values for each of these are shown in the below example. Remember to
 }
 ```
 
+<VideoPlayer src="/ui-customizations/mobile/mobile-themes.mp4" mobile />
+
 <!-- ## Adjust the meeting size to a custom container
 
 The default behaviour of a meeting on Dyte is to take up the full viewport. However, if you want to customize the size of a meeting to fit within a certain container or `div`, you can do so by specifying the `width` and `height` under `dimensions` as numerical values which are taken as pixels (`px` in CSS). Remember to specify both, otherwise this feature won't work.
@@ -81,6 +85,8 @@ You can hide the bottom control bar by setting `controlBar` to `false` in config
 "controlBar": true
 ```
 
+<VideoPlayer src="/ui-customizations/mobile/mobile-control-bar.mp4" mobile />
+
 ## Hide individual controls from the bottom control bar
 
 You can hide individual controls from the bottom control bar by setting their respective options to `false` in the config. The default value is `true` for all controls, which means all the controls are visible.
@@ -98,6 +104,11 @@ You can hide individual controls from the bottom control bar by setting their re
 }
 ```
 
+<VideoPlayer
+  src="/ui-customizations/mobile/mobile-control-bar-elements.mp4"
+  mobile
+/>
+
 ## Hide the header bar
 
 You can hide the header bar by setting `header` to `false` in config. The default value is `true`, which means the header is visible.
@@ -105,6 +116,8 @@ You can hide the header bar by setting `header` to `false` in config. The defaul
 ```json
 "header": true
 ```
+
+<VideoPlayer src="/ui-customizations/mobile/mobile-header.mp4" mobile />
 
 ## Hide individual controls from the header bar
 
