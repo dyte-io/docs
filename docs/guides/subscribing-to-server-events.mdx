@@ -1,0 +1,380 @@
+---
+sidebar_position: 1
+---
+
+# Subscribing to server events
+
+At Dyte, we run a webhook service for you to be able to subscribe to server events. These webhook events enable you to take certain server actions based on Dyte meeting events and state changes.
+
+## Setting a webhook
+
+There are 2 ways to manage Dyte webhooks for your organization - using APIs and using our dev portal.
+
+### Using webhook APIs
+
+You can make simple REST API calls to add, remove or edit a webhook for your organization. Please refer to [webhooks](/api#/operations/create_webhook) section under [API reference](/api) to get more details on these APIs.
+
+### Using Dyte dev portal
+
+On the dev portal, you can navigate to the webhook section and click on the "Create a new webhook" card.
+
+On clicking this, you will get to the interface that helps you add a webhook for your organization. You can fill in the details and click the "Create" button to save and create the webhook.
+
+Once created, you can view the webhook details by clicking on the relevant card. You can also click the "Edit" button on the details screen to edit an existing webhook.
+
+## Webhooks
+
+Each webhook request is an HTTPS `POST` request to the URL provided by you, where the details about the event are sent in the message body in `JSON` format and we expect an HTTP status of `200 OK` in response.
+
+### Supported events
+
+We currently support notifications for the following event via webhooks.
+
+- meeting.started
+- meeting.ended
+- meeting.participantJoined
+- meeting.participantLeft
+- recording.statusUpdate
+
+### Interfaces
+
+In order to simplify the webhook structure, we start by defining some types / interfaces / entities which are typically used in the webhook requests. These will later be used as references to explain the webhook request bodies.
+
+#### Meeting Interface
+
+```ts
+interface Meeting {
+  organizedBy: string;
+  id: string;
+  title: string;
+  roomName: string;
+  status: string;
+  createdAt: string;
+}
+```
+
+#### Participant Interface
+
+```ts
+interface Participant {
+  userDisplayName: string;
+  peerId: string;
+  clientSpecificId: string;
+}
+```
+
+#### Recording Interface
+
+```ts
+interface Recording {
+  recordingId: string;
+  status: "INVOKED" | "RECORDING" | "UPLOADING" | "UPLOADED" | "ERRORED";
+  startedTime: string;
+  stoppedTime: string;
+  downloadUrl?: string;
+  downloadUrlExpiry?: string;
+  errMessage?: string;
+  invokedTime: string;
+  filesize?: double;
+}
+```
+
+### Verifying a webhook call using signature
+
+Each webhook request is signed using Dyte's private key, and the same can be verified at your end by following the below steps.
+
+1. **Get Dyte's public key**: This can be done by making a `GET` request to this URL - `https://api.cluster.dyte.in/.well-known/webhooks.json`.
+
+   ```shell
+   curl -X GET "https://api.cluster.dyte.in/.well-known/webhooks.json"
+   ```
+
+2. **Check for the signature header**: Each incoming request should have a custom `dyte-signature` header. This is the signature value that you would be verifying in the next step.
+
+3. **Verify the signature**: The signature value is based on `RSA-SHA256` digest of the payload. You can calculate the same at your end, and if the value matches the one supplied in the header as described by previous step, you should consider the webhook to be originating from the correct server. For example, you can do the following:
+
+   ```js
+   const signature = req.headers["dyte-signature"];
+   const payload = req.body;
+
+   const isVerified = crypto.verify(
+     "RSA-SHA256",
+     Buffer.from(JSON.stringify(payload)),
+     dytePublicKey,
+     Buffer.from(signature, "base64")
+   );
+   ```
+
+:::tip JSON Stringification
+Few languages like Python, and maybe if you are using a specific library for JSON processing, your `JSON.stringify` results may not be consistent. Please make sure that there are no such quirks as spaces in between the stringified JSON before trying to verify the webhook signature.
+:::
+
+## Event details and descriptions
+
+In the following sections, we describe each event and the kind of data that is sent along with the webhook.
+
+### meeting.started
+
+This event is fired when the first participant joins a meeting.
+
+#### Structure of webhook body
+
+```ts
+interface MeetingCreated {
+  event: "meeting.started";
+  meeting: Meeting;
+}
+```
+
+#### Sample webhook body
+
+```json
+{
+  "event": "meeting.started",
+  "meeting": {
+    "id": "cae39473-ef23-4ca2-a9e9-98f1509354f2",
+    "title": null,
+    "roomName": "testing-room",
+    "status": "LIVE",
+    "createdAt": "2021-02-09T10:07:11.675Z",
+    "organizedBy": "myOrganization"
+  }
+}
+```
+
+### meeting.ended
+
+This event is fired 2 seconds after all the participants leave the meeting. We add a 2-second delay to make sure we don't end a meeting due to disconnects.
+
+#### Structure of webhook body
+
+```ts
+interface MeetingEnded {
+  event: "meeting.ended";
+  meeting: Meeting;
+}
+```
+
+#### Sample webhook body
+
+```json
+{
+  "event": "meeting.ended",
+  "meeting": {
+    "id": "cae39473-ef23-4ca2-a9e9-98f1509354f2",
+    "title": null,
+    "roomName": "testing-room",
+    "status": "LIVE",
+    "createdAt": "2021-02-09T10:07:11.675Z",
+    "organizedBy": "myOrganization"
+  }
+}
+```
+
+### meeting.participantJoined
+
+This event is fired whenever a participant joins a meeting.
+
+#### Structure of webhook body
+
+```ts
+interface MeetingParticipantJoined {
+  event: "meeting.participantJoined";
+  meeting: Meeting;
+  participant: Participant;
+}
+```
+
+#### Sample webhook body
+
+```json
+{
+  "event": "meeting.participantJoined",
+  "meeting": {
+    "id": "cae39473-ef23-4ca2-a9e9-98f1509354f2",
+    "title": null,
+    "roomName": "testing-room",
+    "status": "LIVE",
+    "createdAt": "2021-02-09T10:07:11.675Z",
+    "organizedBy": "myOrganization"
+  },
+  "participant": {
+    "userDisplayName": "Rohan",
+    "peerId": "7eef23c6-1985-492b-9b95-99bac37b60d7",
+    "clientSpecificId": "a6b2ac87-6f45-46d9-b48a-7e9ccdfd7517"
+  }
+}
+```
+
+### meeting.participantLeft
+
+This event is fired whenever a participant leaves a meeting. This event is also fired when a participant gets disconnected.
+
+#### Structure of webhook body
+
+```ts
+interface MeetingParticipantLeft {
+  event: "meeting.participantLeft";
+  meeting: Meeting;
+  participant: Participant;
+}
+```
+
+#### Sample webhook body
+
+```json
+{
+  "event": "meeting.participantLeft",
+  "meeting": {
+    "id": "cae39473-ef23-4ca2-a9e9-98f1509354f2",
+    "title": null,
+    "roomName": "testing-room",
+    "status": "LIVE",
+    "createdAt": "2021-02-09T10:07:11.675Z",
+    "organizedBy": "myOrganization"
+  },
+  "participant": {
+    "userDisplayName": "Rohan",
+    "peerId": "7eef23c6-1985-492b-9b95-99bac37b60d7",
+    "clientSpecificId": "a6b2ac87-6f45-46d9-b48a-7e9ccdfd7517"
+  }
+}
+```
+
+### recording.statusUpdate
+
+This event is fired whenever there is a status update for a meeting recording. There are five such statuses for now:
+
+- `INVOKED`: The recording function has been invoked and will start recording the meeting very shortly.
+- `RECORDING`: The meeting is currently being recorded.
+- `UPLOADING`: The recording has been stopped and the file is being uploaded to cloud storage. The storage would be Dyte's if no storage parameters are passed in the recording API call.
+- `UPLOADED`: The recording file upload is complete.
+- `ERRORED`: There was an error while recording the meeting and the file wouldn't be available.
+
+#### Structure of webhook body
+
+```ts
+interface RecordingStatusUpdate {
+  event: "recording.statusUpdate";
+  meeting: Meeting;
+  recording: Recording;
+}
+```
+
+#### Sample webhook body
+
+##### Recording status = `INVOKED`
+
+```json
+{
+  "event": "recording.statusUpdate",
+  "meeting": {
+    "id": "cae39473-ef23-4ca2-a9e9-98f1509354f2",
+    "title": null,
+    "roomName": "testing-room",
+    "status": "LIVE",
+    "createdAt": "2021-02-09T10:07:11.675Z",
+    "organizedBy": "myOrganization"
+  },
+  "recording": {
+    "recordingId": "7a789a2d-1142-4be3-a208-4d25a75663e7",
+    "status": "INVOKED",
+    "invokedTime": "2021-02-01T10:08:21.917Z"
+  }
+}
+```
+
+##### Recording status = `RECORDING`
+
+```json
+{
+  "event": "recording.statusUpdate",
+  "meeting": {
+    "id": "cae39473-ef23-4ca2-a9e9-98f1509354f2",
+    "title": null,
+    "roomName": "testing-room",
+    "status": "LIVE",
+    "createdAt": "2021-02-09T10:07:11.675Z",
+    "organizedBy": "myOrganization"
+  },
+  "recording": {
+    "recordingId": "7a789a2d-1142-4be3-a208-4d25a75663e7",
+    "status": "RECORDING",
+    "invokedTime": "2021-02-01T10:08:21.917Z",
+    "startedTime": "2021-02-01T10:08:22.917Z"
+  }
+}
+```
+
+##### Recording status = `UPLOADING`
+
+```json
+{
+  "event": "recording.statusUpdate",
+  "meeting": {
+    "id": "cae39473-ef23-4ca2-a9e9-98f1509354f2",
+    "title": null,
+    "roomName": "testing-room",
+    "status": "LIVE",
+    "createdAt": "2021-02-09T10:07:11.675Z",
+    "organizedBy": "myOrganization"
+  },
+  "recording": {
+    "recordingId": "7a789a2e-1141-4bd3-a908-4d30a75773e7",
+    "status": "UPLOADING",
+    "invokedTime": "2021-02-01T10:08:21.917Z",
+    "startedTime": "2021-02-01T10:08:21.917Z",
+    "stoppedTime": "2021-02-01T10:08:21.917Z",
+    "filesize": 123.45
+  }
+}
+```
+
+##### Recording status = `UPLOADED`
+
+```json
+{
+  "event": "recording.statusUpdate",
+  "meeting": {
+    "id": "cae39473-ef23-4ca2-a9e9-98f1509354f2",
+    "title": null,
+    "roomName": "testing-room",
+    "status": "LIVE",
+    "createdAt": "2021-02-09T10:07:11.675Z",
+    "organizedBy": "myOrganization"
+  },
+  "recording": {
+    "recordingId": "7a789a2e-1141-4bd3-a908-4d30a75773e7",
+    "status": "UPLOADED",
+    "invokedTime": "2021-02-01T10:08:21.917Z",
+    "startedTime": "2021-02-01T10:08:21.917Z",
+    "stoppedTime": "2021-02-01T10:08:21.917Z",
+    "downloadUrl": "https://dyte-recordings.s3.ap-south-1.amazonaws.com/4086c8ec-d410-4707-a976-3021ea432afe/testing-room_1612865231994.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIA5YIELHA%2F20210209%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20210209T100821Z&X-Amz-Expires=432000&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEJL%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCmFwLXNvdXRoLTEiSDBGAiEAuTSvvZqzO2pUqbDhARzAL3VFoyy0Y46EIzM7W%2Ff0VpcCIQC6tX%2BjoVyuZR2hBPkVoVi8Wjk2EgHjRso%2FyTieku6a7Cq%2FAwiL%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAAaDDk0NDkwODYyMTQxMCIMYaJWugiFY9VEWG%2F8KpMDm0QQG%2BaorDTJWlYrWeDMMyZv74rxS2B6VOEAMM%DtDELOD9HFdK33wLiO8AUYoIOqm1Y7cN0xKNRjE%2BLT9F1Un3iFWH6Wjv09N6y9Nd4%2rZJaVajtKuxJW710HBOK6kCscKWgMuNwy7qpm042WdjOuwkN3E%2BIW9tbELWeQrWy0XOd6pVp7vhZuaVQqB0Vq1dQ2xz6kTMAKDGbPbM6qZnY7SzWdKzNsPaXqJD0H%2B8VMb0No4MaHVcKfWml3dgo2UIs6Vnyr0nzPywSqHpkOtBtDxzRdh0ch08x0A6EqAoBSEJallDy4dZ3koRqFg0GB00fZ%2FXrdcRRCPvlmaWM3NwCvdyIdC31d03dc0TdHfjonizte7Ph4qdnI2tiu5J%2Fq441f5t8FvY2au0LnjSXsFB8kjJcli%2B8n%2FmxQF%2FqA%2F2dsfWyOZb881oCr1Wwe0Gc6CumcZu1Rv%2Bs2eAFXltkqfpB29jwLAGTC0vYmBBjrqAYlY8VkIx4mD5DR3kRMaS9Stn1s5Tt79dljeEWBFtfSzDmwnC%2FQENhHsFofiBf516mh62OVk160vDw%2FIEfPZCRT6w9rq%2BxhWo86unyaFPKbludpxeHlo0evjIf1PM9LdapoSHMSRxk6hpbwNu5oODPFEsEHxjwPfTrsrQzEgg%2BusLCK%2BVSfQsLhN8oyZvOZKvK%2FmRBh3fORICjG4UcvQ%2FVkqpjFKgdfR5NAuBlJWEWwFwxz1fJ2Ix9USb3ygAMvkcI2C6%2BHVqzRYpONYsmrum3mJcL4SOpaMTgSMwfBmYhtPuFAZH8G5rUiJKA%3D%3D&X-Amz-Signature=1df1f6b43c86e7cbfb529deed007724ebac0fa6a0d884c9fa9179881d61541f4&X-Amz-SignedHeaders=host",
+    "downloadUrlExpiry": "2021-02-14T10:08:21.917Z",
+    "filesize": 123.45
+  }
+}
+```
+
+##### Recording status = `ERRORED`
+
+```json
+{
+  "event": "recording.statusUpdate",
+  "meeting": {
+    "id": "cae39473-ef23-4ca2-a9e9-98f1509354f2",
+    "title": null,
+    "roomName": "testing-room",
+    "status": "LIVE",
+    "createdAt": "2021-02-09T10:07:11.675Z",
+    "organizedBy": "myOrganization"
+  },
+  "recording": {
+    "recordingId": "7a789a2e-1141-4bd3-a908-4d30a75773e7",
+    "invokedTime": "2021-02-01T10:08:21.917Z",
+    "stoppedTime": "2021-02-01T10:08:21.917Z",
+    "status": "ERRORED",
+    "errMessage": "Description of the error."
+  }
+}
+```

@@ -97,6 +97,16 @@ module.exports = {
     [
       '@docusaurus/plugin-content-docs',
       {
+        path: 'docs/guides',
+        routeBasePath: 'guides',
+        id: 'guides',
+        sidebarPath: require.resolve('./sidebars/sidebars-guides.js'),
+        sidebarCollapsible: false,
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
         path: 'docs/flutter',
         routeBasePath: 'flutter',
         id: 'flutter',

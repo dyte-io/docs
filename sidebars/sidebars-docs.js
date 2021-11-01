@@ -62,10 +62,16 @@ module.exports = {
           label: 'Overview',
           href: '/api/',
         },
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Product Integration Guides',
+      items: [
         {
           type: 'link',
-          label: 'Entities',
-          href: '/api/#schemas',
+          label: 'Server events',
+          href: '/guides/subscribing-to-server-events',
         },
       ],
     },
