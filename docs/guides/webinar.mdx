@@ -1,0 +1,166 @@
+---
+sidebar_position: 5
+---
+
+# Dyte Webinars (Beta)
+
+Dyte now also supports hosting webinars, with much greater access control as compared with meetings. Other than regular meeting features, in webinar hosts can decide and grant permissions for presentation, participants need to raise a request before asking a question on video or before joining the stream to share their videos or screens, option to activate a waiting room for participants before entry into the webinar, and much more. Check screenshots below!
+
+![webinar-host-entry](/webinar-host-entry.png)
+<figcaption align="center">Host screen on entry</figcaption>
+
+![webinar-participant-entry](/webinar-participant-entry.png)
+<figcaption align="center">Participant screen on entry</figcaption>
+
+![webinar-start-presenting](/webinar-start-presenting.png)
+<figcaption align="center">Host starts presenting</figcaption>
+
+![webinar-presenting](/webinar-presenting.png)
+<figcaption align="center">Host has started presenting</figcaption>
+
+![webinar-participant-viewing](/webinar-participant-viewing.png)
+<figcaption align="center">Participant can view host</figcaption>
+
+![webinar-participant-question](/webinar-participant-question.png)
+<figcaption align="center">Participant requests to ask a question</figcaption>
+
+![webinar-accept-question](/webinar-accept-question.png)
+<figcaption align="center">Host accepts participant request</figcaption>
+
+![webinar-participant-setup](/webinar-participant-setup.png)
+<figcaption align="center">
+  Participant is shown setup screen after request is approved
+</figcaption>
+
+![webinar-participant-asking-question](/webinar-participant-asking-question.png)
+<figcaption align="center">
+  Participant is now asking question in PIP mode
+</figcaption>
+
+![webinar-host-controls](/webinar-host-controls.png)
+<figcaption align="center">
+  Host can disable the participant's video, stop their presentation or kick them
+  out of the webinar altogether. Similar controls (except disable video) would
+  be available to the host, even without participant request.
+</figcaption>
+
+![webinar-question-no-screenshare](/webinar-question-no-screenshare.png)
+<figcaption align="center">
+  Note that while asking question, participant does not get an option to share
+  their screen whereas if they were to request for presentation instead of
+  question they would get that option, as shown below.
+</figcaption>
+
+![webinar-participant-present](/webinar-participant-present.png)
+<figcaption align="center">
+  Participant is shown in full view, when they request to present instead of
+  asking a question, and now they can screenshare too
+</figcaption>
+
+## Create a webinar in 3 simple steps
+
+Here are a few simple steps you need to perform in order to start a webinar of your own using Dyte.
+
+1. Call the "create meeting" endpoint, with the meeting title and other optional configurations. - Returns `meetingId` and `roomName`.
+2. Call the "add participant" endpoint with user details and one of the presets, either `default_webinar_host_preset` or `default_webinar_participant_preset`. - Returns `authToken` for the user.
+3. Initialize the meeting on frontend using `orgId`, `roomName`, and `authToken`.
+
+:::caution Minimum SDK versions
+
+Make sure your Dyte web client is updated to version `0.6.0` or higher. Edit your `package.json` by finding the line that contains `dyte-client` as a dependency and update that to `"dyte-client": "^0.6.0",`.
+
+Similarly for mobile, make sure your client is updated to version `0.1.27` for Android, `1.9` for iOS, `0.0.9-a` for React Native and `0.1.0` for Flutter.
+
+:::
+
+### Create a meeting
+
+Call the [create meeting](/api/#/operations/create_meeting) endpoint from your server. This API does not have any mandatory parameters.
+
+Your request body will look like this:
+
+```json
+{
+  "title": "Webinar"
+}
+```
+
+You will receive a response that looks like this:
+
+```json
+{
+  "success": true,
+  "message": "",
+  "data": {
+    "meeting": {
+      "id": "cddfd4a8-d6fb-4d15-be6b-269c6dedfa70",
+      "title": "Webinar",
+      "roomName": "hexagonal-trip",
+      "status": "LIVE",
+      "createdAt": "2020-12-21T17:30:00.000Z",
+      "participants": []
+    }
+  }
+}
+```
+
+Save `data.meeting.id` and `data.meeting.roomName` for later use.
+
+### Add a participant
+
+Call the ["add particpant"](/api/#/operations/add_participant) endpoint from your server. This API needs meeting ID from the previous response, as well as needs a `clientSpecificId` in the body to use as a unique identifier for the participant. You also need to define the values of `preset` parameter as either `default_webinar_host_preset` or `default_webinar_participant_preset` depending on whether you want to assing the host role or the participant role for this particular user.
+
+Your request body will look like this:
+
+````json
+{
+    "clientSpecificId": "your-unique-user-id",
+    "userDetails": {
+        "name": "Webinar Host"
+    },
+    "presetName": "default_webinar_host_preset"
+}```
+
+You will receive a response that looks like this:
+
+```json
+{
+    "success": true,
+    "message": "",
+    "data": {
+        "authResponse": {
+            "userAdded": true,
+            "authToken": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJp..."
+        }
+    }
+}
+````
+
+Save `data.authResponse.authToken` for later use.
+
+### Initialize the meeting on frontend
+
+Get the `roomName` from the "create meeting" API call and participant `authToken` from the "add participant" API call from your backend, and initialize the meeting on frontend.
+
+#### Example - Initializing client in React
+
+```jsx
+import { DyteMeeting } from 'dyte-client';
+
+function App() {
+  return (
+    <div className="App">
+      <DyteMeeting
+        onInit={(meeting) => {}}
+        clientId={`orgId || clientId`}
+        meetingConfig={{
+          roomName: `roomName`,
+          authToken: `authToken`,
+        }}
+      />
+    </div>
+  );
+}
+
+export default App;
+```
