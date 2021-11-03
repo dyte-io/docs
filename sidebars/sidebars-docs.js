@@ -73,6 +73,11 @@ module.exports = {
           label: 'Server events',
           href: '/guides/subscribing-to-server-events',
         },
+        {
+          type: 'link',
+          label: 'Recording meetings',
+          href: '/guides/recording-your-meetings',
+        },
       ],
     },
   ],
