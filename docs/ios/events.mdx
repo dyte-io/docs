@@ -4,8 +4,8 @@ sidebar_position: 6
 
 # Events
 
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 To integrate well with modern workflows, Dyte SDK also emits a rich set of events on meeting events and state changes. Using these events on the client side, you can make your app event driven and respond to changes in the meeting in real-time. You can subscribe to the following events on the [`DyteMeetingViewDelegate`](./reference/meeting). To do this, you need to set the `delegate` for `DyteMeetingView` to an object (such as `self`) that implements the `DyteMeetingViewDelegate` protocol. The methods in this protocol correspond to events for the given meeting.
 
@@ -223,6 +223,68 @@ extension ViewController: DyteMeetingViewDelegate {
 
 ```objectivec
 - (void) participantLeave: (DyteParticipant *) participant {
+}
+```
+
+</TabItem>
+</Tabs>
+
+### Receiving a custom broadcast event
+
+This event is triggered when a custom message is broadcast to all participants in the meeting. A custom message may contain any serializable data.
+
+<Tabs
+  defaultValue="swift"
+  values={[
+    { label: "Swift", value: "swift" },
+    { label: "Obj-C", value: "obj-c" },
+  ]}
+>
+<TabItem value="swift">
+
+```swift
+extension ViewController: DyteMeetingViewDelegate {
+    func roomMessage(data) {
+    }
+}
+```
+
+</TabItem>
+<TabItem value="obj-c">
+
+```objectivec
+- (void) roomMessage: (NSObject *) data {
+}
+```
+
+</TabItem>
+</Tabs>
+
+### Receiving a custom targeted event
+
+This event is triggered when a custom message is targeted to a particular participant in the meeting and only the target participant receives this event. A custom message may contain any serializable data.
+
+<Tabs
+  defaultValue="swift"
+  values={[
+    { label: "Swift", value: "swift" },
+    { label: "Obj-C", value: "obj-c" },
+  ]}
+>
+<TabItem value="swift">
+
+```swift
+extension ViewController: DyteMeetingViewDelegate {
+    func message(data) {
+    }
+}
+```
+
+</TabItem>
+<TabItem value="obj-c">
+
+```objectivec
+- (void) message: (NSObject *) data {
 }
 ```
 
