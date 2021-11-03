@@ -78,6 +78,16 @@ module.exports = {
           label: 'Recording meetings',
           href: '/guides/recording-your-meetings',
         },
+        {
+          type: 'link',
+          label: 'Livestreaming to other platforms',
+          href: '/guides/livestreaming-other-platforms',
+        },
+        {
+          type: 'link',
+          label: 'Livestreaming using RTMP and HLS',
+          href: '/guides/livestreaming-rtmp-hls',
+        },
       ],
     },
   ],

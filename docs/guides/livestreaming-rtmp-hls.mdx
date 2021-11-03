@@ -1,0 +1,75 @@
+---
+sidebar_position: 4
+---
+
+# Livestreaming using RTMP and HLS
+
+Dyte allows livestreaming, via RTMP as well as HLS, for all Dyte meetings. If you want us to manage the output to RTMP instead, check [this doc instead](./livestreaming-other-platforms).
+
+To stream a meeting, use the API in the following order:
+
+1. Start a livestream by using the `POST` endpoint.
+2. Use the `PUT` endpoint to stop the stream.
+
+## Considerations
+
+1. Livestream will stop if there is no participant in the meeting for 120 seconds (2 minutes).
+2. There can only be one active stream of a meeting.
+3. Currently, there is a lag of a maximum of 30 seconds between calling the API and the actual start of stream. We are working on reducing this lag.
+4. Maximum streaming time is 24 hours. Stream will automatically stop after the expiry of that period from the time of stream start.
+
+## Start a livestream
+
+Request:
+
+```shell
+curl --request POST \
+  --url https://api.dyte.in/v1/organizations/:orgid/meetings/:meetingid/livestreaming \
+  --header 'Authorization: APIKEY your-api-key'
+```
+
+Response:
+
+```json
+{
+    "data": {
+        "liveStreaming": {
+            "streamID": "STREAMID",
+            "streamURL": "rtmp://URL/LiveApp/STREAMID",
+            "playerURL": "https://URL/LiveApp/play.html?name=STREAMID",
+            "hlsPlaylist": "https://URL/LiveApp/streams/STREAMID.m3u8"
+        },
+    "message": "LiveStreaming started",
+    "success": true
+}
+```
+
+From the response
+
+1. `data.liveStreaming.streamURL` can be used as an input to any other RTMP compatible app or API (such as Twitch, YouTube, etc)
+2. `data.liveStreaming.playerURL` can be used as an embedded HTML video player
+3. `data.liveStreaming.hlsPlaylist` can be used with any HLS compatible app or player (such as VLC media player, native HTML5 video tag, etc)
+
+## Stop a livestream
+
+Request:
+
+```shell
+curl --request PUT \
+  --url https://api.dyte.in/v1/organizations/:orgid/meetings/:meetingid/livestreaming \
+  --header 'Authorization: APIKEY your-api-key' \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"action": "stop"
+}'
+```
+
+Response:
+
+```json
+{
+  "data": {},
+  "message": "LiveStreaming stopped",
+  "success": true
+}
+```

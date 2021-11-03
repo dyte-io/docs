@@ -5,13 +5,13 @@ info:
   description: Create and manage your Dyte meetings easily using Dyte APIs
   contact:
     name: Dyte Developer Support
-    url: "https://dyte.io"
+    url: 'https://dyte.io'
     email: dev@dyte.io
 servers:
-  - url: "https://api.cluster.dyte.in/v1"
+  - url: 'https://api.cluster.dyte.in/v1'
     description: Production server
 paths:
-  "/organizations/{organizationID}/preset-role":
+  '/organizations/{organizationID}/preset-role':
     summary: Add a role
     post:
       summary: Create a role
@@ -25,13 +25,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CreatePresetRoleRequestBody"
+              $ref: '#/components/schemas/CreatePresetRoleRequestBody'
         description: Sample request
       responses:
-        "200":
-          $ref: "#/components/responses/CreatePresetRole"
-        "400":
-          $ref: "#/components/responses/GenericFailure"
+        '200':
+          $ref: '#/components/responses/CreatePresetRole'
+        '400':
+          $ref: '#/components/responses/GenericFailure'
       security:
         - APIKEY: []
     parameters:
@@ -42,7 +42,7 @@ paths:
         in: path
         required: true
         description: ID of the organization
-  "/organizations/{organizationID}/preset-roles":
+  '/organizations/{organizationID}/preset-roles':
     summary: Get all roles
     get:
       summary: Get all roles
@@ -51,10 +51,10 @@ paths:
         - Roles
       operationId: get_all_roles
       responses:
-        "200":
-          $ref: "#/components/responses/GetRoles"
-        "400":
-          $ref: "#/components/responses/GenericFailure"
+        '200':
+          $ref: '#/components/responses/GetRoles'
+        '400':
+          $ref: '#/components/responses/GenericFailure'
       security:
         - APIKEY: []
       parameters:
@@ -75,7 +75,7 @@ paths:
         in: path
         required: true
         description: ID of the organization
-  "/organizations/{organizationId}/preset":
+  '/organizations/{organizationId}/preset':
     summary: Add a preset
     post:
       summary: Add a preset
@@ -88,12 +88,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CreatePresetRequestBody"
+              $ref: '#/components/schemas/CreatePresetRequestBody'
       responses:
-        "200":
-          $ref: "#/components/responses/CreatePreset"
-        "400":
-          $ref: "#/components/responses/GenericFailure"
+        '200':
+          $ref: '#/components/responses/CreatePreset'
+        '400':
+          $ref: '#/components/responses/GenericFailure'
       security:
         - APIKEY: []
     parameters:
@@ -104,7 +104,7 @@ paths:
         in: path
         required: true
         description: ID of the organization
-  "/organizations/{organizationId}/presets":
+  '/organizations/{organizationId}/presets':
     summary: Get all presets
     get:
       summary: Get all presets
@@ -124,10 +124,10 @@ paths:
             type: integer
           description: The numbers of items to return
       responses:
-        "200":
-          $ref: "#/components/responses/GetPresets"
-        "400":
-          $ref: "#/components/responses/GenericFailure"
+        '200':
+          $ref: '#/components/responses/GetPresets'
+        '400':
+          $ref: '#/components/responses/GenericFailure'
       security:
         - APIKEY: []
     parameters:
@@ -138,7 +138,7 @@ paths:
         in: path
         required: true
         description: ID of the organization
-  "/organizations/{organizationId}/meeting":
+  '/organizations/{organizationId}/meeting':
     summary: Create meeting
     post:
       summary: Create a meeting
@@ -151,16 +151,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CreateMeetingRequestBody"
+              $ref: '#/components/schemas/CreateMeetingRequestBody'
       responses:
-        "200":
+        '200':
           description: Success response
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CreateMeetingResponse"
-        "400":
-          $ref: "#/components/responses/GenericFailure"
+                $ref: '#/components/schemas/CreateMeetingResponse'
+        '400':
+          $ref: '#/components/responses/GenericFailure'
       security:
         - APIKEY: []
     parameters:
@@ -171,7 +171,7 @@ paths:
         in: path
         required: true
         description: ID of the organization
-  "/organizations/{organizationId}/meetings":
+  '/organizations/{organizationId}/meetings':
     summary: Meetings
     get:
       summary: Get all meetings
@@ -191,14 +191,14 @@ paths:
             type: integer
           description: The numbers of items to return
       responses:
-        "200":
+        '200':
           description: Success response
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/GetMeetingsResponse"
-        "400":
-          $ref: "#/components/responses/GenericFailure"
+                $ref: '#/components/schemas/GetMeetingsResponse'
+        '400':
+          $ref: '#/components/responses/GenericFailure'
       security:
         - APIKEY: []
     parameters:
@@ -209,7 +209,7 @@ paths:
         in: path
         required: true
         description: ID of the organization
-  "/organizations/{organizationId}/meetings/{meetingId}":
+  '/organizations/{organizationId}/meetings/{meetingId}':
     summary: Meetings
     get:
       summary: Get a meeting
@@ -218,14 +218,14 @@ paths:
         - Meetings
       operationId: getMeeting
       responses:
-        "200":
+        '200':
           description: Success response
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/GetMeetingResponse"
-        "400":
-          $ref: "#/components/responses/GenericFailure"
+                $ref: '#/components/schemas/GetMeetingResponse'
+        '400':
+          $ref: '#/components/responses/GenericFailure'
       security:
         - APIKEY: []
     parameters:
@@ -243,7 +243,7 @@ paths:
         schema:
           type: string
           format: uuid
-  "/organizations/{organizationId}/meetings/{meetingId}/participant":
+  '/organizations/{organizationId}/meetings/{meetingId}/participant':
     summary: Add a participant
     post:
       summary: Add a participant
@@ -256,16 +256,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/AddParticipantRequestBody"
+              $ref: '#/components/schemas/AddParticipantRequestBody'
       responses:
-        "200":
+        '200':
           description: Success response
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/AddParticipantResponse"
-        "400":
-          $ref: "#/components/responses/GenericFailure"
+                $ref: '#/components/schemas/AddParticipantResponse'
+        '400':
+          $ref: '#/components/responses/GenericFailure'
       security:
         - APIKEY: []
     parameters:
@@ -283,7 +283,7 @@ paths:
         schema:
           type: string
           format: uuid
-  "/organizations/{organizationId}/meetings/{meetingId}/participants":
+  '/organizations/{organizationId}/meetings/{meetingId}/participants':
     summary: Add a participant
     get:
       summary: Get all participants
@@ -303,14 +303,14 @@ paths:
             type: integer
           description: The numbers of items to return
       responses:
-        "200":
+        '200':
           description: Success response
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/GetParticipantsResponse"
-        "400":
-          $ref: "#/components/responses/GenericFailure"
+                $ref: '#/components/schemas/GetParticipantsResponse'
+        '400':
+          $ref: '#/components/responses/GenericFailure'
       security:
         - APIKEY: []
     parameters:
@@ -328,7 +328,7 @@ paths:
         schema:
           type: string
           format: uuid
-  "/organizations/{organizationId}/meetings/{meetingId}/participant/{participantId}":
+  '/organizations/{organizationId}/meetings/{meetingId}/participant/{participantId}':
     summary: participant
     delete:
       summary: Delete a participant
@@ -337,14 +337,14 @@ paths:
         - Participants
       operationId: delete_participant
       responses:
-        "200":
+        '200':
           description: Success response
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/APIResponse"
-        "400":
-          $ref: "#/components/responses/GenericFailure"
+                $ref: '#/components/schemas/APIResponse'
+        '400':
+          $ref: '#/components/responses/GenericFailure'
       security:
         - APIKEY: []
     parameters:
@@ -369,7 +369,7 @@ paths:
         schema:
           type: string
           format: uuid
-  "/organizations/{organizationId}/meetings/{meetingId}/recording":
+  '/organizations/{organizationId}/meetings/{meetingId}/recording':
     summary: Start a recording
     post:
       summary: Start a recording
@@ -382,12 +382,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/StartRecordingRequestBody"
+              $ref: '#/components/schemas/StartRecordingRequestBody'
       responses:
-        "200":
-          $ref: "#/components/responses/CreateRecording"
-        "400":
-          $ref: "#/components/responses/GenericFailure"
+        '200':
+          $ref: '#/components/responses/CreateRecording'
+        '400':
+          $ref: '#/components/responses/GenericFailure'
       security:
         - APIKEY: []
     parameters:
@@ -405,7 +405,7 @@ paths:
         schema:
           type: string
           format: uuid
-  "/organizations/{organizationId}/meetings/{meetingId}/recordings":
+  '/organizations/{organizationId}/meetings/{meetingId}/recordings':
     summary: Get all recording
     get:
       summary: Get all recordings of a meeting
@@ -425,10 +425,10 @@ paths:
             type: integer
           description: The numbers of items to return
       responses:
-        "200":
-          $ref: "#/components/responses/GetRecordings"
-        "400":
-          $ref: "#/components/responses/GenericFailure"
+        '200':
+          $ref: '#/components/responses/GetRecordings'
+        '400':
+          $ref: '#/components/responses/GenericFailure'
       security:
         - APIKEY: []
     parameters:
@@ -446,7 +446,7 @@ paths:
         schema:
           type: string
           format: uuid
-  "/organizations/{organizationId}/rooms/{roomName}/active-recording":
+  '/organizations/{organizationId}/rooms/{roomName}/active-recording':
     summary: Get active recordings for a room
     get:
       summary: Get all active recordings
@@ -455,10 +455,10 @@ paths:
         - Recordings
       operationId: get_all_active_recordings
       responses:
-        "200":
-          $ref: "#/components/responses/GetRecordings"
-        "400":
-          $ref: "#/components/responses/GenericFailure"
+        '200':
+          $ref: '#/components/responses/GetRecordings'
+        '400':
+          $ref: '#/components/responses/GenericFailure'
       security:
         - APIKEY: []
       parameters:
@@ -486,7 +486,7 @@ paths:
         required: true
         schema:
           type: string
-  "/organizations/{organizationId}/meetings/{meetingId}/recordings/{recordingId}":
+  '/organizations/{organizationId}/meetings/{meetingId}/recordings/{recordingId}':
     summary: Operations on a recording
     get:
       summary: Get a recording
@@ -495,10 +495,10 @@ paths:
         - Recordings
       operationId: get_recording
       responses:
-        "200":
-          $ref: "#/components/responses/CreateRecording"
-        "400":
-          $ref: "#/components/responses/GenericFailure"
+        '200':
+          $ref: '#/components/responses/CreateRecording'
+        '400':
+          $ref: '#/components/responses/GenericFailure'
       security:
         - APIKEY: []
     put:
@@ -512,12 +512,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/UpdateRecordingRequestBody"
+              $ref: '#/components/schemas/UpdateRecordingRequestBody'
       responses:
-        "200":
-          $ref: "#/components/responses/CreateRecording"
-        "400":
-          $ref: "#/components/responses/GenericFailure"
+        '200':
+          $ref: '#/components/responses/CreateRecording'
+        '400':
+          $ref: '#/components/responses/GenericFailure'
       security:
         - APIKEY: []
     parameters:
@@ -542,7 +542,7 @@ paths:
         schema:
           type: string
           format: uuid
-  "/organizations/{organizationId}/webhook":
+  '/organizations/{organizationId}/webhook':
     summary: Add a webhook
     post:
       summary: Create a webhook
@@ -556,12 +556,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/WebhookRequestBody"
+              $ref: '#/components/schemas/WebhookRequestBody'
       responses:
-        "200":
-          $ref: "#/components/responses/CreateWebhook"
-        "400":
-          $ref: "#/components/responses/GenericFailure"
+        '200':
+          $ref: '#/components/responses/CreateWebhook'
+        '400':
+          $ref: '#/components/responses/GenericFailure'
       security:
         - APIKEY: []
     parameters:
@@ -572,7 +572,7 @@ paths:
         schema:
           type: string
           format: uuid
-  "/organizations/{organizationId}/webhooks":
+  '/organizations/{organizationId}/webhooks':
     summary: Get all webhooks
     get:
       summary: Get all webhooks
@@ -582,10 +582,10 @@ paths:
         - Webhooks
       operationId: get_all_webhooks
       responses:
-        "200":
-          $ref: "#/components/responses/GetWebhooks"
-        "400":
-          $ref: "#/components/responses/GenericFailure"
+        '200':
+          $ref: '#/components/responses/GetWebhooks'
+        '400':
+          $ref: '#/components/responses/GenericFailure'
       security:
         - APIKEY: []
       parameters: []
@@ -597,7 +597,7 @@ paths:
         schema:
           type: string
           format: uuid
-  "/organizations/{organizationId}/webhooks/{webhookId}":
+  '/organizations/{organizationId}/webhooks/{webhookId}':
     summary: Operations on a webhook
     get:
       summary: Get a webhook
@@ -606,10 +606,10 @@ paths:
         - Webhooks
       operationId: get_webhook
       responses:
-        "200":
-          $ref: "#/components/responses/CreateWebhook"
-        "400":
-          $ref: "#/components/responses/GenericFailure"
+        '200':
+          $ref: '#/components/responses/CreateWebhook'
+        '400':
+          $ref: '#/components/responses/GenericFailure'
       security:
         - APIKEY: []
     put:
@@ -624,12 +624,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/WebhookRequestBody"
+              $ref: '#/components/schemas/WebhookRequestBody'
       responses:
-        "200":
-          $ref: "#/components/responses/CreateWebhook"
-        "400":
-          $ref: "#/components/responses/GenericFailure"
+        '200':
+          $ref: '#/components/responses/CreateWebhook'
+        '400':
+          $ref: '#/components/responses/GenericFailure'
       security:
         - APIKEY: []
     delete:
@@ -640,14 +640,14 @@ paths:
         - Webhooks
       operationId: delete_webhook
       responses:
-        "200":
+        '200':
           description: Success response
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/APIResponse"
-        "400":
-          $ref: "#/components/responses/GenericFailure"
+                $ref: '#/components/schemas/APIResponse'
+        '400':
+          $ref: '#/components/responses/GenericFailure'
       security:
         - APIKEY: []
     parameters:
@@ -665,7 +665,7 @@ paths:
         schema:
           type: string
           format: uuid
-  "/organizations/{organizationId}/webhooks/{webhookId}/logs":
+  '/organizations/{organizationId}/webhooks/{webhookId}/logs':
     summary: webhook
     get:
       summary: Get all logs for a webhook
@@ -700,14 +700,14 @@ paths:
             type: integer
           description: The numbers of items to return
       responses:
-        "200":
+        '200':
           description: Success response
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/WebhookLogs"
-        "400":
-          $ref: "#/components/responses/GenericFailure"
+                $ref: '#/components/schemas/WebhookLogs'
+        '400':
+          $ref: '#/components/responses/GenericFailure'
       security:
         - APIKEY: []
     parameters:
@@ -725,7 +725,7 @@ paths:
         schema:
           type: string
           format: uuid
-  "/organizations/{organizationId}/user":
+  '/organizations/{organizationId}/user':
     summary: Give user access to organization
     post:
       summary: Create a user under the organization
@@ -738,16 +738,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/AddOrgUserBody"
+              $ref: '#/components/schemas/AddOrgUserBody'
       responses:
-        "200":
+        '200':
           description: Success response
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/APIResponse"
-        "400":
-          $ref: "#/components/responses/GenericFailure"
+                $ref: '#/components/schemas/APIResponse'
+        '400':
+          $ref: '#/components/responses/GenericFailure'
       security:
         - APIKEY: []
     parameters:
@@ -758,7 +758,7 @@ paths:
         schema:
           type: string
           format: uuid
-  "/organizations/{organizationId}/users":
+  '/organizations/{organizationId}/users':
     summary: Organization Users
     description: Organization Users
     get:
@@ -779,10 +779,10 @@ paths:
             type: integer
           description: The numbers of items to return
       responses:
-        "200":
-          $ref: "#/components/responses/GetUsers"
-        "400":
-          $ref: "#/components/responses/GenericFailure"
+        '200':
+          $ref: '#/components/responses/GetUsers'
+        '400':
+          $ref: '#/components/responses/GenericFailure'
       security:
         - APIKEY: []
     parameters:
@@ -793,7 +793,7 @@ paths:
         schema:
           type: string
           format: uuid
-  "/organizations/{organizationId}/stats":
+  '/organizations/{organizationId}/stats':
     summary: Get stats
     description: Get all stats
     get:
@@ -817,14 +817,14 @@ paths:
             type: integer
             format: date-time
       responses:
-        "200":
+        '200':
           description: Success response
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/GetStatsResponseSchema"
-        "400":
-          $ref: "#/components/responses/GenericFailure"
+                $ref: '#/components/schemas/GetStatsResponseSchema'
+        '400':
+          $ref: '#/components/responses/GenericFailure'
       security:
         - APIKEY: []
     parameters:
@@ -835,7 +835,7 @@ paths:
         schema:
           type: string
           format: uuid
-  "/organizations/{organizationId}/recordings":
+  '/organizations/{organizationId}/recordings':
     summary: Get recording stats
     description: Get all recording stats
     get:
@@ -868,14 +868,14 @@ paths:
             type: integer
           description: The numbers of items to return
       responses:
-        "200":
+        '200':
           description: Success response
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RecordingStatsSchema"
-        "400":
-          $ref: "#/components/responses/GenericFailure"
+                $ref: '#/components/schemas/RecordingStatsSchema'
+        '400':
+          $ref: '#/components/responses/GenericFailure'
       security:
         - APIKEY: []
     parameters:
@@ -886,7 +886,7 @@ paths:
         schema:
           type: string
           format: uuid
-  "/organizations/{organizationId}/analytics":
+  '/organizations/{organizationId}/analytics':
     summary: Get Organization Peer analytics
     description: Get analytics (peer events) across all meetings in an organization
     get:
@@ -914,14 +914,14 @@ paths:
           schema:
             type: string
       responses:
-        "200":
+        '200':
           description: Success response
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PeerEvents"
-        "400":
-          $ref: "#/components/responses/GenericFailure"
+                $ref: '#/components/schemas/PeerEvents'
+        '400':
+          $ref: '#/components/responses/GenericFailure'
       security:
         - APIKEY: []
     parameters:
@@ -932,7 +932,7 @@ paths:
         schema:
           type: string
           format: uuid
-  "/organizations/{organizationId}/meetings/{meetingId}/analytics":
+  '/organizations/{organizationId}/meetings/{meetingId}/analytics':
     summary: Get meeting analytics
     description: Get analytics (peer events) for a meeting
     get:
@@ -960,14 +960,14 @@ paths:
           schema:
             type: string
       responses:
-        "200":
+        '200':
           description: Success response
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PeerEvents"
-        "400":
-          $ref: "#/components/responses/GenericFailure"
+                $ref: '#/components/schemas/PeerEvents'
+        '400':
+          $ref: '#/components/responses/GenericFailure'
       security:
         - APIKEY: []
     parameters:
@@ -1017,15 +1017,15 @@ components:
           properties:
             waitingRoom:
               type: boolean
-              description: "Should the host accept / reject the participants joining the meeting? Default: `false`."
+              description: 'Should the host accept / reject the participants joining the meeting? Default: `false`.'
               default: false
             closed:
               type: boolean
-              description: "Should the meeting require a valid auth token to join? Default: `false`."
+              description: 'Should the meeting require a valid auth token to join? Default: `false`.'
               default: false
     AddParticipantRequestBody:
-      title: ""
-      description: ""
+      title: ''
+      description: ''
       x-examples:
         example-1:
           clientSpecificId: my_user_1
@@ -1033,24 +1033,24 @@ components:
           clientSpecificId: my_user_2
           userDetails:
             name: Mangoman
-            picture: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png"
+            picture: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png'
         example-3:
           clientSpecificId: my_user_3
           userDetails:
             name: Mangoman
-            picture: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png"
+            picture: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png'
           presetName: preset_1
         example-4:
           clientSpecificId: my_user_4
           userDetails:
             name: Mangoman
-            picture: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png"
+            picture: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png'
           roleName: role_1
       type: object
       properties:
         clientSpecificId:
           type: string
-          description: "An ID that you can use to identify a meeting participant in your system. We do not perform any validations on this, and return this value for all participants in a meeting in the client SDK."
+          description: 'An ID that you can use to identify a meeting participant in your system. We do not perform any validations on this, and return this value for all participants in a meeting in the client SDK.'
         userDetails:
           type: object
           description: Optional object to add details of the participant
@@ -1061,7 +1061,7 @@ components:
             picture:
               type: string
               format: uri
-              description: "Publicly accessible link to the participant display picture for the meeting, used as thumbnail when the video is off and in the participant list"
+              description: 'Publicly accessible link to the participant display picture for the meeting, used as thumbnail when the video is off and in the participant list'
         presetName:
           type: string
           description: Name of the preset this user should join with
@@ -1071,7 +1071,7 @@ components:
       required:
         - clientSpecificId
     CreatePresetRoleRequestBody:
-      description: ""
+      description: ''
       type: object
       x-examples:
         example-1:
@@ -1299,13 +1299,13 @@ components:
               properties:
                 hiddenParticipant:
                   type: boolean
-                  description: "Should this participant be invisible to other participants? Default: `false`."
+                  description: 'Should this participant be invisible to other participants? Default: `false`.'
                   default: false
       required:
         - name
         - role
     CreatePresetRequestBody:
-      description: ""
+      description: ''
       type: object
       x-examples:
         example-1:
@@ -1333,12 +1333,12 @@ components:
                 participantCount: true
                 clock: true
               aloneHereElement: true
-              logo: "https://www.dyte.io/images/Dyte-Logo.svg"
+              logo: 'https://www.dyte.io/images/Dyte-Logo.svg'
               colors:
-                primary: "#2160FD"
-                secondary: "#262626"
-                textPrimary: "#EEEEEE"
-                videoBackground: "#1A1A1A"
+                primary: '#2160FD'
+                secondary: '#262626'
+                textPrimary: '#EEEEEE'
+                videoBackground: '#1A1A1A'
               grid:
                 defaultView: multi
                 multi:
@@ -1371,12 +1371,12 @@ components:
                 participantCount: true
                 clock: true
               aloneHereElement: false
-              logo: "https://www.dyte.io/images/Dyte-Logo.svg"
+              logo: 'https://www.dyte.io/images/Dyte-Logo.svg'
               colors:
-                primary: "#2160FD"
-                secondary: "#262626"
-                textPrimary: "#EEEEEE"
-                videoBackground: "#1A1A1A"
+                primary: '#2160FD'
+                secondary: '#262626'
+                textPrimary: '#EEEEEE'
+                videoBackground: '#1A1A1A'
               dimensions:
                 mode: fillParent
               grid:
@@ -1397,13 +1397,13 @@ components:
                 screenShare: false
                 layout: false
                 plugins: false
-              logo: "https://www.dyte.io/images/Dyte-Logo.svg"
+              logo: 'https://www.dyte.io/images/Dyte-Logo.svg'
               colors:
-                primary: "#2A9D8F"
-                secondary: "#F4A261"
-                textPrimary: "#E9C46A"
-                videoBackground: "#264653"
-      title: ""
+                primary: '#2A9D8F'
+                secondary: '#F4A261'
+                textPrimary: '#E9C46A'
+                videoBackground: '#264653'
+      title: ''
       properties:
         name:
           type: string
@@ -1426,16 +1426,16 @@ components:
               properties:
                 waitingRoom:
                   type: object
-                  description: "Object containing waiting room settings to be used if enabled. Custom HTML can also be shown in the meeting room, please check the client SDK guide to see how."
+                  description: 'Object containing waiting room settings to be used if enabled. Custom HTML can also be shown in the meeting room, please check the client SDK guide to see how.'
                   properties:
                     showSelf:
                       type: boolean
-                      description: "Should the participant see their own video while in waiting room? Default: `true`."
+                      description: 'Should the participant see their own video while in waiting room? Default: `true`.'
                       default: true
                 controlBar:
                   type: boolean
                   default: true
-                  description: "Should the control bar (at the bottom of the meeting) be visible to the participant? Default: `true`."
+                  description: 'Should the control bar (at the bottom of the meeting) be visible to the participant? Default: `true`.'
                 controlBarElements:
                   type: object
                   description: Object containing element list from control bar to be able to customize what all controls should be visible to the participant
@@ -1443,39 +1443,39 @@ components:
                     fullscreen:
                       type: boolean
                       default: true
-                      description: "Should the button to make meeting fullscreen be visible? Default: `true`."
+                      description: 'Should the button to make meeting fullscreen be visible? Default: `true`.'
                     share:
                       type: boolean
-                      description: "Should the button to invite other participants to the meeting be visible? Default: `true`."
+                      description: 'Should the button to invite other participants to the meeting be visible? Default: `true`.'
                       default: true
                     screenShare:
                       type: boolean
                       default: true
-                      description: "Should the button to share screen be visible? Default: `true`."
+                      description: 'Should the button to share screen be visible? Default: `true`.'
                     layout:
                       type: boolean
-                      description: "Should the button to change meeting layout be visible? Default: `true`."
+                      description: 'Should the button to change meeting layout be visible? Default: `true`.'
                       default: true
                     chat:
                       type: boolean
                       default: true
-                      description: "Should the button to open in-meeting chat be visible? Default: `true`."
+                      description: 'Should the button to open in-meeting chat be visible? Default: `true`.'
                     polls:
                       type: boolean
                       default: true
-                      description: "Should the button to display in-meeting polls be visible? Default: `true`."
+                      description: 'Should the button to display in-meeting polls be visible? Default: `true`.'
                     participants:
                       type: boolean
                       default: true
-                      description: "Should the button to display participant list be visible? Default: `true`."
+                      description: 'Should the button to display participant list be visible? Default: `true`.'
                     plugins:
                       type: boolean
                       default: true
-                      description: "Should the button to activate plugins in a meeting be visible? Default: `true`."
+                      description: 'Should the button to activate plugins in a meeting be visible? Default: `true`.'
                 header:
                   type: boolean
                   default: true
-                  description: "Should the header bar be visible to the participant? Default: `true`."
+                  description: 'Should the header bar be visible to the participant? Default: `true`.'
                 headerElements:
                   type: object
                   description: Object containing element list from header to be able to customize what all should be visible to the participant
@@ -1483,23 +1483,23 @@ components:
                     logo:
                       type: boolean
                       default: true
-                      description: "Should a logo be visible in the meeting? Default: `true`."
+                      description: 'Should a logo be visible in the meeting? Default: `true`.'
                     title:
                       type: boolean
                       default: true
-                      description: "Should a title be visible in the meeting? Default: `true`."
+                      description: 'Should a title be visible in the meeting? Default: `true`.'
                     participantCount:
                       type: boolean
                       default: true
-                      description: "Should the participant count be visible in the meeting? Default: `true`."
+                      description: 'Should the participant count be visible in the meeting? Default: `true`.'
                     clock:
                       type: boolean
                       default: true
-                      description: "Should a timer be visible in the meeting? Default: `true`."
+                      description: 'Should a timer be visible in the meeting? Default: `true`.'
                 aloneHereElement:
                   type: boolean
                   default: true
-                  description: "Should an element displaying custom HTML to the participant be visible, when they are alone in / first to the meeting? Default: `true`. Please check the client SDK guide to see how to set the custom HTML for this."
+                  description: 'Should an element displaying custom HTML to the participant be visible, when they are alone in / first to the meeting? Default: `true`. Please check the client SDK guide to see how to set the custom HTML for this.'
                 logo:
                   type: string
                   format: uri
@@ -1511,22 +1511,22 @@ components:
                     primary:
                       type: string
                       format: color_hex
-                      default: "#2160FD"
+                      default: '#2160FD'
                       description: Color of the primary elements like participant name box
                     secondary:
                       type: string
                       format: color_hex
-                      default: "#262626"
-                      description: "Color of the secondary elements like control bar, control buttons, hover"
+                      default: '#262626'
+                      description: 'Color of the secondary elements like control bar, control buttons, hover'
                     textPrimary:
                       type: string
                       format: color_hex
-                      default: "#EEEEEE"
+                      default: '#EEEEEE'
                       description: Color of the text elements
                     videoBackground:
                       type: string
                       format: color_hex
-                      default: "#1A1A1A"
+                      default: '#1A1A1A'
                       description: Color behind the video when the video is turned off
                   required:
                     - primary
@@ -1535,14 +1535,14 @@ components:
                     - videoBackground
                 dimensions:
                   type: object
-                  description: "Object containing info about meeting dimensions within the container. If omitted, the meeting takes up the complete area of the root display element."
+                  description: 'Object containing info about meeting dimensions within the container. If omitted, the meeting takes up the complete area of the root display element.'
                   properties:
                     width:
                       type: integer
-                      description: "Desired width of the meeting element, in pixels"
+                      description: 'Desired width of the meeting element, in pixels'
                     height:
                       type: integer
-                      description: "Desired height of the meeting element, in pixels"
+                      description: 'Desired height of the meeting element, in pixels'
                     mode:
                       type: string
                       enum:
@@ -1569,7 +1569,7 @@ components:
                       properties:
                         maxVideoCount:
                           type: integer
-                          description: "Desired number of maximum participant video streams to be shown on a single screen. Default: `6`. Maximum: `9`."
+                          description: 'Desired number of maximum participant video streams to be shown on a single screen. Default: `6`. Maximum: `9`.'
                           default: 6
                           minimum: 1
                           maximum: 9
@@ -1603,7 +1603,7 @@ components:
       x-examples:
         example-1:
           liveStreamingConfig:
-            rtmpUrl: "rtmp://live.restream.io/live/your-stream-key"
+            rtmpUrl: 'rtmp://live.restream.io/live/your-stream-key'
         example-2:
           storageConfig:
             type: aws
@@ -1639,8 +1639,8 @@ components:
           videoConfig:
             codec: VP9
           liveStreamingConfig:
-            rtmpUrl: "rtmp://live.restream.io/live/your-stream-key"
-      description: ""
+            rtmpUrl: 'rtmp://live.restream.io/live/your-stream-key'
+      description: ''
       properties:
         storageConfig:
           type: object
@@ -1652,7 +1652,7 @@ components:
                 - aws
                 - azure
                 - digitalocean
-              description: "Name of the cloud storage service the recording should be stored to. Currently supports `aws`, `azure` and `digitalocean`."
+              description: 'Name of the cloud storage service the recording should be stored to. Currently supports `aws`, `azure` and `digitalocean`.'
             accessKey:
               type: string
               description: |-
@@ -1683,7 +1683,7 @@ components:
                 - DigitalOcean: `do_spaces_region`
             path:
               type: string
-              description: "Directory path to upload your recording, relative to the `bucket`."
+              description: 'Directory path to upload your recording, relative to the `bucket`.'
           required:
             - type
             - accessKey
@@ -1708,7 +1708,7 @@ components:
               default: H264
         liveStreamingConfig:
           type: object
-          description: Object containing configuration regarding live streaming the meeting video to a platform that supports RTMP input.
+          description: Object containing configuration regarding livestreaming the meeting video to a platform that supports RTMP input.
           properties:
             rtmpUrl:
               type: string
@@ -1730,7 +1730,7 @@ components:
           recordingAction: stop
     WebhookRequestBody:
       type: object
-      description: ""
+      description: ''
       properties:
         name:
           type: string
@@ -1758,12 +1758,12 @@ components:
       x-examples:
         example-1:
           name: webhook_1
-          url: "https://mywebhook.site/path/to/webhook"
+          url: 'https://mywebhook.site/path/to/webhook'
           events:
             - meeting.started
         example-2:
           name: webhook_2
-          url: "https://mywebhook.site/path/to/webhook"
+          url: 'https://mywebhook.site/path/to/webhook'
           events:
             - meeting.started
             - meeting.ended
@@ -1820,7 +1820,7 @@ components:
             - totalMinutes: 1234
               totalSessions: 12
               totalRecordingMinutes: 123
-              day: "2021-12-21T00:00:00.000Z"
+              day: '2021-12-21T00:00:00.000Z'
       properties:
         success:
           type: boolean
@@ -1869,7 +1869,7 @@ components:
         - dayStats
     RecordingStatsSchema:
       allOf:
-        - $ref: "#/components/schemas/APIResponse"
+        - $ref: '#/components/schemas/APIResponse'
         - type: object
           properties:
             data:
@@ -1932,8 +1932,8 @@ components:
           data:
             total: 1234
             recordingStats:
-              - startedTime: "2021-12-21T14:15:22Z"
-                stoppedTime: "2021-12-21T14:45:22Z"
+              - startedTime: '2021-12-21T14:15:22Z'
+                stoppedTime: '2021-12-21T14:45:22Z'
                 roomName: unique-roomname
                 status: UPLOADED
         example-2:
@@ -1941,7 +1941,7 @@ components:
           data:
             total: 1234
             recordingStats:
-              - startedTime: "2019-08-24T14:15:22Z"
+              - startedTime: '2019-08-24T14:15:22Z'
                 stoppedTime: null
                 roomName: unique-roomname
                 status: RECORDING
@@ -2003,19 +2003,19 @@ components:
           - createdBy
       x-examples:
         example-1:
-          - createdAt: "2021-12-21T14:15:22Z"
-            updatedAt: "2021-12-21T14:45:22Z"
+          - createdAt: '2021-12-21T14:15:22Z'
+            updatedAt: '2021-12-21T14:45:22Z'
             minutesConsumed: 123
             id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
             roomUUID: 31eca195-b13b-4986-b6c9-6b60e53d7f58
-            roomURL: "https://app.dyte.io/meeting/unique-roomname"
+            roomURL: 'https://app.dyte.io/meeting/unique-roomname'
             roomDisplayTitle: Meeting Title
             maxUsers: 123
             currentUsers: 12
             createdBy: Mangoman
     OrgRoomsResponse:
       allOf:
-        - $ref: "#/components/schemas/APIResponse"
+        - $ref: '#/components/schemas/APIResponse'
         - type: object
           properties:
             data:
@@ -2028,7 +2028,7 @@ components:
                   type: integer
                   description: Total number of meeting rooms created by the organization.
                 rooms:
-                  $ref: "#/components/schemas/RoomStatsBody"
+                  $ref: '#/components/schemas/RoomStatsBody'
           required:
             - data
       x-examples:
@@ -2037,19 +2037,19 @@ components:
           data:
             total: 1234
             rooms:
-              - createdAt: "2021-12-21T14:15:22Z"
-                updatedAt: "2021-12-21T14:45:22Z"
+              - createdAt: '2021-12-21T14:15:22Z'
+                updatedAt: '2021-12-21T14:45:22Z'
                 minutesConsumed: 123
                 id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
                 roomUUID: 31eca195-b13b-4986-b6c9-6b60e53d7f58
-                roomURL: "https://app.dyte.io/meeting/unique-roomname"
+                roomURL: 'https://app.dyte.io/meeting/unique-roomname'
                 roomDisplayTitle: Meeting Title
                 maxUsers: 123
                 currentUsers: 12
                 createdBy: Mangoman
     OrgMeetingRoomsResponse:
       allOf:
-        - $ref: "#/components/schemas/APIResponse"
+        - $ref: '#/components/schemas/APIResponse'
         - type: object
           properties:
             data:
@@ -2058,7 +2058,7 @@ components:
                 - rooms
               properties:
                 rooms:
-                  $ref: "#/components/schemas/RoomStatsBody"
+                  $ref: '#/components/schemas/RoomStatsBody'
           required:
             - data
       x-examples:
@@ -2066,19 +2066,19 @@ components:
           success: true
           data:
             rooms:
-              - createdAt: "2021-12-21T14:15:22Z"
-                updatedAt: "2021-12-21T14:45:22Z"
+              - createdAt: '2021-12-21T14:15:22Z'
+                updatedAt: '2021-12-21T14:45:22Z'
                 minutesConsumed: 123
                 id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
                 roomUUID: 31eca195-b13b-4986-b6c9-6b60e53d7f58
-                roomURL: "https://app.dyte.io/meeting/unique-roomname"
+                roomURL: 'https://app.dyte.io/meeting/unique-roomname'
                 roomDisplayTitle: Meeting Title
                 maxUsers: 123
                 currentUsers: 12
                 createdBy: Mangoman
     GetUsersResponse:
       allOf:
-        - $ref: "#/components/schemas/APIResponse"
+        - $ref: '#/components/schemas/APIResponse'
         - type: object
           properties:
             data:
@@ -2091,7 +2091,7 @@ components:
                   description: Array containing objects that define a user in Dyte system.
                   uniqueItems: true
                   items:
-                    $ref: "#/components/schemas/OrgUser"
+                    $ref: '#/components/schemas/OrgUser'
           required:
             - data
       x-examples:
@@ -2102,11 +2102,11 @@ components:
               - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
                 name: Appleman
                 email: user@example.com
-                createdAt: "2021-12-21T14:15:22Z"
+                createdAt: '2021-12-21T14:15:22Z'
                 role: Owner
     GetMeetingsResponse:
       allOf:
-        - $ref: "#/components/schemas/APIResponse"
+        - $ref: '#/components/schemas/APIResponse'
         - type: object
           properties:
             data:
@@ -2119,7 +2119,7 @@ components:
                   description: Array containing objects that contain details of a meeting room.
                   uniqueItems: true
                   items:
-                    $ref: "#/components/schemas/Meeting"
+                    $ref: '#/components/schemas/Meeting'
           required:
             - data
       x-examples:
@@ -2131,10 +2131,10 @@ components:
                 title: Meeting Title
                 roomName: unique-roomname
                 status: CREATED
-                createdAt: "2021-12-21T14:15:22Z"
+                createdAt: '2021-12-21T14:15:22Z'
     GetMeetingResponse:
       allOf:
-        - $ref: "#/components/schemas/APIResponse"
+        - $ref: '#/components/schemas/APIResponse'
         - type: object
           properties:
             data:
@@ -2143,7 +2143,7 @@ components:
                 - meeting
               properties:
                 meeting:
-                  $ref: "#/components/schemas/Meeting"
+                  $ref: '#/components/schemas/Meeting'
           required:
             - data
       x-examples:
@@ -2155,10 +2155,10 @@ components:
               title: Meeting Title
               roomName: unique-roomname
               status: CREATED
-              createdAt: "2021-12-21T14:15:22Z"
+              createdAt: '2021-12-21T14:15:22Z'
     CreateMeetingResponse:
       allOf:
-        - $ref: "#/components/schemas/APIResponse"
+        - $ref: '#/components/schemas/APIResponse'
         - type: object
           properties:
             data:
@@ -2168,7 +2168,7 @@ components:
               properties:
                 meeting:
                   allOf:
-                    - $ref: "#/components/schemas/Meeting"
+                    - $ref: '#/components/schemas/Meeting'
                     - type: object
                       properties:
                         participants:
@@ -2186,10 +2186,10 @@ components:
               title: Meeting Title
               roomName: unique-roomname
               status: CREATED
-              createdAt: "2021-12-21T14:15:22Z"
+              createdAt: '2021-12-21T14:15:22Z'
     AddParticipantResponse:
       allOf:
-        - $ref: "#/components/schemas/APIResponse"
+        - $ref: '#/components/schemas/APIResponse'
         - type: object
           properties:
             data:
@@ -2198,7 +2198,7 @@ components:
                 - authResponse
               properties:
                 authResponse:
-                  $ref: "#/components/schemas/AuthResponse"
+                  $ref: '#/components/schemas/AuthResponse'
           required:
             - data
       x-examples:
@@ -2211,7 +2211,7 @@ components:
               authToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzYW1wbGUiLCJpYXQiOjE2MzQwNDIwMDd9.RM5syXw4o2KhG6l-8uVieS0T-XBRHI4OvgbvbXtUoRI
     GetParticipantsResponse:
       allOf:
-        - $ref: "#/components/schemas/APIResponse"
+        - $ref: '#/components/schemas/APIResponse'
         - type: object
           properties:
             data:
@@ -2223,7 +2223,7 @@ components:
                   type: array
                   description: Array containing objects that contain details of a participant.
                   items:
-                    $ref: "#/components/schemas/Participant"
+                    $ref: '#/components/schemas/Participant'
           required:
             - data
       x-examples:
@@ -2234,8 +2234,8 @@ components:
             participants:
               - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
                 name: Mangoman
-                picture: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png"
-                createdAt: "2019-08-24T14:15:22Z"
+                picture: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png'
+                createdAt: '2019-08-24T14:15:22Z'
     OrgUser:
       type: object
       description: Object containing details of a user in Dyte system.
@@ -2244,7 +2244,7 @@ components:
           id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
           name: Appleman
           email: user@example.com
-          createdAt: "2021-12-21T14:15:22Z"
+          createdAt: '2021-12-21T14:15:22Z'
           role: Owner
       properties:
         id:
@@ -2315,19 +2315,19 @@ components:
       x-examples:
         example-1:
           id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
-          createdAt: "2021-12-21T14:15:22Z"
+          createdAt: '2021-12-21T14:15:22Z'
         example-2:
           id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
           name: Mangoman
-          createdAt: "2019-08-24T14:15:22Z"
+          createdAt: '2019-08-24T14:15:22Z'
         example-3:
           id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
           name: Mangoman
-          picture: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png"
-          createdAt: "2019-08-24T14:15:22Z"
+          picture: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png'
+          createdAt: '2019-08-24T14:15:22Z'
     AuthResponse:
       type: object
-      description: "Object containing auth details of a participant, used to join a specific meeting."
+      description: 'Object containing auth details of a participant, used to join a specific meeting.'
       properties:
         userAdded:
           type: boolean
@@ -2377,16 +2377,16 @@ components:
           id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
           roomName: unique-roomname
           status: LIVE
-          createdAt: "2021-12-21T14:15:22Z"
+          createdAt: '2021-12-21T14:15:22Z'
         example-2:
           id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
           title: Meeting Title
           roomName: unique-roomname
           status: CREATED
-          createdAt: "2021-12-21T14:15:22Z"
+          createdAt: '2021-12-21T14:15:22Z'
     CreatePresetRoleResponse:
       allOf:
-        - $ref: "#/components/schemas/APIResponse"
+        - $ref: '#/components/schemas/APIResponse'
         - type: object
           properties:
             data:
@@ -2397,11 +2397,11 @@ components:
               properties:
                 role:
                   allOf:
-                    - $ref: "#/components/schemas/PresetRole"
+                    - $ref: '#/components/schemas/PresetRole'
                     - type: object
                       properties:
                         organization:
-                          $ref: "#/components/schemas/Organization"
+                          $ref: '#/components/schemas/Organization'
                       required:
                         - organization
                 override:
@@ -2415,21 +2415,21 @@ components:
             role:
               name: role_1
               description: Example role 1
-              s3URL: "https: //dyte-configs.s3.ap-south-1.amazonaws.com/{organizationId}/roles/role_1.json"
+              s3URL: 'https: //dyte-configs.s3.ap-south-1.amazonaws.com/{organizationId}/roles/role_1.json'
               organization:
                 id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
                 name: org_1
                 description: Example org 1
-                contact: "9898989898"
-                website: "https://example.com"
+                contact: '9898989898'
+                website: 'https://example.com'
                 accessToken: uniqueAccessToken
-                createdAt: "2021-12-21T14:15:22Z"
+                createdAt: '2021-12-21T14:15:22Z'
               id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
             override: false
-      title: ""
+      title: ''
     CreatePresetResponse:
       allOf:
-        - $ref: "#/components/schemas/APIResponse"
+        - $ref: '#/components/schemas/APIResponse'
         - type: object
           properties:
             data:
@@ -2440,11 +2440,11 @@ components:
               properties:
                 preset:
                   allOf:
-                    - $ref: "#/components/schemas/PresetRole"
+                    - $ref: '#/components/schemas/PresetRole'
                     - type: object
                       properties:
                         organization:
-                          $ref: "#/components/schemas/Organization"
+                          $ref: '#/components/schemas/Organization'
                       required:
                         - organization
                 override:
@@ -2458,21 +2458,21 @@ components:
             role:
               name: role_1
               description: Example role 1
-              s3URL: "https: //dyte-configs.s3.ap-south-1.amazonaws.com/{organizationId}/roles/role_1.json"
+              s3URL: 'https: //dyte-configs.s3.ap-south-1.amazonaws.com/{organizationId}/roles/role_1.json'
               organization:
                 id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
                 name: org_1
                 description: Example org 1
-                contact: "9898989898"
-                website: "https://example.com"
+                contact: '9898989898'
+                website: 'https://example.com'
                 accessToken: uniqueAccessToken
-                createdAt: "2021-12-21T14:15:22Z"
+                createdAt: '2021-12-21T14:15:22Z'
               id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
             override: false
-      title: ""
+      title: ''
     GetRolesResponse:
       allOf:
-        - $ref: "#/components/schemas/APIResponse"
+        - $ref: '#/components/schemas/APIResponse'
         - type: object
           properties:
             data:
@@ -2483,7 +2483,7 @@ components:
                 roles:
                   type: array
                   items:
-                    $ref: "#/components/schemas/PresetRole"
+                    $ref: '#/components/schemas/PresetRole'
           required:
             - data
       x-examples:
@@ -2494,11 +2494,11 @@ components:
             roles:
               - name: role_1
                 description: Example role 1
-                s3URL: "https: //dyte-configs.s3.ap-south-1.amazonaws.com/{organizationId}/roles/role_1.json"
+                s3URL: 'https: //dyte-configs.s3.ap-south-1.amazonaws.com/{organizationId}/roles/role_1.json'
                 id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
     GetPresetsResponse:
       allOf:
-        - $ref: "#/components/schemas/APIResponse"
+        - $ref: '#/components/schemas/APIResponse'
         - type: object
           properties:
             data:
@@ -2509,7 +2509,7 @@ components:
                 presets:
                   type: array
                   items:
-                    $ref: "#/components/schemas/PresetRole"
+                    $ref: '#/components/schemas/PresetRole'
           required:
             - data
       x-examples:
@@ -2520,7 +2520,7 @@ components:
             roles:
               - name: role_1
                 description: Example role 1
-                s3URL: "https: //dyte-configs.s3.ap-south-1.amazonaws.com/{organizationId}/roles/role_1.json"
+                s3URL: 'https: //dyte-configs.s3.ap-south-1.amazonaws.com/{organizationId}/roles/role_1.json'
                 id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
     PresetRole:
       title: PresetRole
@@ -2538,7 +2538,7 @@ components:
           description: Name of the role.
         description:
           type: string
-          description: "Description of the role, for reference purpose only."
+          description: 'Description of the role, for reference purpose only.'
           nullable: true
         s3URL:
           type: string
@@ -2564,13 +2564,13 @@ components:
         id:
           type: string
           format: uuid
-          description: "Unique ID of the organization, same as supplied in the URL while making the API call."
+          description: 'Unique ID of the organization, same as supplied in the URL while making the API call.'
         name:
           type: string
           description: Name of the organization.
         description:
           type: string
-          description: "Description of the organization, for reference purpose only."
+          description: 'Description of the organization, for reference purpose only.'
           nullable: true
         contact:
           type: string
@@ -2581,7 +2581,7 @@ components:
           description: URL to the website of the organiaztion.
         accessToken:
           type: string
-          description: "API key for the organization, same as supplied in the `Authorization` header."
+          description: 'API key for the organization, same as supplied in the `Authorization` header.'
         createdAt:
           type: string
           pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
@@ -2589,7 +2589,7 @@ components:
           description: Timestamp (in ISO 8601 format with UTC timezone) when the organization was created.
     CreateWebhookResponse:
       allOf:
-        - $ref: "#/components/schemas/APIResponse"
+        - $ref: '#/components/schemas/APIResponse'
         - type: object
           properties:
             data:
@@ -2598,7 +2598,7 @@ components:
                 - webhook
               properties:
                 webhook:
-                  $ref: "#/components/schemas/Webhook"
+                  $ref: '#/components/schemas/Webhook'
           required:
             - data
       x-examples:
@@ -2609,16 +2609,16 @@ components:
               name: webhook_1
               events:
                 - meeting.started
-              url: "https://mywebhook.site/path/to/webhook"
+              url: 'https://mywebhook.site/path/to/webhook'
               organizationId: cd0ede6e-7202-4e8e-87a5-c203fe41843d
               enabled: true
               id: d0f51c71-c5ac-456f-b5a8-d2de9410df5e
-              createdAt: "2021-10-13T17:01:12.747Z"
-              updatedAt: "2021-10-13T17:01:12.747Z"
-      title: ""
+              createdAt: '2021-10-13T17:01:12.747Z'
+              updatedAt: '2021-10-13T17:01:12.747Z'
+      title: ''
     GetWebhooksResponse:
       allOf:
-        - $ref: "#/components/schemas/APIResponse"
+        - $ref: '#/components/schemas/APIResponse'
         - type: object
           properties:
             data:
@@ -2629,7 +2629,7 @@ components:
                 webhooks:
                   type: array
                   items:
-                    $ref: "#/components/schemas/Webhook"
+                    $ref: '#/components/schemas/Webhook'
           required:
             - data
       x-examples:
@@ -2640,23 +2640,23 @@ components:
               - name: webhook_1
                 events:
                   - meeting.started
-                url: "https://mywebhook.site/path/to/webhook"
+                url: 'https://mywebhook.site/path/to/webhook'
                 organizationId: cd0ede6e-7202-4e8e-87a5-c203fe41843d
                 enabled: true
                 id: d0f51c71-c5ac-456f-b5a8-d2de9410df5e
-                createdAt: "2021-10-13T17:01:12.747Z"
-                updatedAt: "2021-10-13T17:01:12.747Z"
+                createdAt: '2021-10-13T17:01:12.747Z'
+                updatedAt: '2021-10-13T17:01:12.747Z'
     Webhook:
       title: Webhook
       allOf:
-        - $ref: "#/components/schemas/WebhookRequestBody"
+        - $ref: '#/components/schemas/WebhookRequestBody'
         - type: object
-          description: ""
+          description: ''
           properties:
             organizationId:
               type: string
               format: uuid
-              description: "Unique ID of the organization, same as supplied in the URL while making the API call."
+              description: 'Unique ID of the organization, same as supplied in the URL while making the API call.'
             enabled:
               type: boolean
               description: Status of the webhook.
@@ -2685,26 +2685,26 @@ components:
           name: webhook_1
           events:
             - meeting.started
-          url: "https://mywebhook.site/path/to/webhook"
+          url: 'https://mywebhook.site/path/to/webhook'
           organizationId: cd0ede6e-7202-4e8e-87a5-c203fe41843d
           enabled: true
           id: d0f51c71-c5ac-456f-b5a8-d2de9410df5e
-          createdAt: "2021-10-13T17:01:12.747Z"
-          updatedAt: "2021-10-13T17:01:12.747Z"
+          createdAt: '2021-10-13T17:01:12.747Z'
+          updatedAt: '2021-10-13T17:01:12.747Z'
     Recording:
-      description: ""
+      description: ''
       type: object
       x-examples:
         example-1:
           status: INVOKED
           outputFileName: filename.mp4
-          downloadUrlExpiry: "2021-10-13T17:01:12.747Z"
+          downloadUrlExpiry: '2021-10-13T17:01:12.747Z'
           roomUUID: 31eca195-b13b-4986-b6c9-6b60e53d7f58
-          downloadUrl: "https://some.url/pointing/to/recording/filename.mp4"
+          downloadUrl: 'https://some.url/pointing/to/recording/filename.mp4'
           errMessage: null
-          startedTime: "2021-10-13T14:15:22Z"
-          stoppedTime: "2021-10-13T14:45:22Z"
-          invokedTime: "2021-10-13T14:15:22Z"
+          startedTime: '2021-10-13T14:15:22Z'
+          stoppedTime: '2021-10-13T14:45:22Z'
+          invokedTime: '2021-10-13T14:15:22Z'
           fileSize: 2134.32
           id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
       properties:
@@ -2743,7 +2743,7 @@ components:
           nullable: true
         errMessage:
           type: string
-          description: "Error message during recording, if any."
+          description: 'Error message during recording, if any.'
           nullable: true
         startedTime:
           type: string
@@ -2781,7 +2781,7 @@ components:
     CreateRecordingResponse:
       title: CreateRecordingResponse
       allOf:
-        - $ref: "#/components/schemas/APIResponse"
+        - $ref: '#/components/schemas/APIResponse'
         - type: object
           properties:
             data:
@@ -2790,13 +2790,13 @@ components:
                 - recording
               properties:
                 recording:
-                  $ref: "#/components/schemas/Recording"
+                  $ref: '#/components/schemas/Recording'
           required:
             - data
     GetRecordingsResponse:
-      title: ""
+      title: ''
       allOf:
-        - $ref: "#/components/schemas/APIResponse"
+        - $ref: '#/components/schemas/APIResponse'
         - type: object
           properties:
             data:
@@ -2807,11 +2807,11 @@ components:
                 recordings:
                   type: array
                   items:
-                    $ref: "#/components/schemas/Recording"
+                    $ref: '#/components/schemas/Recording'
           required:
             - data
     WebhookLogs:
-      description: ""
+      description: ''
       type: object
       x-examples:
         example-1:
@@ -2828,13 +2828,13 @@ components:
                   id: 3bede250-cf6b-4344-bf72-a901ea30d442
                   roomName: unique-roomname
                   status: LIVE
-                  createdAt: "2021-10-13T17:01:12.747Z"
+                  createdAt: '2021-10-13T17:01:12.747Z'
                 participants:
                   - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
                     name: Mangoman
-                    picture: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png"
-                    createdAt: "2021-10-13T17:01:12.747Z"
-              timestamp: "2021-10-13T17:01:12.747Z"
+                    picture: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png'
+                    createdAt: '2021-10-13T17:01:12.747Z'
+              timestamp: '2021-10-13T17:01:12.747Z'
               statusCode: 500
             - webhookId: ed71eef4-4c34-46dc-81fe-954e560454fd
               name: webhook_1
@@ -2847,13 +2847,13 @@ components:
                   id: 3bede250-cf6b-4344-bf72-a901ea30d442
                   roomName: unique-roomname
                   status: LIVE
-                  createdAt: "2021-10-13T17:01:12.747Z"
+                  createdAt: '2021-10-13T17:01:12.747Z'
                 participants:
                   - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
                     name: Mangoman
-                    picture: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png"
-                    createdAt: "2021-10-13T17:01:12.747Z"
-              timestamp: "2021-10-14T17:01:12.747Z"
+                    picture: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png'
+                    createdAt: '2021-10-13T17:01:12.747Z'
+              timestamp: '2021-10-14T17:01:12.747Z'
               statusCode: 500
         example-2:
           success: true
@@ -2869,16 +2869,16 @@ components:
                   id: 3bede250-cf6b-4344-bf72-a901ea30d442
                   roomName: unique-roomname
                   status: LIVE
-                  createdAt: "2021-10-13T17:01:12.747Z"
+                  createdAt: '2021-10-13T17:01:12.747Z'
                 participant:
                   peerId: 60a07d40-746d-414c-b70b-908ca16e7459
                   userDisplayName: Appleman
                 participants:
                   - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
                     name: Mangoman
-                    picture: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png"
-                    createdAt: "2021-10-13T17:01:12.747Z"
-              timestamp: "2021-10-13T17:01:12.747Z"
+                    picture: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png'
+                    createdAt: '2021-10-13T17:01:12.747Z'
+              timestamp: '2021-10-13T17:01:12.747Z'
               statusCode: 500
             - webhookId: ed71eef4-4c34-46dc-81fe-954e560454fd
               name: webhook_2
@@ -2891,19 +2891,19 @@ components:
                   id: 3bede250-cf6b-4344-bf72-a901ea30d442
                   roomName: unique-roomname
                   status: LIVE
-                  createdAt: "2021-12-21T14:15:22Z"
+                  createdAt: '2021-12-21T14:15:22Z'
                 participant:
                   peerId: 384538f7-55ef-4770-823b-f3a433c1cf35
                   userDisplayName: Orangeman
                 participants:
                   - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
                     name: Mangoman
-                    picture: "https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png"
-                    createdAt: "2021-10-13T17:01:12.747Z"
+                    picture: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png'
+                    createdAt: '2021-10-13T17:01:12.747Z'
                   - id: 60a07d40-746d-414c-b70b-908ca16e7459
                     name: Appleman
-                    createdAt: "2021-10-13T17:01:12.747Z"
-              timestamp: "2021-10-13T17:01:12.747Z"
+                    createdAt: '2021-10-13T17:01:12.747Z'
+              timestamp: '2021-10-13T17:01:12.747Z'
               statusCode: 500
       properties:
         success:
@@ -2956,7 +2956,7 @@ components:
                       - recording.statusUpdate
                     description: The event for which the current webhook was triggered.
                   meeting:
-                    $ref: "#/components/schemas/Meeting"
+                    $ref: '#/components/schemas/Meeting'
                   participant:
                     type: object
                     required:
@@ -2970,13 +2970,13 @@ components:
                         description: Unique ID of the participant in Dyte system.
                       userDisplayName:
                         type: string
-                        description: "Name of the participant, as displayed in the meeting room."
+                        description: 'Name of the participant, as displayed in the meeting room.'
                   participants:
                     type: array
                     uniqueItems: true
                     description: Array containing objects that define the participants which were present in the meeting room at the time when the event was triggered.
                     items:
-                      $ref: "#/components/schemas/Participant"
+                      $ref: '#/components/schemas/Participant'
               timestamp:
                 type: string
                 description: Timestamp (in ISO 8601 format with UTC timezone) when the current event was triggered.
@@ -2997,19 +2997,19 @@ components:
         - success
         - logs
     PeerEvents:
-      description: ""
+      description: ''
       type: object
       x-examples:
         example-1:
           success: true
           analytics:
-            - clientSpecificId: "1"
+            - clientSpecificId: '1'
               events:
                 - event: PEER_JOINING
-                  time: "2021-10-13T17:01:12.747Z"
+                  time: '2021-10-13T17:01:12.747Z'
                   details: {}
                 - event: PEER_LEAVING
-                  time: "2021-10-13T17:01:12.747Z"
+                  time: '2021-10-13T17:01:12.747Z'
                   details:
                     minutesConsumed: 30
               totalMinutes: 30
@@ -3081,7 +3081,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/CreatePresetRoleResponse"
+            $ref: '#/components/schemas/CreatePresetRoleResponse'
           examples: {}
     GenericFailure:
       description: Failure response
@@ -3089,7 +3089,7 @@ components:
         application/json:
           schema:
             allOf:
-              - $ref: "#/components/schemas/APIResponse"
+              - $ref: '#/components/schemas/APIResponse'
               - type: object
                 properties:
                   message:
@@ -3101,58 +3101,58 @@ components:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/GetRolesResponse"
+            $ref: '#/components/schemas/GetRolesResponse'
     CreatePreset:
       description: Success response
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/CreatePresetResponse"
+            $ref: '#/components/schemas/CreatePresetResponse'
     GetPresets:
       description: Success response
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/GetPresetsResponse"
+            $ref: '#/components/schemas/GetPresetsResponse'
     CreateWebhook:
       description: Success response
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/CreateWebhookResponse"
+            $ref: '#/components/schemas/CreateWebhookResponse'
           examples: {}
     GetWebhooks:
       description: Success response
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/GetWebhooksResponse"
+            $ref: '#/components/schemas/GetWebhooksResponse'
     CreateRecording:
       description: Success response
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/CreateRecordingResponse"
+            $ref: '#/components/schemas/CreateRecordingResponse'
     GetRecordings:
       description: Success response
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/GetRecordingsResponse"
+            $ref: '#/components/schemas/GetRecordingsResponse'
     GetUsers:
       description: Success response
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/GetUsersResponse"
+            $ref: '#/components/schemas/GetUsersResponse'
 security:
   - api_key: []
 tags:
-  - name: "Roles "
-  - name: "Presets "
-  - name: "Meetings "
-  - name: "Participants "
-  - name: "Recordings "
-  - name: "Webhooks "
-  - name: "Stats "
-  - name: "Team Management "
+  - name: 'Roles '
+  - name: 'Presets '
+  - name: 'Meetings '
+  - name: 'Participants '
+  - name: 'Recordings '
+  - name: 'Webhooks '
+  - name: 'Stats '
+  - name: 'Team Management '
