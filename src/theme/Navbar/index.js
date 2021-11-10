@@ -218,6 +218,8 @@ const getPage = () => {
       return 'api';
     case 'docs':
       return 'home';
+    case 'guides':
+      return 'guides';
     default:
       if (
         [
@@ -253,7 +255,7 @@ function Navbar() {
           <div className="flex items-center space-x-2">
             <button
               onClick={mobileSidebar.toggle}
-              className="lg:hidden bg-transparent"
+              className="lg:  hidden bg-transparent"
             >
               <MenuIcon className="h-6 text-text-100" />
             </button>
@@ -265,13 +267,13 @@ function Navbar() {
 
           <div className="hidden lg:flex space-x-6 text-text-100">
             <Link
-              to="/docs/home/introduction"
+              to="/guides/subscribing-to-server-events"
               className={clsx(
                 'text-sm hover:no-underline font-medium',
-                page === 'home' ? 'text-primary-100' : 'text-text-100'
+                page === 'guides' ? 'text-primary-100' : 'text-text-100'
               )}
             >
-              Home
+              Guides
             </Link>
             <Link
               to="/react/quickstart"

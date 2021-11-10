@@ -33,6 +33,10 @@ module.exports = {
           activeBaseRegex: '(^/docs)',
         },
         {
+          label: 'Guides',
+          to: '/guides/subscribing-to-server-events',
+        },
+        {
           label: 'Client SDK',
           to: '/react/quickstart',
         },

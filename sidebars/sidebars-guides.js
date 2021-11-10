@@ -3,6 +3,8 @@ module.exports = {
     {
       type: 'category',
       label: 'Home',
+      collapsed: true,
+      collapsible: true,
       items: [
         {
           type: 'link',
@@ -34,6 +36,8 @@ module.exports = {
     {
       type: 'category',
       label: 'Client SDK',
+      collapsed: true,
+      collapsible: true,
       items: [
         {
           type: 'link',
@@ -60,6 +64,8 @@ module.exports = {
     {
       type: 'category',
       label: 'API Reference',
+      collapsed: true,
+      collapsible: true,
       items: [
         {
           type: 'link',
