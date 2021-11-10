@@ -267,15 +267,6 @@ function Navbar() {
 
           <div className="hidden lg:flex space-x-6 text-text-100">
             <Link
-              to="/guides/subscribing-to-server-events"
-              className={clsx(
-                'text-sm hover:no-underline font-medium',
-                page === 'guides' ? 'text-primary-100' : 'text-text-100'
-              )}
-            >
-              Guides
-            </Link>
-            <Link
               to="/react/quickstart"
               className={clsx(
                 'text-sm hover:no-underline font-medium',
@@ -293,6 +284,15 @@ function Navbar() {
             >
               API Reference
             </a>
+            <Link
+              to="/guides/subscribing-to-server-events"
+              className={clsx(
+                'text-sm hover:no-underline font-medium',
+                page === 'guides' ? 'text-primary-100' : 'text-text-100'
+              )}
+            >
+              Guides
+            </Link>
 
             <Link
               className="flex items-center text-sm text-text-100 hover:no-underline font-medium"
@@ -301,7 +301,6 @@ function Navbar() {
               <Github className="h-5 mr-1" aria-hidden={true} />
               GitHub
             </Link>
-
             <Link
               className="flex items-center text-sm text-text-100 hover:no-underline font-medium"
               href="https://community.dyte.io"
