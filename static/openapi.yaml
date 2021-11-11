@@ -681,6 +681,7 @@ paths:
           schema:
             type: integer
             format: date-time
+            example: 1640044800
         - name: endTime
           in: query
           description: Unix timestamp to get the logs only before the specified time
@@ -688,6 +689,7 @@ paths:
           schema:
             type: integer
             format: date-time
+            example: 1640044800
         - in: query
           name: offset
           schema:
@@ -809,12 +811,14 @@ paths:
           schema:
             type: integer
             format: date-time
+            example: 1640044800
         - name: endTime
           in: query
           description: Unix timestamp to get the stats only for meetings that were live before the specified time
           schema:
             type: integer
             format: date-time
+            example: 1640044800
       responses:
         '200':
           description: Success response
@@ -850,12 +854,14 @@ paths:
           schema:
             type: integer
             format: date-time
+            example: 1640044800
         - name: endTime
           in: query
           description: Unix timestamp to get the stats only for the recordings that were started before the specified time
           schema:
             type: integer
             format: date-time
+            example: 1640044800
         - in: query
           name: offset
           schema:
@@ -901,12 +907,14 @@ paths:
           schema:
             type: integer
             format: date-time
+            example: 1640044800
         - name: endTime
           in: query
           description: Unix timestamp to get the events only before the specified time
           schema:
             type: integer
             format: date-time
+            example: 1640044800
         - name: clientSpecificId
           in: query
           description: Get events only for the client with the specified ID
@@ -947,12 +955,14 @@ paths:
           schema:
             type: integer
             format: date-time
+            example: 1640044800
         - name: endTime
           in: query
           description: Unix timestamp to get the events only before the specified time
           schema:
             type: integer
             format: date-time
+            example: 1640044800
         - name: clientSpecificId
           in: query
           description: Get events only for the client with the specified ID
@@ -1853,8 +1863,7 @@ components:
               day:
                 type: string
                 format: date
-                description: Date (in ISO 8601 format with UTC timezone) for which the corresponding data is displayed.
-                pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
+                description: 'Date (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) for which the corresponding data is displayed.'
             required:
               - totalMinutes
               - totalSessions
@@ -1891,14 +1900,12 @@ components:
                       startedTime:
                         type: string
                         format: date-time
-                        description: Timestamp (in ISO 8601 format with UTC timezone) when the recording was started.
-                        pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
+                        description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the recording was started.'
                         nullable: true
                       stoppedTime:
                         type: string
                         format: date-time
-                        description: Timestamp (in ISO 8601 format with UTC timezone) when the recording was stopped.
-                        pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
+                        description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the recording was stopped.'
                         nullable: true
                       roomName:
                         type: string
@@ -1955,13 +1962,11 @@ components:
           createdAt:
             type: string
             format: date-time
-            pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
-            description: Timestamp (in ISO 8601 format with UTC timezone) when the meeting room was created.
+            description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the meeting room was created.'
           updatedAt:
             type: string
             format: date-time
-            pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
-            description: Timestamp (in ISO 8601 format with UTC timezone) when the meeting room was last updated.
+            description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the meeting room was last updated.'
           minutesConsumed:
             type: integer
             description: Number of minutes used by the meeting room.
@@ -2260,8 +2265,7 @@ components:
         createdAt:
           type: string
           format: date-time
-          pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
-          description: Timestamp (in ISO 8601 format with UTC timezone) when the user was created.
+          description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the user was created.'
         role:
           type: string
           enum:
@@ -2306,8 +2310,7 @@ components:
         createdAt:
           type: string
           format: date-time
-          pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
-          description: Timestamp (in ISO 8601 format with UTC timezone) when the participant was created.
+          description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the participant was created.'
       required:
         - id
         - createdAt
@@ -2364,8 +2367,7 @@ components:
         createdAt:
           type: string
           format: date-time
-          pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
-          description: Timestamp (in ISO 8601 format with UTC timezone) when the meeting room was created.
+          description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the meeting room was created.'
       required:
         - id
         - roomName
@@ -2583,9 +2585,8 @@ components:
           description: 'API key for the organization, same as supplied in the `Authorization` header.'
         createdAt:
           type: string
-          pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
           format: date-time
-          description: Timestamp (in ISO 8601 format with UTC timezone) when the organization was created.
+          description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the organization was created.'
     CreateWebhookResponse:
       allOf:
         - $ref: '#/components/schemas/APIResponse'
@@ -2666,13 +2667,11 @@ components:
             createdAt:
               type: string
               format: date-time
-              description: Timestamp (in ISO 8601 format with UTC timezone) when the webhook was created.
-              pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
+              description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the webhook was created.'
             updatedAt:
               type: string
               format: date-time
-              description: Timestamp (in ISO 8601 format with UTC timezone) when the webhook was updated.
-              pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
+              description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the webhook was updated.'
           required:
             - organizationId
             - enabled
@@ -2728,8 +2727,7 @@ components:
         downloadUrlExpiry:
           type: string
           format: date-time
-          pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
-          description: Timestamp (in ISO 8601 format with UTC timezone) when the `downloadUrl` will stop working and the recording file will not be available for download anymore.
+          description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the `downloadUrl` will stop working and the recording file will not be available for download anymore.'
           nullable: true
         roomUUID:
           type: string
@@ -2747,18 +2745,15 @@ components:
         startedTime:
           type: string
           format: date-time
-          pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
-          description: Timestamp (in ISO 8601 format with UTC timezone) when the recording was started.
+          description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the recording was started.'
         stoppedTime:
           type: string
           format: date-time
-          pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
-          description: Timestamp (in ISO 8601 format with UTC timezone) when the recording was stopped.
+          description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the recording was stopped.'
         invokedTime:
           type: string
           format: date-time
-          pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
-          description: Timestamp (in ISO 8601 format with UTC timezone) when the recording was invoked.
+          description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the recording was invoked.'
         fileSize:
           type: number
           format: double
@@ -2978,8 +2973,7 @@ components:
                       $ref: '#/components/schemas/Participant'
               timestamp:
                 type: string
-                description: Timestamp (in ISO 8601 format with UTC timezone) when the current event was triggered.
-                pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
+                description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the current event was triggered.'
                 format: date-time
               statusCode:
                 type: number
@@ -3046,8 +3040,7 @@ components:
                         - `PEER_LEAVING`: When a participant leaves the meeting
                     time:
                       type: string
-                      pattern: '^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$'
-                      description: Timestamp (in ISO 8601 format with UTC timezone) when the event occurred.
+                      description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the event occurred.'
                     details:
                       type: object
                       description: Object containing relevant details for the event.
