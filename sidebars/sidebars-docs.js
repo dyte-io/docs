@@ -88,6 +88,11 @@ module.exports = {
           label: 'Livestreaming using RTMP and HLS',
           href: '/guides/livestreaming-rtmp-hls',
         },
+        {
+          type: 'link',
+          label: 'Dyte Webinars (Beta)',
+          href: '/guides/webinar',
+        },
       ],
     },
   ],
