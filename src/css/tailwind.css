@@ -291,7 +291,16 @@ html[data-theme='dark'] .DocSearch-Button-Key {
 .sl-elements {
   --fs-paragraph: 18px !important;
   --fs-code: 16px !important;
+  --ifm-pre-padding: 0;
   @apply !text-base;
+}
+
+.TryItPanel > .sl-panel__titlebar > div:last-child {
+  @apply hidden;
+}
+
+.sl-elements .OperationParametersContent {
+  max-height: max-content;
 }
 
 /* Fixes API reference white border */
