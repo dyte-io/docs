@@ -112,14 +112,15 @@ Call the ["add particpant"](/api/#/operations/add_participant) endpoint from you
 
 Your request body will look like this:
 
-````json
+```json
 {
     "clientSpecificId": "your-unique-user-id",
     "userDetails": {
         "name": "Webinar Host"
     },
     "presetName": "default_webinar_host_preset"
-}```
+}
+```
 
 You will receive a response that looks like this:
 
@@ -134,7 +135,7 @@ You will receive a response that looks like this:
         }
     }
 }
-````
+```
 
 Save `data.authResponse.authToken` for later use.
 
