@@ -314,6 +314,10 @@ html[data-theme='dark'] .DocSearch-Button-Key {
   @apply my-2;
 }
 
+.HttpOperation .sl-flex .sl-w-2\/5 {
+  @apply pl-8 ml-8 border-l border-border;
+}
+
 /* Fixes API reference white border */
 .sl-elements div {
   @apply border-border;
@@ -331,8 +335,12 @@ html[data-theme='dark'] .DocSearch-Button-Key {
   color: inherit !important;
 }
 
+.sl-elements div[aria-label="Responses"] > span {
+  @apply mr-8;
+}
+
 .sl-elements div[aria-label="Responses"] div[data-key="200"], .sl-elements div[aria-label="Responses"] div[data-key="400"] {
-  @apply flex items-center;
+  @apply flex items-center border rounded-md mr-2 outline-none ring-0;
 }
 
 .sl-elements div[aria-label="Responses"] div[data-key="200"]::before, 
@@ -345,8 +353,8 @@ html[data-theme='dark'] .DocSearch-Button-Key {
   @apply bg-red-500;
 }
 
-div[aria-label="Responses"] div[aria-selected="true"]::before {
-  @apply drop-shadow-lg;
+div[aria-label="Responses"] div[aria-selected="true"] {
+  @apply shadow-sm border-primary-100;
 }
 
 .sl-overflow-x-hidden.sl-overflow-y-auto.sl-flex-1.sl-w-full.sl-px-24.sl-bg-canvas {
