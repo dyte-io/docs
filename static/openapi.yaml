@@ -1722,8 +1722,8 @@ components:
             rtmpUrl:
               type: string
               format: uri
-              pattern: '^rtmp:\/\/(.*?)(:(\d+))?\/(.*)$'
               description: The RTMP input URL to which the meeting video should be streamed.
+              example: 'rtmp://your.rtmp.url/live/stream/your-stream-key'
     UpdateRecordingRequestBody:
       type: object
       properties:
