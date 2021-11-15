@@ -4,8 +4,8 @@ sidebar_position: 2
 
 # Quickstart
 
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 Get the `roomName` for the meeting and the participant's `authToken` from our backend APIs (read more about our server APIs [here](/api/)), and pass them to Dyte's client SDK.
 
@@ -42,8 +42,6 @@ class ViewController: UIViewController {
         let  config = DyteMeetingConfig();
         meetingConfig.roomName = "YOUR_ROOM_NAME";
         meetingConfig.authToken = "YOUR_AUTH_TOKEN";
-        meetingConfig.width = self.view.frame.size.width
-        meetingConfig.height = self.view.frame.size.height
         let dyteView = DyteMeetingView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height:self.view.bounds.size.height ))
         self.view.addSubview(dyteView)
         dyteView.join(config);
@@ -73,8 +71,6 @@ class ViewController: UIViewController {
     DyteMeetingConfig *meetingConfig = [[DyteMeetingConfig alloc] init];
     meetingConfig.roomName = @"YOUR_ROOM_NAME";
     meetingConfig.authToken = @"YOUR_AUTH_TOKEN";
-    meetingConfig.width = self.view.frame.size.width;
-    meetingConfig.height = self.view.frame.size.height;
     DyteMeetingView *dyteView = [[DyteMeetingView alloc] initWithFrame:CGRectMake(0.0, 0.0, meetingConfig.width, meetingConfig.height)];
     [self.view addSubview:dyteView];
     [dyteView join:meetingConfig];
@@ -119,8 +115,6 @@ class ViewController: UIViewController {
         meetingConfig.roomName = "YOUR_ROOM_NAME";
         meetingConfig.authToken = "YOUR_AUTH_TOKEN";
         let dyteView = self.view as DyteMeetingView
-        meetingConfig.width = self.view.frame.size.width
-        meetingConfig.height = self.view.frame.size.height
         dyteView.join(config)
     }
 }
@@ -147,8 +141,6 @@ class ViewController: UIViewController {
     meetingConfig.roomName = @"YOUR_ROOM_NAME";
     meetingConfig.authToken = @"YOUR_AUTH_TOKEN";
     DyteMeetingView *dyteView = (DyteMeetingView *) self.view;
-    meetingConfig.width = self.view.frame.size.width;
-    meetingConfig.height = self.view.frame.size.height;
     [dyteView join:meetingConfig];
 }
 

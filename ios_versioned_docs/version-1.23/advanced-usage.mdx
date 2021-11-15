@@ -12,6 +12,7 @@ import TabItem from '@theme/TabItem';
 The audio / video setup screen that appears for the participant right before getting into the meeting is turned off by default. You can set `showSetupScreen` in `meetingConfig` to `true` to turn it on (default value is `false`).
 
 <Tabs
+  groupId="ios-language"
   defaultValue="swift"
   values={[
     { label: 'Swift', value: 'swift', },
@@ -20,28 +21,24 @@ The audio / video setup screen that appears for the participant right before get
 }>
 <TabItem value="swift">
 
-```swift {8}
+```swift {6}
 import DyteSdk;
 
 let  config = DyteMeetingConfig();
-meetingConfig.roomName = "YOUR_ROOM_NAME";
-meetingConfig.authToken = "YOUR_AUTH_TOKEN";
-meetingConfig.width = self.view.frame.size.width
-meetingConfig.height = self.view.frame.size.height
+meetingConfig.roomName = "YOUR_ROOM_NAME"
+meetingConfig.authToken = "YOUR_AUTH_TOKEN"
 meetingConfig.showSetupScreen = true
 ```
 
 </TabItem>
 <TabItem value="obj-c">
 
-```objectivec {8}
+```objectivec {6}
 @import DyteSdk;
 
 DyteMeetingConfig *meetingConfig = [[DyteMeetingConfig alloc] init];
 meetingConfig.roomName = @"YOUR_ROOM_NAME";
 meetingConfig.authToken = @"YOUR_AUTH_TOKEN";
-meetingConfig.width = self.view.frame.size.width;
-meetingConfig.height = self.view.frame.size.height;
 meetingConfig.showSetupScreen = YES;
 ```
 
@@ -53,6 +50,7 @@ meetingConfig.showSetupScreen = YES;
 Dyte uses VP9 codec by default, but switches to H264/VP8 depending on participants' video codec support. VP9 is a superior codec but not all browsers support it. If you set `autoTune` in `meetingConfig` to `false`, Dyte will use VP8 only for all participants (default value is `true`).
 
 <Tabs
+  groupId="ios-language"
   defaultValue="swift"
   values={[
     { label: 'Swift', value: 'swift', },
@@ -61,28 +59,24 @@ Dyte uses VP9 codec by default, but switches to H264/VP8 depending on participan
 }>
 <TabItem value="swift">
 
-```swift {8}
+```swift {6}
 import DyteSdk;
 
 let  config = DyteMeetingConfig();
-meetingConfig.roomName = "YOUR_ROOM_NAME";
-meetingConfig.authToken = "YOUR_AUTH_TOKEN";
-meetingConfig.width = self.view.frame.size.width
-meetingConfig.height = self.view.frame.size.height
+meetingConfig.roomName = "YOUR_ROOM_NAME"
+meetingConfig.authToken = "YOUR_AUTH_TOKEN"
 meetingConfig.autoTune = true
 ```
 
 </TabItem>
 <TabItem value="obj-c">
 
-```objectivec {8}
+```objectivec {6}
 @import DyteSdk;
 
 DyteMeetingConfig *meetingConfig = [[DyteMeetingConfig alloc] init];
 meetingConfig.roomName = @"YOUR_ROOM_NAME";
 meetingConfig.authToken = @"YOUR_AUTH_TOKEN";
-meetingConfig.width = self.view.frame.size.width;
-meetingConfig.height = self.view.frame.size.height;
 meetingConfig.autoTune = YES;
 ```
 
@@ -91,13 +85,14 @@ meetingConfig.autoTune = YES;
 
 ## Control the meeting, and take meeting & participant actions
 
-The `DyteMeetingView` instance (referenced as `dyteView`) helps you interact with the meeting. You can take actions on the meeting as well as the participants. You can also setup custom controls to that interact with the meeting in certain ways that help you send events and messages across to other participants in the meeting. You can find the complete reference to the `DyteMeetingView` type [here](./reference/meeting). Read on to understand how to use these individual controls.
+The `DyteMeetingView` instance (referenced as `dyteView`) helps you interact with the meeting. You can take actions on the meeting as well as the participants. You can also setup custom controls to that interact with the meeting in certain ways that help you send events and messages across to other participants in the meeting. You can find the complete reference to the `DyteMeetingView` type [here](./reference/dyte-meeting). Read on to understand how to use these individual controls.
 
-## Get info about meeting's connection configuration
+<!-- ## Get info about meeting's connection configuration
 
 You can get the connection configuration of the meeting in progress using the `config` property of `DyteMeeting`.
 
 <Tabs
+  groupId="ios-language"
   defaultValue="swift"
   values={[
     { label: 'Swift', value: 'swift', },
@@ -120,7 +115,7 @@ DyteMeetingConfig *config = meeting.config;
 </TabItem>
 </Tabs>
 
-sets the value of `config` to an instance of [`DyteMeetingConfig`](./reference/connection-config).
+sets the value of `config` to an instance of [`DyteMeetingConfig`](./reference/connection-config). -->
 
 ## Replace the meeting control buttons with your own buttons
 
@@ -129,6 +124,7 @@ Let's say you don't want to give many options to the participants in a meeting, 
 First thing in such a scenario would be to do away with our control bar
 
 <Tabs
+  groupId="ios-language"
   defaultValue="swift"
   values={[
     { label: 'Swift', value: 'swift', },
@@ -158,6 +154,7 @@ Now you can perform the basic functions of a meeting, like below. These function
 To turn off the mic
 
 <Tabs
+  groupId="ios-language"
   defaultValue="swift"
   values={[
     { label: 'Swift', value: 'swift', },
@@ -167,14 +164,14 @@ To turn off the mic
 <TabItem value="swift">
 
 ```swift
-meeting.self.disableAudio()
+DyteSelfParticipant.sharedInstance().disableAudio()
 ```
 
 </TabItem>
 <TabItem value="obj-c">
 
 ```objectivec
-[meeting.self disableAudio];
+[[DyteSelfParticipant sharedInstance] disableAudio];
 ```
 
 </TabItem>
@@ -183,6 +180,7 @@ meeting.self.disableAudio()
 To turn on the mic
 
 <Tabs
+  groupId="ios-language"
   defaultValue="swift"
   values={[
     { label: 'Swift', value: 'swift', },
@@ -192,14 +190,14 @@ To turn on the mic
 <TabItem value="swift">
 
 ```swift
-meeting.self.enableAudio()
+DyteSelfParticipant.sharedInstance().enableAudio()
 ```
 
 </TabItem>
 <TabItem value="obj-c">
 
 ```objectivec
-[meeting.self enableAudio];
+[[DyteSelfParticipant sharedInstance] enableAudio];
 ```
 
 </TabItem>
@@ -210,6 +208,7 @@ meeting.self.enableAudio()
 To turn off the camera
 
 <Tabs
+  groupId="ios-language"
   defaultValue="swift"
   values={[
     { label: 'Swift', value: 'swift', },
@@ -219,14 +218,14 @@ To turn off the camera
 <TabItem value="swift">
 
 ```swift
-meeting.self.disableVideo()
+DyteSelfParticipant.sharedInstance().disableVideo()
 ```
 
 </TabItem>
 <TabItem value="obj-c">
 
 ```objectivec
-[meeting.self disableVideo];
+[[DyteSelfParticipant sharedInstance] disableVideo];
 ```
 
 </TabItem>
@@ -235,6 +234,7 @@ meeting.self.disableVideo()
 To turn on the camera
 
 <Tabs
+  groupId="ios-language"
   defaultValue="swift"
   values={[
     { label: 'Swift', value: 'swift', },
@@ -244,14 +244,14 @@ To turn on the camera
 <TabItem value="swift">
 
 ```swift
-meeting.self.enableVideo()
+DyteSelfParticipant.sharedInstance().enableVideo()
 ```
 
 </TabItem>
 <TabItem value="obj-c">
 
 ```objectivec
-[meeting.self enableVideo];
+[[DyteSelfParticipant sharedInstance] enableVideo];
 ```
 
 </TabItem>
@@ -262,6 +262,7 @@ meeting.self.enableVideo()
 To turn screenshare on / off
 
 <Tabs
+  groupId="ios-language"
   defaultValue="swift"
   values={[
     { label: 'Swift', value: 'swift', },
@@ -289,6 +290,7 @@ meeting.self.selfToggleScreenShare()
 To pin your video to the meeting grid
 
 <Tabs
+  groupId="ios-language"
   defaultValue="swift"
   values={[
     { label: 'Swift', value: 'swift', },
@@ -298,14 +300,14 @@ To pin your video to the meeting grid
 <TabItem value="swift">
 
 ```swift
-meeting.self.selfPin()
+DyteSelfParticipant.sharedInstance().selfPin()
 ```
 
 </TabItem>
 <TabItem value="obj-c">
 
 ```objectivec
-[meeting.self selfPin];
+[[DyteSelfParticipant sharedInstance] selfPin];
 ```
 
 </TabItem>
@@ -314,6 +316,7 @@ meeting.self.selfPin()
 To unpin your video from the meeting grid
 
 <Tabs
+  groupId="ios-language"
   defaultValue="swift"
   values={[
     { label: 'Swift', value: 'swift', },
@@ -323,24 +326,25 @@ To unpin your video from the meeting grid
 <TabItem value="swift">
 
 ```swift
-meeting.self.selfUnpin()
+DyteSelfParticipant.sharedInstance().selfUnpin()
 ```
 
 </TabItem>
 <TabItem value="obj-c">
 
 ```objectivec
-[meeting.self selfUnpin];
+[[DyteSelfParticipant sharedInstance] selfUnpin];
 ```
 
 </TabItem>
 </Tabs>
 
-<!-- ### Leave meeting
+### Leave meeting
 
 To leave meeting
 
 <Tabs
+  groupId="ios-language"
   defaultValue="swift"
   values={[
     { label: 'Swift', value: 'swift', },
@@ -350,24 +354,25 @@ To leave meeting
 <TabItem value="swift">
 
 ```swift
-meeting.self.leaveRoom()
+DyteSelfParticipant.sharedInstance().leaveRoom()
 ```
 
 </TabItem>
 <TabItem value="obj-c">
 
 ```objectivec
-[meeting.self leaveRoom];
+[[DyteSelfParticipant sharedInstance] leaveRoom];
 ```
 
 </TabItem>
-</Tabs> -->
+</Tabs>
 
 ## Get list of all participants in the meeting
 
-You can get a list of all participants in the meeting using the `participants` property of `DyteMeeting`.
+You can get a list of all participants in the meeting using the `participants` property of `DyteParticipants`.
 
 <Tabs
+  groupId="ios-language"
   defaultValue="swift"
   values={[
     { label: 'Swift', value: 'swift', },
@@ -377,14 +382,14 @@ You can get a list of all participants in the meeting using the `participants` p
 <TabItem value="swift">
 
 ```swift
-let participants = meeting.participants
+let participants = DyteParticipants.sharedInstance().participants
 ```
 
 </TabItem>
 <TabItem value="obj-c">
 
 ```objectivec
-NSArray *participants = meeting.participants;
+NSArray *participants = [DyteParticipants sharedInstance].participants;
 ```
 
 </TabItem>
@@ -413,6 +418,7 @@ Once you get the array of participants as mentioned above, you can iterate over 
 We will consider the following iterator for the next section.
 
 <Tabs
+  groupId="ios-language"
   defaultValue="swift"
   values={[
     { label: 'Swift', value: 'swift', },
@@ -422,7 +428,7 @@ We will consider the following iterator for the next section.
 <TabItem value="swift">
 
 ```swift
-for p in DyteParticipants.sharedInstance.participants {
+for p in DyteParticipants.sharedInstance().participants {
     // participant specific code goes here
 }
 ```
@@ -450,6 +456,7 @@ Even if the same participant, using the same auth token, rejoins the meeting, fo
 :::
 
 <Tabs
+  groupId="ios-language"
   defaultValue="swift"
   values={[
     { label: 'Swift', value: 'swift', },
@@ -479,6 +486,7 @@ sets the value of `peerID` to a UUID string.
 Get the client specific ID as you have specified in the add participant API call. You may want to decide exposing custom controls or build other business logic based on this identifier, which helps you find the participant info in your system.
 
 <Tabs
+  groupId="ios-language"
   defaultValue="swift"
   values={[
     { label: 'Swift', value: 'swift', },
@@ -506,6 +514,7 @@ NSString *clientSpecificID = p.clientSpecificId;
 Get the participant name as you have specified in the add participant API call. The participant may have changed this name, if enabled.
 
 <Tabs
+  groupId="ios-language"
   defaultValue="swift"
   values={[
     { label: 'Swift', value: 'swift', },
@@ -533,6 +542,7 @@ NSString *name = p.name;
 Get the participant photo as you have specified in the add participant API call.
 
 <Tabs
+  groupId="ios-language"
   defaultValue="swift"
   values={[
     { label: 'Swift', value: 'swift', },
@@ -560,6 +570,7 @@ NSString *picture = p.picture;
 To check whether a participant's audio is on (mic is turned on), you can use
 
 <Tabs
+  groupId="ios-language"
   defaultValue="swift"
   values={[
     { label: 'Swift', value: 'swift', },
@@ -589,6 +600,7 @@ which sets the value of `audio` to a boolean specifying if the mic is on or not.
 To check whether a participant's video is on (camera is turned on), you can use
 
 <Tabs
+  groupId="ios-language"
   defaultValue="swift"
   values={[
     { label: 'Swift', value: 'swift', },
@@ -618,6 +630,7 @@ which sets the value of `video` to a boolean specifying if the camera is on or n
 To check whether a participant's video is pinned to the meeting grid; by the host, by the user, by the preset, or by any other mechanism; you can use
 
 <Tabs
+  groupId="ios-language"
   defaultValue="swift"
   values={[
     { label: 'Swift', value: 'swift', },
@@ -647,6 +660,7 @@ which sets the value of `pinned` to a boolean specifying whether the video is pi
 To check whether a participant's screen is being shared, you can use
 
 <Tabs
+  groupId="ios-language"
   defaultValue="swift"
   values={[
     { label: 'Swift', value: 'swift', },

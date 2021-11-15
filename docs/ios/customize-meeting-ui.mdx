@@ -10,9 +10,10 @@ import VideoPlayer from '@site/src/components/VideoPlayer';
 
 Dyte offers a host of customizations for the UI of meetings, some of which also defines the interactions the participants can have within a meeting room. While the initial values for these options are picked up from the [`preset`](/docs/home/introduction#glossary) used to generate the `authToken`, you can override them at the client end based on specific use cases or events.
 
-Call the `updateUIConfig` method on [`DyteMeeting` instance](./reference/meeting) and pass the [`uiConfigOptions`](./reference/dyte-ui-config) as an NSDictionary to this call.
+Call the `updateUIConfig` method on [`DyteMeetingView` instance](./reference/dyte-meeting) and pass the [`uiConfigOptions`](./reference/dyte-ui-config) as an NSDictionary to this call.
 
 <Tabs
+  groupId="ios-language"
   defaultValue="swift"
   values={[
     { label: 'Swift', value: 'swift', },
@@ -22,14 +23,14 @@ Call the `updateUIConfig` method on [`DyteMeeting` instance](./reference/meeting
 <TabItem value="swift">
 
 ```swift
-meeting.updateUIConfig(uiConfigOptions)
+meetingView.updateUIConfig(uiConfigOptions)
 ```
 
 </TabItem>
 <TabItem value="obj-c">
 
 ```objectivec
-[meeting updateUIConfig: uiConfigOptions];
+[meetingView updateUIConfig: uiConfigOptions];
 ```
 
 </TabItem>
@@ -39,7 +40,7 @@ Described below are various different options that you can customize in a meetin
 
 Here is a pictorial representation of all the config options defined below.
 
-![meeting UI screenshot with labeled parts](/meeting-ui.png)
+![meeting UI screenshot with labeled parts](/ui-customizations/mobile/mobile-meeting-ui.png)
 
 ## Set your logo in the meeting room
 
