@@ -1,4 +1,8 @@
-const { tailwindPlugin, webpackPlugin } = require('./src/plugins');
+const {
+  tailwindPlugin,
+  webpackPlugin,
+  posthogPlugin,
+} = require('./src/plugins');
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -66,6 +70,9 @@ module.exports = {
       appId: process.env.ALGOLIA_APP_ID,
       searchParameters: {},
     },
+    posthog: {
+      apiKey: process.env.POSTHOG_API_KEY,
+    },
   },
   presets: [
     [
@@ -85,6 +92,7 @@ module.exports = {
   plugins: [
     tailwindPlugin,
     webpackPlugin,
+    posthogPlugin,
     [
       '@docusaurus/plugin-content-docs',
       {
