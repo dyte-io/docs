@@ -362,6 +362,22 @@ Get the participant photo as you have specified in the add participant API call.
 let name = p.picture;
 ```
 
+#### Participant metadata about the preset
+
+Get the preset that has been set for the participant either as a default or explicitly as specified in the add participant API call.
+
+```javascript
+let preset = p.metadata.preset_name;
+```
+
+#### Participant metadata about the meeting view type
+
+Get the view type that the participant is currently seeing.
+
+```javascript
+let preset = p.metadata.view_type;
+```
+
 #### Check if participant's audio is on
 
 To check whether a participant's audio is on (mic is turned on), you can use
