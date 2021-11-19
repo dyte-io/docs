@@ -22,6 +22,14 @@ This event is triggered when the participant actually joins the meeting, and can
 meeting.on(meeting.Events.meetingJoined, () => {});
 ```
 
+### Input media devices get connected to the meeting
+
+This event is triggered when the participant's local media input devices (camera, mic) are initialized and connected to the meeting for the first time. Since the media device states can be toggled only after the device is connected, you need to use this event to manage the starting state of participant's audio or video.
+
+```javascript
+meeting.on(meeting.Events.localMediaConnected, () => {});
+```
+
 ### Disconnected from the meeting
 
 This event is triggered when the participant gets disconnected from the meeting for any reason. It could be a bad network connection, the meeting being exited by the participant manually, the meeting tab / browser / app being closed by the participant, or just any other reason.
