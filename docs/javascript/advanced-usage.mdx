@@ -10,15 +10,15 @@ The audio / video setup screen that appears for the participant right before get
 
 ```html {7}
 <script>
-  const client = new DyteClient({ clientId: "orgId|clientId" });
+  const client = new DyteClient({ clientId: 'orgId|clientId' });
 
   const meeting = client.Meeting({
-    roomName: "<roomName>",
-    authToken: "<authToken>",
+    roomName: '<roomName>',
+    authToken: '<authToken>',
     showSetupScreen: true,
   });
 
-  meeting.init("root");
+  meeting.init('root');
 </script>
 ```
 
@@ -28,15 +28,15 @@ Dyte uses VP9 codec by default, but switches to H264/VP8 depending on participan
 
 ```html {7}
 <script>
-  const client = new DyteClient({ clientId: "orgId|clientId" });
+  const client = new DyteClient({ clientId: 'orgId|clientId' });
 
   const meeting = client.Meeting({
-    roomName: "<roomName>",
-    authToken: "<authToken>",
+    roomName: '<roomName>',
+    authToken: '<authToken>',
     autoTune: false,
   });
 
-  meeting.init("root");
+  meeting.init('root');
 </script>
 ```
 
@@ -46,16 +46,16 @@ You can optionally choose to subscribe to the error details, in case an error oc
 
 ```html {10}
 <script>
-  const client = new DyteClient({ clientId: "orgId|clientId" });
+  const client = new DyteClient({ clientId: 'orgId|clientId' });
 
   const meeting = client.Meeting({
-    roomName: "<roomName>",
-    authToken: "<authToken>",
+    roomName: '<roomName>',
+    authToken: '<authToken>',
     autoTune: false,
   });
 
   meeting.onError(function (error) {});
-  meeting.init("root");
+  meeting.init('root');
 </script>
 ```
 
@@ -157,8 +157,8 @@ To do this, you need to call the `addButton` method of `meeting.controlBar` and 
 ```javascript
 button = meeting.controlBar.addButton({
   icon: <div>😀</div>,
-  label: "React",
-  position: "center",
+  label: 'React',
+  position: 'center',
   onClick: function () {
     // your code to handle the click
   },
@@ -245,7 +245,7 @@ To do this, you need to call the `addParticipantControl` method of `meeting` and
 
 ```javascript
 meeting.addParticipantControl({
-  label: "React 😀",
+  label: 'React 😀',
   onClick: function (peerId) {
     // your code to handle the click
   },
@@ -312,6 +312,24 @@ let participantList = meeting.participants;
 ```
 
 sets the `participantList` to an array whose elements are instances of type `DyteParticipant`, whose prototype is defined below in the reference section and can be directly used as a type if you prefer using TypeScript bindings. There will be exactly one element of type `DyteSelfParticipant`, which refers to the current participant.
+
+## Remove a participant from the meeting
+
+You can remove a participant from the meeting using the `kick` method. The participant can, however, join the meeting back if they wish to. If you don't want them to be able to join back, you should remove their access to the link or the particular action which initializes the Dyte SDK on the frontend.
+
+```javascript
+meeting.kick(peerID);
+```
+
+where `peerID` can be obtained from the list of participants (refer [`peer ID` section](#peer-id) for more info).
+
+## Remove all participants from the meeting
+
+You can remove all participants from the meeting using the `kickAll` method. The participants can, however, join the meeting back if they wish to. If you don't want them to be able to join back, you should remove their access to the link or the particular action which initializes the Dyte SDK on the frontend.
+
+```javascript
+meeting.kickAll();
+```
 
 ## Controlling individual participants and actions
 
@@ -541,11 +559,11 @@ An example of handling such errors:
 
 ```html
 <script>
-  const client = new DyteClient({ clientId: "orgId|clientId" });
+  const client = new DyteClient({ clientId: 'orgId|clientId' });
 
   const meeting = client.Meeting({
-    roomName: "<roomName>",
-    authToken: "<authToken>",
+    roomName: '<roomName>',
+    authToken: '<authToken>',
     autoTune: false,
   });
 
@@ -554,6 +572,6 @@ An example of handling such errors:
       // take appropriate action
     }
   });
-  meeting.init("root");
+  meeting.init('root');
 </script>
 ```

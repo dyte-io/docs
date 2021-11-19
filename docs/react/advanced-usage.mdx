@@ -150,8 +150,8 @@ To do this, you need to call the `addButton` method of `meeting.controlBar` and 
 ```tsx
 button = meeting.controlBar.addButton({
   icon: <div>😀</div>,
-  label: "React",
-  position: "center",
+  label: 'React',
+  position: 'center',
   onClick: () => {
     // your code to handle the click
   },
@@ -240,7 +240,7 @@ To do this, you need to call the `addParticipantControl` method of `meeting` and
 
 ```tsx
 meeting.addParticipantControl({
-  label: "React 😀",
+  label: 'React 😀',
   onClick: (peerId) => {
     // your code to handle the click
   },
@@ -309,6 +309,24 @@ let participantList = meeting.participants;
 ```
 
 sets the `participantList` to an array whose elements are instances of type `DyteParticipant`, whose prototype is defined below in the reference section and can be directly used as a type if you prefer using TypeScript bindings. There will be exactly one element of type `DyteSelfParticipant`, which refers to the current participant.
+
+## Remove a participant from the meeting
+
+You can remove a participant from the meeting using the `kick` method. The participant can, however, join the meeting back if they wish to. If you don't want them to be able to join back, you should remove their access to the link or the particular action which initializes the Dyte SDK on the frontend.
+
+```javascript
+meeting.kick(peerID);
+```
+
+where `peerID` can be obtained from the list of participants (refer [`peer ID` section](#peer-id) for more info).
+
+## Remove all participants from the meeting
+
+You can remove all participants from the meeting using the `kickAll` method. The participants can, however, join the meeting back if they wish to. If you don't want them to be able to join back, you should remove their access to the link or the particular action which initializes the Dyte SDK on the frontend.
+
+```javascript
+meeting.kickAll();
+```
 
 ## Controlling individual participants and actions
 
