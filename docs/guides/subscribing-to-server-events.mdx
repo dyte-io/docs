@@ -44,7 +44,10 @@ In order to simplify the webhook structure, we start by defining some types / in
 
 ```ts
 interface Meeting {
-  organizedBy: string;
+  organizedBy: {
+    id: string;
+    name: string;
+  };
   id: string;
   title: string;
   roomName: string;
@@ -137,7 +140,10 @@ interface MeetingCreated {
     "roomName": "testing-room",
     "status": "LIVE",
     "createdAt": "2021-02-09T10:07:11.675Z",
-    "organizedBy": "myOrganization"
+    "organizedBy": {
+      "id": "4fd15a19-80e2-4305-bf13-49039f32963f",
+      "name": "myOrganization"
+    }
   }
 }
 ```
@@ -166,7 +172,10 @@ interface MeetingEnded {
     "roomName": "testing-room",
     "status": "LIVE",
     "createdAt": "2021-02-09T10:07:11.675Z",
-    "organizedBy": "myOrganization"
+    "organizedBy": {
+      "id": "4fd15a19-80e2-4305-bf13-49039f32963f",
+      "name": "myOrganization"
+    }
   }
 }
 ```
@@ -196,7 +205,10 @@ interface MeetingParticipantJoined {
     "roomName": "testing-room",
     "status": "LIVE",
     "createdAt": "2021-02-09T10:07:11.675Z",
-    "organizedBy": "myOrganization"
+    "organizedBy": {
+      "id": "4fd15a19-80e2-4305-bf13-49039f32963f",
+      "name": "myOrganization"
+    }
   },
   "participant": {
     "userDisplayName": "Rohan",
@@ -231,7 +243,10 @@ interface MeetingParticipantLeft {
     "roomName": "testing-room",
     "status": "LIVE",
     "createdAt": "2021-02-09T10:07:11.675Z",
-    "organizedBy": "myOrganization"
+    "organizedBy": {
+      "id": "4fd15a19-80e2-4305-bf13-49039f32963f",
+      "name": "myOrganization"
+    }
   },
   "participant": {
     "userDisplayName": "Rohan",
@@ -274,7 +289,10 @@ interface RecordingStatusUpdate {
     "roomName": "testing-room",
     "status": "LIVE",
     "createdAt": "2021-02-09T10:07:11.675Z",
-    "organizedBy": "myOrganization"
+    "organizedBy": {
+      "id": "4fd15a19-80e2-4305-bf13-49039f32963f",
+      "name": "myOrganization"
+    }
   },
   "recording": {
     "recordingId": "7a789a2d-1142-4be3-a208-4d25a75663e7",
@@ -295,7 +313,10 @@ interface RecordingStatusUpdate {
     "roomName": "testing-room",
     "status": "LIVE",
     "createdAt": "2021-02-09T10:07:11.675Z",
-    "organizedBy": "myOrganization"
+    "organizedBy": {
+      "id": "4fd15a19-80e2-4305-bf13-49039f32963f",
+      "name": "myOrganization"
+    }
   },
   "recording": {
     "recordingId": "7a789a2d-1142-4be3-a208-4d25a75663e7",
@@ -317,7 +338,10 @@ interface RecordingStatusUpdate {
     "roomName": "testing-room",
     "status": "LIVE",
     "createdAt": "2021-02-09T10:07:11.675Z",
-    "organizedBy": "myOrganization"
+    "organizedBy": {
+      "id": "4fd15a19-80e2-4305-bf13-49039f32963f",
+      "name": "myOrganization"
+    }
   },
   "recording": {
     "recordingId": "7a789a2e-1141-4bd3-a908-4d30a75773e7",
@@ -341,7 +365,10 @@ interface RecordingStatusUpdate {
     "roomName": "testing-room",
     "status": "LIVE",
     "createdAt": "2021-02-09T10:07:11.675Z",
-    "organizedBy": "myOrganization"
+    "organizedBy": {
+      "id": "4fd15a19-80e2-4305-bf13-49039f32963f",
+      "name": "myOrganization"
+    }
   },
   "recording": {
     "recordingId": "7a789a2e-1141-4bd3-a908-4d30a75773e7",
@@ -367,7 +394,10 @@ interface RecordingStatusUpdate {
     "roomName": "testing-room",
     "status": "LIVE",
     "createdAt": "2021-02-09T10:07:11.675Z",
-    "organizedBy": "myOrganization"
+    "organizedBy": {
+      "id": "4fd15a19-80e2-4305-bf13-49039f32963f",
+      "name": "myOrganization"
+    }
   },
   "recording": {
     "recordingId": "7a789a2e-1141-4bd3-a908-4d30a75773e7",
