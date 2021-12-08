@@ -52,11 +52,8 @@ buildTypes {
 
 ## iOS
 
-:::tip iOS minimum version 11.0
 
-We support minimum OS version `11.0` for our iOS SDK.
 
-:::
 
 :::caution
 
@@ -64,7 +61,19 @@ Please make sure you are running Xcode using Rosetta on the newer Apple Silicon 
 
 :::
 
-1. Add the fonts and permission entries in `info.plist`
+:::tip iOS minimum version 12.0
+
+We support minimum OS version `12.0` for our iOS SDK.
+
+:::
+
+1. Open your podfile and make sure your platform is set to ios 12 
+
+```ruby 
+platform :ios, '12.0'
+```
+
+2. Add the fonts and permission entries in `info.plist`
 
 ```xml
 <key>UIAppFonts</key>
