@@ -82,7 +82,8 @@ module.exports = {
         'recording-your-meetings',
         'livestreaming-other-platforms',
         'livestreaming-rtmp-hls',
-        'webinar'
+        'embed',
+        'webinar',
       ],
     },
   ],

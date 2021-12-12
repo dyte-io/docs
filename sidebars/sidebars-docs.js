@@ -70,7 +70,7 @@ module.exports = {
       items: [
         {
           type: 'link',
-          label: 'Server events',
+          label: 'Subscribing to server events',
           href: '/guides/subscribing-to-server-events',
         },
         {
@@ -87,6 +87,11 @@ module.exports = {
           type: 'link',
           label: 'Livestreaming using RTMP and HLS',
           href: '/guides/livestreaming-rtmp-hls',
+        },
+        {
+          type: 'link',
+          label: 'Dyte Embed',
+          href: '/guides/embed',
         },
         {
           type: 'link',
