@@ -1,0 +1,85 @@
+---
+sidebar_position: 2
+---
+
+# Quickstart
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+Get the `roomName` for the meeting and the participant's `authToken` from our backend APIs (read more about our server APIs [here](/api/)), and pass them to Dyte's `DyteMeeting` widget.
+
+1. Import the package.
+
+```dart
+import 'package:dyte_client/dyte.dart';
+import 'package:dyte_client/dyteMeeting.dart';
+```
+
+2. Pass relevant information to `DyteMeeting` widget.
+
+```dart
+SizedBox(
+    width: <width>,
+    height: <height>,
+    child: DyteMeeting(
+        roomName: "<roomName>",
+        authToken: "<authToken>",
+        onInit: (DyteMeetingHandler meeting) async {
+          // your handler
+        },
+    )
+)
+```
+
+You can use any other constraining widget instead of SizedBox, the parent widget just needs to have a `maxHeight` and `maxWidth`.
+
+For example, for a full screen meeting you could use the following code.
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:dyte_client/dyte.dart';
+
+void main() {
+  runApp(MaterialApp(home:MyApp()));
+}
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    // get the page height, width
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
+    return Scaffold(
+        body: Row(
+          children: <Widget>[
+            SizedBox(
+              width: width,
+              height: height,
+              child: DyteMeeting(
+                roomName: "<roomName>",
+                authToken: "<authToken>",
+                onInit: (DyteMeetingHandler meeting) async {
+                     var self = await meeting.self;
+                },
+              )
+            )
+          ],
+        ),
+    );
+  }
+}
+```
