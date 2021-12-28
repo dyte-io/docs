@@ -82,6 +82,15 @@ interface Recording {
 }
 ```
 
+#### Live Streaming Interface
+
+```ts
+interface LiveStreaming {
+    streamId: string;
+    status: "LIVE" | "OFFLINE";
+}
+```
+
 ### Verifying a webhook call using signature
 
 Each webhook request is signed using Dyte's private key, and the same can be verified at your end by following the below steps.
@@ -408,5 +417,41 @@ interface RecordingStatusUpdate {
     "status": "ERRORED",
     "errMessage": "Description of the error."
   }
+}
+```
+
+### livestreaming.statusUpdate
+
+This event is fired whenever there is a status update for a registered live stream. Eg, live stream started or ended.
+
+#### Structure of webhook body
+
+```ts
+interface LiveStreamStatus {
+  event: "livestreaming.statusUpdate";
+  streamId: string;
+  status: "LIVE" | "OFFLINE";
+}
+```
+
+#### Sample webhook body
+
+##### Live stream status = `LIVE`
+
+```json
+{
+  event: "livestreaming.statusUpdate";
+  streamId: "379376233992735813373956";
+  status: "LIVE";
+}
+```
+
+##### Live stream status = `OFFLINE`
+
+```json
+{
+  event: "livestreaming.statusUpdate";
+  streamId: "379376233992735813373956";
+  status: "OFFLINE";
 }
 ```
