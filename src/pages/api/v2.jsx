@@ -3,7 +3,7 @@ import Head from '@docusaurus/Head';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 
 import Layout from '@site/src/theme/Layout';
-import APIVersionSwitcher from '../components/APIVersionSwitcher';
+import APIVersionSwitcher from '../../components/APIVersionSwitcher';
 
 export default function APIPage() {
   return (
@@ -32,9 +32,9 @@ export default function APIPage() {
           const { API } = require('@stoplight/elements');
           return (
             <>
-              <APIVersionSwitcher current="v1" />
+              <APIVersionSwitcher current="v2" />
               <API
-                apiDescriptionUrl="/openapi.yaml"
+                apiDescriptionUrl="/api-v2.json"
                 router="hash"
                 basePath="/"
                 layout="sidebar"
