@@ -16,7 +16,6 @@ export default function APIVersionSwitcher({ current }) {
           <Link
             className={clsx(
               'px-4 py-3 hover:text text-right hover:bg-background-200 hover:text-text hover:no-underline',
-              current === 'v1' && 'text-primary'
             )}
             href="/api/"
           >
@@ -26,8 +25,7 @@ export default function APIVersionSwitcher({ current }) {
         <Menu.Item>
           <Link
             className={clsx(
-              'px-4 py-3 hover:text text-right hover:bg-background-200 hover:text-text hover:no-underline',
-              current === 'v2' && 'text-primary'
+              'px-4 py-3 hover:text text-right hover:bg-background-200 hover:text-text hover:no-underline'
             )}
             href="/api/v2/"
           >
