@@ -80,13 +80,18 @@ module.exports = {
         },
         {
           type: 'link',
-          label: 'Livestreaming to other platforms',
+          label: 'Livestreaming Dyte Meetings to other platforms',
           href: '/guides/livestreaming-other-platforms',
         },
         {
           type: 'link',
-          label: 'Livestreaming using RTMP and HLS',
+          label: 'Livestreaming Dyte Meetings to HLS',
           href: '/guides/livestreaming-rtmp-hls',
+        },
+        {
+          type: 'link',
+          label: 'Livestreaming any RTMP input via Dyte',
+          href: '/guides/livestreaming-any-rtmp-streams',
         },
         {
           type: 'link',

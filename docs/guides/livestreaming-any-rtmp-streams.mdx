@@ -1,0 +1,52 @@
+---
+sidebar_position: 5
+---
+
+# Livestreaming any RTMP input using Dyte
+
+Dyte can livestream any service that can accept an RTMP input (Zoom, YouTube etc.) in few simple steps.
+
+1. Create a live stream using the API call
+2. Add the RTMP input received from the response into your service.
+
+## Create a live stream
+
+Request:
+
+```shell
+curl --location --request POST 'https://api.dyte.in/v2/livestreams' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic ORGID:APIKEY' \
+--data-raw '{
+    "name": "some name"
+}'
+```
+
+Response:
+
+```json
+{
+    "success": true,
+    "data": {
+        "id": "705985987530248809436781",
+        "title": "testing",
+        "input_rtmp_url": "rtmp://livestreaming.dyte.io/LiveApp/705985987530248809436781?token=529398318297716696179924",
+        "token_id": "529398318297716696179924",
+        "stream_key": "705985987530248809436781?token=529398318297716696179924",
+        "player_url": "https://livestreaming.dyte.io:5443/LiveApp/play.html?name=705985987530248809436781",
+        "status": "OFFLINE",
+        "hls_play_url": "https://livestreaming.dyte.io:5443/LiveApp/streams/705985987530248809436781_adaptive.m3u8"
+    }
+}
+```
+
+From the response
+
+1. `data.input_rtmp_url` can be used as an input to any other RTMP compatible app or API (such as OBS, Twitch, YouTube, etc)
+
+For example, for adding it to OBS:
+
+![obs-example](/obs-example.png)
+<figcaption align="center">
+  User is adding the input stream to OBS
+</figcaption>
