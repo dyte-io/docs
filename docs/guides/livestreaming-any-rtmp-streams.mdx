@@ -28,14 +28,14 @@ Response:
 {
     "success": true,
     "data": {
-        "id": "705985987530248809436781",
-        "title": "testing",
-        "input_rtmp_url": "rtmp://livestreaming.dyte.io/LiveApp/705985987530248809436781?token=529398318297716696179924",
-        "token_id": "529398318297716696179924",
-        "stream_key": "705985987530248809436781?token=529398318297716696179924",
-        "player_url": "https://livestreaming.dyte.io:5443/LiveApp/play.html?name=705985987530248809436781",
+        "id": "STREAMID",
+        "title": "STREAMNAME",
+        "input_rtmp_url": "rtmp://URL/LiveApp/STREAMID?token=TOKENID",
+        "token_id": "TOKENID",
+        "stream_key": "STREAMID?token=TOKENID",
+        "player_url": "https://URL/LiveApp/play.html?name=STREAMID",
         "status": "OFFLINE",
-        "hls_play_url": "https://livestreaming.dyte.io:5443/LiveApp/streams/705985987530248809436781_adaptive.m3u8"
+        "hls_play_url": "https://URL/LiveApp/streams/STREAMID.m3u8"
     }
 }
 ```
@@ -50,3 +50,31 @@ For example, for adding it to OBS:
 <figcaption align="center">
   User is adding the input stream to OBS
 </figcaption>
+
+
+## Get a livestream instance information
+
+Request:
+
+```shell
+curl --location --request GET 'https://api.cluster.dyte.in/v2/livestreams/STREAMID' \
+--header 'Authorization: Basic your-api-key'
+```
+
+Respone:
+
+```json
+{
+    "success": true,
+    "data": {
+        "id": "STREAMID",
+        "title": "STREAMNAME",
+        "input_rtmp_url": "rtmp://URL/LiveApp/STREAMID?token=TOKENID",
+        "token_id": "TOKENID",
+        "stream_key": "STREAMID?token=TOKENID",
+        "player_url": "https://URL/LiveApp/play.html?name=STREAMID",
+        "status": "OFFLINE",
+        "hls_play_url": "https://URL/LiveApp/streams/STREAMID.m3u8"
+    }
+}
+```
