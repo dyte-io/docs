@@ -11,11 +11,11 @@ export default function APIVersionSwitcher({ current }) {
         API Versions
         <ChevronDownIcon className="h-4 ml-1 text-text-100" />
       </Menu.Button>
-      <Menu.Items className="flex flex-col w-32 py-2 absolute top-28 right-4 bg-background-100 text-text-100 shadow-lg border rounded-lg overflow-hidden z-20">
+      <Menu.Items className="flex flex-col w-32 py-2 absolute top-28 right-4 bg-background-100 text-text-100 shadow-xl ring-1 ring-background-300 rounded-lg overflow-hidden z-20">
         <Menu.Item>
           <Link
             className={clsx(
-              'px-4 py-3 hover:text text-right hover:bg-background-200 hover:text-text hover:no-underline',
+              'px-4 py-2 text-text-100 text-right hover:bg-background-200 hover:text-text hover:no-underline',
             )}
             href="/api/"
           >
@@ -25,7 +25,7 @@ export default function APIVersionSwitcher({ current }) {
         <Menu.Item>
           <Link
             className={clsx(
-              'px-4 py-3 hover:text text-right hover:bg-background-200 hover:text-text hover:no-underline'
+              'px-4 py-2 text-text text-right hover:bg-background-200 hover:text-text hover:no-underline'
             )}
             href="/api/v2/"
           >
