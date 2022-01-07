@@ -5,6 +5,7 @@ info:
   description: Create and manage your Dyte meetings easily using Dyte APIs
   contact:
     name: Dyte Developer Support
+    url: 'https://dyte.io'
     email: dev@dyte.io
 servers:
   - url: 'https://api.cluster.dyte.in/v1'
@@ -116,7 +117,9 @@ paths:
           name: offset
           schema:
             type: integer
-          description: The number of items to skip before starting to collect the result set
+          description: >-
+            The number of items to skip before starting to collect the result
+            set
         - in: query
           name: limit
           schema:
@@ -183,7 +186,9 @@ paths:
           name: offset
           schema:
             type: integer
-          description: The number of items to skip before starting to collect the result set
+          description: >-
+            The number of items to skip before starting to collect the result
+            set
         - in: query
           name: limit
           schema:
@@ -295,7 +300,9 @@ paths:
           name: offset
           schema:
             type: integer
-          description: The number of items to skip before starting to collect the result set
+          description: >-
+            The number of items to skip before starting to collect the result
+            set
         - in: query
           name: limit
           schema:
@@ -417,7 +424,9 @@ paths:
           name: offset
           schema:
             type: integer
-          description: The number of items to skip before starting to collect the result set
+          description: >-
+            The number of items to skip before starting to collect the result
+            set
         - in: query
           name: limit
           schema:
@@ -465,7 +474,9 @@ paths:
             type: integer
           in: query
           name: offset
-          description: The number of items to skip before starting to collect the result set
+          description: >-
+            The number of items to skip before starting to collect the result
+            set
         - schema:
             type: integer
           in: query
@@ -694,7 +705,9 @@ paths:
           name: offset
           schema:
             type: integer
-          description: The number of items to skip before starting to collect the result set
+          description: >-
+            The number of items to skip before starting to collect the result
+            set
         - in: query
           name: limit
           schema:
@@ -773,7 +786,9 @@ paths:
           name: offset
           schema:
             type: integer
-          description: The number of items to skip before starting to collect the result set
+          description: >-
+            The number of items to skip before starting to collect the result
+            set
         - in: query
           name: limit
           schema:
@@ -807,14 +822,18 @@ paths:
       parameters:
         - name: startTime
           in: query
-          description: Unix timestamp to get the stats only for meetings that were live after the specified time
+          description: >-
+            Unix timestamp to get the stats only for meetings that were live
+            after the specified time
           schema:
             type: integer
             format: date-time
             example: 1640044800
         - name: endTime
           in: query
-          description: Unix timestamp to get the stats only for meetings that were live before the specified time
+          description: >-
+            Unix timestamp to get the stats only for meetings that were live
+            before the specified time
           schema:
             type: integer
             format: date-time
@@ -850,14 +869,18 @@ paths:
       parameters:
         - name: startTime
           in: query
-          description: Unix timestamp to get the stats only for the recordings that were started after the specified time
+          description: >-
+            Unix timestamp to get the stats only for the recordings that were
+            started after the specified time
           schema:
             type: integer
             format: date-time
             example: 1640044800
         - name: endTime
           in: query
-          description: Unix timestamp to get the stats only for the recordings that were started before the specified time
+          description: >-
+            Unix timestamp to get the stats only for the recordings that were
+            started before the specified time
           schema:
             type: integer
             format: date-time
@@ -866,7 +889,9 @@ paths:
           name: offset
           schema:
             type: integer
-          description: The number of items to skip before starting to collect the result set
+          description: >-
+            The number of items to skip before starting to collect the result
+            set
         - in: query
           name: limit
           schema:
@@ -1016,21 +1041,29 @@ components:
       properties:
         title:
           type: string
-          description: Name of the meeting that appears to participants as they join the meeting and in the top bar after joining
+          description: >-
+            Name of the meeting that appears to participants as they join the
+            meeting and in the top bar after joining
         presetName:
           type: string
           description: Preset to be used for all participants of this meeting
         authorization:
           type: object
-          description: Object defining various authorization related parameters for the meeting
+          description: >-
+            Object defining various authorization related parameters for the
+            meeting
           properties:
             waitingRoom:
               type: boolean
-              description: 'Should the host accept / reject the participants joining the meeting? Default: `false`.'
+              description: >-
+                Should the host accept / reject the participants joining the
+                meeting? Default: `false`.
               default: false
             closed:
               type: boolean
-              description: 'Should the meeting require a valid auth token to join? Default: `false`.'
+              description: >-
+                Should the meeting require a valid auth token to join? Default:
+                `false`.
               default: false
     AddParticipantRequestBody:
       title: ''
@@ -1042,24 +1075,30 @@ components:
           clientSpecificId: my_user_2
           userDetails:
             name: Mangoman
-            picture: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png'
+            picture: >-
+              https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png
         example-3:
           clientSpecificId: my_user_3
           userDetails:
             name: Mangoman
-            picture: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png'
+            picture: >-
+              https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png
           presetName: preset_1
         example-4:
           clientSpecificId: my_user_4
           userDetails:
             name: Mangoman
-            picture: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png'
+            picture: >-
+              https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png
           roleName: role_1
       type: object
       properties:
         clientSpecificId:
           type: string
-          description: 'An ID that you can use to identify a meeting participant in your system. We do not perform any validations on this, and return this value for all participants in a meeting in the client SDK.'
+          description: >-
+            An ID that you can use to identify a meeting participant in your
+            system. We do not perform any validations on this, and return this
+            value for all participants in a meeting in the client SDK.
         userDetails:
           type: object
           description: Optional object to add details of the participant
@@ -1070,7 +1109,10 @@ components:
             picture:
               type: string
               format: uri
-              description: 'Publicly accessible link to the participant display picture for the meeting, used as thumbnail when the video is off and in the participant list'
+              description: >-
+                Publicly accessible link to the participant display picture for
+                the meeting, used as thumbnail when the video is off and in the
+                participant list
         presetName:
           type: string
           description: Name of the preset this user should join with
@@ -1150,7 +1192,9 @@ components:
           description: Name of the role you want to create
         description:
           type: string
-          description: Description of the role that you can later use for your own reference
+          description: >-
+            Description of the role that you can later use for your own
+            reference
         role:
           type: object
           required:
@@ -1173,22 +1217,34 @@ components:
               properties:
                 acceptWaitingRequests:
                   type: boolean
-                  description: Should this participant be able to accept joining requests for other participants in the waiting room?
+                  description: >-
+                    Should this participant be able to accept joining requests
+                    for other participants in the waiting room?
                 disableParticipantAudio:
                   type: boolean
-                  description: Should this participant be able to mute other participants' audio?
+                  description: >-
+                    Should this participant be able to mute other participants'
+                    audio?
                 disableParticipantScreensharing:
                   type: boolean
-                  description: Should this participant be able to stop other participants' screenshare?
+                  description: >-
+                    Should this participant be able to stop other participants'
+                    screenshare?
                 disableParticipantVideo:
                   type: boolean
-                  description: Should this participant be able to turn off other participants' video?
+                  description: >-
+                    Should this participant be able to turn off other
+                    participants' video?
                 kickParticipants:
                   type: boolean
-                  description: Should this participant be able to kick other participants from the meeting?
+                  description: >-
+                    Should this participant be able to kick other participants
+                    from the meeting?
                 pinParticipant:
                   type: boolean
-                  description: Should this participant be able to pin other participants' video stream on the meeting grid?
+                  description: >-
+                    Should this participant be able to pin other participants'
+                    video stream on the meeting grid?
                 allowRecording:
                   type: boolean
                   description: Should this participant be able to record the meeting?
@@ -1198,11 +1254,22 @@ components:
                 - skip
                 - skipOnPrivilegeduserEntry
                 - skipOnAccept
-              description: |-
-                Set the waiting room behavior for this participant to one of the pre-defined modes.
-                - `skip`: no waiting room for the participant, enters the meeting directly
-                - `skipOnPrivilegeduserEntry`: the participant has to wait in the meeting room until a participant with `acceptWaitingRequests` joins the meeting, at which point everyone in the waiting room is automatically entered into the meeting
-                - `skipOnAccept`: the participant has to wait in the meeting room until a participant with `acceptWaitingRequests` allows them to enter the meeting
+              description: >-
+                Set the waiting room behavior for this participant to one of the
+                pre-defined modes.
+
+                - `skip`: no waiting room for the participant, enters the
+                meeting directly
+
+                - `skipOnPrivilegeduserEntry`: the participant has to wait in
+                the meeting room until a participant with
+                `acceptWaitingRequests` joins the meeting, at which point
+                everyone in the waiting room is automatically entered into the
+                meeting
+
+                - `skipOnAccept`: the participant has to wait in the meeting
+                room until a participant with `acceptWaitingRequests` allows
+                them to enter the meeting
             plugins:
               type: object
               required:
@@ -1224,7 +1291,9 @@ components:
                 - screenshare
                 - polls
                 - reactions
-              description: Object containing settings related to communication streams produced by the participant
+              description: >-
+                Object containing settings related to communication streams
+                produced by the participant
               properties:
                 video:
                   type: object
@@ -1232,7 +1301,9 @@ components:
                     - allow
                     - quality
                     - frameRate
-                  description: Object containing settings related to video stream produced by the participant
+                  description: >-
+                    Object containing settings related to video stream produced
+                    by the participant
                   properties:
                     allow:
                       type: boolean
@@ -1244,15 +1315,21 @@ components:
                         - vga
                         - qvga
                       default: vga
-                      description: |-
-                        Quality / resolution at which the video is streamed to other participants.
+                      description: >-
+                        Quality / resolution at which the video is streamed to
+                        other participants.
+
                         - `hd`: 1280 x 720
+
                         - `vga`: 640 x 480
+
                         - `qvga`: 320 x 240
                     frameRate:
                       type: number
                       default: 24
-                      description: Number of frames per second that are streamed to other participants
+                      description: >-
+                        Number of frames per second that are streamed to other
+                        participants
                 audio:
                   type: boolean
                   description: Should this participant be able to produce audio stream?
@@ -1262,7 +1339,9 @@ components:
                     - quality
                     - frameRate
                   type: object
-                  description: Object containing settings related to screenshare stream produced by the participant
+                  description: >-
+                    Object containing settings related to screenshare stream
+                    produced by the participant
                   properties:
                     allow:
                       type: boolean
@@ -1274,41 +1353,59 @@ components:
                         - hd
                         - vga
                       default: full-hd
-                      description: |-
-                        Quality / resolution at which the screen is streamed to other participants.
+                      description: >-
+                        Quality / resolution at which the screen is streamed to
+                        other participants.
+
                         - `full-hd`: 1920 x 1080
+
                         - `hd`: 1280 x 720
+
                         - `vga`: 640 x 480
                     frameRate:
                       type: number
                       default: 5
-                      description: Number of frames per second that are streamed to other participants
+                      description: >-
+                        Number of frames per second that are streamed to other
+                        participants
                 polls:
                   type: boolean
-                  description: Should this participant be able to participate in polls during in-meeting chat?
+                  description: >-
+                    Should this participant be able to participate in polls
+                    during in-meeting chat?
                 chat:
                   type: object
                   required:
                     - text
                     - files
-                  description: Object containing settings related to in-meeting chat produced by the participant
+                  description: >-
+                    Object containing settings related to in-meeting chat
+                    produced by the participant
                   properties:
                     text:
                       type: boolean
-                      description: Should this participant be able to send text messages in the in-meeting chat?
+                      description: >-
+                        Should this participant be able to send text messages in
+                        the in-meeting chat?
                     files:
                       type: boolean
-                      description: Should this participant be able to send files in the in-meeting chat?
+                      description: >-
+                        Should this participant be able to send files in the
+                        in-meeting chat?
                 reactions:
                   type: boolean
-                  description: Should this participant be able to respond with reactions (overlay with emoji flying across the screen)?
+                  description: >-
+                    Should this participant be able to respond with reactions
+                    (overlay with emoji flying across the screen)?
             flags:
               type: object
               description: Special flags for the participant
               properties:
                 hiddenParticipant:
                   type: boolean
-                  description: 'Should this participant be invisible to other participants? Default: `false`.'
+                  description: >-
+                    Should this participant be invisible to other participants?
+                    Default: `false`.
                   default: false
       required:
         - name
@@ -1419,7 +1516,9 @@ components:
           description: Name of the preset you want to create
         description:
           type: string
-          description: Description of the preset that you can later use for your own reference
+          description: >-
+            Description of the preset that you can later use for your own
+            reference
         preset:
           type: object
           description: Object containing settings that preset controls
@@ -1435,87 +1534,133 @@ components:
               properties:
                 waitingRoom:
                   type: object
-                  description: 'Object containing waiting room settings to be used if enabled. Custom HTML can also be shown in the meeting room, please check the client SDK guide to see how.'
+                  description: >-
+                    Object containing waiting room settings to be used if
+                    enabled. Custom HTML can also be shown in the meeting room,
+                    please check the client SDK guide to see how.
                   properties:
                     showSelf:
                       type: boolean
-                      description: 'Should the participant see their own video while in waiting room? Default: `true`.'
+                      description: >-
+                        Should the participant see their own video while in
+                        waiting room? Default: `true`.
                       default: true
                 controlBar:
                   type: boolean
                   default: true
-                  description: 'Should the control bar (at the bottom of the meeting) be visible to the participant? Default: `true`.'
+                  description: >-
+                    Should the control bar (at the bottom of the meeting) be
+                    visible to the participant? Default: `true`.
                 controlBarElements:
                   type: object
-                  description: Object containing element list from control bar to be able to customize what all controls should be visible to the participant
+                  description: >-
+                    Object containing element list from control bar to be able
+                    to customize what all controls should be visible to the
+                    participant
                   properties:
                     fullscreen:
                       type: boolean
                       default: true
-                      description: 'Should the button to make meeting fullscreen be visible? Default: `true`.'
+                      description: >-
+                        Should the button to make meeting fullscreen be visible?
+                        Default: `true`.
                     share:
                       type: boolean
-                      description: 'Should the button to invite other participants to the meeting be visible? Default: `true`.'
+                      description: >-
+                        Should the button to invite other participants to the
+                        meeting be visible? Default: `true`.
                       default: true
                     screenShare:
                       type: boolean
                       default: true
-                      description: 'Should the button to share screen be visible? Default: `true`.'
+                      description: >-
+                        Should the button to share screen be visible? Default:
+                        `true`.
                     layout:
                       type: boolean
-                      description: 'Should the button to change meeting layout be visible? Default: `true`.'
+                      description: >-
+                        Should the button to change meeting layout be visible?
+                        Default: `true`.
                       default: true
                     chat:
                       type: boolean
                       default: true
-                      description: 'Should the button to open in-meeting chat be visible? Default: `true`.'
+                      description: >-
+                        Should the button to open in-meeting chat be visible?
+                        Default: `true`.
                     polls:
                       type: boolean
                       default: true
-                      description: 'Should the button to display in-meeting polls be visible? Default: `true`.'
+                      description: >-
+                        Should the button to display in-meeting polls be
+                        visible? Default: `true`.
                     participants:
                       type: boolean
                       default: true
-                      description: 'Should the button to display participant list be visible? Default: `true`.'
+                      description: >-
+                        Should the button to display participant list be
+                        visible? Default: `true`.
                     plugins:
                       type: boolean
                       default: true
-                      description: 'Should the button to activate plugins in a meeting be visible? Default: `true`.'
+                      description: >-
+                        Should the button to activate plugins in a meeting be
+                        visible? Default: `true`.
                 header:
                   type: boolean
                   default: true
-                  description: 'Should the header bar be visible to the participant? Default: `true`.'
+                  description: >-
+                    Should the header bar be visible to the participant?
+                    Default: `true`.
                 headerElements:
                   type: object
-                  description: Object containing element list from header to be able to customize what all should be visible to the participant
+                  description: >-
+                    Object containing element list from header to be able to
+                    customize what all should be visible to the participant
                   properties:
                     logo:
                       type: boolean
                       default: true
-                      description: 'Should a logo be visible in the meeting? Default: `true`.'
+                      description: >-
+                        Should a logo be visible in the meeting? Default:
+                        `true`.
                     title:
                       type: boolean
                       default: true
-                      description: 'Should a title be visible in the meeting? Default: `true`.'
+                      description: >-
+                        Should a title be visible in the meeting? Default:
+                        `true`.
                     participantCount:
                       type: boolean
                       default: true
-                      description: 'Should the participant count be visible in the meeting? Default: `true`.'
+                      description: >-
+                        Should the participant count be visible in the meeting?
+                        Default: `true`.
                     clock:
                       type: boolean
                       default: true
-                      description: 'Should a timer be visible in the meeting? Default: `true`.'
+                      description: >-
+                        Should a timer be visible in the meeting? Default:
+                        `true`.
                 aloneHereElement:
                   type: boolean
                   default: true
-                  description: 'Should an element displaying custom HTML to the participant be visible, when they are alone in / first to the meeting? Default: `true`. Please check the client SDK guide to see how to set the custom HTML for this.'
+                  description: >-
+                    Should an element displaying custom HTML to the participant
+                    be visible, when they are alone in / first to the meeting?
+                    Default: `true`. Please check the client SDK guide to see
+                    how to set the custom HTML for this.
                 logo:
                   type: string
                   format: uri
-                  description: Publicly accessible link to the logo that needs to be shown in the meeting
+                  description: >-
+                    Publicly accessible link to the logo that needs to be shown
+                    in the meeting
                 colors:
                   type: object
-                  description: Object containing color values to be used as the theme for the meeting
+                  description: >-
+                    Object containing color values to be used as the theme for
+                    the meeting
                   properties:
                     primary:
                       type: string
@@ -1526,7 +1671,9 @@ components:
                       type: string
                       format: color_hex
                       default: '#262626'
-                      description: 'Color of the secondary elements like control bar, control buttons, hover'
+                      description: >-
+                        Color of the secondary elements like control bar,
+                        control buttons, hover
                     textPrimary:
                       type: string
                       format: color_hex
@@ -1544,7 +1691,10 @@ components:
                     - videoBackground
                 dimensions:
                   type: object
-                  description: 'Object containing info about meeting dimensions within the container. If omitted, the meeting takes up the complete area of the root display element.'
+                  description: >-
+                    Object containing info about meeting dimensions within the
+                    container. If omitted, the meeting takes up the complete
+                    area of the root display element.
                   properties:
                     width:
                       type: integer
@@ -1556,9 +1706,11 @@ components:
                       type: string
                       enum:
                         - fillParent
-                      description: |-
+                      description: >-
                         Set the mode to one of the pre-defined values.
-                        - `fillParent`: takes up entire area available to the parent container, instead of root container
+
+                        - `fillParent`: takes up entire area available to the
+                        parent container, instead of root container
                 grid:
                   type: object
                   description: Object containing options to customize the meeting grid
@@ -1568,17 +1720,25 @@ components:
                       enum:
                         - multi
                         - single
-                      description: |-
+                      description: >-
                         Set the grid view to one of the view options.
-                        - `single`: show a single participant in majority area of the meeting grid, which will be the active speaker or the pinned participant
-                        - `multi`: show multiple participants in the meeting grid
+
+                        - `single`: show a single participant in majority area
+                        of the meeting grid, which will be the active speaker or
+                        the pinned participant
+
+                        - `multi`: show multiple participants in the meeting
+                        grid
                     multi:
                       type: object
                       description: Object containing options for `multi` view meeting
                       properties:
                         maxVideoCount:
                           type: integer
-                          description: 'Desired number of maximum participant video streams to be shown on a single screen. Default: `6`. Maximum: `9`.'
+                          description: >-
+                            Desired number of maximum participant video streams
+                            to be shown on a single screen. Default: `6`.
+                            Maximum: `9`.
                           default: 6
                           minimum: 1
                           maximum: 9
@@ -1587,10 +1747,19 @@ components:
                           enum:
                             - contain
                             - cover
-                          description: |-
-                            Set the aspect ratio for fitting the video streams of participants into their container.
-                            - `contain`: this option maintains the aspect ratio and fits the video inside the container in such a way that the longer side matches the container size and leaves margins around the shorter side
-                            - `cover`: this option ignores the aspect ratio and expands the video inside the container in such a way that the shorter side matches the container size to fill the container and there are no margins
+                          description: >-
+                            Set the aspect ratio for fitting the video streams
+                            of participants into their container.
+
+                            - `contain`: this option maintains the aspect ratio
+                            and fits the video inside the container in such a
+                            way that the longer side matches the container size
+                            and leaves margins around the shorter side
+
+                            - `cover`: this option ignores the aspect ratio and
+                            expands the video inside the container in such a way
+                            that the shorter side matches the container size to
+                            fill the container and there are no margins
                     single:
                       type: object
                       description: Object containing options for `single` view meeting
@@ -1600,10 +1769,19 @@ components:
                           enum:
                             - contain
                             - cover
-                          description: |-
-                            Set the aspect ratio for fitting the video streams of participants into their container.
-                            - `contain`: this option maintains the aspect ratio and fits the video inside the container in such a way that the longer side matches the container size and leaves margins around the shorter side
-                            - `cover`: this option ignores the aspect ratio and expands the video inside the container in such a way that the shorter side matches the container size to fill the container and there are no margins
+                          description: >-
+                            Set the aspect ratio for fitting the video streams
+                            of participants into their container.
+
+                            - `contain`: this option maintains the aspect ratio
+                            and fits the video inside the container in such a
+                            way that the longer side matches the container size
+                            and leaves margins around the shorter side
+
+                            - `cover`: this option ignores the aspect ratio and
+                            expands the video inside the container in such a way
+                            that the shorter side matches the container size to
+                            fill the container and there are no margins
       required:
         - name
         - preset
@@ -1653,7 +1831,12 @@ components:
       properties:
         storageConfig:
           type: object
-          description: "Object containing details of the cloud storage, where you want the recording to be uploaded. In case this is not provided, recording will be stored on Dyte's servers for a period of 7 days from the day of recording and a link will be shared using which you can download the file in between that period."
+          description: >-
+            Object containing details of the cloud storage, where you want the
+            recording to be uploaded. In case this is not provided, recording
+            will be stored on Dyte's servers for a period of 7 days from the day
+            of recording and a link will be shared using which you can download
+            the file in between that period.
           properties:
             type:
               type: string
@@ -1661,7 +1844,9 @@ components:
                 - aws
                 - azure
                 - digitalocean
-              description: 'Name of the cloud storage service the recording should be stored to. Currently supports `aws`, `azure` and `digitalocean`.'
+              description: >-
+                Name of the cloud storage service the recording should be stored
+                to. Currently supports `aws`, `azure` and `digitalocean`.
             accessKey:
               type: string
               description: |-
@@ -1678,21 +1863,31 @@ components:
                 - DigitalOcean: `do_spaces_secret`
             bucket:
               type: string
-              description: |-
-                Container namespace system under which your recording would be uploaded, relevant to the chosen storage service.
+              description: >-
+                Container namespace system under which your recording would be
+                uploaded, relevant to the chosen storage service.
+
                 - AWS: `aws_bucket_name`
+
                 - Azure: `azure_storage_container_name`
+
                 - DigitalOcean: `do_space_or_bucket_name`
             region:
               type: string
-              description: |-
-                Geographic region for your `bucket`, relevant to the chosen storage service.
+              description: >-
+                Geographic region for your `bucket`, relevant to the chosen
+                storage service.
+
                 - AWS: `aws_region`
+
                 - Azure: `azure`
+
                 - DigitalOcean: `do_spaces_region`
             path:
               type: string
-              description: 'Directory path to upload your recording, relative to the `bucket`.'
+              description: >-
+                Directory path to upload your recording, relative to the
+                `bucket`.
           required:
             - type
             - accessKey
@@ -1701,7 +1896,9 @@ components:
             - region
         videoConfig:
           type: object
-          description: Object containing configuration regarding the video that is being recorded.
+          description: >-
+            Object containing configuration regarding the video that is being
+            recorded.
           properties:
             codec:
               type: string
@@ -1709,20 +1906,30 @@ components:
                 - H264
                 - VP8
                 - VP9
-              description: |-
+              description: >-
                 Codec used to record the meeting video.
-                - `H264`: [sample recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/h264_sample.webm)
-                - `VP8`: [sample recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/vp8_sample.webm)
-                - `VP9`: [sample recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/vp9_sample.webm)
+
+                - `H264`: [sample
+                recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/h264_sample.webm)
+
+                - `VP8`: [sample
+                recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/vp8_sample.webm)
+
+                - `VP9`: [sample
+                recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/vp9_sample.webm)
               default: H264
         liveStreamingConfig:
           type: object
-          description: Object containing configuration regarding livestreaming the meeting video to a platform that supports RTMP input.
+          description: >-
+            Object containing configuration regarding livestreaming the meeting
+            video to a platform that supports RTMP input.
           properties:
             rtmpUrl:
               type: string
               format: uri
-              description: The RTMP input URL to which the meeting video should be streamed.
+              description: >-
+                The RTMP input URL to which the meeting video should be
+                streamed.
               example: 'rtmp://your.rtmp.url/live/stream/your-stream-key'
     UpdateRecordingRequestBody:
       type: object
@@ -1740,6 +1947,20 @@ components:
     WebhookRequestBody:
       type: object
       description: ''
+      x-examples:
+        example-1:
+          name: webhook_1
+          url: 'https://mywebhook.site/path/to/webhook'
+          events:
+            - meeting.started
+          enabled: true
+        example-2:
+          name: webhook_2
+          url: 'https://mywebhook.site/path/to/webhook'
+          events:
+            - meeting.started
+            - meeting.ended
+          enabled: false
       properties:
         name:
           type: string
@@ -1760,22 +1981,13 @@ components:
               - meeting.participantJoined
               - meeting.participantLeft
               - recording.statusUpdate
+        enabled:
+          type: boolean
+          description: Set the webhook as active or inactive.
       required:
         - name
         - url
         - events
-      x-examples:
-        example-1:
-          name: webhook_1
-          url: 'https://mywebhook.site/path/to/webhook'
-          events:
-            - meeting.started
-        example-2:
-          name: webhook_2
-          url: 'https://mywebhook.site/path/to/webhook'
-          events:
-            - meeting.started
-            - meeting.ended
     AddOrgUserBody:
       type: object
       properties:
@@ -1845,7 +2057,9 @@ components:
           description: Total number of recording minutes used by an organization.
         dayStats:
           type: array
-          description: Array containing objects that define the data points for daily stats.
+          description: >-
+            Array containing objects that define the data points for daily
+            stats.
           uniqueItems: true
           items:
             type: object
@@ -1863,7 +2077,10 @@ components:
               day:
                 type: string
                 format: date
-                description: 'Date (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) for which the corresponding data is displayed.'
+                description: >-
+                  Date (in ISO 8601 format with UTC timezone, eg
+                  `2021-12-21T00:00:00.000Z`) for which the corresponding data
+                  is displayed.
             required:
               - totalMinutes
               - totalSessions
@@ -1891,7 +2108,9 @@ components:
                   description: Total number of recording minutes used by an organization.
                 recordingStats:
                   type: array
-                  description: Array containing objects that define the data points for each recording.
+                  description: >-
+                    Array containing objects that define the data points for
+                    each recording.
                   uniqueItems: true
                   items:
                     type: object
@@ -1900,16 +2119,24 @@ components:
                       startedTime:
                         type: string
                         format: date-time
-                        description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the recording was started.'
+                        description: >-
+                          Timestamp (in ISO 8601 format with UTC timezone, eg
+                          `2021-12-21T00:00:00.000Z`) when the recording was
+                          started.
                         nullable: true
                       stoppedTime:
                         type: string
                         format: date-time
-                        description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the recording was stopped.'
+                        description: >-
+                          Timestamp (in ISO 8601 format with UTC timezone, eg
+                          `2021-12-21T00:00:00.000Z`) when the recording was
+                          stopped.
                         nullable: true
                       roomName:
                         type: string
-                        description: The meeting room name from which this recording was created.
+                        description: >-
+                          The meeting room name from which this recording was
+                          created.
                       status:
                         type: string
                         enum:
@@ -1918,13 +2145,24 @@ components:
                           - UPLOADING
                           - UPLOADED
                           - ERRORED
-                        description: |-
+                        description: >-
                           Status of the recording.
-                          - `INVOKED`: The recording function has been invoked and will start recording the meeting very shortly.
-                          - `RECORDING`: The meeting is currently being recorded.
-                          - `UPLOADING`: The recording has been stopped and the file is being uploaded to cloud storage. The storage would be Dyte's if no storage parameters are passed in the recording API call.
+
+                          - `INVOKED`: The recording function has been invoked
+                          and will start recording the meeting very shortly.
+
+                          - `RECORDING`: The meeting is currently being
+                          recorded.
+
+                          - `UPLOADING`: The recording has been stopped and the
+                          file is being uploaded to cloud storage. The storage
+                          would be Dyte's if no storage parameters are passed in
+                          the recording API call.
+
                           - `UPLOADED`: The recording file upload is complete.
-                          - `ERRORED`: There was an error while recording the meeting and the file wouldn't be available.
+
+                          - `ERRORED`: There was an error while recording the
+                          meeting and the file wouldn't be available.
                     required:
                       - startedTime
                       - stoppedTime
@@ -1953,7 +2191,9 @@ components:
                 status: RECORDING
     RoomStatsBody:
       type: array
-      description: Array containing objects that define the data points for each meeting room.
+      description: >-
+        Array containing objects that define the data points for each meeting
+        room.
       uniqueItems: true
       items:
         type: object
@@ -1962,11 +2202,16 @@ components:
           createdAt:
             type: string
             format: date-time
-            description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the meeting room was created.'
+            description: >-
+              Timestamp (in ISO 8601 format with UTC timezone, eg
+              `2021-12-21T00:00:00.000Z`) when the meeting room was created.
           updatedAt:
             type: string
             format: date-time
-            description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the meeting room was last updated.'
+            description: >-
+              Timestamp (in ISO 8601 format with UTC timezone, eg
+              `2021-12-21T00:00:00.000Z`) when the meeting room was last
+              updated.
           minutesConsumed:
             type: integer
             description: Number of minutes used by the meeting room.
@@ -1993,7 +2238,9 @@ components:
             description: Current number of users that are connected to the meeting room.
           createdBy:
             type: string
-            description: Display name of the participant who first connected to the meeting room.
+            description: >-
+              Display name of the participant who first connected to the meeting
+              room.
         required:
           - createdAt
           - updatedAt
@@ -2120,7 +2367,9 @@ components:
               properties:
                 meetings:
                   type: array
-                  description: Array containing objects that contain details of a meeting room.
+                  description: >-
+                    Array containing objects that contain details of a meeting
+                    room.
                   uniqueItems: true
                   items:
                     $ref: '#/components/schemas/Meeting'
@@ -2212,7 +2461,8 @@ components:
           data:
             authResponse:
               userAdded: true
-              authToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzYW1wbGUiLCJpYXQiOjE2MzQwNDIwMDd9.RM5syXw4o2KhG6l-8uVieS0T-XBRHI4OvgbvbXtUoRI
+              authToken: >-
+                eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzYW1wbGUiLCJpYXQiOjE2MzQwNDIwMDd9.RM5syXw4o2KhG6l-8uVieS0T-XBRHI4OvgbvbXtUoRI
     GetParticipantsResponse:
       allOf:
         - $ref: '#/components/schemas/APIResponse'
@@ -2225,7 +2475,9 @@ components:
               properties:
                 participants:
                   type: array
-                  description: Array containing objects that contain details of a participant.
+                  description: >-
+                    Array containing objects that contain details of a
+                    participant.
                   items:
                     $ref: '#/components/schemas/Participant'
           required:
@@ -2238,7 +2490,8 @@ components:
             participants:
               - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
                 name: Mangoman
-                picture: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png'
+                picture: >-
+                  https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png
                 createdAt: '2019-08-24T14:15:22Z'
     OrgUser:
       type: object
@@ -2265,18 +2518,24 @@ components:
         createdAt:
           type: string
           format: date-time
-          description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the user was created.'
+          description: >-
+            Timestamp (in ISO 8601 format with UTC timezone, eg
+            `2021-12-21T00:00:00.000Z`) when the user was created.
         role:
           type: string
           enum:
             - Owner
             - Client
             - Member
-          description: |-
+          description: >-
             Role of the user.
+
             - `Owner`: The user that created that organization.
+
             - `Client`: A user that is added as participant.
-            - `Member`: A user that belongs to the organization, can access internal stuff.
+
+            - `Member`: A user that belongs to the organization, can access
+            internal stuff.
         pending:
           type: boolean
           default: null
@@ -2310,7 +2569,9 @@ components:
         createdAt:
           type: string
           format: date-time
-          description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the participant was created.'
+          description: >-
+            Timestamp (in ISO 8601 format with UTC timezone, eg
+            `2021-12-21T00:00:00.000Z`) when the participant was created.
       required:
         - id
         - createdAt
@@ -2325,25 +2586,31 @@ components:
         example-3:
           id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
           name: Mangoman
-          picture: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png'
+          picture: >-
+            https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png
           createdAt: '2019-08-24T14:15:22Z'
     AuthResponse:
       type: object
-      description: 'Object containing auth details of a participant, used to join a specific meeting.'
+      description: >-
+        Object containing auth details of a participant, used to join a specific
+        meeting.
       properties:
         userAdded:
           type: boolean
           description: Status representing whether the participant was added successfully.
         authToken:
           type: string
-          description: Auth token to be used by client SDK to connect to the meeting as this particular participant.
+          description: >-
+            Auth token to be used by client SDK to connect to the meeting as
+            this particular participant.
       required:
         - userAdded
         - authToken
       x-examples:
         example-1:
           userAdded: true
-          authToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzYW1wbGUiLCJpYXQiOjE2MzQwNDIwMDd9.RM5syXw4o2KhG6l-8uVieS0T-XBRHI4OvgbvbXtUoRI
+          authToken: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzYW1wbGUiLCJpYXQiOjE2MzQwNDIwMDd9.RM5syXw4o2KhG6l-8uVieS0T-XBRHI4OvgbvbXtUoRI
     Meeting:
       type: object
       description: Object containing details of a meeting room.
@@ -2367,7 +2634,9 @@ components:
         createdAt:
           type: string
           format: date-time
-          description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the meeting room was created.'
+          description: >-
+            Timestamp (in ISO 8601 format with UTC timezone, eg
+            `2021-12-21T00:00:00.000Z`) when the meeting room was created.
       required:
         - id
         - roomName
@@ -2416,7 +2685,9 @@ components:
             role:
               name: role_1
               description: Example role 1
-              s3URL: 'https: //dyte-configs.s3.ap-south-1.amazonaws.com/{organizationId}/roles/role_1.json'
+              s3URL: >-
+                https:
+                //dyte-configs.s3.ap-south-1.amazonaws.com/{organizationId}/roles/role_1.json
               organization:
                 id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
                 name: org_1
@@ -2459,7 +2730,9 @@ components:
             role:
               name: role_1
               description: Example role 1
-              s3URL: 'https: //dyte-configs.s3.ap-south-1.amazonaws.com/{organizationId}/roles/role_1.json'
+              s3URL: >-
+                https:
+                //dyte-configs.s3.ap-south-1.amazonaws.com/{organizationId}/roles/role_1.json
               organization:
                 id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
                 name: org_1
@@ -2495,7 +2768,9 @@ components:
             roles:
               - name: role_1
                 description: Example role 1
-                s3URL: 'https: //dyte-configs.s3.ap-south-1.amazonaws.com/{organizationId}/roles/role_1.json'
+                s3URL: >-
+                  https:
+                  //dyte-configs.s3.ap-south-1.amazonaws.com/{organizationId}/roles/role_1.json
                 id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
     GetPresetsResponse:
       allOf:
@@ -2521,7 +2796,9 @@ components:
             roles:
               - name: role_1
                 description: Example role 1
-                s3URL: 'https: //dyte-configs.s3.ap-south-1.amazonaws.com/{organizationId}/roles/role_1.json'
+                s3URL: >-
+                  https:
+                  //dyte-configs.s3.ap-south-1.amazonaws.com/{organizationId}/roles/role_1.json
                 id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
     PresetRole:
       title: PresetRole
@@ -2544,7 +2821,9 @@ components:
         s3URL:
           type: string
           format: uri
-          description: Publicly accessible URL where the corresponding JSON for the role is stored.
+          description: >-
+            Publicly accessible URL where the corresponding JSON for the role is
+            stored.
         id:
           type: string
           format: uuid
@@ -2565,7 +2844,9 @@ components:
         id:
           type: string
           format: uuid
-          description: 'Unique ID of the organization, same as supplied in the URL while making the API call.'
+          description: >-
+            Unique ID of the organization, same as supplied in the URL while
+            making the API call.
         name:
           type: string
           description: Name of the organization.
@@ -2582,11 +2863,15 @@ components:
           description: URL to the website of the organiaztion.
         accessToken:
           type: string
-          description: 'API key for the organization, same as supplied in the `Authorization` header.'
+          description: >-
+            API key for the organization, same as supplied in the
+            `Authorization` header.
         createdAt:
           type: string
           format: date-time
-          description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the organization was created.'
+          description: >-
+            Timestamp (in ISO 8601 format with UTC timezone, eg
+            `2021-12-21T00:00:00.000Z`) when the organization was created.
     CreateWebhookResponse:
       allOf:
         - $ref: '#/components/schemas/APIResponse'
@@ -2656,7 +2941,9 @@ components:
             organizationId:
               type: string
               format: uuid
-              description: 'Unique ID of the organization, same as supplied in the URL while making the API call.'
+              description: >-
+                Unique ID of the organization, same as supplied in the URL while
+                making the API call.
             enabled:
               type: boolean
               description: Status of the webhook.
@@ -2667,11 +2954,15 @@ components:
             createdAt:
               type: string
               format: date-time
-              description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the webhook was created.'
+              description: >-
+                Timestamp (in ISO 8601 format with UTC timezone, eg
+                `2021-12-21T00:00:00.000Z`) when the webhook was created.
             updatedAt:
               type: string
               format: date-time
-              description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the webhook was updated.'
+              description: >-
+                Timestamp (in ISO 8601 format with UTC timezone, eg
+                `2021-12-21T00:00:00.000Z`) when the webhook was updated.
           required:
             - organizationId
             - enabled
@@ -2714,25 +3005,39 @@ components:
             - UPLOADING
             - UPLOADED
             - ERRORED
-          description: |-
+          description: >-
             Status of the recording.
-            - `INVOKED`: The recording function has been invoked and will start recording the meeting very shortly.
+
+            - `INVOKED`: The recording function has been invoked and will start
+            recording the meeting very shortly.
+
             - `RECORDING`: The meeting is currently being recorded.
-            - `UPLOADING`: The recording has been stopped and the file is being uploaded to cloud storage. The storage would be Dyte's if no storage parameters are passed in the recording API call.
+
+            - `UPLOADING`: The recording has been stopped and the file is being
+            uploaded to cloud storage. The storage would be Dyte's if no storage
+            parameters are passed in the recording API call.
+
             - `UPLOADED`: The recording file upload is complete.
-            - `ERRORED`: There was an error while recording the meeting and the file wouldn't be available.
+
+            - `ERRORED`: There was an error while recording the meeting and the
+            file wouldn't be available.
         outputFileName:
           type: string
           description: Filename for the recording.
         downloadUrlExpiry:
           type: string
           format: date-time
-          description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the `downloadUrl` will stop working and the recording file will not be available for download anymore.'
+          description: >-
+            Timestamp (in ISO 8601 format with UTC timezone, eg
+            `2021-12-21T00:00:00.000Z`) when the `downloadUrl` will stop working
+            and the recording file will not be available for download anymore.
           nullable: true
         roomUUID:
           type: string
           format: uuid
-          description: The unique ID of the meeting room for which this recording was created.
+          description: >-
+            The unique ID of the meeting room for which this recording was
+            created.
         downloadUrl:
           type: string
           format: uri
@@ -2745,15 +3050,21 @@ components:
         startedTime:
           type: string
           format: date-time
-          description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the recording was started.'
+          description: >-
+            Timestamp (in ISO 8601 format with UTC timezone, eg
+            `2021-12-21T00:00:00.000Z`) when the recording was started.
         stoppedTime:
           type: string
           format: date-time
-          description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the recording was stopped.'
+          description: >-
+            Timestamp (in ISO 8601 format with UTC timezone, eg
+            `2021-12-21T00:00:00.000Z`) when the recording was stopped.
         invokedTime:
           type: string
           format: date-time
-          description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the recording was invoked.'
+          description: >-
+            Timestamp (in ISO 8601 format with UTC timezone, eg
+            `2021-12-21T00:00:00.000Z`) when the recording was invoked.
         fileSize:
           type: number
           format: double
@@ -2826,7 +3137,8 @@ components:
                 participants:
                   - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
                     name: Mangoman
-                    picture: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png'
+                    picture: >-
+                      https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png
                     createdAt: '2021-10-13T17:01:12.747Z'
               timestamp: '2021-10-13T17:01:12.747Z'
               statusCode: 500
@@ -2845,7 +3157,8 @@ components:
                 participants:
                   - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
                     name: Mangoman
-                    picture: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png'
+                    picture: >-
+                      https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png
                     createdAt: '2021-10-13T17:01:12.747Z'
               timestamp: '2021-10-14T17:01:12.747Z'
               statusCode: 500
@@ -2870,7 +3183,8 @@ components:
                 participants:
                   - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
                     name: Mangoman
-                    picture: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png'
+                    picture: >-
+                      https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png
                     createdAt: '2021-10-13T17:01:12.747Z'
               timestamp: '2021-10-13T17:01:12.747Z'
               statusCode: 500
@@ -2892,7 +3206,8 @@ components:
                 participants:
                   - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
                     name: Mangoman
-                    picture: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png'
+                    picture: >-
+                      https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png
                     createdAt: '2021-10-13T17:01:12.747Z'
                   - id: 60a07d40-746d-414c-b70b-908ca16e7459
                     name: Appleman
@@ -2930,7 +3245,10 @@ components:
                 properties:
                   dyte-signature:
                     type: string
-                    description: "Signature generated for the webhook request, using Dyte's private keys. Refer webhooks guide <insert_link> for more details."
+                    description: >-
+                      Signature generated for the webhook request, using Dyte's
+                      private keys. Refer webhooks guide <insert_link> for more
+                      details.
               payload:
                 type: object
                 description: Event payload data for the given webhook request.
@@ -2956,7 +3274,9 @@ components:
                     required:
                       - peerId
                       - userDisplayName
-                    description: Object defining the participant corresponding to whom the event was generated.
+                    description: >-
+                      Object defining the participant corresponding to whom the
+                      event was generated.
                     properties:
                       peerId:
                         type: string
@@ -2964,20 +3284,30 @@ components:
                         description: Unique ID of the participant in Dyte system.
                       userDisplayName:
                         type: string
-                        description: 'Name of the participant, as displayed in the meeting room.'
+                        description: >-
+                          Name of the participant, as displayed in the meeting
+                          room.
                   participants:
                     type: array
                     uniqueItems: true
-                    description: Array containing objects that define the participants which were present in the meeting room at the time when the event was triggered.
+                    description: >-
+                      Array containing objects that define the participants
+                      which were present in the meeting room at the time when
+                      the event was triggered.
                     items:
                       $ref: '#/components/schemas/Participant'
               timestamp:
                 type: string
-                description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the current event was triggered.'
+                description: >-
+                  Timestamp (in ISO 8601 format with UTC timezone, eg
+                  `2021-12-21T00:00:00.000Z`) when the current event was
+                  triggered.
                 format: date-time
               statusCode:
                 type: number
-                description: HTTP status code received by Dyte when trying to connect with the webhook to send this particular event.
+                description: >-
+                  HTTP status code received by Dyte when trying to connect with
+                  the webhook to send this particular event.
             required:
               - webhookId
               - name
@@ -3013,21 +3343,29 @@ components:
         analytics:
           type: array
           uniqueItems: true
-          description: Array containing objects that contain analytics data grouped by `clientSpecificId`.
+          description: >-
+            Array containing objects that contain analytics data grouped by
+            `clientSpecificId`.
           items:
             type: object
             description: Object containing analytics data grouped by `clientSpecificId`.
             properties:
               clientSpecificId:
                 type: string
-                description: ID provided at the time of generating auth token to add the participant to the meeting.
+                description: >-
+                  ID provided at the time of generating auth token to add the
+                  participant to the meeting.
               events:
                 type: array
                 uniqueItems: true
-                description: Array containing objects that define individual join and leave events for a participant.
+                description: >-
+                  Array containing objects that define individual join and leave
+                  events for a participant.
                 items:
                   type: object
-                  description: Object defining individual join and leave events for a participant.
+                  description: >-
+                    Object defining individual join and leave events for a
+                    participant.
                   properties:
                     event:
                       type: string
@@ -3040,14 +3378,18 @@ components:
                         - `PEER_LEAVING`: When a participant leaves the meeting
                     time:
                       type: string
-                      description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the event occurred.'
+                      description: >-
+                        Timestamp (in ISO 8601 format with UTC timezone, eg
+                        `2021-12-21T00:00:00.000Z`) when the event occurred.
                     details:
                       type: object
                       description: Object containing relevant details for the event.
                       properties:
                         minutesConsumed:
                           type: integer
-                          description: Number of minutes consumed by the participant in the recently ended session.
+                          description: >-
+                            Number of minutes consumed by the participant in the
+                            recently ended session.
                   required:
                     - event
                     - time
