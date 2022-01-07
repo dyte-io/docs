@@ -290,7 +290,7 @@ html[data-theme='dark'] .DocSearch-Button-Key {
 
 .sl-elements {
   --fs-paragraph: 18px !important;
-  --fs-code: 16px !important;
+  --fs-code: 13px !important;
   /* Reset padding for pre tags inside sl-elements */
   --ifm-pre-padding: 0;
   @apply !text-base;
@@ -461,6 +461,15 @@ html[data-theme='dark'] .sl-text-warning {
 
 .sl-text-danger {
   @apply !text-red-500;
+}
+
+.sl-stack--horizontal > .sl-flex.sl-flex-wrap {
+  @apply !flex-1;
+}
+
+/** hides the annoying popover which shows hovered fields in response */
+.JsonSchemaViewer > .sl-bg-canvas-pure:first-child {
+  @apply !hidden;
 }
 
 /* Scrollbar styles */
