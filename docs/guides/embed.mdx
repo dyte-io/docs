@@ -34,7 +34,7 @@ function receiveMessage(evt)
 {
   if (evt.origin === 'https://app.dyte.in')
   {
-    const data =g evt.data;
+    const data = evt.data;
     if (data.type === 'meetingEnded') {
       const reason = data.kicked;
       // take action on meeting end
