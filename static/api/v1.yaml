@@ -1931,6 +1931,12 @@ components:
                 The RTMP input URL to which the meeting video should be
                 streamed.
               example: 'rtmp://your.rtmp.url/live/stream/your-stream-key'
+        fileNamePrefix:
+          type: string
+          description: >-
+            This will be added as a prefix to meeting recording file.
+            A valid prefix can only contain alpha-numeric characters and can use underscores in between
+          example: tree
     UpdateRecordingRequestBody:
       type: object
       properties:
