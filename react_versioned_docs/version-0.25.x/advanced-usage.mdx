@@ -271,6 +271,16 @@ This would result in the following
 
 !['react' button added to the context menu](/react-context-menu.png)
 
+## Set custom label against a participant
+
+You can provide more contextual information about the user by setting a label
+
+```
+if(meeting.participant[0].preset_name === 'admin_preset') {
+    meeting.participants[0].setLabel('Admin')
+}
+```
+
 ## Change the video grid layout style
 
 You can change the video grid layout from showing multiple participants in a grid (default) to only showing the active speaker or highlighted participant, and vice versa. Active speaker is the participant whose audio level has most recently been the highest (kind of like LRU with the selection factor being audio level). Call the `update` method of `meeting.grid` with the `layout` as either `meeting.grid.layouts.MULTI` or `meeting.grid.layouts.HIGHLIGHTED`.
