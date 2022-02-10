@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import { Github as GithubIcon } from '@styled-icons/boxicons-logos';
-import { element, string } from 'prop-types';
+import PropTypes from 'prop-types';
 
 const GetStartedCard = ({
   title,
@@ -47,14 +47,14 @@ const GetStartedCard = ({
 };
 
 GetStartedCard.propTypes = {
-  title: string,
-  getStartedLink: string,
-  getStartedText: string,
-  repoLink: string,
-  Icon: element,
-  BGIcon: element,
-  className: string,
-  bgClassName: string,
+  title: PropTypes.string,
+  getStartedLink: PropTypes.string,
+  getStartedText: PropTypes.string,
+  repoLink: PropTypes.string,
+  Icon: PropTypes.element,
+  BGIcon: PropTypes.func,
+  className: PropTypes.string,
+  bgClassName: PropTypes.string,
 };
 
 export default GetStartedCard;

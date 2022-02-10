@@ -1,8 +1,8 @@
+/* eslint-disable */
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-  mode: 'jit',
-  purge: [
+  content: [
     './src/pages/**/*.{js,jsx}',
     './src/components/**/*.{js,jsx}',
     './src/theme/**/*.{js,jsx}',
@@ -40,8 +40,4 @@ module.exports = {
       },
     },
   },
-  variants: {
-    extend: {},
-  },
-  plugins: [],
 };

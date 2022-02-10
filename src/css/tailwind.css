@@ -115,9 +115,16 @@
     box-shadow: 4px 2px 16px 4px rgb(33 96 253 / 8%),
       0 8px 24px rgb(33 96 253 / 8%);
   }
-  .dot-after {
-    @apply after:dyte-shadow flex items-center content-none after:ml-2 after:inline-block 
+  /*
+  @apply after:dyte-shadow flex items-center content-none after:ml-2 after:inline-block 
       after:h-1 after:w-1 after:animate-pulse after:rounded-full after:bg-primary;
+      */
+  .dot-after {
+    @apply flex items-center;
+  }
+  .dot-after::after {
+    content: '';
+    @apply dyte-shadow ml-2 inline-block h-1 w-1 animate-pulse rounded-full bg-primary;
   }
 }
 
