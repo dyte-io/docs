@@ -12,15 +12,17 @@ export default function GridLink({
   return (
     <Link
       className={clsx(
-        'flex p-6 rounded-md bg-background-100 text-text break-words hover:text-text border-[1.5px] border-border transition hover:border-primary hover:no-underline hover:dyte-shadow',
+        'hover:dyte-shadow flex break-words rounded-md border-[1.5px] border-border bg-background-100 p-6 text-text transition hover:border-primary hover:text-text hover:no-underline',
         className
       )}
       {...props}
     >
       {Icon}
-      <div className="flex-1 flex flex-col">
+      <div className="flex flex-1 flex-col">
         {title && <div className="font-medium leading-6">{title}</div>}
-        {subtitle && <p className="text-xs text-text-100 m-0 mt-2">{subtitle}</p>}
+        {subtitle && (
+          <p className="m-0 mt-2 text-xs text-text-100">{subtitle}</p>
+        )}
       </div>
     </Link>
   );
