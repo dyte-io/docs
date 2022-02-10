@@ -1,7 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
-import { element, string } from 'prop-types';
 
 export default function GridLink({
   Icon,
@@ -13,23 +12,16 @@ export default function GridLink({
   return (
     <Link
       className={clsx(
-        'hover:dyte-shadow flex items-center break-words rounded-md border-[1.5px] border-border bg-background-100 p-6 text-text transition hover:border-primary hover:text-text hover:no-underline',
+        'flex p-6 rounded-md bg-background-100 text-text break-words hover:text-text border-[1.5px] border-border transition hover:border-primary hover:no-underline hover:dyte-shadow',
         className
       )}
       {...props}
     >
       {Icon}
-      <div className="flex flex-1 flex-col space-y-px">
-        {title && <div className="font-medium">{title}</div>}
-        {subtitle && <p className="m-0 text-xs text-text-100">{subtitle}</p>}
+      <div className="flex-1 flex flex-col">
+        {title && <div className="font-medium leading-6">{title}</div>}
+        {subtitle && <p className="text-xs text-text-100 m-0 mt-2">{subtitle}</p>}
       </div>
     </Link>
   );
 }
-
-GridLink.propTypes = {
-  title: string,
-  className: string,
-  subtitle: string,
-  Icon: element,
-};
