@@ -9,13 +9,13 @@ export default function ThemeSwitcher() {
 
   return (
     <button
-      className="fixed z-50 bottom-[1.3rem] right-[1.3rem] w-12 h-12 p-2 cursor-pointer text-gray-100 hover:text-white transition bg-primary rounded-full shadow-md hover:shadow-xl"
+      className="fixed bottom-[1.3rem] right-[1.3rem] z-50 h-12 w-12 cursor-pointer rounded-full bg-primary p-2 text-gray-100 shadow-md transition hover:text-white hover:shadow-xl"
       onClick={toggleTheme}
     >
       {isDarkTheme ? (
-        <SunIcon className="w-full h-full text-current" />
+        <SunIcon className="h-full w-full text-current" />
       ) : (
-        <MoonIcon className="w-full h-full text-current" />
+        <MoonIcon className="h-full w-full text-current" />
       )}
     </button>
   );

@@ -5,15 +5,15 @@ import DyteLogo from './DyteLogo';
 import { Github, Linkedin, Twitter } from '@styled-icons/boxicons-logos';
 import { BlogIcon } from '../assets/icons';
 
-export default function Footer(props) {
+export default function Footer() {
   return (
-    <footer className="lg:px-12 py-6 bg-background-100">
-      <div className="flex flex-col items-start w-full max-w-6xl p-4 md:px-12 mx-auto">
+    <footer className="bg-background-100 py-6 lg:px-12">
+      <div className="mx-auto flex w-full max-w-6xl flex-col items-start p-4 md:px-12">
         <div className="flex flex-col items-start space-y-4">
           <Link href="https://dyte.io">
             <DyteLogo className="h-10" />
           </Link>
-          <p className="text-sm text-text-100 leading-relaxed">
+          <p className="text-sm leading-relaxed text-text-100">
             Dyte provides developer friendly live video SDKs that allows you to
             easily add 1:1 calls, group calls and webinars right within your
             platform. Our low code approach and user friendly documentation
@@ -22,15 +22,15 @@ export default function Footer(props) {
             work, social meetups, dating and B2B sales.
           </p>
         </div>
-        <div className="flex flex-col lg:flex-row w-full mt-8">
-          <div className="flex-1 flex flex-col items-start">
-            <div className="w-full flex flex-col items-start space-y-2">
+        <div className="mt-8 flex w-full flex-col lg:flex-row">
+          <div className="flex flex-1 flex-col items-start">
+            <div className="flex w-full flex-col items-start space-y-2">
               <p className="m-0 text-sm">
                 Signup to get 10,000 minutes free every month!
               </p>
               <Link
                 href="https://dev.dyte.in/signup"
-                className="px-8 py-1 text-left bg-primary text-sm text-white rounded-md cursor-pointer hover:no-underline hover:text-gray-300"
+                className="cursor-pointer rounded-md bg-primary px-8 py-1 text-left text-sm text-white hover:text-gray-300 hover:no-underline"
               >
                 Sign Up
               </Link>
@@ -55,37 +55,37 @@ export default function Footer(props) {
               </form> */}
             </div>
 
-            <div className="flex items-center mt-8 space-x-3 text-text-100">
+            <div className="mt-8 flex items-center space-x-3 text-text-100">
               <Link
                 href="https://twitter.com/dyte_io"
-                className="inline-flex text-current hover:text-primary transition"
+                className="inline-flex text-current transition hover:text-primary"
               >
                 <Twitter className="h-8" />
               </Link>
               <Link
                 href="https://blog.dyte.io"
-                className="inline-flex text-current hover:text-primary transition"
+                className="inline-flex text-current transition hover:text-primary"
               >
                 <BlogIcon className="h-8" />
               </Link>
               <Link
                 href="https://www.linkedin.com/company/dyteio"
-                className="inline-flex text-current hover:text-primary transition"
+                className="inline-flex text-current transition hover:text-primary"
               >
                 <Linkedin className="h-8" />
               </Link>
               <Link
                 href="https://github.com/dyte-in"
-                className="inline-flex text-current hover:text-primary transition"
+                className="inline-flex text-current transition hover:text-primary"
               >
                 <Github className="h-8" />
               </Link>
             </div>
           </div>
-          <div className="flex-1 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 lg:mt-0">
+          <div className="mt-12 grid flex-1 grid-cols-2 gap-8 md:grid-cols-2 lg:mt-0 lg:grid-cols-3">
             <div className="space-y-2">
-              <div className="font-normal text-sm text-text-100">Product</div>
-              <ul className="space-y-2 text-sm list-none p-0">
+              <div className="text-sm font-normal text-text-100">Product</div>
+              <ul className="list-none space-y-2 p-0 text-sm">
                 <li>
                   <Link
                     href="https://app.dyte.in"
@@ -113,8 +113,8 @@ export default function Footer(props) {
               </ul>
             </div>
             <div className="space-y-2">
-              <div className="font-normal text-sm text-text-100">Company</div>
-              <ul className="space-y-2 text-sm list-none p-0">
+              <div className="text-sm font-normal text-text-100">Company</div>
+              <ul className="list-none space-y-2 p-0 text-sm">
                 <li>
                   <Link
                     href="https://dyte.io"
@@ -126,7 +126,7 @@ export default function Footer(props) {
                 <li>
                   <Link
                     href="https://dyte.freshteam.com/jobs"
-                    className="text-current hover:no-underline dot-after"
+                    className="dot-after text-current hover:no-underline"
                   >
                     Join Us
                   </Link>
@@ -150,8 +150,8 @@ export default function Footer(props) {
               </ul>
             </div>
             <div className="space-y-2">
-              <div className="font-normal text-sm text-text-100">Resources</div>
-              <ul className="space-y-2 text-sm list-none p-0">
+              <div className="text-sm font-normal text-text-100">Resources</div>
+              <ul className="list-none space-y-2 p-0 text-sm">
                 <li>
                   <Link to="/" className="text-current hover:no-underline">
                     Documentation
@@ -168,7 +168,7 @@ export default function Footer(props) {
                 <li>
                   <Link
                     href="https://community.dyte.io"
-                    className="text-current hover:no-underline dot-after"
+                    className="dot-after text-current hover:no-underline"
                   >
                     Community
                   </Link>
@@ -183,7 +183,7 @@ export default function Footer(props) {
           </div>
         </div>
 
-        <div className="w-full mt-10 text-sm text-center text-text-100">
+        <div className="mt-10 w-full text-center text-sm text-text-100">
           Copyright © Dyte since 2020. All rights reserved.
         </div>
       </div>

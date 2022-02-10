@@ -76,9 +76,9 @@ function DocPageContent({ currentDocRoute, versionMetadata, children }) {
             />
 
             {hiddenSidebar && (
-              <div className="relative top-0 h-full flex border border-border">
+              <div className="relative top-0 flex h-full border border-border">
                 <button
-                  className="fixed top-20 left-[16px] w-6 h-6 flex items-center justify-center rounded-md bg-background-200 cursor-pointer"
+                  className="fixed top-20 left-[16px] flex h-6 w-6 cursor-pointer items-center justify-center rounded-md bg-background-200"
                   onClick={toggleSidebar}
                   tabIndex={0}
                   aria-label="Collapse sidebar"
@@ -97,7 +97,7 @@ function DocPageContent({ currentDocRoute, versionMetadata, children }) {
         >
           <div
             className={clsx(
-              'container padding-top--md padding-bottom--lg',
+              'padding-top--md padding-bottom--lg container',
               styles.docItemWrapper,
               {
                 [styles.docItemWrapperEnhanced]: hiddenSidebarContainer,

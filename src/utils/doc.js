@@ -1,3 +1,9 @@
+/**
+ * This code is unused, keeping it for reference later
+ */
+
+/* eslint-disable */
+
 import { useEffect } from 'react';
 import { useActiveDocContext } from '@theme/hooks/useDocs';
 import { useDocsPreferredVersion } from '@docusaurus/theme-common';

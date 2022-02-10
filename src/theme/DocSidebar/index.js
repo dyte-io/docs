@@ -38,9 +38,9 @@ function useShowAnnouncementBar() {
 
 function HideableSidebarButton({ onClick }) {
   return (
-    <div className="absolute top-0 right-0 w-1 h-full flex">
+    <div className="absolute top-0 right-0 flex h-full w-1">
       <button
-        className="absolute w-6 h-6 flex items-center justify-center right-[-12px] mt-20 rounded-md bg-background-200 cursor-pointer"
+        className="absolute right-[-12px] mt-20 flex h-6 w-6 cursor-pointer items-center justify-center rounded-md bg-background-200"
         onClick={onClick}
         onKeyDown={onClick}
         tabIndex={0}
@@ -67,7 +67,7 @@ const DocManager = () => {
   }
 
   return (
-    <div className="flex items-center justify-end px-4 my-4">
+    <div className="my-4 flex items-center justify-end px-4">
       <ContextSwitcher className="flex-[3]" />
       <VersionDropdown
         dropdownItemsBefore={[]}
@@ -94,7 +94,7 @@ function DocSidebarDesktop({ path, sidebar, onCollapse, isHidden }) {
       })}
     >
       {hideOnScroll && (
-        <Link to="/" className={clsx('hidden lg:block p-4')}>
+        <Link to="/" className={clsx('hidden p-4 lg:block')}>
           <DocsLogo tabIndex={-1} className={clsx('h-7 self-start')} />
         </Link>
       )}

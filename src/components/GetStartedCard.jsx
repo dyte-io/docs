@@ -2,6 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import { Github as GithubIcon } from '@styled-icons/boxicons-logos';
+import { element, string } from 'prop-types';
 
 const GetStartedCard = ({
   title,
@@ -12,38 +13,48 @@ const GetStartedCard = ({
   BGIcon,
   className,
   bgClassName,
-  ...props
 }) => {
   return (
     <div
       className={clsx(
-        'relative flex flex-col p-4 bg-gradient-to-r rounded-[0.25rem] space-y-4 overflow-hidden shadow-md hover:shadow-xl',
+        'relative flex flex-col space-y-4 overflow-hidden rounded-[0.25rem] bg-gradient-to-r p-4 shadow-md hover:shadow-xl',
         className
       )}
     >
-      <div className="text-lg text-white font-bold z-[1]">{title}</div>
+      <div className="z-[1] text-lg font-bold text-white">{title}</div>
       <div className="flex items-center space-x-4">
         <Link
-          className="px-3 py-2 text-sm rounded-sm bg-white text-black hover:text-gray-800 hover:no-underline hover:shadow-lg transition z-[1]"
+          className="z-[1] rounded-sm bg-white px-3 py-2 text-sm text-black transition hover:text-gray-800 hover:no-underline hover:shadow-lg"
           to={getStartedLink}
         >
           {getStartedText}
         </Link>
         <Link
           to={repoLink}
-          className="text-white hover:text-gray-300 transition z-[1]"
+          className="z-[1] text-white transition hover:text-gray-300"
         >
-          <Icon className="h-8 z-[1]" />
+          <Icon className="z-[1] h-8" />
         </Link>
       </div>
       <BGIcon
         className={clsx(
-          'absolute block h-24 mix-blend-luminosity z-0 bg-scroll',
+          'absolute z-0 block h-24 bg-scroll mix-blend-luminosity',
           bgClassName
         )}
       />
     </div>
   );
+};
+
+GetStartedCard.propTypes = {
+  title: string,
+  getStartedLink: string,
+  getStartedText: string,
+  repoLink: string,
+  Icon: element,
+  BGIcon: element,
+  className: string,
+  bgClassName: string,
 };
 
 export default GetStartedCard;

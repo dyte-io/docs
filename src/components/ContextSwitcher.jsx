@@ -2,7 +2,6 @@ import React, { useState, useEffect, Fragment, memo } from 'react';
 import clsx from 'clsx';
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
-// import { withRouter } from '@docusaurus/router';
 import { useHistory } from 'react-router-dom';
 import { useAllDocsData } from '@theme/hooks/useDocs';
 import {
@@ -12,6 +11,7 @@ import {
   AndroidIcon,
   AppleIcon,
 } from '../assets/icons';
+import { string } from 'prop-types';
 
 const CONTEXTS = [
   {
@@ -102,18 +102,18 @@ const ContextSwitcher = ({ className }) => {
       className={clsx('relative', className)}
     >
       <div className="relative mt-1">
-        <Listbox.Button className="relative flex items-center w-full h-12 py-2 pl-3 pr-10 text-left bg-background-100 rounded-lg cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm outline-none border-none">
+        <Listbox.Button className="focus:outline-none focus-visible:ring-offset-orange-300 outline-none relative flex h-12 w-full cursor-pointer items-center rounded-lg border-none bg-background-100 py-2 pl-3 pr-10 text-left focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 sm:text-sm">
           <context.icon
-            className="h-8 mr-2"
+            className="mr-2 h-8"
             aria-hidden="true"
             alt={context.name}
           />
           <span className="lv0_link block truncate text-text">
             {context.name}
           </span>
-          <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+          <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
             <SelectorIcon
-              className="w-5 h-5 text-gray-400"
+              className="h-5 w-5 text-gray-400"
               aria-hidden="true"
             />
           </span>
@@ -125,23 +125,23 @@ const ContextSwitcher = ({ className }) => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="absolute w-full py-2 mt-1 z-10 overflow-auto text-base bg-background-100 rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm p-0 list-none">
+            <Listbox.Options className="focus:outline-none absolute z-10 mt-1 max-h-60 w-full list-none overflow-auto rounded-md bg-background-100 p-0 py-2 text-base shadow-lg ring-1 ring-black ring-opacity-5 sm:text-sm">
               {CONTEXTS.map((context) => (
                 <Listbox.Option
                   key={context.id}
                   className={({ active }) =>
                     clsx(
-                      'cursor-pointer select-none relative py-2 px-4',
+                      'relative cursor-pointer select-none py-2 px-4',
                       active && 'bg-background-200'
                     )
                   }
                   value={context}
                 >
-                  {({ selected, active }) => (
+                  {({ selected }) => (
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
                         <context.icon
-                          className="h-8 mr-2"
+                          className="mr-2 h-8"
                           alt={context.name}
                           aria-hidden="true"
                         />
@@ -155,8 +155,8 @@ const ContextSwitcher = ({ className }) => {
                         </span>
                       </div>
                       {selected ? (
-                        <span className="text-blue-600 left-0 flex items-center pl-3">
-                          <CheckIcon className="w-5 h-5" aria-hidden="true" />
+                        <span className="left-0 flex items-center pl-3 text-blue-600">
+                          <CheckIcon className="h-5 w-5" aria-hidden="true" />
                         </span>
                       ) : null}
                     </div>
@@ -169,6 +169,10 @@ const ContextSwitcher = ({ className }) => {
       </div>
     </Listbox>
   );
+};
+
+ContextSwitcher.propTypes = {
+  className: string,
 };
 
 export default memo(ContextSwitcher);

@@ -4,18 +4,18 @@ import clsx from 'clsx';
 import { Menu } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/solid';
 
-export default function APIVersionSwitcher({ current }) {
+export default function APIVersionSwitcher() {
   return (
     <Menu>
       <Menu.Button className="absolute top-16 right-1 flex items-center px-4 py-3">
         API Versions
-        <ChevronDownIcon className="h-4 ml-1 text-text-100" />
+        <ChevronDownIcon className="ml-1 h-4 text-text-100" />
       </Menu.Button>
-      <Menu.Items className="flex flex-col w-32 py-2 absolute top-28 right-4 bg-background-100 text-text-100 shadow-xl ring-1 ring-background-300 rounded-lg overflow-hidden z-20">
+      <Menu.Items className="absolute top-28 right-4 z-20 flex w-32 flex-col overflow-hidden rounded-lg bg-background-100 py-2 text-text-100 shadow-xl ring-1 ring-background-300">
         <Menu.Item>
           <Link
             className={clsx(
-              'px-4 py-2 text-text-100 text-right hover:bg-background-200 hover:text-text hover:no-underline',
+              'px-4 py-2 text-right text-text-100 hover:bg-background-200 hover:text-text hover:no-underline'
             )}
             href="/api/"
           >
@@ -25,7 +25,7 @@ export default function APIVersionSwitcher({ current }) {
         <Menu.Item>
           <Link
             className={clsx(
-              'px-4 py-2 text-text text-right hover:bg-background-200 hover:text-text hover:no-underline'
+              'px-4 py-2 text-right text-text hover:bg-background-200 hover:text-text hover:no-underline'
             )}
             href="/api/v2/"
           >

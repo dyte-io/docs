@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
-export const HashChange = ({ onLoad, onChange, ...props }) => {
+export const HashChange = ({ onLoad, onChange }) => {
   useEffect(() => {
     onLoad && onLoad();
     window.addEventListener('hashchange', onChange);

@@ -20,9 +20,9 @@ export default function APIPage() {
       </Head>
       <BrowserOnly
         fallback={
-          <div className="flex items-center justify-center w-full min-h-screen">
+          <div className="flex min-h-screen w-full items-center justify-center">
             <div
-              className="w-10 h-10 rounded-full border-l border-t-2 border-primary animate-spin"
+              className="h-10 w-10 animate-spin rounded-full border-l border-t-2 border-primary"
               aria-label="Loading..."
             ></div>
           </div>

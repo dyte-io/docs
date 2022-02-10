@@ -250,12 +250,12 @@ function Navbar() {
         mobileSidebar.shown && 'navbar-sidebar--show'
       )}
     >
-      <header className="relative flex h-14 items-center justify-between px-4 py-2 z-10 bg-background border-b !border-border">
+      <header className="relative z-10 flex h-14 items-center justify-between border-b !border-border bg-background px-4 py-2">
         <div className="flex items-center space-x-10 font-medium">
           <div className="flex items-center space-x-2">
             <button
               onClick={mobileSidebar.toggle}
-              className="lg:hidden bg-transparent"
+              className="bg-transparent lg:hidden"
             >
               <MenuIcon className="h-6 text-text-100" />
             </button>
@@ -265,11 +265,11 @@ function Navbar() {
             </Link>
           </div>
 
-          <div className="hidden lg:flex space-x-6 text-text-100">
+          <div className="hidden space-x-6 text-text-100 lg:flex">
             <Link
               to="/react/quickstart"
               className={clsx(
-                'text-sm hover:no-underline font-medium',
+                'text-sm font-medium hover:no-underline',
                 page === 'sdk' ? 'text-primary-100' : 'text-text-100'
               )}
             >
@@ -278,7 +278,7 @@ function Navbar() {
             <a
               href="/api/"
               className={clsx(
-                'text-sm hover:no-underline font-medium',
+                'text-sm font-medium hover:no-underline',
                 page === 'api' ? 'text-primary-100' : 'text-text-100'
               )}
             >
@@ -287,7 +287,7 @@ function Navbar() {
             <Link
               to="/guides/subscribing-to-server-events"
               className={clsx(
-                'text-sm hover:no-underline font-medium',
+                'text-sm font-medium hover:no-underline',
                 page === 'guides' ? 'text-primary-100' : 'text-text-100'
               )}
             >
@@ -295,33 +295,33 @@ function Navbar() {
             </Link>
 
             <Link
-              className="flex items-center text-sm text-text-100 hover:no-underline font-medium"
+              className="flex items-center text-sm font-medium text-text-100 hover:no-underline"
               href="https://github.com/dyte-in"
             >
-              <Github className="h-5 mr-1" aria-hidden={true} />
+              <Github className="mr-1 h-5" aria-hidden={true} />
               GitHub
             </Link>
             <Link
-              className="flex items-center text-sm text-text-100 hover:no-underline font-medium"
+              className="flex items-center text-sm font-medium text-text-100 hover:no-underline"
               href="https://community.dyte.io"
             >
-              <DiscordIcon className="h-4 mr-1" />
+              <DiscordIcon className="mr-1 h-4" />
               Community
             </Link>
           </div>
         </div>
 
-        <div className="flex-1 flex items-center justify-end">
+        <div className="flex flex-1 items-center justify-end">
           <SearchBar />
 
-          <div className="hidden lg:flex items-center">
+          <div className="hidden items-center lg:flex">
             <Link
               href="https://dev.dyte.in"
               target="_blank"
-              className="flex items-center h-9 ml-4 bg-primary text-white px-4 text-sm font-bold rounded-[4px] hover:no-underline hover:text-white"
+              className="ml-4 flex h-9 items-center rounded-[4px] bg-primary px-4 text-sm font-bold text-white hover:text-white hover:no-underline"
             >
               Login/Sign Up
-              <ExternalLinkIcon className="h-4 ml-2" aria-hidden={true} />
+              <ExternalLinkIcon className="ml-2 h-4" aria-hidden={true} />
             </Link>
           </div>
         </div>
