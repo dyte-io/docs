@@ -12,7 +12,9 @@
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids"
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "lint": "eslint src/**/*.{js,jsx}",
+    "format": "prettier --write 'src/**/*.{js,jsx,css}'"
   },
   "dependencies": {
     "@docusaurus/core": "2.0.0-beta.6",
@@ -24,14 +26,21 @@
     "@stoplight/elements": "^7.3.7",
     "@styled-icons/boxicons-logos": "^10.38.0",
     "clsx": "^1.1.1",
+    "prop-types": "^15.8.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "styled-components": "^5.3.1"
   },
   "devDependencies": {
     "buffer": "^6.0.3",
+    "eslint": "^8.8.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.28.0",
     "path-browserify": "^1.0.1",
     "postcss-import": "^14.0.2",
+    "prettier": "^2.5.1",
+    "prettier-plugin-tailwindcss": "^0.1.7",
     "process": "^0.11.10",
     "stream-browserify": "^3.0.0",
     "tailwindcss": "^2.2.15"
