@@ -346,18 +346,16 @@ html[data-theme='dark'] .DocSearch-Button-Key {
   @apply mr-auto;
 }
 
-.sl-elements div[aria-label='Responses'] div[data-key='200'],
-.sl-elements div[aria-label='Responses'] div[data-key='400'] {
-  @apply outline-none mr-2 flex items-center rounded-md border ring-0;
+.sl-elements div[aria-label='Responses'] div[data-key] {
+  @apply mr-2 flex items-center rounded-md border outline-none ring-0;
 }
 
-.sl-elements div[aria-label='Responses'] div[data-key='200']::before,
-.sl-elements div[aria-label='Responses'] div[data-key='400']::before {
+.sl-elements div[aria-label='Responses'] div[data-key]::before {
   content: '';
   @apply mr-2 inline-block h-3 w-3 rounded-full bg-green-500 drop-shadow-sm;
 }
 
-.sl-elements div[aria-label='Responses'] div[data-key='400']::before {
+.sl-elements div[aria-label='Responses'] div[data-key^='4']::before {
   @apply bg-red-500;
 }
 
