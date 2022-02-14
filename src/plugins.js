@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const { ProvidePlugin } = require('webpack');
 const path = require('path');
 
@@ -7,6 +9,7 @@ const tailwindPlugin = (context, options) => {
     configurePostCss(postcssOptions) {
       postcssOptions.plugins = [
         require('postcss-import'),
+        require('tailwindcss/nesting'),
         require('tailwindcss'),
         require('autoprefixer'),
       ];
