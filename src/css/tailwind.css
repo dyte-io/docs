@@ -342,25 +342,31 @@ html[data-theme='dark'] .DocSearch-Button-Key {
   color: inherit !important;
 }
 
-.sl-elements div[aria-label='Responses'] > span {
-  @apply mr-auto;
-}
+.sl-elements div[aria-label='Responses'] {
+  span {
+    @apply mr-auto;
+  }
 
-.sl-elements div[aria-label='Responses'] div[data-key] {
-  @apply mr-2 flex items-center rounded-md border outline-none ring-0;
-}
+  div[data-key] {
+    @apply mr-2 flex items-center rounded-md border outline-none ring-0;
+  }
 
-.sl-elements div[aria-label='Responses'] div[data-key]::before {
-  content: '';
-  @apply mr-2 inline-block h-3 w-3 rounded-full bg-green-500 drop-shadow-sm;
-}
+  div[data-key]::before {
+    content: '';
+    @apply mr-2 inline-block h-3 w-3 rounded-full bg-green-500 drop-shadow-sm;
+  }
 
-.sl-elements div[aria-label='Responses'] div[data-key^='4']::before {
-  @apply bg-red-500;
-}
+  div[data-key^='4']::before {
+    @apply bg-red-500;
+  }
 
-div[aria-label='Responses'] div[aria-selected='true'] {
-  @apply border-primary-100 shadow-sm;
+  div[data-key^='5']::before {
+    @apply bg-yellow-500;
+  }
+
+  div[aria-selected='true'] {
+    @apply border-primary-100 shadow-sm;
+  }
 }
 
 .sl-overflow-x-hidden.sl-overflow-y-auto.sl-flex-1.sl-w-full.sl-px-24.sl-bg-canvas {
