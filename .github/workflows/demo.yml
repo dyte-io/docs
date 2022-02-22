@@ -1,0 +1,31 @@
+name: Deploy to github.io
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**.js'
+      - '**.ts'
+      - '**.html'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with: 
+        node-version: 16
+        registry-url: https://registry.npmjs.org/
+
+    - name: npm install, build
+      run: |
+        npm install
+        npm run build
+      
+    - name: Deploy to github.io
+      uses: JamesIves/github-pages-deploy-action@4.1.1
+      with:
+        branch: gh-pages
+        folder: build
