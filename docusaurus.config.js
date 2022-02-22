@@ -64,7 +64,7 @@ module.exports = {
       ],
       theme: require('prism-react-renderer/themes/vsDark'),
     },
-    algolia: {
+    algolia: process.env.ALGOLIA_API_KEY && {
       apiKey: process.env.ALGOLIA_API_KEY,
       indexName: 'prod_docs',
       contextualSearch: true,

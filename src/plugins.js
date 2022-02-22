@@ -54,6 +54,10 @@ const webpackPlugin = (context, options) => {
 };
 
 const posthogPlugin = (context) => {
+  if (!process.env.POSTHOG_API_KEY) {
+    return null;
+  }
+
   const { siteConfig } = context;
   const { themeConfig } = siteConfig;
   const { posthog } = themeConfig || {};
