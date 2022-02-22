@@ -102,7 +102,7 @@ const ContextSwitcher = ({ className }) => {
       className={clsx('relative', className)}
     >
       <div className="relative mt-1">
-        <Listbox.Button className="focus:outline-none focus-visible:ring-offset-orange-300 outline-none relative flex h-12 w-full cursor-pointer items-center rounded-lg border-none bg-background-100 py-2 pl-3 pr-10 text-left focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 sm:text-sm">
+        <Listbox.Button className="relative flex h-12 w-full cursor-pointer items-center rounded-lg border-none bg-background-100 py-2 pl-3 pr-10 text-left outline-none focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
           <context.icon
             className="mr-2 h-8"
             aria-hidden="true"
@@ -125,7 +125,7 @@ const ContextSwitcher = ({ className }) => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="focus:outline-none absolute z-10 mt-1 max-h-60 w-full list-none overflow-auto rounded-md bg-background-100 p-0 py-2 text-base shadow-lg ring-1 ring-black ring-opacity-5 sm:text-sm">
+            <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full list-none overflow-auto rounded-md bg-background-100 p-0 py-2 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
               {CONTEXTS.map((context) => (
                 <Listbox.Option
                   key={context.id}
