@@ -1,6 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
+import PropTypes from 'prop-types';
 
 export default function GridLink({
   Icon,
@@ -27,3 +28,10 @@ export default function GridLink({
     </Link>
   );
 }
+
+GridLink.propTypes = {
+  Icon: PropTypes.element,
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
+  className: PropTypes.string,
+};
