@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/dyte-in/docs/compare/v1.0.0...v1.0.1) (2022-02-23)
+
+
+### Bug Fixes
+
+* **release:** trigger new release ([ea57abe](https://github.com/dyte-in/docs/commit/ea57abe8a5a63cb31a3cc19f88c6680c2ea692ed))
+
 # 1.0.0 (2022-02-23)
 
 
