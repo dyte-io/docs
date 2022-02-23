@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/dyte-in/docs/compare/v1.0.1...v1.0.2) (2022-02-23)
+
+
+### Bug Fixes
+
+* lint issues in GridLink ([0696524](https://github.com/dyte-in/docs/commit/0696524d4c04afc83110ce277f1281f92ac7a91f))
+
 ## [1.0.1](https://github.com/dyte-in/docs/compare/v1.0.0...v1.0.1) (2022-02-23)
 
 
