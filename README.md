@@ -88,6 +88,80 @@ npm start
 
 <!-- In usage, mention how to edit the docs, how to update versions, etc. -->
 
+### Writing Documentation
+
+To just edit older documentation, go to the specified versioned folder for a section, for example, you want to edit documentation for React SDK v0.25.x, open up [react_versioned_docs/version-0.25.x](./react_versioned_docs/version-0.25.x) and edit the required files there.
+
+To create a new version inside a section, for example, flutter. Make your changes in [docs/flutter](./docs/flutter). The `./docs` folder consists of the `next` version, which is unpublished, and is where you add your newer or _next_ version of documentation.
+
+After your changes are done, to create a version, run the following command:
+
+```sh
+npm run docusaurus docs:version:flutter 1.2.3
+```
+
+This will create a new version `1.2.3` for flutter.
+
+Reference: https://docusaurus.io/docs/versioning
+
+### To add new sections
+
+Create a new section in docusaurus by adding a new plugin entry in [docusaurus.config.js](./docusaurus.config.js).
+
+Say you're adding a new Go section:
+
+```js
+{
+  plugins: [
+    // ...
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        path: 'docs/go',
+        routeBasePath: 'go',
+        id: 'go',
+        sidebarPath: require.resolve('./sidebars/sidebars-go.js'),
+        sidebarCollapsible: false,
+        onlyIncludeVersions: !isDev
+          ? require('./go_versions.json')
+          : undefined,
+      },
+    ],
+  ]
+}
+```
+
+After you add this, you'll need to create a [sidebars file](https://docusaurus.io/docs/sidebar) `./sidebars/sidebars-go.js`.
+
+Also add your new docs to `./docs/go`, say you add `introduction.mdx`
+
+Now, run `npm start` and you can access your Go docs at http://localhost:3000/go/introduction
+
+Then, you can create versions and edit older versions as mentioned above.
+
+### Adding new docs to the Context Switcher
+
+To add a newly created section to the Context Switcher, edit [./src/components/ContextSwitcher.jsx](src/components/ContextSwitcher.jsx).
+
+For example, for a section go, you will add:
+
+```jsx
+import { GoIcon } from '../assets/icons';
+
+const CONTEXTS = [
+  // ...
+  {
+    id: 'go',
+    name: 'Go',
+    icon: GoIcon,
+  },
+]
+```
+
+You'll need to create a GoIcon component too.
+
+That is it!
+
 _For more examples, please refer to the [Docusaurus Documentation](https://docusaurus.io)._
 
 <!-- CHANGELOG -->
