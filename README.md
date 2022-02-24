@@ -200,7 +200,7 @@ Distributed under the Apache License, Version 2.0. See [`LICENSE`](./LICENSE) fo
 
 ## About
 
-`docs` is created & maintained by Dyte, Inc. You can find us on Twitter - [@dyte_io](twitter.com/dyte_io) or write to us at `dev [at] dyte.io`.
+`docs` is created & maintained by Dyte, Inc. You can find us on Twitter - [@dyte_io](https://twitter.com/dyte_io) or write to us at `dev [at] dyte.io`.
 
 The names and logos for Dyte are trademarks of Dyte, Inc.
 
