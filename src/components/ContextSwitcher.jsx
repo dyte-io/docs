@@ -4,13 +4,7 @@ import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
 import { useHistory } from 'react-router-dom';
 import { useAllDocsData } from '@theme/hooks/useDocs';
-import {
-  ReactIcon,
-  FlutterIcon,
-  JSIcon,
-  AndroidIcon,
-  AppleIcon,
-} from '../assets/icons';
+import { ReactIcon, FlutterIcon } from '../assets/icons';
 import { string } from 'prop-types';
 
 const CONTEXTS = [
@@ -18,26 +12,6 @@ const CONTEXTS = [
     id: 'react',
     name: 'React',
     icon: ReactIcon,
-  },
-  {
-    id: 'javascript',
-    name: 'JavaScript',
-    icon: JSIcon,
-  },
-  {
-    id: 'react-native',
-    name: 'React Native',
-    icon: ReactIcon,
-  },
-  {
-    id: 'android',
-    name: 'Android',
-    icon: AndroidIcon,
-  },
-  {
-    id: 'ios',
-    name: 'iOS',
-    icon: AppleIcon,
   },
   {
     id: 'flutter',

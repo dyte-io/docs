@@ -284,15 +284,6 @@ function Navbar() {
             >
               API Reference
             </a>
-            <Link
-              to="/guides/subscribing-to-server-events"
-              className={clsx(
-                'text-sm font-medium hover:no-underline',
-                page === 'guides' ? 'text-primary-100' : 'text-text-100'
-              )}
-            >
-              Guides
-            </Link>
 
             <Link
               className="flex items-center text-sm font-medium text-text-100 hover:no-underline"
@@ -313,17 +304,6 @@ function Navbar() {
 
         <div className="flex flex-1 items-center justify-end">
           <SearchBar />
-
-          <div className="hidden items-center lg:flex">
-            <Link
-              href="https://dev.dyte.in"
-              target="_blank"
-              className="ml-4 flex h-9 items-center rounded-[4px] bg-primary px-4 text-sm font-bold text-white hover:text-white hover:no-underline"
-            >
-              Login/Sign Up
-              <ExternalLinkIcon className="ml-2 h-4" aria-hidden={true} />
-            </Link>
-          </div>
         </div>
         <ThemeSwitcher />
       </header>

@@ -5,7 +5,11 @@ const {
   posthogPlugin,
 } = require('./src/plugins');
 
-const isDev = process.env.NODE_ENV === 'development';
+const includeNextVersion = true
+
+// if you want to disable `next` version from being published in production build
+// const includeNextVersion = process.env.NODE_ENV === 'development';
+
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
@@ -44,10 +48,6 @@ module.exports = {
         {
           label: 'API Reference',
           to: '/api/',
-        },
-        {
-          label: 'Guides',
-          to: '/guides/subscribing-to-server-events',
         },
       ],
     },
@@ -102,19 +102,9 @@ module.exports = {
         id: 'react',
         sidebarPath: require.resolve('./sidebars/sidebars-react.js'),
         sidebarCollapsible: false,
-        onlyIncludeVersions: !isDev
+        onlyIncludeVersions: !includeNextVersion
           ? require('./react_versions.json')
           : undefined,
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        path: 'docs/guides',
-        routeBasePath: 'guides',
-        id: 'guides',
-        sidebarPath: require.resolve('./sidebars/sidebars-guides.js'),
-        sidebarCollapsible: false,
       },
     ],
     [
@@ -125,60 +115,8 @@ module.exports = {
         id: 'flutter',
         sidebarPath: require.resolve('./sidebars/sidebars-flutter.js'),
         sidebarCollapsible: false,
-        onlyIncludeVersions: !isDev
+        onlyIncludeVersions: !includeNextVersion
           ? require('./flutter_versions.json')
-          : undefined,
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        path: 'docs/react-native',
-        routeBasePath: 'react-native',
-        id: 'react-native',
-        sidebarPath: require.resolve('./sidebars/sidebars-react-native.js'),
-        sidebarCollapsible: false,
-        onlyIncludeVersions: !isDev
-          ? require('./react-native_versions.json')
-          : undefined,
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        path: 'docs/javascript',
-        routeBasePath: 'javascript',
-        id: 'javascript',
-        sidebarPath: require.resolve('./sidebars/sidebars-javascript.js'),
-        sidebarCollapsible: false,
-        onlyIncludeVersions: !isDev
-          ? require('./javascript_versions.json')
-          : undefined,
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        path: 'docs/android',
-        routeBasePath: 'android',
-        id: 'android',
-        sidebarPath: require.resolve('./sidebars/sidebars-android.js'),
-        sidebarCollapsible: false,
-        onlyIncludeVersions: !isDev
-          ? require('./android_versions.json')
-          : undefined,
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        path: 'docs/ios',
-        routeBasePath: 'ios',
-        id: 'ios',
-        sidebarPath: require.resolve('./sidebars/sidebars-ios.js'),
-        sidebarCollapsible: false,
-        onlyIncludeVersions: !isDev
-          ? require('./ios_versions.json')
           : undefined,
       },
     ],
