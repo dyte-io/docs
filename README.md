@@ -4,7 +4,7 @@
     <img src="https://assets.dyte.io/logo-outlined.png" alt="Logo" width="120">
   </a>
 
-  <h2 align="center">docs by Dyte</h3>
+  <h2 align="center">Dyte Docs</h3>
 
   <p align="center">
     Dyte's documentation portal, built with Docusaurus.
