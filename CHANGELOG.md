@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/dyte-in/docs/compare/v1.0.2...v1.1.0) (2022-02-24)
+
+
+### Features
+
+* add usage docs in README ([aa4696a](https://github.com/dyte-in/docs/commit/aa4696ae3a749c31d377e700d620e356deac76b2))
+
 ## [1.0.2](https://github.com/dyte-in/docs/compare/v1.0.1...v1.0.2) (2022-02-23)
 
 
