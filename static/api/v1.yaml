@@ -1937,6 +1937,12 @@ components:
             This will be added as a prefix to meeting recording file.
             A valid prefix can only contain alpha-numeric characters and can use underscores in between
           example: tree
+        url:
+          type: string
+          description: >-
+            (Beta) Change the recording to record this specific URL for this meeting.
+            Only enabled for specific organizations. A valid https:// url is needed.
+          example: tree
     UpdateRecordingRequestBody:
       type: object
       properties:
