@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <p align="center">
   <a href="https://dyte.io">
-    <img src="https://dyte-uploads.s3.ap-south-1.amazonaws.com/dyte-logo-dark.svg" alt="Logo" width="80">
+    <img src="https://assets.dyte.io/logo-outlined.png" alt="Logo" width="120">
   </a>
 
   <h2 align="center">docs by Dyte</h3>

@@ -1,0 +1,29 @@
+name: 🐛 Bug report
+description: Create a bug report
+body:
+  - type: checkboxes
+    attributes:
+      label: Are you certain it's a bug?
+      description: If you're uncertain, feel free to ping us at our community Discord server instead - https://community.dyte.io
+      options:
+        - label: Yes, it looks like a bug
+          required: true
+  - type: checkboxes
+    attributes:
+      label: Are you sure this is not an issue in Docusaurus?
+      description: If this is a Docusaurus issue, report it at https://github.com/facebook/docusaurus/issues.
+      options:
+        - label: It is not a Docusaurus issue
+          required: true
+  - type: checkboxes
+    attributes:
+      label: Is there an existing issue for this?
+      description: Please search to see if an issue already exists
+      options:
+        - label: I have searched existing issues, it hasn't been reported yet
+          required: true
+  - type: textarea
+    attributes:
+      label: Issue description
+    validations:
+      required: true
