@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/dyte-in/docs/compare/v1.1.1...v1.1.2) (2022-02-25)
+
+
+### Bug Fixes
+
+* **crawl:** -it option fails in CI ([e5a9cc8](https://github.com/dyte-in/docs/commit/e5a9cc87585202e8e4200c7d9bf5fa891f998f16))
+
 ## [1.1.1](https://github.com/dyte-in/docs/compare/v1.1.0...v1.1.1) (2022-02-25)
 
 
