@@ -1,0 +1,15 @@
+name: Run algolia dockersearch
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: |
+        chmod +x ./bin/crawl.sh
+        ./bin/crawl.sh
