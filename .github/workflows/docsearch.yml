@@ -22,14 +22,6 @@ jobs:
         API_KEY: ${{ secrets.ALGOLIA_DOCSEARCH_API_KEY }}
 
     - name: Run docsearch
+      continue-on-error: true
       run: |
         ./bin/crawl.sh
-        if [ $? -eq 3 ]; then
-          echo "Docsearch succeeded, but docs weren't updated"
-          exit 0
-        fi
-
-        if [ $? -ne 0 ]; then
-          echo "Failed to run docsearch"
-          exit 1
-        fi
