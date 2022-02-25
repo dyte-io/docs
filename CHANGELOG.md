@@ -1,3 +1,11 @@
+## [1.1.3](https://github.com/dyte-in/docs/compare/v1.1.2...v1.1.3) (2022-02-25)
+
+
+### Bug Fixes
+
+* **docsearch:** continue on error ([dc2bd9f](https://github.com/dyte-in/docs/commit/dc2bd9f3332b9bf760d2f23071d570c1c9702014))
+* **docsearch:** suppress error for status code 3 ([d86cf78](https://github.com/dyte-in/docs/commit/d86cf78a756a1b5ea54da97e2e1dd9930f8649e7))
+
 ## [1.1.2](https://github.com/dyte-in/docs/compare/v1.1.1...v1.1.2) (2022-02-25)
 
 
