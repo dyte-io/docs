@@ -1,3 +1,11 @@
+## [1.1.1](https://github.com/dyte-in/docs/compare/v1.1.0...v1.1.1) (2022-02-25)
+
+
+### Bug Fixes
+
+* **docsearch:** added environment variables for docsearch ([54c6bc1](https://github.com/dyte-in/docs/commit/54c6bc1049720c239fac9a83ac158116d6ce8cf7))
+* **docsearch:** rename environment variables to avoid clashes ([28ae6b7](https://github.com/dyte-in/docs/commit/28ae6b77aa74b969277159a2f32cbac5bbd5772c))
+
 # [1.1.0](https://github.com/dyte-in/docs/compare/v1.0.2...v1.1.0) (2022-02-24)
 
 
