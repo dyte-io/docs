@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/dyte-in/docs/compare/v1.1.3...v1.1.4) (2022-03-06)
+
+
+### Bug Fixes
+
+* **codeowners:** updated team names in the repository ([314653a](https://github.com/dyte-in/docs/commit/314653a8eb432af5e0b1ddb67bbd19fffd62424d))
+
 ## [1.1.3](https://github.com/dyte-in/docs/compare/v1.1.2...v1.1.3) (2022-02-25)
 
 
