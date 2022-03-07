@@ -7,6 +7,13 @@ const {
 
 const isDev = process.env.NODE_ENV === 'development';
 
+const pageOptions = {
+  sidebarCollapsible: false,
+  editUrl: 'https://github.com/dyte-in/docs/tree/main',
+  showLastUpdateAuthor: true,
+  showLastUpdateTime: true,
+};
+
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'Dyte Docs',
@@ -17,7 +24,7 @@ module.exports = {
   onBrokenMarkdownLinks: 'warn',
   favicon: 'favicon.ico',
   organizationName: 'dyte-in', // Usually your GitHub org/user name.
-  projectName: 'dyte-docs', // Usually your repo name.
+  projectName: 'docs', // Usually your repo name.
   clientModules: [require.resolve('./src/css/tailwind.css')],
   themeConfig: {
     image: '/dyte-docs-card.png',
@@ -94,19 +101,7 @@ module.exports = {
     tailwindPlugin,
     webpackPlugin,
     posthogPlugin,
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        path: 'docs/react',
-        routeBasePath: 'react',
-        id: 'react',
-        sidebarPath: require.resolve('./sidebars/sidebars-react.js'),
-        sidebarCollapsible: false,
-        onlyIncludeVersions: !isDev
-          ? require('./react_versions.json')
-          : undefined,
-      },
-    ],
+
     [
       '@docusaurus/plugin-content-docs',
       {
@@ -120,14 +115,27 @@ module.exports = {
     [
       '@docusaurus/plugin-content-docs',
       {
+        path: 'docs/react',
+        routeBasePath: 'react',
+        id: 'react',
+        sidebarPath: require.resolve('./sidebars/sidebars-react.js'),
+        onlyIncludeVersions: !isDev
+          ? require('./react_versions.json')
+          : undefined,
+        ...pageOptions,
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
         path: 'docs/flutter',
         routeBasePath: 'flutter',
         id: 'flutter',
         sidebarPath: require.resolve('./sidebars/sidebars-flutter.js'),
-        sidebarCollapsible: false,
         onlyIncludeVersions: !isDev
           ? require('./flutter_versions.json')
           : undefined,
+        ...pageOptions,
       },
     ],
     [
@@ -137,10 +145,10 @@ module.exports = {
         routeBasePath: 'react-native',
         id: 'react-native',
         sidebarPath: require.resolve('./sidebars/sidebars-react-native.js'),
-        sidebarCollapsible: false,
         onlyIncludeVersions: !isDev
           ? require('./react-native_versions.json')
           : undefined,
+        ...pageOptions,
       },
     ],
     [
@@ -150,10 +158,10 @@ module.exports = {
         routeBasePath: 'javascript',
         id: 'javascript',
         sidebarPath: require.resolve('./sidebars/sidebars-javascript.js'),
-        sidebarCollapsible: false,
         onlyIncludeVersions: !isDev
           ? require('./javascript_versions.json')
           : undefined,
+        ...pageOptions,
       },
     ],
     [
@@ -163,10 +171,10 @@ module.exports = {
         routeBasePath: 'android',
         id: 'android',
         sidebarPath: require.resolve('./sidebars/sidebars-android.js'),
-        sidebarCollapsible: false,
         onlyIncludeVersions: !isDev
           ? require('./android_versions.json')
           : undefined,
+        ...pageOptions,
       },
     ],
     [
@@ -176,10 +184,10 @@ module.exports = {
         routeBasePath: 'ios',
         id: 'ios',
         sidebarPath: require.resolve('./sidebars/sidebars-ios.js'),
-        sidebarCollapsible: false,
         onlyIncludeVersions: !isDev
           ? require('./ios_versions.json')
           : undefined,
+        ...pageOptions,
       },
     ],
   ],
