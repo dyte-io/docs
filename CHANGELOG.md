@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/dyte-in/docs/compare/v1.1.4...v1.2.0) (2022-03-07)
+
+
+### Features
+
+* show `edit this page` and last edited metadata ([c96eb0e](https://github.com/dyte-in/docs/commit/c96eb0ee6f49ed7766529f1a7f06a5caf023ac12))
+
 ## [1.1.4](https://github.com/dyte-in/docs/compare/v1.1.3...v1.1.4) (2022-03-06)
 
 
