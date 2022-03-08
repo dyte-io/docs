@@ -543,6 +543,25 @@ let currentParticipant = meeting.participants.find((p) => p.isMe);
 
 Now all the methods that you can call on `meeting.self` (as described under [replace meeting control buttons](#replace-the-meeting-control-buttons-with-your-own-buttons)) can be called on `currentParticipant`.
 
+## Style Isolation - ShadowDOM [Experimental]
+
+If your app's css is being affected by our css or vice versa, you can enable the experimental ShadowDOM modern
+
+https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM
+
+
+```jsx {5}
+const meeting = client.Meeting({
+    roomName: '<roomName>',
+    authToken: '<authToken>',
+    autoTune: false,
+    useShadowDOM: true
+  });
+```
+
+This will render Dyte UI under a shadow DOM isolating your app's and our SDKs styling
+
+
 ## Errors
 
 There are 3 types of errors emitted when a meeting cannot be initialized. Read more about these on the [`DyteErrors`](./reference/dyte-errors) page in the reference section.
