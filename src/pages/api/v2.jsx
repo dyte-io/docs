@@ -35,7 +35,7 @@ export default function APIPage() {
             <>
               <APIVersionSwitcher current="v2" />
               <API
-                apiDescriptionUrl="/api/v2.json"
+                apiDescriptionUrl="/api/v2.yaml"
                 router="hash"
                 basePath="/"
                 layout="sidebar"

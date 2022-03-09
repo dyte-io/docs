@@ -1,0 +1,738 @@
+openapi: 3.0.0
+info:
+  version: 2.0.0
+  title: dyte-rest-api
+servers:
+  - url: "https://api.cluster.dyte.in/v2/"
+    description: Production server
+components:
+  securitySchemes:
+    organizationAuth:
+      type: http
+      scheme: basic
+      description: Use OrgID as username, followed by its APIKEY as password 
+    userAuth:
+      type: http
+      scheme: bearer
+      description: Uses the bearer token a user will get when they login into their account on Dyte
+  schemas:
+    WebhookSuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+            name:
+              type: string
+            url:
+              type: string
+              format: uri
+            events:
+              type: array
+              items:
+                type: string
+                enum:
+                  - meeting.started
+                  - meeting.ended
+                  - meeting.participantJoined
+                  - meeting.participantLeft
+                  - meeting.statusUpdate
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+    WebhooksListSuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              name:
+                type: string
+              url:
+                type: string
+                format: uri
+              events:
+                type: array
+                items:
+                  type: string
+                  enum:
+                    - meeting.started
+                    - meeting.ended
+                    - meeting.participantJoined
+                    - meeting.participantLeft
+                    - meeting.statusUpdate
+              created_at:
+                type: string
+                format: date-time
+              updated_at:
+                type: string
+                format: date-time
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          type: object
+          properties:
+            code:
+              type: number
+            message:
+              type: string
+    WebhookRequest:
+      type: object
+      required:
+        - name
+        - url
+        - events
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+          format: uri
+        events:
+          type: array
+          items:
+            type: string
+            enum:
+              - meeting.started
+              - meeting.ended
+              - meeting.participantJoined
+              - meeting.participantLeft
+              - meeting.statusUpdate
+    PatchWebhookRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+          format: uri
+        events:
+          type: array
+          items:
+            type: string
+            enum:
+              - meeting.started
+              - meeting.ended
+              - meeting.participantJoined
+              - meeting.participantLeft
+              - meeting.statusUpdate
+    OrganizationRequest:
+      type: object
+      required:
+        - name
+        - contact
+        - website
+      properties:
+        name:
+          type: string
+        contact:
+          type: string
+        website:
+          type: string
+          format: uri
+        feature_flags:
+          type: array
+          items:
+            type: string
+        preferred_region:
+          type: string
+          enum:
+            - ap-south-1
+            - ap-southeast-1
+            - us-west-1
+          default: ap-south-1
+    PatchOrganizationRequest:
+      type: object
+      required:
+        - name
+        - contact
+        - website
+      properties:
+        name:
+          description: Must be a unique organization name
+          type: string
+        contact:
+          type: string
+        website:
+          type: string
+          format: uri
+        feature_flags:
+          type: array
+          items:
+            type: string
+        preferred_region:
+          type: string
+          enum:
+            - ap-south-1
+            - ap-southeast-1
+            - us-west-1
+          default: ap-south-1
+    OrganizationData:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        contact:
+          type: string
+        website:
+          type: string
+          format: uri
+        apikey:
+          type: string
+        preferred_region:
+          type: string
+        feature_flags:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - contact
+        - website
+        - preferred_region
+        - feature_flags
+        - created_at
+        - updated_at
+        - apikey
+    OrganizationSuccessResponse:
+      type: object
+      required:
+      - success
+      - data
+      properties:
+        success:
+          type: boolean
+        data:
+          allOf:
+            - $ref: '#/components/schemas/OrganizationData'
+    OrganizationListSuccessResponse:
+      type: object
+      required:
+      - success
+      - data
+      - paging
+      properties:
+        success:
+          type: boolean
+        data:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/OrganizationData'
+        paging:
+          type: object
+          properties:
+            total_count:
+              type: number
+            start_offset:
+              type: number
+            end_offset:
+              type: number
+          required:
+            - total_count
+            - start_offset
+            - end_offset
+security:
+  - organizationAuth: []
+paths:
+  "/webhooks":
+    summary: Represents webhooks for organization
+    description: Represents webhooks for organization
+    get:
+      summary: Get all webhooks
+      tags:
+        - Webhooks
+      description: >
+        Gets details of all webhooks that have been registered for the organization
+      operationId: getAllWebhooks
+      responses:
+        "200":
+          description: Operation successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WebhooksListSuccessResponse"
+              example: |
+                {
+                  success: true,
+                  data: [
+                    {
+                      id: '901e9adf-ebd9-41f0-9098-28171bc04ddd',
+                      name: 'test',
+                      events: [ 'meeting.started' ],
+                      url: 'https://testURL.com',
+                      created_at: '2021-09-09T10:25:12.330Z',
+                      updated_at: '2021-09-09T10:25:12.330Z'
+                    }
+                  ]
+                }
+        "401":
+          description: Invalid credentials
+          content:
+            application/json:
+              example: |
+                {
+                  message: "Unauthorized"
+                }
+    post:
+      summary: Add a new webhook
+      tags:
+        - Webhooks
+      description: >
+        Add a new webhook to organization
+      operationId: addWebhook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WebhookRequest"
+            example: |
+              {
+                name: 'test',
+                events: [ 'meeting.started' ],
+                url: 'https://testURL.com'
+              }
+      responses:
+        "201":
+          description: Webhook registered successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WebhookSuccessResponse"
+              example: |
+                {
+                  success: true,
+                  data: {
+                    id: '901e9adf-ebd9-41f0-9098-28171bc04ddd',
+                    name: 'test',
+                    events: [ 'meeting.started' ],
+                    url: 'https://testURL.com',
+                    created_at: '2021-09-09T10:25:12.330Z',
+                    updated_at: '2021-09-09T10:25:12.330Z'
+                  }
+                }
+        "400":
+          description: Error- malformed request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example: |
+                {
+                  success: false,
+                  error: { code: 400, message: 'BAD_REQUEST: "name" is required' }
+                }
+        "401":
+          description: Invalid credentials
+          content:
+            application/json:
+              example: |
+                {
+                  message: "Unauthorized"
+                }
+  "/webhooks/{id}":
+    summary: Represents a single webhook
+    description: Represents a single webhook for an organization by ID
+    get:
+      summary: Get details of a webhook
+      description: >
+        Get details of a single webhook by its ID
+      tags:
+        - Webhooks
+      operationId: getWebhook
+      parameters:
+        - name: id
+          in: path
+          description: ID of webhook
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Operation successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WebhookSuccessResponse"
+              example: |
+                {
+                  success: true,
+                  data: {
+                    id: '901e9adf-ebd9-41f0-9098-28171bc04ddd',
+                    name: 'test',
+                    events: [ 'meeting.started' ],
+                    url: 'https://testURL.com',
+                    created_at: '2021-09-09T10:25:12.330Z',
+                    updated_at: '2021-09-09T10:25:12.330Z'
+                  }
+                }
+        "400":
+          description: Error- malformed request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example: |
+                {
+                  success: false,
+                  error: { code: 400, message: 'BAD_REQUEST: "id" must be a valid GUID' }
+                }
+        "401":
+          description: Invalid credentials
+          content:
+            application/json:
+              example: |
+                {
+                  message: "Unauthorized"
+                }
+    put:
+      summary: Replace a webhook
+      description: Replace all details of a single webhook
+      tags:
+        - Webhooks
+      operationId: replaceWebhook
+      parameters:
+        - name: id
+          in: path
+          description: ID of webhook
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WebhookRequest"
+            example: |
+              {
+                name: 'test',
+                events: [ 'meeting.started' ],
+                url: 'https://testURL.com'
+              }
+      responses:
+        "200":
+          description: Operation successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WebhookSuccessResponse"
+              example: |
+                {
+                  success: true,
+                  data: {
+                    id: '901e9adf-ebd9-41f0-9098-28171bc04ddd',
+                    name: 'test',
+                    events: [ 'meeting.started' ],
+                    url: 'https://testURL.com',
+                    created_at: '2021-09-09T10:25:12.330Z',
+                    updated_at: '2021-09-09T10:25:12.376Z'
+                  }
+                }
+        "400":
+          description: Error- malformed request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example: |
+                {
+                  success: false,
+                  error: { code: 400, message: 'BAD_REQUEST: "id" must be a valid GUID' }
+                }
+        "401":
+          description: Invalid credentials
+          content:
+            application/json:
+              example: |
+                {
+                  message: "Unauthorized"
+                }
+    patch:
+      summary: Edit a webhook
+      description: Partially edit details of a single webhook
+      tags:
+        - Webhooks
+      operationId: editWebhook
+      parameters:
+        - name: id
+          in: path
+          description: ID of webhook
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PatchWebhookRequest"
+            example: |
+              {
+                name: 'test2',
+                events: [ 'meeting.ended' ],
+                url: 'https://testURL2.com'
+              }
+      responses:
+        "200":
+          description: Operation successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WebhookSuccessResponse"
+              example: |
+                {
+                  success: true,
+                  data: {
+                    id: '901e9adf-ebd9-41f0-9098-28171bc04ddd',
+                    name: 'test2',
+                    events: [ 'meeting.ended' ],
+                    url: 'https://testURL2.com',
+                    created_at: '2021-09-09T10:25:12.330Z',
+                    updated_at: '2021-09-09T10:25:12.367Z'
+                  }
+                }
+        "400":
+          description: Error- malformed request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example: |
+                {
+                  success: false,
+                  error: { code: 400, message: 'BAD_REQUEST: "id" must be a valid GUID' }
+                }
+        "401":
+          description: Invalid credentials
+          content:
+            application/json:
+              example: |
+                {
+                  message: "Unauthorized"
+                }
+    delete:
+      summary: Delete a webhook
+      description: Remove a single webhook by ID
+      tags:
+        - Webhooks
+      operationId: deleteWebhook
+      parameters:
+        - name: id
+          in: path
+          description: ID of webhook
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Operation successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WebhookSuccessResponse"
+              example: |
+                {
+                  success: true,
+                  data: {
+                    id: '901e9adf-ebd9-41f0-9098-28171bc04ddd',
+                    name: 'test2',
+                    events: [ 'meeting.ended' ],
+                    url: 'https://testURL2.com',
+                    created_at: '2021-09-09T10:25:12.330Z',
+                    updated_at: '2021-09-09T10:25:12.367Z'
+                  }
+                }
+        "400":
+          description: Error- malformed request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example: |
+                {
+                  success: false,
+                  error: { code: 400, message: 'BAD_REQUEST: "id" must be a valid GUID' }
+                }
+        "401":
+          description: Invalid credentials
+          content:
+            application/json:
+              example: |
+                {
+                  message: "Unauthorized"
+                }
+  "/orgs":
+    get:
+      summary: Gets all the user's organizations.
+      description: Gets all the user's organizations. This endpoint is paginated.
+      tags:
+        - Organizations
+      operationId: getAllOrgs
+      security:
+        - userAuth: []
+      parameters:
+        - in: query
+          name: per_page
+          schema:
+            type: integer
+            minimum: 1
+          description: Number of values to return in a single page. Default value is 25.
+        - in: query
+          name: page_no
+          schema:
+            type: integer
+            minimum: 1
+          description: The page number to return. Default value is 1.
+      responses:
+        "200":
+          description: Operation successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OrganizationListSuccessResponse"
+        "400":
+          description: Malformed request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: Unauthorized user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    post:
+      summary: Create a new organization
+      description: Create a new organization. The authenticated user becomes the owner of this organization.
+      tags:
+        - Organizations
+      operationId: createOrg
+      security:
+        - userAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OrganizationRequest"
+      responses:
+        "201":
+          description: Operation successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OrganizationSuccessResponse"
+        "400":
+          description: Malformed request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: Organization with the provided name already exists
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: Unauthorized user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  "/orgs/{id}":
+    get:
+      summary: Get details of a single organization.
+      description: Fetches details of a single organization by ID. User must be an owner of this organization.
+      tags:
+        - Organizations
+      operationId: getOrg
+      security:
+        - userAuth: []
+      responses:
+        "200":
+          description: Operation successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OrganizationSuccessResponse"
+        "400":
+          description: Malformed request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: User is not authorized to perform this operation.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    patch:
+      summary: Edit details of an organization. 
+      description: Fetches details of a single organization. User must be an owner of this org.
+      tags:
+        - Organizations
+      operationId: editOrg
+      security:
+        - userAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PatchOrganizationRequest"
+      responses:
+        "200":
+          description: Operation successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OrganizationSuccessResponse"
+        "400":
+          description: Malformed request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: Unauthorized user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"          
