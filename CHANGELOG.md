@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/dyte-in/docs/compare/v1.2.0...v1.2.1) (2022-03-10)
+
+
+### Bug Fixes
+
+* restore API spec for livestreams and active-sessions ([#17](https://github.com/dyte-in/docs/issues/17)) ([ced4b89](https://github.com/dyte-in/docs/commit/ced4b897cb11f680fb73c85f3b9443bf85beee8a))
+
 # [1.2.0](https://github.com/dyte-in/docs/compare/v1.1.4...v1.2.0) (2022-03-07)
 
 
