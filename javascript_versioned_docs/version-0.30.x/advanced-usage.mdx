@@ -562,6 +562,24 @@ const meeting = client.Meeting({
 This will render Dyte UI under a shadow DOM isolating your app's and our SDKs styling
 
 
+## Set default camera preference
+
+Choose if you want the default camera to be front or back for mobile devices
+
+Use `environment` for back camera. Defaults to `user` which is the front camera
+
+```jsx {6}
+const meeting = client.Meeting({
+    roomName: '<roomName>',
+    authToken: '<authToken>',
+    devicePreferences: {
+          camera: {
+            facing: 'environment'
+          }
+        }
+  });
+```
+
 ## Errors
 
 There are 3 types of errors emitted when a meeting cannot be initialized. Read more about these on the [`DyteErrors`](./reference/dyte-errors) page in the reference section.
