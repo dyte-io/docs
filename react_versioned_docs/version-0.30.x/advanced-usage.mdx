@@ -560,6 +560,30 @@ https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM
     >
 ```
 
+## Set default camera preference
+
+Choose if you want the default camera to be front or back for mobile devices
+
+Use `environment` for back camera. Defaults to `user` which is the front camera
+
+```jsx {9}
+<DyteMeeting
+    onInit={(meeting) => { }}
+    clientId=`yourClientID`
+    meetingConfig={{
+        roomName: `roomName`,
+        authToken: `authToken`,
+        devicePreferences: {
+          camera: {
+            facing: 'environment'
+          }
+        }
+    }}
+    >
+```
+
+
+
 This will render Dyte UI under a shadow DOM isolating your app's and our SDKs styling
 
 ## Errors
