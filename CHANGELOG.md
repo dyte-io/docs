@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/dyte-in/docs/compare/v1.2.1...v1.3.0) (2022-03-12)
+
+
+### Features
+
+* **recording:** Add maxSeconds param in startRecording ([04b0103](https://github.com/dyte-in/docs/commit/04b010353ff87ec3699feec21aa357d626054c2f))
+
 ## [1.2.1](https://github.com/dyte-in/docs/compare/v1.2.0...v1.2.1) (2022-03-10)
 
 
