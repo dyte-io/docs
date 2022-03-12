@@ -1942,7 +1942,14 @@ components:
           description: >-
             (Beta) Change the recording to record this specific URL for this meeting.
             Only enabled for specific organizations. A valid https:// url is needed.
-          example: tree
+          example: 'https://dyte.io'
+        maxSeconds:
+          type: number
+          description: >-
+            The max duration after which the recording will automatically be stopped. By default, this value is
+            10800 seconds (3 hours). The minimum value is 1 second, and the maximum value is 86400 seconds (24 hours).
+          example: 300
+
     UpdateRecordingRequestBody:
       type: object
       properties:
