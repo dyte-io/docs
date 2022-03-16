@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/dyte-in/docs/compare/v1.3.1...v1.3.2) (2022-03-16)
+
+
+### Bug Fixes
+
+* **api:** add default value to all stats api ([a0fc6da](https://github.com/dyte-in/docs/commit/a0fc6da476ccbc8006605139fad808c798ece4ad))
+
 ## [1.3.1](https://github.com/dyte-in/docs/compare/v1.3.0...v1.3.1) (2022-03-16)
 
 
