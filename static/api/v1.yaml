@@ -1942,14 +1942,7 @@ components:
           description: >-
             (Beta) Change the recording to record this specific URL for this meeting.
             Only enabled for specific organizations. A valid https:// url is needed.
-          example: 'https://dyte.io'
-        maxSeconds:
-          type: number
-          description: >-
-            The max duration after which the recording will automatically be stopped. By default, this value is
-            10800 seconds (3 hours). The minimum value is 1 second, and the maximum value is 86400 seconds (24 hours).
-          example: 300
-
+          example: tree
     UpdateRecordingRequestBody:
       type: object
       properties:
@@ -2066,7 +2059,8 @@ components:
           type: boolean
           description: Execution status of the request made by the API call.
         totalMinutes:
-          type: integer
+          type: number
+          format: float
           description: Total number of meeting minutes used by an organization.
         totalSessions:
           type: integer
@@ -2085,7 +2079,8 @@ components:
             description: Object defining the data points for daily stats.
             properties:
               totalMinutes:
-                type: integer
+                type: number
+                format: float
                 description: Total number of meeting minutes used in a day.
               totalSessions:
                 type: integer
@@ -3414,7 +3409,8 @@ components:
                     - time
                     - details
               totalMinutes:
-                type: integer
+                type: number
+                format: float
                 description: Total number of minutes consumed by the participant.
             required:
               - clientSpecificId
