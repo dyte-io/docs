@@ -1,3 +1,11 @@
+## [1.3.1](https://github.com/dyte-in/docs/compare/v1.3.0...v1.3.1) (2022-03-16)
+
+
+### Bug Fixes
+
+* **v1:** document totalMinutes as floating point type instead of integer ([4b06bc2](https://github.com/dyte-in/docs/commit/4b06bc2e6b96ae6b3c6431521e33961cabf92f49))
+* **v1:** revert unrelated changes to upstream ([a76a311](https://github.com/dyte-in/docs/commit/a76a3118cbdfb85245e5a3529f79f9623bc3b2a8))
+
 # [1.3.0](https://github.com/dyte-in/docs/compare/v1.2.1...v1.3.0) (2022-03-12)
 
 
