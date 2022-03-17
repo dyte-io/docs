@@ -1,3 +1,10 @@
+## [1.3.3](https://github.com/dyte-in/docs/compare/v1.3.2...v1.3.3) (2022-03-17)
+
+
+### Bug Fixes
+
+* add default value for totalMinutes to fix stoplight overflow ([ea935ef](https://github.com/dyte-in/docs/commit/ea935ef31fb7510352768e47dce473b708365a05))
+
 ## [1.3.2](https://github.com/dyte-in/docs/compare/v1.3.1...v1.3.2) (2022-03-16)
 
 
