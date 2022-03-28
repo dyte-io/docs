@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/dyte-in/docs/compare/v1.3.3...v1.4.0) (2022-03-28)
+
+
+### Features
+
+* **static:** update openapi spec for latest release ([#26](https://github.com/dyte-in/docs/issues/26)) ([2596086](https://github.com/dyte-in/docs/commit/259608649461709f4492063dbcea5f9ca3eca078))
+
 ## [1.3.3](https://github.com/dyte-in/docs/compare/v1.3.2...v1.3.3) (2022-03-17)
 
 
