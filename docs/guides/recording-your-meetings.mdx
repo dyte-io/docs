@@ -13,11 +13,11 @@ Usually to record a meeting, the flow of APIs is like below:
 3. Stop the recording by using the [`PUT` endpoint](/api/#/operations/stop_recording).
 4. Use the [`GET` endpoint](/api/#/operations/get_recording) again to get a pre-signed URL for downloading the recording.
 
-You can also use [webhooks as described here](./subscribing-to-server-events#recordingstatusupdate) to subscribe to meeting status update events instead of polling.
+You can also use [webhooks as described here](./integrating-with-webhooks#recordingstatusupdate) to subscribe to meeting status update events instead of polling.
 
 ## Recording states
 
-Recording can have one of these states, which are also notified through [webhooks](./subscribing-to-server-events#recordingstatusupdate):
+Recording can have one of these states, which are also notified through [webhooks](./integrating-with-webhooks#recordingstatusupdate):
 
 | Name      | Description                                                                                                                                                                |
 | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
