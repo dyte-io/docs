@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/dyte-in/docs/compare/v1.6.0...v1.6.1) (2022-04-06)
+
+
+### Bug Fixes
+
+* **plugins:** waitlist Documentation ([#34](https://github.com/dyte-in/docs/issues/34)) ([6f00799](https://github.com/dyte-in/docs/commit/6f0079963584f5e948100c5087cde45cd9fbe28e))
+
 # [1.6.0](https://github.com/dyte-in/docs/compare/v1.5.0...v1.6.0) (2022-04-06)
 
 
