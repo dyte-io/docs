@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/dyte-in/docs/compare/v1.4.0...v1.4.1) (2022-04-06)
+
+
+### Bug Fixes
+
+* margin for headings in markdown ([7ccf408](https://github.com/dyte-in/docs/commit/7ccf408f877c28891a3cf9f0e80a507754bfb3d3))
+
 # [1.4.0](https://github.com/dyte-in/docs/compare/v1.3.3...v1.4.0) (2022-03-28)
 
 
