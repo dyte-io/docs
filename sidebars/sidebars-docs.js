@@ -56,13 +56,7 @@ module.exports = {
     {
       type: 'category',
       label: 'Plugins',
-      items: [
-        {
-          type: 'link',
-          label: 'Plugins Waitlist',
-          href: '/docs/home/plugins'
-        }
-      ],
+      items: ['plugins'],
     },
     {
       type: 'category',
