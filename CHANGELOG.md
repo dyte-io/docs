@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/dyte-in/docs/compare/v1.4.1...v1.4.2) (2022-04-06)
+
+
+### Bug Fixes
+
+* **introduction:** Cleanup introduction. ([c33e322](https://github.com/dyte-in/docs/commit/c33e3225efd3360ec760e872b0acd44750d78e35))
+
 ## [1.4.1](https://github.com/dyte-in/docs/compare/v1.4.0...v1.4.1) (2022-04-06)
 
 
