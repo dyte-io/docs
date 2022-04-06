@@ -4,9 +4,9 @@ sidebar_position: 5
 
 # Advanced usage
 
-## Turn on the setup / preview screen
+## Turn off the setup / preview screen
 
-The audio / video setup screen that appears for the participant right before getting into the meeting is turned off by default. You can set `showSetupScreen` in `meetingConfig` to `true` to turn it on (default value is `false`).
+The audio / video setup screen that appears for the participant right before getting into the meeting is turned on by default. You can set `showSetupScreen` in `meetingConfig` to `fakse` to turn it off (default value is `true`).
 
 ```html {7}
 <script>
@@ -15,7 +15,7 @@ The audio / video setup screen that appears for the participant right before get
   const meeting = client.Meeting({
     roomName: '<roomName>',
     authToken: '<authToken>',
-    showSetupScreen: true,
+    showSetupScreen: false,
   });
 
   meeting.init('root');
@@ -155,14 +155,17 @@ You can add your own button with your custom handler, on the bottom control bar 
 To do this, you need to call the `addButton` method of `meeting.controlBar` and pass it an `icon` to display on the button, a `label` text to show below the icon, the `position` of button group where you want your button to show up (`left`, `center` & `right`), and the `onClick` handler.
 
 ```javascript
-button = meeting.controlBar.addButton({
-  icon: <div>😀</div>,
-  label: 'React',
-  position: 'center',
-  onClick: function () {
-    // your code to handle the click
-  },
-});
+
+meeting.on(meeting.Events.meetingJoined, () => {
+  button = meeting.controlBar.addButton({
+    icon: '<div>😀</div>',
+    label: 'React',
+    position: 'center',
+    onClick: () => {
+      // your code to handle the click
+    },
+  });
+})
 ```
 
 This would result in the following
@@ -244,11 +247,13 @@ You can add your own menu option to the context menu that appears on right click
 To do this, you need to call the `addParticipantControl` method of `meeting` and pass it a `label` text to show in the menu, and the `onClick` handler which receives a `peerId` to indicate which participant's video was clicked upon.
 
 ```javascript
-meeting.addParticipantControl({
-  label: 'React 😀',
-  onClick: function (peerId) {
-    // your code to handle the click
-  },
+meeting.on(meeting.Events.meetingJoined, () => {
+  meeting.addParticipantControl({
+    label: 'React 😀',
+    onClick: (peerId) => {
+      // your code to handle the click
+    },
+  });
 });
 ```
 
