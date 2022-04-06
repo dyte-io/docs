@@ -55,6 +55,11 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Plugins',
+      items: ['plugins'],
+    },
+    {
+      type: 'category',
       label: 'API Reference',
       items: [
         {
