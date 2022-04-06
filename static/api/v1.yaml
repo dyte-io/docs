@@ -1,14 +1,9 @@
 openapi: 3.0.0
 info:
   version: 0.1.0
-  title: Dyte REST API
-  description: Create and manage your Dyte meetings easily using Dyte APIs
-  contact:
-    name: Dyte Developer Support
-    url: 'https://dyte.io'
-    email: dev@dyte.io
+  title: Dyte Rest API
 servers:
-  - url: 'https://api.cluster.dyte.in/v1'
+  - url: "https://api.cluster.dyte.in/v1/"
     description: Production server
 paths:
   "/organizations/{organizationId}/stats":
@@ -19,7 +14,7 @@ paths:
       tags:
         - Stats
       description: >
-        Get stats for that organization like total minutes, total sessions and
+        Get stats for the current organization like total minutes, total sessions and
         stats for each session
       operationId: getOrgStats
       parameters:
@@ -265,9 +260,9 @@ paths:
         - api_key: []
   "/organizations/{organizationId}/analytics":
     summary: Get Organization Peer analytics
-    description: Get analytics (peer events) across all meetings in an organization
+    description: Get analytics (peer events) across all meetings in the current organization
     get:
-      summary: Get analytics (peer events) across all meetings in an organization
+      summary: Get analytics (peer events) across all meetings in the current organization
       tags:
         - Stats
       description: >
@@ -461,7 +456,7 @@ paths:
       tags:
         - Stats
       description: >
-        Get recording stats for that organization like roomName, status, start time and
+        Get recording stats for the current organization like roomName, status, start time and
         endtime
       operationId: getRecordingStats
       parameters:
@@ -529,7 +524,7 @@ paths:
       tags:
         - Stats
       description: |
-        Get rooms for that organization
+        Get rooms for the current organization
       operationId: getOrgRooms
       parameters:
         - name: organizationId
@@ -602,7 +597,7 @@ paths:
       tags:
         - Stats
       description: |
-        Get rooms for that organization meeting
+        Get rooms for the current organization meeting
       operationId: getMeetingRooms
       parameters:
         - name: organizationId
@@ -657,7 +652,7 @@ paths:
       tags:
         - Team Management
       description: |
-        Get users for that organization with their roles in it
+        Get users for the current organization with their roles in it
       operationId: getAllOrgUsers
       parameters:
         - name: organizationId
@@ -715,11 +710,11 @@ paths:
       security:
         - api_key: []
   "/organizations/{organizationId}/user":
-    summary: Give user access to organization
+    summary: Give user access to the current organization
     post:
-      summary: Give user access to organization
+      summary: Give user access to the current organization
       description: |
-        Give user access to organization as owner
+        Give user access to the current organization as owner
       tags:
         - Team Management
       operationId: addOrgUser
@@ -764,7 +759,7 @@ paths:
     post:
       summary: Create meeting
       description: |
-        Create a meeting for that organization
+        Create a meeting for the current organization
       tags:
         - Meetings
       operationId: createMeeting
@@ -901,7 +896,7 @@ paths:
     get:
       summary: Meetings
       description: |
-        Get a specific meeting in that organization
+        Get a specific meeting in the current organization
       tags:
         - Meetings
       operationId: getMeeting
@@ -948,7 +943,7 @@ paths:
     put:
       summary: Meetings
       description: |
-        Updates a specific meeting in that organization
+        Updates a specific meeting in the current organization
       tags:
         - Meetings
       operationId: getMeeting
@@ -1171,7 +1166,7 @@ paths:
     post:
       summary: Add a preset
       description: |
-        Add a preset for that organization
+        Add a preset for the current organization
       tags:
         - Presets
       operationId: addPreset
@@ -1223,10 +1218,10 @@ paths:
     get:
       summary: Get all presets
       description: |
-        Get all presets for an organization
+        Get all presets for the current organization
       tags:
         - Presets
-      operationId: getParticipant
+      operationId: getAllPresets
       parameters:
         - name: organizationId
           in: path
@@ -1285,7 +1280,7 @@ paths:
     post:
       summary: Add a role
       description: |
-        Add a role for that organization
+        Add a role for the current organization
       tags:
         - Roles
       operationId: addRole
@@ -1333,7 +1328,7 @@ paths:
     get:
       summary: Get all roles
       description: |
-        Get all roles for an organization
+        Get all roles for the current organization
       tags:
         - Roles
       operationId: getRoles
@@ -1810,7 +1805,7 @@ paths:
     post:
       summary: Add a webhook
       description: |
-        Add a webhook for that organization
+        Add a webhook for the current organization
       tags:
         - Webhooks
       operationId: addWebHook
@@ -1863,7 +1858,7 @@ paths:
     get:
       summary: Get all webhooks
       description: |
-        Get all webhooks for an organization
+        Get all webhooks for the current organization
       tags:
         - Webhooks
       operationId: getWebhooks
@@ -1923,7 +1918,7 @@ paths:
     get:
       summary: Get webhook
       description: |
-        Get a webhook for an organization
+        Get a webhook for the current organization
       tags:
         - Webhooks
       operationId: getWebhook
@@ -1975,7 +1970,7 @@ paths:
     put:
       summary: Update webhook
       description: |
-        Update a webhook for an organization
+        Update a webhook for the current organization
       tags:
         - Webhooks
       operationId: deleteWebhook
@@ -2033,7 +2028,7 @@ paths:
     delete:
       summary: Delete webhook
       description: |
-        Delete a specific webhook for an organization
+        Delete the specific webhook for the current organization
       tags:
         - Webhooks
       operationId: updateWebhook
@@ -2759,14 +2754,3 @@ components:
       type: apiKey
       name: Authorization
       in: header
-security:
-  - api_key: []
-tags:
-  - name: 'Roles '
-  - name: 'Presets '
-  - name: 'Meetings '
-  - name: 'Participants '
-  - name: 'Recordings '
-  - name: 'Webhooks '
-  - name: 'Stats '
-  - name: 'Team Management '
