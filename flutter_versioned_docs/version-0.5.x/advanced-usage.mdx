@@ -74,7 +74,7 @@ The `DyteMeetingHandler` instance (referenced as `meeting` above) helps you inte
 You can get the connection configuration of the meeting in progress using the `connectionConfig` property of `DyteMeetingHandler`.
 
 ```dart
-let config = meeting.connectionConfig;
+var config = meeting.connectionConfig;
 ```
 
 sets the value of `config` to the following:
@@ -93,7 +93,7 @@ sets the value of `config` to the following:
 You can get the UI configuration of the meeting in progress using the `uiConfig` property of `DyteMeetingHandler`.
 
 ```dart
-let config = meeting.uiConfig;
+var config = meeting.uiConfig;
 ```
 
 sets the value of `config` to the following:
@@ -137,7 +137,7 @@ sets the value of `config` to the following:
 You can get info about the plugins configured for the meeting in progress using the `plugins` property of `DyteMeetingHandler`.
 
 ```dart
-let plugins = meeting.plugins;
+var plugins = meeting.plugins;
 ```
 
 sets the value of `plugins` to an array of with elements that are instances of type `DytePlugin`, whose prototype is defined below in the reference section and can be directly used as a type if you prefer using TypeScript bindings.
@@ -302,7 +302,7 @@ where `message` can be of any type and `peerId` is a string representing the uni
 You can get a list of all participants in the meeting using the `participants` property of `meeting`.
 
 ```dart
-let participantList = meeting.participants;
+var participantList = meeting.participants;
 ```
 
 sets the `participantList` to an array whose elements are instances of type `DyteParticipant`, whose prototype is defined below in the reference section and can be directly used as a type if you prefer using TypeScript bindings. There will be exactly one element of type `DyteSelfParticipant`, which refers to the current participant.
@@ -319,7 +319,7 @@ Remember that despite the functions being available to every participant via the
 
 ### Get participant list
 
-To get a list of all participants, use `meeting.participants`: it returns `Array[DyteParticipant|DyteSelfParticipant]` where all meeting participants are [`DyteParticipant`](./reference/participant) and the current participant is [`DyteSelfParticipant`](./reference/self-participant).
+To get a list of all participants, use `meeting.participants`: it returns `List<DyteParticipant>` where all meeting participants are [`DyteParticipant`](./reference/participant).
 
 ### Participant info and actions
 
@@ -344,7 +344,7 @@ Even if the same participant, using the same auth token, rejoins the meeting, fo
 :::
 
 ```dart
-let peerID = p.id;
+var peerID = p.id;
 ```
 
 sets the value of `peerID` to a UUID string.
@@ -354,7 +354,7 @@ sets the value of `peerID` to a UUID string.
 Get the client specific ID as you have specified in the add participant API call. You may want to decide exposing custom controls or build other business logic based on this identifier, which helps you find the participant info in your system.
 
 ```dart
-let clientSpecificID = p.clientSpecificId;
+var clientSpecificID = p.clientSpecificId;
 ```
 
 #### Participant name
@@ -362,7 +362,7 @@ let clientSpecificID = p.clientSpecificId;
 Get the participant name as you have specified in the add participant API call. The participant may have changed this name, if enabled.
 
 ```dart
-let name = p.name;
+var name = p.name;
 ```
 
 #### Participant thumbnail photo / avatar
@@ -370,7 +370,7 @@ let name = p.name;
 Get the participant photo as you have specified in the add participant API call.
 
 ```dart
-let name = p.picture;
+var name = p.picture;
 ```
 
 #### Check if participant's audio is on
@@ -378,7 +378,7 @@ let name = p.picture;
 To check whether a participant's audio is on (mic is turned on), you can use
 
 ```dart
-let audio = p.audioEnabled;
+var audio = p.audioEnabled;
 ```
 
 which sets the value of `audio` to a boolean specifying if the mic is on or not.
@@ -388,7 +388,7 @@ which sets the value of `audio` to a boolean specifying if the mic is on or not.
 If the participant's audio is on, you can get the associated audio stream using
 
 ```dart
-let audioStream = p.audioTrack;
+var audioStream = p.audioTrack;
 ```
 
 which sets the value of `audioStream` to a `MediaStreamTrack` that you can use elsewhere such as a custom recording.
@@ -406,7 +406,7 @@ p.disableAudio();
 To check whether a participant's video is on (camera is turned on), you can use
 
 ```dart
-let video = p.videoEnabled;
+var video = p.videoEnabled;
 ```
 
 which sets the value of `video` to a boolean specifying if the camera is on or not.
@@ -416,7 +416,7 @@ which sets the value of `video` to a boolean specifying if the camera is on or n
 If the participant's video is on, you can get the associated video stream using
 
 ```dart
-let videoStream = p.videoTrack;
+var videoStream = p.videoTrack;
 ```
 
 which sets the value of `videoStream` to a `MediaStreamTrack` that you can use elsewhere such as a custom recording.
@@ -434,7 +434,7 @@ p.disableVideo();
 To check whether a participant's video is pinned to the meeting grid; by the host, by the user, by the preset, or by any other mechanism; you can use
 
 ```dart
-let pinned = p.isPinned;
+var pinned = p.isPinned;
 ```
 
 which sets the value of `pinned` to a boolean specifying whether the video is pinned or not.
@@ -498,7 +498,7 @@ p.sendMessage(message);
 You can check if the participant is the current participant by checking the `isMe` boolean property of the participant. If found to be `true`, you can treat that participant as an instance of type `DyteSelfParticipant`, which is a subclass of type `DyteParticipant`. This unlocks a few additional actions that you can take with that participant.
 
 ```dart
-let currentParticipant = meeting.participants.find((p) => p.isMe);
+var currentParticipant = meeting.participants.find((p) => p.isMe);
 ```
 
 Now all the methods that you can call on `meeting.self` (as described under [replace meeting control buttons](#replace-the-meeting-control-buttons-with-your-own-buttons)) can be called on `currentParticipant`.
