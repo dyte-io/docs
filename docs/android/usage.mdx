@@ -24,14 +24,14 @@ You need to pass a [`MeetingConfig`](./reference/connection-config) to [`DyteMee
 <TabItem value="kotlin">
 
 ```kotlin
-import com.dyteclientmobile.MeetingConfig;
-import com.dyteclientmobile.DyteMeeting;
+import com.dyteclientmobile.MeetingConfig
+import com.dyteclientmobile.DyteMeeting
 
-val config = MeetingConfig();
+val config = MeetingConfig()
 config.setRoomName("<roomName>")
-      .setAuthToken("<authToken>");
+      .setAuthToken("<authToken>")
 
-DyteMeeting.setup(config);
+DyteMeeting.setup(config)
 ```
 
 </TabItem>
@@ -68,7 +68,7 @@ For this to work, `DyteMeetingActivity` needs to be registered in `AndroidManife
 <TabItem value="kotlin">
 
 ```kotlin
-import com.dyteclientmobile.DyteMeetingActivity;
+import com.dyteclientmobile.DyteMeetingActivity
 
 val meetingIntent = Intent(this, DyteMeetingActivity::class.java)
 startActivity(meetingIntent)
