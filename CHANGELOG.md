@@ -1,3 +1,15 @@
+# [1.5.0](https://github.com/dyte-in/docs/compare/v1.4.2...v1.5.0) (2022-04-06)
+
+
+### Bug Fixes
+
+* **api:** show current version in dropdown ([44f982e](https://github.com/dyte-in/docs/commit/44f982e331a91d2824ec800142614821da9ab8e7))
+
+
+### Features
+
+* add postman collection button for v1 api ([5d62c5d](https://github.com/dyte-in/docs/commit/5d62c5de37541e6cc26a574fe75d5f72a9a1bb6d))
+
 ## [1.4.2](https://github.com/dyte-in/docs/compare/v1.4.1...v1.4.2) (2022-04-06)
 
 
