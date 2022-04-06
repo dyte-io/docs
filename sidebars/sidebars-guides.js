@@ -84,7 +84,6 @@ module.exports = {
         'livestreaming-rtmp-hls',
         'livestreaming-any-rtmp-streams',
         'embed',
-        'webinar',
         'controlling-an-active-session'
       ],
     },
