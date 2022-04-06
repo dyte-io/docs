@@ -22,15 +22,15 @@ The audio / video setup screen that appears for the participant right before get
 <TabItem value="kotlin">
 
 ```kotlin {7}
-import com.dyteclientmobile.MeetingConfig;
-import com.dyteclientmobile.DyteMeeting;
+import com.dyteclientmobile.MeetingConfig
+import com.dyteclientmobile.DyteMeeting
 
-val config = MeetingConfig();
+val config = MeetingConfig()
 config.setRoomName("<roomName>")
       .setAuthToken("<authToken>")
-      .setShowSetupScreen(true);
+      .setShowSetupScreen(true)
 
-DyteMeeting.setup(config);
+DyteMeeting.setup(config)
 ```
 
 </TabItem>
@@ -66,15 +66,15 @@ Dyte uses VP9 codec by default, but switches to H264/VP8 depending on participan
 <TabItem value="kotlin">
 
 ```kotlin {7}
-import com.dyteclientmobile.MeetingConfig;
-import com.dyteclientmobile.DyteMeeting;
+import com.dyteclientmobile.MeetingConfig
+import com.dyteclientmobile.DyteMeeting
 
-val config = MeetingConfig();
+val config = MeetingConfig()
 config.setRoomName("<roomName>")
       .setAuthToken("<authToken>")
-      .setAutoTuneEnabled(false);
+      .setAutoTuneEnabled(false)
 
-DyteMeeting.setup(config);
+DyteMeeting.setup(config)
 ```
 
 </TabItem>
@@ -107,7 +107,7 @@ DyteMeeting.addEventListener(new DyteMeeting.MeetingErrorListener() {
 });
 ```
 
-You can refer to [this section](#errors) for info on errors.
+You can refer to [this section](#./reference/dyte-errors) for info on errors.
 
 ## Control the meeting, and take meeting & participant actions
 

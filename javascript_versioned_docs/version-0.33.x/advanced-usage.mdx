@@ -4,69 +4,76 @@ sidebar_position: 5
 
 # Advanced usage
 
-## Turn on the setup / preview screen
+## Turn off the setup / preview screen
 
-The audio / video setup screen that appears for the participant right before getting into the meeting is turned off by default. You can set `showSetupScreen` in `meetingConfig` to `true` to turn it on (default value is `false`).
+The audio / video setup screen that appears for the participant right before getting into the meeting is turned on by default. You can set `showSetupScreen` in `meetingConfig` to `false` to turn it off (default value is `true`).
 
-```jsx {7}
-<DyteMeeting
-    onInit={(meeting) => { }}
-    clientId=`yourClientID`
-    meetingConfig={{
-        roomName: `roomName`,
-        authToken: `authToken`,
-        showSetupScreen: true
-    }}
-    >
+```html {7}
+<script>
+  const client = new DyteClient({ clientId: 'orgId|clientId' });
+
+  const meeting = client.Meeting({
+    roomName: '<roomName>',
+    authToken: '<authToken>',
+    showSetupScreen: false,
+  });
+
+  meeting.init('root');
+</script>
 ```
 
 ## Dynamic codec switching
 
 Dyte uses VP9 codec by default, but switches to H264/VP8 depending on participants' video codec support. VP9 is a superior codec but not all browsers support it. If you set `autoTune` in `meetingConfig` to `false`, Dyte will use VP8 only for all participants (default value is `true`).
 
-```jsx {7}
-<DyteMeeting
-    onInit={(meeting) => { }}
-    clientId=`yourClientID`
-    meetingConfig={{
-        roomName: `roomName`,
-        authToken: `authToken`,
-        autoTune: false
-    }}
-    >
+```html {7}
+<script>
+  const client = new DyteClient({ clientId: 'orgId|clientId' });
+
+  const meeting = client.Meeting({
+    roomName: '<roomName>',
+    authToken: '<authToken>',
+    autoTune: false,
+  });
+
+  meeting.init('root');
+</script>
 ```
 
 ## Get error details for meeting creation
 
-You can optionally choose to subscribe to the error details, in case an error occurs while joining a meeting from the client app, by passing an `onError` prop to `DyteMeeting`. `onError` expects a function which has a single param of type `Error` and is not expected to return anything.
+You can optionally choose to subscribe to the error details, in case an error occurs while joining a meeting from the client app, by passing a handler function to the `onError` method of `DyteMeeting`. `onError` expects a function which has a single param of type `Error` and is not expected to return anything.
 
-```jsx {8}
-<DyteMeeting
-    onInit={(meeting) => { }}
-    clientId=`yourClientID`
-    meetingConfig={{
-        roomName: `roomName`,
-        authToken: `authToken`
-    }}
-    onError={(error) => { }}
-    >
+```html {10}
+<script>
+  const client = new DyteClient({ clientId: 'orgId|clientId' });
+
+  const meeting = client.Meeting({
+    roomName: '<roomName>',
+    authToken: '<authToken>',
+    autoTune: false,
+  });
+
+  meeting.onError(function (error) {});
+  meeting.init('root');
+</script>
 ```
 
 You can refer to [this section](#errors) for info on errors.
+
+## Control the meeting, and take meeting & participant actions
+
+The `Meeting` instance (referenced as `meeting` above) helps you interact with the meeting. You can take actions on the meeting as well as the participants. You can also setup custom controls to that interact with the meeting in certain ways that help you send events and messages across to other participants in the meeting. You can find the complete reference to the `Meeting` type [here](./reference/meeting). Read on to understand how to use these individual controls.
 
 ## Get the Dyte client version
 
 You can get the version of the Dyte client SDK being used to help with logging and debugging purposes.
 
 ```javascript
-let version = DyteMeeting.version;
+let version = DyteClient.version;
 ```
 
 sets the value of `version` to a semver compliant string.
-
-## Control the meeting, and take meeting & participant actions
-
-The `Meeting` instance (referenced as `meeting` above) helps you interact with the meeting. You can take actions on the meeting as well as the participants. You can also setup custom controls to that interact with the meeting in certain ways that help you send events and messages across to other participants in the meeting. You can find the complete reference to the `Meeting` type [here](./reference/meeting). Read on to understand how to use these individual controls.
 
 ## Get info about meeting's connection configuration
 
@@ -147,20 +154,21 @@ You can add your own button with your custom handler, on the bottom control bar 
 
 To do this, you need to call the `addButton` method of `meeting.controlBar` and pass it an `icon` to display on the button, a `label` text to show below the icon, the `position` of button group where you want your button to show up (`left`, `center` & `right`), and the `onClick` handler.
 
-```tsx
-button = meeting.controlBar.addButton({
-  icon: <div>😀</div>,
-  label: 'React',
-  position: 'center',
-  onClick: () => {
-    // your code to handle the click
-  },
-});
+```javascript
+
+meeting.on(meeting.Events.meetingJoined, () => {
+  button = meeting.controlBar.addButton({
+    icon: '<div>😀</div>',
+    label: 'React',
+    position: 'center',
+    onClick: () => {
+      // your code to handle the click
+    },
+  });
+})
 ```
 
 This would result in the following
-
-<!-- !['react' button added to the control bar](./react-control-bar.png) -->
 
 !['react' button added to the control bar](/react-control-bar.png)
 
@@ -238,18 +246,18 @@ You can add your own menu option to the context menu that appears on right click
 
 To do this, you need to call the `addParticipantControl` method of `meeting` and pass it a `label` text to show in the menu, and the `onClick` handler which receives a `peerId` to indicate which participant's video was clicked upon.
 
-```tsx
-meeting.addParticipantControl({
-  label: 'React 😀',
-  onClick: (peerId) => {
-    // your code to handle the click
-  },
+```javascript
+meeting.on(meeting.Events.meetingJoined, () => {
+  meeting.addParticipantControl({
+    label: 'React 😀',
+    onClick: (peerId) => {
+      // your code to handle the click
+    },
+  });
 });
 ```
 
 This would result in the following
-
-<!-- !['react' button added to the context menu](./react-context-menu.png) -->
 
 !['react' button added to the context menu](/react-context-menu.png)
 
@@ -502,7 +510,7 @@ p.zoom({ scale: , x: , y: });
 
 #### Set an overlay / filter on the participant video
 
-You can add overlays or filters to individual participants. For this, you can do `participant.setOverlay(ReactNode)` where you pass either a React Component or HTML string to the function.
+You can add overlays or filters to individual participants. For this, you can do `participant.setOverlay(HTMLElement)` where you pass an HTML string to the function.
 
 Let's say you find the `participant` using their `id` or something similar, and then
 
@@ -547,18 +555,17 @@ If your app's css is being affected by our css or vice versa, you can enable the
 https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM
 
 
-```jsx {9}
-<DyteMeeting
-    onInit={(meeting) => { }}
-    clientId=`yourClientID`
-    meetingConfig={{
-        roomName: `roomName`,
-        authToken: `authToken`,
-        showSetupScreen: true
-    }}
-    useShadowDOM
-    >
+```jsx {5}
+const meeting = client.Meeting({
+    roomName: '<roomName>',
+    authToken: '<authToken>',
+    autoTune: false,
+    useShadowDOM: true
+  });
 ```
+
+This will render Dyte UI under a shadow DOM isolating your app's and our SDKs styling
+
 
 ## Set default camera preference
 
@@ -566,31 +573,23 @@ Choose if you want the default camera to be front or back for mobile devices
 
 Use `environment` for back camera. Defaults to `user` which is the front camera
 
-```jsx {9}
-<DyteMeeting
-    onInit={(meeting) => { }}
-    clientId=`yourClientID`
-    meetingConfig={{
-        roomName: `roomName`,
-        authToken: `authToken`,
-        devicePreferences: {
+```jsx {6}
+const meeting = client.Meeting({
+    roomName: '<roomName>',
+    authToken: '<authToken>',
+    devicePreferences: {
           camera: {
             facing: 'environment'
           }
         }
-    }}
-    >
+  });
 ```
-
-
-
-This will render Dyte UI under a shadow DOM isolating your app's and our SDKs styling
 
 ## Errors
 
 There are 3 types of errors emitted when a meeting cannot be initialized. Read more about these on the [`DyteErrors`](./reference/dyte-errors) page in the reference section.
 
-```tsx
+```javascript
 enum DyteErrors {
   CLIENTID_INVALID,
   MEETING_UNAUTHORIZED,
@@ -600,23 +599,21 @@ enum DyteErrors {
 
 An example of handling such errors:
 
-```tsx
-import { DyteMeeting, DyteErrors } from "@dyte/client";
+```html
+<script>
+  const client = new DyteClient({ clientId: 'orgId|clientId' });
 
-...
-...
+  const meeting = client.Meeting({
+    roomName: '<roomName>',
+    authToken: '<authToken>',
+    autoTune: false,
+  });
 
-<DyteMeeting
-    onInit={(meeting) => { }}
-    clientId=`yourClientID`
-    meetingConfig={{
-        roomName: `roomName`,
-        authToken: `authToken`
-    }}
-    onError={(error) => {
-        if (error = DyteErrors.CLIENTID_INVALID) {
-            // take appropriate action
-        }
-    }}
-    >
+  meeting.onError(function (error) {
+    if ((error = DyteErrors.CLIENTID_INVALID)) {
+      // take appropriate action
+    }
+  });
+  meeting.init('root');
+</script>
 ```
