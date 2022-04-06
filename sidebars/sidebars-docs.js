@@ -97,12 +97,7 @@ module.exports = {
           type: 'link',
           label: 'Dyte Embed',
           href: '/guides/embed',
-        },
-        {
-          type: 'link',
-          label: 'Dyte Webinars (Beta)',
-          href: '/guides/webinar',
-        },
+        }
       ],
     },
   ],
