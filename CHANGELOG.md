@@ -1,3 +1,10 @@
+## [1.6.2](https://github.com/dyte-in/docs/compare/v1.6.1...v1.6.2) (2022-04-06)
+
+
+### Bug Fixes
+
+* **flutter:** fixing variable decls, wordings, type, etc ([0dbef27](https://github.com/dyte-in/docs/commit/0dbef27526341032ac8096ca56e5cb527ee3340e))
+
 ## [1.6.1](https://github.com/dyte-in/docs/compare/v1.6.0...v1.6.1) (2022-04-06)
 
 
