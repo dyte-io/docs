@@ -70,8 +70,8 @@ module.exports = {
       items: [
         {
           type: 'link',
-          label: 'Subscribing to server events',
-          href: '/guides/subscribing-to-server-events',
+          label: 'Integrating with Webhooks',
+          href: '/guides/integrating-with-webhooks',
         },
         {
           type: 'link',

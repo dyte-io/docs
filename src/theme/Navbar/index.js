@@ -285,7 +285,7 @@ function Navbar() {
               API Reference
             </a>
             <Link
-              to="/guides/subscribing-to-server-events"
+              to="/guides/integrating-with-webhooks"
               className={clsx(
                 'text-sm font-medium hover:no-underline',
                 page === 'guides' ? 'text-primary-100' : 'text-text-100'
