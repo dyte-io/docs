@@ -54,7 +54,7 @@ module.exports = {
         },
         {
           label: 'Guides',
-          to: '/guides/subscribing-to-server-events',
+          to: '/guides/integrating-with-webhooks',
         },
       ],
     },
