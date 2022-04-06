@@ -1,3 +1,17 @@
+# [1.6.0](https://github.com/dyte-in/docs/compare/v1.5.0...v1.6.0) (2022-04-06)
+
+
+### Bug Fixes
+
+* typo ([0d27263](https://github.com/dyte-in/docs/commit/0d27263f195406f42ad7d3e5ea03d370c12204f3))
+* **web:** hide outdated webinar information ([b63b03a](https://github.com/dyte-in/docs/commit/b63b03aacf04a1ec5c27307ca2c70cc33fb6980e))
+* **web:** put button addition behind meetinJoined event ([2befc7d](https://github.com/dyte-in/docs/commit/2befc7df0298c736527e107bab05425cc2bc30a7))
+
+
+### Features
+
+* update web versions ([b01c3a8](https://github.com/dyte-in/docs/commit/b01c3a84406d4ce87026d881d7a19f3996f96a68))
+
 # [1.5.0](https://github.com/dyte-in/docs/compare/v1.4.2...v1.5.0) (2022-04-06)
 
 
