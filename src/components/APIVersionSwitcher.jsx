@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 export default function APIVersionSwitcher({ current }) {
   return (
     <Menu>
-      <Menu.Button className="absolute top-16 right-1 flex items-center px-4 py-3">
+      <Menu.Button className="absolute top-[86px] right-1 flex items-center px-4 py-3">
         {current}
         <ChevronDownIcon className="ml-1 h-4 text-text-100" />
       </Menu.Button>
