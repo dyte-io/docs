@@ -32,6 +32,13 @@ module.exports = {
       defaultMode: 'dark',
       disableSwitch: true,
     },
+    announcementBar: {
+      id: 'new_sdks_coming_soon',
+      content: 'Coming Soon: Next generation SDKs for web and mobile',
+      backgroundColor: '#2160FD',
+      textColor: '#fff',
+      isCloseable: true,
+    },
     navbar: {
       hideOnScroll: true,
       logo: {
