@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/dyte-in/docs/compare/v1.6.2...v1.7.0) (2022-04-07)
+
+
+### Features
+
+* add announcement for upcoming sdks ([b9b4ebf](https://github.com/dyte-in/docs/commit/b9b4ebf6fd879e47a887f63d6cfca95fa6891950))
+
 ## [1.6.2](https://github.com/dyte-in/docs/compare/v1.6.1...v1.6.2) (2022-04-06)
 
 
