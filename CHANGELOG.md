@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/dyte-in/docs/compare/v1.7.0...v1.7.1) (2022-04-07)
+
+
+### Bug Fixes
+
+* **api:** button placement with announcement ([6b443d6](https://github.com/dyte-in/docs/commit/6b443d6902b57663dfda263e7e08b215bd1c480b))
+
 # [1.7.0](https://github.com/dyte-in/docs/compare/v1.6.2...v1.7.0) (2022-04-07)
 
 
