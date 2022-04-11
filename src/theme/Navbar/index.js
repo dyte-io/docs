@@ -35,6 +35,7 @@ import { Github } from '@styled-icons/boxicons-logos';
 import { DiscordIcon } from '../../assets/icons';
 import ThemeSwitcher from '@site/src/components/ThemeSwitcher';
 import SearchBar from '@theme/SearchBar';
+import { NON_UI_SDKS, PREBUILT_SDKS, UI_SDKS } from '../../utils/constants';
 
 function useNavbarItems() {
   // TODO temporary casting until ThemeConfig type is improved
@@ -221,17 +222,10 @@ const getPage = () => {
     case 'guides':
       return 'guides';
     default:
-      if (
-        [
-          'react',
-          'react-native',
-          'flutter',
-          'javascript',
-          'android',
-          'ios',
-        ].includes(doc)
-      ) {
-        return 'sdk';
+      if (PREBUILT_SDKS.includes(doc)) {
+        return 'prebuilt-sdks';
+      } else if (UI_SDKS.concat(NON_UI_SDKS).includes(doc)) {
+        return 'web-sdks';
       }
       return null;
   }
@@ -270,10 +264,20 @@ function Navbar() {
               to="/react/quickstart"
               className={clsx(
                 'text-sm font-medium hover:no-underline',
-                page === 'sdk' ? 'text-primary-100' : 'text-text-100'
+                page === 'prebuilt-sdks' ? 'text-primary-100' : 'text-text-100'
               )}
             >
-              Client SDK
+              Prebuilt SDKs
+            </Link>
+            <Link
+              to="/ui-kit-react/quickstart"
+              className={clsx(
+                'text-sm font-medium hover:no-underline inline-flex items-center',
+                page === 'web-sdks' ? 'text-primary-100' : 'text-text-100'
+              )}
+            >
+              Web SDKs
+              <span className="pill ml-2">NEW</span>
             </Link>
             <a
               href="/api/"

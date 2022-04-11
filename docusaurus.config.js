@@ -52,8 +52,12 @@ module.exports = {
           activeBaseRegex: '(^/docs)',
         },
         {
-          label: 'Client SDK',
+          label: 'Prebuilt SDKs',
           to: '/react/quickstart',
+        },
+        {
+          label: 'Web SDKs',
+          to: '/ui-kit-react/quickstart',
         },
         {
           label: 'API Reference',
@@ -117,6 +121,32 @@ module.exports = {
         id: 'guides',
         sidebarPath: require.resolve('./sidebars/sidebars-guides.js'),
         sidebarCollapsible: false,
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        path: 'docs/ui-kit-react',
+        routeBasePath: 'ui-kit-react',
+        id: 'ui-kit-react',
+        sidebarPath: require.resolve('./sidebars/sidebars-ui-kit-react.js'),
+        onlyIncludeVersions: !isDev
+          ? require('./ui-kit-react_versions.json')
+          : undefined,
+        ...pageOptions,
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        path: 'docs/web-core',
+        routeBasePath: 'web-core',
+        id: 'web-core',
+        sidebarPath: require.resolve('./sidebars/sidebars-web-core.js'),
+        onlyIncludeVersions: !isDev
+          ? require('./web-core_versions.json')
+          : undefined,
+        ...pageOptions,
       },
     ],
     [

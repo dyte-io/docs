@@ -4,49 +4,11 @@ import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
 import { useHistory } from 'react-router-dom';
 import { useAllDocsData } from '@theme/hooks/useDocs';
-import {
-  ReactIcon,
-  FlutterIcon,
-  JSIcon,
-  AndroidIcon,
-  AppleIcon,
-} from '../assets/icons';
-import { string } from 'prop-types';
+import { CONTEXTS } from '../utils/constants';
+import PropTypes from 'prop-types';
 
-const CONTEXTS = [
-  {
-    id: 'react',
-    name: 'React',
-    icon: ReactIcon,
-  },
-  {
-    id: 'javascript',
-    name: 'JavaScript',
-    icon: JSIcon,
-  },
-  {
-    id: 'react-native',
-    name: 'React Native',
-    icon: ReactIcon,
-  },
-  {
-    id: 'android',
-    name: 'Android',
-    icon: AndroidIcon,
-  },
-  {
-    id: 'ios',
-    name: 'iOS',
-    icon: AppleIcon,
-  },
-  {
-    id: 'flutter',
-    name: 'Flutter',
-    icon: FlutterIcon,
-  },
-];
-
-const getContext = (id) => CONTEXTS.find((context) => context.id === id);
+const getContext = (id, section) =>
+  CONTEXTS[section].find((context) => context.id === id);
 
 export const getCurrentPageInfo = () => {
   return window.location.pathname.split('/').slice(1);
@@ -56,15 +18,17 @@ const pathExists = (path, data) => {
   return data.docs.some((doc) => doc.path === path);
 };
 
-const ContextSwitcher = ({ className }) => {
-  const [context, setContext] = useState(CONTEXTS[0]);
+const ContextSwitcher = ({ section, className }) => {
+  const contexts = CONTEXTS[section];
+  const [context, setContext] = useState(CONTEXTS[section][0]);
   const data = useAllDocsData();
   const history = useHistory();
 
   useEffect(() => {
     const [doc] = getCurrentPageInfo();
 
-    const currContext = getContext(doc);
+    const currContext = getContext(doc, section);
+
     if (currContext && currContext.id !== context.id) {
       setContext(currContext);
     }
@@ -126,7 +90,7 @@ const ContextSwitcher = ({ className }) => {
             leaveTo="opacity-0"
           >
             <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full list-none overflow-auto rounded-md bg-background-100 p-0 py-2 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-              {CONTEXTS.map((context) => (
+              {contexts.map((context) => (
                 <Listbox.Option
                   key={context.id}
                   className={({ active }) =>
@@ -172,7 +136,8 @@ const ContextSwitcher = ({ className }) => {
 };
 
 ContextSwitcher.propTypes = {
-  className: string,
+  className: PropTypes.string,
+  section: PropTypes.string,
 };
 
 export default memo(ContextSwitcher);
