@@ -58,64 +58,30 @@ export const CONTEXTS = {
   'ui-sdks': [
     {
       id: 'ui-kit-react',
-      name: 'React (UI Kit + Web Core)',
+      name: 'React',
       icon: ReactIcon,
     },
     {
       id: 'ui-kit-angular',
-      name: 'Angular (UI Kit + Web Core)',
+      name: 'Angular',
       icon: AngularIcon,
     },
     {
       id: 'ui-kit',
-      name: 'Other (Web Components + Web Core)',
+      name: 'Other',
       icon: WebCoreIcon,
     },
   ],
   'non-ui-sdks': [
     {
       id: 'react-web-core',
-      name: 'React ( React Web Core)',
-      icon: ReactIcon,
-    },
-    {
-      id: 'web-core',
-      name: 'Javascript ( Web Core )',
-      icon: JSIcon,
-    },
-  ],
-  'web-sdks': [
-    {
-      id: 'react',
       name: 'React',
       icon: ReactIcon,
     },
     {
-      id: 'javascript',
-      name: 'JavaScript',
-      icon: JSIcon,
-    },
-  ],
-  'mobile-sdks': [
-    {
-      id: 'react-native',
-      name: 'React Native',
-      icon: ReactIcon,
-    },
-    {
-      id: 'android',
-      name: 'Android',
-      icon: AndroidIcon,
-    },
-    {
-      id: 'ios',
-      name: 'iOS',
-      icon: AppleIcon,
-    },
-    {
-      id: 'flutter',
-      name: 'Flutter',
-      icon: FlutterIcon,
+      id: 'web-core',
+      name: 'Javascript',
+      icon: WebCoreIcon,
     },
   ],
 };

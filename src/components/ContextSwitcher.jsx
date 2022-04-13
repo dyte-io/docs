@@ -24,20 +24,6 @@ const ContextSwitcher = ({ section, className, mobile }) => {
   const data = useAllDocsData();
   const history = useHistory();
 
-  useEffect(() => {
-    const [doc] = getCurrentPageInfo();
-
-    const currContext = getContext(doc, section);
-
-    if (currContext && currContext.id !== context.id) {
-      setContext(currContext);
-    }
-  }, []);
-
-  useEffect(() => {
-    handleChange(context);
-  }, [section]);
-
   const handleChange = (newValue) => {
     setContext(newValue);
 
@@ -63,6 +49,18 @@ const ContextSwitcher = ({ section, className, mobile }) => {
     }
   };
 
+  useEffect(() => {
+    const [doc] = getCurrentPageInfo();
+
+    const currContext = getContext(doc, section);
+    const context = CONTEXTS[section][0];
+    if (currContext && currContext.id !== context.id) {
+      setContext(currContext);
+    } else if (window.location.href.indexOf(context.id) === -1) {
+      handleChange(context);
+    }
+  }, []);
+
   return (
     <Listbox
       value={context}
@@ -77,7 +75,7 @@ const ContextSwitcher = ({ section, className, mobile }) => {
             alt={context.name}
           />
           <span className="lv0_link block truncate text-text">
-            {mobile ? context.name : `${context.name.substring(0, 11)}...`}
+            {mobile ? context.name : `${context.name.substring(0, 11)}`}
           </span>
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
             <SelectorIcon

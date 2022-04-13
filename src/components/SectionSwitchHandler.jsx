@@ -27,13 +27,13 @@ const SectionSwitchHandler = (props) => {
   const sections = [
     {
       name: 'ui-sdks',
-      label: 'SDKs With UI',
-      desc: 'Use pre-built UI components',
+      label: 'With UI',
+      desc: 'Use our pre-built UI components as a base to build on top of.',
     },
     {
       name: 'non-ui-sdks',
-      label: 'SDKs Without UI',
-      desc: 'Build your own UI from scratch',
+      label: 'Without UI',
+      desc: 'Build your own UI from scratch, use our low level APIs',
     },
   ];
 
@@ -58,26 +58,27 @@ const SectionSwitchHandler = (props) => {
   }
 
   return (
-    <div className="mx-6 mt-4 mb-6 rounded-md bg-background-100">
+    <div className="newSwitcher mx-4 mt-4 mb-6 rounded-md bg-background-100">
       {sections.map((el) => (
         <div
           key={el.name}
-          className="rounded-md px-2 pt-3 pb-1 text-sm text-text-100"
+          onClick={() => switchSection(el.name)}
+          className="rounded-md pl-4 pr-2 pt-2 pb-1 text-sm text-text-100"
           style={{
-            background: section === el.name ? '#1A2139' : 'none',
+            background:
+              section === el.name ? 'var(--docs-color-background-300)' : 'none',
           }}
         >
           <input
             type="radio"
-            className="accent-primary-100"
+            className="mr-2 accent-primary-100"
             checked={section === el.name}
-            onClick={() => switchSection(el.name)}
             name="ui-non-ui-section"
             id="ui-non-ui-section"
           />
           <label>
-            <b className="ml-1">{el.label}</b>
-            {section !== el.name && <p className="ml-6">{el.desc}</p>}
+            <b className="ml-1 fill-text-100">{el.label}</b>
+            {section !== el.name && <p className="ml-2 pt-2">{el.desc}</p>}
           </label>
           {section === el.name && (
             <div className="my-4 flex items-center justify-end">
