@@ -69,18 +69,18 @@ export const CONTEXTS = {
       id: 'ui-kit',
       name: 'Other (Web Components + Web Core)',
       icon: WebCoreIcon,
-    }
+    },
   ],
   'non-ui-sdks': [
-    { 
+    {
       id: 'react-web-core',
       name: 'React ( React Web Core)',
-      icon: ReactIcon 
+      icon: ReactIcon,
     },
-    { 
+    {
       id: 'web-core',
       name: 'Javascript ( Web Core )',
-      icon: WebCoreIcon 
-    }
-  ], 
+      icon: WebCoreIcon,
+    },
+  ],
 };
