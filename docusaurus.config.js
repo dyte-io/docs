@@ -126,6 +126,16 @@ module.exports = {
     [
       '@docusaurus/plugin-content-docs',
       {
+        path: 'docs/quickstart',
+        routeBasePath: 'quickstart',
+        id: 'quickstart',
+        sidebarPath: require.resolve('./sidebars/sidebars-quickstart.js'),
+        sidebarCollapsible: false,
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
         path: 'docs/ui-kit-react',
         routeBasePath: 'ui-kit-react',
         id: 'ui-kit-react',

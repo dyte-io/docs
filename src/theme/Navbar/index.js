@@ -36,6 +36,7 @@ import { DiscordIcon } from '../../assets/icons';
 import ThemeSwitcher from '@site/src/components/ThemeSwitcher';
 import SearchBar from '@theme/SearchBar';
 import { NON_UI_SDKS, PREBUILT_SDKS, UI_SDKS } from '../../utils/constants';
+import Quickstart from '../../components/Quickstart';
 
 function useNavbarItems() {
   // TODO temporary casting until ThemeConfig type is improved
@@ -329,6 +330,7 @@ function Navbar() {
             </Link>
           </div>
         </div>
+        <Quickstart />
         <ThemeSwitcher />
       </header>
       <div

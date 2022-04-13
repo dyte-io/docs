@@ -5,6 +5,7 @@ import {
   AndroidIcon,
   AppleIcon,
   WebCoreIcon,
+  AngularIcon,
 } from '../assets/icons';
 
 export const PREBUILT_SDKS = [
@@ -63,7 +64,7 @@ export const CONTEXTS = {
     {
       id: 'ui-kit-angular',
       name: 'Angular (UI Kit + Web Core)',
-      icon: ReactIcon,
+      icon: AngularIcon,
     },
     {
       id: 'ui-kit',
@@ -80,7 +81,41 @@ export const CONTEXTS = {
     {
       id: 'web-core',
       name: 'Javascript ( Web Core )',
-      icon: WebCoreIcon,
+      icon: JSIcon,
+    },
+  ],
+  'web-sdks': [
+    {
+      id: 'react',
+      name: 'React',
+      icon: ReactIcon,
+    },
+    {
+      id: 'javascript',
+      name: 'JavaScript',
+      icon: JSIcon,
+    },
+  ],
+  'mobile-sdks': [
+    {
+      id: 'react-native',
+      name: 'React Native',
+      icon: ReactIcon,
+    },
+    {
+      id: 'android',
+      name: 'Android',
+      icon: AndroidIcon,
+    },
+    {
+      id: 'ios',
+      name: 'iOS',
+      icon: AppleIcon,
+    },
+    {
+      id: 'flutter',
+      name: 'Flutter',
+      icon: FlutterIcon,
     },
   ],
 };

@@ -34,6 +34,10 @@ const ContextSwitcher = ({ section, className, mobile }) => {
     }
   }, []);
 
+  useEffect(() => {
+    handleChange(context);
+  }, [section]);
+
   const handleChange = (newValue) => {
     setContext(newValue);
 
