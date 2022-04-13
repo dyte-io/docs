@@ -139,6 +139,45 @@ module.exports = {
     [
       '@docusaurus/plugin-content-docs',
       {
+        path: 'docs/ui-kit',
+        routeBasePath: 'ui-kit',
+        id: 'ui-kit',
+        sidebarPath: require.resolve('./sidebars/sidebars-ui-kit.js'),
+        onlyIncludeVersions: !isDev
+          ? require('./ui-kit_versions.json')
+          : undefined,
+        ...pageOptions,
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        path: 'docs/ui-kit-angular',
+        routeBasePath: 'ui-kit-angular',
+        id: 'ui-kit-angular',
+        sidebarPath: require.resolve('./sidebars/sidebars-ui-kit-angular.js'),
+        onlyIncludeVersions: !isDev
+          ? require('./ui-kit-angular_versions.json')
+          : undefined,
+        ...pageOptions,
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        path: 'docs/react-web-core',
+        routeBasePath: 'react-web-core',
+        id: 'react-web-core',
+        sidebarPath: require.resolve('./sidebars/sidebars-react-web-core.js'),
+        onlyIncludeVersions: !isDev
+          ? require('./react-web-core_versions.json')
+          : undefined,
+        ...pageOptions,
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
         path: 'docs/web-core',
         routeBasePath: 'web-core',
         id: 'web-core',

@@ -1,3 +1,3 @@
 # Quickstart
 
-lorem ipsum
+lorem ipsum for web-core

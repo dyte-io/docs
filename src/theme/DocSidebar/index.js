@@ -95,7 +95,7 @@ function DocSidebarDesktop({ path, sidebar, onCollapse, isHidden }) {
 const DocSidebarMobileSecondaryMenu = ({ toggleSidebar, sidebar, path }) => {
   return (
     <ul className={clsx(ThemeClassNames.docs.docSidebarMenu, 'menu__list')}>
-      <BrowserOnly>{() => <SectionSwitchHandler />}</BrowserOnly>
+      <BrowserOnly>{() => <SectionSwitchHandler mobile />}</BrowserOnly>
       <DocSidebarItems
         items={sidebar}
         activePath={path}

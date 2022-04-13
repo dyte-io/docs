@@ -18,7 +18,7 @@ const pathExists = (path, data) => {
   return data.docs.some((doc) => doc.path === path);
 };
 
-const ContextSwitcher = ({ section, className }) => {
+const ContextSwitcher = ({ section, className, mobile }) => {
   const contexts = CONTEXTS[section];
   const [context, setContext] = useState(CONTEXTS[section][0]);
   const data = useAllDocsData();
@@ -73,7 +73,7 @@ const ContextSwitcher = ({ section, className }) => {
             alt={context.name}
           />
           <span className="lv0_link block truncate text-text">
-            {context.name}
+            {mobile ? context.name : `${context.name.substring(0, 11)}...`}
           </span>
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
             <SelectorIcon
@@ -138,6 +138,7 @@ const ContextSwitcher = ({ section, className }) => {
 ContextSwitcher.propTypes = {
   className: PropTypes.string,
   section: PropTypes.string,
+  mobile: PropTypes.bool,
 };
 
 export default memo(ContextSwitcher);
