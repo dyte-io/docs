@@ -28,9 +28,9 @@ function Selector() {
         label="I have mobile apps (android and iOS)"
         name="platform"
       />
-      <ContextSwitcher section="mobile-sdks" mobile />
+      <ContextSwitcher section="mobile-sdks" mobile selectorOnly />
       <SelectorElement label="I have a web apps" name="platform" />
-      <ContextSwitcher section="web-sdks" mobile />
+      <ContextSwitcher section="web-sdks" mobile selectorOnly />
       <SelectorElement
         label="I will use customized dyte templates"
         name="ui-non-ui"

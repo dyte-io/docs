@@ -18,7 +18,7 @@ const pathExists = (path, data) => {
   return data.docs.some((doc) => doc.path === path);
 };
 
-const ContextSwitcher = ({ section, className, mobile }) => {
+const ContextSwitcher = ({ section, className, mobile, selectorOnly }) => {
   const contexts = CONTEXTS[section];
   const [context, setContext] = useState(CONTEXTS[section][0]);
   const data = useAllDocsData();
@@ -56,7 +56,10 @@ const ContextSwitcher = ({ section, className, mobile }) => {
     const context = CONTEXTS[section][0];
     if (currContext && currContext.id !== context.id) {
       setContext(currContext);
-    } else if (window.location.href.indexOf(context.id) === -1) {
+    } else if (
+      window.location.href.indexOf(context.id) === -1 &&
+      !selectorOnly
+    ) {
       handleChange(context);
     }
   }, []);
@@ -141,6 +144,7 @@ ContextSwitcher.propTypes = {
   className: PropTypes.string,
   section: PropTypes.string,
   mobile: PropTypes.bool,
+  selectorOnly: PropTypes.bool,
 };
 
 export default memo(ContextSwitcher);

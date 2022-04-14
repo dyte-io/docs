@@ -84,4 +84,38 @@ export const CONTEXTS = {
       icon: WebCoreIcon,
     },
   ],
+  'web-sdks': [
+    {
+      id: 'react',
+      name: 'React',
+      icon: ReactIcon,
+    },
+    {
+      id: 'javascript',
+      name: 'JavaScript',
+      icon: JSIcon,
+    }
+  ],
+    'mobile-sdks':[
+    {
+      id: 'react-native',
+      name: 'React Native',
+      icon: ReactIcon,
+    },
+    {
+      id: 'android',
+      name: 'Android',
+      icon: AndroidIcon,
+    },
+    {
+      id: 'ios',
+      name: 'iOS',
+      icon: AppleIcon,
+    },
+    {
+      id: 'flutter',
+      name: 'Flutter',
+      icon: FlutterIcon,
+    },
+  ]
 };
