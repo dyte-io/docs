@@ -1,0 +1,45 @@
+---
+sidebar_position: 1
+---
+
+# Installation
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+
+<Tabs
+  groupId="node-pm"
+  defaultValue="npm"
+  values={[
+    { label: "npm", value: "npm" },
+    { label: "yarn", value: "yarn" },
+    { label: "CDN", value: "CDN" },
+  ]}
+>
+  <TabItem value="npm">
+Install the SDK from npm
+
+```shell
+npm install @dytesdk/web-core
+```
+
+  </TabItem>
+  <TabItem value="yarn">
+Install the SDK from yarn
+
+```shell
+yarn add @dytesdk/web-core
+```
+
+  </TabItem>
+  <TabItem value="CDN">
+Install the SDK from CDN.
+Put the javascript below in the head of your html
+
+```html
+<script src="https://cdn.dyte.io/web-core.js" />
+```
+
+  </TabItem>
+</Tabs>
