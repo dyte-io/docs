@@ -1,13 +1,12 @@
 ---
 sidebar_position: 11
-web_core_version: 0.17.0
+web_core_version: 0.17.2
 ---
 
 <!-- Auto Generated Below -->
 
 <a name="module_DytePlugin"></a>
 
-## DytePlugin
 The DytePlugin module represents a single plugin in the meeting.
 
 

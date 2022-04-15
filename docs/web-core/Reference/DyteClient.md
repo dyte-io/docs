@@ -1,13 +1,12 @@
 ---
 sidebar_position: 1
-web_core_version: 0.17.0
+web_core_version: 0.17.1
 ---
 
 <!-- Auto Generated Below -->
 
 <a name="module_DyteClient"></a>
 
-## DyteClient
 The DyteClient class is the main class of the web core library.
 An object of the DyteClient class can be created using
 `await DyteClient.init({ ... })`. Typically, an object of `DyteClient` is

@@ -1,13 +1,12 @@
 ---
 sidebar_position: 6
-web_core_version: 0.17.0
+web_core_version: 0.17.2
 ---
 
 <!-- Auto Generated Below -->
 
 <a name="module_DyteMeta"></a>
 
-## DyteMeta
 This consists of the metadata of the meeting, such as the room name and the title.
 
 

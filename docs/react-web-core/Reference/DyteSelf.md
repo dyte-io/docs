@@ -1,13 +1,12 @@
 ---
 sidebar_position: 2
-web_core_version: 0.17.0
+web_core_version: 0.17.2
 ---
 
 <!-- Auto Generated Below -->
 
 <a name="module_DyteSelf"></a>
 
-## DyteSelf
 The DyteSelf module represents the current user, and allows to modify the state
 of the user in the meeting. The audio and video streams of the user can be retrieved from
 this module.

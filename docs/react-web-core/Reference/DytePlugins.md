@@ -1,13 +1,12 @@
 ---
 sidebar_position: 9
-web_core_version: 0.17.0
+web_core_version: 0.17.2
 ---
 
 <!-- Auto Generated Below -->
 
 <a name="module_DytePlugins"></a>
 
-## DytePlugins
 The DytePlugins module consists of all the plugins in the meeting. It has 2 maps:
 - `all`: Consists of all the plugins in the meeting.
 - `active`: Consists of the plugins that are currently in use.

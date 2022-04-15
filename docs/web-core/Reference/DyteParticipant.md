@@ -1,13 +1,11 @@
 ---
 sidebar_position: 5
-web_core_version: 0.17.0
+web_core_version: 0.17.1
 ---
 
 <!-- Auto Generated Below -->
 
 <a name="module_DyteParticipant"></a>
-
-## DyteParticipant
 This module represents a single participant in the meeting.
 
 
