@@ -1,6 +1,6 @@
 ---
 sidebar_position: 7
-web_core_version: 0.17.0-staging.4
+web_core_version: 0.17.0
 ---
 
 <!-- Auto Generated Below -->
