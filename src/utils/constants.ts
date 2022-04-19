@@ -94,9 +94,9 @@ export const CONTEXTS = {
       id: 'javascript',
       name: 'JavaScript',
       icon: JSIcon,
-    }
+    },
   ],
-    'mobile-sdks':[
+  'mobile-sdks': [
     {
       id: 'react-native',
       name: 'React Native',
@@ -117,5 +117,5 @@ export const CONTEXTS = {
       name: 'Flutter',
       icon: FlutterIcon,
     },
-  ]
+  ],
 };
