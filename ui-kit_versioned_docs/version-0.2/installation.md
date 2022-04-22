@@ -17,7 +17,7 @@ npm install @dytesdk/ui-kit
 And now you need to define the custom elements:
 
 ```js
-import { defineCustomElements } from 'https://cdn.jsdelivr.net/npm/@dytesdk/ui-kit/loader/index.es2017.js';
+import { defineCustomElements } from '@dytesdk/ui-kit/loader/index.es2017.js';
 
 defineCustomElements();
 ```
