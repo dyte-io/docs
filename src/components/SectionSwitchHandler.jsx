@@ -4,6 +4,7 @@ import VersionDropdown from '@theme/NavbarItem/DocsVersionDropdownNavbarItem';
 import { getDocId } from '../utils/doc';
 import { NON_UI_SDKS, PREBUILT_SDKS, UI_SDKS } from '../utils/constants';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 
 const SectionSwitchHandler = (props) => {
   const { mobile } = props;
@@ -63,11 +64,10 @@ const SectionSwitchHandler = (props) => {
         <div
           key={el.name}
           onClick={() => switchSection(el.name)}
-          className="rounded-md pl-4 pr-2 pt-2 pb-1 text-sm text-text-100"
-          style={{
-            background:
-              section === el.name ? 'var(--docs-color-background-300)' : 'none',
-          }}
+          className={clsx(
+            'rounded-md pl-4 pr-2 pt-2 pb-1 text-sm text-text-100',
+            section === el.name && 'dyte-transparent-blue'
+          )}
         >
           <input
             type="radio"
