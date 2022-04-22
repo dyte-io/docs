@@ -1,3 +1,7 @@
+---
+sidebar_position: 3
+---
+
 # Basic Usage
 
 There are two ways you can use the ui-kit:

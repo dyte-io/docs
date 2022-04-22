@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # Installation
 
 There are two ways you can install ui-kit depending on your project.

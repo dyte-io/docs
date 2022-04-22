@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # Quickstart
 
 Here is how you can integrate Dyte's UI Kit into your project seamlessly.
