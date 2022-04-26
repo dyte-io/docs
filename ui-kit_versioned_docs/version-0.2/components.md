@@ -19,6 +19,18 @@ These are the buttons which are used to perform a specific task such as toggling
 - dyte-plugins-toggle
 - dyte-leave-button
 
+## Components - Self
+
+### Preview in Settings
+
+You can see previews of your camera and check microphone in the `dyte-settings` component.
+
+### Self Control Buttons
+
+These are buttons which run an action on `self`.
+
+These are the various toggle buttons mentioned in [Action Buttons](#action-buttons) section above.
+
 ## Audio Handling
 
 `<dyte-peers-audio />` component is provided in the UI Kit which handles audio for all peers in a single component.
@@ -65,7 +77,6 @@ These are some utility components which show some meeting related data or perfor
 - dyte-meeting-title
 - dyte-participant-count
 - dyte-grid-pagination
-
 
 ## Skeleton Components
 
