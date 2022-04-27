@@ -1,11 +1,12 @@
 ---
 sidebar_position: 8
-web_core_version: 0.17.1
+web_core_version: 0.18.0
 ---
 
 <!-- Auto Generated Below -->
 
 <a name="module_DytePolls"></a>
+
 The DytePolls module consists of the polls that have been created in the meeting.
 
 
