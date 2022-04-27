@@ -71,7 +71,7 @@ export const CONTEXTS = {
     },
     {
       id: 'ui-kit',
-      name: 'Other',
+      name: 'Vanilla JS',
       icon: WebCoreIcon,
     },
   ],

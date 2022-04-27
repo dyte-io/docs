@@ -1,0 +1,136 @@
+---
+sidebar_position: 4
+---
+
+# Components
+
+Reference page of all components in the UI Kit.
+
+## Action Buttons
+
+These are the buttons which are used to perform a specific task such as toggling microphone, camera, screenshare or leaving a meeting.
+
+- dyte-mic-toggle
+- dyte-camera-toggle
+- dyte-screen-share-toggle
+- dyte-settings-toggle
+- dyte-chat-toggle
+- dyte-participants-toggle
+- dyte-plugins-toggle
+- dyte-leave-button
+
+## Components - Self
+
+### Preview in Settings
+
+You can see previews of your camera and check microphone in the `dyte-settings` component.
+
+### Self Control Buttons
+
+These are buttons which run an action on `self`.
+
+These are the various toggle buttons mentioned in [Action Buttons](#action-buttons) section above.
+
+## Audio Handling
+
+`<dyte-peers-audio />` component is provided in the UI Kit which handles audio for all peers in a single component.
+
+You will need to use this component along with `<dyte-peer-view />` so as to hear the participants.
+
+## Participant Components
+
+These are components which accept a participant object and renders their state.
+
+A `<dyte-peer-view />` component is used to render the video of the participant, along with their audio visualizers and name tags.
+
+You can use `<dyte-name-tag />`, `<dyte-avatar />` and `<dyte-audio-visualizer />` inside a peer-view component so they are placed appropriately and you can customize their UI and position by passing in props.
+
+Example usage:
+
+To render the peer-view with `gradient` variant:
+
+```html
+<dyte-peer-view variant="gradient" name-tag-position="bottom-center">
+  <dyte-name-tag></dyte-name-tag>
+  <dyte-avatar />
+  <dyte-audio-visualzier></dyte-audio-visualizer>
+</dyte-peer-view>
+```
+
+To render audio-visualizer with name-tag at the start:
+
+```html
+<dyte-peer-view variant="solid" name-tag-position="bottom-center">
+  <dyte-name-tag>
+    <dyte-audio-visualzier slot="start"></dyte-audio-visualizer>
+  </dyte-name-tag>
+  <dyte-avatar></dyte-avatar>
+</dyte-peer-view>
+```
+
+## Utility Components
+
+These are some utility components which show some meeting related data or perform specific smaller tasks:
+
+- dyte-clock
+- dyte-icon
+- dyte-meeting-title
+- dyte-participant-count
+- dyte-grid-pagination
+
+## Skeleton Components
+
+These components don't provide much value, but they are there to provide a set of styling options for general meeting UIs.
+
+- dyte-header
+- dyte-stage
+- dyte-controlbar
+
+## Notifications
+
+There is a `dyte-notifications` component which you can use to show notifications and/or play notification sounds.
+
+You can customize it's behaviour in the Config.
+
+## Settings
+
+There is a `dyte-settings` component with which users can customize their media device settings and view their connection status.
+
+## Other Components
+
+`dyte-chat` component lets you chat with participants in a meeting.
+
+`dyte-participants` lets you view the participants in a meeting.
+
+`dyte-plugins` shows you the list of available plugins which you can toggle.
+
+`dyte-sidebar` component uses all the above components and handles the sidebar state using the buttons: `dyte-chat-toggle`, `dyte-participant-toggle`, `dyte-plugins-toggle`.
+
+## Plugins
+
+You can use the `dyte-plugin-main` component to view an opened plugin.
+
+## Grid
+
+`dyte-grid` handles the grid view of the participants `peer-view` components.
+
+You can customize it's properties such as:
+
+- aspect-ratio (default: `"16:9"`)
+- gap (default: `10`)
+
+## Meeting State Screens
+
+The UI Kit comes with a set of prebuilt screens which show the state of the meeting.
+
+- dyte-init-screen
+- dyte-setup-screen
+- dyte-ended-screen
+
+Each of these show a stage of the meeting, which is as follows:
+
+```
+init -> setup -> joined -> ended
+```
+
+In the `joined` phase, your meeting UI will be rendered.
