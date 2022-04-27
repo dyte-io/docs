@@ -1,11 +1,12 @@
 ---
 sidebar_position: 3
-web_core_version: 0.17.1
+web_core_version: 0.18.0
 ---
 
 <!-- Auto Generated Below -->
 
 <a name="module_DyteParticipants"></a>
+
 This module represents all the participants in the meeting. It consists of 4 maps:
 - `joined`: A map of all participants that have joined the meeting.
 - `waitlisted`: A map of all participants that have been added to the waitlist.
