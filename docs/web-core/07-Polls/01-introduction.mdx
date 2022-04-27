@@ -7,7 +7,7 @@ tags: [web-core, polls]
 
 # Introduction
 
-The meetings polls object can be accessed using `meeting.polls`. It provides methods to create, vote, and manage polls.
+The meetings polls object can be accessed using `meeting.polls`. It provides methods to create polls, vote, and more. 
 
 `meeting.polls.items` returns an array of all polls created in a meeting, where each element is an object of type  `Poll`.
 
@@ -22,17 +22,16 @@ interface Poll {
     hideVotes: boolean;
     createdBy: string;
     createdByUserId: string;
-    voted: string[];
+    voted: string[]; // stores participant ID
 }
 
 interface PollOption {
     text: string;
-    votes: { id: string, name: string }[];
+    votes: { 
+        id: string, // stores particpant ID
+        name: string 
+        }[];
     count: number;
 }
 ```
-
-The property `Poll.voted` stores the `id` of participants who have voted on the poll.
-
-The property `PollOptions.votes.id` stores the `id` of participants who have voted for a particular option on the poll.
 
