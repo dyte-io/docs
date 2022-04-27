@@ -1,6 +1,10 @@
 ---
-sidebar_position: 1
+title: Quickstart
+description: Quickstart guide for web-core.
+slug: quickstart
+tags: [web-core, quickstart, setup]
 ---
+
 # Quickstart
 
 The DyteClient is the root class of the SDK. It is the main entry point of the SDK. It is the only class that you need to instantiate in order to use the SDK. To instantiate DyteClient, you can run the following command:
