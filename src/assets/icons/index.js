@@ -8,7 +8,7 @@ const AndroidIcon = ({ className, ...props }) => {
   return <Android className={clsx('text-[#3ddb85]', className)} {...props} />;
 };
 const AngularIcon = ({ className, ...props }) => {
-  return <Angular className={clsx('text-[#3ddb85]', className)} {...props} />;
+  return <Angular className={clsx('text-[#dd0031]', className)} {...props} />;
 };
 
 AngularIcon.propTypes = AndroidIcon.propTypes = {
