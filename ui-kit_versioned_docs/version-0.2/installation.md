@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 # Installation
@@ -28,7 +28,7 @@ Or, if you just want the components in an html file, load it with the `script` t
 <html>
   <head>
     <script type="module">
-      import { defineCustomElements } from 'https://cdn.jsdelivr.net/npm/@dytesdk/ui-kit/loader/index.es2017.js';
+      import { defineCustomElements } from 'https://cdn.dyte.in/ui-kit/loader/index.es2017.js';
       defineCustomElements();
     </script>
   </head>
