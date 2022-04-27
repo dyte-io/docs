@@ -2,10 +2,31 @@
 title: Local User
 description: Local user setup guide.
 slug: local-user
-tags: [web-core, local-user]
+tags: [web-core, local-user, self]
 ---
 
-# Local User - Media
+# Local User
+
+The local user has the methods and properties on the local user media controls. Accessible via `self` key within the `meeting` object, the local user also contains the access control (permissions) and theming-related properties that will help to render the meeting state.
+
+## Properties
+
+Here is a list of properties that local user provides:
+
+- `id`: The ID of the participant pertaining to local user.
+- `name`: Contains Name of the local user.
+- `clientSpecificId`: Identifier provided by the developer while adding the participant.
+- `roomJoined`: A boolean value indicating if the local user has joined the meeting.
+- `preview`: The local audio and video stream for the preview purpose (it will be populated after calling `enablePreview`).
+- `permissions`: The permissions related to various capabilities within a meeting context for the local user
+- `mediaPermissions`: The current audio and video permissions given by the local user.
+- `audioTrack`: The audio track for the local user.
+- `videoTrack`: The video track for the local user.
+- `screenShareTracks`: The screen share video and audio tracks for the local user.
+- `audioEnabled`: A boolean value indicating if the audio currently enabled.
+- `videoEnabled`: A boolean value indicating if the video currently enabled.
+- `screenShareEnabled`: A boolean value indicating if the screen share is currently enabled.
+- `suggestedTheme`: The suggested theme for building the user interface.
 
 ## Change default audio / video settings
 
@@ -14,13 +35,21 @@ To change this behaviour use the `default` parameter
 
 ```js {5}
 const meeting = await DyteClient.init({
-    roomName,
-    authToken,
-    defaults: {
-        audio: false, // Disable user's audio by default
-        video: true, // Enable user's video by default
-    }
+  roomName,
+  authToken,
+  defaults: {
+    audio: false, // Disable user's audio by default
+    video: true, // Enable user's video by default
+  },
 });
+```
+
+## Change the name of the local user
+
+Change the user's name by calling `setName` method. The changed name will reflect across all participants ONLY if the change happens before joining the meeting.
+
+```js
+await meeting.self.setName('New Name');
 ```
 
 ## Mute/Unmute microphone
@@ -31,7 +60,7 @@ await meeting.self.disableAudio();
 // Unmute Audio
 await meeting.self.enableAudio();
 // Get current status
-meeting.self.audioEnabled
+meeting.self.audioEnabled;
 ```
 
 ## Enable/Disable camera
@@ -42,7 +71,7 @@ await meeting.self.disableVideo();
 // Enable Video
 await meeting.self.enableVideo();
 // Get current status
-meeting.self.videoEnabled
+meeting.self.videoEnabled;
 ```
 
 ## Enable / Disable Screenshare
@@ -53,25 +82,47 @@ await meeting.self.enableScreenShare();
 // Disable Screenshare
 await meeting.self.disableScreenShare();
 // Get current status
-meeting.self.screenShareEnabled
+meeting.self.screenShareEnabled;
 ```
 
-## Play local self video
+## Preview media
+
+Preview methods can be used to test the video / audio stream before sharing them with the meeting.
+
+### Enable / Disable Audio and Video Preview
+
+Enable a preview for audio and video. This will populate the `preview` property for the local user.
+You can check if the streams are enabled in the preview using `meeting.self.preview.audioEnabled` and `meeting.self.preview.videoEnabled`.
+
+```js
+// Enable preview
+await meeting.self.enablePreview();
+// Disable preview
+await meeting.self.disablePreview();
+// Enable only audio preview
+await meeting.self.enablePreview({ video: false });
+// Enable only audio preview
+await meeting.self.enablePreview({ video: false });
+
+```
+
+## Events
 
 ```js
 meeting.self.on('videoUpdate', async ({ videoEnabled, videoTrack }) => {
-        if (videoEnabled) {
-            videoTrack.play(elem);
-        } else {
-            videoTrack.stop(elem);
-        }
-    })
+  if (videoEnabled) {
+    videoTrack.play(elem);
+  } else {
+    videoTrack.stop(elem);
+  }
+});
 ```
 
-## Screenshare Preview
+### Screenshare Preview
 
 ```js
-meeting.self.on('screenShareUpdate', async ({ screenShareEnabled, screenShareTracks }) => {
-    
-})
+meeting.self.on(
+  'screenShareUpdate',
+  async ({ screenShareEnabled, screenShareTracks }) => {}
+);
 ```
