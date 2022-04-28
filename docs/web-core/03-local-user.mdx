@@ -44,6 +44,14 @@ const meeting = await DyteClient.init({
 });
 ```
 
+## Setup tracks
+
+If audio and video tracks are disabled during the `DyteClient` initialization process. You can setup the audio and video tracks by simply calling setup tracks method like below:
+
+```js
+meeting.self.setupTracks({ audio: true, video: true });
+```
+
 ## Change the name of the local user
 
 Change the user's name by calling `setName` method. The changed name will reflect across all participants ONLY if the change happens before joining the meeting.
@@ -101,28 +109,126 @@ await meeting.self.enablePreview();
 await meeting.self.disablePreview();
 // Enable only audio preview
 await meeting.self.enablePreview({ video: false });
-// Enable only audio preview
-await meeting.self.enablePreview({ video: false });
+// Enable only video preview
+await meeting.self.enablePreview({ audio: false });
+```
 
+## Devices
+
+To get the list of media devices that are currently being used, you can use the following methods:
+
+```js
+
+// Get all media devices
+const devices = meeting.self.getAllDevices();
+// Get all audio devices
+const audioDevices = meeting.self.getAudioDevices();
+// Get all video devices
+const videoDevices = meeting.self.getVideoDevices();
+// Get all speakers
+const speakerDevices = meeting.self.getSpeakerDevices();
+// Get device by ID
+const device = meeting.self.getDeviceById('12345', 'audio');
+// Fetch current media devices being used 
+const currentDevices = meeting.self.getCurrentDevices();
+```
+
+## Set device
+
+To set a device as an active device, you can call `setDevice` method. This takes a `MediaDeviceInfo` object, and replaces the same `kind` device. 
+
+```js
+meeting.self.setDevice(device)
 ```
 
 ## Events
 
+You can subscribe to various events on the local user by calling `meeting.self.on(EVENT_NAME)`.
+
+### Video update
+
+Triggered when the user starts / stops the video using `enableVideo` or `disableVideo`
+
 ```js
-meeting.self.on('videoUpdate', async ({ videoEnabled, videoTrack }) => {
-  if (videoEnabled) {
-    videoTrack.play(elem);
+const videoElem = document.getElementById('my-video');
+
+meeting.self.on('videoUpdate', async ({ 
+  videoEnabled, 
+  videoTrack
+}) => {
+if (videoEnabled) {
+    const stream = new MediaStream();
+    stream.addTrack(videoTrack);
+    videoElem.srcObject = stream;
+    videoElem.play();
   } else {
-    videoTrack.stop(elem);
+    videoElem.stop();
   }
 });
 ```
 
-### Screenshare Preview
+### Audio update
+
+Triggered when the user starts / stops the audio using `enableAudio` or `disableAudio`
 
 ```js
+const audioElem = document.getElementById('my-audio');
+meeting.self.on('audioUpdate', async ({ 
+  audioEnabled, 
+  audioTrack
+}) => {
+  if (audioEnabled) {
+    const stream = new MediaStream();
+    stream.addTrack(audioTrack);
+    audioElem.srcObject = stream;
+    audioElem.play();
+  } else {
+    audioElem.stop();
+  }
+});
+```
+
+### Screenshare update
+
+Triggered when the user starts / stops the screen share using `enableScreenShare()` or `disableScreenShare()`.
+
+```js
+const screenElem = document.getElementById('my-screen-share');
 meeting.self.on(
   'screenShareUpdate',
-  async ({ screenShareEnabled, screenShareTracks }) => {}
+  async ({ 
+    screenShareEnabled,
+    screenShareTracks
+  }) => {
+    if (screenShareEnabled) {
+          const stream = new MediaStream();
+          stream.addTrack(screenShareTracks.video);
+          screenElem.srcObject(stream);
+          await screenElem.play();
+    } else {
+      await screenElem.stop();
+    }
+  }
 );
+```
+
+### Device change
+
+Subscribe to the `deviceChange` event to handle the changing video, audio and speaker devices
+
+```js
+meeting.self.on('deviceChange', ({ device, preview }) => {
+  // handle microphone change
+  if (device.kind === 'audioinput') {
+    console.log('mic change', device);
+  }
+  // handle camera change
+  if (device.kind === 'videoinput') {
+    console.log('camera change', device);
+  }
+  // handle speaker change
+  if (device.kind === 'audiooutput') {
+    console.log('speaker change', device);
+  }
+});
 ```
