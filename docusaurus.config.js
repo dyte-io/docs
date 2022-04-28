@@ -172,19 +172,19 @@ module.exports = {
         ...pageOptions,
       },
     ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        path: 'docs/react-web-core',
-        routeBasePath: 'react-web-core',
-        id: 'react-web-core',
-        sidebarPath: require.resolve('./sidebars/sidebars-react-web-core.js'),
-        onlyIncludeVersions: !isDev
-          ? require('./react-web-core_versions.json')
-          : undefined,
-        ...pageOptions,
-      },
-    ],
+    // [
+    //   '@docusaurus/plugin-content-docs',
+    //   {
+    //     path: 'docs/react-web-core',
+    //     routeBasePath: 'react-web-core',
+    //     id: 'react-web-core',
+    //     sidebarPath: require.resolve('./sidebars/sidebars-react-web-core.js'),
+    //     onlyIncludeVersions: !isDev
+    //       ? require('./react-web-core_versions.json')
+    //       : undefined,
+    //     ...pageOptions,
+    //   },
+    // ],
     [
       '@docusaurus/plugin-content-docs',
       {
