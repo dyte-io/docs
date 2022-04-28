@@ -6,6 +6,27 @@ sidebar_position: 6
 
 Inspired by Atomic Design pricinciples, our UI Kit is built in layers. What that means is you can quickly get started by using just one component in single line of code that will give you an entire prebuilt UI.
 
+## Components
+
+These are components which are building block of larger molecules or organisms and cannot be divided any further.
+
+These are basic HTML elements built with Dyte's Design System as well as components which only serve a small purpose.
+
+These are:
+
+- `dyte-button`
+- `dyte-avatar`
+- `dyte-clock`
+- `dyte-audio-visualizer`
+- `dyte-logo`
+- `dyte-tooltip`
+- `dyte-name-tag`
+- `dyte-peers-audio`
+- `dyte-plugin-main`
+- `dyte-spinner`
+
+Check out the [Components](./components.mdx) section to see more details of each component.
+
 ## Design Tokens
 
 Here are a list of Design Tokens which you can alter in your UI Config:
