@@ -8,7 +8,7 @@ sidebar_position: 1
 - 0️⃣ Zero external dependencies
 - 🚀 Blazing fast. Uses browser provided **[ShadowDOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM)**
 - 🤏 Small bundle size (<500KB) for the entire UI (less if you use individual components)
-- 🏳️ Works with React, Angular, Vue, Svelete and everything else
+- 🏳️ Works with React, Angular, Vue, Svelte and everything else
 - ShadowDOM provides style encapsulation, your css styles wouldn't affect our styles and vice versa
 
 ## Atomic Design
@@ -20,12 +20,11 @@ But you can also go down layers as your need for customization evolves.
 
 ![Atomic Design Illustration](/atomic.png)
 
-
 ## Pages
 
 Our topmost, easiest to use layer
 
-A single line of code 
+A single line of code
 
 ```html
 <dyte-meeting id="my-meeting"></dyte-meeting>
@@ -34,7 +33,6 @@ A single line of code
 gives you something like this
 
 ![Sample UI](/UIKit_meeting.png)
-
 
 Comes with everything included - Chats, Polls, Plugins, Recording, Notifications etc
 
@@ -64,8 +62,9 @@ gives you
 You don't need to pass time, message and sender seperately. You just pass the objects you recieve in the core SDKs
 
 ```js
-chatMessageElement.message = meeting.chat.messages[0]
+chatMessageElement.message = meeting.chat.messages[0];
 ```
+
 and it gets all the data it needs on its own
 
 ## Organisms
@@ -81,13 +80,12 @@ gives you
 
 ![Sample UI](/UIKit_chatview.png)
 
-
 ### Tight integration with our Core SDK
 
 Again you don't need to pass each message seperately or handle button clicks to send message. You just pass the objects you recieve in the core SDKs
 
 ```js
-chatElement.meeting = meeting
+chatElement.meeting = meeting;
 ```
 
 and it takes all the data on its own, listens to all the events and call every method chat needs to call on its own

@@ -6,8 +6,6 @@ sidebar_position: 5
 
 A pre-requisite to using any component is loading the `DyteClient` object from web-core.
 
-Check [Basic Usage](./usage.md) to see more.
-
 ## Using Chat, Participants, Plugins
 
 To integrate these components, just pass the `meeting` object to them:
