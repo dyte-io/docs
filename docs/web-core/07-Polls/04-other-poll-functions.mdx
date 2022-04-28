@@ -16,7 +16,7 @@ const poll = meeting.polls.items[0];
 const votes = poll.voted;
 ```
 
-`votes` returns an array of participant ID's.
+`votes` is an array of participant ID's (`meeting.participant.id`).
 
 **The total votes on a poll option can be accessed in the following manner.**
 
@@ -28,9 +28,9 @@ const options = poll.options;
 `options` returns an array of objects, where each object is of type [`PollObject`](./introduction).
 
 
-## Update polls
+## Get notified when a new poll is created
 
-An event is fired each time `meeting.polls.items` is update, User can listen for this to get the updated list of polls.
+An event is fired each time `meeting.polls.items` is updated. User can listen for this to get the updated list of polls.
 
 ```ts
 meeting.polls.on('pollsUpdate', ({ polls }) => {
