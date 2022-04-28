@@ -28,12 +28,12 @@ const SectionSwitchHandler = (props) => {
   const sections = [
     {
       name: 'ui-sdks',
-      label: 'With UI',
+      label: 'UI Kit',
       desc: 'Use our pre-built UI components as a base to build on top of.',
     },
     {
       name: 'non-ui-sdks',
-      label: 'Without UI',
+      label: 'Core SDK',
       desc: 'Build your own UI from scratch, use our low level APIs',
     },
   ];
@@ -86,6 +86,7 @@ const SectionSwitchHandler = (props) => {
                 className="flex-[3]"
                 section={el.name}
                 mobile={mobile}
+                disabled={el.name === 'non-ui-sdks'}
               />
               {section === el.name && (
                 <VersionDropdown

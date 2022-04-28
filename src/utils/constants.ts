@@ -84,6 +84,7 @@ export const CONTEXTS = {
     {
       id: 'web-core',
       name: 'Javascript',
+      disabled: true,
       icon: WebCoreIcon,
     },
   ],
