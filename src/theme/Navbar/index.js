@@ -269,6 +269,7 @@ function Navbar() {
               )}
             >
               Prebuilt SDKs
+              <span className="pill  pill-danger ml-2">OLD</span>
             </Link>
             <Link
               to="/ui-kit-react/quickstart"
@@ -278,7 +279,7 @@ function Navbar() {
               )}
             >
               Web SDKs
-              <span className="pill ml-2">NEW</span>
+              <span className="pill ml-2 text-red-500">NEW</span>
             </Link>
             <a
               href="/api/"

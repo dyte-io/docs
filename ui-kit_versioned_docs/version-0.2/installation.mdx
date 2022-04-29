@@ -1,0 +1,62 @@
+---
+sidebar_position: 1
+title: Installation
+---
+
+# Introduction
+
+- Built with Web Components
+- 0️⃣ Zero external dependencies
+- 🚀 Blazing fast. Uses browser provided ShadowDOM
+- 🤏 Small bundle size (<500KB) for the entire UI (less if you use individual components)
+- 🏳️ Works with React, Angular, Vue, Svelte and everything else
+- ShadowDOM provides style encapsulation, your css styles wouldn't affect our styles and vice versa
+
+# Installation
+
+There are two ways you can install ui-kit depending on your project.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+<Tabs
+  groupId="android-language"
+  defaultValue="basic"
+  values={[
+    { label: 'Basic', value: 'basic', },
+    { label: 'NPM', value: 'npm', },
+  ]
+}>
+<TabItem value="basic">
+
+Put the below script tag in `<head>` of your page
+
+```html
+<head>
+    <script src="https://cdn.dyte.io/web-core.js" />
+    <script type="module">
+      import { defineCustomElements } from 'https://cdn.dyte.in/ui-kit/loader/index.es2017.js';
+      defineCustomElements();
+    </script>
+</head>
+```
+
+</TabItem>
+<TabItem value="npm">
+
+Install the package from npm:
+
+```bash
+npm install @dytesdk/ui-kit @dytesdk/core
+```
+
+And now you need to define the custom elements:
+
+```js
+import { defineCustomElements } from '@dytesdk/ui-kit/loader/index.es2017.js';
+
+defineCustomElements();
+```
+</TabItem>
+</Tabs>

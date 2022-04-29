@@ -1,11 +1,12 @@
 ---
-sidebar_position: 7
-web_core_version: 0.17.1
+sidebar_position: 8
+web_core_version: 0.18.1
 ---
 
 <!-- Auto Generated Below -->
 
 <a name="module_DyteChat"></a>
+
 This is the chat module, which can be used to send and receive messages from the meeting.
 
 
