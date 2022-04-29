@@ -264,22 +264,22 @@ function Navbar() {
             <Link
               to="/react/quickstart"
               className={clsx(
-                'text-sm font-medium hover:no-underline',
+                'inline-flex items-center text-sm font-medium hover:no-underline',
                 page === 'prebuilt-sdks' ? 'text-primary-100' : 'text-text-100'
               )}
             >
               Prebuilt SDKs
-              <span className="pill  pill-danger ml-2">OLD</span>
+              <span className="pill pill-warning ml-2">OLD</span>
             </Link>
             <Link
               to="/ui-kit-react/quickstart"
               className={clsx(
-                'text-sm font-medium hover:no-underline inline-flex items-center',
+                'inline-flex items-center text-sm font-medium hover:no-underline',
                 page === 'web-sdks' ? 'text-primary-100' : 'text-text-100'
               )}
             >
               Web SDKs
-              <span className="pill ml-2 text-red-500">NEW</span>
+              <span className="pill ml-2">NEW</span>
             </Link>
             <a
               href="/api/"

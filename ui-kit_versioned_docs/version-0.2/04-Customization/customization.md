@@ -43,7 +43,7 @@ Things start getting more interesting and tangible when we start combining atoms
 A text label is not too useful by themselve, but combine many text label and you get a chat message
 
 ```html
-<dyte-chat-message></dyte-chat-message>
+<dyte-text-message></dyte-text-message>
 ```
 
 gives you
