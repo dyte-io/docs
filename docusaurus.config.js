@@ -8,7 +8,7 @@ const {
 const isDev = process.env.NODE_ENV === 'development';
 
 const pageOptions = {
-  sidebarCollapsible: false,
+  sidebarCollapsible: true,
   editUrl: 'https://github.com/dyte-in/docs/tree/main',
   showLastUpdateAuthor: true,
   showLastUpdateTime: true,

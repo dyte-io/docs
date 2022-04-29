@@ -84,24 +84,15 @@ Here are the supported events:
 Triggered when the View mode changes
 
 ```ts
-
-meeting.participants.on(
-    'viewModeChanged', 
-    ({ viewMode, currentPage, pageCount }) => {
-        console.log('view mode changed', viewMode);
-    }
-);
+meeting.participants.on('viewModeChanged', ({ viewMode, currentPage, pageCount }) => {
+    console.log('view mode changed', viewMode);
+});
 ``` 
 
 ### Page change
 
 ```ts
-
-meeting.participants.on(
-    'pageChanged', 
-    ({ viewMode, currentPage, pageCount }) => {
-        console.log('page changed', currentPage);
-    }
-);
+meeting.participants.on('pageChanged', ({ viewMode, currentPage, pageCount }) => {
+    console.log('page changed', currentPage);
+});
 ```
-

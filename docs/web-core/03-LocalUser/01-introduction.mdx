@@ -1,11 +1,12 @@
 ---
-title: Local User
+sidebar_position: 1
+title: Introduction
 description: Local user setup guide.
-slug: local-user
+slug: /local-user/introduction
 tags: [web-core, local-user, self]
 ---
 
-# Local User
+# Introduction - Local User
 
 The local user has the methods and properties on the local user media controls. Accessible via `self` key within the `meeting` object, the local user also contains the access control (permissions) and theming-related properties that will help to render the meeting state.
 
@@ -33,14 +34,14 @@ Here is a list of properties that local user provides:
 By default as soon as you join the meeting the SDK will produce your video and audio streams.
 To change this behaviour use the `default` parameter
 
-```js {5}
+```ts {5}
 const meeting = await DyteClient.init({
-  roomName,
-  authToken,
-  defaults: {
-    audio: false, // Disable user's audio by default
-    video: true, // Enable user's video by default
-  },
+    roomName,
+    authToken,
+    defaults: {
+        audio: false, // Disable user's audio by default
+        video: true, // Enable user's video by default
+    },
 });
 ```
 
@@ -48,7 +49,7 @@ const meeting = await DyteClient.init({
 
 If audio and video tracks are disabled during the `DyteClient` initialization process. You can setup the audio and video tracks by simply calling setup tracks method like below:
 
-```js
+```ts
 meeting.self.setupTracks({ audio: true, video: true });
 ```
 
@@ -56,13 +57,13 @@ meeting.self.setupTracks({ audio: true, video: true });
 
 Change the user's name by calling `setName` method. The changed name will reflect across all participants ONLY if the change happens before joining the meeting.
 
-```js
+```ts
 await meeting.self.setName('New Name');
 ```
 
 ## Mute/Unmute microphone
 
-```js
+```ts
 // Mute Audio
 await meeting.self.disableAudio();
 // Unmute Audio
@@ -73,7 +74,7 @@ meeting.self.audioEnabled;
 
 ## Enable/Disable camera
 
-```js
+```ts
 // Disable Video
 await meeting.self.disableVideo();
 // Enable Video
@@ -82,9 +83,9 @@ await meeting.self.enableVideo();
 meeting.self.videoEnabled;
 ```
 
-## Enable / Disable Screenshare
+## Enable / Disable Screen share
 
-```js
+```ts
 // Enable Screenshare
 await meeting.self.enableScreenShare();
 // Disable Screenshare
@@ -102,7 +103,7 @@ Preview methods can be used to test the video / audio stream before sharing them
 Enable a preview for audio and video. This will populate the `preview` property for the local user.
 You can check if the streams are enabled in the preview using `meeting.self.preview.audioEnabled` and `meeting.self.preview.videoEnabled`.
 
-```js
+```ts
 // Enable preview
 await meeting.self.enablePreview();
 // Disable preview
@@ -111,124 +112,4 @@ await meeting.self.disablePreview();
 await meeting.self.enablePreview({ video: false });
 // Enable only video preview
 await meeting.self.enablePreview({ audio: false });
-```
-
-## Devices
-
-To get the list of media devices that are currently being used, you can use the following methods:
-
-```js
-
-// Get all media devices
-const devices = meeting.self.getAllDevices();
-// Get all audio devices
-const audioDevices = meeting.self.getAudioDevices();
-// Get all video devices
-const videoDevices = meeting.self.getVideoDevices();
-// Get all speakers
-const speakerDevices = meeting.self.getSpeakerDevices();
-// Get device by ID
-const device = meeting.self.getDeviceById('12345', 'audio');
-// Fetch current media devices being used 
-const currentDevices = meeting.self.getCurrentDevices();
-```
-
-## Set device
-
-To set a device as an active device, you can call `setDevice` method. This takes a `MediaDeviceInfo` object, and replaces the same `kind` device. 
-
-```js
-meeting.self.setDevice(device)
-```
-
-## Events
-
-You can subscribe to various events on the local user by calling `meeting.self.on(EVENT_NAME)`.
-
-### Video update
-
-Triggered when the user starts / stops the video using `enableVideo` or `disableVideo`
-
-```js
-const videoElem = document.getElementById('my-video');
-
-meeting.self.on('videoUpdate', async ({ 
-  videoEnabled, 
-  videoTrack
-}) => {
-if (videoEnabled) {
-    const stream = new MediaStream();
-    stream.addTrack(videoTrack);
-    videoElem.srcObject = stream;
-    videoElem.play();
-  } else {
-    videoElem.stop();
-  }
-});
-```
-
-### Audio update
-
-Triggered when the user starts / stops the audio using `enableAudio` or `disableAudio`
-
-```js
-const audioElem = document.getElementById('my-audio');
-meeting.self.on('audioUpdate', async ({ 
-  audioEnabled, 
-  audioTrack
-}) => {
-  if (audioEnabled) {
-    const stream = new MediaStream();
-    stream.addTrack(audioTrack);
-    audioElem.srcObject = stream;
-    audioElem.play();
-  } else {
-    audioElem.stop();
-  }
-});
-```
-
-### Screenshare update
-
-Triggered when the user starts / stops the screen share using `enableScreenShare()` or `disableScreenShare()`.
-
-```js
-const screenElem = document.getElementById('my-screen-share');
-meeting.self.on(
-  'screenShareUpdate',
-  async ({ 
-    screenShareEnabled,
-    screenShareTracks
-  }) => {
-    if (screenShareEnabled) {
-          const stream = new MediaStream();
-          stream.addTrack(screenShareTracks.video);
-          screenElem.srcObject(stream);
-          await screenElem.play();
-    } else {
-      await screenElem.stop();
-    }
-  }
-);
-```
-
-### Device change
-
-Subscribe to the `deviceChange` event to handle the changing video, audio and speaker devices
-
-```js
-meeting.self.on('deviceChange', ({ device, preview }) => {
-  // handle microphone change
-  if (device.kind === 'audioinput') {
-    console.log('mic change', device);
-  }
-  // handle camera change
-  if (device.kind === 'videoinput') {
-    console.log('camera change', device);
-  }
-  // handle speaker change
-  if (device.kind === 'audiooutput') {
-    console.log('speaker change', device);
-  }
-});
 ```
