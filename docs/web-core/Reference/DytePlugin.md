@@ -1,6 +1,6 @@
 ---
 sidebar_position: 12
-web_core_version: 0.18.1
+web_core_version: 0.18.2
 ---
 
 <!-- Auto Generated Below -->
@@ -8,6 +8,12 @@ web_core_version: 0.18.1
 <a name="module_DytePlugin"></a>
 
 The DytePlugin module represents a single plugin in the meeting.
+A plugin can be obtained from one of the plugin arrays in `meeting.plugins`.
+For example,
+```ts
+const plugin1 = meeting.plugins.active.get(pluginId);
+const plugin2 = meeting.plugins.all.get(pluginId);
+```
 
 
 * [DytePlugin](#module_DytePlugin)
@@ -21,7 +27,7 @@ The DytePlugin module represents a single plugin in the meeting.
 
 <a name="module_DytePlugin+sendIframeEvent"></a>
 
-### meeting.plugins.all.get(pluginId).sendIframeEvent(message)
+### plugin.sendIframeEvent(message)
 **Kind**: instance method of [<code>DytePlugin</code>](#module_DytePlugin)  
 
 | Param | Description |
@@ -30,7 +36,7 @@ The DytePlugin module represents a single plugin in the meeting.
 
 <a name="module_DytePlugin+removePluginView"></a>
 
-### meeting.plugins.all.get(pluginId).removePluginView(viewId)
+### plugin.removePluginView(viewId)
 This method is used for cleaning up event listeners attached to an iframe. It must
 be used before the iframe is removed from the DOM.
 
@@ -42,7 +48,7 @@ be used before the iframe is removed from the DOM.
 
 <a name="module_DytePlugin+addPluginView"></a>
 
-### meeting.plugins.all.get(pluginId).addPluginView(iframe, viewId)
+### plugin.addPluginView(iframe, viewId)
 This method adds the communcation layer between the plugin inside the iframe
 and the core application (meeting object) in the main window.
 
@@ -55,25 +61,25 @@ and the core application (meeting object) in the main window.
 
 <a name="module_DytePlugin+enable"></a>
 
-### meeting.plugins.all.get(pluginId).enable()
+### plugin.enable()
 Enable this plugin for the current user.
 
 **Kind**: instance method of [<code>DytePlugin</code>](#module_DytePlugin)  
 <a name="module_DytePlugin+disable"></a>
 
-### meeting.plugins.all.get(pluginId).disable()
+### plugin.disable()
 Disable this plugin for the current user.
 
 **Kind**: instance method of [<code>DytePlugin</code>](#module_DytePlugin)  
 <a name="module_DytePlugin+activate"></a>
 
-### meeting.plugins.all.get(pluginId).activate()
+### plugin.activate()
 Activate this plugin for all participants.
 
 **Kind**: instance method of [<code>DytePlugin</code>](#module_DytePlugin)  
 <a name="module_DytePlugin+deactivate"></a>
 
-### meeting.plugins.all.get(pluginId).deactivate()
+### plugin.deactivate()
 Deactivate this plugin for all participants.
 
 **Kind**: instance method of [<code>DytePlugin</code>](#module_DytePlugin)  
