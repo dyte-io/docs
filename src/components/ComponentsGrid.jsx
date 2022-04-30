@@ -18,12 +18,8 @@ export const ComponentsGridItem = ({
   ...props
 }) => {
   return (
-    <Link
-      className="rounded-lg border border-background-300 p-2 text-text-100 hover:text-inherit hover:no-underline"
-      href={href}
-      {...props}
-    >
-      <div className="p-0">
+    <Link className="ComponentGridItem" href={href} {...props}>
+      <div className="img">
         <img src={img} className="" />
       </div>
       <h3 className="m-0 text-lg">{title}</h3>

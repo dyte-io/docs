@@ -11,3 +11,13 @@ You can pass a `participant` object to it to render it properly with a participa
 ```html
 <dyte-avatar></dyte-avatar>
 ```
+
+import { loadSelf } from '/src/utils/meeting';
+
+Sizes `'sm' | 'md' | 'lg'`
+
+<div ref={() => loadSelf('.peerview')} class="flex flex-row space-x-6 items-center">
+    <dyte-avatar class="peerview" size="sm" />
+    <dyte-avatar class="peerview" size="md" />
+    <dyte-avatar class="peerview" size="lg" />
+</div>

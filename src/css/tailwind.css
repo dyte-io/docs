@@ -605,3 +605,19 @@ html[data-theme='dark'] .sl-text-warning {
 dyte-meeting {
   min-height: unset !important;
 }
+
+.ComponentGridItem {
+  @apply rounded-lg border border-background-300;
+  @apply p-2 text-text-100;
+}
+.ComponentGridItem img {
+  @apply scale-90;
+  transition: 0.35s all ease;
+}
+.ComponentGridItem:hover img {
+  @apply scale-95;
+}
+.ComponentGridItem:hover {
+  @apply text-inherit no-underline;
+  @apply border-primary-100;
+}
