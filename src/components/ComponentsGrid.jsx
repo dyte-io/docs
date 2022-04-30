@@ -3,20 +3,29 @@ import Link from '@docusaurus/Link';
 import PropTypes from 'prop-types';
 
 export const ComponentsGrid = ({ children }) => {
-  return <div className="grid grid-cols-3 gap-4">{children}</div>;
+  return <div className="grid grid-cols-4 gap-4">{children}</div>;
 };
 
 ComponentsGrid.propTypes = {
   children: PropTypes.children,
 };
 
-export const ComponentsGridItem = ({ title, children, href, ...props }) => {
+export const ComponentsGridItem = ({
+  title,
+  children,
+  href,
+  img,
+  ...props
+}) => {
   return (
     <Link
       className="rounded-lg border border-background-300 p-2 text-text-100 hover:text-inherit hover:no-underline"
       href={href}
       {...props}
     >
+      <div className="p-0">
+        <img src={img} className="" />
+      </div>
       <h3 className="m-0 text-lg">{title}</h3>
       <p className="m-0 text-sm">{children}</p>
     </Link>
@@ -27,4 +36,5 @@ ComponentsGridItem.propTypes = {
   children: PropTypes.children,
   title: PropTypes.string,
   href: PropTypes.string,
+  img: PropTypes.string,
 };
