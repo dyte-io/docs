@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/dyte-in/docs/compare/v1.7.1...v1.8.0) (2022-05-01)
+
+
+### Features
+
+* **meetings:** add recordOnStart to create meeting route ([ae41208](https://github.com/dyte-in/docs/commit/ae412081a35d04d5ff88abc044231bd8238e7317))
+
 ## [1.7.1](https://github.com/dyte-in/docs/compare/v1.7.0...v1.7.1) (2022-04-07)
 
 
