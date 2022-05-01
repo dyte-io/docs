@@ -892,9 +892,9 @@ paths:
       security:
         - api_key: []
   "/organizations/{organizationId}/meetings/{meetingId}":
-    summary: Meetings
+    summary: Get a meeting using meeting ID
     get:
-      summary: Meetings
+      summary: Get a meeting using meeting ID
       description: |
         Get a specific meeting in the current organization
       tags:
@@ -941,12 +941,12 @@ paths:
       security:
         - api_key: []
     put:
-      summary: Meetings
+      summary: Update a meeting in the current organization
       description: |
         Updates a specific meeting in the current organization
       tags:
         - Meetings
-      operationId: getMeeting
+      operationId: updateMeeting
       parameters:
         - name: organizationId
           in: path
@@ -1386,11 +1386,11 @@ paths:
       security:
         - api_key: []
   "/organizations/{organizationId}/meetings/{meetingId}/recording":
-    summary: Start a recording
+    summary: Start a recording for a meeting ID
     post:
-      summary: Start a recording
+      summary: Start a recording for a meeting ID
       description: |
-        Start a recording for a given meeting
+        Start a recording for a given meeting using its ID
       tags:
         - Recording
       operationId: startRecording
@@ -1442,14 +1442,14 @@ paths:
       security:
         - api_key: []
   "/organizations/{organizationId}/rooms/{roomName}/recording":
-    summary: Start a recording
+    summary: Start a recording with room name
     post:
-      summary: Start a recording
+      summary: Start a recording with room name
       description: |
-        Start a recording for a given meeting
+        Start a recording for a given meeting using a room name
       tags:
         - Recording
-      operationId: startRecording
+      operationId: startRecordingWithRoomName
       parameters:
         - name: organizationId
           in: path
@@ -1497,9 +1497,9 @@ paths:
       security:
         - api_key: []
   "/organizations/{organizationId}/meetings/{meetingId}/recordings":
-    summary: Get all recording
+    summary: Get all recordings
     get:
-      summary: Get all recording
+      summary: Get all recordings
       description: |
         Get all recordings for a given meeting
       tags:
@@ -1688,14 +1688,14 @@ paths:
       security:
         - api_key: []
   "/organizations/{organizationId}/rooms/{roomName}/recordings/{recordingId}":
-    summary: Update a specific recording
+    summary: Update a specific recording given a room name
     put:
       summary: Update/Stop recording
       description: |
-        Update/Stop a recording for a given meeting
+        Update/Stop a recording for a given meeting using a room name
       tags:
         - Recording
-      operationId: updateRecording
+      operationId: updateRecordingWithRoomName
       parameters:
         - name: organizationId
           in: path
@@ -2370,6 +2370,9 @@ components:
         presetName:
           type: string
           description: Preset to be used for all participants of this meeting
+        recordOnStart:
+          type: boolean
+          description: Start recording the meeting as soon as the meeting starts. False by default.
         authorization:
           type: object
           properties:
