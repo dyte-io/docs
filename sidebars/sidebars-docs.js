@@ -55,6 +55,17 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Dyte CLI',
+      items: [
+        {
+          type: 'link',
+          label: 'Installation',
+          href: '/cli/installation'
+        }
+      ]
+    },
+    {
+      type: 'category',
       label: 'Plugins',
       items: ['plugins'],
     },
