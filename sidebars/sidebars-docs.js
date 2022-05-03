@@ -67,6 +67,26 @@ module.exports = {
           label: 'Getting started',
           href: '/cli/getting-started'
         },
+        {
+          type: 'link',
+          label: 'Meetings',
+          href: '/cli/meetings'
+        },
+        {
+          type: 'link',
+          label: 'Recording a meeting',
+          href: '/cli/recording'
+        },
+        {
+          type: 'link',
+          label: 'Publishing plugins',
+          href: '/cli/plugins'
+        },
+        {
+          type: 'link',
+          label: 'Creating webhooks',
+          href: '/cli/webhooks'
+        },
       ]
     },
     {

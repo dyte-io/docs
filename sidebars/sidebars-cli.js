@@ -83,7 +83,31 @@ module.exports = {
           id: 'installation',
           label: 'Installation'
         },
-        'getting-started'
+        {
+          type: 'doc',
+          id: 'getting-started',
+          label: 'Getting started'
+        },
+        {
+          type: 'doc',
+          id: 'meetings',
+          label: 'Creating meetings'
+        },
+        {
+          type: 'doc',
+          id: 'recording',
+          label: 'Recording a meeting'
+        },
+        {
+          type: 'doc',
+          id: 'plugins',
+          label: 'Publishing plugins'
+        },
+        {
+          type: 'doc',
+          id: 'webhooks',
+          label: 'Creating webhooks'
+        },
       ],
     },
   ],
