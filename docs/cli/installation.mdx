@@ -2,11 +2,35 @@
 sidebar_position: 1
 ---
 
-# Installation
+# Dyte CLI
+The Dyte CLI is a unified utility that helps you manage Dyte services for your organization(s) directly from your command line.
 
-Install the Flutter package from pub
+## Installation 
+You can install the CLI from the NPM registry using `npm` or `yarn`.
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  groupId="node-pm"
+  defaultValue="npm"
+  values={[
+    { label: "npm", value: "npm" },
+    { label: "yarn", value: "yarn" },
+  ]}
+>
+  <TabItem value="npm">
 
 ```shell
-flutter pub add dyte_client
+npm install -g @dytesdk/cli
 ```
 
+  </TabItem>
+  <TabItem value="yarn">
+
+```shell
+yarn global add dyte-client
+```
+
+  </TabItem>
+</Tabs>

@@ -61,7 +61,12 @@ module.exports = {
           type: 'link',
           label: 'Installation',
           href: '/cli/installation'
-        }
+        },
+        {
+          type: 'link',
+          label: 'Getting started',
+          href: '/cli/getting-started'
+        },
       ]
     },
     {

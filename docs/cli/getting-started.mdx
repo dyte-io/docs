@@ -1,0 +1,62 @@
+---
+sidebar_position: 2
+---
+
+# Getting started
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+The Dyte CLI needs a little bit of work to get started. We're working on reducing the amount of effort required, but for now you'll have to do the following.
+
+## Configuration
+1. Set the environment you intend to work in. Most of the times, this is going to be `production`.
+```shell
+dyte config env -n production
+```
+
+2. Authorize yourself with the Dyte Dev Portal. This allows you to access all the organizations that you belong to from the CLI.
+```bash
+dyte auth login
+```
+
+## Usage
+### General
+The Dyte CLI is [POSIX compliant](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html). This means in general, a command has the following format:
+```
+dyte <command> [subcommand] [options]
+```
+
+### Getting help
+The `dyte help` command shows you a comprehensive list of all the top-level commands and a short description of what each command does. You can run `dyte <command> help` to know more about the command and its subcommands (if any).
+```
+~ dyte help
+Usage: dyte [options] [command]
+
+
+                     /////////
+                //////////////
+             /////////////////
+           ///////////////////
+         /////////////////////
+        ////////////
+       /////////////  /////////////
+       /////////////  /////////////
+      //////////////  /////////////
+                      /////////////
+                      /////////////
+
+
+Options:
+  -V, --version      output the version number
+  -h, --help         display help for command
+
+Commands:
+  configure|config   configure the Dyte CLI
+  meetings           utility to handle Dyte meetings
+  auth               authenticate the CLI with your Dyte account
+  recordings         utility to control Recordings for Dyte meetings
+  plugins [options]  utility to control Dyte plugins
+  webhooks           utility to control Dyte webhooks
+  help [command]     display help for command
+```
