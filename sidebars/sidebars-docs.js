@@ -69,7 +69,7 @@ module.exports = {
         },
         {
           type: 'link',
-          label: 'Meetings',
+          label: 'Creating meetings',
           href: '/cli/meetings'
         },
         {
