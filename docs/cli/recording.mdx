@@ -1,0 +1,51 @@
+---
+sidebar_position: 4
+---
+
+# Recordings
+The CLI lets you start, stop, view and configure meeting recordings.
+
+## Configuration
+Set up your recording configuration by running:
+```
+dyte recordings config
+```
+You will be asked a series of questions about the configuration you'd like for your recordings.
+
+:::tip
+If you don't know the answers to these questions, it's fine to skip this step. Our defaults are robust!
+:::
+
+## Controlling recordings
+
+### Starting
+You can start recording a meeting by running:
+```
+dyte recordings start <meeting id>
+```
+
+### Stopping
+You can end a recording by running:
+```
+dyte recordings stop <meeting id>
+```
+:::tip
+The meeting ID can be a UUID, eg: `f68a59ca-5e43-4267-8982-bfcabcab88a3` or it can be the simple ID used by our meetings in the browser, eg: `aoiler-tlmbwi`
+:::
+
+## Viewing recordings
+
+### Listing
+You can view a list of all recordings for a meeting by running:
+```
+dyte recordings list
+```
+
+### Getting a particular recording
+You can view the details for a particular recording by running
+```
+dyte recordings get <meeting id> <recording id>
+```
+:::tip
+The `dyte recordings stop` command will helpfully output the complete command you need to retrieve that particular recording!
+:::

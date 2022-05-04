@@ -1,0 +1,30 @@
+---
+sidebar_position: 3
+---
+# Meetings
+The CLI allows you to perform some basic functions with meetings, including creating a meeting and viewing its sessions.
+
+More functionality will make its way here soon.
+
+## Creating a meeting
+Creating a meeting is as simple as running:
+```
+~ dyte meetings create
+✅ Meeting created!
+✅ Meeting URL: https://app.dyte.in/aoiler-tlmbwi
+✅ Meeting ID: 02f7cb0b-cbad-4aa4-9b46-58aded902d40
+✅ Meeting Room: aoiler-tlmbwi
+? Open this in a browser? Yes
+```
+
+## Viewing a meeting's sessions
+You can view a meeting's sessions by running:
+```
+~ dyte meetings info
+? What is the meeting ID? aoiler-tlmbwi
+┌─────────┬────────────────────────────────────────┬────────────────────────────────────────┬─────────────────┬───────────┬───────────────┬──────────────────┐
+│ (index) │                   Id                   │                roomUUID                │    Room Name    │ Max users │ Current Users │ Minutes consumed │
+├─────────┼────────────────────────────────────────┼────────────────────────────────────────┼─────────────────┼───────────┼───────────────┼──────────────────┤
+│    0    │ 'f68a59ca-5e43-4267-8982-bfcabcab88a3' │ 'c174b359-f6cc-4e20-919d-d07a1e08c71c' │ 'aoiler-tlmbwi' │   null    │       1       │    '0.00 min'    │
+└─────────┴────────────────────────────────────────┴────────────────────────────────────────┴─────────────────┴───────────┴───────────────┴──────────────────┘
+```
