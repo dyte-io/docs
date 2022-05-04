@@ -55,7 +55,25 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Plugins',
+      items: ['plugins'],
+    },
+    {
+      type: 'category',
+      label: 'API Reference',
+      items: [
+        {
+          type: 'link',
+          label: 'Overview',
+          href: '/api/',
+        },
+      ],
+    },
+    {
+      type: 'category',
       label: 'Dyte CLI',
+      collapsed: true,
+      collapsible: true,
       items: [
         {
           type: 'link',
@@ -88,22 +106,6 @@ module.exports = {
           href: '/cli/webhooks'
         },
       ]
-    },
-    {
-      type: 'category',
-      label: 'Plugins',
-      items: ['plugins'],
-    },
-    {
-      type: 'category',
-      label: 'API Reference',
-      items: [
-        {
-          type: 'link',
-          label: 'Overview',
-          href: '/api/',
-        },
-      ],
     },
     {
       type: 'category',
