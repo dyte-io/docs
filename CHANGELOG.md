@@ -1,3 +1,10 @@
+## [1.10.1](https://github.com/dyte-in/docs/compare/v1.10.0...v1.10.1) (2022-05-04)
+
+
+### Bug Fixes
+
+* **cli:** fix installation instructions for yarn ([#44](https://github.com/dyte-in/docs/issues/44)) ([de0c22a](https://github.com/dyte-in/docs/commit/de0c22a41d924fcbc2f852a31b0488d39674ba25))
+
 # [1.10.0](https://github.com/dyte-in/docs/compare/v1.9.0...v1.10.0) (2022-05-04)
 
 
