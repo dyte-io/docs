@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/dyte-in/docs/compare/v1.8.0...v1.9.0) (2022-05-04)
+
+
+### Features
+
+* **cli:** add a CLI section to the docs ([#42](https://github.com/dyte-in/docs/issues/42)) ([e1a9b50](https://github.com/dyte-in/docs/commit/e1a9b506a26794c1a21867d3067f8505de03344a))
+
 # [1.8.0](https://github.com/dyte-in/docs/compare/v1.7.1...v1.8.0) (2022-05-01)
 
 
