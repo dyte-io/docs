@@ -2456,6 +2456,10 @@ components:
                 - VP9
         liveStreamingConfig:
           type: object
+          description: >-
+            Object containing configuration regarding livestreaming the meeting
+            video to a platform that supports RTMP input. Note that livestreaming
+            is only supported if the codec for the recording is H.264.
           properties:
             rtmpUrl:
               type: string
