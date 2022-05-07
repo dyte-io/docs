@@ -530,11 +530,26 @@ html[data-theme='dark'] .sl-text-warning {
   --ifm-h2-vertical-rhythm-top: 3;
   --ifm-h3-vertical-rhythm-top: 3;
   --ifm-heading-vertical-rhythm-bottom: 1.5;
-  @apply font-sans leading-9 antialiased md:leading-7;
+  @apply font-sans leading-8 antialiased md:leading-7;
 }
 
 .markdown h1:first-child {
-  margin-top: 1rem;
+  margin-top: 1.75rem;
+}
+
+.markdown h2 {
+  margin-top: 2.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.markdown h3 {
+  margin-top: 2.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.markdown h4 {
+  margin-top: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 code {
@@ -548,4 +563,19 @@ b {
 
 .prism-code > code {
   font-size: 14px;
+}
+
+.dyte-cta {
+  @apply inline-flex items-center justify-center;
+  @apply px-6 py-2 rounded-md;
+  @apply hover:no-underline cursor-pointer transition-colors;
+  @apply bg-primary hover:bg-primary-100 text-white hover:text-white;
+}
+
+.clean-btn.close {
+  @apply text-text;
+
+  svg {
+    @apply w-3 h-3;
+  }
 }

@@ -1,3 +1,106 @@
+## [1.10.1](https://github.com/dyte-in/docs/compare/v1.10.0...v1.10.1) (2022-05-04)
+
+
+### Bug Fixes
+
+* **cli:** fix installation instructions for yarn ([#44](https://github.com/dyte-in/docs/issues/44)) ([de0c22a](https://github.com/dyte-in/docs/commit/de0c22a41d924fcbc2f852a31b0488d39674ba25))
+
+# [1.10.0](https://github.com/dyte-in/docs/compare/v1.9.0...v1.10.0) (2022-05-04)
+
+
+### Features
+
+* **cli:** add a CLI section to the docs ([#43](https://github.com/dyte-in/docs/issues/43)) ([f261d9e](https://github.com/dyte-in/docs/commit/f261d9e5d6d484fa4bf005cae7d490d12bb40677))
+
+# [1.9.0](https://github.com/dyte-in/docs/compare/v1.8.0...v1.9.0) (2022-05-04)
+
+
+### Features
+
+* **cli:** add a CLI section to the docs ([#42](https://github.com/dyte-in/docs/issues/42)) ([e1a9b50](https://github.com/dyte-in/docs/commit/e1a9b506a26794c1a21867d3067f8505de03344a))
+
+# [1.8.0](https://github.com/dyte-in/docs/compare/v1.7.1...v1.8.0) (2022-05-01)
+
+
+### Features
+
+* **meetings:** add recordOnStart to create meeting route ([ae41208](https://github.com/dyte-in/docs/commit/ae412081a35d04d5ff88abc044231bd8238e7317))
+
+## [1.7.1](https://github.com/dyte-in/docs/compare/v1.7.0...v1.7.1) (2022-04-07)
+
+
+### Bug Fixes
+
+* **api:** button placement with announcement ([6b443d6](https://github.com/dyte-in/docs/commit/6b443d6902b57663dfda263e7e08b215bd1c480b))
+
+# [1.7.0](https://github.com/dyte-in/docs/compare/v1.6.2...v1.7.0) (2022-04-07)
+
+
+### Features
+
+* add announcement for upcoming sdks ([b9b4ebf](https://github.com/dyte-in/docs/commit/b9b4ebf6fd879e47a887f63d6cfca95fa6891950))
+
+## [1.6.2](https://github.com/dyte-in/docs/compare/v1.6.1...v1.6.2) (2022-04-06)
+
+
+### Bug Fixes
+
+* **flutter:** fixing variable decls, wordings, type, etc ([0dbef27](https://github.com/dyte-in/docs/commit/0dbef27526341032ac8096ca56e5cb527ee3340e))
+
+## [1.6.1](https://github.com/dyte-in/docs/compare/v1.6.0...v1.6.1) (2022-04-06)
+
+
+### Bug Fixes
+
+* **plugins:** waitlist Documentation ([#34](https://github.com/dyte-in/docs/issues/34)) ([6f00799](https://github.com/dyte-in/docs/commit/6f0079963584f5e948100c5087cde45cd9fbe28e))
+
+# [1.6.0](https://github.com/dyte-in/docs/compare/v1.5.0...v1.6.0) (2022-04-06)
+
+
+### Bug Fixes
+
+* typo ([0d27263](https://github.com/dyte-in/docs/commit/0d27263f195406f42ad7d3e5ea03d370c12204f3))
+* **web:** hide outdated webinar information ([b63b03a](https://github.com/dyte-in/docs/commit/b63b03aacf04a1ec5c27307ca2c70cc33fb6980e))
+* **web:** put button addition behind meetinJoined event ([2befc7d](https://github.com/dyte-in/docs/commit/2befc7df0298c736527e107bab05425cc2bc30a7))
+
+
+### Features
+
+* update web versions ([b01c3a8](https://github.com/dyte-in/docs/commit/b01c3a84406d4ce87026d881d7a19f3996f96a68))
+
+# [1.5.0](https://github.com/dyte-in/docs/compare/v1.4.2...v1.5.0) (2022-04-06)
+
+
+### Bug Fixes
+
+* **api:** show current version in dropdown ([44f982e](https://github.com/dyte-in/docs/commit/44f982e331a91d2824ec800142614821da9ab8e7))
+
+
+### Features
+
+* add postman collection button for v1 api ([5d62c5d](https://github.com/dyte-in/docs/commit/5d62c5de37541e6cc26a574fe75d5f72a9a1bb6d))
+
+## [1.4.2](https://github.com/dyte-in/docs/compare/v1.4.1...v1.4.2) (2022-04-06)
+
+
+### Bug Fixes
+
+* **introduction:** Cleanup introduction. ([c33e322](https://github.com/dyte-in/docs/commit/c33e3225efd3360ec760e872b0acd44750d78e35))
+
+## [1.4.1](https://github.com/dyte-in/docs/compare/v1.4.0...v1.4.1) (2022-04-06)
+
+
+### Bug Fixes
+
+* margin for headings in markdown ([7ccf408](https://github.com/dyte-in/docs/commit/7ccf408f877c28891a3cf9f0e80a507754bfb3d3))
+
+# [1.4.0](https://github.com/dyte-in/docs/compare/v1.3.3...v1.4.0) (2022-03-28)
+
+
+### Features
+
+* **static:** update openapi spec for latest release ([#26](https://github.com/dyte-in/docs/issues/26)) ([2596086](https://github.com/dyte-in/docs/commit/259608649461709f4492063dbcea5f9ca3eca078))
+
 ## [1.3.3](https://github.com/dyte-in/docs/compare/v1.3.2...v1.3.3) (2022-03-17)
 
 

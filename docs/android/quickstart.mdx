@@ -31,16 +31,16 @@ This will launch a fullscreen view with your meeting.
 <TabItem value="kotlin">
 
 ```kotlin
-import com.dyteclientmobile.MeetingConfig;
-import com.dyteclientmobile.DyteMeeting;
-import com.dyteclientmobile.DyteMeetingActivity;
+import com.dyteclientmobile.MeetingConfig
+import com.dyteclientmobile.DyteMeeting
+import com.dyteclientmobile.DyteMeetingActivity
 
 // Configure meeting parameters
-val config = MeetingConfig();
+val config = MeetingConfig()
 config.setRoomName("<roomName>")
-.setAuthToken("<authToken>");
+.setAuthToken("<authToken>")
 
-DyteMeeting.setup(config);
+DyteMeeting.setup(config)
 
 // Launch the activity
 val meetingIntent = Intent(this, DyteMeetingActivity::class.java)

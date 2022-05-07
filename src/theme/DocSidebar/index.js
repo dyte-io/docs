@@ -54,7 +54,7 @@ function HideableSidebarButton({ onClick }) {
 
 const getDocId = () => {
   const [, doc] = window.location.pathname.split('/');
-  if (['docs', '', 'guides'].includes(doc)) return 'default';
+  if (['docs', '', 'guides', 'cli'].includes(doc)) return 'default';
   return doc;
 };
 

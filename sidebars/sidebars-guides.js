@@ -78,13 +78,13 @@ module.exports = {
       type: 'category',
       label: 'Product Integration Guides',
       items: [
-        'subscribing-to-server-events',
+        'integrating-with-webhooks',
         'recording-your-meetings',
         'livestreaming-other-platforms',
         'livestreaming-rtmp-hls',
         'livestreaming-any-rtmp-streams',
         'embed',
-        'webinar',
+        'controlling-an-active-session'
       ],
     },
   ],

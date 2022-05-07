@@ -32,6 +32,13 @@ module.exports = {
       defaultMode: 'dark',
       disableSwitch: true,
     },
+    announcementBar: {
+      id: 'new_sdks_coming_soon',
+      content: 'Coming Soon: Next generation SDKs for web and mobile',
+      backgroundColor: '#2160FD',
+      textColor: '#fff',
+      isCloseable: true,
+    },
     navbar: {
       hideOnScroll: true,
       logo: {
@@ -54,7 +61,7 @@ module.exports = {
         },
         {
           label: 'Guides',
-          to: '/guides/subscribing-to-server-events',
+          to: '/guides/integrating-with-webhooks',
         },
       ],
     },
@@ -188,6 +195,16 @@ module.exports = {
           ? require('./ios_versions.json')
           : undefined,
         ...pageOptions,
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        path: 'docs/cli',
+        routeBasePath: 'cli',
+        id: 'cli',
+        sidebarPath: require.resolve('./sidebars/sidebars-cli.js'),
+        sidebarCollapsible: false,
       },
     ],
   ],

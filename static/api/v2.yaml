@@ -5,261 +5,275 @@ info:
 servers:
   - url: "https://api.cluster.dyte.in/v2/"
     description: Production server
+paths:
+  /livestreams:
+    post:
+      summary: Create a LiveStream
+      description: |
+        Create a live stream
+      operationId: StartaLiveStream
+      parameters:
+        - $ref: '#/components/parameters/Content-Type'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                example-1:
+                  value: {}
+      requestBody:
+        description: |
+          Create a live stream
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+              example: testing
+            example: |-
+              {
+                  "name": "testing"
+              }
+      tags:
+        - LiveStreams
+    get:
+      summary: Get all LiveStreams
+      description: |
+        Get all live streams created by an organization
+      operationId: GetallLiveStreams
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                example-1:
+                  value:
+                    success: true
+                    message: ''
+                    data:
+                      limit: 10
+                      total: 1
+                      totalCount: 1
+                      pageCount: 1
+                      currentPage: 1
+                      livestreams:
+                        - id: '850340555635017830461318'
+                          title: testing
+                          input_rtmp_url: >-
+                            rtmp://livestreaming.dyte.io/LiveApp/850340555635017830461318?token=502603528024515256366542
+                          token_id: '502603528024515256366542'
+                          stream_key: >-
+                            850340555635017830461318?token=502603528024515256366542
+                          player_url: >-
+                            https://livestreaming.dyte.io:5443/LiveApp/play.html?name=850340555635017830461318
+                          status: OFFLINE
+                          hls_play_url: >-
+                            https://livestreaming.dyte.io:5443/LiveApp/streams/850340555635017830461318.m3u8
+      tags:
+        - LiveStreams
+  '/livestreams/{streamId}':
+    get:
+      summary: Get a LiveStream
+      description: |
+        Get details of a particular live stream created by an organization
+      operationId: GetaLiveStream
+      parameters:
+        - $ref: '#/components/parameters/streamId'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              examples:
+                example-1:
+                  value:
+                    success: true
+                    data:
+                      id: '850340555635017830461318'
+                      title: testing
+                      input_rtmp_url: >-
+                        rtmp://livestreaming.dyte.io/LiveApp/850340555635017830461318?token=502603528024515256366542
+                      token_id: '502603528024515256366542'
+                      stream_key: 850340555635017830461318?token=502603528024515256366542
+                      player_url: >-
+                        https://livestreaming.dyte.io:5443/LiveApp/play.html?name=850340555635017830461318
+                      status: OFFLINE
+                      hls_play_url: >-
+                        https://livestreaming.dyte.io:5443/LiveApp/streams/850340555635017830461318.m3u8
+      tags:
+        - LiveStreams
+  '/meetings/{meetingId}/active-session':
+    get:
+      summary: Get an active session
+      description: Get an ongoing active session of a meeting
+      operationId: GetActiveSession
+      parameters:
+        - $ref: '#/components/parameters/meetingId'
+      tags:
+        - ActiveSession
+      responses:
+        '200':
+          $ref: '#/components/responses/GetActiveSession'
+        '404':
+          $ref: '#/components/responses/GetActiveSessionNotFound'
+  '/meetings/{meetingId}/active-session/kick':
+    post:
+      summary: Kick participants from active session
+      description: >-
+        Kick one or more participants using userId or customParticipantId from
+        an active session
+      operationId: KickPartcipants
+      parameters:
+        - $ref: '#/components/parameters/meetingId'
+      tags:
+        - ActiveSession
+      requestBody:
+        $ref: '#/components/requestBodies/KickParticipantsBody'
+      responses:
+        '200':
+          $ref: '#/components/responses/KickParticipants'
+        '404':
+          $ref: '#/components/responses/ParticipantNotFound'
+  '/meetings/{meetingId}/active-session/kick-all':
+    post:
+      summary: Kick all participant
+      description: Kick all participants from an active session
+      operationId: KickAllParticipants
+      parameters:
+        - $ref: '#/components/parameters/meetingId'
+      tags:
+        - ActiveSession
+      responses:
+        '200':
+          $ref: '#/components/responses/KickAllParticipants'
+  '/meetings/{meetingId}/active-session/mute':
+    post:
+      summary: Mute participants of an active session
+      description: >-
+        Mute one or more participants from an active session using userId or
+        customParticipantId
+      operationId: MuteParticipants
+      parameters:
+        - $ref: '#/components/parameters/meetingId'
+      tags:
+        - ActiveSession
+      requestBody:
+        $ref: '#/components/requestBodies/KickParticipantsBody'
+      responses:
+        '200':
+          $ref: '#/components/responses/MuteParticipants'
+  '/meetings/{meetingId}/active-session/mute-all':
+    post:
+      summary: Mute all participants
+      description: Mute all participants of an active session
+      operationId: MuteAllParticipants
+      parameters:
+        - $ref: '#/components/parameters/meetingId'
+      tags:
+        - ActiveSession
+      requestBody:
+        $ref: '#/components/requestBodies/MuteAllParticipantsBody'
+      responses:
+        '200':
+          $ref: '#/components/responses/MuteAllParticipants'
+  '/meetings/{meetingId}/active-session/poll':
+    post:
+      summary: Create a poll
+      description: Create a new poll in an active session
+      operationId: CreatePoll
+      parameters:
+        - $ref: '#/components/parameters/meetingId'
+      tags:
+        - ActiveSession
+      requestBody:
+        $ref: '#/components/requestBodies/CreatePollBody'
+      responses:
+        '201':
+          $ref: '#/components/responses/CreatePoll'
+  /sessions:
+    get:
+      summary: Get all sessions of an organization.
+      description: >-
+        Returns all sessions of an organization. Supports pagination, filtering
+        by status and number of participants, search by sessionId or meeting
+        name and sorting by date.
+      operationId: GetSessions
+      tags:
+        - Sessions
+      parameters:
+        - $ref: '#/components/parameters/pageNo'
+        - $ref: '#/components/parameters/perPage'
+        - $ref: '#/components/parameters/search'
+        - $ref: '#/components/parameters/sortOrder'
+        - $ref: '#/components/parameters/startTime'
+        - $ref: '#/components/parameters/endTime'
+        - $ref: '#/components/parameters/participants'
+        - $ref: '#/components/parameters/status'
+      responses:
+        '200':
+          $ref: '#/components/responses/GetSessions'
+  '/sessions/{sessionId}':
+    get:
+      summary: Get details about a particular session.
+      description: Returns data about particular session including recording data.
+      operationId: GetSessionDetails
+      tags:
+        - Sessions
+      parameters:
+        - $ref: '#/components/parameters/sessionId'
+      responses:
+        '200':
+          $ref: '#/components/responses/GetSessionDetails'
+  '/sessions/{sessionId}/participants':
+    get:
+      summary: Get participants list of a session
+      description: >-
+        Returns participants list that are a part of a given session. Supports
+        pagination, search by participant id and sorting by joined date and
+        duration.
+      operationId: GetSessionParticipants
+      tags:
+        - Sessions
+      parameters:
+        - $ref: '#/components/parameters/sessionId'
+        - $ref: '#/components/parameters/search'
+        - $ref: '#/components/parameters/pageNo'
+        - $ref: '#/components/parameters/perPage'
+        - $ref: '#/components/parameters/sortOrder'
+        - $ref: '#/components/parameters/participantsSortBy'
+      responses:
+        '200':
+          $ref: '#/components/responses/GetSessionParticipants'
+  '/sessions/{sessionId}/participants/{participantId}':
+    get:
+      summary: Get details of a participant.
+      description: Returns callstats and general data about a participant.
+      operationId: GetParticipantDetails
+      tags:
+        - Sessions
+      parameters:
+        - $ref: '#/components/parameters/sessionId'
+        - $ref: '#/components/parameters/participantId'
+      responses:
+        '200':
+          $ref: '#/components/responses/GetParticipantDetails'
 components:
-  securitySchemes:
-    organizationAuth:
-      type: http
-      scheme: basic
-      description: Use OrgID as username, followed by its APIKEY as password 
-    userAuth:
-      type: http
-      scheme: bearer
-      description: Uses the bearer token a user will get when they login into their account on Dyte
   schemas:
-    WebhookSuccessResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        data:
-          type: object
-          properties:
-            id:
-              type: string
-              format: uuid
-            name:
-              type: string
-            url:
-              type: string
-              format: uri
-            events:
-              type: array
-              items:
-                type: string
-                enum:
-                  - meeting.started
-                  - meeting.ended
-                  - meeting.participantJoined
-                  - meeting.participantLeft
-                  - meeting.statusUpdate
-            created_at:
-              type: string
-              format: date-time
-            updated_at:
-              type: string
-              format: date-time
-    WebhooksListSuccessResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                format: uuid
-              name:
-                type: string
-              url:
-                type: string
-                format: uri
-              events:
-                type: array
-                items:
-                  type: string
-                  enum:
-                    - meeting.started
-                    - meeting.ended
-                    - meeting.participantJoined
-                    - meeting.participantLeft
-                    - meeting.statusUpdate
-              created_at:
-                type: string
-                format: date-time
-              updated_at:
-                type: string
-                format: date-time
-    ErrorResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        error:
-          type: object
-          properties:
-            code:
-              type: number
-            message:
-              type: string
-    WebhookRequest:
-      type: object
-      required:
-        - name
-        - url
-        - events
-      properties:
-        name:
-          type: string
-        url:
-          type: string
-          format: uri
-        events:
-          type: array
-          items:
-            type: string
-            enum:
-              - meeting.started
-              - meeting.ended
-              - meeting.participantJoined
-              - meeting.participantLeft
-              - meeting.statusUpdate
-    PatchWebhookRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        url:
-          type: string
-          format: uri
-        events:
-          type: array
-          items:
-            type: string
-            enum:
-              - meeting.started
-              - meeting.ended
-              - meeting.participantJoined
-              - meeting.participantLeft
-              - meeting.statusUpdate
-    OrganizationRequest:
-      type: object
-      required:
-        - name
-        - contact
-        - website
-      properties:
-        name:
-          type: string
-        contact:
-          type: string
-        website:
-          type: string
-          format: uri
-        feature_flags:
-          type: array
-          items:
-            type: string
-        preferred_region:
-          type: string
-          enum:
-            - ap-south-1
-            - ap-southeast-1
-            - us-west-1
-          default: ap-south-1
-    PatchOrganizationRequest:
-      type: object
-      required:
-        - name
-        - contact
-        - website
-      properties:
-        name:
-          description: Must be a unique organization name
-          type: string
-        contact:
-          type: string
-        website:
-          type: string
-          format: uri
-        feature_flags:
-          type: array
-          items:
-            type: string
-        preferred_region:
-          type: string
-          enum:
-            - ap-south-1
-            - ap-southeast-1
-            - us-west-1
-          default: ap-south-1
-    OrganizationData:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        contact:
-          type: string
-        website:
-          type: string
-          format: uri
-        apikey:
-          type: string
-        preferred_region:
-          type: string
-        feature_flags:
-          type: array
-          items:
-            type: string
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-      required:
-        - id
-        - name
-        - contact
-        - website
-        - preferred_region
-        - feature_flags
-        - created_at
-        - updated_at
-        - apikey
-    OrganizationSuccessResponse:
-      type: object
-      required:
-      - success
-      - data
-      properties:
-        success:
-          type: boolean
-        data:
-          allOf:
-            - $ref: '#/components/schemas/OrganizationData'
-    OrganizationListSuccessResponse:
-      type: object
-      required:
-      - success
-      - data
-      - paging
-      properties:
-        success:
-          type: boolean
-        data:
-          type: array
-          items:
-            allOf:
-              - $ref: '#/components/schemas/OrganizationData'
-        paging:
-          type: object
-          properties:
-            total_count:
-              type: number
-            start_offset:
-              type: number
-            end_offset:
-              type: number
-          required:
-            - total_count
-            - start_offset
-            - end_offset
     ActiveSession:
       type: object
       properties:
@@ -268,21 +282,22 @@ components:
           description: roomUUID of session
         associated_id:
           type: string
-          description: id of associated object. if session type is meeting, it is
-            mapped to meetingId, livestreamId if session type is livestream
+          description: >-
+            id of associated object. if session type is meeting, it is mapped to
+            meetingId, livestreamId if session type is livestream
         type:
           type: string
           description: type of session
           enum:
-          - meeting
-          - livestream
-          - participant
+            - meeting
+            - livestream
+            - participant
         status:
           type: string
           description: current status of session
           enum:
-          - LIVE
-          - ENDED
+            - LIVE
+            - ENDED
         live_participants:
           type: number
           description: number of participants currently in the session
@@ -292,6 +307,9 @@ components:
         minutes_consumed:
           type: number
           description: number of minutes consumed since the session started
+        organization_id:
+          type: string
+          description: Organization id that hosted this session
         started_at:
           type: string
           description: timestamp when session started
@@ -304,6 +322,9 @@ components:
         updated_at:
           type: string
           description: timestamp when session was last updated
+        meta:
+          type: object
+          description: Any meta data about session.
     GenericErrorResponse:
       type: object
       properties:
@@ -372,6 +393,185 @@ components:
           type: array
           items:
             type: string
+    ParticipantsList:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Participant ID. This maps to the corresponding peerId.
+        user_id:
+          type: string
+          description: User id for this participant.
+        custom_participant_id:
+          type: string
+          description: ID passed by client to create this participant.
+        display_name:
+          type: string
+          description: Display name of participant when joining the session.
+        role:
+          type: string
+          description: Role of the participant.
+        joined_at:
+          type: string
+          description: timestamp at which participant joined the session.
+        left_at:
+          type: string
+          description: timestamp at which participant left the session.
+        duration:
+          type: number
+          description: number of minutes for which the participant was in the session.
+        created_at:
+          type: string
+          description: timestamp when this participant was created.
+        updated_at:
+          type: string
+          description: timestamp when this participant's data was last updated.
+    ParticipantPeerStats:
+      type: object
+      properties:
+        peer_stats:
+          type: object
+          properties:
+            config:
+              type: string
+            status:
+              type: string
+            device_info:
+              type: object
+              properties:
+                browser:
+                  type: string
+                browser_version:
+                  type: string
+                cpus:
+                  type: number
+                engine:
+                  type: string
+                is_mobile:
+                  type: boolean
+                memory:
+                  type: number
+                os:
+                  type: string
+                os_version:
+                  type: string
+                sdk_name:
+                  type: string
+                sdk_version:
+                  type: string
+                user_agent:
+                  type: string
+                webgl_support:
+                  type: string
+            events:
+              type: array
+              items:
+                type: object
+                properties:
+                  timestamp:
+                    type: string
+                  type:
+                    type: string
+            ip_information:
+              type: object
+              properties:
+                city:
+                  type: string
+                country:
+                  type: string
+                ip_location:
+                  type: string
+                ipv4:
+                  type: string
+                org:
+                  type: string
+                portal:
+                  type: string
+                region:
+                  type: string
+                timezone:
+                  type: string
+            precall_network_information:
+              type: object
+              properties:
+                backend_rtt:
+                  type: number
+                turn_connectivity:
+                  type: boolean
+                effective_networktype:
+                  type: string
+                throughtput:
+                  type: number
+                jitter:
+                  type: number
+                rtt:
+                  type: number
+                reflexive_connectivity:
+                  type: boolean
+                relay_connectivity:
+                  type: boolean
+                fractional_loss:
+                  type: number
+    ParticipantQualityStats:
+      type: object
+      properties:
+        quality_stats:
+          type: array
+          items:
+            type: object
+            properties:
+              peer_id:
+                type: string
+              audio_bandwidth:
+                type: number
+              video_bandwidth:
+                type: number
+              average_quality:
+                type: number
+              start:
+                type: string
+              end:
+                type: string
+              audio_packet_loss:
+                type: number
+              video_packet_loss:
+                type: number
+              audio_stats:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    timestamp:
+                      type: string
+                    concealment_events:
+                      type: number
+                    packets_lost:
+                      type: number
+                    jitter:
+                      type: number
+                    quality:
+                      type: number
+              video_stats:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    timestamp:
+                      type: string
+                    frame_width:
+                      type: number
+                    frame_height:
+                      type: number
+                    frames_dropped:
+                      type: number
+                    frames_per_second:
+                      type: number
+                    packets_lost:
+                      type: number
+                    jitter:
+                      type: number
+                    quality:
+                      type: number
   parameters:
     Content-Type:
       name: Content-Type
@@ -394,10 +594,86 @@ components:
       required: true
       schema:
         type: string
+    sessionId:
+      name: sessionId
+      in: path
+      required: true
+      schema:
+        type: string
+    participantId:
+      name: participantId
+      in: path
+      required: true
+      schema:
+        type: string
+    pageNo:
+      name: page_no
+      in: query
+      required: false
+      schema:
+        type: number
+    perPage:
+      name: per_page
+      in: query
+      required: false
+      schema:
+        type: number
+    search:
+      name: search
+      in: query
+      required: false
+      schema:
+        type: string
+    sortOrder:
+      name: sort_order
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - ASC
+          - DESC
+    startTime:
+      name: start_time
+      in: query
+      required: false
+      schema:
+        type: string
+    endTime:
+      name: end_time
+      in: query
+      required: false
+      schema:
+        type: string
+    participants:
+      name: participants
+      in: query
+      required: false
+      schema:
+        type: string
+      example: '1:10'
+    status:
+      name: status
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - LIVE
+          - ENDED
+    participantsSortBy:
+      name: sort_by
+      in: query
+      schema:
+        type: string
+        enum:
+          - joinedAt
+          - duration
   requestBodies:
     KickParticipantsBody:
-      description: Request body for kicking participants from active session. Only
-        one of `participant_id` or `custom_participant_id` is required
+      description: >-
+        Request body for kicking participants from active session. Only one of
+        `participant_id` or `custom_participant_id` is required
       content:
         application/json:
           schema:
@@ -420,7 +696,8 @@ components:
             properties:
               allow_unmute:
                 type: boolean
-                description: if false, participants won't be able to unmute themselves
+                description: >-
+                  if false, participants won't be able to unmute themselves
                   after they are muted
     CreatePollBody:
       description: Request body for creating a new poll
@@ -454,19 +731,19 @@ components:
               success:
                 type: boolean
               data:
-                "$ref": "#/components/schemas/ActiveSession"
+                $ref: '#/components/schemas/ActiveSession'
           examples:
             activeSessionSuccess:
-              "$ref": "#/components/examples/GetActiveSessionSuccessResponse"
+              $ref: '#/components/examples/GetActiveSessionSuccessResponse'
     GetActiveSessionNotFound:
       description: Active Session is not found for the given meetingId
       content:
         application/json:
           schema:
-            "$ref": "#/components/schemas/GenericErrorResponse"
+            $ref: '#/components/schemas/GenericErrorResponse'
           examples:
             activeSessionNotFound:
-              "$ref": "#/components/examples/GetActiveSessionNotFoundResponse"
+              $ref: '#/components/examples/GetActiveSessionNotFoundResponse'
     KickParticipants:
       description: Kick participants success response
       content:
@@ -484,16 +761,18 @@ components:
                   participants:
                     type: array
                     items:
-                      "$ref": "#/components/schemas/Participant"
+                      $ref: '#/components/schemas/Participant'
     ParticipantNotFound:
-      description: No participant found for given `participant_id` or `custom_participant_id`
+      description: >-
+        No participant found for given `participant_id` or
+        `custom_participant_id`
       content:
         application/json:
           schema:
-            "$ref": "#/components/schemas/GenericErrorResponse"
+            $ref: '#/components/schemas/GenericErrorResponse'
           examples:
             participantNotFound:
-              "$ref": "#/components/examples/ParticipantNotFoundResponse"
+              $ref: '#/components/examples/ParticipantNotFoundResponse'
     KickAllParticipants:
       description: Kick all participants from a meeeting
       content:
@@ -527,7 +806,7 @@ components:
                   participants:
                     type: array
                     items:
-                      "$ref": "#/components/schemas/Participant"
+                      $ref: '#/components/schemas/Participant'
     MuteAllParticipants:
       description: Mute all participants of a meeting
       content:
@@ -559,7 +838,70 @@ components:
                   action:
                     type: string
                   poll:
-                    "$ref": "#/components/schemas/Poll"
+                    $ref: '#/components/schemas/Poll'
+    GetSessions:
+      description: Get all sessions success response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: object
+                properties:
+                  sessions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ActiveSession'
+    GetSessionDetails:
+      description: Get details about a particular session
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: object
+                properties:
+                  session:
+                    $ref: '#/components/schemas/ActiveSession'
+    GetSessionParticipants:
+      description: Get participants list of a particular session
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: object
+                properties:
+                  participants:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ParticipantsList'
+    GetParticipantDetails:
+      description: Returns details of a participant along with callstats data.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: object
+                properties:
+                  participant:
+                    allOf:
+                      - $ref: '#/components/schemas/ParticipantsList'
+                      - $ref: '#/components/schemas/ParticipantPeerStats'
+                      - $ref: '#/components/schemas/ParticipantQualityStats'
   examples:
     GetActiveSessionSuccessResponse:
       summary: Success response for fetching active session
@@ -583,7 +925,9 @@ components:
         success: false
         error:
           code: 404
-          message: No active session found for meeting_id 6bf2b8be-04dd-4191-b602-1128921a306b
+          message: >-
+            No active session found for meeting_id
+            6bf2b8be-04dd-4191-b602-1128921a306b
     ParticipantNotFoundResponse:
       summary: Participant Not Found
       value:
@@ -591,673 +935,16 @@ components:
         error:
           code: 404
           message: No user found with id 813432c7-3c5a-45e2-9acf-eef7061c7584
-security:
-  - organizationAuth: []
-paths:
-  "/webhooks":
-    summary: Represents webhooks for organization
-    description: Represents webhooks for organization
-    get:
-      summary: Get all webhooks
-      tags:
-        - Webhooks
-      description: >
-        Gets details of all webhooks that have been registered for the organization
-      operationId: getAllWebhooks
-      responses:
-        "200":
-          description: Operation successful
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/WebhooksListSuccessResponse"
-              example: |
-                {
-                  success: true,
-                  data: [
-                    {
-                      id: '901e9adf-ebd9-41f0-9098-28171bc04ddd',
-                      name: 'test',
-                      events: [ 'meeting.started' ],
-                      url: 'https://testURL.com',
-                      created_at: '2021-09-09T10:25:12.330Z',
-                      updated_at: '2021-09-09T10:25:12.330Z'
-                    }
-                  ]
-                }
-        "401":
-          description: Invalid credentials
-          content:
-            application/json:
-              example: |
-                {
-                  message: "Unauthorized"
-                }
-    post:
-      summary: Add a new webhook
-      tags:
-        - Webhooks
-      description: >
-        Add a new webhook to organization
-      operationId: addWebhook
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/WebhookRequest"
-            example: |
-              {
-                name: 'test',
-                events: [ 'meeting.started' ],
-                url: 'https://testURL.com'
-              }
-      responses:
-        "201":
-          description: Webhook registered successfully
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/WebhookSuccessResponse"
-              example: |
-                {
-                  success: true,
-                  data: {
-                    id: '901e9adf-ebd9-41f0-9098-28171bc04ddd',
-                    name: 'test',
-                    events: [ 'meeting.started' ],
-                    url: 'https://testURL.com',
-                    created_at: '2021-09-09T10:25:12.330Z',
-                    updated_at: '2021-09-09T10:25:12.330Z'
-                  }
-                }
-        "400":
-          description: Error- malformed request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-              example: |
-                {
-                  success: false,
-                  error: { code: 400, message: 'BAD_REQUEST: "name" is required' }
-                }
-        "401":
-          description: Invalid credentials
-          content:
-            application/json:
-              example: |
-                {
-                  message: "Unauthorized"
-                }
-  "/webhooks/{id}":
-    summary: Represents a single webhook
-    description: Represents a single webhook for an organization by ID
-    get:
-      summary: Get details of a webhook
-      description: >
-        Get details of a single webhook by its ID
-      tags:
-        - Webhooks
-      operationId: getWebhook
-      parameters:
-        - name: id
-          in: path
-          description: ID of webhook
-          required: true
-          schema:
-            type: string
-            format: uuid
-      responses:
-        "200":
-          description: Operation successful
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/WebhookSuccessResponse"
-              example: |
-                {
-                  success: true,
-                  data: {
-                    id: '901e9adf-ebd9-41f0-9098-28171bc04ddd',
-                    name: 'test',
-                    events: [ 'meeting.started' ],
-                    url: 'https://testURL.com',
-                    created_at: '2021-09-09T10:25:12.330Z',
-                    updated_at: '2021-09-09T10:25:12.330Z'
-                  }
-                }
-        "400":
-          description: Error- malformed request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-              example: |
-                {
-                  success: false,
-                  error: { code: 400, message: 'BAD_REQUEST: "id" must be a valid GUID' }
-                }
-        "401":
-          description: Invalid credentials
-          content:
-            application/json:
-              example: |
-                {
-                  message: "Unauthorized"
-                }
-    put:
-      summary: Replace a webhook
-      description: Replace all details of a single webhook
-      tags:
-        - Webhooks
-      operationId: replaceWebhook
-      parameters:
-        - name: id
-          in: path
-          description: ID of webhook
-          required: true
-          schema:
-            type: string
-            format: uuid
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/WebhookRequest"
-            example: |
-              {
-                name: 'test',
-                events: [ 'meeting.started' ],
-                url: 'https://testURL.com'
-              }
-      responses:
-        "200":
-          description: Operation successful
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/WebhookSuccessResponse"
-              example: |
-                {
-                  success: true,
-                  data: {
-                    id: '901e9adf-ebd9-41f0-9098-28171bc04ddd',
-                    name: 'test',
-                    events: [ 'meeting.started' ],
-                    url: 'https://testURL.com',
-                    created_at: '2021-09-09T10:25:12.330Z',
-                    updated_at: '2021-09-09T10:25:12.376Z'
-                  }
-                }
-        "400":
-          description: Error- malformed request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-              example: |
-                {
-                  success: false,
-                  error: { code: 400, message: 'BAD_REQUEST: "id" must be a valid GUID' }
-                }
-        "401":
-          description: Invalid credentials
-          content:
-            application/json:
-              example: |
-                {
-                  message: "Unauthorized"
-                }
-    patch:
-      summary: Edit a webhook
-      description: Partially edit details of a single webhook
-      tags:
-        - Webhooks
-      operationId: editWebhook
-      parameters:
-        - name: id
-          in: path
-          description: ID of webhook
-          required: true
-          schema:
-            type: string
-            format: uuid
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/PatchWebhookRequest"
-            example: |
-              {
-                name: 'test2',
-                events: [ 'meeting.ended' ],
-                url: 'https://testURL2.com'
-              }
-      responses:
-        "200":
-          description: Operation successful
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/WebhookSuccessResponse"
-              example: |
-                {
-                  success: true,
-                  data: {
-                    id: '901e9adf-ebd9-41f0-9098-28171bc04ddd',
-                    name: 'test2',
-                    events: [ 'meeting.ended' ],
-                    url: 'https://testURL2.com',
-                    created_at: '2021-09-09T10:25:12.330Z',
-                    updated_at: '2021-09-09T10:25:12.367Z'
-                  }
-                }
-        "400":
-          description: Error- malformed request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-              example: |
-                {
-                  success: false,
-                  error: { code: 400, message: 'BAD_REQUEST: "id" must be a valid GUID' }
-                }
-        "401":
-          description: Invalid credentials
-          content:
-            application/json:
-              example: |
-                {
-                  message: "Unauthorized"
-                }
-    delete:
-      summary: Delete a webhook
-      description: Remove a single webhook by ID
-      tags:
-        - Webhooks
-      operationId: deleteWebhook
-      parameters:
-        - name: id
-          in: path
-          description: ID of webhook
-          required: true
-          schema:
-            type: string
-            format: uuid
-      responses:
-        "200":
-          description: Operation successful
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/WebhookSuccessResponse"
-              example: |
-                {
-                  success: true,
-                  data: {
-                    id: '901e9adf-ebd9-41f0-9098-28171bc04ddd',
-                    name: 'test2',
-                    events: [ 'meeting.ended' ],
-                    url: 'https://testURL2.com',
-                    created_at: '2021-09-09T10:25:12.330Z',
-                    updated_at: '2021-09-09T10:25:12.367Z'
-                  }
-                }
-        "400":
-          description: Error- malformed request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-              example: |
-                {
-                  success: false,
-                  error: { code: 400, message: 'BAD_REQUEST: "id" must be a valid GUID' }
-                }
-        "401":
-          description: Invalid credentials
-          content:
-            application/json:
-              example: |
-                {
-                  message: "Unauthorized"
-                }
-  "/orgs":
-    get:
-      summary: Gets all the user's organizations.
-      description: Gets all the user's organizations. This endpoint is paginated.
-      tags:
-        - Organizations
-      operationId: getAllOrgs
-      security:
-        - userAuth: []
-      parameters:
-        - in: query
-          name: per_page
-          schema:
-            type: integer
-            minimum: 1
-          description: Number of values to return in a single page. Default value is 25.
-        - in: query
-          name: page_no
-          schema:
-            type: integer
-            minimum: 1
-          description: The page number to return. Default value is 1.
-      responses:
-        "200":
-          description: Operation successful
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/OrganizationListSuccessResponse"
-        "400":
-          description: Malformed request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-        "401":
-          description: Unauthorized user
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-    post:
-      summary: Create a new organization
-      description: Create a new organization. The authenticated user becomes the owner of this organization.
-      tags:
-        - Organizations
-      operationId: createOrg
-      security:
-        - userAuth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/OrganizationRequest"
-      responses:
-        "201":
-          description: Operation successful
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/OrganizationSuccessResponse"
-        "400":
-          description: Malformed request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-        "409":
-          description: Organization with the provided name already exists
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-        "401":
-          description: Unauthorized user
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-  "/orgs/{id}":
-    get:
-      summary: Get details of a single organization.
-      description: Fetches details of a single organization by ID. User must be an owner of this organization.
-      tags:
-        - Organizations
-      operationId: getOrg
-      security:
-        - userAuth: []
-      responses:
-        "200":
-          description: Operation successful
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/OrganizationSuccessResponse"
-        "400":
-          description: Malformed request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-        "401":
-          description: User is not authorized to perform this operation.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-    patch:
-      summary: Edit details of an organization. 
-      description: Fetches details of a single organization. User must be an owner of this org.
-      tags:
-        - Organizations
-      operationId: editOrg
-      security:
-        - userAuth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/PatchOrganizationRequest"
-      responses:
-        "200":
-          description: Operation successful
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/OrganizationSuccessResponse"
-        "400":
-          description: Malformed request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-        "401":
-          description: Unauthorized user
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-  "/livestreams":
-    post:
-      summary: Create a LiveStream
-      description: 'Create a live stream
-
-        '
-      operationId: StartaLiveStream
-      parameters:
-      - "$ref": "#/components/parameters/Content-Type"
-      responses:
-        '200':
-          description: ''
-          headers: {}
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
-              examples:
-                example-1:
-                  value: {}
-      requestBody:
-        description: 'Create a live stream
-
-          '
-        required: true
-        content:
-          application/json:
-            schema:
-              type: string
-              example: testing
-            example: |-
-              {
-                  "name": "testing"
-              }
-      tags:
-      - LiveStreams
-    get:
-      summary: Get all LiveStreams
-      description: 'Get all live streams created by an organization
-
-        '
-      operationId: GetallLiveStreams
-      parameters: []
-      responses:
-        '200':
-          description: ''
-          headers: {}
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
-              examples:
-                example-1:
-                  value:
-                    success: true
-                    message: ''
-                    data:
-                      limit: 10
-                      total: 1
-                      totalCount: 1
-                      pageCount: 1
-                      currentPage: 1
-                      livestreams:
-                      - id: '850340555635017830461318'
-                        title: testing
-                        input_rtmp_url: rtmp://livestreaming.dyte.io/LiveApp/850340555635017830461318?token=502603528024515256366542
-                        token_id: '502603528024515256366542'
-                        stream_key: 850340555635017830461318?token=502603528024515256366542
-                        player_url: https://livestreaming.dyte.io:5443/LiveApp/play.html?name=850340555635017830461318
-                        status: OFFLINE
-                        hls_play_url: https://livestreaming.dyte.io:5443/LiveApp/streams/850340555635017830461318.m3u8
-      tags:
-      - LiveStreams
-  "/livestreams/{streamId}":
-    get:
-      summary: Get a LiveStream
-      description: 'Get details of a particular live stream created by an organization
-
-        '
-      operationId: GetaLiveStream
-      parameters:
-      - "$ref": "#/components/parameters/streamId"
-      responses:
-        '200':
-          description: ''
-          headers: {}
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
-              examples:
-                example-1:
-                  value:
-                    success: true
-                    data:
-                      id: '850340555635017830461318'
-                      title: testing
-                      input_rtmp_url: rtmp://livestreaming.dyte.io/LiveApp/850340555635017830461318?token=502603528024515256366542
-                      token_id: '502603528024515256366542'
-                      stream_key: 850340555635017830461318?token=502603528024515256366542
-                      player_url: https://livestreaming.dyte.io:5443/LiveApp/play.html?name=850340555635017830461318
-                      status: OFFLINE
-                      hls_play_url: https://livestreaming.dyte.io:5443/LiveApp/streams/850340555635017830461318.m3u8
-      tags:
-      - LiveStreams
-  "/meetings/{meetingId}/active-session":
-    get:
-      summary: Get an active session
-      description: Get an ongoing active session of a meeting
-      operationId: GetActiveSession
-      parameters:
-      - "$ref": "#/components/parameters/meetingId"
-      tags:
-      - ActiveSession
-      responses:
-        '200':
-          "$ref": "#/components/responses/GetActiveSession"
-        '404':
-          "$ref": "#/components/responses/GetActiveSessionNotFound"
-  "/meetings/{meetingId}/active-session/kick":
-    post:
-      summary: Kick participants from active session
-      description: Kick one or more participants using userId or customParticipantId
-        from an active session
-      operationId: KickPartcipants
-      parameters:
-      - "$ref": "#/components/parameters/meetingId"
-      tags:
-      - ActiveSession
-      requestBody:
-        "$ref": "#/components/requestBodies/KickParticipantsBody"
-      responses:
-        '200':
-          "$ref": "#/components/responses/KickParticipants"
-        '404':
-          "$ref": "#/components/responses/ParticipantNotFound"
-  "/meetings/{meetingId}/active-session/kick-all":
-    post:
-      summary: Kick all participant
-      description: Kick all participants from an active session
-      operationId: KickAllParticipants
-      parameters:
-      - "$ref": "#/components/parameters/meetingId"
-      tags:
-      - ActiveSession
-      responses:
-        '200':
-          "$ref": "#/components/responses/KickAllParticipants"
-  "/meetings/{meetingId}/active-session/mute":
-    post:
-      summary: Mute participants of an active session
-      description: Mute one or more participants from an active session using userId
-        or customParticipantId
-      operationId: MuteParticipants
-      parameters:
-      - "$ref": "#/components/parameters/meetingId"
-      tags:
-      - ActiveSession
-      requestBody:
-        "$ref": "#/components/requestBodies/KickParticipantsBody"
-      responses:
-        '200':
-          "$ref": "#/components/responses/MuteParticipants"
-  "/meetings/{meetingId}/active-session/mute-all":
-    post:
-      summary: Mute all participants
-      description: Mute all participants of an active session
-      operationId: MuteAllParticipants
-      parameters:
-      - "$ref": "#/components/parameters/meetingId"
-      tags:
-      - ActiveSession
-      requestBody:
-        "$ref": "#/components/requestBodies/MuteAllParticipantsBody"
-      responses:
-        '200':
-          "$ref": "#/components/responses/MuteAllParticipants"
-  "/meetings/{meetingId}/active-session/poll":
-    post:
-      summary: Create a poll
-      description: Create a new poll in an active session
-      operationId: CreatePoll
-      parameters:
-      - "$ref": "#/components/parameters/meetingId"
-      tags:
-      - ActiveSession
-      requestBody:
-        "$ref": "#/components/requestBodies/CreatePollBody"
-      responses:
-        '201':
-          "$ref": "#/components/responses/CreatePoll"         
+  securitySchemes:
+    Authorization:
+      type: http
+      scheme: basic
+      description: ''
+security: []
+tags:
+  - name: LiveStreams
+  - name: ActiveSession
+  - name: Sessions
+externalDocs:
+  url: ''
+  description: ''

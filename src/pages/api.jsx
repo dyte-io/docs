@@ -33,6 +33,14 @@ export default function APIPage() {
           const { API } = require('@stoplight/elements');
           return (
             <>
+              <a
+                href="https://www.getpostman.com/collections/b655d5cbdd8a718ec15f"
+                target="_blank"
+                rel="noreferrer"
+                className="absolute right-20 top-24 inline-flex cursor-pointer items-center justify-center rounded-md bg-orange-600 px-4 py-1 text-sm text-white hover:text-white hover:no-underline"
+              >
+                Postman Collection
+              </a>
               <APIVersionSwitcher current="v1" />
               <API
                 apiDescriptionUrl="/api/v1.yaml"
