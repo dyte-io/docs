@@ -1,3 +1,10 @@
+## [1.10.2](https://github.com/dyte-in/docs/compare/v1.10.1...v1.10.2) (2022-05-07)
+
+
+### Bug Fixes
+
+* **livestreaming:** clarify that livestreaming only works for h.264 codec ([d8df6a3](https://github.com/dyte-in/docs/commit/d8df6a3637310062a14fa45eb7115d0c9f67a1e4))
+
 ## [1.10.1](https://github.com/dyte-in/docs/compare/v1.10.0...v1.10.1) (2022-05-04)
 
 
