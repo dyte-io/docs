@@ -73,6 +73,7 @@ const SectionSwitchHandler = (props) => {
             type="radio"
             className="mr-2 accent-primary-100"
             checked={section === el.name}
+            readOnly
             name="ui-non-ui-section"
             id="ui-non-ui-section"
           />
