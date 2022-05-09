@@ -16,7 +16,7 @@ import { loadSelf } from '/src/utils/meeting';
 
 Sizes `'sm' | 'md' | 'lg'`
 
-<div ref={() => loadSelf('.peerview')} class="flex flex-row space-x-6 items-center">
+<div className="ui-preview space-x-4" ref={() => loadSelf('.peerview')}>
     <dyte-audio-visualizer class="peerview" size="sm" />
     <dyte-audio-visualizer class="peerview" size="md" />
     <dyte-audio-visualizer class="peerview" size="lg" />

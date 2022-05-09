@@ -6,6 +6,19 @@ sidebar_position: 2
 
 Here is how you can integrate Dyte's UI Kit into your project seamlessly.
 
+import { loadMeeting } from '/src/utils/meeting';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  groupId="ui-quick"
+  defaultValue="code"
+  values={[
+    { label: 'Code', value: 'code' },
+    { label: 'Preview', value: 'preview' },
+  ]
+}>
+<TabItem value="code">
 
 ```html
 <body>
@@ -28,3 +41,11 @@ Here is how you can integrate Dyte's UI Kit into your project seamlessly.
   </script>
 </body>
 ```
+
+</TabItem>
+<TabItem value="preview">
+    <div ref={() => loadMeeting('my-meeting')} style={{width: '100%', height: '600px'}}>
+      <dyte-meeting id="my-meeting" show-setup-screen="false"></dyte-meeting>
+    </div>
+</TabItem>
+</Tabs>

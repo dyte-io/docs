@@ -4,7 +4,9 @@ sidebar_position: 4
 
 # Spinner
 
-Spinner component used to mark in-progress activities.
+The Spinner component is used to mark in-progress activities.
+
+The color of the spinner is inherited from the `color` CSS property.
 
 ```html
 <dyte-spinner />
@@ -12,6 +14,6 @@ Spinner component used to mark in-progress activities.
 
 import { loadSelf } from '/src/utils/meeting';
 
-<div class="flex flex-row space-x-6 items-center">
+<div className="ui-preview">
     <dyte-spinner size="sm" />
 </div>

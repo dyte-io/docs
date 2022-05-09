@@ -2,10 +2,10 @@
 sidebar_position: 6
 ---
 
-# Text Input
+# Text Field
 
 ```html
-<dyte-text-input />
+<dyte-text-field />
 ```
 
 <div className="ui-preview flex-col">
