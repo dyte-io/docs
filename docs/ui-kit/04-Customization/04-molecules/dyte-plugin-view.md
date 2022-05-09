@@ -1,7 +1,3 @@
----
-sidebar_position: 6
----
-
 # Plugin View - Main
 
 Add plugins to your meetings.

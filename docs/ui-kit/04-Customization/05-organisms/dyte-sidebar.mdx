@@ -1,0 +1,28 @@
+# Sidebar [WIP]
+
+A Sidebar component which groups multiple components:
+
+- Chat
+- Participants
+- Plugins
+
+import { loadMeeting } from '/src/utils/meeting';
+
+```html
+<dyte-sidebar view="full-screen" />
+```
+
+<div className="chat-preview relative" ref={() => loadMeeting('dyte-el')}>
+  <dyte-sidebar
+    id="dyte-el"
+    view="full-screen"
+    style={{ width: '100%', height: '100%', display: 'block' }}
+    ref={(el) => {
+      if (el) {
+        el.states = {
+          sidebar: 'chat',
+        };
+      }
+    }}
+  />
+</div>

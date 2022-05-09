@@ -17,7 +17,16 @@ async function initMeeting() {
 
 export const loadMeeting = async (id) => {
   const meeting = await initMeeting();
-  document.getElementById(id).meeting = meeting;
+  const el = document.getElementById(id);
+  if (el) el.meeting = meeting;
+};
+
+export const loadMeetingMultiple = async (className) => {
+  const meeting = await initMeeting();
+  const els = document.getElementsByClassName(className);
+  for (const el of els) {
+    el.meeting = meeting;
+  }
 };
 
 export const loadSelf = async (id) => {
@@ -26,4 +35,13 @@ export const loadSelf = async (id) => {
     node.peer = meeting.self;
     node.meeting = meeting;
   });
+};
+
+export const loadNotification = async (id) => {
+  const el = document.getElementById(id);
+  if (el)
+    el.notification = {
+      id: 'notif-1',
+      message: 'A notification message.',
+    };
 };

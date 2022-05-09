@@ -1,7 +1,3 @@
----
-sidebar_position: 6
----
-
 # Clock
 
 Meeting clock / timer
@@ -12,6 +8,6 @@ Meeting clock / timer
 
 import { loadMeeting } from '/src/utils/meeting';
 
-<div class="flex flex-row space-x-6 items-center" ref={() => loadMeeting('dyte-clock')}>
+<div class="ui-preview space-x-4" ref={() => loadMeeting('dyte-clock')}>
     <dyte-clock size="sm" id='dyte-clock' />
 </div>

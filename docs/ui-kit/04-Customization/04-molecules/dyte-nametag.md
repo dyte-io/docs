@@ -1,7 +1,3 @@
----
-sidebar_position: 6
----
-
 # Name Tag
 
 Participant name along with their audio status
@@ -12,6 +8,6 @@ Participant name along with their audio status
 
 import { loadSelf } from '/src/utils/meeting';
 
-<div class="flex flex-row space-x-6 items-center" ref={() => loadSelf('#dyte-name-tag')}>
+<div class="ui-preview space-x-6" ref={() => loadSelf('#dyte-name-tag')}>
     <dyte-name-tag size="sm" id='dyte-name-tag' />
 </div>
