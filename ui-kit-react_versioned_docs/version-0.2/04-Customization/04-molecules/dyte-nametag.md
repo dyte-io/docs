@@ -2,8 +2,8 @@
 
 Participant name along with their audio status
 
-```html
-<dyte-name-tag />
+```jsx
+<DyteNameTag />
 ```
 
 import { loadSelf } from '/src/utils/meeting';

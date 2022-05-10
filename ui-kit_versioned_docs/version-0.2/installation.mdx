@@ -24,11 +24,11 @@ import TabItem from '@theme/TabItem';
   groupId="android-language"
   defaultValue="basic"
   values={[
-    { label: 'Basic', value: 'basic', },
+    { label: 'CDN', value: 'cdn', },
     { label: 'NPM', value: 'npm', },
   ]
 }>
-<TabItem value="basic">
+<TabItem value="cdn">
 
 Put the below script tag in `<head>` of your page
 
@@ -36,7 +36,7 @@ Put the below script tag in `<head>` of your page
 <head>
     <script src="https://cdn.dyte.io/web-core.js" />
     <script type="module">
-      import { defineCustomElements } from 'https://cdn.dyte.in/ui-kit/loader/index.es2017.js';
+      import { defineCustomElements } from 'https://cdn.jsdelivr.net/npm/@dytesdk/ui-kit/loader/index.es2017.js';
       defineCustomElements();
     </script>
 </head>
@@ -48,7 +48,7 @@ Put the below script tag in `<head>` of your page
 Install the package from npm:
 
 ```bash
-npm install @dytesdk/ui-kit @dytesdk/core
+npm install @dytesdk/ui-kit @dytesdk/web-core
 ```
 
 And now you need to define the custom elements:
