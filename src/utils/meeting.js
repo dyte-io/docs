@@ -19,6 +19,7 @@ export const loadMeeting = async (id) => {
   const meeting = await initMeeting();
   const el = document.getElementById(id);
   if (el) el.meeting = meeting;
+  return meeting;
 };
 
 export const loadMeetingMultiple = async (className) => {
@@ -27,6 +28,7 @@ export const loadMeetingMultiple = async (className) => {
   for (const el of els) {
     el.meeting = meeting;
   }
+  return meeting;
 };
 
 export const loadSelf = async (id) => {
@@ -35,6 +37,7 @@ export const loadSelf = async (id) => {
     node.peer = meeting.self;
     node.meeting = meeting;
   });
+  return meeting;
 };
 
 export const loadNotification = async (id) => {
