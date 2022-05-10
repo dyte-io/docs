@@ -11,7 +11,7 @@ What that means is you can quickly get started by using just one component in si
 
 But you can also go down layers as your need for customization evolves.
 
-![Atomic Design Illustration](/atomic.png)
+![Atomic Design Illustration](/UIKit/Atomic.svg)
 
 ## Pages
 

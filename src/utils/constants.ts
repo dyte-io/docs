@@ -74,7 +74,7 @@ export const CONTEXTS = {
       name: 'Angular',
       icon: AngularIcon,
       disabled: true,
-    }
+    },
   ],
   'non-ui-sdks': [
     // {
