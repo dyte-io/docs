@@ -65,15 +65,16 @@ export const CONTEXTS = {
       icon: ReactIcon,
     },
     {
-      id: 'ui-kit-angular',
-      name: 'Angular',
-      icon: AngularIcon,
-    },
-    {
       id: 'ui-kit',
       name: 'Vanilla JS',
       icon: WebCoreIcon,
     },
+    {
+      id: 'ui-kit-angular',
+      name: 'Angular',
+      icon: AngularIcon,
+      disabled: true,
+    }
   ],
   'non-ui-sdks': [
     // {

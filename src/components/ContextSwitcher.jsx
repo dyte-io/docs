@@ -107,10 +107,14 @@ const ContextSwitcher = ({
                 {contexts.map((context) => (
                   <Listbox.Option
                     key={context.id}
+                    disabled={context.disabled}
                     className={({ active }) =>
                       clsx(
-                        'relative cursor-pointer select-none py-2 px-4',
-                        active && 'bg-background-200'
+                        'relative select-none py-2 px-4',
+                        active && 'bg-background-200',
+                        !context.disabled
+                          ? 'cursor-pointer'
+                          : 'bg-background-300'
                       )
                     }
                     value={context}
