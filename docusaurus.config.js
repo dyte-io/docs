@@ -57,7 +57,7 @@ module.exports = {
         },
         {
           label: 'Web SDKs',
-          to: '/ui-kit-react/quickstart',
+          to: '/react-ui-kit/quickstart',
         },
         {
           label: 'API Reference',
@@ -136,12 +136,12 @@ module.exports = {
     [
       '@docusaurus/plugin-content-docs',
       {
-        path: 'docs/ui-kit-react',
-        routeBasePath: 'ui-kit-react',
-        id: 'ui-kit-react',
-        sidebarPath: require.resolve('./sidebars/sidebars-ui-kit-react.js'),
+        path: 'docs/react-ui-kit',
+        routeBasePath: 'react-ui-kit',
+        id: 'react-ui-kit',
+        sidebarPath: require.resolve('./sidebars/sidebars-react-ui-kit.js'),
         onlyIncludeVersions: !isDev
-          ? require('./ui-kit-react_versions.json')
+          ? require('./react-ui-kit_versions.json')
           : undefined,
         ...pageOptions,
       },
@@ -162,12 +162,12 @@ module.exports = {
     [
       '@docusaurus/plugin-content-docs',
       {
-        path: 'docs/ui-kit-angular',
-        routeBasePath: 'ui-kit-angular',
-        id: 'ui-kit-angular',
-        sidebarPath: require.resolve('./sidebars/sidebars-ui-kit-angular.js'),
+        path: 'docs/angular-ui-kit',
+        routeBasePath: 'angular-ui-kit',
+        id: 'angular-ui-kit',
+        sidebarPath: require.resolve('./sidebars/sidebars-angular-ui-kit.js'),
         onlyIncludeVersions: !isDev
-          ? require('./ui-kit-angular_versions.json')
+          ? require('./angular-ui-kit_versions.json')
           : undefined,
         ...pageOptions,
       },

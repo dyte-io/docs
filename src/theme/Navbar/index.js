@@ -272,7 +272,7 @@ function Navbar() {
               <span className="pill pill-warning ml-2">OLD</span>
             </Link>
             <Link
-              to="/ui-kit-react/quickstart"
+              to="/react-ui-kit/quickstart"
               className={clsx(
                 'inline-flex items-center text-sm font-medium hover:no-underline',
                 page === 'web-sdks' ? 'text-primary-100' : 'text-text-100'

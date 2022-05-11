@@ -17,7 +17,7 @@ export const PREBUILT_SDKS = [
   'ios',
 ];
 
-export const UI_SDKS = ['ui-kit-react', 'ui-kit-angular', 'ui-kit'];
+export const UI_SDKS = ['react-ui-kit', 'angular-ui-kit', 'ui-kit'];
 
 export const NON_UI_SDKS = [
   // 'react-web-core',
@@ -60,7 +60,7 @@ export const CONTEXTS = {
   ],
   'ui-sdks': [
     {
-      id: 'ui-kit-react',
+      id: 'react-ui-kit',
       name: 'React',
       icon: ReactIcon,
     },
@@ -70,7 +70,7 @@ export const CONTEXTS = {
       icon: WebCoreIcon,
     },
     {
-      id: 'ui-kit-angular',
+      id: 'angular-ui-kit',
       name: 'Angular',
       icon: AngularIcon,
       disabled: true,
