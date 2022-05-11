@@ -20,8 +20,30 @@ import TabItem from '@theme/TabItem';
 }>
 <TabItem value="code">
 
+Put the dyte component in `component.html` file
+
 ```html
-<dyte-meeting></dyte-meeting>
+<dyte-meeting #myid></dyte-meeting>
+```
+
+Then in the `component.ts` or `component.js` file initialize the meeting
+
+```ts
+class AppComponent {
+  title = 'MyProject';
+  @ViewChild('myid') meetingComponent: DyteMeeting;
+  dyteMeeting: DyteClient;
+
+  async ngAfterViewInit() {
+    const meeting = await DyteClient.init({
+      roomName: '<room-name>',
+      authToken: '<auth-token>'
+    })
+    meeting.joinRoom();
+    this.dyteMeeting = meeting;
+    if (this.meetingComponent) this.meetingComponent.meeting = meeting;
+  }
+}
 ```
 
 </TabItem>
