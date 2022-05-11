@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # React (Hooks & Context)
 
-We provide the package `@dytesdk/web-core-react` which is a hooks wrapper on `@dytesdk/web-core`.
+We provide the package `@dytesdk/react-web-core` which is a hooks wrapper on `@dytesdk/web-core`.
 While the Quickstart example talks about the `useDyteClient` hook, here is a more complete example
 
 ## Context Provider
@@ -12,7 +12,7 @@ While the Quickstart example talks about the `useDyteClient` hook, here is a mor
 It is a simple context provider providing the meeting object to child components.
 
 ```jsx
-import { useDyteClient } from '@dytesdk/web-core-react';
+import { useDyteClient } from '@dytesdk/react-web-core';
 
 function App() {
   const { client, loadClient } = useDyteClient();
