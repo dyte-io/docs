@@ -1,0 +1,43 @@
+---
+sidebar_position: 1
+title: Installation
+---
+
+# Introduction
+
+- Built with Web Components
+- 0️⃣ Zero external dependencies
+- 🚀 Blazing fast. Uses browser provided ShadowDOM
+- 🤏 Small bundle size (<500KB) for the entire UI (less if you use individual components)
+- 🏳️ Works with React, Angular, Vue, Svelte and everything else
+- ShadowDOM provides style encapsulation, your css styles wouldn't affect our styles and vice versa
+
+# Installation
+
+Install the package from npm:
+
+```bash
+npm install @dytesdk/angular-ui-kit @dytesdk/ui-kit @dytesdk/web-core
+```
+
+And now you need to load the `DyteComponentsModule` into your app module.
+
+This would usually be the `app.module.ts` file:
+
+```ts
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { DyteComponentsModule } from '@dytesdk/angular-ui-kit';
+
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [BrowserModule, DyteComponentsModule],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+```
+
+Now you can use Dyte's UI Components in your components HTML files.

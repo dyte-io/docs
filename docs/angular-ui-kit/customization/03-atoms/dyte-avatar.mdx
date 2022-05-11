@@ -1,0 +1,23 @@
+---
+sidebar_position: 1
+---
+
+# Avatar
+
+Avatar component is used inside peer view and participant views which displays user picture or user intitials.
+
+You can pass a `participant` object to it to render it properly with a participants data.
+
+```html
+<dyte-avatar></dyte-avatar>
+```
+
+import { loadSelf } from '/src/utils/meeting';
+
+Sizes `'sm' | 'md' | 'lg'`
+
+<div ref={() => loadSelf('.peerview')} class="ui-preview space-x-6">
+    <dyte-avatar class="peerview" size="sm" />
+    <dyte-avatar class="peerview" size="md" />
+    <dyte-avatar class="peerview" size="lg" />
+</div>
