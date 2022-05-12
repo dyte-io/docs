@@ -15,10 +15,10 @@ It is a simple context provider providing the meeting object to child components
 import { useDyteClient } from '@dytesdk/react-web-core';
 
 function App() {
-  const { client, loadClient } = useDyteClient();
+  const [ client, initClient ] = useDyteClient();
 
   useEffect(() => {
-    loadClient({
+    initClient({
       roomName: '<room-name>',
       authToken: '<auth-token>',
       defaults: {
@@ -42,11 +42,17 @@ And to consume it
 import { useDyteSelector, useDyteMeeting } from '@dytesdk/';
 
 function Meeting() {
-  const meeting = useDyteMeeting();
+  const { meeting } = useDyteMeeting();
 
   const joinedParticipants = useDyteSelector((m) => m.participants.joined);
 
-  if (!meeting) return null;
+  /*
+    use joinRoom() method or the setup screen component
+    to actually enter the meeting
+  */
+  useEffect(() => {
+    meeting.joinRoom();
+  }, [meeting]);
 
   /// display joined participnats
 
@@ -62,3 +68,26 @@ You can use the hook to subscribe for updates on any of the web-core objects.
 This hook will re-render when the selected data changes.
 
 Refer to core [documentation for reference](../../web-core/Reference/DyteClient)
+
+### Example
+
+```jsx
+import React from 'react';
+import { useDyteMeeting, useDyteSelector } from '@dytesdk/react-web-core';
+import { DyteGrid, DyteSetupScreen } from '@dytesdk/react-ui-kit';
+
+function Meeting() {
+    const { meeting } = useDyteMeeting();
+    const joined = useDyteSelector((m) => m.meta.joined);
+    return (
+        <div style={{ height: '100vh', width: '100vw' }}>
+            {!joined ? <DyteSetupScreen meeting={meeting} /> :
+                <DyteGrid meeting={meeting} />}
+        </div>
+    );
+}
+
+export default Meeting;
+```
+
+

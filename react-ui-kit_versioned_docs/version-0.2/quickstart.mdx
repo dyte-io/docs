@@ -22,10 +22,10 @@ import TabItem from '@theme/TabItem';
 
 ```jsx
 function App() {
-  const { client, loadClient } = useDyteClient();
+  const [client, initClient ] = useDyteClient();
 
   useEffect(() => {
-    loadClient({
+    initClient({
         authToken: '<auth-token>',
         roomName: '<room-name>',
         defaults: {
