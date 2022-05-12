@@ -272,6 +272,26 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/GetParticipantDetails'
+  '/meetings/{meetingId}/sessions':
+    get:
+      summary: Get all sessions of a meeting
+      description: Returns list of all sessions of a meeting. Supports pagination, sorting and searching
+      operationId: GetMeetingSessions
+      tags:
+        - Sessions
+      parameters:
+        - $ref: '#/components/parameters/pageNo'
+        - $ref: '#/components/parameters/perPage'
+        - $ref: '#/components/parameters/search'
+        - $ref: '#/components/parameters/sortOrder'
+        - $ref: '#/components/parameters/startTime'
+        - $ref: '#/components/parameters/endTime'
+        - $ref: '#/components/parameters/participants'
+        - $ref: '#/components/parameters/status'
+      responses:
+        '200':
+          $ref: "#/components/responses/GetSessions"
+      
 components:
   schemas:
     ActiveSession:
