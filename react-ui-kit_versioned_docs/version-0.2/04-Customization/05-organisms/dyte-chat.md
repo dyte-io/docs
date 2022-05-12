@@ -9,7 +9,7 @@ An elegant chat UI for meetings.
 import { loadMeeting } from '/src/utils/meeting';
 
 ```jsx
-<DyteChat />
+<DyteChat meeting={meeting} />
 ```
 
 Try by sending a few messages.

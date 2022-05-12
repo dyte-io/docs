@@ -14,9 +14,9 @@ List of toggle buttons:
 - dyte-settings-toggle
 
 ```jsx
-<DyteMicToggle />
-<DyteCameraToggle />
-<DyteChatToggle />
+<DyteMicToggle meeting={meeting} />
+<DyteCameraToggle meeting={meeting} />
+<DyteChatToggle meeting={meeting} />
 ```
 
 <div ref={() => loadMeetingMultiple('ui-kit-el')}></div>

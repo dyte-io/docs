@@ -3,7 +3,7 @@
 Participant controls
 
 ```jsx
-<DytePagination />
+<DytePagination meeting={meeting} />
 ```
 
 import { loadMeeting } from '/src/utils/meeting';

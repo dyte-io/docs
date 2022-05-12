@@ -6,10 +6,17 @@ sidebar_position: 2
 
 Audio Visualizer component is used inside peer view and participant views which displays user's audio level.
 
-You can pass a `participant` object to it to render it properly with a participants data.
+You can pass a `participant` object (or self `meeting.self`) to it to render it properly with a participants data.
+
 
 ```jsx
-<DyteAudioVisualizer />
+<DyteAudioVisualizer peer={meeting.self} />
+```
+
+or 
+
+```jsx
+<DyteAudioVisualizer peer={meeting.participants.joined[0]} />
 ```
 
 import { loadSelf } from '/src/utils/meeting';

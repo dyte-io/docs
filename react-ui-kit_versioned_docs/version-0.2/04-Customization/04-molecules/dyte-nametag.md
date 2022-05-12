@@ -2,8 +2,16 @@
 
 Participant name along with their audio status
 
+You can pass a `meeting.self` DyteSelf object
+
 ```jsx
-<DyteNameTag />
+<DyteNameTag peer={meeting.self} />
+```
+
+or `DyteParticipant` object
+
+```jsx
+<DyteNameTag peer={meeting.participants.joined[0]} />
 ```
 
 import { loadSelf } from '/src/utils/meeting';
