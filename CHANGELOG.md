@@ -1,3 +1,10 @@
+## [1.10.3](https://github.com/dyte-in/docs/compare/v1.10.2...v1.10.3) (2022-05-13)
+
+
+### Bug Fixes
+
+* virtual background docs ([2762f69](https://github.com/dyte-in/docs/commit/2762f6946aba282c1de2df9cfbaf9f94f49333e7))
+
 ## [1.10.2](https://github.com/dyte-in/docs/compare/v1.10.1...v1.10.2) (2022-05-07)
 
 
