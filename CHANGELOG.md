@@ -1,3 +1,10 @@
+## [1.10.4](https://github.com/dyte-in/docs/compare/v1.10.3...v1.10.4) (2022-05-27)
+
+
+### Bug Fixes
+
+* **api/v1:** document validation error backend response code as 422 according to changes in backend ([b5162c3](https://github.com/dyte-in/docs/commit/b5162c3cd59f2c30d88b35fefba553e7088b1bd8))
+
 ## [1.10.3](https://github.com/dyte-in/docs/compare/v1.10.2...v1.10.3) (2022-05-13)
 
 
