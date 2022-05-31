@@ -24,6 +24,8 @@ export const NON_UI_SDKS = [
   'web-core',
 ];
 
+export const NEW_MOBILE_SDKS = ['react-native-core'];
+
 export const CONTEXTS = {
   home: [],
   prebuilt: [
@@ -86,6 +88,19 @@ export const CONTEXTS = {
       name: 'Javascript',
       disabled: true,
       icon: WebCoreIcon,
+    },
+  ],
+  'new-mobile-sdks': [
+    // {
+    //   id: 'react-web-core',
+    //   name: 'React',
+    //   icon: ReactIcon,
+    // },
+    {
+      id: 'react-native-core',
+      name: 'React Native',
+      disabled: true,
+      icon: ReactIcon,
     },
   ],
   'web-sdks': [

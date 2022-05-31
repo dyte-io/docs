@@ -1,0 +1,49 @@
+---
+sidebar_position: 2
+title: Events
+description: Local user events guide.
+slug: /local-user/events
+tags: [web-core, local-user, self, self events]
+---
+
+
+# Local User - Events
+
+You can subscribe to data changes on the `useDyteSelector` hook
+
+### Video update
+
+Triggered when the user starts / stops the video using `enableVideo` or `disableVideo`
+
+```js
+const videoEnabled = useDyteSelector((m) => m.self.videoEnabled);
+```
+
+### Audio update
+
+Triggered when the user starts / stops the audio using `enableAudio` or `disableAudio`
+
+```js
+const videoEnabled = useDyteSelector((m) => m.self.audioEnabled);
+```
+
+<!-- ### Device change
+
+Subscribe to the `deviceChange` event to handle the changing video, audio and speaker devices
+
+```js
+meeting.self.on('deviceChange', ({ device, preview }) => {
+  // handle microphone change
+  if (device.kind === 'audioinput') {
+    console.log('mic change', device);
+  }
+  // handle camera change
+  if (device.kind === 'videoinput') {
+    console.log('camera change', device);
+  }
+  // handle speaker change
+  if (device.kind === 'audiooutput') {
+    console.log('speaker change', device);
+  }
+});
+``` -->

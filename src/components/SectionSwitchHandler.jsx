@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react';
 import ContextSwitcher from './ContextSwitcher';
 import VersionDropdown from '@theme/NavbarItem/DocsVersionDropdownNavbarItem';
 import { getDocId } from '../utils/doc';
-import { NON_UI_SDKS, PREBUILT_SDKS, UI_SDKS } from '../utils/constants';
+import {
+  NON_UI_SDKS,
+  PREBUILT_SDKS,
+  UI_SDKS,
+  NEW_MOBILE_SDKS,
+} from '../utils/constants';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
@@ -18,6 +23,8 @@ const SectionSwitchHandler = (props) => {
       setSection('ui-sdks');
     } else if (NON_UI_SDKS.includes(docId)) {
       setSection('non-ui-sdks');
+    } else if (NEW_MOBILE_SDKS.includes(docId)) {
+      setSection('new-mobile-sdks');
     }
   }, [docId]);
 
@@ -48,6 +55,21 @@ const SectionSwitchHandler = (props) => {
       <div className="px-4">
         <div className="my-4 flex items-center justify-end">
           <ContextSwitcher className="flex-[3]" section="prebuilt" />
+          <VersionDropdown
+            dropdownItemsBefore={[]}
+            dropdownItemsAfter={[]}
+            docsPluginId={docId}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  if (section === 'new-mobile-sdks') {
+    return (
+      <div className="px-4">
+        <div className="my-4 flex items-center justify-end">
+          <ContextSwitcher className="flex-[3]" section="new-mobile-sdks" />
           <VersionDropdown
             dropdownItemsBefore={[]}
             dropdownItemsAfter={[]}

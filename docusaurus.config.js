@@ -32,13 +32,6 @@ module.exports = {
       defaultMode: 'dark',
       disableSwitch: true,
     },
-    announcementBar: {
-      id: 'new_sdks_coming_soon',
-      content: 'Coming Soon: Next generation SDKs for web and mobile',
-      backgroundColor: '#2160FD',
-      textColor: '#fff',
-      isCloseable: true,
-    },
     navbar: {
       hideOnScroll: true,
       logo: {
@@ -57,7 +50,11 @@ module.exports = {
         },
         {
           label: 'Web SDKs',
-          to: '/react-ui-kit/quickstart',
+          to: '/react-ui-kit/installation',
+        },
+        {
+          label: 'Mobile SDKs',
+          to: '/react-native-core/installation',
         },
         {
           label: 'API Reference',
@@ -276,5 +273,18 @@ module.exports = {
         ...pageOptions,
       },
     ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        path: 'docs/react-native-core',
+        routeBasePath: 'react-native-core',
+        id: 'react-native-core',
+        sidebarPath: require.resolve('./sidebars/sidebars-react-native-core.js'),
+        onlyIncludeVersions: !isDev
+          ? require('./react-native-core_versions.json')
+          : undefined,
+        ...pageOptions,
+      },
+    ]
   ],
 };

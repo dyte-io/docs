@@ -272,13 +272,23 @@ function Navbar() {
               <span className="pill pill-warning ml-2">OLD</span>
             </Link>
             <Link
-              to="/react-ui-kit/quickstart"
+              to="/react-ui-kit/installation"
               className={clsx(
                 'inline-flex items-center text-sm font-medium hover:no-underline',
                 page === 'web-sdks' ? 'text-primary-100' : 'text-text-100'
               )}
             >
               Web SDKs
+              <span className="pill ml-2">NEW</span>
+            </Link>
+            <Link
+              to="/react-native-core/installation"
+              className={clsx(
+                'inline-flex items-center text-sm font-medium hover:no-underline',
+                page === 'web-sdks' ? 'text-primary-100' : 'text-text-100'
+              )}
+            >
+              Mobile SDKs
               <span className="pill ml-2">NEW</span>
             </Link>
             <a
@@ -299,25 +309,22 @@ function Navbar() {
             >
               Guides
             </Link>
-
-            <Link
-              className="flex items-center text-sm font-medium text-text-100 hover:no-underline"
-              href="https://github.com/dyte-in"
-            >
-              <Github className="mr-1 h-5" aria-hidden={true} />
-              GitHub
-            </Link>
-            <Link
-              className="flex items-center text-sm font-medium text-text-100 hover:no-underline"
-              href="https://community.dyte.io"
-            >
-              <DiscordIcon className="mr-1 h-4" />
-              Community
-            </Link>
           </div>
         </div>
 
         <div className="flex flex-1 items-center justify-end">
+          <Link
+              className="flex items-center text-sm font-medium text-text-100 hover:no-underline"
+              href="https://github.com/dyte-in"
+            >
+              <Github className="mr-2 h-7" aria-hidden={true} />
+           </Link>
+           <Link
+              className="flex items-center text-sm font-medium text-text-100 hover:no-underline"
+              href="https://community.dyte.io"
+            >
+              <DiscordIcon className="mr-2 h-6" />
+           </Link>
           <SearchBar />
 
           <div className="hidden items-center lg:flex">

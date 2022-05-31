@@ -84,7 +84,7 @@ const ContextSwitcher = ({
             alt={context.name}
           />
           <span className="lv0_link block truncate text-text">
-            {mobile ? context.name : `${context.name.substring(0, 11)}`}
+            {mobile ? context.name : `${context.name.substring(0, 12)}`}
           </span>
           {!disabled && (
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
