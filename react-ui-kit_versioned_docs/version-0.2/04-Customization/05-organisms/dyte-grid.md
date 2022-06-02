@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Peers Grid
+# Participant Grid
 
 Renders a grid of all participants in a meeting in the current page.
 

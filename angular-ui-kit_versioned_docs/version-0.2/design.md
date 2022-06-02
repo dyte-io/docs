@@ -8,16 +8,32 @@ sidebar_position: 3
 - Easy to work with
 - Clean & focused
 
+
 ## 🌈 Tokens
 Set’s the foundations of the interface. These changes are reflected throughout the User Interface
 
-- 🎨 [Color](/ui-kit/design#-color)
-- 📝 [Typography](/ui-kit/design#-typography)
-- 〰️ [Border](/ui-kit/design#%EF%B8%8F-border)
-- 🔔 [Icon Pack](/ui-kit/design#-icon-pack)
+Use `provideDyteDesignSystem` to change these design tokens
 
-### 🎨 Color
+```jsx
+import { provideDyteDesignSystem } from '@dytesdk/ui-kit';
 
+provideDyteDesignSystem(document.body, { tokens })
+```
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="color"
+  values={[
+    {label: '🎨 Color', value: 'color'},
+    {label: '📝 Typography', value: 'typography'},
+    {label: '〰️ Border', value: 'border'},
+    {label: '🔔 Icon Pack', value: 'icon'},
+  ]}>
+  <TabItem value="color">
+<br />
 Dyte uses a shade based palette to achieve clean interfaces and customizable brand experiences. Please find the color options below.
 
 We have the following segments of colors:
@@ -27,31 +43,33 @@ We have the following segments of colors:
 - Status Colors (danger, success, warning)
 - Video Background
 
-```js
-UIColors {
-  brand: {
-    300?: string;
-    400?: string;
-    500?: string;
-    600?: string;
-    700?: string;
-  };
-  background: {
-    1000?: string;
-    900?: string;
-    800?: string;
-    700?: string;
-    600?: string;
-  };
-  text: string;
-  'video-bg': string;
-  danger: string;
-  success: string;
-  warning: string;
-}
+```jsx
+provideDyteDesignSystem(document.body, {
+  colors: {
+      brand: {
+          300: '#00FFE1',
+          400: '#00FFFF',
+          500: '#00E1D4',
+          600: '#007B74',
+          700: '#00655F'
+      },
+      background:{
+          1000: '#FFFFFF',
+          900: '#E6E6E6',
+          800: '#DADADD',
+          700: '#CDCDD0',
+          600: '#C0C0C1'
+      },
+      text: '#071428',
+      "video-bg": "#E5E7EB"
+  }
+});
 ```
+  
+  </TabItem>
+  <TabItem value="typography">
 
-### 📝 Typography
+<br />
 
 `fontFamily` and `googleFont`
 
@@ -61,8 +79,9 @@ A Google Font - which will be loaded automatically for you
 
 A custom font family - which you will need to load on your own.
 
-### 〰️ Border 
-
+</TabItem>
+<TabItem value="border">
+  
 We provide a set of tokens for border radius as well as border widths.
 
 These are:
@@ -72,7 +91,14 @@ Border Widths: `none` | `thin` | `fat`
 Border Radius: `sharp` | `rounded` | `extra-rounded` | `circular`
 
 
-### 🔔 Icon Pack
+</TabItem>
+<TabItem value="icon">
+
+:::info Coming Soon
+
+This is currently unavailable
+
+:::
 
 Users can switch between the following sets or add a custom icon set of their own. 
 
@@ -91,4 +117,7 @@ Users can switch between the following sets or add a custom icon set of their ow
     - Thin
 - Boxicon
     - Regular
-    - Solid
+    - Solid  
+  
+</TabItem>
+</Tabs>

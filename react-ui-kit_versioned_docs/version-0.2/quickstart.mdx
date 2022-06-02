@@ -21,6 +21,9 @@ import TabItem from '@theme/TabItem';
 <TabItem value="code">
 
 ```jsx
+import { useDyteClient } from '@dytesdk/react-web-core';
+import { DyteMeeting } from '@dytesdk/react-ui-kit';
+
 function App() {
   const [client, initClient ] = useDyteClient();
 
@@ -28,16 +31,28 @@ function App() {
     initClient({
         authToken: '<auth-token>',
         roomName: '<room-name>',
-        defaults: {
-          audio: true,
-          video: true,
-        },
       });
   },[])
 
   return (<DyteMeeting meeting={client} />);
 }
 ```
+
+This will render our user interface **covering the entire width and height of the page** .
+
+If you want it to only fill the parent dimensions use `mode="fill"`
+
+```jsx
+<div style={{height:'50vh', width: '50vw'}}>
+  <DyteMeeting meeting={client} mode="fill" />
+</div>
+```
+
+:::caution Height
+
+It is important for the parent component to have well defined height when using `mode="fill"`
+
+:::
 
 </TabItem>
 <TabItem value="preview">

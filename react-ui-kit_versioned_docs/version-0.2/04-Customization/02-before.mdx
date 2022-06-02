@@ -1,0 +1,33 @@
+---
+sidebar_position: 2
+---
+
+# Before You Start
+
+Couple of components that are important for the proper functioning of the meeting
+
+### 1. DyteParticipantAudio
+
+:::danger Audio
+
+The user will not hear audio without this component
+
+:::
+
+```jsx
+<DyteParticipantAudio meeting={meeting} />
+```
+
+This component takes care of the audio playback and autoplay issues
+
+### 2. DyteNotifications
+
+:::danger Notifications
+
+The user will not be notified of important events such as network disconnection, poor network without this component
+
+:::
+
+```jsx
+<DyteNotifications meeting={meeting} />
+```
