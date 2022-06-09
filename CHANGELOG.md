@@ -1,3 +1,11 @@
+## [1.12.1](https://github.com/dyte-in/docs/compare/v1.12.0...v1.12.1) (2022-06-09)
+
+
+### Bug Fixes
+
+* created versioned docs for 0.24.x ([f39e447](https://github.com/dyte-in/docs/commit/f39e4474ff76e5086bca2f422f18e51497317ab1))
+* **web-core:** update web-core api reference ([5766ac5](https://github.com/dyte-in/docs/commit/5766ac5413e845c14b8bd0bc0e1c4019ebddc157))
+
 # [1.12.0](https://github.com/dyte-in/docs/compare/v1.11.0...v1.12.0) (2022-06-09)
 
 
