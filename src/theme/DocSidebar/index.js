@@ -51,6 +51,32 @@ function HideableSidebarButton({ onClick }) {
   );
 }
 
+const getDocId = () => {
+  const [, doc] = window.location.pathname.split('/');
+  if (['docs', '', 'guides', 'cli'].includes(doc)) return 'default';
+  return doc;
+};
+
+const DocManager = () => {
+  const docId = getDocId();
+
+  if (docId === 'default') {
+    // don't show docs for `/docs` or `/`
+    return null;
+  }
+
+  return (
+    <div className="my-4 flex items-center justify-end px-4">
+      <ContextSwitcher className="flex-[3]" />
+      <VersionDropdown
+        dropdownItemsBefore={[]}
+        dropdownItemsAfter={[]}
+        docsPluginId={docId}
+      />
+    </div>
+  );
+};
+
 function DocSidebarDesktop({ path, sidebar, onCollapse, isHidden }) {
   const showAnnouncementBar = useShowAnnouncementBar();
   const {

@@ -1,3 +1,52 @@
+## [1.10.4](https://github.com/dyte-in/docs/compare/v1.10.3...v1.10.4) (2022-05-27)
+
+
+### Bug Fixes
+
+* **api/v1:** document validation error backend response code as 422 according to changes in backend ([b5162c3](https://github.com/dyte-in/docs/commit/b5162c3cd59f2c30d88b35fefba553e7088b1bd8))
+
+## [1.10.3](https://github.com/dyte-in/docs/compare/v1.10.2...v1.10.3) (2022-05-13)
+
+
+### Bug Fixes
+
+* virtual background docs ([2762f69](https://github.com/dyte-in/docs/commit/2762f6946aba282c1de2df9cfbaf9f94f49333e7))
+
+## [1.10.2](https://github.com/dyte-in/docs/compare/v1.10.1...v1.10.2) (2022-05-07)
+
+
+### Bug Fixes
+
+* **livestreaming:** clarify that livestreaming only works for h.264 codec ([d8df6a3](https://github.com/dyte-in/docs/commit/d8df6a3637310062a14fa45eb7115d0c9f67a1e4))
+
+## [1.10.1](https://github.com/dyte-in/docs/compare/v1.10.0...v1.10.1) (2022-05-04)
+
+
+### Bug Fixes
+
+* **cli:** fix installation instructions for yarn ([#44](https://github.com/dyte-in/docs/issues/44)) ([de0c22a](https://github.com/dyte-in/docs/commit/de0c22a41d924fcbc2f852a31b0488d39674ba25))
+
+# [1.10.0](https://github.com/dyte-in/docs/compare/v1.9.0...v1.10.0) (2022-05-04)
+
+
+### Features
+
+* **cli:** add a CLI section to the docs ([#43](https://github.com/dyte-in/docs/issues/43)) ([f261d9e](https://github.com/dyte-in/docs/commit/f261d9e5d6d484fa4bf005cae7d490d12bb40677))
+
+# [1.9.0](https://github.com/dyte-in/docs/compare/v1.8.0...v1.9.0) (2022-05-04)
+
+
+### Features
+
+* **cli:** add a CLI section to the docs ([#42](https://github.com/dyte-in/docs/issues/42)) ([e1a9b50](https://github.com/dyte-in/docs/commit/e1a9b506a26794c1a21867d3067f8505de03344a))
+
+# [1.8.0](https://github.com/dyte-in/docs/compare/v1.7.1...v1.8.0) (2022-05-01)
+
+
+### Features
+
+* **meetings:** add recordOnStart to create meeting route ([ae41208](https://github.com/dyte-in/docs/commit/ae412081a35d04d5ff88abc044231bd8238e7317))
+
 ## [1.7.1](https://github.com/dyte-in/docs/compare/v1.7.0...v1.7.1) (2022-04-07)
 
 

@@ -71,6 +71,44 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Dyte CLI',
+      collapsed: true,
+      collapsible: true,
+      items: [
+        {
+          type: 'link',
+          label: 'Installation',
+          href: '/cli/installation'
+        },
+        {
+          type: 'link',
+          label: 'Getting started',
+          href: '/cli/getting-started'
+        },
+        {
+          type: 'link',
+          label: 'Creating meetings',
+          href: '/cli/meetings'
+        },
+        {
+          type: 'link',
+          label: 'Recording a meeting',
+          href: '/cli/recording'
+        },
+        {
+          type: 'link',
+          label: 'Publishing plugins',
+          href: '/cli/plugins'
+        },
+        {
+          type: 'link',
+          label: 'Creating webhooks',
+          href: '/cli/webhooks'
+        },
+      ]
+    },
+    {
+      type: 'category',
       label: 'Product Integration Guides',
       items: [
         {

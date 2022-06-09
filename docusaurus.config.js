@@ -285,6 +285,16 @@ module.exports = {
           : undefined,
         ...pageOptions,
       },
-    ]
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        path: 'docs/cli',
+        routeBasePath: 'cli',
+        id: 'cli',
+        sidebarPath: require.resolve('./sidebars/sidebars-cli.js'),
+        sidebarCollapsible: false,
+      },
+    ],
   ],
 };
