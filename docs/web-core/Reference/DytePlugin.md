@@ -1,6 +1,6 @@
 ---
 sidebar_position: 12
-web_core_version: 0.18.2
+web_core_version: 0.24.0
 ---
 
 <!-- Auto Generated Below -->
@@ -18,6 +18,7 @@ const plugin2 = meeting.plugins.all.get(pluginId);
 
 * [DytePlugin](#module_DytePlugin)
     * [.sendIframeEvent(message)](#module_DytePlugin+sendIframeEvent)
+    * [.sendData(data)](#module_DytePlugin+sendData)
     * [.removePluginView(viewId)](#module_DytePlugin+removePluginView)
     * [.addPluginView(iframe, viewId)](#module_DytePlugin+addPluginView)
     * [.enable()](#module_DytePlugin+enable)
@@ -33,6 +34,17 @@ const plugin2 = meeting.plugins.all.get(pluginId);
 | Param | Description |
 | --- | --- |
 | message | Socket message forwarded to this plugin. |
+
+<a name="module_DytePlugin+sendData"></a>
+
+### plugin.sendData(data)
+This method is used to send arbitrary data to the plugin.
+
+**Kind**: instance method of [<code>DytePlugin</code>](#module_DytePlugin)  
+
+| Param | Description |
+| --- | --- |
+| data | The data that you want to send inside the plugin. |
 
 <a name="module_DytePlugin+removePluginView"></a>
 

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 10
-web_core_version: 0.18.2
+web_core_version: 0.24.0
 ---
 
 <!-- Auto Generated Below -->

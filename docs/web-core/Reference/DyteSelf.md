@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-web_core_version: 0.18.2
+web_core_version: 0.24.0
 ---
 
 <!-- Auto Generated Below -->
@@ -14,7 +14,9 @@ this module.
 
 * [DyteSelf](#module_DyteSelf)
     * [.audioTrack](#module_DyteSelf+audioTrack)
+    * [.rawAudioTrack](#module_DyteSelf+rawAudioTrack)
     * [.videoTrack](#module_DyteSelf+videoTrack)
+    * [.rawVideoTrack](#module_DyteSelf+rawVideoTrack)
     * [.screenShareTracks](#module_DyteSelf+screenShareTracks)
     * [.audioEnabled](#module_DyteSelf+audioEnabled)
     * [.videoEnabled](#module_DyteSelf+videoEnabled)
@@ -23,6 +25,10 @@ this module.
     * [.permissions](#module_DyteSelf+permissions)
     * [.suggestedTheme](#module_DyteSelf+suggestedTheme)
     * [.roomJoined](#module_DyteSelf+roomJoined)
+    * [.addAudioMiddleware()](#module_DyteSelf+addAudioMiddleware)
+    * [.removeAudioMiddleware()](#module_DyteSelf+removeAudioMiddleware)
+    * [.addVideoMiddleware()](#module_DyteSelf+addVideoMiddleware)
+    * [.removeVideoMiddleware()](#module_DyteSelf+removeVideoMiddleware)
     * [.setName(name)](#module_DyteSelf+setName)
     * [.setupTracks(options)](#module_DyteSelf+setupTracks)
     * [.enableAudio()](#module_DyteSelf+enableAudio)
@@ -39,6 +45,9 @@ this module.
     * [.getSpeakerDevices()](#module_DyteSelf+getSpeakerDevices)
     * [.getDeviceById(deviceId, kind)](#module_DyteSelf+getDeviceById)
     * [.getAllDevices()](#module_DyteSelf+getAllDevices)
+    * [.pinned()](#module_DyteSelf+pinned)
+    * [.pin()](#module_DyteSelf+pin)
+    * [.unpin()](#module_DyteSelf+unpin)
     * [.setDevice(device, preview)](#module_DyteSelf+setDevice)
 
 <a name="module_DyteSelf+audioTrack"></a>
@@ -47,10 +56,22 @@ this module.
 Returns the `audioTrack`.
 
 **Kind**: instance property of [<code>DyteSelf</code>](#module_DyteSelf)  
+<a name="module_DyteSelf+rawAudioTrack"></a>
+
+### meeting.self.rawAudioTrack
+Returns the `rawAudioTrack` having no middleware executed on it.
+
+**Kind**: instance property of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+videoTrack"></a>
 
 ### meeting.self.videoTrack
 Returns the `videoTrack`.
+
+**Kind**: instance property of [<code>DyteSelf</code>](#module_DyteSelf)  
+<a name="module_DyteSelf+rawVideoTrack"></a>
+
+### meeting.self.rawVideoTrack
+Returns the `videoTrack` having no middleware executed on it.
 
 **Kind**: instance property of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+screenShareTracks"></a>
@@ -105,6 +126,36 @@ Returns suggested theme for the meeting.
 Returns true if the local participant has joined the meeting.
 
 **Kind**: instance property of [<code>DyteSelf</code>](#module_DyteSelf)  
+<a name="module_DyteSelf+addAudioMiddleware"></a>
+
+### meeting.self.addAudioMiddleware()
+Adds the audio middleware to be executed on the raw audio stream.
+If there are more than 1 audio middlewares,
+they will be executed in the sequence they were added in.
+If you want the sequence to be altered, please remove all previous middlewares and re-add.
+
+**Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
+<a name="module_DyteSelf+removeAudioMiddleware"></a>
+
+### meeting.self.removeAudioMiddleware()
+Removes the audio middleware, if it is there.
+
+**Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
+<a name="module_DyteSelf+addVideoMiddleware"></a>
+
+### meeting.self.addVideoMiddleware()
+Adds the video middleware to be executed on the raw video stream.
+If there are more than 1 video middlewares,
+they will be executed in the sequence they were added in.
+If you want the sequence to be altered, please remove all previous middlewares and re-add.
+
+**Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
+<a name="module_DyteSelf+removeVideoMiddleware"></a>
+
+### meeting.self.removeVideoMiddleware()
+Removes the video middleware, if it is there.
+
+**Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+setName"></a>
 
 ### meeting.self.setName(name)
@@ -230,6 +281,24 @@ Returns the local participant's device, indexed by ID and kind.
 
 ### meeting.self.getAllDevices()
 Returns all media devices accessible by the local participant.
+
+**Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
+<a name="module_DyteSelf+pinned"></a>
+
+### meeting.self.pinned()
+**Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
+<a name="module_DyteSelf+pin"></a>
+
+### meeting.self.pin()
+Returns `self.id` if user has permission
+to pin participants.
+
+**Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
+<a name="module_DyteSelf+unpin"></a>
+
+### meeting.self.unpin()
+Returns `self.id` if user has permission
+to unpin participants.
 
 **Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+setDevice"></a>
