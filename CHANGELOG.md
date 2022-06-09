@@ -1,3 +1,10 @@
+## [1.12.2](https://github.com/dyte-in/docs/compare/v1.12.1...v1.12.2) (2022-06-09)
+
+
+### Bug Fixes
+
+* update reference for react-native-core and react-web-core ([3316430](https://github.com/dyte-in/docs/commit/331643034d7935c838f66ca062e82bcd1e701ce5))
+
 ## [1.12.1](https://github.com/dyte-in/docs/compare/v1.12.0...v1.12.1) (2022-06-09)
 
 
