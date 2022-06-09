@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/dyte-in/docs/compare/v1.10.4...v1.11.0) (2022-06-09)
+
+
+### Features
+
+* new SDK docs ([#50](https://github.com/dyte-in/docs/issues/50)) ([1aeacd8](https://github.com/dyte-in/docs/commit/1aeacd8536a1a16a1602dbbc0572c4a5b42ebf4e))
+
 ## [1.10.4](https://github.com/dyte-in/docs/compare/v1.10.3...v1.10.4) (2022-05-27)
 
 
