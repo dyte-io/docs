@@ -35,6 +35,8 @@ import { Github } from '@styled-icons/boxicons-logos';
 import { DiscordIcon } from '../../assets/icons';
 import ThemeSwitcher from '@site/src/components/ThemeSwitcher';
 import SearchBar from '@theme/SearchBar';
+import { NON_UI_SDKS, PREBUILT_SDKS, UI_SDKS } from '../../utils/constants';
+import Quickstart from '../../components/Quickstart';
 
 function useNavbarItems() {
   // TODO temporary casting until ThemeConfig type is improved
@@ -221,17 +223,10 @@ const getPage = () => {
     case 'guides':
       return 'guides';
     default:
-      if (
-        [
-          'react',
-          'react-native',
-          'flutter',
-          'javascript',
-          'android',
-          'ios',
-        ].includes(doc)
-      ) {
-        return 'sdk';
+      if (PREBUILT_SDKS.includes(doc)) {
+        return 'prebuilt-sdks';
+      } else if (UI_SDKS.concat(NON_UI_SDKS).includes(doc)) {
+        return 'web-sdks';
       }
       return null;
   }
@@ -269,11 +264,32 @@ function Navbar() {
             <Link
               to="/react/quickstart"
               className={clsx(
-                'text-sm font-medium hover:no-underline',
-                page === 'sdk' ? 'text-primary-100' : 'text-text-100'
+                'inline-flex items-center text-sm font-medium hover:no-underline',
+                page === 'prebuilt-sdks' ? 'text-primary-100' : 'text-text-100'
               )}
             >
-              Client SDK
+              Prebuilt SDKs
+              <span className="pill pill-warning ml-2">OLD</span>
+            </Link>
+            <Link
+              to="/react-ui-kit/installation"
+              className={clsx(
+                'inline-flex items-center text-sm font-medium hover:no-underline',
+                page === 'web-sdks' ? 'text-primary-100' : 'text-text-100'
+              )}
+            >
+              Web SDKs
+              <span className="pill ml-2">NEW</span>
+            </Link>
+            <Link
+              to="/react-native-core/installation"
+              className={clsx(
+                'inline-flex items-center text-sm font-medium hover:no-underline',
+                page === 'web-sdks' ? 'text-primary-100' : 'text-text-100'
+              )}
+            >
+              Mobile SDKs
+              <span className="pill ml-2">NEW</span>
             </Link>
             <a
               href="/api/"
@@ -293,25 +309,22 @@ function Navbar() {
             >
               Guides
             </Link>
-
-            <Link
-              className="flex items-center text-sm font-medium text-text-100 hover:no-underline"
-              href="https://github.com/dyte-in"
-            >
-              <Github className="mr-1 h-5" aria-hidden={true} />
-              GitHub
-            </Link>
-            <Link
-              className="flex items-center text-sm font-medium text-text-100 hover:no-underline"
-              href="https://community.dyte.io"
-            >
-              <DiscordIcon className="mr-1 h-4" />
-              Community
-            </Link>
           </div>
         </div>
 
         <div className="flex flex-1 items-center justify-end">
+          <Link
+              className="flex items-center text-sm font-medium text-text-100 hover:no-underline"
+              href="https://github.com/dyte-in"
+            >
+              <Github className="mr-2 h-7" aria-hidden={true} />
+           </Link>
+           <Link
+              className="flex items-center text-sm font-medium text-text-100 hover:no-underline"
+              href="https://community.dyte.io"
+            >
+              <DiscordIcon className="mr-2 h-6" />
+           </Link>
           <SearchBar />
 
           <div className="hidden items-center lg:flex">
@@ -325,6 +338,7 @@ function Navbar() {
             </Link>
           </div>
         </div>
+        <Quickstart />
         <ThemeSwitcher />
       </header>
       <div

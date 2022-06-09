@@ -8,7 +8,7 @@ const {
 const isDev = process.env.NODE_ENV === 'development';
 
 const pageOptions = {
-  sidebarCollapsible: false,
+  sidebarCollapsible: true,
   editUrl: 'https://github.com/dyte-in/docs/tree/main',
   showLastUpdateAuthor: true,
   showLastUpdateTime: true,
@@ -32,13 +32,6 @@ module.exports = {
       defaultMode: 'dark',
       disableSwitch: true,
     },
-    announcementBar: {
-      id: 'new_sdks_coming_soon',
-      content: 'Coming Soon: Next generation SDKs for web and mobile',
-      backgroundColor: '#2160FD',
-      textColor: '#fff',
-      isCloseable: true,
-    },
     navbar: {
       hideOnScroll: true,
       logo: {
@@ -52,8 +45,16 @@ module.exports = {
           activeBaseRegex: '(^/docs)',
         },
         {
-          label: 'Client SDK',
+          label: 'Prebuilt SDKs',
           to: '/react/quickstart',
+        },
+        {
+          label: 'Web SDKs',
+          to: '/react-ui-kit/installation',
+        },
+        {
+          label: 'Mobile SDKs',
+          to: '/react-native-core/installation',
         },
         {
           label: 'API Reference',
@@ -117,6 +118,81 @@ module.exports = {
         id: 'guides',
         sidebarPath: require.resolve('./sidebars/sidebars-guides.js'),
         sidebarCollapsible: false,
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        path: 'docs/quickstart',
+        routeBasePath: 'quickstart',
+        id: 'quickstart',
+        sidebarPath: require.resolve('./sidebars/sidebars-quickstart.js'),
+        sidebarCollapsible: false,
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        path: 'docs/react-ui-kit',
+        routeBasePath: 'react-ui-kit',
+        id: 'react-ui-kit',
+        sidebarPath: require.resolve('./sidebars/sidebars-react-ui-kit.js'),
+        onlyIncludeVersions: !isDev
+          ? require('./react-ui-kit_versions.json')
+          : undefined,
+        ...pageOptions,
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        path: 'docs/ui-kit',
+        routeBasePath: 'ui-kit',
+        id: 'ui-kit',
+        sidebarPath: require.resolve('./sidebars/sidebars-ui-kit.js'),
+        onlyIncludeVersions: !isDev
+          ? require('./ui-kit_versions.json')
+          : undefined,
+        ...pageOptions,
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        path: 'docs/angular-ui-kit',
+        routeBasePath: 'angular-ui-kit',
+        id: 'angular-ui-kit',
+        sidebarPath: require.resolve('./sidebars/sidebars-angular-ui-kit.js'),
+        onlyIncludeVersions: !isDev
+          ? require('./angular-ui-kit_versions.json')
+          : undefined,
+        ...pageOptions,
+      },
+    ],
+    // [
+    //   '@docusaurus/plugin-content-docs',
+    //   {
+    //     path: 'docs/react-web-core',
+    //     routeBasePath: 'react-web-core',
+    //     id: 'react-web-core',
+    //     sidebarPath: require.resolve('./sidebars/sidebars-react-web-core.js'),
+    //     onlyIncludeVersions: !isDev
+    //       ? require('./react-web-core_versions.json')
+    //       : undefined,
+    //     ...pageOptions,
+    //   },
+    // ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        path: 'docs/web-core',
+        routeBasePath: 'web-core',
+        id: 'web-core',
+        sidebarPath: require.resolve('./sidebars/sidebars-web-core.js'),
+        onlyIncludeVersions: !isDev
+          ? require('./web-core_versions.json')
+          : undefined,
+        ...pageOptions,
       },
     ],
     [
@@ -193,6 +269,19 @@ module.exports = {
         sidebarPath: require.resolve('./sidebars/sidebars-ios.js'),
         onlyIncludeVersions: !isDev
           ? require('./ios_versions.json')
+          : undefined,
+        ...pageOptions,
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        path: 'docs/react-native-core',
+        routeBasePath: 'react-native-core',
+        id: 'react-native-core',
+        sidebarPath: require.resolve('./sidebars/sidebars-react-native-core.js'),
+        onlyIncludeVersions: !isDev
+          ? require('./react-native-core_versions.json')
           : undefined,
         ...pageOptions,
       },

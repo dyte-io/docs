@@ -1,0 +1,13 @@
+# Plugins
+
+Lists and toggle plugins in your meetings.
+
+import { loadMeeting } from '/src/utils/meeting';
+
+```jsx
+<DytePlugins meeting={meeting} />
+```
+
+<div className="chat-preview" ref={() => loadMeeting('dyte-el')}>
+  <dyte-plugins id="dyte-el" style={{ width: '100%', height: '100%' }} />
+</div>

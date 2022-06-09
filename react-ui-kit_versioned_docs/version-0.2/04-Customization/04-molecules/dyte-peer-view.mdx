@@ -1,0 +1,14 @@
+# Particiopant Tile
+
+```jsx
+<DyteParticipantTile participant={meeting.self}>
+```
+
+import { loadSelf } from '/src/utils/meeting';
+
+<div ref={() => loadSelf('.peerview')}>
+    <dyte-peer-view class="peerview">
+        <dyte-avatar class="peerview" />
+        <dyte-name-tag class="peerview" />
+    </dyte-peer-view>
+</div>

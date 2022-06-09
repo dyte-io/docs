@@ -1,0 +1,53 @@
+---
+sidebar_position: 1
+title: Installation
+---
+
+# Introduction
+
+- Built with Web Components
+- 0️⃣ Zero external dependencies
+- 🚀 Blazing fast. Uses browser provided ShadowDOM
+- 🤏 Small bundle size (<500KB) for the entire UI (less if you use individual components)
+- ShadowDOM provides style encapsulation, your css styles wouldn't affect our styles and vice versa
+
+# Installation
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  groupId="android-language"
+  defaultValue="npm"
+  values={[
+    { label: 'NPM', value: 'npm' },
+    { label: 'YARN', value: 'yarn' },
+  ]
+}>
+
+<TabItem value="npm">
+
+Install the package from npm:
+
+```bash
+npm install @dytesdk/react-ui-kit @dytesdk/react-web-core
+```
+
+</TabItem>
+
+<TabItem value="yarn">
+
+Install the package from yarn:
+
+```bash
+yarn @dytesdk/react-ui-kit @dytesdk/react-web-core
+```
+
+</TabItem>
+</Tabs>
+
+:::note Import Errors
+
+If you get import errors for `@dytesdk/ui-kit` or `@dytesdk/web-core`, install them additonally
+:::

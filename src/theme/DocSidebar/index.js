@@ -19,11 +19,10 @@ import styles from './styles.module.css';
 
 import Link from '@docusaurus/Link';
 import DocsLogo from '@site/src/components/Logo';
-import ContextSwitcher from '@site/src/components/ContextSwitcher';
 import { ChevronLeftIcon } from '@heroicons/react/outline';
 
-import VersionDropdown from '@theme/NavbarItem/DocsVersionDropdownNavbarItem';
 import BrowserOnly from '@docusaurus/BrowserOnly';
+import SectionSwitchHandler from '../../components/SectionSwitchHandler';
 
 function useShowAnnouncementBar() {
   const { isClosed } = useAnnouncementBar();
@@ -110,7 +109,7 @@ function DocSidebarDesktop({ path, sidebar, onCollapse, isHidden }) {
         )}
       >
         <ul className={clsx(ThemeClassNames.docs.docSidebarMenu, 'menu__list')}>
-          <BrowserOnly>{() => <DocManager />}</BrowserOnly>
+          <BrowserOnly>{() => <SectionSwitchHandler />}</BrowserOnly>
           <DocSidebarItems items={sidebar} activePath={path} />
         </ul>
       </nav>
@@ -122,7 +121,7 @@ function DocSidebarDesktop({ path, sidebar, onCollapse, isHidden }) {
 const DocSidebarMobileSecondaryMenu = ({ toggleSidebar, sidebar, path }) => {
   return (
     <ul className={clsx(ThemeClassNames.docs.docSidebarMenu, 'menu__list')}>
-      <BrowserOnly>{() => <DocManager />}</BrowserOnly>
+      <BrowserOnly>{() => <SectionSwitchHandler mobile />}</BrowserOnly>
       <DocSidebarItems
         items={sidebar}
         activePath={path}
@@ -143,6 +142,7 @@ function DocSidebarMobile(props) {
 
 const DocSidebarDesktopMemo = React.memo(DocSidebarDesktop);
 const DocSidebarMobileMemo = React.memo(DocSidebarMobile);
+
 export default function DocSidebar(props) {
   const windowSize = useWindowSize(); // Desktop sidebar visible on hydration: need SSR rendering
 
