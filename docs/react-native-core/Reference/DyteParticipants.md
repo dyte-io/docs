@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-web_core_version: 0.18.0
+web_core_version: 0.24.0
 ---
 
 <!-- Auto Generated Below -->
@@ -25,8 +25,12 @@ This module represents all the participants in the meeting. It consists of 4 map
     * [.count](#module_DyteParticipants+count)
     * [.maxActiveParticipantsCount](#module_DyteParticipants+maxActiveParticipantsCount)
     * [.pageCount](#module_DyteParticipants+pageCount)
+    * [.acceptWaitingRoomRequest(id)](#module_DyteParticipants+acceptWaitingRoomRequest)
+    * [.rejectWaitingRoomRequest(id)](#module_DyteParticipants+rejectWaitingRoomRequest)
     * [.setViewMode(viewMode)](#module_DyteParticipants+setViewMode)
     * [.setPage(page)](#module_DyteParticipants+setPage)
+    * [.pin()](#module_DyteParticipants+pin)
+    * [.unpin()](#module_DyteParticipants+unpin)
     * [.disableAllAudio(allowUnMute)](#module_DyteParticipants+disableAllAudio)
     * [.disableAllVideo()](#module_DyteParticipants+disableAllVideo)
     * [.disableAudio(peerId)](#module_DyteParticipants+disableAudio)
@@ -105,6 +109,30 @@ Returns the number of pages that are available in the meeting in PAGINATED mode.
 If the meeting is in ACTIVE_GRID mode, this value will be 0.
 
 **Kind**: instance property of [<code>DyteParticipants</code>](#module_DyteParticipants)  
+<a name="module_DyteParticipants+acceptWaitingRoomRequest"></a>
+
+### meeting.participants.acceptWaitingRoomRequest(id)
+Accepts requests from waitlisted participants if user
+has appropriate permissions.
+
+**Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)  
+
+| Param | Description |
+| --- | --- |
+| id | participantId of the waitlisted participant. |
+
+<a name="module_DyteParticipants+rejectWaitingRoomRequest"></a>
+
+### meeting.participants.rejectWaitingRoomRequest(id)
+Rejects requests from waitlisted participants if user
+has appropriate permissions.
+
+**Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)  
+
+| Param | Description |
+| --- | --- |
+| id | participantId of the waitlisted participant. |
+
 <a name="module_DyteParticipants+setViewMode"></a>
 
 ### meeting.participants.setViewMode(viewMode)
@@ -129,6 +157,20 @@ Does not do anything in ACTIVE_GRID mode.
 | --- | --- |
 | page | The page number to be set. |
 
+<a name="module_DyteParticipants+pin"></a>
+
+### meeting.participants.pin()
+Returns `participant.id` if user has permission
+to pin participants.
+
+**Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)  
+<a name="module_DyteParticipants+unpin"></a>
+
+### meeting.participants.unpin()
+Returns `participant.id` if user has permission
+to unpin participants.
+
+**Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)  
 <a name="module_DyteParticipants+disableAllAudio"></a>
 
 ### meeting.participants.disableAllAudio(allowUnMute)
