@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-web_core_version: 0.18.0
+web_core_version: 0.24.0
 ---
 
 <!-- Auto Generated Below -->
@@ -21,6 +21,7 @@ named `meeting`.
         * [.plugins](#module_DyteClient+plugins)
         * [.chat](#module_DyteClient+chat)
         * [.polls](#module_DyteClient+polls)
+        * [.remote](#module_DyteClient+remote)
         * [.joinRoom()](#module_DyteClient+joinRoom)
         * [.leaveRoom()](#module_DyteClient+leaveRoom)
     * _static_
@@ -68,6 +69,13 @@ This includes text messages, images, and files.
 ### meeting.polls
 The polls object stores the polls that were initiated in the meeting.
 It exposes methods to create and vote on polls.
+
+**Kind**: instance property of [<code>DyteClient</code>](#module_DyteClient)  
+<a name="module_DyteClient+remote"></a>
+
+### meeting.remote
+The remote object stores the remote control requests for the meeting.
+It exposes methods to request, accept and end the remote control.
 
 **Kind**: instance property of [<code>DyteClient</code>](#module_DyteClient)  
 <a name="module_DyteClient+joinRoom"></a>
