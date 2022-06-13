@@ -92,18 +92,7 @@ is emitted on `self` when the room is joined successfully.
 The `leaveRoom()` method can be used to leave a meeting.
 
 **Kind**: instance method of [<code>DyteClient</code>](#module_DyteClient)  
-<a name="module_DyteClient+sendRoomMessage"></a>
 
-### meeting.sendRoomMessage(type, payload)
-sendRoomMessage method can be used to broadcast any messsage to current room.
-This sends the message to all participants of current room including `self`.
-
-**Kind**: instance method of [<code>DyteClient</code>](#module_DyteClient)  
-
-| Param | Description |
-| --- | --- |
-| type | string indicating a unique message type to be broadcasted to meeting |
-| payload | object containing the info to be broadcasted |
 
 <a name="module_DyteClient.init"></a>
 
