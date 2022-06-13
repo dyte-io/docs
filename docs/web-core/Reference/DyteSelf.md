@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-web_core_version: 0.24.0
+web_core_version: 0.26.0
 ---
 
 <!-- Auto Generated Below -->
@@ -25,6 +25,7 @@ this module.
     * [.permissions](#module_DyteSelf+permissions)
     * [.suggestedTheme](#module_DyteSelf+suggestedTheme)
     * [.roomJoined](#module_DyteSelf+roomJoined)
+    * [.isPinned](#module_DyteSelf+isPinned)
     * [.addAudioMiddleware()](#module_DyteSelf+addAudioMiddleware)
     * [.removeAudioMiddleware()](#module_DyteSelf+removeAudioMiddleware)
     * [.addVideoMiddleware()](#module_DyteSelf+addVideoMiddleware)
@@ -45,7 +46,7 @@ this module.
     * [.getSpeakerDevices()](#module_DyteSelf+getSpeakerDevices)
     * [.getDeviceById(deviceId, kind)](#module_DyteSelf+getDeviceById)
     * [.getAllDevices()](#module_DyteSelf+getAllDevices)
-    * [.pinned()](#module_DyteSelf+pinned)
+    * [.setIsPinned()](#module_DyteSelf+setIsPinned)
     * [.pin()](#module_DyteSelf+pin)
     * [.unpin()](#module_DyteSelf+unpin)
     * [.setDevice(device, preview)](#module_DyteSelf+setDevice)
@@ -124,6 +125,12 @@ Returns suggested theme for the meeting.
 
 ### meeting.self.roomJoined
 Returns true if the local participant has joined the meeting.
+
+**Kind**: instance property of [<code>DyteSelf</code>](#module_DyteSelf)  
+<a name="module_DyteSelf+isPinned"></a>
+
+### meeting.self.isPinned
+Returns true if the current user is pinned.
 
 **Kind**: instance property of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+addAudioMiddleware"></a>
@@ -283,9 +290,9 @@ Returns the local participant's device, indexed by ID and kind.
 Returns all media devices accessible by the local participant.
 
 **Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
-<a name="module_DyteSelf+pinned"></a>
+<a name="module_DyteSelf+setIsPinned"></a>
 
-### meeting.self.pinned()
+### meeting.self.setIsPinned()
 **Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+pin"></a>
 

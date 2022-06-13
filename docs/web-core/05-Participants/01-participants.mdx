@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 1
 title: Participants
 description: Events, methods and data pertaining to meeting participants.
 slug: participants
@@ -71,28 +71,4 @@ To remove participats from a meeting, you can user kick methods
 await meeting.participants.kickAll();
 // remove a specified participant from the meeting
 await meeting.participants.kick(peerId);
-```
-
-
-## Events
-
-You can subscribe to events for all participants using `meeeting.participants.on()` method.
-Here are the supported events:
-
-### View mode change
-
-Triggered when the View mode changes
-
-```ts
-meeting.participants.on('viewModeChanged', ({ viewMode, currentPage, pageCount }) => {
-    console.log('view mode changed', viewMode);
-});
-``` 
-
-### Page change
-
-```ts
-meeting.participants.on('pageChanged', ({ viewMode, currentPage, pageCount }) => {
-    console.log('page changed', currentPage);
-});
 ```
