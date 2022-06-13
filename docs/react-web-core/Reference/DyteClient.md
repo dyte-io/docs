@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-web_core_version: 0.24.0
+web_core_version: 0.25.0
 ---
 
 <!-- Auto Generated Below -->
@@ -24,6 +24,7 @@ named `meeting`.
         * [.remote](#module_DyteClient+remote)
         * [.joinRoom()](#module_DyteClient+joinRoom)
         * [.leaveRoom()](#module_DyteClient+leaveRoom)
+        * [.sendRoomMessage(type, payload)](#module_DyteClient+sendRoomMessage)
     * _static_
         * [.init(options)](#module_DyteClient.init)
 
@@ -91,6 +92,19 @@ is emitted on `self` when the room is joined successfully.
 The `leaveRoom()` method can be used to leave a meeting.
 
 **Kind**: instance method of [<code>DyteClient</code>](#module_DyteClient)  
+<a name="module_DyteClient+sendRoomMessage"></a>
+
+### meeting.sendRoomMessage(type, payload)
+sendRoomMessage method can be used to broadcast any messsage to current room.
+This sends the message to all participants of current room including `self`.
+
+**Kind**: instance method of [<code>DyteClient</code>](#module_DyteClient)  
+
+| Param | Description |
+| --- | --- |
+| type | string indicating a unique message type to be broadcasted to meeting |
+| payload | object containing the info to be broadcasted |
+
 <a name="module_DyteClient.init"></a>
 
 ### meeting.init(options)
