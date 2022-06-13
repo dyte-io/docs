@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-web_core_version: 0.25.0
+web_core_version: 0.26.0
 ---
 
 <!-- Auto Generated Below -->
@@ -29,13 +29,12 @@ This module represents all the participants in the meeting. It consists of 4 map
     * [.rejectWaitingRoomRequest(id)](#module_DyteParticipants+rejectWaitingRoomRequest)
     * [.setViewMode(viewMode)](#module_DyteParticipants+setViewMode)
     * [.setPage(page)](#module_DyteParticipants+setPage)
-    * [.pin()](#module_DyteParticipants+pin)
-    * [.unpin()](#module_DyteParticipants+unpin)
     * [.disableAllAudio(allowUnMute)](#module_DyteParticipants+disableAllAudio)
     * [.disableAllVideo()](#module_DyteParticipants+disableAllVideo)
     * [.disableAudio(peerId)](#module_DyteParticipants+disableAudio)
     * [.disableVideo(peerId)](#module_DyteParticipants+disableVideo)
     * [.kickAll()](#module_DyteParticipants+kickAll)
+    * [.broadcastMessage()](#module_DyteParticipants+broadcastMessage)
     * [.kick(peerId)](#module_DyteParticipants+kick)
 
 <a name="module_DyteParticipants+waitlisted"></a>
@@ -157,20 +156,6 @@ Does not do anything in ACTIVE_GRID mode.
 | --- | --- |
 | page | The page number to be set. |
 
-<a name="module_DyteParticipants+pin"></a>
-
-### meeting.participants.pin()
-Returns `participant.id` if user has permission
-to pin participants.
-
-**Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)  
-<a name="module_DyteParticipants+unpin"></a>
-
-### meeting.participants.unpin()
-Returns `participant.id` if user has permission
-to unpin participants.
-
-**Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)  
 <a name="module_DyteParticipants+disableAllAudio"></a>
 
 ### meeting.participants.disableAllAudio(allowUnMute)
@@ -214,6 +199,12 @@ Disables video for the given participant.
 
 ### meeting.participants.kickAll()
 Kicks all participants from the meeting.
+
+**Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)  
+<a name="module_DyteParticipants+broadcastMessage"></a>
+
+### meeting.participants.broadcastMessage()
+Broadcasts the message to all participants including `self`.
 
 **Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)  
 <a name="module_DyteParticipants+kick"></a>
