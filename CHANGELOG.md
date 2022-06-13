@@ -1,3 +1,17 @@
+# [1.13.0](https://github.com/dyte-in/docs/compare/v1.12.2...v1.13.0) (2022-06-13)
+
+
+### Bug Fixes
+
+* remove unused function ([b14a696](https://github.com/dyte-in/docs/commit/b14a6960c8d1acb63d4cdfe18420a554b75c1ae3))
+* update web-core docs to v0.26.0 ([6cb5952](https://github.com/dyte-in/docs/commit/6cb59528267358af8281bc3c43bcec75cb31643e))
+* update web-core docs to v0.26.0 ([bf924a4](https://github.com/dyte-in/docs/commit/bf924a47141fe58ab3cc1389054fc3a1f5353349))
+
+
+### Features
+
+* added docs for version 0.25.x of web-core ([b2479f3](https://github.com/dyte-in/docs/commit/b2479f388499bd898ba63d5f71c74fa870419b80))
+
 ## [1.12.2](https://github.com/dyte-in/docs/compare/v1.12.1...v1.12.2) (2022-06-09)
 
 
