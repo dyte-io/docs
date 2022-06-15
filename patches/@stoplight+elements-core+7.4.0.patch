@@ -1,0 +1,48 @@
+diff --git a/node_modules/@stoplight/elements-core/index.esm.js b/node_modules/@stoplight/elements-core/index.esm.js
+index b18b20c..d6f0671 100644
+--- a/node_modules/@stoplight/elements-core/index.esm.js
++++ b/node_modules/@stoplight/elements-core/index.esm.js
+@@ -1877,9 +1877,9 @@ function getApiKeyDescription(inProperty, name) {
+ function getBasicAuthDescription() {
+     return `Basic authentication is a simple authentication scheme built into the HTTP protocol.
+   To use it, send your HTTP requests with an Authorization header that contains the word Basic
+-  followed by a space and a base64-encoded string \`username:password\`.
++  followed by a space and a base64-encoded string \`ORG_ID:API_KEY\`.
+ 
+-  Example: \`Authorization: Basic ZGVtbzpwQDU1dzByZA==\``;
++  Example: \`Authorization: Basic T1JHX0lEOkFQSV9LRVkK\``;
+ }
+ function getBearerAuthDescription() {
+     return `Provide your bearer token in the Authorization header when making requests to protected resources.
+diff --git a/node_modules/@stoplight/elements-core/index.js b/node_modules/@stoplight/elements-core/index.js
+index 519e457..45c6319 100644
+--- a/node_modules/@stoplight/elements-core/index.js
++++ b/node_modules/@stoplight/elements-core/index.js
+@@ -1935,9 +1935,9 @@ function getApiKeyDescription(inProperty, name) {
+ function getBasicAuthDescription() {
+     return `Basic authentication is a simple authentication scheme built into the HTTP protocol.
+   To use it, send your HTTP requests with an Authorization header that contains the word Basic
+-  followed by a space and a base64-encoded string \`username:password\`.
++  followed by a space and a base64-encoded string \`ORG_ID:API_KEY\`.
+ 
+-  Example: \`Authorization: Basic ZGVtbzpwQDU1dzByZA==\``;
++  Example: \`Authorization: Basic T1JHX0lEOkFQSV9LRVkK\``;
+ }
+ function getBearerAuthDescription() {
+     return `Provide your bearer token in the Authorization header when making requests to protected resources.
+diff --git a/node_modules/@stoplight/elements-core/index.mjs b/node_modules/@stoplight/elements-core/index.mjs
+index b18b20c..d6f0671 100644
+--- a/node_modules/@stoplight/elements-core/index.mjs
++++ b/node_modules/@stoplight/elements-core/index.mjs
+@@ -1877,9 +1877,9 @@ function getApiKeyDescription(inProperty, name) {
+ function getBasicAuthDescription() {
+     return `Basic authentication is a simple authentication scheme built into the HTTP protocol.
+   To use it, send your HTTP requests with an Authorization header that contains the word Basic
+-  followed by a space and a base64-encoded string \`username:password\`.
++  followed by a space and a base64-encoded string \`ORG_ID:API_KEY\`.
+ 
+-  Example: \`Authorization: Basic ZGVtbzpwQDU1dzByZA==\``;
++  Example: \`Authorization: Basic T1JHX0lEOkFQSV9LRVkK\``;
+ }
+ function getBearerAuthDescription() {
+     return `Provide your bearer token in the Authorization header when making requests to protected resources.
