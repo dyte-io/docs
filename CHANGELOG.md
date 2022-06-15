@@ -1,3 +1,10 @@
+## [1.13.1](https://github.com/dyte-in/docs/compare/v1.13.0...v1.13.1) (2022-06-15)
+
+
+### Bug Fixes
+
+* patch-package for Basic Auth Description ([a525172](https://github.com/dyte-in/docs/commit/a5251722ccdc6d543dadac72e56f8b4e49f452fa))
+
 # [1.13.0](https://github.com/dyte-in/docs/compare/v1.12.2...v1.13.0) (2022-06-13)
 
 
