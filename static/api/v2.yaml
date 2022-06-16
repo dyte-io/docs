@@ -1,10 +1,16 @@
 openapi: 3.0.0
-info:
-  version: 2.0.0
-  title: dyte-rest-api
 servers:
-  - url: "https://api.cluster.dyte.in/v2/"
-    description: Production server
+  - url: 'https://api.cluster.dyte.in/v2'
+    description: ''
+    variables: {}
+info:
+  version: v2
+  title: Dyte v2 Collection
+  description: Next generation APIs
+  termsOfService: ''
+  contact: {}
+  license:
+    name: ''
 paths:
   /livestreams:
     post:
@@ -272,26 +278,6 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/GetParticipantDetails'
-  '/meetings/{meetingId}/sessions':
-    get:
-      summary: Get all sessions of a meeting
-      description: Returns list of all sessions of a meeting. Supports pagination, sorting and searching
-      operationId: GetMeetingSessions
-      tags:
-        - Sessions
-      parameters:
-        - $ref: '#/components/parameters/pageNo'
-        - $ref: '#/components/parameters/perPage'
-        - $ref: '#/components/parameters/search'
-        - $ref: '#/components/parameters/sortOrder'
-        - $ref: '#/components/parameters/startTime'
-        - $ref: '#/components/parameters/endTime'
-        - $ref: '#/components/parameters/participants'
-        - $ref: '#/components/parameters/status'
-      responses:
-        '200':
-          $ref: "#/components/responses/GetSessions"
-      
 components:
   schemas:
     ActiveSession:
@@ -959,8 +945,9 @@ components:
     Authorization:
       type: http
       scheme: basic
-      description: ''
-security: []
+      description: |-
+        Username is Organization ID
+        Password is API Key
 tags:
   - name: LiveStreams
   - name: ActiveSession
@@ -968,3 +955,5 @@ tags:
 externalDocs:
   url: ''
   description: ''
+security:
+  - Authorization: []
