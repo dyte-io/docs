@@ -1,3 +1,15 @@
+# [1.14.0](https://github.com/dyte-in/docs/compare/v1.13.1...v1.14.0) (2022-06-16)
+
+
+### Bug Fixes
+
+* patch-package for basic auth fields ([6f25082](https://github.com/dyte-in/docs/commit/6f2508283684b2141fdd52223dbf9c3539771199))
+
+
+### Features
+
+* update v2 api spec ([df6dd56](https://github.com/dyte-in/docs/commit/df6dd56832adf6f91f2b1e0001ce2c090a262f8c))
+
 ## [1.13.1](https://github.com/dyte-in/docs/compare/v1.13.0...v1.13.1) (2022-06-15)
 
 
