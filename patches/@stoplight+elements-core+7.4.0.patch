@@ -1,7 +1,26 @@
 diff --git a/node_modules/@stoplight/elements-core/index.esm.js b/node_modules/@stoplight/elements-core/index.esm.js
-index b18b20c..d6f0671 100644
+index b18b20c..30fefd1 100644
 --- a/node_modules/@stoplight/elements-core/index.esm.js
 +++ b/node_modules/@stoplight/elements-core/index.esm.js
+@@ -773,14 +773,14 @@ const BasicAuth = ({ onChange, value }) => {
+         onChange(encode(`${username}:${password}`));
+     };
+     return (React.createElement(Panel.Content, { className: "ParameterGrid" },
+-        React.createElement("div", null, "Username"),
++        React.createElement("div", null, "Org ID"),
+         React.createElement(Text, { mx: 3 }, ":"),
+         React.createElement(Flex, { flex: 1 },
+-            React.createElement(Input, { style: { paddingLeft: 15 }, "aria-label": "Username", appearance: "minimal", flex: 1, placeholder: "username", value: username, type: "text", required: true, onChange: e => onCredentialsChange(e.currentTarget.value, password) })),
+-        React.createElement("div", null, "Password"),
++            React.createElement(Input, { style: { paddingLeft: 15 }, "aria-label": "Org ID", appearance: "minimal", flex: 1, placeholder: "Org ID", value: username, type: "text", required: true, onChange: e => onCredentialsChange(e.currentTarget.value, password) })),
++        React.createElement("div", null, "API Key"),
+         React.createElement(Text, { mx: 3 }, ":"),
+         React.createElement(Flex, { flex: 1 },
+-            React.createElement(Input, { style: { paddingLeft: 15 }, "aria-label": "Password", appearance: "minimal", flex: 1, placeholder: "password", value: password, type: "password", required: true, onChange: e => onCredentialsChange(username, e.currentTarget.value) }))));
++            React.createElement(Input, { style: { paddingLeft: 15 }, "aria-label": "API Key", appearance: "minimal", flex: 1, placeholder: "API Key", value: password, type: "password", required: true, onChange: e => onCredentialsChange(username, e.currentTarget.value) }))));
+ };
+ function encode(value) {
+     return btoa(value);
 @@ -1877,9 +1877,9 @@ function getApiKeyDescription(inProperty, name) {
  function getBasicAuthDescription() {
      return `Basic authentication is a simple authentication scheme built into the HTTP protocol.
@@ -15,9 +34,28 @@ index b18b20c..d6f0671 100644
  function getBearerAuthDescription() {
      return `Provide your bearer token in the Authorization header when making requests to protected resources.
 diff --git a/node_modules/@stoplight/elements-core/index.js b/node_modules/@stoplight/elements-core/index.js
-index 519e457..45c6319 100644
+index 519e457..c3120a0 100644
 --- a/node_modules/@stoplight/elements-core/index.js
 +++ b/node_modules/@stoplight/elements-core/index.js
+@@ -831,14 +831,14 @@ const BasicAuth = ({ onChange, value }) => {
+         onChange(encode(`${username}:${password}`));
+     };
+     return (React__namespace.createElement(mosaic.Panel.Content, { className: "ParameterGrid" },
+-        React__namespace.createElement("div", null, "Username"),
++        React__namespace.createElement("div", null, "Org ID"),
+         React__namespace.createElement(mosaic.Text, { mx: 3 }, ":"),
+         React__namespace.createElement(mosaic.Flex, { flex: 1 },
+-            React__namespace.createElement(mosaic.Input, { style: { paddingLeft: 15 }, "aria-label": "Username", appearance: "minimal", flex: 1, placeholder: "username", value: username, type: "text", required: true, onChange: e => onCredentialsChange(e.currentTarget.value, password) })),
+-        React__namespace.createElement("div", null, "Password"),
++            React__namespace.createElement(mosaic.Input, { style: { paddingLeft: 15 }, "aria-label": "Org ID", appearance: "minimal", flex: 1, placeholder: "Org ID", value: username, type: "text", required: true, onChange: e => onCredentialsChange(e.currentTarget.value, password) })),
++        React__namespace.createElement("div", null, "API Key"),
+         React__namespace.createElement(mosaic.Text, { mx: 3 }, ":"),
+         React__namespace.createElement(mosaic.Flex, { flex: 1 },
+-            React__namespace.createElement(mosaic.Input, { style: { paddingLeft: 15 }, "aria-label": "Password", appearance: "minimal", flex: 1, placeholder: "password", value: password, type: "password", required: true, onChange: e => onCredentialsChange(username, e.currentTarget.value) }))));
++            React__namespace.createElement(mosaic.Input, { style: { paddingLeft: 15 }, "aria-label": "API Key", appearance: "minimal", flex: 1, placeholder: "API Key", value: password, type: "password", required: true, onChange: e => onCredentialsChange(username, e.currentTarget.value) }))));
+ };
+ function encode(value) {
+     return btoa(value);
 @@ -1935,9 +1935,9 @@ function getApiKeyDescription(inProperty, name) {
  function getBasicAuthDescription() {
      return `Basic authentication is a simple authentication scheme built into the HTTP protocol.
@@ -31,9 +69,28 @@ index 519e457..45c6319 100644
  function getBearerAuthDescription() {
      return `Provide your bearer token in the Authorization header when making requests to protected resources.
 diff --git a/node_modules/@stoplight/elements-core/index.mjs b/node_modules/@stoplight/elements-core/index.mjs
-index b18b20c..d6f0671 100644
+index b18b20c..30fefd1 100644
 --- a/node_modules/@stoplight/elements-core/index.mjs
 +++ b/node_modules/@stoplight/elements-core/index.mjs
+@@ -773,14 +773,14 @@ const BasicAuth = ({ onChange, value }) => {
+         onChange(encode(`${username}:${password}`));
+     };
+     return (React.createElement(Panel.Content, { className: "ParameterGrid" },
+-        React.createElement("div", null, "Username"),
++        React.createElement("div", null, "Org ID"),
+         React.createElement(Text, { mx: 3 }, ":"),
+         React.createElement(Flex, { flex: 1 },
+-            React.createElement(Input, { style: { paddingLeft: 15 }, "aria-label": "Username", appearance: "minimal", flex: 1, placeholder: "username", value: username, type: "text", required: true, onChange: e => onCredentialsChange(e.currentTarget.value, password) })),
+-        React.createElement("div", null, "Password"),
++            React.createElement(Input, { style: { paddingLeft: 15 }, "aria-label": "Org ID", appearance: "minimal", flex: 1, placeholder: "Org ID", value: username, type: "text", required: true, onChange: e => onCredentialsChange(e.currentTarget.value, password) })),
++        React.createElement("div", null, "API Key"),
+         React.createElement(Text, { mx: 3 }, ":"),
+         React.createElement(Flex, { flex: 1 },
+-            React.createElement(Input, { style: { paddingLeft: 15 }, "aria-label": "Password", appearance: "minimal", flex: 1, placeholder: "password", value: password, type: "password", required: true, onChange: e => onCredentialsChange(username, e.currentTarget.value) }))));
++            React.createElement(Input, { style: { paddingLeft: 15 }, "aria-label": "API Key", appearance: "minimal", flex: 1, placeholder: "API Key", value: password, type: "password", required: true, onChange: e => onCredentialsChange(username, e.currentTarget.value) }))));
+ };
+ function encode(value) {
+     return btoa(value);
 @@ -1877,9 +1877,9 @@ function getApiKeyDescription(inProperty, name) {
  function getBasicAuthDescription() {
      return `Basic authentication is a simple authentication scheme built into the HTTP protocol.
