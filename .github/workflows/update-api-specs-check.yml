@@ -1,0 +1,37 @@
+name: Update API Specs Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  update-api-specs-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v23
+        with:
+          since_last_remote_commit: true
+          files_separator: ","
+          files: static/api/v1.yaml,static/api/v2.yaml
+
+      - name: Fail workflow if api specs has updated - comment err msg on PR
+        if: steps.changed-files.outputs.only_changed == 'true' && github.event_name == 'pull_request'
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh pr comment $PR_NUMBER --body 'Avoid updating the api-specs directly. They will be overwritten.' && exit 1
+
+      - name: Fail workflow if api specs has updated - echo err msg
+        if: steps.changed-files.outputs.only_changed == 'true' && github.event_name != 'pull_request'
+        run: echo 'Avoid updating the api-specs directly. They will be overwritten.' && exit 1
