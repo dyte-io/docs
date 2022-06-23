@@ -1,3 +1,10 @@
+## [1.14.1](https://github.com/dyte-in/docs/compare/v1.14.0...v1.14.1) (2022-06-23)
+
+
+### Bug Fixes
+
+* **src/theme/navbar/index.js:** fix the wrong validation for mobile sdks in navbar ([f0a98d6](https://github.com/dyte-in/docs/commit/f0a98d614b64632f3a1144af580159246c31dc42)), closes [#58](https://github.com/dyte-in/docs/issues/58)
+
 # [1.14.0](https://github.com/dyte-in/docs/compare/v1.13.1...v1.14.0) (2022-06-16)
 
 
