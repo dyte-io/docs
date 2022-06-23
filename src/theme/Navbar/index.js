@@ -35,7 +35,7 @@ import { Github } from '@styled-icons/boxicons-logos';
 import { DiscordIcon } from '../../assets/icons';
 import ThemeSwitcher from '@site/src/components/ThemeSwitcher';
 import SearchBar from '@theme/SearchBar';
-import { NON_UI_SDKS, PREBUILT_SDKS, UI_SDKS } from '../../utils/constants';
+import { NEW_MOBILE_SDKS, NON_UI_SDKS, PREBUILT_SDKS, UI_SDKS } from '../../utils/constants';
 import Quickstart from '../../components/Quickstart';
 
 function useNavbarItems() {
@@ -227,6 +227,8 @@ const getPage = () => {
         return 'prebuilt-sdks';
       } else if (UI_SDKS.concat(NON_UI_SDKS).includes(doc)) {
         return 'web-sdks';
+      } else if(NEW_MOBILE_SDKS.includes(doc)) {
+        return 'mobile-sdks'
       }
       return null;
   }
