@@ -285,7 +285,7 @@ function Navbar() {
               to="/react-native-core/installation"
               className={clsx(
                 'inline-flex items-center text-sm font-medium hover:no-underline',
-                page === 'web-sdks' ? 'text-primary-100' : 'text-text-100'
+                page === 'mobile-sdks' ? 'text-primary-100' : 'text-text-100'
               )}
             >
               Mobile SDKs
