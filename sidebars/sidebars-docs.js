@@ -29,27 +29,22 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Client SDK',
+      label: 'Web SDK',
       items: [
         {
           type: 'link',
           label: 'Installation',
-          href: '/react/installation',
+          href: '/react-ui-kit/installation',
         },
         {
           type: 'link',
-          label: 'Usage',
-          href: '/react/usage',
-        },
-        {
-          type: 'link',
-          label: 'Sample app',
-          href: '/react/sample-app',
+          label: 'Quickstart',
+          href: '/react-ui-kit/quickstart',
         },
         {
           type: 'link',
           label: 'Reference',
-          href: '/react/reference/dyte-meeting',
+          href: '/web-core/Reference/DyteClient',
         },
       ],
     },
