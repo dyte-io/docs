@@ -1,8 +1,9 @@
 {
   "name": "dyte-docs",
-  "version": "1.12.1",
+  "version": "1.14.3",
   "private": true,
   "scripts": {
+    "postinstall": "patch-package",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "dev": "docusaurus start --host=0.0.0.0 --port=5000",
@@ -23,8 +24,8 @@
     "@docusaurus/core": "2.0.0-beta.6",
     "@docusaurus/preset-classic": "2.0.0-beta.6",
     "@docusaurus/theme-search-algolia": "^2.0.0-beta.6",
-    "@dyte-in/ui-kit": "file:./.tmp/dyte-in-ui-kit-1.1.0-staging.3.tgz",
     "@dyte-in/client-core": "file:./.tmp/dyte-in-client-core-0.18.2-stripped.3.tgz",
+    "@dyte-in/ui-kit": "file:./.tmp/dyte-in-ui-kit-1.1.0-staging.3.tgz",
     "@headlessui/react": "^1.4.1",
     "@heroicons/react": "^1.0.4",
     "@mdx-js/react": "^1.6.21",
@@ -54,6 +55,7 @@
     "husky": "^7.0.0",
     "is-ci": "^3.0.1",
     "jest": "^27.5.1",
+    "patch-package": "^6.4.7",
     "path-browserify": "^1.0.1",
     "postcss-import": "^14.0.2",
     "prettier": "^2.5.1",

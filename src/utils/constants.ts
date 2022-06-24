@@ -8,14 +8,7 @@ import {
   AngularIcon,
 } from '../assets/icons';
 
-export const PREBUILT_SDKS = [
-  'react',
-  'javascript',
-  'react-native',
-  'flutter',
-  'android',
-  'ios',
-];
+export const PREBUILT_SDKS = ['react-native', 'flutter', 'android', 'ios'];
 
 export const UI_SDKS = ['react-ui-kit', 'angular-ui-kit', 'ui-kit'];
 
@@ -29,16 +22,6 @@ export const NEW_MOBILE_SDKS = ['react-native-core'];
 export const CONTEXTS = {
   home: [],
   prebuilt: [
-    {
-      id: 'react',
-      name: 'React',
-      icon: ReactIcon,
-    },
-    {
-      id: 'javascript',
-      name: 'JavaScript',
-      icon: JSIcon,
-    },
     {
       id: 'react-native',
       name: 'React Native',

@@ -1,3 +1,66 @@
+## [1.14.3](https://github.com/dyte-in/docs/compare/v1.14.2...v1.14.3) (2022-06-24)
+
+
+### Bug Fixes
+
+* replace Old SDKs from sidebar ([0d2bff0](https://github.com/dyte-in/docs/commit/0d2bff015eaf3fe172ce833e657f0283c1140368))
+
+## [1.14.2](https://github.com/dyte-in/docs/compare/v1.14.1...v1.14.2) (2022-06-24)
+
+
+### Bug Fixes
+
+* hide old SDKs from the navigation ([2633a15](https://github.com/dyte-in/docs/commit/2633a15a75bca2b3af22e375d3b8f291a78898c9))
+* linting ([bc372a8](https://github.com/dyte-in/docs/commit/bc372a86ada5fc95b290a74b2510bd79281cc287))
+* navbar icon links placement in mobile ([a3b25e9](https://github.com/dyte-in/docs/commit/a3b25e9f9a39ff9c33a1171717eb8fda92346047))
+
+## [1.14.1](https://github.com/dyte-in/docs/compare/v1.14.0...v1.14.1) (2022-06-23)
+
+
+### Bug Fixes
+
+* **src/theme/navbar/index.js:** fix the wrong validation for mobile sdks in navbar ([f0a98d6](https://github.com/dyte-in/docs/commit/f0a98d614b64632f3a1144af580159246c31dc42)), closes [#58](https://github.com/dyte-in/docs/issues/58)
+
+# [1.14.0](https://github.com/dyte-in/docs/compare/v1.13.1...v1.14.0) (2022-06-16)
+
+
+### Bug Fixes
+
+* patch-package for basic auth fields ([6f25082](https://github.com/dyte-in/docs/commit/6f2508283684b2141fdd52223dbf9c3539771199))
+
+
+### Features
+
+* update v2 api spec ([df6dd56](https://github.com/dyte-in/docs/commit/df6dd56832adf6f91f2b1e0001ce2c090a262f8c))
+
+## [1.13.1](https://github.com/dyte-in/docs/compare/v1.13.0...v1.13.1) (2022-06-15)
+
+
+### Bug Fixes
+
+* patch-package for Basic Auth Description ([a525172](https://github.com/dyte-in/docs/commit/a5251722ccdc6d543dadac72e56f8b4e49f452fa))
+
+# [1.13.0](https://github.com/dyte-in/docs/compare/v1.12.2...v1.13.0) (2022-06-13)
+
+
+### Bug Fixes
+
+* remove unused function ([b14a696](https://github.com/dyte-in/docs/commit/b14a6960c8d1acb63d4cdfe18420a554b75c1ae3))
+* update web-core docs to v0.26.0 ([6cb5952](https://github.com/dyte-in/docs/commit/6cb59528267358af8281bc3c43bcec75cb31643e))
+* update web-core docs to v0.26.0 ([bf924a4](https://github.com/dyte-in/docs/commit/bf924a47141fe58ab3cc1389054fc3a1f5353349))
+
+
+### Features
+
+* added docs for version 0.25.x of web-core ([b2479f3](https://github.com/dyte-in/docs/commit/b2479f388499bd898ba63d5f71c74fa870419b80))
+
+## [1.12.2](https://github.com/dyte-in/docs/compare/v1.12.1...v1.12.2) (2022-06-09)
+
+
+### Bug Fixes
+
+* update reference for react-native-core and react-web-core ([3316430](https://github.com/dyte-in/docs/commit/331643034d7935c838f66ca062e82bcd1e701ce5))
+
 ## [1.12.1](https://github.com/dyte-in/docs/compare/v1.12.0...v1.12.1) (2022-06-09)
 
 

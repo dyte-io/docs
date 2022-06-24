@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-web_core_version: 0.24.0
+web_core_version: 0.26.0
 ---
 
 <!-- Auto Generated Below -->
@@ -32,6 +32,10 @@ const participant4 = meeting.participants.active.toArray().filter((p) => p.name 
     * [.audioEnabled](#module_DyteParticipant+audioEnabled)
     * [.screenShareEnabled](#module_DyteParticipant+screenShareEnabled)
     * [.supportsRemoteControl](#module_DyteParticipant+supportsRemoteControl)
+    * [.isPinned](#module_DyteParticipant+isPinned)
+    * [.pin()](#module_DyteParticipant+pin)
+    * [.unpin()](#module_DyteParticipant+unpin)
+    * [.setIsPinned()](#module_DyteParticipant+setIsPinned)
 
 <a name="module_DyteParticipant+id"></a>
 
@@ -112,3 +116,27 @@ This is true if the participant is screensharing.
 This is true if the dyte participant supports remote control.
 
 **Kind**: instance property of [<code>DyteParticipant</code>](#module_DyteParticipant)  
+<a name="module_DyteParticipant+isPinned"></a>
+
+### participant.isPinned
+Returns true if the participant is pinned.
+
+**Kind**: instance property of [<code>DyteParticipant</code>](#module_DyteParticipant)  
+<a name="module_DyteParticipant+pin"></a>
+
+### participant.pin()
+Returns `participant.id` if user has permission
+to pin participants.
+
+**Kind**: instance method of [<code>DyteParticipant</code>](#module_DyteParticipant)  
+<a name="module_DyteParticipant+unpin"></a>
+
+### participant.unpin()
+Returns `participant.id` if user has permission
+to unpin participants.
+
+**Kind**: instance method of [<code>DyteParticipant</code>](#module_DyteParticipant)  
+<a name="module_DyteParticipant+setIsPinned"></a>
+
+### participant.setIsPinned()
+**Kind**: instance method of [<code>DyteParticipant</code>](#module_DyteParticipant)  

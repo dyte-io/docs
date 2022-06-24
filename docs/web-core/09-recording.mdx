@@ -1,0 +1,32 @@
+---
+title: Recording
+description: Control recordings in a meeting.
+slug: recording
+tags: [web-core, recording]
+---
+
+# Recording
+
+The `meeting.recording` object can be used start and stop recordings in a meeting. You can also get the current status of a recording using this API.
+
+## Start a recording
+
+To start a recording, you can call the `start` method in the `meeting.recording` object.
+
+```ts
+await meeting.recording.start();
+```
+
+## Stop a recording
+
+Call `meeting.recording.stop()` to stop the active recording.
+
+```ts
+await meeting.recording.stop();
+```
+
+## Get active recording state
+
+The `meeting.recording.recordingState` property describes the current state of the recording. The valid states are `IDLE`, `STARTING`, `RECORDING`, and `STOPPING`.
+
+To update the state of recording at any time, call the `meeting.recording.refreshActiveRecordingState()` method.
