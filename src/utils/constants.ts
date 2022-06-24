@@ -9,8 +9,6 @@ import {
 } from '../assets/icons';
 
 export const PREBUILT_SDKS = [
-  'react',
-  'javascript',
   'react-native',
   'flutter',
   'android',
@@ -29,16 +27,6 @@ export const NEW_MOBILE_SDKS = ['react-native-core'];
 export const CONTEXTS = {
   home: [],
   prebuilt: [
-    {
-      id: 'react',
-      name: 'React',
-      icon: ReactIcon,
-    },
-    {
-      id: 'javascript',
-      name: 'JavaScript',
-      icon: JSIcon,
-    },
     {
       id: 'react-native',
       name: 'React Native',

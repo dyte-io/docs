@@ -262,16 +262,6 @@ function Navbar() {
 
           <div className="hidden space-x-6 text-text-100 lg:flex">
             <Link
-              to="/react/quickstart"
-              className={clsx(
-                'inline-flex items-center text-sm font-medium hover:no-underline',
-                page === 'prebuilt-sdks' ? 'text-primary-100' : 'text-text-100'
-              )}
-            >
-              Prebuilt SDKs
-              <span className="pill pill-warning ml-2">OLD</span>
-            </Link>
-            <Link
               to="/react-ui-kit/installation"
               className={clsx(
                 'inline-flex items-center text-sm font-medium hover:no-underline',
@@ -282,6 +272,15 @@ function Navbar() {
               <span className="pill ml-2">NEW</span>
             </Link>
             <Link
+              to="/react-native/quickstart"
+              className={clsx(
+                'inline-flex items-center text-sm font-medium hover:no-underline',
+                page === 'prebuilt-sdks' ? 'text-primary-100' : 'text-text-100'
+              )}
+            >
+              Mobile SDKs
+            </Link>
+            {/* <Link
               to="/react-native-core/installation"
               className={clsx(
                 'inline-flex items-center text-sm font-medium hover:no-underline',
@@ -290,7 +289,7 @@ function Navbar() {
             >
               Mobile SDKs
               <span className="pill ml-2">NEW</span>
-            </Link>
+            </Link> */}
             <a
               href="/api/"
               className={clsx(
@@ -314,17 +313,17 @@ function Navbar() {
 
         <div className="flex flex-1 items-center justify-end">
           <Link
-              className="flex items-center text-sm font-medium text-text-100 hover:no-underline"
-              href="https://github.com/dyte-in"
-            >
-              <Github className="mr-2 h-7" aria-hidden={true} />
-           </Link>
-           <Link
-              className="flex items-center text-sm font-medium text-text-100 hover:no-underline"
-              href="https://community.dyte.io"
-            >
-              <DiscordIcon className="mr-2 h-6" />
-           </Link>
+            className="flex items-center text-sm font-medium text-text-100 hover:no-underline"
+            href="https://github.com/dyte-in"
+          >
+            <Github className="mr-2 h-7" aria-hidden={true} />
+          </Link>
+          <Link
+            className="flex items-center text-sm font-medium text-text-100 hover:no-underline"
+            href="https://community.dyte.io"
+          >
+            <DiscordIcon className="mr-2 h-6" />
+          </Link>
           <SearchBar />
 
           <div className="hidden items-center lg:flex">
