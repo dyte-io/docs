@@ -311,7 +311,7 @@ function Navbar() {
           </div>
         </div>
 
-        <div className="flex flex-1 items-center justify-end">
+        <div className="flex flex-1 items-center justify-end space-x-2 lg:space-x-1">
           <Link
             className="flex items-center text-sm font-medium text-text-100 hover:no-underline"
             href="https://github.com/dyte-in"
