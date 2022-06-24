@@ -1,3 +1,10 @@
+## [1.14.3](https://github.com/dyte-in/docs/compare/v1.14.2...v1.14.3) (2022-06-24)
+
+
+### Bug Fixes
+
+* replace Old SDKs from sidebar ([0d2bff0](https://github.com/dyte-in/docs/commit/0d2bff015eaf3fe172ce833e657f0283c1140368))
+
 ## [1.14.2](https://github.com/dyte-in/docs/compare/v1.14.1...v1.14.2) (2022-06-24)
 
 
