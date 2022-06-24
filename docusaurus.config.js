@@ -45,16 +45,12 @@ module.exports = {
           activeBaseRegex: '(^/docs)',
         },
         {
-          label: 'Prebuilt SDKs',
-          to: '/react/quickstart',
-        },
-        {
           label: 'Web SDKs',
           to: '/react-ui-kit/installation',
         },
         {
           label: 'Mobile SDKs',
-          to: '/react-native-core/installation',
+          to: '/react-native/quickstart',
         },
         {
           label: 'API Reference',
