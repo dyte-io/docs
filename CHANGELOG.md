@@ -1,3 +1,12 @@
+## [1.14.2](https://github.com/dyte-in/docs/compare/v1.14.1...v1.14.2) (2022-06-24)
+
+
+### Bug Fixes
+
+* hide old SDKs from the navigation ([2633a15](https://github.com/dyte-in/docs/commit/2633a15a75bca2b3af22e375d3b8f291a78898c9))
+* linting ([bc372a8](https://github.com/dyte-in/docs/commit/bc372a86ada5fc95b290a74b2510bd79281cc287))
+* navbar icon links placement in mobile ([a3b25e9](https://github.com/dyte-in/docs/commit/a3b25e9f9a39ff9c33a1171717eb8fda92346047))
+
 ## [1.14.1](https://github.com/dyte-in/docs/compare/v1.14.0...v1.14.1) (2022-06-23)
 
 
