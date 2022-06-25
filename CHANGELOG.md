@@ -1,3 +1,22 @@
+# [1.15.0](https://github.com/dyte-in/docs/compare/v1.14.3...v1.15.0) (2022-06-25)
+
+
+### Bug Fixes
+
+* all -> the ([ac7cffa](https://github.com/dyte-in/docs/commit/ac7cffadb3428399964038024a46e5035b5b7ca4))
+* participant docs ([f1a7344](https://github.com/dyte-in/docs/commit/f1a7344eed4645ff552065da1086538a63fedffc))
+* participants documentation ([715af4e](https://github.com/dyte-in/docs/commit/715af4e8b590f0a5f13e4ae9be60337766bde809))
+* recording properties ([99a9d21](https://github.com/dyte-in/docs/commit/99a9d21592e044e2ce4056ad2e435be1206e6bd8))
+* update participant docs ([30249d6](https://github.com/dyte-in/docs/commit/30249d606e65ddb6616b3ce542a299ca3145fed6))
+* update reference for react-native-core and react-web-core ([#31](https://github.com/dyte-in/docs/issues/31)) ([a651305](https://github.com/dyte-in/docs/commit/a651305636557e268c3af068ad948aa27107779f))
+* web-core docs ([#35](https://github.com/dyte-in/docs/issues/35)) ([28ca549](https://github.com/dyte-in/docs/commit/28ca5499e0e1f6aee7ba197afe5a6139a61d1646)), closes [#58](https://github.com/dyte-in/docs/issues/58) [#58](https://github.com/dyte-in/docs/issues/58)
+
+
+### Features
+
+* add workflow to reject pr if api-specs is updated ([39ba452](https://github.com/dyte-in/docs/commit/39ba4529d0ca3a3e28b934f48f706a9f72cb91a7))
+* release web-core 0.27.x ([4a4dcc3](https://github.com/dyte-in/docs/commit/4a4dcc36dabc9206a7231a5f64907bd177082a22))
+
 ## [1.14.3](https://github.com/dyte-in/docs/compare/v1.14.2...v1.14.3) (2022-06-24)
 
 
