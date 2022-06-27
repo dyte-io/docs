@@ -17,9 +17,9 @@ For example, if you want to get the name of the room the current participant is 
 
 ```ts
 // Destructuring the metadata to get roomName and joined
-const { roomName, joined } = meeting.meta;
+const { roomName } = meeting.meta;
 
-if (joined) {
+if (meeting.self.roomJoined) {
     console.log(`The local user has joined room ${roomName}.`);
 }
 ```
