@@ -1,7 +1,6 @@
 ---
-sidebar_position: 2
-title: Manage media devices
-description: Local user media guide.
+title: Manage Media Devices
+description: Local user media guide to manage media permissions.
 slug: /local-user/manage-media-devices
 tags: [web-core, local-user, self, self events]
 ---
@@ -14,14 +13,19 @@ To get the list of media devices that are currently being used, you can use the 
 ```js
 // Get all media devices
 const devices = meeting.self.getAllDevices();
+
 // Get all audio devices
 const audioDevices = meeting.self.getAudioDevices();
+
 // Get all video devices
 const videoDevices = meeting.self.getVideoDevices();
+
 // Get all speakers
 const speakerDevices = meeting.self.getSpeakerDevices();
+
 // Get device by ID
 const device = meeting.self.getDeviceById('12345', 'audio');
+
 // Fetch current media devices being used 
 const currentDevices = meeting.self.getCurrentDevices();
 ```
