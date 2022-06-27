@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-web_core_version: 0.26.0
+web_core_version: 0.28.0
 ---
 
 <!-- Auto Generated Below -->
@@ -31,11 +31,11 @@ This module represents all the participants in the meeting. It consists of 4 map
     * [.setPage(page)](#module_DyteParticipants+setPage)
     * [.disableAllAudio(allowUnMute)](#module_DyteParticipants+disableAllAudio)
     * [.disableAllVideo()](#module_DyteParticipants+disableAllVideo)
-    * [.disableAudio(peerId)](#module_DyteParticipants+disableAudio)
-    * [.disableVideo(peerId)](#module_DyteParticipants+disableVideo)
+    * ~~[.disableAudio(peerId)](#module_DyteParticipants+disableAudio)~~
+    * ~~[.disableVideo(peerId)](#module_DyteParticipants+disableVideo)~~
     * [.kickAll()](#module_DyteParticipants+kickAll)
     * [.broadcastMessage()](#module_DyteParticipants+broadcastMessage)
-    * [.kick(peerId)](#module_DyteParticipants+kick)
+    * ~~[.kick(peerId)](#module_DyteParticipants+kick)~~
 
 <a name="module_DyteParticipants+waitlisted"></a>
 
@@ -175,8 +175,8 @@ Disables video for all participants in the meeting.
 **Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)  
 <a name="module_DyteParticipants+disableAudio"></a>
 
-### meeting.participants.disableAudio(peerId)
-Disables audio for the given participant.
+### ~~meeting.participants.disableAudio(peerId)~~
+***Deprecated***
 
 **Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)  
 
@@ -186,8 +186,8 @@ Disables audio for the given participant.
 
 <a name="module_DyteParticipants+disableVideo"></a>
 
-### meeting.participants.disableVideo(peerId)
-Disables video for the given participant.
+### ~~meeting.participants.disableVideo(peerId)~~
+***Deprecated***
 
 **Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)  
 
@@ -209,8 +209,8 @@ Broadcasts the message to all participants including `self`.
 **Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)  
 <a name="module_DyteParticipants+kick"></a>
 
-### meeting.participants.kick(peerId)
-Kicks the given participant from the meeting.
+### ~~meeting.participants.kick(peerId)~~
+***Deprecated***
 
 **Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)  
 

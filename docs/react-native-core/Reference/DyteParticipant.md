@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-web_core_version: 0.26.0
+web_core_version: 0.28.0
 ---
 
 <!-- Auto Generated Below -->
@@ -36,6 +36,9 @@ const participant4 = meeting.participants.active.toArray().filter((p) => p.name 
     * [.pin()](#module_DyteParticipant+pin)
     * [.unpin()](#module_DyteParticipant+unpin)
     * [.setIsPinned()](#module_DyteParticipant+setIsPinned)
+    * [.disableAudio()](#module_DyteParticipant+disableAudio)
+    * [.kick()](#module_DyteParticipant+kick)
+    * [.disableVideo()](#module_DyteParticipant+disableVideo)
 
 <a name="module_DyteParticipant+id"></a>
 
@@ -139,4 +142,25 @@ to unpin participants.
 <a name="module_DyteParticipant+setIsPinned"></a>
 
 ### participant.setIsPinned()
+**Kind**: instance method of [<code>DyteParticipant</code>](#module_DyteParticipant)  
+<a name="module_DyteParticipant+disableAudio"></a>
+
+### participant.disableAudio()
+Disables audio for this participant.
+Requires the permission to disable participant audio.
+
+**Kind**: instance method of [<code>DyteParticipant</code>](#module_DyteParticipant)  
+<a name="module_DyteParticipant+kick"></a>
+
+### participant.kick()
+Kicks this participant from the meeting.
+Requires the permission to kick a participant.
+
+**Kind**: instance method of [<code>DyteParticipant</code>](#module_DyteParticipant)  
+<a name="module_DyteParticipant+disableVideo"></a>
+
+### participant.disableVideo()
+Disables video for this participant.
+Requires the permission to disable video for a participant.
+
 **Kind**: instance method of [<code>DyteParticipant</code>](#module_DyteParticipant)  
