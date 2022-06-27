@@ -1,3 +1,10 @@
+## [1.15.1](https://github.com/dyte-in/docs/compare/v1.15.0...v1.15.1) (2022-06-27)
+
+
+### Bug Fixes
+
+* **content:** fix docs content ([22d2b18](https://github.com/dyte-in/docs/commit/22d2b188e58e1779e52d3f7ad59faaaef647a631))
+
 # [1.15.0](https://github.com/dyte-in/docs/compare/v1.14.3...v1.15.0) (2022-06-25)
 
 
