@@ -35,31 +35,37 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Client SDK',
+      label: 'Web SDK',
       collapsed: true,
       collapsible: true,
       items: [
         {
           type: 'link',
           label: 'Installation',
-          href: '/react/installation',
+          href: '/react-ui-kit/installation',
         },
         {
           type: 'link',
-          label: 'Usage',
-          href: '/react/usage',
-        },
-        {
-          type: 'link',
-          label: 'Sample app',
-          href: '/react/sample-app',
+          label: 'Quickstart',
+          href: '/react-ui-kit/quickstart',
         },
         {
           type: 'link',
           label: 'Reference',
-          href: '/react/reference/dyte-meeting',
+          href: '/web-core/Reference/DyteClient',
         },
       ],
+    },
+    {
+      type: 'category',
+      label: 'Plugins',
+      collapsed: true,
+      collapsible: true,
+      items: [{
+        type: 'link',
+        label: 'Plugins',
+        href: '/docs/plugins',
+      }],
     },
     {
       type: 'category',
@@ -73,6 +79,44 @@ module.exports = {
           href: '/api/',
         },
       ],
+    },
+    {
+      type: 'category',
+      label: 'Dyte CLI',
+      collapsed: true,
+      collapsible: true,
+      items: [
+        {
+          type: 'link',
+          label: 'Installation',
+          href: '/cli/installation'
+        },
+        {
+          type: 'link',
+          label: 'Getting started',
+          href: '/cli/getting-started'
+        },
+        {
+          type: 'link',
+          label: 'Creating meetings',
+          href: '/cli/meetings'
+        },
+        {
+          type: 'link',
+          label: 'Recording a meeting',
+          href: '/cli/recording'
+        },
+        {
+          type: 'link',
+          label: 'Publishing plugins',
+          href: '/cli/plugins'
+        },
+        {
+          type: 'link',
+          label: 'Creating webhooks',
+          href: '/cli/webhooks'
+        },
+      ]
     },
     {
       type: 'category',
