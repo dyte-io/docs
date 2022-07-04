@@ -1,3 +1,10 @@
+## [1.15.2](https://github.com/dyte-in/docs/compare/v1.15.1...v1.15.2) (2022-07-04)
+
+
+### Bug Fixes
+
+* disable `trailingSlash` ([164825c](https://github.com/dyte-in/docs/commit/164825c65b01d99edc40be3f045c729de3aa21a8))
+
 ## [1.15.1](https://github.com/dyte-in/docs/compare/v1.15.0...v1.15.1) (2022-06-27)
 
 
