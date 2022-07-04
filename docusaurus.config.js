@@ -23,6 +23,7 @@ module.exports = {
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'favicon.ico',
+  trailingSlash: false,
   organizationName: 'dyte-in', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
   clientModules: [require.resolve('./src/css/tailwind.css')],
