@@ -18,7 +18,7 @@ export default function APIVersionSwitcher({ current }) {
             className={clsx(
               'px-4 py-2 text-right text-text-100 hover:bg-background-200 hover:text-text hover:no-underline'
             )}
-            href="/api/"
+            href="/api"
           >
             v1
           </Link>
