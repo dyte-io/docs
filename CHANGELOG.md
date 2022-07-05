@@ -1,3 +1,10 @@
+## [1.15.3](https://github.com/dyte-in/docs/compare/v1.15.2...v1.15.3) (2022-07-05)
+
+
+### Bug Fixes
+
+* trailing slash config and paths changed ([edc7915](https://github.com/dyte-in/docs/commit/edc79151f0450fdac63e372d11e2d25cef75dc00))
+
 ## [1.15.2](https://github.com/dyte-in/docs/compare/v1.15.1...v1.15.2) (2022-07-04)
 
 
