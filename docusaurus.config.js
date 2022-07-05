@@ -55,7 +55,7 @@ module.exports = {
         },
         {
           label: 'API Reference',
-          to: '/api/',
+          to: '/api',
         },
         {
           label: 'Guides',

@@ -291,7 +291,7 @@ function Navbar() {
               <span className="pill ml-2">NEW</span>
             </Link> */}
             <a
-              href="/api/"
+              href="/api"
               className={clsx(
                 'text-sm font-medium hover:no-underline',
                 page === 'api' ? 'text-primary-100' : 'text-text-100'
