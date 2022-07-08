@@ -15,7 +15,7 @@ It is a simple context provider providing the meeting object to child components
 import { useDyteClient } from '@dytesdk/react-web-core';
 
 function App() {
-  const [ client, initClient ] = useDyteClient();
+  const [ meeting, initClient] = useDyteClient();
 
   useEffect(() => {
     initClient({
@@ -29,7 +29,7 @@ function App() {
   }, []);
 
   return (
-    <DyteProvider value={client}>
+    <DyteProvider value={meeting}>
       <Meeting />
     </DyteProvider>
   );

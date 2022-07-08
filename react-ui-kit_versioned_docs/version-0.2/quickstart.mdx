@@ -25,7 +25,7 @@ import { useDyteClient } from '@dytesdk/react-web-core';
 import { DyteMeeting } from '@dytesdk/react-ui-kit';
 
 function App() {
-  const [client, initClient ] = useDyteClient();
+  const [meeting, initClient] = useDyteClient();
 
   useEffect(() => {
     initClient({
@@ -34,7 +34,7 @@ function App() {
       });
   },[])
 
-  return (<DyteMeeting meeting={client} />);
+  return (<DyteMeeting meeting={meeting} />);
 }
 ```
 

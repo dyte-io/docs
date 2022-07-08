@@ -11,7 +11,7 @@ tags: [react-native-core, quickstart, setup]
 import { useDyteClient } from '@dytesdk/react-web-core';
 
 function App() {
-  const [ client, initClient ] = useDyteClient();
+  const [ meeting, initClient] = useDyteClient();
 
   useEffect(() => {
     initClient({
@@ -21,13 +21,13 @@ function App() {
   }, []);
 
   return (
-    <DyteProvider value={client}>
+    <DyteProvider value={meeting}>
       <YourMeetingComponent />
     </DyteProvider>
   );
 }
 ```
 
-You can get the roomName and authToken using our backend APIs and then pass it to the init method of DyteClient.
+You can get the [roomName](http://localhost:5000/api/#/operations/createMeeting) and [authToken](http://localhost:5000/api/#/operations/addParticipant) using our backend APIs and then pass it to the init method of DyteClient.
 
 Now at this point you have joined the meeting, the next steps would be configuring local media publishing and participant's media playback

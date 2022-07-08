@@ -176,7 +176,7 @@ On this screen, we render `DyteClient` which represents a lobby (where users can
 Create a React components called `Lobby` in `Lobby.JS` file and use following code.
 
 ```javascript
-const[client, initClient] = useDyteClient();
+const[meeting, initClient] = useDyteClient();
     useEffect(() => {
         initClient({
             authToken: authToken,
@@ -193,7 +193,7 @@ In above code we initialize `DyteClient`. To actually render it, we `return` it 
 
 ```javascript
 return (<div>   
-    <DyteMeeting meeting={client} class="Dyte" />
+    <DyteMeeting meeting={meeting} class="Dyte" />
 </div>);
 ```
 
