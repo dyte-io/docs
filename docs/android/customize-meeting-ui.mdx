@@ -4,9 +4,7 @@ sidebar_position: 4
 
 # Customize the meeting UI
 
-import VideoPlayer from '@site/src/components/VideoPlayer';
-
-Dyte offers a host of customizations for the UI of meetings, some of which also defines the interactions the participants can have within a meeting room. While the initial values for these options are picked up from the [`preset`](/docs/home/introduction#glossary) used to generate the `authToken`, you can override them at the client end based on specific use cases or events.
+Dyte offers a host of customizations for the UI of meetings, some of which also defines the interactions the participants can have within a meeting room. While the initial values for these options are picked up from the preset used to generate the `authToken`, you can override them at the client end based on specific use cases or events.
 
 Call the `updateUIConfig` method on [`DyteMeeting` instance](./reference/meeting) and pass the [`uiConfigOptions`](./reference/dyte-ui-config) as a stringified JSON parameter to this call.
 
@@ -18,7 +16,7 @@ Described below are various different options that you can customize in a meetin
 
 Here is a pictorial representation of all the config options defined below.
 
-![meeting UI screenshot with labeled parts](/ui-customizations/mobile/mobile-meeting-ui.png)
+![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-meeting-ui.png)
 
 ## Set your logo in the meeting room
 
@@ -48,7 +46,7 @@ The default values for each of these are shown in the below example. Remember to
 }
 ```
 
-<VideoPlayer src="/ui-customizations/mobile/mobile-themes.mp4" mobile />
+<VideoPlayer src="/static/mobile/0.x.x/mobile-themes.mp4" mobile />
 
 <!-- ## Adjust the meeting size to a custom container
 
@@ -85,7 +83,7 @@ You can hide the bottom control bar by setting `controlBar` to `false` in config
 "controlBar": true
 ```
 
-<VideoPlayer src="/ui-customizations/mobile/mobile-control-bar.mp4" mobile />
+<VideoPlayer src="/static/mobile/0.x.x/mobile-control-bar.mp4" mobile />
 
 ## Hide individual controls from the bottom control bar
 
@@ -104,10 +102,7 @@ You can hide individual controls from the bottom control bar by setting their re
 }
 ```
 
-<VideoPlayer
-  src="/ui-customizations/mobile/mobile-control-bar-elements.mp4"
-  mobile
-/>
+<VideoPlayer src="/static/mobile/0.x.x/mobile-control-bar-elements.mp4" mobile />
 
 ## Hide the header bar
 
@@ -117,7 +112,7 @@ You can hide the header bar by setting `header` to `false` in config. The defaul
 "header": true
 ```
 
-<VideoPlayer src="/ui-customizations/mobile/mobile-header.mp4" mobile />
+<VideoPlayer src="/static/mobile/0.x.x/mobile-header.mp4" mobile />
 
 ## Hide individual controls from the header bar
 

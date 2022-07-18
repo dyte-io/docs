@@ -1,61 +1,47 @@
 ---
-sidebar_position: 1
-title: Installation
+sidebar_position: 2
+description: Installation guide for UI Kit.
 ---
-
-# Introduction
-
-- 🌐 Built with Web Components.
-- 0️⃣ Zero external dependencies.
-- 🚀 Blazingly fast. Uses browser provided ShadowDOM.
-- 🤏 Small bundle size (<500KB) for the entire UI (less if you use individual components).
-- ✨ ShadowDOM provides style encapsulation, your CSS styles wouldn't affect our styles and vice versa.
 
 # Installation
 
-There are two ways you can install ui-kit depending on your project.
+There are two ways to use UI Kit in your project, according to your project setup.
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+<Tabs groupId="cdn-npm">
+  <TabItem value="cdn" label="CDN" default>
 
-
-<Tabs
-  groupId="android-language"
-  defaultValue="basic"
-  values={[
-    { label: 'Basic', value: 'basic', },
-    { label: 'NPM', value: 'npm', },
-  ]
-}>
-<TabItem value="basic">
-
-Put the below script tag in `<head>` of your page
+To set up UI Kit components and web-core, add the following script tags inside the `<head />` tag.
 
 ```html
 <head>
-    <script src="https://cdn.dyte.in/web-core.js" />
-    <script type="module">
-      import { defineCustomElements } from 'https://cdn.dyte.in/ui-kit/loader/index.es2017.js';
-      defineCustomElements();
-    </script>
+  <script type="module">
+    import { defineCustomElements } from 'https://cdn.jsdelivr.net/npm/@dytesdk/ui-kit/loader/index.es2017.js';
+    defineCustomElements();
+  </script>
+  <!-- Import Web Core via CDN too -->
+  <script src="https://cdn.dyte.in/core/dyte.js"></script>
 </head>
 ```
 
-</TabItem>
-<TabItem value="npm">
+You can also import utilities or any other export from CDN:
 
-Install the package from npm:
-
-```bash
-npm install @dytesdk/ui-kit @dytesdk/core
+```html
+<head>
+  <script type="module">
+    import {
+      provideDyteDesignSystem,
+      extendConfig,
+    } from 'https://cdn.jsdelivr.net/npm/@dytesdk/ui-kit@1.15.1/dist/index.js';
+  </script>
+</head>
 ```
 
-And now you need to define the custom elements:
+  </TabItem>
+  <TabItem value="npm" label="npm">
 
-```js
-import { defineCustomElements } from '@dytesdk/ui-kit/loader/index.es2017.js';
-
-defineCustomElements();
+```bash npm2yarn
+npm install @dytesdk/ui-kit @dytesdk/web-core
 ```
-</TabItem>
+
+  </TabItem>
 </Tabs>

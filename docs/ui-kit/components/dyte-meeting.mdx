@@ -1,0 +1,24 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-meeting.svg
+---
+
+# dyte-meeting
+
+A single component which renders an entire meeting UI.
+
+It loads your preset and renders the UI based on it.
+With this component, you don't have to handle all the states,
+dialogs and other smaller bits of managing the application.
+
+```html
+<dyte-meeting mode="fill" style="height: 480px; width: 100%"></dyte-meeting>
+
+<script>
+  const el = document.getElementById('dyte-el');
+  el.meeting = meeting;
+</script>
+```
+
+## Props
+
+<PropsTable of="dyte-meeting" />

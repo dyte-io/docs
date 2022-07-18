@@ -1,13 +1,11 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
+slug: /
 ---
 
 # Quickstart
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-Get the `roomName` for the meeting and the participant's `authToken` from our backend APIs (read more about our server APIs [here](/api)), and pass them to Dyte's client SDK.
+Get the `roomName` for the meeting and the participant's `authToken` from our backend APIs (read more about our server APIs [here](/api/)), and pass them to Dyte's client SDK.
 
 There are 2 ways to manage a meeting view:
 
@@ -17,12 +15,12 @@ There are 2 ways to manage a meeting view:
 ## Programatically
 
 <Tabs
-  groupId="ios-language"
-  defaultValue="swift"
-  values={[
-    { label: 'Swift', value: 'swift', },
-    { label: 'Obj-C', value: 'obj-c', },
-  ]
+groupId="ios-language"
+defaultValue="swift"
+values={[
+{ label: 'Swift', value: 'swift', },
+{ label: 'Obj-C', value: 'obj-c', },
+]
 }>
 <TabItem value="swift">
 
@@ -86,17 +84,17 @@ class ViewController: UIViewController {
 
 1. Add a View in Storyboard and set it's custom class to `DyteMeetingView`. Similar to above example, if you want to use `tag`, you can set that too in Storyboard.
 
-![xcode-screenshot-showing-storyboard-setup](/ios-setup.png)
+![xcode-screenshot-showing-storyboard-setup](/static/ios/ios-setup.png)
 
 2. Reference the view in your code and initiate the meeting.
 
 <Tabs
-  groupId="ios-language"
-  defaultValue="swift"
-  values={[
-    { label: 'Swift', value: 'swift', },
-    { label: 'Obj-C', value: 'obj-c', },
-  ]
+groupId="ios-language"
+defaultValue="swift"
+values={[
+{ label: 'Swift', value: 'swift', },
+{ label: 'Obj-C', value: 'obj-c', },
+]
 }>
 <TabItem value="swift">
 

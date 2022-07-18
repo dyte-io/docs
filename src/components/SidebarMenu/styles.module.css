@@ -1,0 +1,52 @@
+.container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 1rem 0.5rem;
+}
+
+.sectionsMenu {
+  flex: 1;
+  line-height: 1.2;
+}
+
+.multiSectionContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+}
+
+.section {
+  padding: 0.75rem;
+  cursor: pointer;
+  background-color: var(--docs-color-background-300);
+}
+
+.sectionActive {
+  background-color: var(--docs-color-primary-tint-light);
+}
+
+.section:first-child {
+  border-radius: 8px 8px 0 0;
+}
+
+.section:last-child {
+  border-radius: 0 0 8px 8px;
+}
+
+.label {
+  margin-bottom: 0.5rem;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.description {
+  margin: 0;
+  font-size: 14px;
+  color: var(--docs-color-text-100);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}

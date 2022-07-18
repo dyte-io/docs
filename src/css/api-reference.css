@@ -1,0 +1,91 @@
+/* Stoplight Elements tokens */
+
+:root {
+  --font-ui: var(--ifm-font-family-base) !important;
+  --font-prose: var(--font-ui) !important;
+  --font-mono: var(--ifm-font-family-monospace) !important;
+
+  --color-canvas: var(--ifm-background-color) !important;
+  --color-canvas-100: var(--ifm-footer-background-color) !important;
+
+  --color-primary-tint: var(--docs-color-primary-tint) !important;
+}
+
+.elements-container {
+  flex-grow: 1;
+  height: 100%;
+}
+
+.elements-container.stacked {
+  padding: 2rem 1rem;
+}
+
+.ElementsTableOfContentsItem div {
+  border-right: 2px solid transparent !important;
+  border-radius: 4px 0 0 4px;
+}
+
+.ElementsTableOfContentsItem .sl-bg-primary-tint {
+  border-color: var(--docs-color-primary-100) !important;
+}
+
+html[data-theme='dark'] .elements-container {
+  --color-canvas-200: var(--docs-color-background-200) !important;
+  --ifm-pre-background: #1e1e1e;
+}
+
+html[data-theme='dark'] .TryItPanel {
+  --color-canvas-100: var(--docs-color-background-100) !important;
+  --color-canvas-200: var(--docs-color-background-200) !important;
+}
+
+html[data-theme='dark'] .elements-container :is(.token.string, .token.function, .token.property) {
+  color: var(--docs-color-primary-100) !important;
+}
+
+html[data-theme='dark'] .elements-container :is(.token.punctuation, .token.operator) {
+  color: #fff !important;
+}
+
+html[data-theme='dark'] .elements-container :is(.token.boolean, .token.number) {
+  color: #fff !important;
+}
+
+.JsonSchemaViewer > div:first-child {
+  --color-canvas-pure: var(--docs-color-background-200);
+  z-index: 0;
+  border-radius: 4px;
+  padding: 0 12px !important;
+}
+
+/* Makes the API documentation take up entire space of `.main-wrapper` */
+.api-reference.main-wrapper {
+  flex: 1 0 0;
+}
+
+.api-reference .header {
+  position: sticky;
+  top: var(--ifm-navbar-height);
+  background-color: var(--docs-color-background);
+
+  display: flex;
+  align-items: center;
+  height: var(--ifm-navbar-height);
+
+  justify-content: space-between;
+  padding: 0 1.25rem;
+  border-bottom: 1px solid var(--docs-color-border);
+  z-index: 30;
+}
+
+.api-reference .aside {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.api-reference .header h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}

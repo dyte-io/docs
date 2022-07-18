@@ -1,0 +1,31 @@
+# dyte-polls-toggle
+
+A button which toggles visibility of polls.
+
+You need to pass the `meeting` object to it to see the unread polls count badge.
+
+When clicked it emits a `dyteStateUpdate` event with the data:
+
+```ts
+{
+  activeSidebar: boolean;
+  sidebar: 'polls' | 'none';
+}
+```
+
+```html
+<dyte-polls-toggle size="sm" class="dyte-el"></dyte-polls-toggle>
+<dyte-polls-toggle size="lg" class="dyte-el"></dyte-polls-toggle>
+<dyte-polls-toggle variant="horizontal" class="dyte-el"></dyte-polls-toggle>
+
+<script>
+  const elements = document.getElementsByClassName('dyte-el');
+  for (const el of elements) {
+    el.meeting = meeting;
+  }
+</script>
+```
+
+## Props
+
+<PropsTable of="dyte-polls-toggle" />

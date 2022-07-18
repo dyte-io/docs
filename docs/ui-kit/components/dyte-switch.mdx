@@ -1,0 +1,22 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-switch.svg
+---
+
+# dyte-switch
+
+A switch component which follows Dyte's Design System.
+
+```html
+<dyte-switch id="dyte-el"></dyte-switch>
+
+<script>
+  const el = document.getElementById('dyte-el');
+  el.addEventListener('dyteChange', (e) => {
+    alert('New switch value:', e.detail);
+  });
+</script>
+```
+
+## Props
+
+<PropsTable of="dyte-switch" />

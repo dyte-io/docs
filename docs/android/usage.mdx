@@ -4,9 +4,6 @@ sidebar_position: 3
 
 # Basic Usage
 
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
-
 ## Configure the meeting connection
 
 You need to pass a [`MeetingConfig`](./reference/connection-config) to [`DyteMeeting`](./reference/meeting) to define which meeting should the client connect to and a couple of other setup parameters, out of which only `authToken` and `roomName` are mandatory.
@@ -14,12 +11,12 @@ You need to pass a [`MeetingConfig`](./reference/connection-config) to [`DyteMee
 `DyteMeeting` is a static class and can be used to control and observe the meeting from anywhere in your application.
 
 <Tabs
-  groupId="android-language"
-  defaultValue="kotlin"
-  values={[
-    { label: 'Kotlin', value: 'kotlin', },
-    { label: 'Java', value: 'java', },
-  ]
+groupId="android-language"
+defaultValue="kotlin"
+values={[
+{ label: 'Kotlin', value: 'kotlin', },
+{ label: 'Java', value: 'java', },
+]
 }>
 <TabItem value="kotlin">
 
@@ -58,12 +55,12 @@ This will launch a fullscreen view with your meeting.
 For this to work, `DyteMeetingActivity` needs to be registered in `AndroidManifest.xml` - [check step 3 on the Installation page](./installation).
 
 <Tabs
-  groupId="android-language"
-  defaultValue="kotlin"
-  values={[
-    { label: 'Kotlin', value: 'kotlin', },
-    { label: 'Java', value: 'java', },
-  ]
+groupId="android-language"
+defaultValue="kotlin"
+values={[
+{ label: 'Kotlin', value: 'kotlin', },
+{ label: 'Java', value: 'java', },
+]
 }>
 <TabItem value="kotlin">
 

@@ -1,22 +1,14 @@
 ---
-sidebar_position: 1
-title: Installation
+sidebar_position: 2
+description: Installation guide for Angular UI Kit.
 ---
-
-# Introduction
-
-- 🌐 Built with Web Components.
-- 0️⃣ Zero external dependencies.
-- 🚀 Blazingly fast. Uses browser provided ShadowDOM.
-- 🤏 Small bundle size (<500KB) for the entire UI (less if you use individual components).
-- ✨ ShadowDOM provides style encapsulation, your CSS styles wouldn't affect our styles and vice versa.
 
 # Installation
 
 Install the package from npm:
 
-```bash
-npm install @dytesdk/angular-ui-kit @dytesdk/ui-kit @dytesdk/web-core
+```bash npm2yarn
+npm install @dytesdk/angular-ui-kit @dytesdk/web-core
 ```
 
 And now you need to load the `DyteComponentsModule` into your app module.
@@ -40,3 +32,16 @@ export class AppModule {}
 ```
 
 Now you can use Dyte's UI Components in your components HTML files.
+
+### Typescript
+
+If you are using typescript make sure you have `allowSyntheticDefaultImports` set as `true` in your `tsconfig.json`
+
+```json
+{
+  "compilerOptions": {
+    // highlight-next-line
+    "allowSyntheticDefaultImports": true
+  }
+}
+```

@@ -1,0 +1,31 @@
+# dyte-chat-toggle
+
+A button which toggles visibility of chat.
+
+You need to pass the `meeting` object to it to see the unread messages count badge.
+
+When clicked it emits a `dyteStateUpdate` event with the data:
+
+```ts
+{
+  activeSidebar: boolean;
+  sidebar: 'chat' | 'none';
+}
+```
+
+```html
+<dyte-chat-toggle size="sm" class="dyte-el"></dyte-chat-toggle>
+<dyte-chat-toggle size="lg" class="dyte-el"></dyte-chat-toggle>
+<dyte-chat-toggle variant="horizontal" class="dyte-el"></dyte-chat-toggle>
+
+<script>
+  const elements = document.getElementsByClassName('dyte-el');
+  for (const el of elements) {
+    el.meeting = meeting;
+  }
+</script>
+```
+
+## Props
+
+<PropsTable of="dyte-chat-toggle" />
