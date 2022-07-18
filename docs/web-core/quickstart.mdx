@@ -1,7 +1,7 @@
 ---
-sidebar_position: 1
-slug: /
+title: Quickstart
 description: Quickstart guide for web-core.
+sidebar_position: 2
 tags: [web-core, quickstart, setup]
 ---
 
@@ -11,8 +11,8 @@ The DyteClient is the root class of the SDK. It is the main entry point of the S
 
 ```js
 const meeting = await DyteClient.init({
-  roomName,
-  authToken,
+    roomName,
+    authToken
 });
 await meeting.joinRoom();
 ```

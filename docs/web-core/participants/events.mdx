@@ -1,9 +1,10 @@
 ---
-sidebar_position: 3
 title: Participant Events
 description: Event handling for participants.
+sidebar_position: 3
 tags: [web-core, participants, self]
 ---
+
 
 ## Events
 
@@ -16,15 +17,15 @@ Triggered when the View mode changes
 
 ```ts
 meeting.participants.on('viewModeChanged', ({ viewMode, currentPage, pageCount }) => {
-  console.log('view mode changed', viewMode);
+    console.log('view mode changed', viewMode);
 });
-```
+``` 
 
 ### Page change
 
 ```ts
 meeting.participants.on('pageChanged', ({ viewMode, currentPage, pageCount }) => {
-  console.log('page changed', currentPage);
+    console.log('page changed', currentPage);
 });
 ```
 
@@ -34,7 +35,7 @@ This event is triggered when a participant becomes `active` when they starts to 
 
 ```ts
 meeting.participants.on('activeSpeaker', (participant) => {
-  console.log(`${participant.id} is currently speaking`);
+    console.log(`${participant.id} is currently speaking`);
 });
 ```
 
@@ -42,7 +43,7 @@ meeting.participants.on('activeSpeaker', (participant) => {
 
 Instead of subscribing to individual participant events, you can subscribe to a participant map, such as `joined` & `active` and get updated when any of the participant emits an event.
 
-If you want to subscribe to participants when they become `active`, you can do so by subscribing to `meetings.participants.active.on('participantJoined')`
+If you want to subscribe to participants when they become `active`, you can do so by subscribing to `meetings.participants.active.on('participantJoined')` 
 
 ### Participant joined
 
@@ -50,7 +51,7 @@ Trigger an event when any participant joins the meeting.
 
 ```ts
 meeting.participants.joined.on('participantJoined', (participant) => {
-  console.log(`A participant with id "${participant.id}" has joined`);
+    console.log(`A participant with id "${participant.id}" has joined`);
 });
 ```
 
@@ -60,7 +61,7 @@ Trigger an event when any participant leaves the meeting.
 
 ```ts
 meeting.participants.joined.on('participantLeft', (participant) => {
-  console.log(`A participant with id "${participant.id}" has left the meeting`);
+    console.log(`A participant with id "${participant.id}" has left the meeting`);
 });
 ```
 
@@ -70,13 +71,13 @@ Trigger an event when any participant starts / stops video.
 
 ```ts
 meeting.participants.joined.on('videoUpdate', (participant) => {
-  console.log(`A participant with id "${participant.id}" updated their video track in the meeting`);
-  // Use the video track if it exists
-  if (participant.videoEnabled) {
-    // participant.videoTrack
-  } else {
-    // handle stop video
-  }
+    console.log(`A participant with id "${participant.id}" updated their video track in the meeting`);
+    // Use the video track if it exists
+    if (participant.videoEnabled) {
+        // participant.videoTrack
+    } else {
+        // handle stop video 
+    }
 });
 ```
 
@@ -86,13 +87,13 @@ Trigger an event when any participant starts / stops audio.
 
 ```ts
 meeting.participants.joined.on('audioUpdate', (participant) => {
-  console.log(`A participant with id "${participant.id}" updated their audio track in the meeting`);
-  // Use the audio track if it exists
-  if (participant.audioEnabled) {
-    // participant.audioTrack
-  } else {
-    // handle stop audio
-  }
+    console.log(`A participant with id "${participant.id}" updated their audio track in the meeting`);
+    // Use the audio track if it exists
+    if (participant.audioEnabled) {
+        // participant.audioTrack
+    } else {
+        // handle stop audio 
+    }
 });
 ```
 
@@ -102,18 +103,16 @@ Trigger an event when any participant starts / stops screen share.
 
 ```ts
 meeting.participants.joined.on('screenShareUpdate', (participant) => {
-  console.log(
-    `A participant with id "${participant.id}" updated their screen share in the meeting`
-  );
-  // Use the screen share track if it exists
-  if (participant.screenShareEnabled) {
-    // participant.screenShareTrack
-  } else {
-    // handle stop screen share
-  }
+    console.log(`A participant with id "${participant.id}" updated their screen share in the meeting`);
+    // Use the screen share track if it exists
+    if (participant.screenShareEnabled) {
+        // participant.screenShareTrack
+    } else {
+        // handle stop screen share
+    }
 });
 ```
 
 ## Events for specific participant
 
-If you want to subscribe to above events but for a specific participant only, you can do so by binding event to `meeting.participants.joined.get(peerId).on()` method. where the `peerId` is the id of the participant that you want to watch.
+If you want to subscribe to above events but for a specific participant only, you can do so by binding event to `meeting.participants.joined.get(peerId).on()` method. where the `peerId` is the id of the participant that you want to watch.  

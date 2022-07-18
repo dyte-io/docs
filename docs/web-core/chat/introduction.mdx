@@ -1,8 +1,8 @@
 ---
 title: Introducing chat
 description: Send and receive chat messages in a meeting.
-tags: [web-core, chat]
 sidebar_position: 1
+tags: [web-core, chat]
 ---
 
 # Introducing chat
@@ -15,28 +15,28 @@ The type `Message` is defined in the following manner.
 
 ```ts
 interface BaseMessage<T extends MessageType> {
-  type: T;
-  userId: string;
-  displayName: string;
-  time: Date;
-  id: string;
-  read?: boolean;
-  pluginId?: string;
-  pinned?: boolean;
+    type: T;
+    userId: string;
+    displayName: string;
+    time: Date;
+    id: string;
+    read?: boolean;
+    pluginId?: string;
+    pinned?: boolean;
 }
 
 interface TextMessage extends BaseMessage<MessageType.text> {
-  message: string;
+    message: string;
 }
 
 interface ImageMessage extends BaseMessage<MessageType.image> {
-  link: string;
+    link: string;
 }
 
 interface FileMessage extends BaseMessage<MessageType.file> {
-  name: string;
-  size: number;
-  link: string;
+    name: string;
+    size: number;
+    link: string;
 }
 
 type Message = TextMessage | ImageMessage | FileMessage;

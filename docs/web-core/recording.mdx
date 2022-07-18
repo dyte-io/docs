@@ -1,6 +1,7 @@
 ---
-sidebar_position: 9
+title: Recording
 description: Control recordings in a meeting.
+sidebar_position: 9
 tags: [web-core, recording]
 ---
 
@@ -8,20 +9,13 @@ tags: [web-core, recording]
 
 The `meeting.recording` object can be used start and stop recordings in a meeting. You can also get the current status of a recording using this API.
 
-## Recording State
-`recordingState` indicates the current recording state of the meeting. The possible states are
-- `IDLE`: Meeting is not recording.
-- `STARTING`: Meeting recording has been initialized by a user and we are waiting for the recording to start.
-- `RECORDING`: Meeting recording is in progress.
-- `STOPPING`: Meeting recording has been stopped by a user and we are waiting for the recording to stop.
+The `meeting.recording` object has the following properties:
+
+- `recordingState`: Indicates the current recording state of the meeting.
 
 ## Start a recording
 
-To start a recording, you can call the `start` method in the `meeting.recording` object. 
-
-Requirements:
-- `recordingState` is in `IDLE` state
-- `self.permissions.canRecord` is `true`
+To start a recording, you can call the `start` method in the `meeting.recording` object. The valid states are `IDLE`, `STARTING`, `RECORDING`, and `STOPPING`.
 
 ```ts
 await meeting.recording.start();
@@ -29,22 +23,14 @@ await meeting.recording.start();
 
 ## Stop a recording
 
-To stop a recording, you can call the `stop` method in the `meeting.recording` object.
-
-Requirements:
-- `recordingState` is in `RECORDING` state
-- `self.permissions.canRecord` is `true`
+Call `meeting.recording.stop()` to stop the active recording.
 
 ```ts
 await meeting.recording.stop();
 ```
 
-## Listening for recording state updates
+## Get active recording state
 
-The meeting.recording object emits events when the recording state changes. You can listen for the recordingUpdate event to log when the recording state changes.
-```ts
-meeting.recording.on('recordingUpdate', (recordingState) => {
-  console.log(recordingState);
-});
-```
-Here, the `recordingState` has the possible types as defined in [Recording State](#recording-state).
+The `meeting.recording.recordingState` property describes the current state of the recording. The valid states are `IDLE`, `STARTING`, `RECORDING`, and `STOPPING`.
+
+To update the state of recording at any time, call the `meeting.recording.refreshActiveRecordingState()` method.
