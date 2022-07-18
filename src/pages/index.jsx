@@ -26,7 +26,6 @@ export default function Homepage() {
 
   return (
     <Layout
-      title="Dyte Docs"
       description="Real-time audio & video SDKs, ready to launch 🚀"
       wrapperClassName="homepage"
     >

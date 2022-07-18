@@ -296,10 +296,10 @@ const config = {
       liveCodeBlock: {
         playgroundPosition: 'bottom',
       },
-      algolia: process.env.ALGOLIA_API_KEY && {
-        appId: process.env.ALGOLIA_APP_ID,
-        apiKey: process.env.ALGOLIA_API_KEY,
-        indexName: 'prod_docs',
+      algolia: {
+        appId: 'HL0HSV62RK',
+        apiKey: '72ebf02146698733b7114c7b36da0945',
+        indexName: 'docs',
         contextualSearch: true,
         searchParameters: {},
       },
