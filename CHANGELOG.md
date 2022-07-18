@@ -1,3 +1,16 @@
+# [1.17.0](https://github.com/dyte-in/docs/compare/v1.16.0...v1.17.0) (2022-07-18)
+
+
+### Bug Fixes
+
+* remove redundant title in homepage ([80b827c](https://github.com/dyte-in/docs/commit/80b827c4bdfaeb1968fc4c703d4f0fcef8d931b7))
+
+
+### Features
+
+* search ([17424d5](https://github.com/dyte-in/docs/commit/17424d5a93196cbc1f4832b331bda3b36146ed80))
+* search crawl action ([00bc234](https://github.com/dyte-in/docs/commit/00bc2341afa6bca0a9532e6d784df761b494ae3a))
+
 # [1.16.0](https://github.com/dyte-in/docs/compare/v1.15.3...v1.16.0) (2022-07-18)
 
 
