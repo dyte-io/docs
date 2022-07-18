@@ -11,8 +11,8 @@ The `meeting.chat` object emits events when new chat messages are received. You 
 
 ```ts
 meeting.chat.on('chatUpdate', ({ message, messages }) => {
-  console.log(`Received message ${message}`);
-  console.log(`All messages in chat: ${messages.join(', ')}`);
+    console.log(`Received message ${message}`);
+    console.log(`All messages in chat: ${messages.join(', ')}`);
 });
 ```
 
@@ -23,6 +23,6 @@ When a chat message is received, the `meeting.chat.messages` list is also update
 ```ts
 console.log(JSON.stringify(meeting.chat.messages));
 meeting.chat.on('chatUpdate', () => {
-  console.log(JSON.stringify(meeting.chat.messages));
+    console.log(JSON.stringify(meeting.chat.messages));
 });
 ```

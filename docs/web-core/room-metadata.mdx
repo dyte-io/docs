@@ -1,13 +1,13 @@
 ---
-sidebar_position: 4
+title: Room Metadata
 description: All metadata pertaining to a meeting.
+sidebar_position: 4
 tags: [web-core, room-metadata]
 ---
 
 # Room Metadata
 
 All metadata pertaining to a meeting is stored in `meeting.meta`. This includes:
-
 - `roomName`: The name of the room the current participant is connected to.
 - `roomType`: Indicates the meeting is a group-call or a webinar.
 - `meetingTitle`: The title of the meeting.
@@ -17,10 +17,10 @@ For example, if you want to get the name of the room the current participant is 
 
 ```ts
 // Destructuring the metadata to get roomName and joined
-const { roomName, joined } = meeting.meta;
+const { roomName } = meeting.meta;
 
-if (joined) {
-  console.log(`The local user has joined room ${roomName}.`);
+if (meeting.self.roomJoined) {
+    console.log(`The local user has joined room ${roomName}.`);
 }
 ```
 
@@ -28,10 +28,10 @@ The `meta` object also emits for indicating the change in the connection state o
 
 ```ts
 meeting.meta.on('connected', () => {
-  console.log(`The local user has successfully joined the room ${meeting.meta.roomName}`);
+    console.log(`The local user has successfully joined the room ${meeting.meta.roomName}`);
 });
 
 meeting.meta.on('disconnected', () => {
-  console.log(`The local user got disconnected from the room ${meeting.meta.roomName}`);
+    console.log(`The local user got disconnected from the room ${meeting.meta.roomName}`);
 });
 ```

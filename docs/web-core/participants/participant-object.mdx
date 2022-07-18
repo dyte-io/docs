@@ -1,12 +1,13 @@
 ---
-sidebar_position: 2
+title: The participant object
 description: The object corresponding to a particular participant.
+sidebar_position: 2
 tags: [web-core, participants, participant]
 ---
 
 # The participant object
 
-The `participant` object consists of all the information related to a particular participant. For instance, it contains a partcipants video/audio/screenshare stream, and the participant's name. It also contains state variables that indicate whether a participant's camera is on or off, and whether they are muted or unmuted. Head over to [DyteParticipant](../reference/DyteParticipant.md) for a detailed reference.
+The `participant` object consists of all the information related to a particular participant. For instance, it contains a partcipants video/audio/screenshare stream, and the participant's name. It also contains state variables that indicate whether a participant's camera is on or off, and whether they are muted or unmuted. Head over to [DyteParticipant](../../Reference/DyteParticipant) for a detailed reference.
 
 The participant object has the following properties.
 
@@ -29,8 +30,12 @@ The participant object is an event emitter, so you can set listeners on this obj
 
 ```ts
 meeting.participants.joined.get(participantId).on('audioUpdate', ({ audioEnabled, audioTrack }) => {
-  // This will only be fired on mic toggles for the participant with ID `participantId`
-  console.log('The participant with id', participantId, 'has toggled their mic to', audioEnabled);
+    // This will only be fired on mic toggles for the participant with ID `participantId`
+    console.log('The participant with id',
+        participantId,
+        'has toggled their mic to',
+        audioEnabled,
+    );
 });
 ```
 
@@ -38,12 +43,16 @@ The events emitted by all participant objects are also re-emitted by all the map
 
 ```ts
 meeting.participants.joined.on('audioUpdate', (participant, { audioEnabled, audioTrack }) => {
-  // This will be fired on mic toggles for all participants in the meeting
-  console.log('The participant with id', participantId, 'has toggled their mic to', audioEnabled);
+    // This will be fired on mic toggles for all participants in the meeting
+    console.log('The participant with id',
+        participantId,
+        'has toggled their mic to',
+        audioEnabled,
+    );
 });
 ```
 
-Read more about the participant events in the [events](../reference/DyteParticipant.md) section in the API reference.
+Read more about the participant events in the [events](../../Reference/DyteParticipant) section in the API reference.
 
 ## Host controls methods
 

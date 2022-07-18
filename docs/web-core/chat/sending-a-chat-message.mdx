@@ -24,14 +24,14 @@ You can send an image with the help of `meeting.chat.sendImageMessage()`. This a
 
 ```html
 <label for="img">Select image:</label>
-<input type="file" id="img" name="img" accept="image/*" />
+<input type="file" id="img" name="img" accept="image/*">
 <button onclick="onSendImage()">Send Image</button>
 ```
 
 ```ts
 async function onSendImage() {
-  const image = document.getElementById('img');
-  await meeting.chat.sendImageMessage(image.files[0]);
+    const image = document.getElementById('img');
+    await meeting.chat.sendImageMessage(image.files[0]);
 }
 ```
 
@@ -41,14 +41,14 @@ Sending a file is quite similar to sending an image. The only difference is that
 
 ```html
 <label for="file">Select image:</label>
-<input type="file" id="file" name="file" />
+<input type="file" id="file" name="file">
 <button onclick="onSendFile()">Send Image</button>
 ```
 
 ```ts
 async function onSendFile() {
-  const file = document.getElementById('file');
-  await meeting.chat.sendFileMessage(file.files[0]);
+    const file = document.getElementById('file');
+    await meeting.chat.sendFileMessage(file.files[0]);
 }
 ```
 

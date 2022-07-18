@@ -71,7 +71,7 @@ export default function Homepage() {
             >
               <Card
                 title="Core SDK"
-                description="A low-level SDK that provides simple abstractions over complex network and media handling"
+                description="Realtime communication SDKs to add high quality audio/video calls to your web applications."
                 to="/web-core/"
                 icon={<UIKitIcon />}
               />
