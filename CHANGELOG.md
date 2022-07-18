@@ -1,3 +1,15 @@
+# [1.16.0](https://github.com/dyte-in/docs/compare/v1.15.3...v1.16.0) (2022-07-18)
+
+
+### Bug Fixes
+
+* revert needed github workflows ([b6af542](https://github.com/dyte-in/docs/commit/b6af5422bf22244fd9f48314296e51e68079296c))
+
+
+### Features
+
+* new docs update ([f0499d1](https://github.com/dyte-in/docs/commit/f0499d116158d9d4fdac365c17f12abc59c67aa5))
+
 ## [1.15.3](https://github.com/dyte-in/docs/compare/v1.15.2...v1.15.3) (2022-07-05)
 
 
