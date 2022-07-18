@@ -1,0 +1,25 @@
+# dyte-participants-toggle
+
+A button which toggles visibility of participants.
+
+When clicked it emits a `dyteStateUpdate` event with the data:
+
+```ts
+{
+  activeSidebar: boolean;
+  sidebar: 'participants' | 'none';
+}
+```
+
+```html
+<dyte-participants-toggle size="sm" class="dyte-el"></dyte-participants-toggle>
+<dyte-participants-toggle size="lg" class="dyte-el"></dyte-participants-toggle>
+<dyte-participants-toggle
+  variant="horizontal"
+  class="dyte-el"
+></dyte-participants-toggle>
+```
+
+## Props
+
+<PropsTable of="dyte-participants-toggle" />

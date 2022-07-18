@@ -1,7 +1,3 @@
----
-sidebar_position: 5
----
-
 # Livestreaming any RTMP input using Dyte
 
 Dyte can livestream any service that can accept an RTMP input (Zoom, YouTube etc.) in few simple steps.
@@ -26,17 +22,17 @@ Response:
 
 ```json
 {
-    "success": true,
-    "data": {
-        "id": "STREAMID",
-        "title": "STREAMNAME",
-        "input_rtmp_url": "rtmp://URL/LiveApp/STREAMID?token=TOKENID",
-        "token_id": "TOKENID",
-        "stream_key": "STREAMID?token=TOKENID",
-        "player_url": "https://URL/LiveApp/play.html?name=STREAMID",
-        "status": "OFFLINE",
-        "hls_play_url": "https://URL/LiveApp/streams/STREAMID.m3u8"
-    }
+  "success": true,
+  "data": {
+    "id": "STREAMID",
+    "title": "STREAMNAME",
+    "input_rtmp_url": "rtmp://URL/LiveApp/STREAMID?token=TOKENID",
+    "token_id": "TOKENID",
+    "stream_key": "STREAMID?token=TOKENID",
+    "player_url": "https://URL/LiveApp/play.html?name=STREAMID",
+    "status": "OFFLINE",
+    "hls_play_url": "https://URL/LiveApp/streams/STREAMID.m3u8"
+  }
 }
 ```
 
@@ -46,11 +42,8 @@ From the response
 
 For example, for adding it to OBS:
 
-![obs-example](/obs-example.png)
-<figcaption align="center">
-  User is adding the input stream to OBS
-</figcaption>
-
+![obs-example](/static/guides/obs-example.png)
+_User is adding the input stream to OBS_
 
 ## Get a livestream instance information
 
@@ -65,16 +58,16 @@ Respone:
 
 ```json
 {
-    "success": true,
-    "data": {
-        "id": "STREAMID",
-        "title": "STREAMNAME",
-        "input_rtmp_url": "rtmp://URL/LiveApp/STREAMID?token=TOKENID",
-        "token_id": "TOKENID",
-        "stream_key": "STREAMID?token=TOKENID",
-        "player_url": "https://URL/LiveApp/play.html?name=STREAMID",
-        "status": "OFFLINE",
-        "hls_play_url": "https://URL/LiveApp/streams/STREAMID.m3u8"
-    }
+  "success": true,
+  "data": {
+    "id": "STREAMID",
+    "title": "STREAMNAME",
+    "input_rtmp_url": "rtmp://URL/LiveApp/STREAMID?token=TOKENID",
+    "token_id": "TOKENID",
+    "stream_key": "STREAMID?token=TOKENID",
+    "player_url": "https://URL/LiveApp/play.html?name=STREAMID",
+    "status": "OFFLINE",
+    "hls_play_url": "https://URL/LiveApp/streams/STREAMID.m3u8"
+  }
 }
 ```

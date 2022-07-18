@@ -1,0 +1,21 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-idle-screen.svg
+---
+
+# dyte-idle-screen
+
+A screen that handles the idle state,
+i.e; when you are waiting for data about the meeting, specifically the `meeting` object.
+
+```html
+<dyte-idle-screen id="dyte-el" style="height: 360px"></dyte-idle-screen>
+
+<script>
+  const el = document.getElementById('dyte-el');
+  el.config = { designTokens: { logo: '/logo/dark.svg' } };
+</script>
+```
+
+## Props
+
+<PropsTable of="dyte-idle-screen" />

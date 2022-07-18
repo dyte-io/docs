@@ -1,28 +1,16 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Quickstart
 
-Here is how you can integrate Dyte's UI Kit into your project seamlessly.
+Quickly get started with UI Kit, with just a few lines of code!
 
-import { loadMeeting } from '/src/utils/meeting';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs
-  groupId="ui-quick"
-  defaultValue="code"
-  values={[
-    { label: 'Code', value: 'code' },
-    { label: 'Preview', value: 'preview' },
-  ]
-}>
-<TabItem value="code">
+First you would need to setup your project with the provided hooks and the `<DyteProvider />`.
 
 ```html
 <body>
-  <dyte-meeting id="my-meeting" show-setup-screen="false"></dyte-meeting>
+  <dyte-meeting id="my-meeting"></dyte-meeting>
 
   <script>
     const init = async () => {
@@ -37,15 +25,18 @@ import TabItem from '@theme/TabItem';
 
       document.getElementById('my-meeting').meeting = meeting;
     };
+
     init();
   </script>
 </body>
 ```
 
-</TabItem>
-<TabItem value="preview">
-    <div ref={() => loadMeeting('my-meeting')} style={{width: '100%', height: '600px'}}>
-      <dyte-meeting id="my-meeting" show-setup-screen="false"></dyte-meeting>
-    </div>
-</TabItem>
-</Tabs>
+:::tip
+
+Try adding `show-setup-screen="true"` prop on `<dyte-meeting />` to enable the Setup Screen.
+
+:::
+
+<head>
+  <title>Quickstart - UI Kit | Dyte</title>
+</head>
