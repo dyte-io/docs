@@ -63,12 +63,10 @@ export default function Homepage() {
               HeadingTag="h4"
               description={
                 <>
-                  These SDKs are low-level SDKs that handle all network and
-                  media related parts and provide a layer of abstraction over
-                  them.
-                  <br />
-                  These are generaly used with the UI Kit or you can create your
-                  own UI as well, it&apos;s pretty easy.
+                  Realtime communication SDKs to add high quality audio/video
+                  calls to your web applications. <br />
+                  These are generally used with our UI Kit but you can create
+                  your own UI as well, it&apos;s pretty easy.
                 </>
               }
             >
