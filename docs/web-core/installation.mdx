@@ -1,0 +1,47 @@
+---
+title: Installation
+description: Install web-core.
+sidebar_position: 1
+slug: /
+tags: [web-core, installation, setup]
+---
+
+# Installation
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  groupId="node-pm"
+  defaultValue="npm"
+  values={[
+    { label: "npm", value: "npm" },
+    { label: "yarn", value: "yarn" },
+    { label: "CDN", value: "CDN" },
+  ]}
+>
+  <TabItem value="npm">
+Install the SDK using npm.
+
+```shell
+npm install @dytesdk/web-core
+```
+
+  </TabItem>
+  <TabItem value="yarn">
+Install the SDK using yarn.
+
+```shell
+yarn add @dytesdk/web-core
+```
+
+  </TabItem>
+  <TabItem value="CDN">
+Add the following script tag in the head of your HTML file.
+
+```html
+<script src="https://cdn.dyte.in/core/dyte.js" />
+```
+
+  </TabItem>
+</Tabs>
