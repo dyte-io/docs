@@ -1,0 +1,29 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-participants.svg
+---
+
+# dyte-participants
+
+A component which lists all participants, with ability to
+run privileged actions on each participant according to your permissions.
+
+```html
+<dyte-participants id="dyte-el"></dyte-participants>
+
+<script>
+  document.getElementById('dyte-el').meeting = meeting;
+</script>
+
+<style>
+  dyte-participants {
+    height: 480px;
+    width: 100%;
+    max-width: 320px;
+    background-color: '#000';
+  }
+</style>
+```
+
+## Props
+
+<PropsTable of="dyte-participants" />

@@ -1,12 +1,10 @@
 {
   "name": "dyte-docs",
-  "version": "1.14.3",
+  "version": "1.17.0",
   "private": true,
   "scripts": {
-    "postinstall": "patch-package",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "dev": "docusaurus start --host=0.0.0.0 --port=5000",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
@@ -14,28 +12,30 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "lint": "eslint . --ext .ts --ext .js --ext .jsx --ext .tsx",
+    "lint": "eslint . --ext .js --ext .jsx",
     "lint:fix": "npm run lint -- --fix",
-    "format": "prettier --write 'src/**/*.{js,jsx,css}'",
     "prepare": "is-ci || husky install",
+    "postinstall": "./bin/postinstall.sh",
     "test": "jest --passWithNoTests"
   },
   "dependencies": {
-    "@docusaurus/core": "2.0.0-beta.6",
-    "@docusaurus/preset-classic": "2.0.0-beta.6",
-    "@docusaurus/theme-search-algolia": "^2.0.0-beta.6",
-    "@dyte-in/client-core": "file:./.tmp/dyte-in-client-core-0.18.2-stripped.3.tgz",
-    "@dyte-in/ui-kit": "file:./.tmp/dyte-in-ui-kit-1.1.0-staging.3.tgz",
-    "@headlessui/react": "^1.4.1",
-    "@heroicons/react": "^1.0.4",
-    "@mdx-js/react": "^1.6.21",
-    "@stoplight/elements": "^7.3.7",
-    "@styled-icons/boxicons-logos": "^10.38.0",
+    "@docusaurus/core": "^2.0.0-rc.1",
+    "@docusaurus/preset-classic": "^2.0.0-rc.1",
+    "@docusaurus/remark-plugin-npm2yarn": "^2.0.0-rc.1",
+    "@docusaurus/theme-live-codeblock": "^2.0.0-rc.1",
+    "@dytesdk/ui-kit": "file:./modules/dytesdk-ui-kit-1.17.0-rc.1.tgz",
+    "@dytesdk/react-ui-kit": "^1.16.0",
+    "@dytesdk/react-web-core": "file:./modules/dytesdk-react-web-core-1.5.1-stripped.1.tgz",
+    "@dytesdk/web-core": "file:./modules/dytesdk-web-core-0.28.2-stripped.5.tgz",
+    "@mdx-js/react": "^1.6.22",
+    "@radix-ui/react-icons": "^1.1.1",
+    "@radix-ui/react-select": "^0.1.1",
+    "@stoplight/elements": "^7.6.0",
     "clsx": "^1.1.1",
-    "prop-types": "^15.8.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "styled-components": "^5.3.1"
+    "param-case": "^3.0.4",
+    "prism-react-renderer": "^1.3.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.1",
@@ -45,25 +45,25 @@
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/npm": "^9.0.0",
     "@semantic-release/release-notes-generator": "^10.0.3",
+    "@docusaurus/module-type-aliases": "^2.0.0-rc.1",
     "buffer": "^6.0.3",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.8.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.28.0",
+    "docusaurus-plugin-typedoc": "^0.17.5",
+    "eslint": "^8.19.0",
+    "eslint-plugin-react": "^7.30.1",
     "husky": "^7.0.0",
     "is-ci": "^3.0.1",
     "jest": "^27.5.1",
-    "patch-package": "^6.4.7",
+    "pascal-case": "^3.1.2",
     "path-browserify": "^1.0.1",
-    "postcss-import": "^14.0.2",
-    "prettier": "^2.5.1",
-    "prettier-plugin-tailwindcss": "^0.1.7",
+    "prettier": "^2.7.1",
     "process": "^0.11.10",
     "semantic-release": "^19.0.2",
     "stream-browserify": "^3.0.0",
-    "tailwindcss": "^3.0.19"
+    "typedoc": "^0.23.7",
+    "typedoc-plugin-markdown": "^3.13.3",
+    "url": "^0.11.0"
   },
   "browserslist": {
     "production": [
@@ -78,19 +78,7 @@
     ]
   },
   "prettier": {
-    "trailingComma": "es5",
-    "tabWidth": 2,
-    "semi": true,
-    "singleQuote": true
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
+    "singleQuote": true,
+    "tabWidth": 2
   }
 }

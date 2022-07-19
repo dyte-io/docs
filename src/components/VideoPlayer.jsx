@@ -1,11 +1,11 @@
 import React from 'react';
 import clsx from 'clsx';
-import { string, bool } from 'prop-types';
+import DocCardList from '@theme/DocCardList';
 
-const VideoPlayer = ({ src, mobile, ...rest }) => {
+export default function VideoPlayer({ src, mobile, className, ...rest }) {
   return (
     <video
-      className={clsx('dyte-video-showcase', mobile && 'mobile')}
+      className={clsx('dyte-video-showcase', className, mobile && 'mobile')}
       src={src}
       autoPlay
       loop
@@ -14,11 +14,4 @@ const VideoPlayer = ({ src, mobile, ...rest }) => {
       {...rest}
     />
   );
-};
-
-VideoPlayer.propTypes = {
-  src: string,
-  mobile: bool,
-};
-
-export default VideoPlayer;
+}

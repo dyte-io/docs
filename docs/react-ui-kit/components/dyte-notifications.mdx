@@ -1,0 +1,28 @@
+# DyteNotifications
+
+A component which handles notifications.
+
+You can configure which notifications you want to see and which ones you want to hear.
+There are also certain limits which you can set as well.
+
+```jsx live
+<DyteNotifications
+  meeting={meeting}
+  config={{
+    config: {
+      // which notifications to show
+      notifications: ['chat', 'participant_joined', 'participant_left'],
+      // which notifications should have sounds
+      notification_sounds: ['chat', 'participant_joined', 'participant_left'],
+      // maximum number of participant joined sound notifications
+      participant_joined_sound_notification_limit: 10,
+      // maximum number of chat message sound notifications
+      participant_chat_message_sound_notification_limit: 10,
+    },
+  }}
+/>
+```
+
+## Props
+
+<PropsTable of="dyte-notifications" />

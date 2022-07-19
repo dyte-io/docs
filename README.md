@@ -108,32 +108,7 @@ Reference: https://docusaurus.io/docs/versioning
 
 Create a new section in docusaurus by adding a new plugin entry in [docusaurus.config.js](./docusaurus.config.js).
 
-Say you're adding a new Go section:
-
-```js
-{
-  plugins: [
-    // ...
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        path: 'docs/go',
-        routeBasePath: 'go',
-        id: 'go',
-        sidebarPath: require.resolve('./sidebars/sidebars-go.js'),
-        sidebarCollapsible: false,
-        onlyIncludeVersions: !isDev
-          ? require('./go_versions.json')
-          : undefined,
-      },
-    ],
-  ]
-}
-```
-
-After you add this, you'll need to create a [sidebars file](https://docusaurus.io/docs/sidebar) `./sidebars/sidebars-go.js`.
-
-Also add your new docs to `./docs/go`, say you add `introduction.mdx`
+If you're adding a new section, just add new section to `SECTIONS[]` array with the `defineSection()` utility easily.
 
 Now, run `npm start` and you can access your Go docs at http://localhost:3000/go/introduction
 
@@ -141,19 +116,20 @@ Then, you can create versions and edit older versions as mentioned above.
 
 ### Adding new docs to the Context Switcher
 
-To add a newly created section to the Context Switcher, edit [./src/components/ContextSwitcher.jsx](src/components/ContextSwitcher.jsx).
+To add a newly created section to the Sections Menu, edit [./src/sections.js](src/sections.js).
 
 For example, for a section go, you will add:
 
 ```jsx
 import { GoIcon } from '../assets/icons';
 
-const CONTEXTS = [
+const SECTIONS = [
   // ...
   {
     id: 'go',
     name: 'Go',
     icon: GoIcon,
+    section: false, // if it shouldn't have a sections menu
   },
 ]
 ```
@@ -161,8 +137,6 @@ const CONTEXTS = [
 You'll need to create a GoIcon component too.
 
 That is it!
-
-_For more examples, please refer to the [Docusaurus Documentation](https://docusaurus.io)._
 
 <!-- CHANGELOG -->
 

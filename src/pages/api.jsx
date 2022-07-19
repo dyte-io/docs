@@ -1,58 +1,108 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import BrowserOnly from '@docusaurus/BrowserOnly';
+import { DyteSpinner, DyteTooltip } from '@dytesdk/react-ui-kit';
+import { useHistory } from '@docusaurus/router';
+import clsx from 'clsx';
 
-import Layout from '@site/src/theme/Layout';
-import APIVersionSwitcher from '../components/APIVersionSwitcher';
+import useBreakpoint from '../lib/useBreakpoint';
+import SectionsMenu from '../components/SectionsMenu';
+import RunInPostmanButton from '../components/RunInPostmanButton';
 
-export default function APIPage() {
+const API_TOOLTIP_KEY = 'dyte-api-v2-tooltip-shown';
+
+function APIElement({ layout = 'sidebar', currentVersion = 'v1' }) {
   return (
-    <Layout>
-      <Head>
-        <title>API Reference | Dyte Docs</title>
-        <meta name="description" content="Dyte REST API Reference" />
-        <meta name="og:description" content="Dyte REST API Reference" />
-        {/* Loading styles for elements this way so it doesn't interfere with other styles */}
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/@stoplight/elements@7.3.7/styles.min.css"
-        />
-      </Head>
-      <BrowserOnly
-        fallback={
-          <div className="flex min-h-screen w-full items-center justify-center">
-            <div
-              className="h-10 w-10 animate-spin rounded-full border-l border-t-2 border-primary"
-              aria-label="Loading..."
-            ></div>
+    <BrowserOnly
+      fallback={
+        <div className="loading-container">
+          <DyteSpinner />
+        </div>
+      }
+    >
+      {() => {
+        // eslint-disable-next-line no-undef
+        const { API } = require('@stoplight/elements');
+
+        return (
+          <div className={clsx('elements-container', layout)}>
+            <API
+              apiDescriptionUrl={`/api/${currentVersion}.yaml`}
+              basePath="/"
+              router="hash"
+              layout={layout}
+              hideSchemas
+              className="stacked"
+            />
           </div>
-        }
-      >
-        {() => {
-          // eslint-disable-next-line no-undef
-          const { API } = require('@stoplight/elements');
-          return (
-            <>
-              <a
-                href="https://www.getpostman.com/collections/b655d5cbdd8a718ec15f"
-                target="_blank"
-                rel="noreferrer"
-                className="absolute right-20 top-24 inline-flex cursor-pointer items-center justify-center rounded-md bg-orange-600 px-4 py-1 text-sm text-white hover:text-white hover:no-underline"
-              >
-                Postman Collection
-              </a>
-              <APIVersionSwitcher current="v1" />
-              <API
-                apiDescriptionUrl="/api/v1.yaml"
-                router="hash"
-                basePath="/"
-                layout="sidebar"
-                hideSchemas
-              />
-            </>
-          );
-        }}
-      </BrowserOnly>
+        );
+      }}
+    </BrowserOnly>
+  );
+}
+
+export default function Home() {
+  const router = useHistory();
+  const size = useBreakpoint();
+  const [showV2Tooltip, setShowV2Tooltip] = useState(false);
+
+  const location = router.location;
+
+  const url = new URL(`https://docs.dyte.io${location.pathname}${location.search}`);
+
+  const currentVersion = url.searchParams.get('v') || 'v1';
+
+  useEffect(() => {
+    // show V2 tooltip only if user hasn't seen it yet
+    if (localStorage.getItem(API_TOOLTIP_KEY) !== 'true') {
+      setShowV2Tooltip(true);
+    }
+  }, []);
+
+  return (
+    <Layout title="API Reference" description="Dyte REST API Reference" noFooter wrapperClassName="api-reference">
+      <Head>
+        {/* Load styles for Stoplight Elements */}
+        <link rel="preload" href="/assets/css/elements.min.css" as="style" />
+        <link rel="stylesheet" href="/assets/css/elements.min.css" />
+      </Head>
+      <div className="header">
+        <h2>Dyte Backend API {currentVersion}</h2>
+        <div className="aside">
+          <RunInPostmanButton />
+          <DyteTooltip
+            placement="bottom"
+            variant="primary"
+            label="Hey, we have a v2 version of our APIs out now. You can switch between these here."
+            open={showV2Tooltip}
+            onDyteOpenChange={(open) => {
+              if (!open) {
+                localStorage.setItem(API_TOOLTIP_KEY, 'true');
+              }
+            }}
+            disabled={!showV2Tooltip}
+          >
+            <SectionsMenu
+              defaultValue={currentVersion}
+              values={[
+                { name: 'v1', id: 'v1' },
+                { name: 'v2', id: 'v2' },
+              ]}
+              onValueChange={(version) => {
+                if (showV2Tooltip) {
+                  setShowV2Tooltip(false);
+                  localStorage.setItem(API_TOOLTIP_KEY, 'true');
+                }
+                router.push(`/api/?v=${version}`);
+              }}
+              className="compact"
+              slot="trigger"
+            />
+          </DyteTooltip>
+        </div>
+      </div>
+      <APIElement layout={size === 'sm' ? 'stacked' : 'sidebar'} currentVersion={currentVersion} />
     </Layout>
   );
 }

@@ -16,8 +16,8 @@ You need to pass a `clientId` prop to `DyteMeeting` to verify the participant's 
 
 ```jsx {2}
 <DyteMeeting
-    clientId=`yourClientID`
-    >
+  clientId=`yourClientID`
+>
 ```
 
 ### Configure the meeting connection
@@ -26,12 +26,12 @@ You need to pass a `meetingConfig` prop to `DyteMeeting` to define which meeting
 
 ```jsx {3-6}
 <DyteMeeting
-    clientId=`yourClientID`
-    meetingConfig={{
-        roomName: `roomName`,
-        authToken: `authToken`
-    }}
-    >
+  clientId=`yourClientID`
+  meetingConfig={{
+      roomName: `roomName`,
+      authToken: `authToken`
+  }}
+>
 ```
 
 ### Get meeting instance on successful creation
@@ -40,11 +40,11 @@ You need to pass an `onInit` prop to `DyteMeeting` to get reference to the meeti
 
 ```jsx {2}
 <DyteMeeting
-    onInit={(meeting) => { }}
-    clientId=`yourClientID`
-    meetingConfig={{
-        roomName: `roomName`,
-        authToken: `authToken`
-    }}
-    >
+  onInit={(meeting) => { }}
+  clientId=`yourClientID`
+  meetingConfig={{
+      roomName: `roomName`,
+      authToken: `authToken`
+  }}
+>
 ```

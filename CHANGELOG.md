@@ -1,3 +1,68 @@
+# [1.17.0](https://github.com/dyte-in/docs/compare/v1.16.0...v1.17.0) (2022-07-18)
+
+
+### Bug Fixes
+
+* remove redundant title in homepage ([80b827c](https://github.com/dyte-in/docs/commit/80b827c4bdfaeb1968fc4c703d4f0fcef8d931b7))
+
+
+### Features
+
+* search ([17424d5](https://github.com/dyte-in/docs/commit/17424d5a93196cbc1f4832b331bda3b36146ed80))
+* search crawl action ([00bc234](https://github.com/dyte-in/docs/commit/00bc2341afa6bca0a9532e6d784df761b494ae3a))
+
+# [1.16.0](https://github.com/dyte-in/docs/compare/v1.15.3...v1.16.0) (2022-07-18)
+
+
+### Bug Fixes
+
+* revert needed github workflows ([b6af542](https://github.com/dyte-in/docs/commit/b6af5422bf22244fd9f48314296e51e68079296c))
+
+
+### Features
+
+* new docs update ([f0499d1](https://github.com/dyte-in/docs/commit/f0499d116158d9d4fdac365c17f12abc59c67aa5))
+
+## [1.15.3](https://github.com/dyte-in/docs/compare/v1.15.2...v1.15.3) (2022-07-05)
+
+
+### Bug Fixes
+
+* trailing slash config and paths changed ([edc7915](https://github.com/dyte-in/docs/commit/edc79151f0450fdac63e372d11e2d25cef75dc00))
+
+## [1.15.2](https://github.com/dyte-in/docs/compare/v1.15.1...v1.15.2) (2022-07-04)
+
+
+### Bug Fixes
+
+* disable `trailingSlash` ([164825c](https://github.com/dyte-in/docs/commit/164825c65b01d99edc40be3f045c729de3aa21a8))
+
+## [1.15.1](https://github.com/dyte-in/docs/compare/v1.15.0...v1.15.1) (2022-06-27)
+
+
+### Bug Fixes
+
+* **content:** fix docs content ([22d2b18](https://github.com/dyte-in/docs/commit/22d2b188e58e1779e52d3f7ad59faaaef647a631))
+
+# [1.15.0](https://github.com/dyte-in/docs/compare/v1.14.3...v1.15.0) (2022-06-25)
+
+
+### Bug Fixes
+
+* all -> the ([ac7cffa](https://github.com/dyte-in/docs/commit/ac7cffadb3428399964038024a46e5035b5b7ca4))
+* participant docs ([f1a7344](https://github.com/dyte-in/docs/commit/f1a7344eed4645ff552065da1086538a63fedffc))
+* participants documentation ([715af4e](https://github.com/dyte-in/docs/commit/715af4e8b590f0a5f13e4ae9be60337766bde809))
+* recording properties ([99a9d21](https://github.com/dyte-in/docs/commit/99a9d21592e044e2ce4056ad2e435be1206e6bd8))
+* update participant docs ([30249d6](https://github.com/dyte-in/docs/commit/30249d606e65ddb6616b3ce542a299ca3145fed6))
+* update reference for react-native-core and react-web-core ([#31](https://github.com/dyte-in/docs/issues/31)) ([a651305](https://github.com/dyte-in/docs/commit/a651305636557e268c3af068ad948aa27107779f))
+* web-core docs ([#35](https://github.com/dyte-in/docs/issues/35)) ([28ca549](https://github.com/dyte-in/docs/commit/28ca5499e0e1f6aee7ba197afe5a6139a61d1646)), closes [#58](https://github.com/dyte-in/docs/issues/58) [#58](https://github.com/dyte-in/docs/issues/58)
+
+
+### Features
+
+* add workflow to reject pr if api-specs is updated ([39ba452](https://github.com/dyte-in/docs/commit/39ba4529d0ca3a3e28b934f48f706a9f72cb91a7))
+* release web-core 0.27.x ([4a4dcc3](https://github.com/dyte-in/docs/commit/4a4dcc36dabc9206a7231a5f64907bd177082a22))
+
 ## [1.14.3](https://github.com/dyte-in/docs/compare/v1.14.2...v1.14.3) (2022-06-24)
 
 

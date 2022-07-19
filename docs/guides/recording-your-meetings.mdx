@@ -1,7 +1,3 @@
----
-sidebar_position: 2
----
-
 # Recording your meetings via Dyte
 
 We allows recordings for all Dyte meetings. This feature records the grid part of the meeting. The result of the recording is an mp4 file, encoded using `H.264` codec (this can be changed).
@@ -29,7 +25,7 @@ Recording can have one of these states, which are also notified through [webhook
 
 ## Considerations for a recording
 
-1. Recording will stop if there is no participant in the meeting for 60 seconds (1 minutes).
+1. Recording will stop if there is no participant in the meeting for 120 seconds (2 minutes).
 2. There can only be one active recording of a meeting.
 3. Currently, there is a lag of a maximum of 30 seconds between calling the API and the actual start of recording. We are working on reducing this lag.
 4. Average size for one hour of recording is approximately `300MB`.

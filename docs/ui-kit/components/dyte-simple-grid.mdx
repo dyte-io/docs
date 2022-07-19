@@ -1,0 +1,27 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-simple-grid.svg
+---
+
+# dyte-simple-grid
+
+A grid component which renders only the participants in a simple grid.
+
+```html
+<dyte-simple-grid id="dyte-el"></dyte-simple-grid>
+
+<script>
+  const el = document.getElementBydId('dyte-el');
+  el.participants = [meeting.self];
+</script>
+
+<style>
+  dyte-simple-grid {
+    height: 360px;
+    width: 100%;
+  }
+</style>
+```
+
+## Props
+
+<PropsTable of="dyte-simple-grid" />

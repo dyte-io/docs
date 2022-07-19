@@ -1,7 +1,3 @@
----
-sidebar_position: 4
----
-
 # Livestreaming Dyte Meeting to HLS
 
 Dyte allows livestreaming, via RTMP as well as HLS, for all Dyte meetings. If you want us to manage the output to RTMP instead, check [this doc instead](./livestreaming-other-platforms).
@@ -13,7 +9,7 @@ To stream a meeting, use the API in the following order:
 
 ## Considerations
 
-1. Livestream will stop if there is no participant in the meeting for 60 seconds (1 minute).
+1. Livestream will stop if there is no participant in the meeting for 120 seconds (2 minutes).
 2. There can only be one active stream of a meeting.
 3. Currently, there is a lag of a maximum of 30 seconds between calling the API and the actual start of stream. We are working on reducing this lag.
 4. Maximum streaming time is 24 hours. Stream will automatically stop after the expiry of that period from the time of stream start.

@@ -1,296 +1,309 @@
 /* eslint-disable */
-const {
-  tailwindPlugin,
-  webpackPlugin,
-  posthogPlugin,
-} = require('./src/plugins');
 
-const isDev = process.env.NODE_ENV === 'development';
+const lightCodeTheme = require('prism-react-renderer/themes/github');
+const darkCodeTheme = require('prism-react-renderer/themes/vsDark');
 
-const pageOptions = {
-  sidebarCollapsible: true,
-  editUrl: 'https://github.com/dyte-in/docs/tree/main',
-  showLastUpdateAuthor: true,
-  showLastUpdateTime: true,
+const UIKitReferencePlugins = require('./plugins/ui-kit-reference-plugin.cjs');
+const { webpackPlugin } = require('./plugins/webpack-plugin.cjs');
+
+/** @type {import('@docusaurus/preset-classic').Options} */
+const defaultSettings = {
+  remarkPlugins: [
+    [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
+  ],
 };
 
-/** @type {import('@docusaurus/types').DocusaurusConfig} */
-module.exports = {
+/**
+ * Defines a section with overridable defaults
+ * @param {string} section
+ * @param {import('@docusaurus/plugin-content-docs').Options} options
+ */
+function defineSection(section, version = {}, options = {}) {
+  return [
+    '@docusaurus/plugin-content-docs',
+    /** @type {import('@docusaurus/plugin-content-docs').Options} */
+    ({
+      path: `docs/${section}`,
+      routeBasePath: section,
+      id: section,
+      sidebarPath: require.resolve('./sidebars-default.js'),
+      breadcrumbs: false,
+      editUrl: 'https://github.com/dyte-in/docs/tree/main/',
+      versions: version && {
+        current: {
+          label: version.label,
+        },
+      },
+      ...defaultSettings,
+      ...options,
+    }),
+  ];
+}
+
+const latestVersions = {
+  'ui-kit': '1.x.x',
+  'web-core': '0.27.x',
+  'react-native': '0.23.x',
+  android: '0.14.x',
+  ios: '1.33.x',
+  flutter: '0.7.x',
+};
+
+const SECTIONS = [
+  defineSection('guides'),
+  defineSection('cli'),
+
+  // [web] ui-sdk
+  defineSection('ui-kit', {
+    label: latestVersions['ui-kit'],
+  }),
+  defineSection('react-ui-kit', {
+    label: latestVersions['ui-kit'],
+  }),
+  defineSection('angular-ui-kit', {
+    label: latestVersions['ui-kit'],
+  }),
+  defineSection('vue-ui-kit', {
+    label: latestVersions['ui-kit'],
+  }),
+
+  // [web] core-sdk
+  defineSection('web-core', {
+    label: latestVersions['web-core'],
+  }),
+
+  // [mobile]
+  defineSection('react-native', {
+    label: latestVersions['react-native'],
+  }),
+  defineSection('android', {
+    label: latestVersions['android'],
+  }),
+  defineSection('ios', {
+    label: latestVersions['ios'],
+  }),
+  defineSection('flutter', {
+    label: latestVersions['flutter'],
+  }),
+];
+
+/** @type {import('@docusaurus/types').Config} */
+const config = {
   title: 'Dyte Docs',
   tagline: 'Real-time audio & video SDKs, ready to launch 🚀',
+  // TODO: Update base url
   url: 'https://docs.dyte.io',
   baseUrl: '/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'favicon.ico',
+  favicon: '/favicon.ico',
+  trailingSlash: false,
+
+  // GitHub pages deployment config.
+  // If you aren't using GitHub pages, you don't need these.
   organizationName: 'dyte-in', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
-  clientModules: [require.resolve('./src/css/tailwind.css')],
-  themeConfig: {
-    image: '/dyte-docs-card.png',
-    colorMode: {
-      defaultMode: 'dark',
-      disableSwitch: true,
-    },
-    navbar: {
-      hideOnScroll: true,
-      logo: {
-        alt: 'Dyte Docs',
-        src: '/logo.svg',
-      },
-      items: [
-        {
-          label: 'Home',
-          to: '/',
-          activeBaseRegex: '(^/docs)',
-        },
-        {
-          label: 'Web SDKs',
-          to: '/react-ui-kit/installation',
-        },
-        {
-          label: 'Mobile SDKs',
-          to: '/react-native/quickstart',
-        },
-        {
-          label: 'API Reference',
-          to: '/api/',
-        },
-        {
-          label: 'Guides',
-          to: '/guides/integrating-with-webhooks',
-        },
-      ],
-    },
-    hideableSidebar: true,
-    prism: {
-      additionalLanguages: [
-        'dart',
-        'ruby',
-        'groovy',
-        'kotlin',
-        'java',
-        'swift',
-        'objectivec',
-      ],
-      theme: require('prism-react-renderer/themes/vsDark'),
-    },
-    algolia: process.env.ALGOLIA_API_KEY && {
-      apiKey: process.env.ALGOLIA_API_KEY,
-      indexName: 'prod_docs',
-      contextualSearch: true,
-      appId: process.env.ALGOLIA_APP_ID,
-      searchParameters: {},
-    },
-    posthog: {
-      apiKey: process.env.POSTHOG_API_KEY,
-    },
+
+  // Even if you don't use internalization, you can use this field to set useful
+  // metadata like html lang. For example, if your site is Chinese, you may want
+  // to replace "en" with "zh-Hans".
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en'],
   },
+
+  clientModules: [require.resolve('./src/client/define-ui-kit.js')],
+
   presets: [
     [
-      '@docusaurus/preset-classic',
-      {
+      'classic',
+      /** @type {import('@docusaurus/preset-classic').Options} */
+      ({
         docs: {
-          path: 'docs/main',
-          id: 'default',
-          routeBasePath: 'docs',
-          sidebarPath: require.resolve('./sidebars/sidebars-docs.js'),
-          sidebarCollapsible: false,
+          path: 'docs/home',
+          routeBasePath: '/',
+          sidebarPath: require.resolve('./sidebars-home.js'),
+          breadcrumbs: false,
+          // Please change this to your repo.
+          // Remove this to remove the "edit this page" links.
+          editUrl: 'https://github.com/dyte-in/docs/tree/main/',
+          ...defaultSettings,
         },
         blog: false,
-      },
+        theme: {
+          customCss: [
+            require.resolve('./src/css/custom.css'),
+            require.resolve('./src/css/api-reference.css'),
+          ],
+        },
+      }),
     ],
   ],
-  plugins: [
-    tailwindPlugin,
-    webpackPlugin,
-    posthogPlugin,
 
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        path: 'docs/guides',
-        routeBasePath: 'guides',
-        id: 'guides',
-        sidebarPath: require.resolve('./sidebars/sidebars-guides.js'),
-        sidebarCollapsible: false,
+  plugins: [...SECTIONS, ...UIKitReferencePlugins, webpackPlugin],
+
+  themes: ['@docusaurus/theme-live-codeblock'],
+
+  themeConfig:
+    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+    ({
+      image: '/img/dyte-docs-card.png',
+      colorMode: {
+        defaultMode: 'dark',
       },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        path: 'docs/quickstart',
-        routeBasePath: 'quickstart',
-        id: 'quickstart',
-        sidebarPath: require.resolve('./sidebars/sidebars-quickstart.js'),
-        sidebarCollapsible: false,
+      docs: {
+        sidebar: {
+          hideable: true,
+        },
       },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        path: 'docs/react-ui-kit',
-        routeBasePath: 'react-ui-kit',
-        id: 'react-ui-kit',
-        sidebarPath: require.resolve('./sidebars/sidebars-react-ui-kit.js'),
-        onlyIncludeVersions: !isDev
-          ? require('./react-ui-kit_versions.json')
-          : undefined,
-        ...pageOptions,
+      navbar: {
+        // NOTE: hideOnScroll breaks on `/api`, enable when fixed
+        // hideOnScroll: true,
+        logo: {
+          href: '/',
+          src: '/logo/light.svg',
+          srcDark: '/logo/dark.svg',
+          alt: 'Dyte Docs',
+          height: '26px',
+          width: '114px',
+        },
+        items: [
+          {
+            label: 'Web SDKs',
+            to: 'react-ui-kit',
+            position: 'left',
+            className: 'new-badge',
+            activeBaseRegex: '(.*ui-kit|.*web-core)',
+          },
+          {
+            label: 'Mobile SDKs',
+            to: 'react-native',
+            position: 'left',
+            activeBaseRegex: '(react-native|android|ios|flutter)',
+          },
+          {
+            label: 'API Reference',
+            to: '/api/',
+            position: 'left',
+          },
+          {
+            label: 'Guides',
+            to: 'guides',
+            position: 'left',
+          },
+          {
+            href: 'https://github.com/dyte-in',
+            className: 'pseudo-icon github-icon',
+            position: 'right',
+          },
+          {
+            href: 'https://community.dyte.io',
+            className: 'pseudo-icon discord-icon',
+            position: 'right',
+          },
+          {
+            type: 'search',
+            position: 'right',
+          },
+          {
+            label: 'Login/Sign Up',
+            href: 'https://dev.dyte.io',
+            position: 'right',
+            className: 'dev-portal-login',
+          },
+        ],
       },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        path: 'docs/ui-kit',
-        routeBasePath: 'ui-kit',
-        id: 'ui-kit',
-        sidebarPath: require.resolve('./sidebars/sidebars-ui-kit.js'),
-        onlyIncludeVersions: !isDev
-          ? require('./ui-kit_versions.json')
-          : undefined,
-        ...pageOptions,
+      footer: {
+        logo: {
+          href: '/',
+          src: '/logo/light.svg',
+          srcDark: '/logo/dark.svg',
+          alt: 'Dyte Docs',
+          height: '36px',
+        },
+        links: [
+          {
+            title: 'Product',
+            items: [
+              {
+                label: 'Demo',
+                href: 'https://app.dyte.io',
+              },
+              {
+                label: 'Developer Portal',
+                href: 'https://dev.dyte.io',
+              },
+              {
+                label: 'Pricing',
+                href: 'https://dyte.io/#pricing',
+              },
+            ],
+          },
+          {
+            title: 'Company',
+            items: [
+              {
+                label: 'About Us',
+                href: 'https://dyte.io',
+              },
+              {
+                label: 'Join Us',
+                href: 'https://dyte.freshteam.com/jobs',
+              },
+              {
+                label: 'Privacy Policy',
+                href: 'https://dyte.io/privacy-policy.html',
+              },
+              {
+                label: 'Contact Us',
+                href: 'mailto:support@dyte.in',
+              },
+            ],
+          },
+          {
+            title: 'Resources',
+            items: [
+              {
+                label: 'Documentation',
+                href: 'https://docs.dyte.io',
+              },
+              {
+                label: 'Blog',
+                href: 'https://dyte.io/blog',
+              },
+              {
+                label: 'Community',
+                href: 'https://community.dyte.io',
+              },
+            ],
+          },
+        ],
+        copyright: 'Copyright © Dyte since 2020. All rights reserved.',
       },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        path: 'docs/angular-ui-kit',
-        routeBasePath: 'angular-ui-kit',
-        id: 'angular-ui-kit',
-        sidebarPath: require.resolve('./sidebars/sidebars-angular-ui-kit.js'),
-        onlyIncludeVersions: !isDev
-          ? require('./angular-ui-kit_versions.json')
-          : undefined,
-        ...pageOptions,
+      prism: {
+        theme: lightCodeTheme,
+        darkTheme: darkCodeTheme,
+        additionalLanguages: [
+          'dart',
+          'ruby',
+          'groovy',
+          'kotlin',
+          'java',
+          'swift',
+          'objectivec',
+        ],
       },
-    ],
-    // [
-    //   '@docusaurus/plugin-content-docs',
-    //   {
-    //     path: 'docs/react-web-core',
-    //     routeBasePath: 'react-web-core',
-    //     id: 'react-web-core',
-    //     sidebarPath: require.resolve('./sidebars/sidebars-react-web-core.js'),
-    //     onlyIncludeVersions: !isDev
-    //       ? require('./react-web-core_versions.json')
-    //       : undefined,
-    //     ...pageOptions,
-    //   },
-    // ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        path: 'docs/web-core',
-        routeBasePath: 'web-core',
-        id: 'web-core',
-        sidebarPath: require.resolve('./sidebars/sidebars-web-core.js'),
-        onlyIncludeVersions: !isDev
-          ? require('./web-core_versions.json')
-          : undefined,
-        ...pageOptions,
+      liveCodeBlock: {
+        playgroundPosition: 'bottom',
       },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        path: 'docs/react',
-        routeBasePath: 'react',
-        id: 'react',
-        sidebarPath: require.resolve('./sidebars/sidebars-react.js'),
-        onlyIncludeVersions: !isDev
-          ? require('./react_versions.json')
-          : undefined,
-        ...pageOptions,
+      algolia: {
+        appId: 'HL0HSV62RK',
+        apiKey: '72ebf02146698733b7114c7b36da0945',
+        indexName: 'docs',
+        contextualSearch: true,
+        searchParameters: {},
       },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        path: 'docs/flutter',
-        routeBasePath: 'flutter',
-        id: 'flutter',
-        sidebarPath: require.resolve('./sidebars/sidebars-flutter.js'),
-        onlyIncludeVersions: !isDev
-          ? require('./flutter_versions.json')
-          : undefined,
-        ...pageOptions,
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        path: 'docs/react-native',
-        routeBasePath: 'react-native',
-        id: 'react-native',
-        sidebarPath: require.resolve('./sidebars/sidebars-react-native.js'),
-        onlyIncludeVersions: !isDev
-          ? require('./react-native_versions.json')
-          : undefined,
-        ...pageOptions,
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        path: 'docs/javascript',
-        routeBasePath: 'javascript',
-        id: 'javascript',
-        sidebarPath: require.resolve('./sidebars/sidebars-javascript.js'),
-        onlyIncludeVersions: !isDev
-          ? require('./javascript_versions.json')
-          : undefined,
-        ...pageOptions,
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        path: 'docs/android',
-        routeBasePath: 'android',
-        id: 'android',
-        sidebarPath: require.resolve('./sidebars/sidebars-android.js'),
-        onlyIncludeVersions: !isDev
-          ? require('./android_versions.json')
-          : undefined,
-        ...pageOptions,
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        path: 'docs/ios',
-        routeBasePath: 'ios',
-        id: 'ios',
-        sidebarPath: require.resolve('./sidebars/sidebars-ios.js'),
-        onlyIncludeVersions: !isDev
-          ? require('./ios_versions.json')
-          : undefined,
-        ...pageOptions,
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        path: 'docs/react-native-core',
-        routeBasePath: 'react-native-core',
-        id: 'react-native-core',
-        sidebarPath: require.resolve('./sidebars/sidebars-react-native-core.js'),
-        onlyIncludeVersions: !isDev
-          ? require('./react-native-core_versions.json')
-          : undefined,
-        ...pageOptions,
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        path: 'docs/cli',
-        routeBasePath: 'cli',
-        id: 'cli',
-        sidebarPath: require.resolve('./sidebars/sidebars-cli.js'),
-        sidebarCollapsible: false,
-      },
-    ],
-  ],
+    }),
 };
+
+module.exports = config;

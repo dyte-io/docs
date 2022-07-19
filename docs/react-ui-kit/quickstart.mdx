@@ -1,0 +1,64 @@
+---
+sidebar_position: 3
+---
+
+# Quickstart
+
+Quickly get started with React UI Kit, with just a few lines of code!
+
+First you would need to setup your project with the provided hooks and the `<DyteProvider />`.
+
+```jsx
+export default function App() {
+  const [meeting, initMeeting] = useDyteClient();
+
+  useEffect(() => {
+    initMeeting({
+      roomName: '<room-name>',
+      authToken: '<auth-token>',
+      defaults: {
+        audio: false,
+        video: false,
+      },
+    });
+  }, []);
+
+  return (
+    <DyteProvider value={meeting}>
+      <MyMeeting />
+    </DyteProvider>
+  );
+}
+```
+
+Read more about these hooks [here](./basics/using-hooks).
+
+Then, your `<MyMeeting />` component would look like this.
+
+:::info
+
+The live editors you see in the docs use a _mock_ web-core `meeting` object with the help of `<DyteProvider />`
+
+:::
+
+```jsx live
+function MyMeeting() {
+  const { meeting } = useDyteMeeting();
+
+  return (
+    <div style={{ height: '480px' }}>
+      <DyteMeeting mode="fill" meeting={meeting} />
+    </div>
+  );
+}
+```
+
+:::tip
+
+Try adding `showSetupScreen={true}` prop on `<DyteMeeting />` to enable the Setup Screen.
+
+:::
+
+<head>
+  <title>Quickstart - React UI Kit | Dyte</title>
+</head>

@@ -1,0 +1,24 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-avatar.svg
+---
+
+# dyte-avatar
+
+Avatar component which renders a participant's image or their initials.
+
+```html
+<dyte-avatar class="dyte-el" size="sm"></dyte-avatar>
+<dyte-avatar class="" size="md"></dyte-avatar>
+<dyte-avatar class="dyte-el" size="lg"></dyte-avatar>
+
+<script>
+  const elements = document.getElementsByClassName('dyte-el');
+  for (const el of elements) {
+    el.participant = meeting.self;
+  }
+</script>
+```
+
+## Props
+
+<PropsTable of="dyte-avatar" />

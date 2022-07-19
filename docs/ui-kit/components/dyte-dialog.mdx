@@ -1,0 +1,45 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-dialog.svg
+---
+
+# dyte-dialog
+
+A dialog component.
+
+```html
+<dyte-button onclick="showDialog()">Show dialog</dyte-button>
+<dyte-dialog id="dyte-el" open="false">
+  <div>
+    <h3>Hello!</h3>
+    <p>This is some text inside dialog!</p>
+  </div>
+</dyte-dialog>
+
+<script>
+  const dialog = document.getElementById('dyte-el');
+
+  dialog.addEventListener('dyteDialogClose', (open) => {
+    console.log('dialog closed');
+  });
+
+  function showDialog() {
+    dialog.open = true;
+  }
+</script>
+<style>
+  dyte-dialog > div {
+    width: 512px;
+    backgroundcolor: #000;
+    color: #fff;
+    padding: 12px;
+    borderradius: 8px;
+  }
+  p {
+    margin-bottom: 0;
+  }
+</style>
+```
+
+## Props
+
+<PropsTable of="dyte-dialog" />

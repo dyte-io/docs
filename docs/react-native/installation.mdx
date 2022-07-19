@@ -1,74 +1,30 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 # Installation
 
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
-
 1. Install the client SDK from npm
 
-<Tabs
-  groupId="node-pm"
-  defaultValue="npm"
-  values={[
-    { label: "npm", value: "npm" },
-    { label: "yarn", value: "yarn" },
-  ]}
->
-  <TabItem value="npm">
-
-```shell
+```bash npm2yarn
 npm install @dytesdk/mobile
 ```
 
-  </TabItem>
-  <TabItem value="yarn">
-
-```shell
-yarn add @dytesdk/mobile
-```
-
-  </TabItem>
-</Tabs>
-
 2. Install external dependencies required by our SDK
 
-<Tabs
-  groupId="node-pm"
-  defaultValue="npm"
-  values={[
-    { label: "npm", value: "npm" },
-    { label: "yarn", value: "yarn" },
-  ]}
->
-  <TabItem value="npm">
-
-```shell
+```bash npm2yarn
 npm install react-native-webview react-native-webrtc @react-native-async-storage/async-storage react-native-vector-icons
 ```
-
-  </TabItem>
-  <TabItem value="yarn">
-
-```shell
-yarn add react-native-webview react-native-webrtc @react-native-async-storage/async-storage react-native-vector-icons
-```
-
-  </TabItem>
-</Tabs>
 
 3. Add this to the root of your project
 
 ```js
-import { registerGlobals } from "react-native-webrtc";
+import { registerGlobals } from 'react-native-webrtc';
 
 registerGlobals();
 ```
 
 ## Android
-
 
 :::info
 
@@ -93,14 +49,15 @@ android.enableDexingArtifactTransform.desugaring=false
 
 ```
 buildTypes {
-        release {
-            ...
-            ...
-            ...
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
+  release {
+    ...
+    ...
+    ...
+    proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+  }
+}
 ```
+
 :::info
 
 If you encounter chinese characters in your app instead of icons, please apply this fix mentioned in [react-native-vector-icons issue](https://github.com/oblador/react-native-vector-icons/issues/1106#issuecomment-574683931)
@@ -115,9 +72,9 @@ We support minimum OS version `12.0` for our iOS SDK.
 
 :::
 
-1. Open your podfile and make sure your platform is set to ios 12 
+1. Open your podfile and make sure your platform is set to ios 12
 
-```ruby 
+```ruby
 platform :ios, '12.0'
 ```
 

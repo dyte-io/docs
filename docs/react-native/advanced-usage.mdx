@@ -10,14 +10,14 @@ The audio / video setup screen that appears for the participant right before get
 
 ```jsx {7}
 <DyteMeeting
-    onInit={(meeting) => { }}
-    clientId=`yourClientID`
-    meetingConfig={{
-        roomName: `roomName`,
-        authToken: `authToken`,
-        showSetupScreen: true
-    }}
-    >
+  onInit={(meeting) => { }}
+  clientId=`yourClientID`
+  meetingConfig={{
+      roomName: `roomName`,
+      authToken: `authToken`,
+      showSetupScreen: true
+  }}
+>
 ```
 
 ## Dynamic codec switching
@@ -26,14 +26,14 @@ Dyte uses VP9 codec by default, but switches to H264/VP8 depending on participan
 
 ```jsx {7}
 <DyteMeeting
-    onInit={(meeting) => { }}
-    clientId=`yourClientID`
-    meetingConfig={{
-        roomName: `roomName`,
-        authToken: `authToken`,
-        autoTune: false
-    }}
-    >
+  onInit={(meeting) => { }}
+  clientId=`yourClientID`
+  meetingConfig={{
+      roomName: `roomName`,
+      authToken: `authToken`,
+      autoTune: false
+  }}
+>
 ```
 
 ## Get error details for meeting creation
@@ -42,14 +42,14 @@ You can optionally choose to subscribe to the error details, in case an error oc
 
 ```jsx {8}
 <DyteMeeting
-    onInit={(meeting) => { }}
-    clientId=`yourClientID`
-    meetingConfig={{
-        roomName: `roomName`,
-        authToken: `authToken`
-    }}
-    onError={(error) => { }}
-    >
+  onInit={(meeting) => { }}
+  clientId=`yourClientID`
+  meetingConfig={{
+      roomName: `roomName`,
+      authToken: `authToken`
+  }}
+  onError={(error) => { }}
+>
 ```
 
 You can refer to [this section](#errors) for info on errors.
@@ -525,8 +525,8 @@ An example of handling such errors:
 ```tsx
 import { DyteMeeting, DyteErrors } from "@dyte/client";
 
-...
-...
+// ...
+// ...
 
 <DyteMeeting
     onInit={(meeting) => { }}
@@ -540,5 +540,5 @@ import { DyteMeeting, DyteErrors } from "@dyte/client";
             // take appropriate action
         }
     }}
-    >
+>
 ```
