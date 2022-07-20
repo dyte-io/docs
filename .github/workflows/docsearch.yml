@@ -1,11 +1,8 @@
 name: Run algolia docsearch
 
 on:
-  push:
-    branches:
-      - main
-      - 'ci/docsearch'
-
+  schedule:
+    - cron: "0 12 * * 1"
 jobs:
   docsearch:
     runs-on: ubuntu-latest
