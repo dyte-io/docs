@@ -1,3 +1,10 @@
+# [1.18.0](https://github.com/dyte-in/docs/compare/v1.17.0...v1.18.0) (2022-07-20)
+
+
+### Features
+
+* add react, javascript sections to docsearch to crawl ([7ee93a6](https://github.com/dyte-in/docs/commit/7ee93a62b94f082c68af39bc023f8e83a0a53a8a))
+
 # [1.17.0](https://github.com/dyte-in/docs/compare/v1.16.0...v1.17.0) (2022-07-18)
 
 
