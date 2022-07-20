@@ -53,6 +53,9 @@ const SECTIONS = [
   defineSection('guides'),
   defineSection('cli'),
 
+  defineSection('react', { label: '0.x.x' }),
+  defineSection('javascript', { label: '0.x.x' }),
+
   // [web] ui-sdk
   defineSection('ui-kit', {
     label: latestVersions['ui-kit'],

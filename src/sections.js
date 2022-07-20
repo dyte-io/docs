@@ -20,6 +20,19 @@ const SECTIONS = [
     section: false,
   },
 
+  {
+    name: 'React SDKx',
+    id: 'react',
+    icon: ReactIcon,
+    section: 'old-web-sdks',
+  },
+  {
+    name: 'JavaScript SDK',
+    id: 'javascript',
+    icon: UIKitIcon,
+    section: 'old-web-sdks',
+  },
+
   // Web SDKs
   // - ui-sdk
   {
@@ -88,7 +101,8 @@ const MULTI_SECTIONS = [
     {
       name: 'UI Kit',
       section: 'ui-sdk',
-      description: 'Use our pre-built UI components as a base to build on top of.',
+      description:
+        'Use our pre-built UI components as a base to build on top of.',
     },
     {
       name: 'Core SDK',
