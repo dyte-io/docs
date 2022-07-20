@@ -1,3 +1,24 @@
+# [1.19.0](https://github.com/dyte-in/docs/compare/v1.18.0...v1.19.0) (2022-07-20)
+
+
+### Bug Fixes
+
+* added media permission error file ([c6cbf96](https://github.com/dyte-in/docs/commit/c6cbf961422e0dc6e61a8f17bfe817875aaed2b6))
+* added spacing ([6b91a70](https://github.com/dyte-in/docs/commit/6b91a70a02cb32443954b3bf4c95151ce6b5dd39))
+* cz-cli and commitizen ([1b35e51](https://github.com/dyte-in/docs/commit/1b35e512f84f58c605ebf614e224db9f262dcb57))
+* quote the branch name ([058cca6](https://github.com/dyte-in/docs/commit/058cca6b285f71e75ca8e56fef273dd9dda39e09))
+* remove web-core v0.2 ([#38](https://github.com/dyte-in/docs/issues/38)) ([55bb8c7](https://github.com/dyte-in/docs/commit/55bb8c77c387a8b6fa9dc40deb34faf23ad24fec))
+* removed `joined` from meta ([10d4b6f](https://github.com/dyte-in/docs/commit/10d4b6fe67b1f10e3e574df120fb34a5c22cf28f))
+* run action also on push ([ac5b3b4](https://github.com/dyte-in/docs/commit/ac5b3b448d9fcbbb4ebc4426e231d59cced7fdbc))
+* run cron ([a5d508d](https://github.com/dyte-in/docs/commit/a5d508dce4dc6e74b8f6d0dd48874a03f1ee5dc7))
+* sidebars updated, removed warnings ([#41](https://github.com/dyte-in/docs/issues/41)) ([951f1ab](https://github.com/dyte-in/docs/commit/951f1ab2484143536f0e41d6152cbefd0e10895b))
+
+
+### Features
+
+* **recording:** changed recording timeout value ([#43](https://github.com/dyte-in/docs/issues/43)) ([978b0b3](https://github.com/dyte-in/docs/commit/978b0b3962ab35159c2a08597207b8f4f456a030))
+* **webhooks:** Include outputFileName in UPLOADED recording status update webhook ([bf9d60d](https://github.com/dyte-in/docs/commit/bf9d60dc6b5f5e1fbd9bd192fae94ae19a0d39dd))
+
 # [1.18.0](https://github.com/dyte-in/docs/compare/v1.17.0...v1.18.0) (2022-07-20)
 
 
