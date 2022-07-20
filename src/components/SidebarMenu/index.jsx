@@ -51,7 +51,7 @@ export default function SidebarMenu() {
   return (
     <div className={styles.multiSectionContainer}>
       {Object.keys(data).map((section) => {
-        const { name, items, description } = data[section];
+        const { name, items, description, isNew } = data[section];
 
         const isCurrentSection = currentSection === section;
 
@@ -69,7 +69,7 @@ export default function SidebarMenu() {
             tabIndex={0}
             key={section}
           >
-            <div className={styles.label}>{name}</div>
+            <div className={styles.label + (isNew ? ' new-badge' : '')}>{name}</div>
             <div>
               {isCurrentSection ? (
                 <div className={styles.row}>

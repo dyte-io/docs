@@ -71,6 +71,12 @@ const SECTIONS = [
 
   // Mobile SDKs
   {
+    name: 'Android Core',
+    id: 'android-core',
+    icon: AndroidIcon,
+    section: 'mobile-core',
+  },
+  {
     name: 'React Native',
     id: 'react-native',
     icon: ReactIcon,
@@ -110,6 +116,19 @@ const MULTI_SECTIONS = [
       description: 'Build your own UI from scratch, use our low level APIs.',
     },
   ],
+  [
+    {
+      name: 'Prebuilt SDK',
+      section: 'mobile-sdk',
+      description: 'Use our pre-built mobile SDK, ready to go',
+    },
+    {
+      name: 'Core SDK',
+      section: 'mobile-core',
+      isNew: true,
+      description: 'Build your own UI from scratch, use our low level APIs.',
+    },
+  ]
 ];
 
 export { SECTIONS, MULTI_SECTIONS };
