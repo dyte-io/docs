@@ -1,3 +1,10 @@
+## [1.19.1](https://github.com/dyte-in/docs/compare/v1.19.0...v1.19.1) (2022-07-21)
+
+
+### Bug Fixes
+
+* broken links and link color in api ref ([adf4de7](https://github.com/dyte-in/docs/commit/adf4de718400cf114bdf7fce4269253b176feb5e))
+
 # [1.19.0](https://github.com/dyte-in/docs/compare/v1.18.0...v1.19.0) (2022-07-20)
 
 
