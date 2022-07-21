@@ -27,9 +27,9 @@ The `meeting.participants` object has the following properties.
 
 Therefore, if you were to make a grid of participants, you'd use the `active` map, but to display all participants in the meeting you'd use the `joined` map.
 
-Each participant in each of the `joined`, `waitlisted`, `active`, and `pinned` maps is of type [`DyteParticipant`](../../Reference/DyteParticipant). Read more about each individual `participant` object [here](../participant-object).
+Each participant in each of the `joined`, `waitlisted`, `active`, and `pinned` maps is of type [`DyteParticipant`](../reference/DyteParticipant.md). Read more about each individual `participant` object [here](../participants/participant-object.mdx).
 
-Each of these maps are of type [`DyteParticipantMap`](../../Reference/DyteParticipantMap), and therefore emit a `participantJoined` event when a participant is added to the map, and a `participantLeft` event when a participant leaves the map. For instance, to listen for when a participant gets pinned in the meeting, you can use the following snippet:
+Each of these maps are of type [`DyteParticipantMap`](../reference/DyteParticipantMap.md), and therefore emit a `participantJoined` event when a participant is added to the map, and a `participantLeft` event when a participant leaves the map. For instance, to listen for when a participant gets pinned in the meeting, you can use the following snippet:
 
 ```ts
 meeting.participants.pinned.on('participantJoined', (participant) => {
