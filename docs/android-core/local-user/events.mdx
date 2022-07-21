@@ -8,23 +8,21 @@ tags: [web-core, local-user, self, self events]
 
 # Local User - Events
 
-You can subscribe to various events on the local user by calling `meeting.self.on(EVENT_NAME)`.
+You can subscribe to various events on the local user by implementing `DyteSelfEventsListener` and passing the object to `meeting.addSelfEventsListener(dyteSelfEventsListener)`.
 
 ### Video update
 
 Triggered when the user starts / stops the video using `enableVideo` or `disableVideo`
 
 ```js
-const videoElem = document.getElementById('my-video');
-
-meeting.self.on('videoUpdate', async ({ videoEnabled, videoTrack }) => {
-    if (videoEnabled) {
-        const stream = new MediaStream();
-        stream.addTrack(videoTrack);
-        videoElem.srcObject = stream;
-        videoElem.play();
-    } else {
-        videoElem.stop();
+meeting.self.addSelfEventsListener(object : DyteSelfEventsListener {
+    override fun onVideoUpdate(videoEnabled: Boolean) {
+      super.onVideoUpdate(videoEnabled)
+      if (videoEnabled) {
+        // video is enabled, and other participants in room can see local user
+      } else {
+        // video is disabled, and other participants in room can not see local user.
+      }
     }
 });
 ```
@@ -34,56 +32,14 @@ meeting.self.on('videoUpdate', async ({ videoEnabled, videoTrack }) => {
 Triggered when the user starts / stops the audio using `enableAudio` or `disableAudio`
 
 ```js
-const audioElem = document.getElementById('my-audio');
-
-meeting.self.on('audioUpdate', async ({ audioEnabled, audioTrack }) => {
-    if (audioEnabled) {
-        const stream = new MediaStream();
-        stream.addTrack(audioTrack);
-        audioElem.srcObject = stream;
-        audioElem.play();
-    } else {
-        audioElem.stop();
+meeting.self.addSelfEventsListener(object : DyteSelfEventsListener {
+    override fun onAudioUpdate(audioEnabled: Boolean) {
+      super.onAudioUpdate(videoEnabled)
+      if (audioEnabled) {
+        // audio is enabled, and other participants in room can hear local user
+      } else {
+        // audio is disabled, and other participants in room can not hear local user.
+      }
     }
-});
-```
-
-### Screenshare update
-
-Triggered when the user starts / stops the screen share using `enableScreenShare()` or `disableScreenShare()`.
-
-```js
-const screenElem = document.getElementById('my-screen-share');
-
-meeting.self.on('screenShareUpdate', async ({ screenShareEnabled, screenShareTracks }) => {
-    if (screenShareEnabled) {
-        const stream = new MediaStream();
-        stream.addTrack(screenShareTracks.video);
-        screenElem.srcObject(stream);
-        await screenElem.play();
-    } else {
-        await screenElem.stop();
-    }
-});
-```
-
-### Device change
-
-Subscribe to the `deviceChange` event to handle the changing video, audio and speaker devices
-
-```js
-meeting.self.on('deviceChange', ({ device, preview }) => {
-  // handle microphone change
-  if (device.kind === 'audioinput') {
-    console.log('mic change', device);
-  }
-  // handle camera change
-  if (device.kind === 'videoinput') {
-    console.log('camera change', device);
-  }
-  // handle speaker change
-  if (device.kind === 'audiooutput') {
-    console.log('speaker change', device);
-  }
 });
 ```

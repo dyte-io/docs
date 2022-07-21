@@ -11,37 +11,8 @@ tags: [web-core, installation, setup]
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<Tabs
-  groupId="node-pm"
-  defaultValue="npm"
-  values={[
-    { label: "npm", value: "npm" },
-    { label: "yarn", value: "yarn" },
-    { label: "CDN", value: "CDN" },
-  ]}
->
-  <TabItem value="npm">
-Install the SDK using npm.
+Install the SDK using maven dependency.
 
 ```shell
-npm install @dytesdk/web-core
+implementation 'io.dyte.core:shared:1.0.0-staging.3'
 ```
-
-  </TabItem>
-  <TabItem value="yarn">
-Install the SDK using yarn.
-
-```shell
-yarn add @dytesdk/web-core
-```
-
-  </TabItem>
-  <TabItem value="CDN">
-Add the following script tag in the head of your HTML file.
-
-```html
-<script src="https://cdn.dyte.in/core/dyte.js" />
-```
-
-  </TabItem>
-</Tabs>

@@ -7,27 +7,15 @@ tags: [web-core, local-user, self, self events]
 
 # Manage Media Devices
 
-Media devices represents the hardwar    for the camera, microphone and speaker devices.
+Media devices represents the hardwar for the camera, microphone and speaker devices.
 To get the list of media devices that are currently being used, you can use the following methods:
 
-```js
-// Get all media devices
-const devices = meeting.self.getAllDevices();
-
+```kotlin
 // Get all audio devices
 const audioDevices = meeting.self.getAudioDevices();
 
 // Get all video devices
 const videoDevices = meeting.self.getVideoDevices();
-
-// Get all speakers
-const speakerDevices = meeting.self.getSpeakerDevices();
-
-// Get device by ID
-const device = meeting.self.getDeviceById('12345', 'audio');
-
-// Fetch current media devices being used 
-const currentDevices = meeting.self.getCurrentDevices();
 ```
 
 ## Set device

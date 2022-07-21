@@ -18,7 +18,7 @@ The `meeting.recording` object has the following properties:
 To start a recording, you can call the `start` method in the `meeting.recording` object. The valid states are `IDLE`, `STARTING`, `RECORDING`, and `STOPPING`.
 
 ```ts
-await meeting.recording.start();
+meeting.recording.start();
 ```
 
 ## Stop a recording
@@ -26,11 +26,9 @@ await meeting.recording.start();
 Call `meeting.recording.stop()` to stop the active recording.
 
 ```ts
-await meeting.recording.stop();
+meeting.recording.stop();
 ```
 
 ## Get active recording state
 
 The `meeting.recording.recordingState` property describes the current state of the recording. The valid states are `IDLE`, `STARTING`, `RECORDING`, and `STOPPING`.
-
-To update the state of recording at any time, call the `meeting.recording.refreshActiveRecordingState()` method.
