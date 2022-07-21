@@ -12,16 +12,16 @@ To get the list of media devices that are currently being used, you can use the 
 
 ```kotlin
 // Get all audio devices
-const audioDevices = meeting.self.getAudioDevices();
+val audioDevices = meeting.self.getAudioDevices();
 
 // Get all video devices
-const videoDevices = meeting.self.getVideoDevices();
+val videoDevices = meeting.self.getVideoDevices();
 ```
 
 ## Set device
 
 To set a device as an active device, you can call `setDevice` method. This takes a `MediaDeviceInfo` object, and replaces the same `kind` device. 
 
-```js
+```kotlin
 meeting.self.setDevice(device);
 ```

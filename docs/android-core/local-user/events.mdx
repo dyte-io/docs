@@ -2,7 +2,7 @@
 title: Events
 description: Local user events guide.
 sidebar_position: 2
-tags: [web-core, local-user, self, self events]
+tags: [mobile-core, local-user, self]
 ---
 
 
@@ -14,7 +14,7 @@ You can subscribe to various events on the local user by implementing `DyteSelfE
 
 Triggered when the user starts / stops the video using `enableVideo` or `disableVideo`
 
-```js
+```kotlin
 meeting.self.addSelfEventsListener(object : DyteSelfEventsListener {
     override fun onVideoUpdate(videoEnabled: Boolean) {
       super.onVideoUpdate(videoEnabled)
@@ -31,7 +31,7 @@ meeting.self.addSelfEventsListener(object : DyteSelfEventsListener {
 
 Triggered when the user starts / stops the audio using `enableAudio` or `disableAudio`
 
-```js
+```kotlin
 meeting.self.addSelfEventsListener(object : DyteSelfEventsListener {
     override fun onAudioUpdate(audioEnabled: Boolean) {
       super.onAudioUpdate(videoEnabled)

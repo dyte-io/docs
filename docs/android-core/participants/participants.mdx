@@ -2,7 +2,7 @@
 title: Participants
 description: Events, methods and data pertaining to meeting participants.
 sidebar_position: 1
-tags: [web-core, participants, participant]
+tags: [mobile-core, participants, participant]
 ---
 
 # Participants
@@ -10,9 +10,9 @@ tags: [web-core, participants, participant]
 The data regarding all meeting participants is stored under `meeting.participants`. This **does not** include the local user. Use the methods and events to consume the participants data. 
 For example, to get all the participants who joined the meeting:
 
-```ts
+```kotlin
 // get all joined participants
-const joinedParticipants = meeting.participants.joined;
+val joinedParticipants = meeting.participants.joined;
 ```
 
 The `meeting.participants` object has the following properties.
@@ -26,13 +26,13 @@ Therefore, if you were to make a grid of participants, you'd use the `active` li
 
 Each participant in each of the `joined`, `waitlisted`, `active`, and `pinned` list is of type [`DyteMeetingParticipant`](../../Reference/DyteParticipant). Read more about each individual `participant` object [here](../participant-object).
 
-You can subscribe to various events on the participants by implementing `DyteParticipantEventsListener` and passing the object to `meeting.addParticipantEventsListener(DyteParticipantEventsListener)`.
+You can subscribe to various events on the participants by implementing `DyteParticipantEventsListener` and passing the object to `meeting.addParticipantEventsListener(dyteParticipantEventsListener)`.
 
 ### Video update
 
 Triggered when the user starts / stops the video using `enableVideo` or `disableVideo`
 
-```js
+```kotlin
 meeting.self.addParticipantEventsListener(object : DyteParticipantEventsListener {
      override fun videoUpdate(videoEnabled: Boolean, participant: DyteMeetingParticipant) {
       super.videoUpdate(videoEnabled, participant)
@@ -49,7 +49,7 @@ meeting.self.addParticipantEventsListener(object : DyteParticipantEventsListener
 
 Triggered when the user starts / stops the audio using `enableAudio` or `disableAudio`
 
-```js
+```kotlin
 meeting.self.addSelfEventsListener(object : DyteSelfEventsListener {
     override fun audioUpdate(audioEnabled: Boolean, participant: DyteMeetingParticipant) {
       super.audioUpdate(audioEnabled, participant)
@@ -62,46 +62,31 @@ meeting.self.addSelfEventsListener(object : DyteSelfEventsListener {
 });
 ```
 
-## Set participant view mode
+## Move between pages in paginated mode
 
-The view mode indicates whether the participants are populated in `ACTIVE_GRID` mode or `PAGINATED` mode. In `ACTIVE_GRID` mode, the partcipants are automatically replaced in `meeting.participants.active`, based on who is speaking or who has their video turned on.
+The `nextPage() and previousPage()` method allows you to switch between pages of participants present in the meeting.
 
-In `PAGINATED` mode, the participants in `meeting.participants.active` will be fixed. Only when you call the `meeting.participants.setPage(pageNumber)` method, it will replace the `active` participants with a different set of participants.
-
-You can change the participant view between `ACTIVE_GRID` and `PAGINATED` mode using the following method. This will trigger `viewModeChanged` event as a side affect.
-
-```ts
-// set the view mode to paginated
-await meeting.participants.setViewMode('PAGINATED');
-
-// set the view mode to active grid
-await meeting.participants.setViewMode('ACTIVE_GRID');
-```
-
-## Set page number in paginated mode
-
-The `setPage()` method allows you to switch between pages of participants present in the meeting.
-
-```ts
-// switch to second page
-await meeting.participants.setPage(2);
+```kotlin
+// switch to next page
+meeting.participants.nextPage();
 ```
  
 ## Host control methods
 
 The `meeting.participants` object has host control methods that allow you to disable the audio and video streams of other users in the meeting (given that the user preset has the right permissions).
 
-```ts
+```kotlin
 // mute all participants
-await meeting.participants.disableAllAudio();
+meeting.participants.disableAllAudio();
+
 
 // disable video for all participants
-await meeting.participants.disableAllVideo();
+meeting.participants.disableAllVideo();
 ```
 
 To remove all participants from a meeting, you can call the `kickAll()` method.
 
-```ts
+```kotlin
 // remove all participants from the meeting
 await meeting.participants.kickAll();
 ```

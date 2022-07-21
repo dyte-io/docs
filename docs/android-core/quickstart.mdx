@@ -1,22 +1,33 @@
 ---
-title: Quickstart
-description: Quickstart guide for web-core.
-sidebar_position: 2
-tags: [web-core, quickstart, setup]
+title: Installation & Quickstart
+description: Quickstart guide for android mobile core.
+sidebar_position: 1
+tags: [mobile-core, quickstart]
 ---
+
+# Installation
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Install the SDK using maven dependency.
+
+```shell
+implementation 'io.dyte.core:shared:1.0.0-staging.3'
+```
 
 # Quickstart
 
-The DyteMobileClient is the root class of the SDK. It is the main entry point of the SDK. It is the only class that you need to instantiate in order to use the SDK. To instantiate DyteMobileClient, you should use DyteAndroidClientBuilder.build() and pass your activity instance there.:
+The DyteMobileClient is the root class of the SDK. It is the main entry point of the SDK. It is the only class that you need to instantiate in order to use the SDK. To instantiate DyteMobileClient, you should use `DyteAndroidClientBuilder.build(application)` and pass your activity instance there.:
 
-```js
+```kotlin
 val meeting = DyteAndroidClientBuilder.build(application);
 ```
 
 Now you can use `meeting` to join in the room.
 First step is to establish a connection to the meeting server, you can do that with 
 
-```js
+```kotlin
 val meetingInfo = DyteMeetingInfo(
     orgId = ORGNIZATION_ID,
     baseUrl = BASE_URL,
@@ -34,6 +45,6 @@ You can get the `roomName` and `authToken` using our backend APIs.
 
 Now to join in the room, use 
 
-```js
+```kotlin
 meeting.joinRoom()
 ```

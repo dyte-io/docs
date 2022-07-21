@@ -2,7 +2,7 @@
 title: Introduction
 description: Local user setup guide.
 sidebar_position: 1
-tags: [web-core, local-user, self]
+tags: [mobile-core, local-user, self]
 ---
 
 # Introduction - Local User
@@ -27,15 +27,11 @@ Here is a list of properties that local user provides:
 By default as soon as you join the meeting the SDK will produce your video and audio streams.
 To change this behaviour use the `default` parameter
 
-```ts {7,8}
+```kotlin {7,8}
 val meetingInfo = DyteMeetingInfo(
       orgId = ORGNIZATION_ID,
-      baseUrl = BASE_URL,
       roomName = MEETING_ROOM_NAME,
-      authToken = AUTH_TOKEN,
-      displayName = DISPLAY_NAME,
-      enableAudio = false, // Disable user's audio by default
-      enableVideo = true  // Enable user's video by default
+      authToken = AUTH_TOKEN
     )
 ```
 
@@ -43,7 +39,7 @@ val meetingInfo = DyteMeetingInfo(
 
 If audio and video tracks are disabled during the `DyteMobileClient` initialization process. You can setup the audio and video tracks by simply calling `enableAudio()` and `enableVideo()` like below:
 
-```ts
+```kotlin
 meeting.self.enableAudio();
 meeting.self.enableVideo();
 ```
@@ -52,13 +48,13 @@ meeting.self.enableVideo();
 
 Change the user's name by calling `setDisplayName` method. The changed name will reflect across all participants ONLY if the change happens before joining the meeting.
 
-```ts
-await meeting.self.setDisplayName('New Name');
+```kotlin
+meeting.self.setDisplayName('New Name');
 ```
 
 ## Mute/Unmute microphone
 
-```ts
+```kotlin
 // Mute Audio
 meeting.self.disableAudio();
 
@@ -71,7 +67,7 @@ meeting.self.audioEnabled;
 
 ## Enable/Disable camera
 
-```ts
+```kotlin
 // Disable Video
 meeting.self.disableVideo();
 
@@ -84,7 +80,7 @@ meeting.self.videoEnabled;
 
 ## Switch camera between primary and secondary
 
-```ts
+```kotlin
 // switch camera
 meeting.self.switchCamera();
 ```
