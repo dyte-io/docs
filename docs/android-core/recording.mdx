@@ -2,7 +2,7 @@
 title: Recording
 description: Control recordings in a meeting.
 sidebar_position: 9
-tags: [web-core, recording]
+tags: [mobile-core, recording]
 ---
 
 # Recording
@@ -17,7 +17,7 @@ The `meeting.recording` object has the following properties:
 
 To start a recording, you can call the `start` method in the `meeting.recording` object. The valid states are `IDLE`, `STARTING`, `RECORDING`, and `STOPPING`.
 
-```ts
+```kotlin
 meeting.recording.start();
 ```
 
@@ -25,7 +25,7 @@ meeting.recording.start();
 
 Call `meeting.recording.stop()` to stop the active recording.
 
-```ts
+```kotlin
 meeting.recording.stop();
 ```
 

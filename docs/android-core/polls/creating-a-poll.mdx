@@ -2,7 +2,7 @@
 title: Creating a poll
 description: Create polls in a meeting.
 sidebar_position: 2
-tags: [web-core, polls, create]
+tags: [mobile-core, polls, create]
 ---
 
 # Creating a poll
@@ -13,15 +13,16 @@ A new poll can be created using the `create` method from the [`meeting.polls`](.
 |-----------|----------|---------------|----------|------------------------------------------------------------|
 | question  | string   |       -       | yes      | The question that is to be voted for.                      |
 | options   | string[] |       -       | yes      | The options of the poll.                                   |
-| anonymous | boolean  | false         | no       | If true, the poll votes are anonymous.                     |
-| hideVotes | boolean  | false         | no       | If true, the votes on the poll are hidden.                 |
+| anonymous | boolean  |       -       | no       | If true, the poll votes are anonymous.                     |
+| hideVotes | boolean  |       -       | no       | If true, the votes on the poll are hidden.                 |
 
 The following snippet creates a poll where votes are anonymous.
 
-```ts
-await meeting.poll.create(
-    'Are you an early bird or a night owl?',
-    ['Early bird', 'Night owl'],
-    true
+```kotlin
+meeting.poll.create(
+    "Are you an early bird or a night owl?",
+    listOf("Early bird", "Night owl"),
+    true,
+    false
 )
 ```
