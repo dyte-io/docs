@@ -30,12 +30,8 @@ First step is to establish a connection to the meeting server, you can do that w
 ```kotlin
 val meetingInfo = DyteMeetingInfo(
     orgId = ORGNIZATION_ID,
-    baseUrl = BASE_URL,
     roomName = MEETING_ROOM_NAME,
-    authToken = AUTH_TOKEN,
-    displayName = DISPLAY_NAME,
-    enableAudio = true,
-    enableVideo = true
+    authToken = AUTH_TOKEN
 )
 meeting.init(meetingInfo, activity)
 ```
