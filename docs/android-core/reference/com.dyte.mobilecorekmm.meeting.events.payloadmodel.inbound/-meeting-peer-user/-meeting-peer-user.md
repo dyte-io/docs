@@ -1,6 +1,0 @@
-[io.dyte.core.meeting.events.payloadmodel.inbound](../index.md)/[MeetingPeerUser](index.md)/[MeetingPeerUser](-meeting-peer-user.md)
-
-# MeetingPeerUser
-
-
-fun [MeetingPeerUser](-meeting-peer-user.md)(id: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)? = null, userId: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)? = null, displayName: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)? = null, device: [Device](../-device/index.md)? = null, picture: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)? = null, isHost: [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)? = null, webinarHiddenParticipant: [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)? = null, flags: [MeetingPeerFlags](../-meeting-peer-flags/index.md)? = null, metadata: [MeetingPeerMetadata](../-meeting-peer-metadata/index.md)? = null, clientSpecificId: [String](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)? = null, audioMuted: [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)? = null, hiddenParticipant: [Boolean](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)? = null)
