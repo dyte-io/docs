@@ -3,7 +3,6 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/vsDark');
 
-
 const UIKitReferencePlugins = require('./plugins/ui-kit-reference-plugin.cjs');
 const { webpackPlugin } = require('./plugins/webpack-plugin.cjs');
 const posthogPlugin = require('./plugins/posthog-plugin.cjs');
@@ -145,7 +144,12 @@ const config = {
     ],
   ],
 
-  plugins: [...SECTIONS, ...UIKitReferencePlugins, webpackPlugin, posthogPlugin],
+  plugins: [
+    ...SECTIONS,
+    ...UIKitReferencePlugins,
+    webpackPlugin,
+    posthogPlugin,
+  ],
 
   themes: ['@docusaurus/theme-live-codeblock'],
 
