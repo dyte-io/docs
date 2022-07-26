@@ -49,7 +49,9 @@ export default function Home() {
 
   const location = router.location;
 
-  const url = new URL(`https://docs.dyte.io${location.pathname}${location.search}`);
+  const url = new URL(
+    `https://docs.dyte.io${location.pathname}${location.search}`
+  );
 
   const currentVersion = url.searchParams.get('v') || 'v1';
 
@@ -61,7 +63,12 @@ export default function Home() {
   }, []);
 
   return (
-    <Layout title="API Reference" description="Dyte REST API Reference" noFooter wrapperClassName="api-reference">
+    <Layout
+      title="API Reference"
+      description="Dyte REST API Reference"
+      noFooter
+      wrapperClassName="api-reference"
+    >
       <Head>
         {/* Load styles for Stoplight Elements */}
         <link rel="preload" href="/assets/css/elements.min.css" as="style" />
@@ -74,7 +81,7 @@ export default function Home() {
           <DyteTooltip
             placement="bottom"
             variant="primary"
-            label="Hey, we have a v2 version of our APIs out now. You can switch between these here."
+            label="Hey, we have v2 version for our APIs rolling out slowly, you can check them out here."
             open={showV2Tooltip}
             onDyteOpenChange={(open) => {
               if (!open) {
@@ -102,7 +109,10 @@ export default function Home() {
           </DyteTooltip>
         </div>
       </div>
-      <APIElement layout={size === 'sm' ? 'stacked' : 'sidebar'} currentVersion={currentVersion} />
+      <APIElement
+        layout={size === 'sm' ? 'stacked' : 'sidebar'}
+        currentVersion={currentVersion}
+      />
     </Layout>
   );
 }
