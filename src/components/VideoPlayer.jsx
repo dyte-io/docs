@@ -1,6 +1,5 @@
 import React from 'react';
 import clsx from 'clsx';
-import DocCardList from '@theme/DocCardList';
 
 export default function VideoPlayer({ src, mobile, className, ...rest }) {
   return (
