@@ -1,3 +1,16 @@
+# [1.20.0](https://github.com/dyte-in/docs/compare/v1.19.1...v1.20.0) (2022-07-26)
+
+
+### Bug Fixes
+
+* typo for react-sdk name ([a19881c](https://github.com/dyte-in/docs/commit/a19881c9140a8bb2353acf86373a739845144628))
+* **ui:** sections-menu design fixed for version dropdown ([e90f738](https://github.com/dyte-in/docs/commit/e90f73876303a8971f1371899915f96b1c57a36d))
+
+
+### Features
+
+* re-added posthog analytics ([e906aa1](https://github.com/dyte-in/docs/commit/e906aa11e27817ba2000f09088f769c68d7973aa))
+
 ## [1.19.1](https://github.com/dyte-in/docs/compare/v1.19.0...v1.19.1) (2022-07-21)
 
 
