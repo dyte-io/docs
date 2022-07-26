@@ -10,7 +10,7 @@ import styles from './styles.module.css';
 
 export default function SidebarMenu() {
   const router = useHistory();
-  const { id, sections, isMultiSection } = useSectionMenu();
+  const { id, sections, isMultiSection, isNew } = useSectionMenu();
   const globalData = useGlobalData();
   const allDocs = globalData['docusaurus-plugin-content-docs'];
 
@@ -69,7 +69,7 @@ export default function SidebarMenu() {
             tabIndex={0}
             key={section}
           >
-            <div className={styles.label}>{name}</div>
+            <div className={styles.label + (isNew ? ' new-badge' : '')}>{name}</div>
             <div>
               {isCurrentSection ? (
                 <div className={styles.row}>

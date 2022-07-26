@@ -1,3 +1,10 @@
+# [1.21.0](https://github.com/dyte-in/docs/compare/v1.20.0...v1.21.0) (2022-07-26)
+
+
+### Features
+
+* add react-native-core docs ([61bd0c9](https://github.com/dyte-in/docs/commit/61bd0c9558854b6a47f882d6bcbbb6250a7119a6))
+
 # [1.20.0](https://github.com/dyte-in/docs/compare/v1.19.1...v1.20.0) (2022-07-26)
 
 
