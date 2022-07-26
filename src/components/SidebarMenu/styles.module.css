@@ -1,3 +1,13 @@
+:root {
+  --docs-sections-menu-background-color: #efefef;
+  --docs-sections-menu-active-background-color: #547ade;
+  --docs-sections-menu-active-color: #fff;
+}
+
+html[data-theme='dark'] {
+  --docs-sections-menu-background-color: #3f3f3f;
+}
+
 .container {
   width: 100%;
   display: flex;
@@ -19,11 +29,14 @@
 .section {
   padding: 0.75rem;
   cursor: pointer;
-  background-color: var(--docs-color-background-300);
+  background-color: var(--docs-sections-menu-background-color);
+  --ifm-navbar-link-color: var(--docs-sections-menu-active-color);
+  --ifm-navbar-link-hover-color: var(--docs-sections-menu-active-color);
 }
 
 .sectionActive {
-  background-color: var(--docs-color-primary-tint-light);
+  background-color: var(--docs-sections-menu-active-background-color);
+  color: var(--docs-sections-menu-active-color);
 }
 
 .section:first-child {
