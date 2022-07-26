@@ -21,7 +21,7 @@ const SECTIONS = [
   },
 
   {
-    name: 'React SDKx',
+    name: 'React SDK',
     id: 'react',
     icon: ReactIcon,
     section: 'old-web-sdks',
