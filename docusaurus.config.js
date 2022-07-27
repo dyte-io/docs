@@ -7,8 +7,7 @@ const UIKitReferencePlugins = require('./plugins/ui-kit-reference-plugin.cjs');
 const { webpackPlugin } = require('./plugins/webpack-plugin.cjs');
 const posthogPlugin = require('./plugins/posthog-plugin.cjs');
 
-/** @type {import('@docusaurus/preset-classic').Options} */
-const defaultSettings = {
+/** @type {import('@docusaurus/preset-classic').Options} */ defaultSettings = {
   remarkPlugins: [
     [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
   ],
@@ -48,7 +47,7 @@ const latestVersions = {
   android: '0.14.x',
   ios: '1.33.x',
   flutter: '0.7.x',
-  'rn-core': '1.x.x'
+  'rn-core': '1.x.x',
 };
 
 const SECTIONS = [
@@ -144,6 +143,9 @@ const config = {
             require.resolve('./src/css/custom.css'),
             require.resolve('./src/css/api-reference.css'),
           ],
+        },
+        googleAnalytics: {
+          trackingID: 'UA-173908240-1',
         },
       }),
     ],
