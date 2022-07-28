@@ -1,0 +1,35 @@
+---
+title: Introduction
+description: Create, receive and interact with polls in a meeting.
+sidebar_position: 1
+tags: [mobile-core, polls]
+---
+
+# Introduction
+
+The meetings polls object can be accessed using `meeting.polls`. It provides methods to create polls, vote, and more. 
+
+`meeting.polls.polls` returns an array of all polls created in a meeting, where each element is an object of type  `DytePollMessage`.
+
+The type `DytePollMessage` is defined in the following manner.
+```kotlin
+data class DytePollMessage(
+  val id: String,
+  val quesion: String,
+  val anonymous: Boolean,
+  val hideVotes: Boolean,
+  val createdBy: String,
+  val options: List<DytePollOption>
+)
+
+data class DytePollOption(
+  val text: String,
+  val votes: List<DytePollVote>,
+  val count: Number
+)
+
+data class DytePollVote(
+  val id: String,
+  val name: String,
+)
+```

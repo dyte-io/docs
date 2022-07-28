@@ -51,7 +51,7 @@ export default function SidebarMenu() {
   return (
     <div className={styles.multiSectionContainer}>
       {Object.keys(data).map((section) => {
-        const { name, items, description } = data[section];
+        const { name, items, description, isNew } = data[section];
 
         const isCurrentSection = currentSection === section;
 
