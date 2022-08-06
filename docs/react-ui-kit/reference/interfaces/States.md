@@ -80,7 +80,7 @@ ___
 
 ### meeting
 
-• `Optional` **meeting**: ``"idle"`` \| ``"setup"`` \| ``"joined"`` \| ``"ended"``
+• `Optional` **meeting**: ``"idle"`` \| ``"setup"`` \| ``"joined"`` \| ``"ended"`` \| ``"waiting"``
 
 ___
 

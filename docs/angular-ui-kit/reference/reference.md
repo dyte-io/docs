@@ -7,6 +7,7 @@ custom_edit_url: null
 ## Interfaces
 
 - [Notification](interfaces/Notification.md)
+- [PollObject](interfaces/PollObject.md)
 - [States](interfaces/States.md)
 - [UIConfig](interfaces/UIConfig.md)
 - [UserPreferences](interfaces/UserPreferences.md)
@@ -80,6 +81,7 @@ ___
 | `attach` | `string` |
 | `call_end` | `string` |
 | `chat` | `string` |
+| `checkmark` | `string` |
 | `chevron_down` | `string` |
 | `chevron_left` | `string` |
 | `chevron_right` | `string` |
@@ -113,6 +115,7 @@ ___
 | `share_screen_stop` | `string` |
 | `speaker` | `string` |
 | `spinner` | `string` |
+| `spotlight` | `string` |
 | `stop_recording` | `string` |
 | `subtract` | `string` |
 | `vertical_scroll` | `string` |
@@ -141,6 +144,8 @@ Default language dictionary
 | `connection` | `string` |
 | `dismiss` | `string` |
 | `end_meeting_for_all` | `string` |
+| `full_screen` | `string` |
+| `full_screen.exit` | `string` |
 | `leave` | `string` |
 | `leave_confirmation` | `string` |
 | `left_meeting` | `string` |
@@ -148,6 +153,7 @@ Default language dictionary
 | `mic_on` | `string` |
 | `page` | `string` |
 | `participants` | `string` |
+| `perm.sys_denied.message` | `string` |
 | `perm_browser_denied` | `string` |
 | `perm_denied_text` | `string` |
 | `perm_denied_title` | `string` |
@@ -160,6 +166,11 @@ Default language dictionary
 | `video` | `string` |
 | `video_off` | `string` |
 | `video_on` | `string` |
+| `waitlist.accept_all` | `string` |
+| `waitlist.accept_request` | `string` |
+| `waitlist.body_text` | `string` |
+| `waitlist.deny_request` | `string` |
+| `waitlist.header_title` | `string` |
 
 ## Functions
 
