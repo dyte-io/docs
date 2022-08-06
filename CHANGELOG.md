@@ -1,3 +1,22 @@
+# [1.22.0](https://github.com/dyte-in/docs/compare/v1.21.0...v1.22.0) (2022-08-06)
+
+
+### Bug Fixes
+
+* android-core version imports ([f55a82f](https://github.com/dyte-in/docs/commit/f55a82fdfabe594aa10a6e05e841531ad5556d70))
+* linting error and issue ([5704439](https://github.com/dyte-in/docs/commit/5704439ad1503972bf5a2e224d515b2f3c5b6ea6))
+* **ui:** design fixes ([ede3f76](https://github.com/dyte-in/docs/commit/ede3f760ff634bb51d8c6416fa57d4461d02b4bf))
+* update api tooltip message ([571b239](https://github.com/dyte-in/docs/commit/571b23953df4a9dc240c5e29e5c9f7357389094b))
+
+
+### Features
+
+* (WIP) android core reference ([f3a65ee](https://github.com/dyte-in/docs/commit/f3a65eebae4fa7d3ea1e5d01ff5b2905a0ac7eb8))
+* added google analytics ([cf05ba4](https://github.com/dyte-in/docs/commit/cf05ba4ea45957389cc8c6561ccc4674dfaa1f14))
+* added mobile core docs ([6ade164](https://github.com/dyte-in/docs/commit/6ade164140a30c9b926c3cbfa4fba275bae2f324))
+* update ui kit package and fix windows script usage ([4b5591a](https://github.com/dyte-in/docs/commit/4b5591a000746e661b45b175a75f66f391a9cc7c))
+* upgrade docusaurus to `2.0.1` ([e5946db](https://github.com/dyte-in/docs/commit/e5946db7930d413a1506639255248fc7559365e9))
+
 # [1.21.0](https://github.com/dyte-in/docs/compare/v1.20.0...v1.21.0) (2022-07-26)
 
 
