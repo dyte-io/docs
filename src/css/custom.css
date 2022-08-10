@@ -45,7 +45,6 @@ body {
 
   --docs-color-border: #dadde1;
 
-
   --docs-color-text: #000000;
   --docs-color-text-100: #646464;
 
@@ -314,8 +313,9 @@ html[data-theme='dark'] .discord-icon::before {
   content: 'Discord';
 }
 
-.dev-portal-login {
+.dev-portal-link {
   --ifm-link-hover-color: #fff;
+  --ifm-navbar-link-hover-color: #fff;
   background-color: var(--docs-color-primary);
   border-radius: 4px;
   margin-right: 12px;
@@ -323,17 +323,22 @@ html[data-theme='dark'] .discord-icon::before {
   transition-property: all;
 }
 
-.dev-portal-login:hover {
-  background-color: var(--ifm-color-primary-darker);
-}
-
-.dev-portal-login svg {
+.dev-portal-link svg {
   display: inline-block;
   vertical-align: middle;
   margin-bottom: 0.2rem;
 }
 
-.navbar-sidebar .dev-portal-login {
+.dev-portal-signup:hover {
+  background-color: var(--ifm-color-primary-darker);
+}
+
+.dev-portal-login {
+  --ifm-navbar-link-hover-color: var(--docs-color-primary-100);
+  background-color: transparent;
+}
+
+.navbar-sidebar .dev-portal-link {
   padding: 0.75rem;
   margin-top: 1rem;
 }
@@ -776,7 +781,8 @@ img[src$='#terminal'] {
   line-height: 1.5;
 }
 
-@media screen and (max-width: 1106px) {
+@media screen and (max-width: 1160px) {
+  /* Hide icons when header UI breaks */
   .pseudo-icon {
     display: none;
   }
