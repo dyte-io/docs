@@ -222,8 +222,14 @@ const config = {
             position: 'right',
           },
           {
-            label: 'Login/Sign Up',
-            href: 'https://dev.dyte.io',
+            label: 'Sign Up',
+            href: 'https://accounts.dyte.io/auth/register',
+            position: 'right',
+            className: 'dev-portal-signup',
+          },
+          {
+            label: 'Login',
+            href: 'https://accounts.dyte.io/auth/login',
             position: 'right',
             className: 'dev-portal-login',
           },
