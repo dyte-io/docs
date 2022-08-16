@@ -16,7 +16,6 @@ All metadata pertaining to a meeting is stored in `meeting.meta`. This includes:
 For example, if you want to get the name of the room the current participant is connected to, you can do so by doing:
 
 ```kotlin
-// Destructuring the metadata to get roomName and joined
 val roomName = meeting.meta.roomName;
 
 if (meeting.self.roomJoined) {
