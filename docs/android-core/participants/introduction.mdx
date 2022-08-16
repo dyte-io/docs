@@ -7,7 +7,7 @@ tags: [mobile-core, participants, participant]
 
 # Introduction - Participants
 
-The data regarding all meeting participants is stored under `meeting.participants`. This **does not** include the local user. Use the methods and events to consume the participants data. 
+The data regarding all meeting participants is stored under `meeting.participants`. Use the methods and events to consume the participants data. 
 For example, to get all the participants who joined the meeting:
 
 ```kotlin
@@ -21,10 +21,11 @@ The `meeting.participants` object has the following properties.
 - `waitlisted`: A list that contains all the participants waiting to join the meeting.
 - `active`: A list that contains all the participants except the local user who are supposed to be on the screen at the moment 
 - `pinned`: A list that contains all the pinned participants of the meeting.
+- `screenshares`: A list that contains all the participants who have shared screen in the meeting.
 
-Therefore, if you were to make a grid of participants, you'd use the `active` list, but to display all participants in the meeting you'd use the `joined` map.
+Therefore, if you were to make a grid of participants, you'd use the `active` list, but to display all participants in the meeting you'd use the `joined` list.
 
-Each participant in each of the `joined`, `waitlisted`, `active`, and `pinned` list is of type [`DyteMeetingParticipant`](../../Reference/DyteParticipant). Read more about each individual `participant` object [here](../participant-object).
+Each participant in each of the `joined`, `waitlisted`, `active`, `pinned` and `screenshares` list is of type `DyteMeetingParticipant`.
 
 You can subscribe to various events on the participants by implementing `DyteParticipantEventsListener` and passing the object to `meeting.addParticipantEventsListener(dyteParticipantEventsListener)`.
 
@@ -42,7 +43,7 @@ meeting.self.addParticipantEventsListener(object : DyteParticipantEventsListener
         // video is disabled, and other participants in room can not see local user.
       }
     }
-});
+})
 ```
 
 ### Audio update
@@ -59,16 +60,28 @@ meeting.self.addSelfEventsListener(object : DyteSelfEventsListener {
         // audio is disabled, and other participants in room can not hear local user.
       }
     }
-});
+})
+```
+
+## Set mode of pagination
+
+The SDK allows you to view grid in two differant modes. First is `Grid` where SDK gives you list of `active` participants to show. Second is `Paginated` where user decides which page to view.
+
+```kotlin
+// for grid mode
+meeting.participants.setMode(PageViewMode.GRID)
+
+// for paginated mode
+meeting.participants.setMode(PageViewMode.PAGINATED)
 ```
 
 ## Move between pages in paginated mode
 
-The `nextPage() and previousPage()` method allows you to switch between pages of participants present in the meeting.
+The `setPage(pageNumber: Int)` method allows you to switch between pages of participants present in the meeting.
 
 ```kotlin
-// switch to next page
-meeting.participants.nextPage();
+// switch to 1st page
+meeting.participants.setPage(1)
 ```
  
 ## Host control methods
@@ -79,14 +92,25 @@ The `meeting.participants` object has host control methods that allow you to dis
 // mute all participants
 meeting.participants.disableAllAudio();
 
+// mute a single participant
+val participantToUpdate = meeting.participants.joined.first()
+participantToUpdate.disableAudio()
 
 // disable video for all participants
 meeting.participants.disableAllVideo();
+
+// disable video for a single participant
+val participantToUpdate = meeting.participants.joined.first()
+participantToUpdate.disableVideo()
 ```
 
 To remove all participants from a meeting, you can call the `kickAll()` method.
 
 ```kotlin
 // remove all participants from the meeting
-await meeting.participants.kickAll();
+meeting.participants.kickAll();
+
+// remove a single participant
+val participantToRemove = meeting.participants.joined.first()
+participantToRemove.kick()
 ```

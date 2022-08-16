@@ -14,10 +14,11 @@ Here are the supported methods:
 ```kotlin
     private val participantEventsListener = object : DyteParticipantEventsListener {
         override fun onParticipantsUpdated(
-        participants: DyteRoomParticipants,
-        enabledPaginator: Boolean
-        ) {
-            super.onParticipantsUpdated(participants, enabledPaginator)
+            participants: DyteRoomParticipants,
+            isNextPagePossible: Boolean,
+            isPreviousPagePossible: Boolean
+            ) {
+            super.onParticipantsUpdated(participants, isNextPagePossible, isPreviousPagePossible)
             // your code here to handle page updates.
         }
     }
@@ -81,14 +82,10 @@ Trigger an event when any participant starts / stops screen share.
 
 ```kotlin
     private val participantEventsListener = object : DyteParticipantEventsListener {
-        override fun onScreenShareStarted(participant: DyteMeetingParticipant) {
-            super.onScreenShareStarted(participant)
-            // screenshare started
-        }
-
-        override fun onScreenShareEnded(participant: DyteMeetingParticipant) {
-            super.onScreenShareEnded(participant)
-            // screenshare ended
+        override fun onScreenSharesUpdated() {
+            super.onScreenSharesUpdated() 
+            // all screenshare participants can be fetched via 
+            // meeting.participants.screenshares
         }
     }
 ```
