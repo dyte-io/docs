@@ -1,3 +1,19 @@
+# [1.23.0](https://github.com/dyte-in/docs/compare/v1.22.0...v1.23.0) (2022-08-16)
+
+
+### Bug Fixes
+
+* separate login and signup buttons ([0b84e69](https://github.com/dyte-in/docs/commit/0b84e69d39877ea58aa0fa02d9b3d082ca838a17))
+* **typo:** typo ([b76d429](https://github.com/dyte-in/docs/commit/b76d42957308622350e96156118eed5b64a086ce))
+* **ui:** light theme navbar link color ([7dbb626](https://github.com/dyte-in/docs/commit/7dbb62609557103ec0d4071a073321d04d103661))
+* **ui:** styling of new navbar buttons ([1980198](https://github.com/dyte-in/docs/commit/1980198865097e7d3d6feac5e2b991b449b85f7c))
+
+
+### Features
+
+* **recording:** add documentation about azure and more cloud providers for recording cloud transfer ([dffc3b0](https://github.com/dyte-in/docs/commit/dffc3b0d170830f938ee3878a71665635dc81c26))
+* **recording:** add maxSeconds, and fileNamePrefix, and azure to start recording API ([ccc3a27](https://github.com/dyte-in/docs/commit/ccc3a27af2838e8479e64ceff92e78deac418eef))
+
 # [1.22.0](https://github.com/dyte-in/docs/compare/v1.21.0...v1.22.0) (2022-08-06)
 
 
