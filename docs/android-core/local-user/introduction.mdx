@@ -7,7 +7,7 @@ tags: [mobile-core, local-user, self]
 
 # Introduction - Local User
 
-The local user has the methods and properties on the local user media controls. Accessible via `self` key within the `meeting` object.
+The local user has the methods and properties on the local user media controls. Accessible via `self` within the `meeting` object.
 
 ## Properties
 
@@ -25,7 +25,7 @@ Here is a list of properties that local user provides:
 ## Change default audio / video settings
 
 By default as soon as you join the meeting the SDK will produce your video and audio streams.
-To change this behaviour use the `default` parameter
+To change this behaviour use the `audioEnabled` & `videoEnabled` parameter
 
 ```kotlin {5,6}
 val meetingInfo = DyteMeetingInfo(
@@ -42,8 +42,8 @@ val meetingInfo = DyteMeetingInfo(
 If audio and video tracks are disabled during the `DyteMobileClient` initialization process. You can setup the audio and video tracks by simply calling `enableAudio()` and `enableVideo()` like below:
 
 ```kotlin
-meeting.self.enableAudio();
-meeting.self.enableVideo();
+meeting.self.enableAudio()
+meeting.self.enableVideo()
 ```
 
 ## Change the name of the local user
@@ -51,38 +51,38 @@ meeting.self.enableVideo();
 Change the user's name by calling `setDisplayName` method. The changed name will reflect across all participants ONLY if the change happens before joining the meeting.
 
 ```kotlin
-meeting.self.setDisplayName('New Name');
+meeting.self.setDisplayName("New Name")
 ```
 
 ## Mute/Unmute microphone
 
 ```kotlin
 // Mute Audio
-meeting.self.disableAudio();
+meeting.self.disableAudio()
 
 // Unmute Audio
-meeting.self.enableAudio();
+meeting.self.enableAudio()
 
 // Get current status
-meeting.self.audioEnabled;
+meeting.self.audioEnabled
 ```
 
 ## Enable/Disable camera
 
 ```kotlin
 // Disable Video
-meeting.self.disableVideo();
+meeting.self.disableVideo()
 
 // Enable Video
-meeting.self.enableVideo();
+meeting.self.enableVideo()
 
 // Get current status
-meeting.self.videoEnabled;
+meeting.self.videoEnabled
 ```
 
 ## Switch camera between primary and secondary
 
 ```kotlin
 // switch camera
-meeting.self.switchCamera();
+meeting.self.switchCamera()
 ```

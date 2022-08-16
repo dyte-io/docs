@@ -2435,6 +2435,7 @@ components:
               enum:
                 - aws
                 - digitalocean
+                - azure
             accessKey:
               type: string
             secret:
@@ -2464,6 +2465,15 @@ components:
             rtmpUrl:
               type: string
               format: url
+        maxSeconds:
+          type: integer
+          description: >-
+            Configures the maximum duration (in seconds) after which the recording will be automatically stopped.
+            By default, this is set to 10800 seconds (3 hours), and can be set to a maximum of 86400 seconds (24 hours). If there is a requirement for a longer duration, please contact us directly.
+        fileNamePrefix:
+          type: string
+          description: >-
+            Specifices a prefix string which will be added to the starting of the output file name of the recording.
     UpdateRecordingRequestBody:
       type: object
       required:
