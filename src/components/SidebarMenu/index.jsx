@@ -10,7 +10,7 @@ import styles from './styles.module.css';
 
 export default function SidebarMenu() {
   const router = useHistory();
-  const { id, sections, isMultiSection } = useSectionMenu();
+  const { id, sections, isMultiSection, isNew } = useSectionMenu();
   const globalData = useGlobalData();
   const allDocs = globalData['docusaurus-plugin-content-docs'];
 
