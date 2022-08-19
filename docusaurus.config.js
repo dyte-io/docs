@@ -103,8 +103,8 @@ const config = {
   title: 'Dyte Docs',
   tagline: 'Real-time audio & video SDKs, ready to launch 🚀',
   // TODO: Update base url
-  url: 'https://dyte.io',
-  baseUrl: '/docs/',
+  url: 'https://docs.dyte.io',
+  baseUrl: '/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: '/favicon.ico',
