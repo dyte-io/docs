@@ -12,6 +12,12 @@ Global States object which are shared among components
 
 ## Properties
 
+### activeJoinStage
+
+• `Optional` **activeJoinStage**: `boolean`
+
+___
+
 ### activeLeaveConfirmation
 
 • `Optional` **activeLeaveConfirmation**: `boolean`
