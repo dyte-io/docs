@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-web_core_version: 0.28.0
+web_core_version: 0.38.0
 ---
 
 <!-- Auto Generated Below -->
@@ -38,8 +38,6 @@ this module.
     * [.disableAudio()](#module_DyteSelf+disableAudio)
     * [.disableVideo()](#module_DyteSelf+disableVideo)
     * [.disableScreenShare()](#module_DyteSelf+disableScreenShare)
-    * [.enablePreview(options)](#module_DyteSelf+enablePreview)
-    * [.disablePreview()](#module_DyteSelf+disablePreview)
     * [.getCurrentDevices()](#module_DyteSelf+getCurrentDevices)
     * [.getAudioDevices()](#module_DyteSelf+getAudioDevices)
     * [.getVideoDevices()](#module_DyteSelf+getVideoDevices)
@@ -49,7 +47,11 @@ this module.
     * [.setIsPinned()](#module_DyteSelf+setIsPinned)
     * [.pin()](#module_DyteSelf+pin)
     * [.unpin()](#module_DyteSelf+unpin)
-    * [.setDevice(device, preview)](#module_DyteSelf+setDevice)
+    * [.setDevice(device)](#module_DyteSelf+setDevice)
+    * [.requestToJoinStage()](#module_DyteSelf+requestToJoinStage)
+    * [.leaveStage()](#module_DyteSelf+leaveStage)
+    * [.joinStage()](#module_DyteSelf+joinStage)
+    * ~~[.disablePreview()](#module_DyteSelf+disablePreview)~~
 
 <a name="module_DyteSelf+audioTrack"></a>
 
@@ -227,27 +229,6 @@ This participant is used to disable the local participant's video.
 This method is used to stop sharing the local participant's screen.
 
 **Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
-<a name="module_DyteSelf+enablePreview"></a>
-
-### meeting.self.enablePreview(options)
-Enable a preview for audio and video. This will populate preview.audioTrack
-and preview.videoTrack. You can check if the streams are enabled in the preview
-using preview.audioEnabled and preview.videoEnabled.
-
-**Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
-
-| Param | Description |
-| --- | --- |
-| options | The audio and video options. |
-| options.video | If true, the video stream is fetched. |
-| options.audio | If true, the audio stream is fetched. |
-
-<a name="module_DyteSelf+disablePreview"></a>
-
-### meeting.self.disablePreview()
-Disable the audio and/or video tracks of the preview.
-
-**Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+getCurrentDevices"></a>
 
 ### meeting.self.getCurrentDevices()
@@ -310,13 +291,38 @@ to unpin participants.
 **Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+setDevice"></a>
 
-### meeting.self.setDevice(device, preview)
+### meeting.self.setDevice(device)
 Change the current media device that is being used by the local participant.
 
 **Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
 
-| Param | Default | Description |
-| --- | --- | --- |
-| device |  | The device that is to be used. A device of the same `kind` will be replaced. |
-| preview | <code>false</code> | If true, the device will be changed for the preview, otherwise it will affect the primary stream. |
+| Param | Description |
+| --- | --- |
+| device | The device that is to be used. A device of the same `kind` will be replaced. the primary stream. |
 
+<a name="module_DyteSelf+requestToJoinStage"></a>
+
+### meeting.self.requestToJoinStage()
+Requests the moderator to join stage.
+ONLY FOR WEBINARS.
+
+**Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
+<a name="module_DyteSelf+leaveStage"></a>
+
+### meeting.self.leaveStage()
+Leave stage.
+ONLY FOR WEBINARS.
+
+**Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
+<a name="module_DyteSelf+joinStage"></a>
+
+### meeting.self.joinStage()
+Assumes you have been accepted to join stage.
+
+**Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
+<a name="module_DyteSelf+disablePreview"></a>
+
+### ~~meeting.self.disablePreview()~~
+***Deprecated***
+
+**Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  

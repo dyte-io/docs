@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-web_core_version: 0.28.0
+web_core_version: 0.38.0
 ---
 
 <!-- Auto Generated Below -->
@@ -32,6 +32,7 @@ const participant4 = meeting.participants.active.toArray().filter((p) => p.name 
     * [.audioEnabled](#module_DyteParticipant+audioEnabled)
     * [.screenShareEnabled](#module_DyteParticipant+screenShareEnabled)
     * [.supportsRemoteControl](#module_DyteParticipant+supportsRemoteControl)
+    * [.webinarStageStatus](#module_DyteParticipant+webinarStageStatus)
     * [.isPinned](#module_DyteParticipant+isPinned)
     * [.pin()](#module_DyteParticipant+pin)
     * [.unpin()](#module_DyteParticipant+unpin)
@@ -117,6 +118,12 @@ This is true if the participant is screensharing.
 
 ### participant.supportsRemoteControl
 This is true if the dyte participant supports remote control.
+
+**Kind**: instance property of [<code>DyteParticipant</code>](#module_DyteParticipant)  
+<a name="module_DyteParticipant+webinarStageStatus"></a>
+
+### participant.webinarStageStatus
+Represents the participants current webinar status
 
 **Kind**: instance property of [<code>DyteParticipant</code>](#module_DyteParticipant)  
 <a name="module_DyteParticipant+isPinned"></a>

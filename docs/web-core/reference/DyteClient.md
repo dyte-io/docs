@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-web_core_version: 0.28.0
+web_core_version: 0.38.0
 ---
 
 <!-- Auto Generated Below -->
@@ -22,6 +22,7 @@ named `meeting`.
         * [.chat](#module_DyteClient+chat)
         * [.polls](#module_DyteClient+polls)
         * [.remote](#module_DyteClient+remote)
+        * [.connectedMeetings](#module_DyteClient+connectedMeetings)
         * [.joinRoom()](#module_DyteClient+joinRoom)
         * [.leaveRoom()](#module_DyteClient+leaveRoom)
     * _static_
@@ -78,6 +79,13 @@ The remote object stores the remote control requests for the meeting.
 It exposes methods to request, accept and end the remote control.
 
 **Kind**: instance property of [<code>DyteClient</code>](#module_DyteClient)  
+<a name="module_DyteClient+connectedMeetings"></a>
+
+### meeting.connectedMeetings
+The connectedMeetings object stores the connected meetings states.
+It exposes methods to create/read/update/delete methods for connected meetings.
+
+**Kind**: instance property of [<code>DyteClient</code>](#module_DyteClient)  
 <a name="module_DyteClient+joinRoom"></a>
 
 ### meeting.joinRoom()
@@ -103,7 +111,7 @@ actions on the meeting.
 | Param | Description |
 | --- | --- |
 | options | The options object. |
-| options.roomName | The name of the room. |
+| options.roomName | The name of the room. (If you are using V2 Api's you don't need to send this) |
 | options.authToken | The authorization token received using the API. |
 | options.apiBase | The base URL of the API. |
 | options.defaults | The default audio and video settings. |
