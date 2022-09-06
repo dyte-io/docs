@@ -1,3 +1,10 @@
+# [1.24.0](https://github.com/dyte-in/docs/compare/v1.23.0...v1.24.0) (2022-09-06)
+
+
+### Features
+
+* update web-core references to 0.38.0 ([df28832](https://github.com/dyte-in/docs/commit/df28832bff55e7f631ff6e61fdd3093a4e1932aa))
+
 # [1.23.0](https://github.com/dyte-in/docs/compare/v1.22.0...v1.23.0) (2022-08-16)
 
 
