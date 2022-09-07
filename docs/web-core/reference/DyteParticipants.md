@@ -1,13 +1,14 @@
 ---
 sidebar_position: 3
-web_core_version: 0.28.0
+web_core_version: 0.38.0
 ---
 
 <!-- Auto Generated Below -->
 
 <a name="module_DyteParticipants"></a>
 
-This module represents all the participants in the meeting. It consists of 4 maps:
+This module represents all the participants in the meeting (except the local user).
+It consists of 4 maps:
 - `joined`: A map of all participants that have joined the meeting.
 - `waitlisted`: A map of all participants that have been added to the waitlist.
 - `active`: A map of active participants who should be displayed in the meeting grid.
@@ -31,11 +32,12 @@ This module represents all the participants in the meeting. It consists of 4 map
     * [.setPage(page)](#module_DyteParticipants+setPage)
     * [.disableAllAudio(allowUnMute)](#module_DyteParticipants+disableAllAudio)
     * [.disableAllVideo()](#module_DyteParticipants+disableAllVideo)
-    * ~~[.disableAudio(peerId)](#module_DyteParticipants+disableAudio)~~
-    * ~~[.disableVideo(peerId)](#module_DyteParticipants+disableVideo)~~
+    * ~~[.disableAudio(participantId)](#module_DyteParticipants+disableAudio)~~
+    * ~~[.disableVideo(participantId)](#module_DyteParticipants+disableVideo)~~
+    * ~~[.kick(participantId)](#module_DyteParticipants+kick)~~
     * [.kickAll()](#module_DyteParticipants+kickAll)
     * [.broadcastMessage()](#module_DyteParticipants+broadcastMessage)
-    * ~~[.kick(peerId)](#module_DyteParticipants+kick)~~
+    * [.acceptAllRequestToJoinStageRequests()](#module_DyteParticipants+acceptAllRequestToJoinStageRequests)
 
 <a name="module_DyteParticipants+waitlisted"></a>
 
@@ -175,25 +177,36 @@ Disables video for all participants in the meeting.
 **Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)  
 <a name="module_DyteParticipants+disableAudio"></a>
 
-### ~~meeting.participants.disableAudio(peerId)~~
+### ~~meeting.participants.disableAudio(participantId)~~
 ***Deprecated***
 
 **Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)  
 
 | Param | Description |
 | --- | --- |
-| peerId | Id of participant to be muted. |
+| participantId | ID of participant to be muted. |
 
 <a name="module_DyteParticipants+disableVideo"></a>
 
-### ~~meeting.participants.disableVideo(peerId)~~
+### ~~meeting.participants.disableVideo(participantId)~~
 ***Deprecated***
 
 **Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)  
 
 | Param | Description |
 | --- | --- |
-| peerId | Id of participant to be muted. |
+| participantId | ID of participant to be muted. |
+
+<a name="module_DyteParticipants+kick"></a>
+
+### ~~meeting.participants.kick(participantId)~~
+***Deprecated***
+
+**Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)  
+
+| Param | Description |
+| --- | --- |
+| participantId | ID of participant to be kicked. |
 
 <a name="module_DyteParticipants+kickAll"></a>
 
@@ -207,14 +220,9 @@ Kicks all participants from the meeting.
 Broadcasts the message to all participants including `self`.
 
 **Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)  
-<a name="module_DyteParticipants+kick"></a>
+<a name="module_DyteParticipants+acceptAllRequestToJoinStageRequests"></a>
 
-### ~~meeting.participants.kick(peerId)~~
-***Deprecated***
+### meeting.participants.acceptAllRequestToJoinStageRequests()
+Accepts all join stage requests
 
 **Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)  
-
-| Param | Description |
-| --- | --- |
-| peerId | Id of participant to be kicked. |
-
