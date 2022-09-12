@@ -275,6 +275,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/sessionId'
         - $ref: '#/components/parameters/participantId'
+        - $ref: '#/components/parameters/participantFilters'
       responses:
         '200':
           $ref: '#/components/responses/GetParticipantDetails'
@@ -675,6 +676,18 @@ components:
         enum:
           - joinedAt
           - duration
+    participantFilters:
+      name: filters
+      description: Add filters to fetch part of the response.
+      in: query
+      schema:
+        type: string
+        enum:
+          - device_info
+          - ip_information
+          - precall_network_information
+          - events
+          - quality_stats
   requestBodies:
     KickParticipantsBody:
       description: >-
