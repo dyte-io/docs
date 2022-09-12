@@ -9,7 +9,7 @@ tags: [web-core, plugins]
 
 Each plugin in `meeting.plugins` object is of type [`DytePlugin`](./introduction) and exposes the following functions to enable plugins.
 
-## Add Plugin View
+### Add Plugin View
 
 This method adds the communcation layer between the plugin inside the iframe
 and the core application (meeting object) in the main window.
@@ -22,7 +22,7 @@ plugins.forEach(async (plugin: DytePlugin) => {
 })
 ```
 
-## Activate Plugins
+### Activate Plugins
 
 The `activate()` method activates a plugin for all users in the meeting. When you activate a plugin, it moves into the active plugins map and can be accessed from `meeting.plugins.active`.
 
@@ -49,7 +49,8 @@ const plugin = plugins.find((p) => p.name === "YouTube");
 await plugin?.activate();
 ```
 
-## Enable Plugins
+### ~~Enable Plugins~~
+***Deprecated***
 
 The `enable()` method enables a plugin for the current user. This does not affect other users in the meeting.
 ```ts

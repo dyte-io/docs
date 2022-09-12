@@ -20,7 +20,7 @@ plugins.forEach(async (plugin: DytePlugin) => {
 })
 ```
 
-## Deactivate Plugins
+### Deactivate Plugins
 
 The `deactivate()` method deactivates the plugin for all users in the meeting. When you deactivate a plugin, it gets removed from the active plugins map and can only be accessed from `meeting.plugins.all`.
 
@@ -47,7 +47,8 @@ const plugin = plugins.find((p) => p.name === "YouTube");
 await plugin?.deactivate();
 ```
 
-## Disable Plugins
+### ~~Disable Plugins~~
+***Deprecated***
 
 The `disable()` method deactivates the plugin for the current user. This does not affect other users in the meeting.
 ```ts
