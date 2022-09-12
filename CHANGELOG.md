@@ -1,3 +1,12 @@
+## [1.24.1](https://github.com/dyte-in/docs/compare/v1.24.0...v1.24.1) (2022-09-12)
+
+
+### Bug Fixes
+
+* deprecate enable and disable plugin methods ([#70](https://github.com/dyte-in/docs/issues/70)) ([989f657](https://github.com/dyte-in/docs/commit/989f657edd059a70aa7bf5c9b034bd4bac64b50f))
+* revert base url change ([df60257](https://github.com/dyte-in/docs/commit/df60257c9f810580a2d8325ed436985e558d542a))
+* use `/docs` as base url ([b8f8dcc](https://github.com/dyte-in/docs/commit/b8f8dcc5a89161bf71b0fcde1647e3b4593443ef))
+
 # [1.24.0](https://github.com/dyte-in/docs/compare/v1.23.0...v1.24.0) (2022-09-06)
 
 
