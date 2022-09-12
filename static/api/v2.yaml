@@ -272,6 +272,18 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/GetParticipantDetails'
+  "/sessions/{sessionId}/chat":
+    get:
+      summary: Fetches all chat message of a session.
+      description: Sends download link to download all chat messages of a session in CSV format.
+      operationId: GetSessionChat
+      tags:
+        - Sessions
+      parameters:
+        - $ref: '#/components/parameters/sessionId'
+      responses:
+        '200':
+          $ref: '#/components/responses/GetSessionChat'
 components:
   schemas:
     ActiveSession:
@@ -572,6 +584,13 @@ components:
                       type: number
                     quality:
                       type: number
+    ChatMessage: 
+      type: object
+      properties:
+        chat_download_url:
+          type: string
+        chat_download_url_expiry:
+          type: string
   parameters:
     Content-Type:
       name: Content-Type
@@ -902,6 +921,18 @@ components:
                       - $ref: '#/components/schemas/ParticipantsList'
                       - $ref: '#/components/schemas/ParticipantPeerStats'
                       - $ref: '#/components/schemas/ParticipantQualityStats'
+    GetSessionChat:
+      description: Returns all chat messages of a session.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: object 
+                $ref: "#/components/schemas/ChatMessage"
   examples:
     GetActiveSessionSuccessResponse:
       summary: Success response for fetching active session
