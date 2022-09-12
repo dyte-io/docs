@@ -14,56 +14,373 @@ info:
 paths:
   /livestreams:
     post:
-      summary: Create a LiveStream
-      description: |
-        Create a live stream
-      operationId: StartaLiveStream
-      parameters:
-        - $ref: '#/components/parameters/Content-Type'
-      responses:
-        '200':
-          description: ''
-          headers: {}
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
-              examples:
-                example-1:
-                  value: {}
+      summary: Create Independent livestream
       requestBody:
-        description: |
-          Create a live stream
-        required: true
         content:
           application/json:
             schema:
-              type: string
-              example: testing
-            example: |-
-              {
-                  "name": "testing"
-              }
+              type: object
+              x-examples:
+                example-1:
+                  name: prdmmp-xhycsl-asdf
+              properties:
+                name:
+                  type: string
+                  description: Name to be give to livestream
+                  pattern: '^[a-zA-Z0-9-_]*$'
+                  nullable: true
+            examples:
+              example-1:
+                value:
+                  name: prdmmp-xhycsl
+        description: ''
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Basic  MGVlYWE0ODAtZDEwMi00YmEyLTg5ZmEtZWI2YTg1ZGFiZTlkOjZiY2FhYzg1YzIzMzEyMGFhYjVh
+      responses:
+        '201':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    success: true
+                    data:
+                      status: OFFLINE
+                      name: prdmmp-xhycsl
+                      meetingId: null
+                      orgId: 70c5d391-4bac-4cf3-9907-bec205798adb
+                      ingestServer: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:445/app/'
+                      id: 1850ebcb-8711-47ee-b2d6-07c2348c87e6
+                      streamKey: sk_ap-south-1_IZ48W6gLbozd_aWxb9xuKl9SQcdCCWGLgIrRVHo0hIR
+                      playbackUrl: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.1bW3kCJZJ65D.m3u8'
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                      name:
+                        type: string
+                        nullable: true
+                      meeting_id:
+                        type: string
+                        nullable: true
+                      ingest_seconds:
+                        type: number
+                      viewer_seconds:
+                        type: number
+                      ingest_server:
+                        type: string
+                      id:
+                        type: string
+                      stream_key:
+                        type: string
+                      playback_url:
+                        type: string
+              examples:
+                example-1:
+                  value:
+                    success: true
+                    data:
+                      status: OFFLINE
+                      name: Livestreaming-Demo
+                      meeting_id: null
+                      ingest_seconds: 0
+                      viewer_seconds: 0
+                      ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
+                      id: 78dd0b50-4147-4bb8-88d3-2ccc2e98bff0
+                      stream_key: sk_ap-south-1_BSErwBSdrcWn_0eG01cFGCJcRcCsflOAX3Eu4B3RyRX
+                      playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.Jk1l97eJF0ME.m3u8'
+      description: |-
+        Create a Livestream for the current organization.
+
+        Create credentials for livestreaming independently using {ingest server + stream key} and distribute it freely using playback URL
       tags:
         - LiveStreams
     get:
-      summary: Get all LiveStreams
-      description: |
-        Get all live streams created by an organization
-      operationId: GetallLiveStreams
-      parameters: []
+      summary: Get All LiveStreams Of An Org
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Basic  NzBjNWQzOTEtNGJhYy00Y2YzLTk5MDctYmVjMjA1Nzk4YWRiOmQyNzBmYjJmOGNiNGUzZWY1MGI1
+        - schema:
+            type: boolean
+            default: false
+          in: query
+          name: excludeMeetings
+          description: Exclude livestreams done for a meeting
+        - schema:
+            type: integer
+          in: query
+          name: limit
+        - schema:
+            type: integer
+          in: query
+          name: offset
       responses:
         '200':
-          description: ''
+          description: OK
           headers: {}
           content:
             application/json:
               schema:
                 type: object
-                properties: {}
+                x-examples:
+                  example-1:
+                    success: true
+                    message: ''
+                    data:
+                      limit: 10
+                      total: 14
+                      totalCount: 14
+                      pageCount: 2
+                      currentPage: 1
+                      livestreams:
+                        - status: OFFLINE
+                          name: null
+                          meetingId: 0fed3cd3-fe46-44c3-9ecd-5be092caf902
+                          ingestSeconds: 0
+                          viewerSeconds: 0
+                          ingestServer: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
+                          id: 230438ca-8cc7-4bd2-b205-231f552c7b68
+                          streamKey: sk_ap-south-1_iFR45fcqpQ3G_4mFhrfkHgg23coIUMJs9JDNhBFoYk2
+                          playbackUrl: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.e4BPPnakeRJ6.m3u8'
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      limit:
+                        type: integer
+                      total:
+                        type: integer
+                      totalCount:
+                        type: integer
+                      pageCount:
+                        type: integer
+                      currentPage:
+                        type: integer
+                      livestreams:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            status:
+                              type: string
+                            name:
+                              type: string
+                              nullable: true
+                            meetingId:
+                              type: string
+                              nullable: true
+                            ingestSeconds:
+                              type: number
+                            viewerSeconds:
+                              type: number
+                            ingestServer:
+                              type: string
+                            id:
+                              type: string
+                            streamKey:
+                              type: string
+                            playbackUrl:
+                              type: string
+              examples:
+                example-0:
+                  summary: Get All LiveStreams Of An Org Staging Success
+                  value:
+                    success: true
+                    message: ''
+                    data:
+                      limit: 10
+                      total: 17
+                      totalCount: 17
+                      pageCount: 2
+                      currentPage: 1
+                      livestreams:
+                        - status: OFFLINE
+                          name: prdmmp-xhycsl
+                          meetingId: null
+                          ingestSeconds: 0
+                          viewerSeconds: 0
+                          ingestServer: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
+                          id: 82e363e9-6ce2-462a-a9e5-37068a729548
+                          streamKey: sk_ap-south-1_6z1GZy7HtfQh_9qCdXZVrLV8E2xDxrkPO0uzXSvB2Eg
+                          playbackUrl: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.rHYG1VHblte6.m3u8'
+      description: 'Get all livestreams created for an organization. Response includes meetings created for an organization and the meetings which are livestreamed by that organization, in order to only get livestreams not associated with a meeting, use query param of excludeMeetings.'
+      tags:
+        - LiveStreams
+  '/meetings/{meetingId}/livestreams':
+    post:
+      summary: Start LiveStreaming a meeting
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  name: prdmmp-xhycsl
+              properties:
+                name:
+                  type: string
+                  pattern: '^[a-zA-Z0-9-_]*$'
+                  nullable: true
+            examples:
+              example-1:
+                value:
+                  name: prdmmp-xhycsl
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Basic  NzBjNWQzOTEtNGJhYy00Y2YzLTk5MDctYmVjMjA1Nzk4YWRiOmQyNzBmYjJmOGNiNGUzZWY1MGI1
+      responses:
+        '201':
+          description: Created
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    success: true
+                    data:
+                      status: OFFLINE
+                      name: null
+                      meetingId: 136cdafb-df4f-4238-ac9f-000480b92106
+                      orgId: 0eeaa480-d102-4ba2-89fa-eb6a85dabe9d
+                      ingestMinutes: 0
+                      viewerMinutes: 0
+                      ingestServer: 2ec802dd47b0.global-contribute.live-video.net
+                      id: a4fbf8f7-57ca-49b6-a6f3-abd4a385b51a
+                      streamKey: sk_ap-south-1_HSKktFvpg3ii_69PomKAyCaR1AouckqsJeefrrtzGbj
+                      playbackUrl: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.EESXpkeGS1d8.m3u8'
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                      name:
+                        type: string
+                        nullable: true
+                      meeting_id:
+                        type: string
+                      ingest_server:
+                        type: string
+                      id:
+                        type: string
+                      stream_key:
+                        type: string
+                      playback_url:
+                        type: string
               examples:
                 example-1:
+                  value:
+                    success: true
+                    data:
+                      status: OFFLINE
+                      name: null
+                      meeting_id: 188566bc-8770-4ca0-9eb3-24b594ecaf7e
+                      ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
+                      id: 7088bba8-f522-49a8-b59b-3cd0e946bbb0
+                      stream_key: sk_ap-south-1_AfnVpeYZjidO_fBpWKody7sDUOEfy9Zc6XAZegkR0Va
+                      playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.rVKA2KM5Lunt.m3u8'
+            application/xml:
+              schema:
+                type: object
+                properties: {}
+      description: Start livestreaming for the given meeting
+      tags:
+        - LiveStreams
+    get:
+      summary: Get all livestreams for a meeting
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Basic  NzBjNWQzOTEtNGJhYy00Y2YzLTk5MDctYmVjMjA1Nzk4YWRiOmQyNzBmYjJmOGNiNGUzZWY1MGI1
+        - schema:
+            type: integer
+          in: query
+          name: limit
+        - schema:
+            type: integer
+          in: query
+          name: offset
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples: null
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      limit:
+                        type: integer
+                      total:
+                        type: integer
+                      totalCount:
+                        type: integer
+                      pageCount:
+                        type: integer
+                      currentPage:
+                        type: integer
+                      livestreams:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            status:
+                              type: string
+                            name:
+                              type: string
+                              nullable: true
+                            meetingId:
+                              type: string
+                            ingestSeconds:
+                              type: number
+                            viewerSeconds:
+                              type: number
+                            ingestServer:
+                              type: string
+                            id:
+                              type: string
+                            streamKey:
+                              type: string
+                            playbackUrl:
+                              type: string
+              examples:
+                example-0:
+                  summary: Get LiveStream From StreamId Success
                   value:
                     success: true
                     message: ''
@@ -74,55 +391,239 @@ paths:
                       pageCount: 1
                       currentPage: 1
                       livestreams:
-                        - id: '850340555635017830461318'
-                          title: testing
-                          input_rtmp_url: >-
-                            rtmp://livestreaming.dyte.io/LiveApp/850340555635017830461318?token=502603528024515256366542
-                          token_id: '502603528024515256366542'
-                          stream_key: >-
-                            850340555635017830461318?token=502603528024515256366542
-                          player_url: >-
-                            https://livestreaming.dyte.io:5443/LiveApp/play.html?name=850340555635017830461318
-                          status: OFFLINE
-                          hls_play_url: >-
-                            https://livestreaming.dyte.io:5443/LiveApp/streams/850340555635017830461318.m3u8
+                        - status: OFFLINE
+                          name: null
+                          meetingId: 188566bc-8770-4ca0-9eb3-24b594ecaf7e
+                          ingestSeconds: 171
+                          viewerSeconds: 160.15999992
+                          ingestServer: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
+                          id: 7088bba8-f522-49a8-b59b-3cd0e946bbb0
+                          streamKey: sk_ap-south-1_AfnVpeYZjidO_fBpWKody7sDUOEfy9Zc6XAZegkR0Va
+                          playbackUrl: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.rVKA2KM5Lunt.m3u8'
+      description: Get details of all livestreams associated with the given meeting
       tags:
         - LiveStreams
-  '/livestreams/{streamId}':
-    get:
-      summary: Get a LiveStream
-      description: |
-        Get details of a particular live stream created by an organization
-      operationId: GetaLiveStream
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: meetingId
+        in: path
+        required: true
+        description: Unique id for a meeting
+  '/meetings/{meetingId}/active-livestream/stop':
+    post:
+      summary: Stop LiveStreaming a meeting
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: prdmmp-xhycsl
       parameters:
-        - $ref: '#/components/parameters/streamId'
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Basic  NzBjNWQzOTEtNGJhYy00Y2YzLTk5MDctYmVjMjA1Nzk4YWRiOmQyNzBmYjJmOGNiNGUzZWY1MGI1
       responses:
         '200':
-          description: ''
+          description: OK
           headers: {}
           content:
             application/json:
               schema:
                 type: object
-                properties: {}
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                x-examples:
+                  example-1:
+                    success: true
+                    data:
+                      message: livestream stopped
               examples:
                 example-1:
                   value:
                     success: true
                     data:
-                      id: '850340555635017830461318'
-                      title: testing
-                      input_rtmp_url: >-
-                        rtmp://livestreaming.dyte.io/LiveApp/850340555635017830461318?token=502603528024515256366542
-                      token_id: '502603528024515256366542'
-                      stream_key: 850340555635017830461318?token=502603528024515256366542
-                      player_url: >-
-                        https://livestreaming.dyte.io:5443/LiveApp/play.html?name=850340555635017830461318
-                      status: OFFLINE
-                      hls_play_url: >-
-                        https://livestreaming.dyte.io:5443/LiveApp/streams/850340555635017830461318.m3u8
+                      message: livestream stopped
+      description: Stop an active livestream of a meeting
       tags:
         - LiveStreams
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: meetingId
+        in: path
+        required: true
+        description: Unique id for a meeting
+  '/livestreams/{streamId}':
+    get:
+      summary: Get LiveStream details from streamId
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: Basic  NzBjNWQzOTEtNGJhYy00Y2YzLTk5MDctYmVjMjA1Nzk4YWRiOmQyNzBmYjJmOGNiNGUzZWY1MGI1
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    success: true
+                    data:
+                      status: OFFLINE
+                      name: null
+                      meeting_id: 188566bc-8770-4ca0-9eb3-24b594ecaf7e
+                      ingest_seconds: 171
+                      viewer_seconds: 160.15999992
+                      ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
+                      id: 7088bba8-f522-49a8-b59b-3cd0e946bbb0
+                      stream_key: sk_ap-south-1_AfnVpeYZjidO_fBpWKody7sDUOEfy9Zc6XAZegkR0Va
+                      playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.rVKA2KM5Lunt.m3u8'
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                      name:
+                        type: string
+                        nullable: true
+                      meeting_id:
+                        type: string
+                      ingest_seconds:
+                        type: number
+                      viewer_seconds:
+                        type: number
+                      ingest_server:
+                        type: string
+                      id:
+                        type: string
+                      stream_key:
+                        type: string
+                      playback_url:
+                        type: string
+              examples:
+                example-1:
+                  value:
+                    success: true
+                    data:
+                      status: OFFLINE
+                      name: null
+                      meeting_id: 188566bc-8770-4ca0-9eb3-24b594ecaf7e
+                      ingest_seconds: 171
+                      viewer_seconds: 160.15999992
+                      ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
+                      id: 7088bba8-f522-49a8-b59b-3cd0e946bbb0
+                      stream_key: sk_ap-south-1_AfnVpeYZjidO_fBpWKody7sDUOEfy9Zc6XAZegkR0Va
+                      playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.rVKA2KM5Lunt.m3u8'
+      description: Get details about a livestream from it's ID
+      tags:
+        - LiveStreams
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: streamId
+        in: path
+        required: true
+        description: Unique  Id  for a livestream
+  '/meetings/{meetingId}/active-livestream':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: meetingId
+        in: path
+        required: true
+        description: Unique id for a meeting
+    get:
+      summary: Get active livestream for a meeting
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    success: true
+                    data:
+                      status: OFFLINE
+                      name: prdmmp-xhycsl
+                      meeting_id: null
+                      ingest_seconds: 0
+                      viewer_seconds: 0
+                      ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
+                      id: 82e363e9-6ce2-462a-a9e5-37068a729548
+                      stream_key: sk_ap-south-1_6z1GZy7HtfQh_9qCdXZVrLV8E2xDxrkPO0uzXSvB2Eg
+                      playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.rHYG1VHblte6.m3u8'
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                      name:
+                        type: string
+                        nullable: true
+                      meeting_id:
+                        type: string
+                      ingest_seconds:
+                        type: integer
+                      viewer_seconds:
+                        type: integer
+                      ingest_server:
+                        type: string
+                      id:
+                        type: string
+                      stream_key:
+                        type: string
+                      playback_url:
+                        type: string
+              examples:
+                example-1:
+                  value:
+                    success: true
+                    data:
+                      status: LIVE
+                      name: null
+                      meeting_id: 188566bc-8770-4ca0-9eb3-24b594ecaf7e
+                      ingest_seconds: 0
+                      viewer_seconds: 0
+                      ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
+                      id: 7088bba8-f522-49a8-b59b-3cd0e946bbb0
+                      stream_key: sk_ap-south-1_AfnVpeYZjidO_fBpWKody7sDUOEfy9Zc6XAZegkR0Va
+                      playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.rVKA2KM5Lunt.m3u8'
+      operationId: get-v2-meetings-meetingId-active-livestream
+      description: Get currently active livestream details for a given meeting
+      tags:
+        - LiveStreams
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
   '/meetings/{meetingId}/active-session':
     get:
       summary: Get an active session
@@ -140,9 +641,7 @@ paths:
   '/meetings/{meetingId}/active-session/kick':
     post:
       summary: Kick participants from active session
-      description: >-
-        Kick one or more participants using userId or customParticipantId from
-        an active session
+      description: Kick one or more participants using userId or customParticipantId from an active session
       operationId: KickPartcipants
       parameters:
         - $ref: '#/components/parameters/meetingId'
@@ -170,9 +669,7 @@ paths:
   '/meetings/{meetingId}/active-session/mute':
     post:
       summary: Mute participants of an active session
-      description: >-
-        Mute one or more participants from an active session using userId or
-        customParticipantId
+      description: Mute one or more participants from an active session using userId or customParticipantId
       operationId: MuteParticipants
       parameters:
         - $ref: '#/components/parameters/meetingId'
@@ -214,10 +711,7 @@ paths:
   /sessions:
     get:
       summary: Get all sessions of an organization.
-      description: >-
-        Returns all sessions of an organization. Supports pagination, filtering
-        by status and number of participants, search by sessionId or meeting
-        name and sorting by date.
+      description: 'Returns all sessions of an organization. Supports pagination, filtering by status and number of participants, search by sessionId or meeting name and sorting by date.'
       operationId: GetSessions
       tags:
         - Sessions
@@ -248,10 +742,7 @@ paths:
   '/sessions/{sessionId}/participants':
     get:
       summary: Get participants list of a session
-      description: >-
-        Returns participants list that are a part of a given session. Supports
-        pagination, search by participant id and sorting by joined date and
-        duration.
+      description: 'Returns participants list that are a part of a given session. Supports pagination, search by participant id and sorting by joined date and duration.'
       operationId: GetSessionParticipants
       tags:
         - Sessions
@@ -275,22 +766,9 @@ paths:
       parameters:
         - $ref: '#/components/parameters/sessionId'
         - $ref: '#/components/parameters/participantId'
-        - $ref: '#/components/parameters/participantFilters'
       responses:
         '200':
           $ref: '#/components/responses/GetParticipantDetails'
-  "/sessions/{sessionId}/chat":
-    get:
-      summary: Fetches all chat message of a session.
-      description: Sends download link to download all chat messages of a session in CSV format.
-      operationId: GetSessionChat
-      tags:
-        - Sessions
-      parameters:
-        - $ref: '#/components/parameters/sessionId'
-      responses:
-        '200':
-          $ref: '#/components/responses/GetSessionChat'
 components:
   schemas:
     ActiveSession:
@@ -301,9 +779,7 @@ components:
           description: roomUUID of session
         associated_id:
           type: string
-          description: >-
-            id of associated object. if session type is meeting, it is mapped to
-            meetingId, livestreamId if session type is livestream
+          description: 'id of associated object. if session type is meeting, it is mapped to meetingId, livestreamId if session type is livestream'
         type:
           type: string
           description: type of session
@@ -591,13 +1067,6 @@ components:
                       type: number
                     quality:
                       type: number
-    ChatMessage: 
-      type: object
-      properties:
-        chat_download_url:
-          type: string
-        chat_download_url_expiry:
-          type: string
   parameters:
     Content-Type:
       name: Content-Type
@@ -695,23 +1164,9 @@ components:
         enum:
           - joinedAt
           - duration
-    participantFilters:
-      name: filters
-      description: Add filters to fetch part of the response.
-      in: query
-      schema:
-        type: string
-        enum:
-          - device_info
-          - ip_information
-          - precall_network_information
-          - events
-          - quality_stats
   requestBodies:
     KickParticipantsBody:
-      description: >-
-        Request body for kicking participants from active session. Only one of
-        `participant_id` or `custom_participant_id` is required
+      description: Request body for kicking participants from active session. Only one of `participant_id` or `custom_participant_id` is required
       content:
         application/json:
           schema:
@@ -734,9 +1189,7 @@ components:
             properties:
               allow_unmute:
                 type: boolean
-                description: >-
-                  if false, participants won't be able to unmute themselves
-                  after they are muted
+                description: 'if false, participants won''t be able to unmute themselves after they are muted'
     CreatePollBody:
       description: Request body for creating a new poll
       content:
@@ -801,9 +1254,7 @@ components:
                     items:
                       $ref: '#/components/schemas/Participant'
     ParticipantNotFound:
-      description: >-
-        No participant found for given `participant_id` or
-        `custom_participant_id`
+      description: No participant found for given `participant_id` or `custom_participant_id`
       content:
         application/json:
           schema:
@@ -940,18 +1391,6 @@ components:
                       - $ref: '#/components/schemas/ParticipantsList'
                       - $ref: '#/components/schemas/ParticipantPeerStats'
                       - $ref: '#/components/schemas/ParticipantQualityStats'
-    GetSessionChat:
-      description: Returns all chat messages of a session.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              success:
-                type: boolean
-              data:
-                type: object 
-                $ref: "#/components/schemas/ChatMessage"
   examples:
     GetActiveSessionSuccessResponse:
       summary: Success response for fetching active session
@@ -975,9 +1414,7 @@ components:
         success: false
         error:
           code: 404
-          message: >-
-            No active session found for meeting_id
-            6bf2b8be-04dd-4191-b602-1128921a306b
+          message: No active session found for meeting_id 6bf2b8be-04dd-4191-b602-1128921a306b
     ParticipantNotFoundResponse:
       summary: Participant Not Found
       value:
