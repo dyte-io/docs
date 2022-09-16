@@ -47,18 +47,7 @@ paths:
             application/json:
               schema:
                 type: object
-                x-examples:
-                  example-1:
-                    success: true
-                    data:
-                      status: OFFLINE
-                      name: prdmmp-xhycsl
-                      meetingId: null
-                      orgId: 70c5d391-4bac-4cf3-9907-bec205798adb
-                      ingestServer: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:445/app/'
-                      id: 1850ebcb-8711-47ee-b2d6-07c2348c87e6
-                      streamKey: sk_ap-south-1_IZ48W6gLbozd_aWxb9xuKl9SQcdCCWGLgIrRVHo0hIR
-                      playbackUrl: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.1bW3kCJZJ65D.m3u8'
+                x-examples: null
                 properties:
                   success:
                     type: boolean
@@ -135,26 +124,7 @@ paths:
             application/json:
               schema:
                 type: object
-                x-examples:
-                  example-1:
-                    success: true
-                    message: ''
-                    data:
-                      limit: 10
-                      total: 14
-                      totalCount: 14
-                      pageCount: 2
-                      currentPage: 1
-                      livestreams:
-                        - status: OFFLINE
-                          name: null
-                          meetingId: 0fed3cd3-fe46-44c3-9ecd-5be092caf902
-                          ingestSeconds: 0
-                          viewerSeconds: 0
-                          ingestServer: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
-                          id: 230438ca-8cc7-4bd2-b205-231f552c7b68
-                          streamKey: sk_ap-south-1_iFR45fcqpQ3G_4mFhrfkHgg23coIUMJs9JDNhBFoYk2
-                          playbackUrl: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.e4BPPnakeRJ6.m3u8'
+                x-examples: null
                 properties:
                   success:
                     type: boolean
@@ -167,11 +137,11 @@ paths:
                         type: integer
                       total:
                         type: integer
-                      totalCount:
+                      total_count:
                         type: integer
-                      pageCount:
+                      page_count:
                         type: integer
-                      currentPage:
+                      current_page:
                         type: integer
                       livestreams:
                         type: array
@@ -183,20 +153,20 @@ paths:
                             name:
                               type: string
                               nullable: true
-                            meetingId:
+                            meeting_id:
                               type: string
                               nullable: true
-                            ingestSeconds:
+                            ingest_seconds:
                               type: number
-                            viewerSeconds:
+                            viewer_seconds:
                               type: number
-                            ingestServer:
+                            ingest_server:
                               type: string
                             id:
                               type: string
-                            streamKey:
+                            stream_key:
                               type: string
-                            playbackUrl:
+                            playback_url:
                               type: string
               examples:
                 example-0:
@@ -207,19 +177,19 @@ paths:
                     data:
                       limit: 10
                       total: 17
-                      totalCount: 17
-                      pageCount: 2
-                      currentPage: 1
+                      total_count: 17
+                      page_count: 2
+                      current_page: 1
                       livestreams:
                         - status: OFFLINE
                           name: prdmmp-xhycsl
-                          meetingId: null
-                          ingestSeconds: 0
-                          viewerSeconds: 0
-                          ingestServer: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
+                          meeting_id: null
+                          ingest_seconds: 0
+                          viewer_seconds: 0
+                          ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
                           id: 82e363e9-6ce2-462a-a9e5-37068a729548
-                          streamKey: sk_ap-south-1_6z1GZy7HtfQh_9qCdXZVrLV8E2xDxrkPO0uzXSvB2Eg
-                          playbackUrl: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.rHYG1VHblte6.m3u8'
+                          stream_key: sk_ap-south-1_6z1GZy7HtfQh_9qCdXZVrLV8E2xDxrkPO0uzXSvB2Eg
+                          playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.rHYG1VHblte6.m3u8'
       description: 'Get all livestreams created for an organization. Response includes meetings created for an organization and the meetings which are livestreamed by that organization, in order to only get livestreams not associated with a meeting, use query param of excludeMeetings.'
       tags:
         - LiveStreams
@@ -257,20 +227,7 @@ paths:
             application/json:
               schema:
                 type: object
-                x-examples:
-                  example-1:
-                    success: true
-                    data:
-                      status: OFFLINE
-                      name: null
-                      meetingId: 136cdafb-df4f-4238-ac9f-000480b92106
-                      orgId: 0eeaa480-d102-4ba2-89fa-eb6a85dabe9d
-                      ingestMinutes: 0
-                      viewerMinutes: 0
-                      ingestServer: 2ec802dd47b0.global-contribute.live-video.net
-                      id: a4fbf8f7-57ca-49b6-a6f3-abd4a385b51a
-                      streamKey: sk_ap-south-1_HSKktFvpg3ii_69PomKAyCaR1AouckqsJeefrrtzGbj
-                      playbackUrl: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.EESXpkeGS1d8.m3u8'
+                x-examples: null
                 properties:
                   success:
                     type: boolean
@@ -348,11 +305,11 @@ paths:
                         type: integer
                       total:
                         type: integer
-                      totalCount:
+                      total_count:
                         type: integer
-                      pageCount:
+                      page_count:
                         type: integer
-                      currentPage:
+                      current_page:
                         type: integer
                       livestreams:
                         type: array
@@ -364,19 +321,19 @@ paths:
                             name:
                               type: string
                               nullable: true
-                            meetingId:
+                            meeting_id:
                               type: string
-                            ingestSeconds:
+                            ingest_seconds:
                               type: number
-                            viewerSeconds:
+                            viewer_seconds:
                               type: number
-                            ingestServer:
+                            ingest_server:
                               type: string
                             id:
                               type: string
-                            streamKey:
+                            stream_key:
                               type: string
-                            playbackUrl:
+                            playback_url:
                               type: string
               examples:
                 example-0:
@@ -387,19 +344,19 @@ paths:
                     data:
                       limit: 10
                       total: 1
-                      totalCount: 1
-                      pageCount: 1
-                      currentPage: 1
+                      total_count: 1
+                      page_count: 1
+                      curren_page: 1
                       livestreams:
                         - status: OFFLINE
                           name: null
-                          meetingId: 188566bc-8770-4ca0-9eb3-24b594ecaf7e
-                          ingestSeconds: 171
-                          viewerSeconds: 160.15999992
-                          ingestServer: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
+                          meeting_id: 188566bc-8770-4ca0-9eb3-24b594ecaf7e
+                          ingest_seconds: 171
+                          viewer_seconds: 160.15999992
+                          ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
                           id: 7088bba8-f522-49a8-b59b-3cd0e946bbb0
-                          streamKey: sk_ap-south-1_AfnVpeYZjidO_fBpWKody7sDUOEfy9Zc6XAZegkR0Va
-                          playbackUrl: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.rVKA2KM5Lunt.m3u8'
+                          stream_key: sk_ap-south-1_AfnVpeYZjidO_fBpWKody7sDUOEfy9Zc6XAZegkR0Va
+                          playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.rVKA2KM5Lunt.m3u8'
       description: Get details of all livestreams associated with the given meeting
       tags:
         - LiveStreams
@@ -443,11 +400,7 @@ paths:
                     properties:
                       message:
                         type: string
-                x-examples:
-                  example-1:
-                    success: true
-                    data:
-                      message: livestream stopped
+                x-examples: null
               examples:
                 example-1:
                   value:
@@ -482,19 +435,7 @@ paths:
             application/json:
               schema:
                 type: object
-                x-examples:
-                  example-1:
-                    success: true
-                    data:
-                      status: OFFLINE
-                      name: null
-                      meeting_id: 188566bc-8770-4ca0-9eb3-24b594ecaf7e
-                      ingest_seconds: 171
-                      viewer_seconds: 160.15999992
-                      ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
-                      id: 7088bba8-f522-49a8-b59b-3cd0e946bbb0
-                      stream_key: sk_ap-south-1_AfnVpeYZjidO_fBpWKody7sDUOEfy9Zc6XAZegkR0Va
-                      playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.rVKA2KM5Lunt.m3u8'
+                x-examples: null
                 properties:
                   success:
                     type: boolean
@@ -563,19 +504,7 @@ paths:
             application/json:
               schema:
                 type: object
-                x-examples:
-                  example-1:
-                    success: true
-                    data:
-                      status: OFFLINE
-                      name: prdmmp-xhycsl
-                      meeting_id: null
-                      ingest_seconds: 0
-                      viewer_seconds: 0
-                      ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
-                      id: 82e363e9-6ce2-462a-a9e5-37068a729548
-                      stream_key: sk_ap-south-1_6z1GZy7HtfQh_9qCdXZVrLV8E2xDxrkPO0uzXSvB2Eg
-                      playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.rHYG1VHblte6.m3u8'
+                x-examples: null
                 properties:
                   success:
                     type: boolean
