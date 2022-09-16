@@ -291,6 +291,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/GetSessionChat'
+        '404':
+          $ref: '#/components/responses/SessionChatNotFound'
 components:
   schemas:
     ActiveSession:
@@ -952,6 +954,15 @@ components:
               data:
                 type: object 
                 $ref: "#/components/schemas/ChatMessage"
+    SessionChatNotFound:
+      description: No chat dump found for this session.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GenericErrorResponse'
+          examples:
+            chatDumpNotFound:
+              $ref: '#/components/examples/GetSessionChatNotFoundResponse'
   examples:
     GetActiveSessionSuccessResponse:
       summary: Success response for fetching active session
@@ -985,6 +996,13 @@ components:
         error:
           code: 404
           message: No user found with id 813432c7-3c5a-45e2-9acf-eef7061c7584
+    GetSessionChatNotFoundResponse:
+      summary: Chat Dump not found
+      value:
+        success: false
+        error:
+          code: 404
+          message: No chat dump found for this session!
   securitySchemes:
     Authorization:
       type: http
