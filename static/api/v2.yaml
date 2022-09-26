@@ -668,6 +668,26 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/GetSessionDetails'
+  '/meetings/{meetingId}/sessions':
+    get:
+      summary: Get all session of a meeting
+      description: 'Returns all current and past sessions of meeting from meetingId'
+      operationId: GetMeetingSessions
+      tags:
+        - Sessions
+      parameters:
+        - $ref: '#/components/parameters/meetingId'
+        - $ref: '#/components/parameters/pageNo'
+        - $ref: '#/components/parameters/perPage'
+        - $ref: '#/components/parameters/sortOrder'
+        - $ref: '#/components/parameters/search'
+        - $ref: '#/components/parameters/startTime'
+        - $ref: '#/components/parameters/endTime'
+        - $ref: '#/components/parameters/participants'
+        - $ref: '#/components/parameters/status'
+      responses:
+        '200':
+          $ref: '#/components/responses/GetSessions'
   '/sessions/{sessionId}/participants':
     get:
       summary: Get participants list of a session
