@@ -2370,6 +2370,14 @@ components:
         presetName:
           type: string
           description: Preset to be used for all participants of this meeting
+        preferredRegion:
+          type: string
+          description: It sets the meeting in the region you specify instead of being decided automatically
+          enum:
+            - ap-south-1
+            - ap-southeast-1
+            - us-east-1	
+            - eu-central-1
         recordOnStart:
           type: boolean
           description: Start recording the meeting as soon as the meeting starts. False by default.
