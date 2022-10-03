@@ -1,3 +1,16 @@
+# [1.25.0](https://github.com/dyte-in/docs/compare/v1.24.1...v1.25.0) (2022-10-03)
+
+
+### Bug Fixes
+
+* **v2.yaml:** Added missing ChatMessage schema ([0e2ae01](https://github.com/dyte-in/docs/commit/0e2ae017c718d22e6b0b8720d2d5600bf8839419))
+
+
+### Features
+
+* added proguard docs for android-core ([8b1a98d](https://github.com/dyte-in/docs/commit/8b1a98d516f2797de662df2ae02605145f6bb820))
+* **api:** Added preferred region ([dd70782](https://github.com/dyte-in/docs/commit/dd707828c4d2eed8940f7ea14c553e939db97a52))
+
 ## [1.24.1](https://github.com/dyte-in/docs/compare/v1.24.0...v1.24.1) (2022-09-12)
 
 
