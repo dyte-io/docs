@@ -3,19 +3,71 @@ sidebar_position: 1
 slug: /
 ---
 
-# Quickstart
+# Installation & Quickstart
+
+## Installation
+
+1. In your project, add the Maven repository `https://maven.dyte.in`. The repository typically goes into the `build.gradle` file in the root of your project.
+
+```groovy
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven {
+            url "https://maven.dyte.in"
+        }
+    }
+}
+```
+
+2. Add the dependency `com.dyteclientmobile:sdk`. Dependency definitions belong in the individual module `build.gradle` files.
+
+```groovy
+dependencies {
+    // (other dependencies)
+    implementation "com.dyteclientmobile:sdk:+"
+    // optionally if you app does not have support libraries
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
+}
+```
+
+:::info
+
+The below instructions are for the release builds, debug builds should work without any additional steps.
+
+:::
+
+1. Create / append to the file `android/app/proguard-rules.pro`
+
+```groovy
+-keep class org.webrtc.** { *; }
+```
+
+3. In your `android/app/build.gradle` edit the release configuration and add the following line importing the proguard configuration
+
+```groovy
+buildTypes {
+        release {
+            ...
+            ...
+            ...
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+```
+
+## Configure the meeting connection
+
+You need to pass a [`DyteUIKitConfig`](./reference/dyte-ui-kit-config) to [`DyteUIKitBuilder`](./reference/dyte-ui-kit-builder) to define which meeting should the client connect to and a couple of other setup parameters, out of which only `authToken` and `roomName` are mandatory.
+
+`DyteUIKitBuilder` is a static class and can be used to control and observe the meeting from anywhere in your application.
+
+
+## Quickstart
 
 Get the `roomName` for the meeting and the participant's `authToken` from our backend APIs (read more about our server APIs [here](/api/)), and pass them to Dyte's client SDK.
-
-There are 2 ways to launch a meeting:
-
-1. Activity
-2. View
-
-The activity based setup is straightforward while using a view requires some additional boilerplate code.
-
-## Using `Activity`
-
+To launch the meeting in your app the setup is straightforward.
 This will launch a fullscreen view with your meeting.
 
 <Tabs
@@ -29,123 +81,56 @@ values={[
 <TabItem value="kotlin">
 
 ```kotlin
-import com.dyteclientmobile.MeetingConfig
-import com.dyteclientmobile.DyteMeeting
-import com.dyteclientmobile.DyteMeetingActivity
+import dyte.io.uikit.DyteUIKitBuilder
+import dyte.io.uikit.DyteUIKitConfig
+import io.dyte.core.models.DyteMeetingInfo
 
 // Configure meeting parameters
-val config = MeetingConfig()
-config.setRoomName("<roomName>")
-.setAuthToken("<authToken>")
-
-DyteMeeting.setup(config)
-
-// Launch the activity
-val meetingIntent = Intent(this, DyteMeetingActivity::class.java)
-startActivity(meetingIntent)
+val meetingInfo = DyteMeetingInfo(
+    orgId = "YOUR_ORG_ID_HERE",
+    roomName = "ROOM_NAME_HERE",
+    authToken = "AUTH_TOKEN_HERE"
+)
+// pass in activity context for the SDK
+val config = DyteUIKitConfig(
+    activity = this,
+    dyteMeetingInfo = meetingInfo,
+)
+// initialise an instance
+val dyteUIKit = DyteUIKitBuilder.build(config)
+// launch the activity
+dyteUIKit.loadUi()
 ```
 
 </TabItem>
 <TabItem value="java">
 
 ```java
-import com.dyteclientmobile.MeetingConfig;
-import com.dyteclientmobile.DyteMeeting;
-import com.dyteclientmobile.DyteMeetingActivity;
+import dyte.io.uikit.DyteUIKit;
+import dyte.io.uikit.DyteUIKitBuilder;
+import dyte.io.uikit.DyteUIKitConfig;
+import io.dyte.core.models.DyteMeetingInfo;
 
 // Configure meeting parameters
-MeetingConfig config = new MeetingConfig();
-config.setRoomName("<roomName>")
-      .setAuthToken("<authToken>");
-
-DyteMeeting.setup(config);
-
-// Launch the activity
-Intent meetingIntent = new Intent(this, DyteMeetingActivity.class);
-startActivity(meetingIntent);
+DyteMeetingInfo meetingInfo = new DyteMeetingInfo(
+    "YOUR_ORG_ID_HERE",
+    "ROOM_NAME_HERE",
+    "AUTH_TOKEN_HERE",
+    true, // enable audio 
+    true, // enable video
+    "BASE_URL_HERE", 
+    "this is name" // display name here 
+);
+// pass in activity context for the SDK
+DyteUIKitConfig config = new DyteUIKitConfig(
+    this,
+    meetingInfo
+);
+// initialise an instance
+DyteUIKit dyteUIKit = DyteUIKitBuilder.INSTANCE.build(config);
+// launch the activity
+dyteUIKit.loadUi();  
 ```
 
 </TabItem>
 </Tabs>
-
-## Using `View`
-
-Using a view allows you more control on how your meeting is rendered, but it comes with setup boilerplate code. The main reason anyone would use a `View` based initialization is when they want the meeting to be rendered with custom dimensions and not occupy the full screen like the `Activity`.
-
-```java
-import com.dyteclientmobile.MeetingConfig;
-import com.dyteclientmobile.DyteMeeting;
-import com.dyteMobileSdk.DyteInstanceManager;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_layout);
-            // Configure meeting parameters
-            MeetingConfig config = MeetingConfig();
-                config.setRoomName("<roomName>")
-                    .setAuthToken("<authToken>");
-
-            DyteMeeting.setup(config);
-            View view = DyteMeeting.init(this,width, height);
-
-            // Example
-            ViewGroup viewgroup = findViewById(R.id.main_layout);
-            viewgroup.add(view);
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == OVERLAY_PERMISSION_REQ_CODE) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (!Settings.canDrawOverlays(this)) {
-                    // SYSTEM_ALERT_WINDOW permission not granted
-                }
-            }
-        }
-        if (DyteInstanceManager.instance != null) {
-            DyteInstanceManager.instance.onActivityResult(this, requestCode, resultCode, data);
-        }
-    }
-
-
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        if (DyteInstanceManager.instance != null) {
-            DyteInstanceManager.instance.onHostPause(this);
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        if (DyteInstanceManager.instance != null) {
-            DyteInstanceManager.instance.onHostResume(this, this);
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        if (DyteInstanceManager.instance != null) {
-            DyteInstanceManager.instance.onHostDestroy(this);
-        }
-        if (DyteInstanceManager.instance != null) {
-            DyteInstanceManager.unmountApplication();
-        }
-    }
-
-
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if (DyteInstanceManager.permissionsHandler != null) {
-            DyteInstanceManager.permissionsHandler.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
-    }
-```
