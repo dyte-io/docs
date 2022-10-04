@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Fonts */
 
 @font-face {
@@ -80,6 +84,7 @@ body {
   /* Default values */
 
   --ifm-spacing-horizontal: 1.5rem;
+  --ifm-navbar-padding-horizontal: 0.75rem;
 
   --ifm-font-family-base: 'Inter var', system-ui, -apple-system, Segoe UI,
     Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont,
@@ -132,10 +137,6 @@ nav.navbar {
 
 pre.prism-code {
   border: 1px solid var(--code-border-color);
-}
-
-.navbar__logo {
-  height: 26px;
 }
 
 .navbar__item,

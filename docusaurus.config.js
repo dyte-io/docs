@@ -6,6 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/vsDark');
 const UIKitReferencePlugins = require('./plugins/ui-kit-reference-plugin.cjs');
 const { webpackPlugin } = require('./plugins/webpack-plugin.cjs');
 const posthogPlugin = require('./plugins/posthog-plugin.cjs');
+const tailwindPlugin = require('./plugins/tailwind-plugin.cjs');
 
 /** @type {import('@docusaurus/preset-classic').Options} */
 const defaultSettings = {
@@ -152,10 +153,11 @@ const config = {
   ],
 
   plugins: [
-    ...SECTIONS,
-    ...UIKitReferencePlugins,
+    tailwindPlugin,
     webpackPlugin,
     posthogPlugin,
+    ...SECTIONS,
+    ...UIKitReferencePlugins,
   ],
 
   themes: ['@docusaurus/theme-live-codeblock'],
@@ -180,8 +182,8 @@ const config = {
           src: '/logo/light.svg',
           srcDark: '/logo/dark.svg',
           alt: 'Dyte Docs',
-          height: '26px',
-          width: '114px',
+          height: '40px',
+          width: '101px',
         },
         items: [
           {
