@@ -49,7 +49,7 @@ const latestVersions = {
   android: '0.14.x',
   ios: '1.33.x',
   flutter: '0.7.x',
-  'android-core': '1.0.0'
+  'android-core': '1.0.0',
 };
 
 const SECTIONS = [
@@ -83,7 +83,6 @@ const SECTIONS = [
     label: latestVersions['android-core'],
   }),
 
-
   // [mobile]
   defineSection('react-native', {
     label: latestVersions['react-native'],
@@ -110,6 +109,14 @@ const config = {
   onBrokenMarkdownLinks: 'warn',
   favicon: '/favicon.ico',
   trailingSlash: false,
+  stylesheets: [
+    { href: 'https://fonts.googleapis.com', rel: 'preconnect' },
+    { href: 'https://fonts.gstatic.com', rel: 'preconnect', crossOrigin: true },
+    {
+      href: 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&display=swap',
+      rel: 'stylesheet',
+    },
+  ],
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -210,30 +217,20 @@ const config = {
             position: 'left',
           },
           {
-            href: 'https://github.com/dyte-in',
-            className: 'pseudo-icon github-icon',
-            position: 'right',
-          },
-          {
-            href: 'https://community.dyte.io',
-            className: 'pseudo-icon discord-icon',
-            position: 'right',
-          },
-          {
             type: 'search',
             position: 'right',
+          },
+          {
+            label: 'Book a demo',
+            href: '#',
+            position: 'right',
+            className: 'navbar-book-demo'
           },
           {
             label: 'Sign Up',
             href: 'https://accounts.dyte.io/auth/register',
             position: 'right',
             className: 'dev-portal-signup dev-portal-link',
-          },
-          {
-            label: 'Login',
-            href: 'https://accounts.dyte.io/auth/login',
-            position: 'right',
-            className: 'dev-portal-login dev-portal-link',
           },
         ],
       },

@@ -2,6 +2,76 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --docs-color-primary-100: 26 144 255;
+    --docs-color-primary-200: 33 96 253;
+
+    --docs-color-secondary-700: 232 232 236;
+    --docs-color-secondary-800: 245 245 247;
+    --docs-color-secondary-900: 251 251 251;
+
+    --docs-color-text-400: 71 71 71;
+  }
+
+  html[data-theme='dark'] {
+    --docs-color-text-400: 153 153 153;
+
+    --docs-color-secondary-700: 71 71 71;
+    --docs-color-secondary-800: 38 38 38;
+    --docs-color-secondary-900: 25 25 25;
+  }
+
+  body {
+    @apply font-sans;
+  }
+
+  .homepage a {
+    --ifm-link-hover-decoration: none;
+    --ifm-link-hover-color: currentColor;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply font-jakarta;
+  }
+
+  .homepage section,
+  .homepage section * {
+    @apply box-border;
+  }
+}
+
+@layer components {
+  .noise-bg {
+    background-image: url('/static/landing-page/grid-light.svg'),
+      url('/static/landing-page/noise-light.png');
+    background-size: 48px 48px, auto;
+  }
+
+  html[data-theme='dark'] .noise-bg {
+    background-image: url('/static/landing-page/grid-dark.svg'),
+      url('/static/landing-page/noise-dark.png');
+  }
+
+  /* .sdk-section {
+    min-height: 320px;
+    transition-duration: 1.3s;
+    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition-property: transform opacity;
+    opacity: 0;
+    transform: translateX(-400px);
+  }
+
+  .intersected {
+    opacity: 1;
+    transform: translateX(0px);
+  } */
+}
+
 /* Fonts */
 
 @font-face {
@@ -43,7 +113,7 @@ body {
 /* Dyte Docs Tokens */
 :root {
   --docs-color-primary: #2160fd;
-  --docs-color-primary-100: #1a90ff;
+  /* --docs-color-primary-100: #1a90ff; */
   --docs-color-primary-tint: rgba(33, 96, 253, 0.16);
   --docs-color-primary-tint-light: rgba(33 96 253/0.24);
 
@@ -167,8 +237,8 @@ nav.menu {
   content: 'NEW';
   padding: 2px 4px;
   font-size: 11px;
-  color: var(--docs-color-primary-100);
-  border: 1px solid var(--docs-color-primary-100);
+  color: theme('colors.primary.100');
+  border: 1px solid theme('colors.primary.100');
   border-radius: 6px;
 }
 
@@ -202,7 +272,7 @@ nav.menu {
   display: inline-block;
   padding: 0.25rem 1.5rem;
   border-radius: 4px;
-  background-color: var(--docs-color-primary);
+  background-color: theme('colors.primary.200');
   color: #ffffff;
   text-decoration: none;
 }
@@ -248,74 +318,15 @@ nav.menu {
 .ping::after {
   display: inline-block;
   content: '';
-  background: var(--docs-color-primary);
+  background: theme('colors.primary.200');
   width: 4px;
   height: 4px;
   border-radius: 4px;
   margin-left: 4px;
 }
 
-.pseudo-icon {
-  opacity: 0.8;
-  padding: 0.25rem;
-  margin: 0 0.5rem;
-}
-
-.pseudo-icon:hover {
-  opacity: 1;
-}
-
-.pseudo-icon::before {
-  content: '';
-  display: block;
-  width: 32px;
-  height: 32px;
-  opacity: 0.8;
-  background-repeat: no-repeat;
-}
-
-.github-icon::before {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' aria-hidden='true' focusable='false' fill='%23000000' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' d='M12.026 2c-5.509 0-9.974 4.465-9.974 9.974 0 4.406 2.857 8.145 6.821 9.465.499.09.679-.217.679-.481 0-.237-.008-.865-.011-1.696-2.775.602-3.361-1.338-3.361-1.338-.452-1.152-1.107-1.459-1.107-1.459-.905-.619.069-.605.069-.605 1.002.07 1.527 1.028 1.527 1.028.89 1.524 2.336 1.084 2.902.829.091-.645.351-1.085.635-1.334-2.214-.251-4.542-1.107-4.542-4.93 0-1.087.389-1.979 1.024-2.675-.101-.253-.446-1.268.099-2.64 0 0 .837-.269 2.742 1.021a9.582 9.582 0 0 1 2.496-.336 9.554 9.554 0 0 1 2.496.336c1.906-1.291 2.742-1.021 2.742-1.021.545 1.372.203 2.387.099 2.64.64.696 1.024 1.587 1.024 2.675 0 3.833-2.33 4.675-4.552 4.922.355.308.675.916.675 1.846 0 1.334-.012 2.41-.012 2.737 0 .267.178.577.687.479C19.146 20.115 22 16.379 22 11.974 22 6.465 17.535 2 12.026 2z' clip-rule='evenodd'%3E%3C/path%3E%3C/svg%3E");
-}
-
-html[data-theme='dark'] .github-icon::before {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' aria-hidden='true' focusable='false' fill='%23b4b4b4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' d='M12.026 2c-5.509 0-9.974 4.465-9.974 9.974 0 4.406 2.857 8.145 6.821 9.465.499.09.679-.217.679-.481 0-.237-.008-.865-.011-1.696-2.775.602-3.361-1.338-3.361-1.338-.452-1.152-1.107-1.459-1.107-1.459-.905-.619.069-.605.069-.605 1.002.07 1.527 1.028 1.527 1.028.89 1.524 2.336 1.084 2.902.829.091-.645.351-1.085.635-1.334-2.214-.251-4.542-1.107-4.542-4.93 0-1.087.389-1.979 1.024-2.675-.101-.253-.446-1.268.099-2.64 0 0 .837-.269 2.742 1.021a9.582 9.582 0 0 1 2.496-.336 9.554 9.554 0 0 1 2.496.336c1.906-1.291 2.742-1.021 2.742-1.021.545 1.372.203 2.387.099 2.64.64.696 1.024 1.587 1.024 2.675 0 3.833-2.33 4.675-4.552 4.922.355.308.675.916.675 1.846 0 1.334-.012 2.41-.012 2.737 0 .267.178.577.687.479C19.146 20.115 22 16.379 22 11.974 22 6.465 17.535 2 12.026 2z' clip-rule='evenodd'%3E%3C/path%3E%3C/svg%3E");
-}
-
-.discord-icon::before {
-  width: 32px;
-  height: 25px;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 28 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M17.967 0c-.278.497-.525 1.01-.741 1.537a20.488 20.488 0 0 0-6.401 0A14.164 14.164 0 0 0 10.085 0c-1.998.341-3.94.953-5.773 1.817A24.22 24.22 0 0 0 .12 18.015a23.2 23.2 0 0 0 7.085 3.62 18.01 18.01 0 0 0 1.552-2.432 13.48 13.48 0 0 1-2.39-1.16c.207-.138.404-.293.587-.462a16.296 16.296 0 0 0 14.143 0c.196.168.392.322.587.462-.76.46-1.56.853-2.39 1.174.433.87.938 1.702 1.51 2.487a22.977 22.977 0 0 0 7.072-3.62 24.066 24.066 0 0 0-4.193-16.197A22.487 22.487 0 0 0 17.967 0ZM9.386 14.745a2.712 2.712 0 0 1-2.516-2.796 2.697 2.697 0 0 1 2.516-2.795A2.697 2.697 0 0 1 11.9 11.95a2.697 2.697 0 0 1-2.515 2.796Zm9.28 0a2.712 2.712 0 0 1-2.516-2.796 2.698 2.698 0 0 1 2.515-2.795 2.684 2.684 0 0 1 2.516 2.795 2.684 2.684 0 0 1-2.516 2.796Z' fill='%23000000'%3E%3C/path%3E%3C/svg%3E");
-}
-
-html[data-theme='dark'] .discord-icon::before {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 28 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M17.967 0c-.278.497-.525 1.01-.741 1.537a20.488 20.488 0 0 0-6.401 0A14.164 14.164 0 0 0 10.085 0c-1.998.341-3.94.953-5.773 1.817A24.22 24.22 0 0 0 .12 18.015a23.2 23.2 0 0 0 7.085 3.62 18.01 18.01 0 0 0 1.552-2.432 13.48 13.48 0 0 1-2.39-1.16c.207-.138.404-.293.587-.462a16.296 16.296 0 0 0 14.143 0c.196.168.392.322.587.462-.76.46-1.56.853-2.39 1.174.433.87.938 1.702 1.51 2.487a22.977 22.977 0 0 0 7.072-3.62 24.066 24.066 0 0 0-4.193-16.197A22.487 22.487 0 0 0 17.967 0ZM9.386 14.745a2.712 2.712 0 0 1-2.516-2.796 2.697 2.697 0 0 1 2.516-2.795A2.697 2.697 0 0 1 11.9 11.95a2.697 2.697 0 0 1-2.515 2.796Zm9.28 0a2.712 2.712 0 0 1-2.516-2.796 2.698 2.698 0 0 1 2.515-2.795 2.684 2.684 0 0 1 2.516 2.795 2.684 2.684 0 0 1-2.516 2.796Z' fill='%23b4b4b4'%3E%3C/path%3E%3C/svg%3E");
-}
-
-.navbar-sidebar .pseudo-icon {
-  padding: 0.3rem 0.5rem;
-  margin: 0;
-}
-
-.navbar-sidebar .pseudo-icon::after {
-  content: 'GitHub';
-  margin-left: 12px;
-}
-
-.navbar-sidebar .github-icon {
-  margin-top: 2rem;
-}
-
-.navbar-sidebar .github-icon::after {
-  content: 'GitHub';
-}
-
-.navbar-sidebar .discord-icon::after {
-  content: 'Discord';
-}
-
 .dev-portal-link {
-  background-color: var(--docs-color-primary);
+  background-color: theme('colors.primary.200');
   border-radius: 4px;
   margin-right: 12px;
   transition-property: all;
@@ -333,12 +344,16 @@ html[data-theme='dark'] .discord-icon::before {
   color: #fff;
 }
 
+.dev-portal-signup svg {
+  display: none;
+}
+
 .dev-portal-signup:hover {
   background-color: var(--ifm-color-primary-darker);
 }
 
 .dev-portal-login {
-  --ifm-navbar-link-hover-color: var(--docs-color-primary-100);
+  --ifm-navbar-link-hover-color: theme('colors.primary.100');
   background-color: transparent;
 }
 
@@ -463,7 +478,7 @@ html[data-theme='dark']
 .sections-menu-item .item-indicator {
   height: 20px;
   width: 20px;
-  color: var(--docs-color-primary-100);
+  color: theme('colors.primary.100');
 }
 
 .sections-menu-trigger .item-text,
@@ -517,7 +532,7 @@ html[data-theme='dark']
 .loading-container dyte-spinner {
   width: 48px;
   height: 48px;
-  color: var(--docs-color-primary-100);
+  color: theme('colors.primary.100');
 }
 
 .dyte-video-showcase {
@@ -606,13 +621,13 @@ table th {
 
 .tabs__item {
   --ifm-tabs-padding-vertical: 0.75rem;
-  --ifm-tabs-color-active: var(--docs-color-primary-100);
+  --ifm-tabs-color-active: theme('colors.primary.100');
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
 
 .tabs__item--active {
-  border-bottom: 2px solid var(--docs-color-primary-100);
+  border-bottom: 2px solid theme('colors.primary.100');
 }
 
 /* Mobile breakpoint */
@@ -637,7 +652,7 @@ code[data-code='required'] {
 }
 
 ::selection {
-  background: var(--docs-color-primary);
+  background: theme('colors.primary.200');
   color: #fff;
 }
 
@@ -783,13 +798,6 @@ img[src$='#terminal'] {
   font-size: 14px;
   color: var(--docs-color-text-100);
   line-height: 1.5;
-}
-
-@media screen and (max-width: 1160px) {
-  /* Hide icons when header UI breaks */
-  .pseudo-icon {
-    display: none;
-  }
 }
 
 @media screen and (max-width: 768px) {

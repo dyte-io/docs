@@ -1,157 +1,70 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-import { useHistory } from '@docusaurus/router';
-import { DyteButton } from '@dytesdk/react-ui-kit';
+import Link from '@docusaurus/Link';
 
-import {
-  HomepageCard as Card,
-  HomepageSection as Section,
-} from '../components/HomepageComponents';
-import {
-  AngularIcon,
-  APIReferenceIcon,
-  FlutterIcon,
-  HTMLIcon,
-  KotlinIcon,
-  ReactIcon,
-  SwiftIcon,
-  TerminalIcon,
-  DisconnectedPlugIcon,
-  UIKitIcon,
-} from '../icons';
-import GuidesSection from '../components/GuidesSection';
+import HeroSection from '../components/homepage/HeroSection';
+import SDKsSection from '../components/homepage/SDKsSection';
+import APIReferenceSection from '../components/homepage/APIReferenceSection';
+import CommunitySection from '../components/homepage/CommunitySection';
+import HomeFooter from '../components/homepage/HomeFooter';
 
 export default function Homepage() {
-  const router = useHistory();
-
   return (
     <Layout
       description="Real-time audio & video SDKs, ready to launch 🚀"
       wrapperClassName="homepage"
+      noFooter
     >
-      <div className="pad">
-        <div className="center homepage-content">
-          <div id="hero">
-            <h2>Dyte Docs</h2>
-            <p>
-              Explore our guides and examples to integrate Dyte easily into your
-              apps.
-            </p>
-            <DyteButton onClick={() => router.push('/react-ui-kit/')}>
-              Get Started &rarr;
-            </DyteButton>
+      <HeroSection />
+      <SDKsSection />
+      <APIReferenceSection />
+
+      <section className="mb-16 px-4">
+        <div className="mx-auto max-w-7xl rounded-3xl bg-white p-4 text-black dark:bg-black dark:text-white lg:p-10">
+          <h2 className="mb-12 text-center">How can we help you today?</h2>
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+            <div className="rounded-lg bg-zinc-100 p-6 dark:bg-zinc-900">
+              <img src="/static/landing-page/calendar.svg" alt="Book a demo" />
+              <h4 className="my-3">Book a Demo</h4>
+              <p className="text-zinc-600 dark:text-zinc-400">
+                Contact us for a demo. We are looking forward to connecting with
+                you.
+              </p>
+              <Link href="#" className="text-primary dark:text-primary-100">
+                Schedule a Call &rarr;
+              </Link>
+            </div>
+
+            <div className="rounded-lg bg-zinc-100 p-6 dark:bg-zinc-900">
+              <img src="/static/landing-page/calendar.svg" alt="Book a demo" />
+              <h4 className="my-3">Support</h4>
+              <p className="text-zinc-600 dark:text-zinc-400">
+                Dyte&apos;s expert support team is excited to help. Connect for
+                dedicated 1:1 support!
+              </p>
+              <Link href="#" className="darktext-primary-100 :text-primary">
+                Contact Us &rarr;
+              </Link>
+            </div>
+
+            <div className="rounded-lg bg-zinc-100 p-6 dark:bg-zinc-900">
+              <img src="/static/landing-page/calendar.svg" alt="Book a demo" />
+              <h4 className="my-3">FAQs</h4>
+              <p className="text-zinc-600 dark:text-zinc-400">
+                Browse through our FAQs to find answers to commonly asked
+                questions.
+              </p>
+              <Link href="#" className="text-primary dark:text-primary-100">
+                View FAQs &rarr;
+              </Link>
+            </div>
           </div>
-
-          <Section title="Get to know Dyte">
-            <Card
-              title="How Dyte works"
-              description="Essential reading for a better understanding of how to best use Dyte SDKs"
-              to="/how-dyte-works"
-            />
-            <Card
-              title="Guides"
-              description="Take a look at all the available guides"
-              to="/guides/"
-            />
-          </Section>
-
-          <Section title="🌐 Web SDKs" id="web-sdks" hasSubSections>
-            <Section
-              title="⚙️ Core SDKs"
-              id="core-sdks"
-              HeadingTag="h4"
-              description={
-                <>
-                  Realtime communication SDKs to add high quality audio/video
-                  calls to your web applications. <br />
-                  These are generally used with our UI Kit but you can create
-                  your own UI as well, it&apos;s pretty easy.
-                </>
-              }
-            >
-              <Card
-                title="Core SDK"
-                description="Realtime communication SDKs to add high quality audio/video calls to your web applications."
-                to="/web-core/"
-                icon={<UIKitIcon />}
-              />
-              <Card
-                title="Plugin SDK"
-                description="Create your own plugins for use in meetings"
-                to="/plugin-sdk"
-                icon={<DisconnectedPlugIcon />}
-              />
-            </Section>
-            <Section title="🎨 UI Kit" id="ui-kit" HeadingTag="h4">
-              <Card
-                title="React UI Kit"
-                description="Add UI Kit to your React App"
-                to="/react-ui-kit/"
-                icon={<ReactIcon />}
-              />
-              <Card
-                title="UI Kit"
-                description="HTML Web Components"
-                to="/ui-kit/"
-                icon={<HTMLIcon />}
-              />
-              <Card
-                title="Angular UI Kit"
-                description="Add UI Kit to your Angular App"
-                to="/angular-ui-kit/"
-                icon={<AngularIcon />}
-              />
-            </Section>
-          </Section>
-
-          <Section title="📱 Mobile SDKs" id="mobile-sdks">
-            <Card
-              title="React Native"
-              description="Integrate Dyte in your React Native App"
-              to="/react-native/"
-              icon={<ReactIcon />}
-            />
-            <Card
-              title="Android"
-              description="Integrate Dyte in your Android App (Kotlin)"
-              to="/android/"
-              icon={<KotlinIcon />}
-            />
-            <Card
-              title="iOS"
-              description="Integrate Dyte in your iOS App (Swift)"
-              to="/ios/"
-              icon={<SwiftIcon />}
-            />
-            <Card
-              title="Flutter"
-              description="Integrate Dyte in your Flutter App"
-              to="/flutter/"
-              icon={<FlutterIcon />}
-            />
-          </Section>
-
-          <Section title="🛠 Tools">
-            <Card
-              title="Dyte CLI"
-              description="A command line tool to get things done quick!"
-              to="/cli/"
-              icon={<TerminalIcon />}
-            />
-          </Section>
-
-          <Section title="📜 API Reference">
-            <Card
-              title="API Reference"
-              description="Dyte REST API Reference"
-              to="/api/"
-              icon={<APIReferenceIcon />}
-            />
-          </Section>
-
-          <GuidesSection title="📖 Advanced Guides" />
         </div>
-      </div>
+      </section>
+
+      <CommunitySection />
+
+      <HomeFooter />
     </Layout>
   );
 }

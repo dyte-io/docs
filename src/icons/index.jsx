@@ -8,6 +8,8 @@ export { default as HTMLIcon } from './HTMLIcon';
 export { default as VueIcon } from './VueIcon';
 export { default as SwiftIcon } from './SwiftIcon';
 export { default as KotlinIcon } from './KotlinIcon';
+export { default as JSIcon } from './JSIcon';
+export { default as ElectronIcon } from './ElectronIcon';
 
 export { default as TerminalIcon } from './TerminalIcon';
 export { default as APIReferenceIcon } from './APIReferenceIcon';
