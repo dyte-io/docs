@@ -10,7 +10,18 @@ tags: [web-core, local-user, self, self events]
 
 You can subscribe to various events on the local user by calling `meeting.self.on(EVENT_NAME)`.
 
-### Video update
+## Room joined
+
+Triggered when the room join event completes and now the `meeting` is ready to produce and consume media.
+
+```js
+
+meeting.self.on('roomJoined', () => {
+    console.log('User has joied the meeting and ready to produce and consume media');
+});
+```
+
+## Video update
 
 Triggered when the user starts / stops the video using `enableVideo` or `disableVideo`
 
@@ -29,7 +40,7 @@ meeting.self.on('videoUpdate', async ({ videoEnabled, videoTrack }) => {
 });
 ```
 
-### Audio update
+## Audio update
 
 Triggered when the user starts / stops the audio using `enableAudio` or `disableAudio`
 
@@ -48,7 +59,7 @@ meeting.self.on('audioUpdate', async ({ audioEnabled, audioTrack }) => {
 });
 ```
 
-### Screenshare update
+## Screenshare update
 
 Triggered when the user starts / stops the screen share using `enableScreenShare()` or `disableScreenShare()`.
 
@@ -67,7 +78,7 @@ meeting.self.on('screenShareUpdate', async ({ screenShareEnabled, screenShareTra
 });
 ```
 
-### Device change
+## Device change
 
 Subscribe to the `deviceChange` event to handle the changing video, audio and speaker devices
 
