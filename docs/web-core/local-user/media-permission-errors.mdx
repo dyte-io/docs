@@ -23,8 +23,11 @@ meeting.self.on('mediaPermissionError', ({
 This event shares information that can be used to show appropriate message for the user.
 
 Possible values for **message** are
+
     DENIED  - Permission was denied by the user 
+
     SYSTEM_DENIED   - Permission was denied by the system
+
     COULD_NOT_START - Failed to capture media stream from the hardware
 
 Possible values for **kind** - `audio`, `video`, `screenshare`
