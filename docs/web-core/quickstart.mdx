@@ -19,4 +19,27 @@ await meeting.joinRoom();
 
 You can get the roomName and authToken using our backend APIs and then pass it to the init method of DyteClient.
 
-Now at this point you have joined the meeting, the next steps would be configuring local media publishing and participant's media playback
+:::info
+
+Once join room process completes `roomJoined` event is emitted on `meeting.self` namespace.
+If you want to take any actions like enabling audio, video or start and stop recording etc. it should be done after the `roomJoined` event is fired.
+
+For example:
+
+    meeting.self.on('roomJoined', () => {
+        console.log('User has joined the room', meeting.self.roomJoined);
+        // run my actions.
+    });
+
+    await meeting.joinRoom();
+:::
+
+### Leave room
+
+Leave the meeting room. 
+
+```js
+
+await meeting.leaveRoom()
+
+```
