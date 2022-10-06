@@ -76,6 +76,14 @@ const SECTIONS = [
     icon: AndroidIcon,
     section: 'mobile-core',
   },
+  
+  {
+    name: 'iOS Core',
+    id: 'ios-core',
+    icon: AppleIcon,
+    section: 'mobile-core',
+  },
+
   {
     name: 'React Native',
     id: 'react-native',
