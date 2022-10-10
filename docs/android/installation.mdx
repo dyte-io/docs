@@ -10,11 +10,8 @@ slug: /
 ```groovy
 allprojects {
     repositories {
-        google()
-        jcenter()
-        maven {
-            url "https://maven.dyte.in"
-        }
+        // (other repositories)
+        mavenCentral()
     }
 }
 ```
@@ -24,9 +21,7 @@ allprojects {
 ```groovy
 dependencies {
     // (other dependencies)
-    implementation "com.dyteclientmobile:sdk:+"
-    // optionally if you app does not have support libraries
-    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
+    implementation 'io.dyte:uikit:0.0.1'
 }
 ```
 
@@ -39,7 +34,27 @@ The below instructions are for the release builds, debug builds should work with
 1. Create / append to the file `android/app/proguard-rules.pro`
 
 ```groovy
+# Keep `Companion` object fields of serializable classes.
+# This avoids serializer lookup through `getDeclaredClasses` as done for named companion objects.
+-if @kotlinx.serialization.Serializable class **
+-keepclassmembers class <1> {
+   static <1>$Companion Companion;
+}
+
+# Keep `serializer()` on companion objects (both default and named) of serializable classes.
+-if @kotlinx.serialization.Serializable class ** {
+   static **$* *;
+}
+-keepclassmembers class <2>$<3> {
+   kotlinx.serialization.KSerializer serializer(...);
+}
+
+# keep webrtc classes
 -keep class org.webrtc.** { *; }
+-dontwarn org.chromium.build.BuildHooksAndroid
+
+# keep ktor classes
+-keep class io.ktor.** { *; }
 ```
 
 3. In your `android/app/build.gradle` edit the release configuration and add the following line importing the proguard configuration
