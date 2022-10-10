@@ -1,0 +1,62 @@
+---
+sidebar_position: 1
+slug: /
+---
+
+# Installation
+
+1. In your project, add the Maven repository `https://maven.dyte.in`. The repository typically goes into the `build.gradle` file in the root of your project.
+
+```groovy
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven {
+            url "https://maven.dyte.in"
+        }
+    }
+}
+```
+
+2. Add the dependency `com.dyteclientmobile:sdk`. Dependency definitions belong in the individual module `build.gradle` files.
+
+```groovy
+dependencies {
+    // (other dependencies)
+    implementation "com.dyteclientmobile:sdk:+"
+    // optionally if you app does not have support libraries
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
+}
+```
+
+:::info
+
+The below instructions are for the release builds, debug builds should work without any additional steps.
+
+:::
+
+1. Create / append to the file `android/app/proguard-rules.pro`
+
+```groovy
+-keep class org.webrtc.** { *; }
+```
+
+3. In your `android/app/build.gradle` edit the release configuration and add the following line importing the proguard configuration
+
+```groovy
+buildTypes {
+        release {
+            ...
+            ...
+            ...
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+```
+
+## Configure the meeting connection
+
+You need to pass a [`DyteUIKitConfig`](./reference/dyte-ui-kit-config) to [`DyteUIKitBuilder`](./reference/dyte-ui-kit-builder) to define which meeting should the client connect to and a couple of other setup parameters, out of which only `authToken` and `roomName` are mandatory.
+
+`DyteUIKitBuilder` is a static class and can be used to control and observe the meeting from anywhere in your application.
