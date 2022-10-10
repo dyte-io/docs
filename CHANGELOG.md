@@ -1,3 +1,11 @@
+# [1.26.0](https://github.com/dyte-in/docs/compare/v1.25.0...v1.26.0) (2022-10-10)
+
+
+### Features
+
+* added android ui kit docs ([f6cdda9](https://github.com/dyte-in/docs/commit/f6cdda94ea2df3cd971548a66a49b7804ceb4c01))
+* added android ui kit docs ([9329718](https://github.com/dyte-in/docs/commit/9329718e70e5f193c64855b036090fbe8185524e))
+
 # [1.25.0](https://github.com/dyte-in/docs/compare/v1.24.1...v1.25.0) (2022-10-03)
 
 
