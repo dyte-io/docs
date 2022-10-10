@@ -34,4 +34,12 @@ meeting.meta.on('connected', () => {
 meeting.meta.on('disconnected', () => {
     console.log(`The local user got disconnected from the room ${meeting.meta.roomName}`);
 });
+
+meeting.meta.on('poorConnection', () => {
+    console.log(`The local user has poor network connection.`);
+});
+
+meeting.meta.on('connectionError', ({ reason }) => {
+    console.log(`Could not connect to the room.`);
+});
 ```
