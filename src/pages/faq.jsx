@@ -124,15 +124,15 @@ export default function FAQPage() {
           <div className="font-semibold text-zinc-200 dark:text-zinc-300">
             Frequently Asked Questions
           </div>
-          <div className="my-8 text-center text-4xl font-bold leading-loose text-white lg:text-6xl">
+          <div className="my-8 text-center text-4xl font-bold leading-tight text-white lg:text-6xl">
             <div>Any questions?</div>
             <div>We got you.</div>
           </div>
           <div className="relative flex w-full max-w-md items-center text-zinc-700">
-            <MagnifyingGlassIcon className="z-10 h-5 w-5" />
+            <MagnifyingGlassIcon className="z-10 h-5 w-5 translate-x-1.5" />
             <input
               type="search"
-              className="-ml-7 h-10 flex-1 rounded-md border-none bg-white px-3 pl-8 text-sm text-zinc-700"
+              className="-ml-5 h-10 flex-1 rounded-md border-none bg-white px-3 pl-8 text-sm text-zinc-700"
               placeholder="Search your query...(sdk, api, write code)"
               value={query}
               onInput={(e) => setQuery(e.currentTarget.value)}

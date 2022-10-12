@@ -88,10 +88,14 @@ export default function SDKsSection() {
             </p>
             <ul className="mb-0 flex list-none flex-col gap-2 pl-0">
               <li>
-                <SDKLink href="" Icon={JSIcon} label="JavaScript" />
+                <SDKLink href="web-core" Icon={JSIcon} label="JavaScript" />
               </li>
               <li>
-                <SDKLink href="" Icon={ReactIcon} label="React" />
+                <SDKLink
+                  href="react-ui-kit/basics/using-hooks"
+                  Icon={ReactIcon}
+                  label="React"
+                />
               </li>
             </ul>
           </div>
@@ -104,16 +108,24 @@ export default function SDKsSection() {
             <div>
               <ul className="mb-0 flex list-none flex-col gap-2 pl-0">
                 <li>
-                  <SDKLink href="" Icon={ReactIcon} label="React" />
+                  <SDKLink href="react-ui-kit" Icon={ReactIcon} label="React" />
                 </li>
                 <li>
-                  <SDKLink href="" Icon={AngularIcon} label="Angular" />
+                  <SDKLink
+                    href="angular-ui-kit"
+                    Icon={AngularIcon}
+                    label="Angular"
+                  />
                 </li>
                 <li>
-                  <SDKLink href="" Icon={VueIcon} label="Vue" />
+                  <SDKLink href="vue-ui-kit" Icon={VueIcon} label="Vue" />
                 </li>
                 <li>
-                  <SDKLink href="" Icon={HTMLIcon} label="Web Components" />
+                  <SDKLink
+                    href="ui-kit"
+                    Icon={HTMLIcon}
+                    label="Web Components"
+                  />
                 </li>
               </ul>
             </div>
@@ -145,7 +157,11 @@ export default function SDKsSection() {
             </p>
             <ul className="flex list-none flex-col gap-2 pl-0">
               <li>
-                <SDKLink href="" Icon={KotlinIcon} label="Android" />
+                <SDKLink
+                  href="android-core"
+                  Icon={KotlinIcon}
+                  label="Android"
+                />
               </li>
             </ul>
             <div className="rounded-2xl bg-secondary-700 p-4 dark:bg-secondary-900">
