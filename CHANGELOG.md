@@ -1,3 +1,11 @@
+## [1.26.1](https://github.com/dyte-in/docs/compare/v1.26.0...v1.26.1) (2022-10-14)
+
+
+### Bug Fixes
+
+* move redirects to static folder ([4b103c2](https://github.com/dyte-in/docs/commit/4b103c213b2a82e9da12e53ce92d41b84d979e32))
+* seo fixes ([0bfab36](https://github.com/dyte-in/docs/commit/0bfab3655164f98bc9dc585ad7dd011e7be1d42f))
+
 # [1.26.0](https://github.com/dyte-in/docs/compare/v1.25.0...v1.26.0) (2022-10-10)
 
 
