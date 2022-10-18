@@ -1,3 +1,10 @@
+# [1.27.0](https://github.com/dyte-in/docs/compare/v1.26.1...v1.27.0) (2022-10-18)
+
+
+### Features
+
+* **livestream:** adding api integration guide ([61d4f29](https://github.com/dyte-in/docs/commit/61d4f2991537861517f13a868fb9c37166e78e77))
+
 ## [1.26.1](https://github.com/dyte-in/docs/compare/v1.26.0...v1.26.1) (2022-10-14)
 
 
