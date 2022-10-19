@@ -5,7 +5,10 @@ module.exports = {
     preflight: false,
   },
   darkMode: ['class', '[data-theme="dark"]'],
-  content: ['./src/{components,pages}/**/*.{js,jsx}'],
+  content: [
+    './src/{components,pages}/**/*.{js,jsx}',
+    './src/snippets/**/*.html',
+  ],
   theme: {
     extend: {
       fontFamily: {
@@ -27,7 +30,8 @@ module.exports = {
           200: 'rgb(var(--docs-color-primary-200, 33 96 253) / <alpha-value>)',
         },
         secondary: {
-          DEFAULT: 'rgb(var(--docs-color-secondary-1000, 0 0 0) / <alpha-value>)',
+          DEFAULT:
+            'rgb(var(--docs-color-secondary-1000, 0 0 0) / <alpha-value>)',
           1000: 'rgb(var(--docs-color-secondary-1000, 0 0 0) / <alpha-value>)',
           900: 'rgb(var(--docs-color-secondary-900, 25 25 25) / <alpha-value>)',
           800: 'rgb(var(--docs-color-secondary-800, 38 38 38) / <alpha-value>)',

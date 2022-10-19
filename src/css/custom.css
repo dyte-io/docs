@@ -184,8 +184,8 @@ body {
     'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol';
 
-  --ifm-font-family-monospace: '', SFMono-Regular, Menlo, Monaco,
-    Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --ifm-font-family-monospace: '', SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
 
   /* Theme colors */
   --ifm-color-primary: #2160fd;
@@ -675,18 +675,47 @@ code[data-code='required'] {
 }
 
 ::selection {
-  @apply bg-primary-200/80 dark:bg-primary-100/60 text-white;
+  @apply bg-primary-200/80 text-white dark:bg-primary-100/60;
 }
 
-ul.dropdown-menu + a.dyte-dropdown {
-  max-width: 720px;
+.dyte-dropdown .sdk-link {
+  @apply flex items-center gap-1 rounded-md p-2 text-inherit hover:bg-secondary-700;
+  @apply text-xs;
+}
+
+.dyte-dropdown .sdk-link > img {
+  @apply h-6 w-6;
+}
+
+.dyte-dropdown a {
+  @apply no-underline;
+}
+
+.dyte-dropdown :is(h1, h2, h3, h4, h5) {
+  @apply font-medium;
+}
+
+.sdks-dropdown h2 {
+  @apply text-lg;
+}
+
+.sdks-dropdown h3 {
+  @apply text-sm;
+}
+
+.resources-dropdown-menu h2 {
+  @apply text-sm font-semibold;
+}
+
+.resources-dropdown-menu a {
+  @apply flex items-center gap-2;
 }
 
 /* To disable showing search icon in Safari mobile */
-input[type="search"]::-webkit-search-decoration,
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-results-button,
-input[type="search"]::-webkit-search-results-decoration {
+input[type='search']::-webkit-search-decoration,
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-results-button,
+input[type='search']::-webkit-search-results-decoration {
   display: none;
 }
 
@@ -840,5 +869,11 @@ img[src$='#terminal'] {
   }
   .two-cols .section-content {
     grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
+@layer components {
+  .hr-line {
+    @apply my-6 h-px w-full bg-zinc-200 dark:bg-zinc-800;
   }
 }

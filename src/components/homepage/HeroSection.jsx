@@ -6,13 +6,13 @@ export default function HeroSection() {
   const { colorMode } = useColorMode();
 
   return (
-    <section className="py-16 px-4 lg:py-24 noise-bg">
-      <div className="mx-auto flex max-w-7xl flex-col lg:flex-row">
+    <section className="noise-bg py-16 px-4 lg:py-24">
+      <div className="mx-auto flex max-w-7xl flex-col items-center lg:flex-row">
         <div className="flex-1 text-center lg:text-left">
-          <h1 className="mb-6 font-jakarta text-4xl lg:text-6xl font-bold">
+          <h1 className="mb-6 font-jakarta text-4xl font-bold lg:text-6xl">
             Build with Dyte
           </h1>
-          <p className="lg:max-w-lg text-text-400 text-sm lg:text-base">
+          <p className="text-sm text-text-400 lg:max-w-lg lg:text-base">
             At Dyte, we&apos;re building the future of real-time communication.
             Integrate high-quality, programmable, and customizable live video
             and voice into your web, mobile, and desktop applications with just

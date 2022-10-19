@@ -1,4 +1,5 @@
 /* eslint-disable */
+const fs = require('fs');
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/vsDark');
@@ -98,6 +99,9 @@ const SECTIONS = [
   }),
 ];
 
+const sdksHTML = fs.readFileSync('./src/snippets/sdks.html', 'utf-8');
+const resourcesHTML = fs.readFileSync('./src/snippets/resources.html', 'utf-8');
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Dyte Docs',
@@ -114,6 +118,10 @@ const config = {
     { href: 'https://fonts.gstatic.com', rel: 'preconnect', crossOrigin: true },
     {
       href: 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&display=swap',
+      rel: 'stylesheet',
+    },
+    {
+      href: 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital@1&family=Plus+Jakarta+Sans:wght@400;600;700&family=Rubik:wght@400;600;700&display=swap',
       rel: 'stylesheet',
     },
   ],
@@ -194,28 +202,42 @@ const config = {
         },
         items: [
           {
-            label: 'Web SDKs',
-            to: 'react-ui-kit',
-            position: 'left',
-            className: 'new-badge',
-            activeBaseRegex: '(.*ui-kit|.*web-core)',
-          },
-          {
-            label: 'Mobile SDKs',
-            to: 'react-native',
-            position: 'left',
-            activeBaseRegex: '(react-native|android|ios|flutter)',
-          },
-          {
-            label: 'API Reference',
-            to: '/api/',
-            position: 'left',
+            label: 'SDKs',
+            type: 'dropdown',
+            className: 'dyte-dropdown',
+            items: [
+              {
+                type: 'html',
+                value: sdksHTML,
+                className: 'dyte-dropdown',
+              },
+            ],
           },
           {
             label: 'Guides',
             to: 'guides',
-            position: 'left',
           },
+          {
+            label: 'API Reference',
+            to: '/api/',
+          },
+          {
+            label: 'Resources',
+            type: 'dropdown',
+            className: 'dyte-dropdown resources-dropdown',
+            items: [
+              {
+                type: 'html',
+                value: resourcesHTML,
+                className: 'dyte-dropdown',
+              },
+            ],
+          },
+          {
+            label: 'Support',
+            to: '#',
+          },
+
           {
             type: 'search',
             position: 'right',
@@ -224,7 +246,7 @@ const config = {
             label: 'Book a demo',
             href: '#',
             position: 'right',
-            className: 'navbar-book-demo'
+            className: 'navbar-book-demo',
           },
           {
             label: 'Sign Up',
