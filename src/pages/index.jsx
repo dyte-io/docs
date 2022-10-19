@@ -78,7 +78,7 @@ export default function Homepage() {
               <Card
                 title="Plugin SDK"
                 description="Create your own plugins for use in meetings"
-                to="/plugin-sdk"
+                to="/plugin-sdk/"
                 icon={<DisconnectedPlugIcon />}
               />
             </Section>

@@ -784,6 +784,23 @@ img[src$='#terminal'] {
   line-height: 1.5;
 }
 
+details {
+  font-size: 14px;
+  font-weight:500;
+  color: var(--docs-color-text-100) !important;
+  background: var(--docs-color-background-100) !important;
+  border: solid 2px var(--docs-color-code-background) !important;
+}
+
+details code {
+  background-color: var(--docs-color-background);
+}
+
+details p {
+  font-weight: 300;
+}
+
+
 @media screen and (max-width: 1160px) {
   /* Hide icons when header UI breaks */
   .pseudo-icon {

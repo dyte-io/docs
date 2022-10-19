@@ -1,0 +1,44 @@
+---
+title: Setup Development Environment
+sidebar_position: 2
+---
+
+To test and develop plugins locally, you need to enabled the dev tools module in the client SDK. This will add **Localhost Dev** to your the list of plugins in the plugins tab. 
+
+You can now run your plugin application on ` localhost:5000 ` and view it in the **Localhost Dev** plugin.
+
+
+:::info note
+In order to use dev tools please install `@dytesdk/react-web-core@0.10.x` or above.
+:::
+
+```ts
+import { useDyteClient } from '@dytesdk/react-web-core';
+import { DyteMeeting, DyteProvider } from '@dytesdk/react-ui-kit';
+
+export default function App() {
+  const [meeting, initMeeting] = useDyteClient();
+
+  useEffect(() => {
+    initMeeting({
+      roomName: '<room-name>',
+      authToken: '<auth-token>',
+      defaults: {
+        audio: false,
+        video: false,
+      },
+      modules: {
+        devTools: true,
+      }
+    });
+  }, []);
+
+  return (
+    <DyteProvider value={meeting}>
+      <DyteMeeting mode="fill" meeting={meeting} />
+    </DyteProvider>
+  );
+}
+
+
+```

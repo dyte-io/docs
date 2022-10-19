@@ -1,0 +1,28 @@
+---
+title: Quickstart
+sidebar_position: 3
+tags: [plugin-sdk, quickstart, setup]
+---
+
+Quickly get started with building your own collaborative plugin, in just a few lines of code! 
+
+Here's an example of an easy plugin that sends a welcome message whenever a new person joins the meeting.
+
+:::tip
+Try using `const plugin = DytePlugin.init({ready: false})` and then call `plugin.ready()` when you want the plugin to start communicating with the Client SDK.
+:::
+
+```ts
+import DytePlugin from "@dytesdk/plugin-sdk";
+
+const plugin = DytePlugin.init();
+await plugin.stores.populate('storeName');
+
+plugin.room.on('peerJoined', async () => { 
+    const message: ChatMessage = { 
+        type: 'text',
+        message: 'A new user has joined!',
+    };
+    await plugin.room.sendChatMessage(message);
+});
+```

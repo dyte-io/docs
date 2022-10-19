@@ -54,7 +54,7 @@ const latestVersions = {
 const SECTIONS = [
   defineSection('guides'),
   defineSection('cli'),
-
+  defineSection('plugin-sdk'),
   defineSection('react', { label: '0.x.x' }),
   defineSection('javascript', { label: '0.x.x' }),
 

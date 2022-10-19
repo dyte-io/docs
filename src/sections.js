@@ -33,6 +33,15 @@ const SECTIONS = [
     section: 'old-web-sdks',
   },
 
+  // Plugin SDKs
+  // - web
+  {
+    name: 'HTML Plugin SDK',
+    id: 'plugin-sdk',
+    icon: HTMLIcon,
+    section: 'plugin-sdk',
+  },
+
   // Web SDKs
   // - ui-sdk
   {
@@ -128,7 +137,15 @@ const MULTI_SECTIONS = [
       isNew: true,
       description: 'Build your own UI from scratch, use our low level APIs.',
     },
+  ],
+  [
+    {
+      name: 'Plugin SDK for Web',
+      section: 'plugin-sdk',
+      description: 'Build real-time collaborative apps using Dyte.'
+    },
   ]
+
 ];
 
 export { SECTIONS, MULTI_SECTIONS };
