@@ -13,6 +13,7 @@ import {
   SwiftIcon,
   VueIcon,
 } from '../../icons';
+import Head from '@docusaurus/Head';
 
 function SDKLink({ href, Icon, label, disabled = false }) {
   // yes, this is a weird way to do it :)
@@ -58,6 +59,10 @@ export default function SDKsSection() {
 
   return (
     <section className="py-20 px-4">
+      <Head>
+        <link rel="prefetch" href="/static/landing-page/plugin-sdk-light.png" />
+        <link rel="prefetch" href="/static/landing-page/plugin-sdk-dark.png" />
+      </Head>
       <div className="mx-auto max-w-7xl">
         <div className="mb-4 inline-block rounded-sm bg-zinc-200 p-2 text-text-400 dark:bg-zinc-800">
           SDKs

@@ -1,12 +1,17 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
 import { useColorMode } from '@docusaurus/theme-common';
+import Head from '@docusaurus/Head';
 
 export default function HeroSection() {
   const { colorMode } = useColorMode();
 
   return (
     <section className="noise-bg py-16 px-4 lg:py-24">
+      <Head>
+        <link rel="prefetch" href="/static/landing-page/hero-light.png" />
+        <link rel="prefetch" href="/static/landing-page/hero-dark.png" />
+      </Head>
       <div className="mx-auto flex max-w-7xl flex-col items-center lg:flex-row">
         <div className="flex-1 text-center lg:text-left">
           <h1 className="mb-6 font-jakarta text-4xl font-bold lg:text-6xl">

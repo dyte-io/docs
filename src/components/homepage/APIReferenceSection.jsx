@@ -2,12 +2,17 @@ import React from 'react';
 import Link from '@docusaurus/Link';
 import { useColorMode } from '@docusaurus/theme-common';
 import { ArrowTopRightIcon } from '@radix-ui/react-icons';
+import Head from '@docusaurus/Head';
 
 export default function APIReferenceSection() {
   const { colorMode } = useColorMode();
 
   return (
-    <section className="px-6 mb-20">
+    <section className="mb-20 px-6">
+      <Head>
+        <link rel="prefetch" href="/static/landing-page/api-ref-light.png" />
+        <link rel="prefetch" href="/static/landing-page/api-ref-dark.png" />
+      </Head>
       <div className="relative mx-auto flex w-full max-w-7xl flex-col items-center gap-10 rounded-2xl bg-gradient-to-r from-black to-zinc-800 px-6 py-20 text-center text-white dark:from-zinc-100 dark:to-white dark:text-black lg:flex-row lg:p-20 lg:py-32 lg:text-left">
         <Link
           href="/api"
