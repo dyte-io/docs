@@ -58,15 +58,13 @@ export default function SDKsSection() {
   // }, []);
 
   return (
-    <section className="py-20 px-4">
+    <section className="py-20 px-4" id="start-building">
       <Head>
         <link rel="prefetch" href="/static/landing-page/plugin-sdk-light.png" />
         <link rel="prefetch" href="/static/landing-page/plugin-sdk-dark.png" />
       </Head>
       <div className="mx-auto max-w-7xl">
-        <div className="mb-4 dyte-badge">
-          SDKs
-        </div>
+        <div className="dyte-badge mb-4">SDKs</div>
         <h2 className="mb-20 font-jakarta text-3xl">
           We support your tech stack!
         </h2>
@@ -84,7 +82,7 @@ export default function SDKsSection() {
             </p>
             <Link className="text-sm">Learn More &rarr;</Link>
           </div>
-          <div className="flex-1 p-6 px-8 bg-secondary-800 rounded-l-3xl">
+          <div className="flex-1 rounded-l-3xl bg-secondary-800 p-6 px-8">
             <h4>UI Kit</h4>
             <p className="text-sm leading-relaxed text-text-400">
               Integrate video and voice calls to your app or website in minutes
@@ -153,7 +151,7 @@ export default function SDKsSection() {
               Learn More &rarr;
             </Link>
           </div>
-          <div className="flex-1 flex flex-col p-6 px-8 bg-secondary-800 rounded-l-3xl">
+          <div className="flex flex-1 flex-col rounded-l-3xl bg-secondary-800 p-6 px-8">
             <h4>UI Kit</h4>
             <p className="text-sm leading-relaxed text-text-400">
               Integrate video and voice calls to your app or website in minutes
@@ -188,7 +186,7 @@ export default function SDKsSection() {
               </div>
             </div>
           </div>
-          <div className="flex-1 bg-secondary-800 rounded-r-3xl p-6 px-8">
+          <div className="flex-1 rounded-r-3xl bg-secondary-800 p-6 px-8">
             <h4>Core SDK</h4>
             <p className="text-sm leading-relaxed text-text-400">
               Build high-quality custom video and voice calls with real-time
