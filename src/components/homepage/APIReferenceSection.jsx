@@ -8,7 +8,7 @@ export default function APIReferenceSection() {
   const { colorMode } = useColorMode();
 
   return (
-    <section className="mb-20 px-6">
+    <section className="mb-20 px-6 relative">
       <Head>
         <link rel="prefetch" href="/static/landing-page/api-ref-light.png" />
         <link rel="prefetch" href="/static/landing-page/api-ref-dark.png" />
@@ -28,13 +28,13 @@ export default function APIReferenceSection() {
             developer-friendly APIs and integrate video and voice communication
             into your web, mobile, or desktop applications programmatically.
           </p>
-          <Link href="#" className="text-primary-100 dark:text-primary">
+          <Link href="/api" className="text-primary-100 dark:text-primary">
             Get started with Dyte APIs &rarr;
           </Link>
           <ul className="mt-10 flex list-none flex-col gap-4 text-left lg:pl-0">
             <li className="flex flex-col gap-2">
               <Link
-                href=""
+                href="/api/#/operations/createMeeting"
                 className="group font-jakarta font-semibold text-current"
               >
                 Create a meeting
@@ -48,7 +48,7 @@ export default function APIReferenceSection() {
             </li>
             <li className="flex flex-col gap-2">
               <Link
-                href=""
+                href="/api/#/operations/addPreset"
                 className="group font-jakarta font-semibold text-current"
               >
                 Add a preset
@@ -62,7 +62,7 @@ export default function APIReferenceSection() {
             </li>
             <li className="flex flex-col gap-2">
               <Link
-                href=""
+                href="/api/#/operations/deleteParticipant"
                 className="group font-jakarta font-semibold text-current"
               >
                 Delete a participant

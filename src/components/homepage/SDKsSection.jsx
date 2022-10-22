@@ -64,7 +64,7 @@ export default function SDKsSection() {
         <link rel="prefetch" href="/static/landing-page/plugin-sdk-dark.png" />
       </Head>
       <div className="mx-auto max-w-7xl">
-        <div className="mb-4 inline-block rounded-sm bg-zinc-200 p-2 text-text-400 dark:bg-zinc-800">
+        <div className="mb-4 dyte-badge">
           SDKs
         </div>
         <h2 className="mb-20 font-jakarta text-3xl">
@@ -232,7 +232,7 @@ export default function SDKsSection() {
               section covers everything you need to know for creating live video
               and voice solutions for web applications.
             </p>
-            <Link className="text-sm" href="#">
+            <Link className="text-sm" href="/plugin-sdk">
               Learn More &rarr;
             </Link>
           </div>
