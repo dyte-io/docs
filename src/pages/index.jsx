@@ -21,7 +21,7 @@ export default function Homepage() {
 
       <section className="mb-16 px-4">
         <div className="mx-auto max-w-7xl rounded-3xl bg-white p-4 text-black dark:bg-black dark:text-white lg:p-10">
-          <h2 className="mb-12 text-center">How can we help you today?</h2>
+          <h2 className="mb-12 text-center lg:text-3xl">How can we help you today?</h2>
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
             <div className="rounded-lg bg-zinc-100 p-6 dark:bg-zinc-900">
               <img src="/static/landing-page/calendar.svg" alt="Book a demo" />

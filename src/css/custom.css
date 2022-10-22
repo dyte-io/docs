@@ -71,8 +71,13 @@
 @layer components {
   .noise-bg {
     background-image: url('/static/landing-page/grid-light.svg'),
-      url('/static/landing-page/noise-light.png');
-    background-size: 48px 48px, auto;
+      url('/static/landing-page/noise-light.png'),
+      linear-gradient(
+        to bottom,
+        transparent,
+        rgb(var(--docs-color-secondary-700))
+      );
+    background-size: 48px 48px, 100% 100%, 100%;
   }
 
   html[data-theme='dark'] .noise-bg {

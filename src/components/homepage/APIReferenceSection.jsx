@@ -17,7 +17,7 @@ export default function APIReferenceSection() {
         <Link
           href="/api"
           target="_blank"
-          className="absolute top-4 right-4 flex h-16 w-16 items-center justify-center rounded-full bg-zinc-600/40 dark:bg-transparent"
+          className="absolute top-8 right-8 flex h-16 w-16 items-center justify-center rounded-full bg-zinc-600/40 dark:bg-transparent"
         >
           <ArrowTopRightIcon className="h-6 w-6 text-zinc-400 dark:text-black" />
         </Link>
@@ -33,24 +33,42 @@ export default function APIReferenceSection() {
           </Link>
           <ul className="mt-10 flex list-none flex-col gap-4 text-left lg:pl-0">
             <li className="flex flex-col gap-2">
-              <Link href="" className="font-jakarta font-semibold text-current">
+              <Link
+                href=""
+                className="group font-jakarta font-semibold text-current"
+              >
                 Create a meeting
+                <span className="ml-2 opacity-0 transition group-hover:translate-x-2 group-hover:opacity-100">
+                  &rarr;
+                </span>
               </Link>
               <div className="text-zinc-400">
                 Create a meeting for your organization
               </div>
             </li>
             <li className="flex flex-col gap-2">
-              <Link href="" className="font-jakarta font-semibold text-current">
+              <Link
+                href=""
+                className="group font-jakarta font-semibold text-current"
+              >
                 Add a preset
+                <span className="ml-2 opacity-0 transition group-hover:translate-x-2 group-hover:opacity-100">
+                  &rarr;
+                </span>
               </Link>
               <div className="text-zinc-400">
                 Add a preset for the given organization ID
               </div>
             </li>
             <li className="flex flex-col gap-2">
-              <Link href="" className="font-jakarta font-semibold text-current">
+              <Link
+                href=""
+                className="group font-jakarta font-semibold text-current"
+              >
                 Delete a participant
+                <span className="ml-2 opacity-0 transition group-hover:translate-x-2 group-hover:opacity-100">
+                  &rarr;
+                </span>
               </Link>
               <div className="text-zinc-400">
                 Delete a particpant from the meeting

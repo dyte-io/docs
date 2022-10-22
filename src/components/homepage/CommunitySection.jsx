@@ -18,13 +18,8 @@ const githubUsernames = [
   'CallMeTarush',
   'ishita1805',
   'madhugb',
-  'mayankofficial',
   'mayur-tendulkar',
   'milapsingh',
-  'ramyak-mehra',
-  'rohitkhirid',
-  'sagarrakshe',
-  'SaurusXI',
 ];
 
 export default function CommunitySection() {

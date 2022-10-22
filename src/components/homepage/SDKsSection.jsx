@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { useColorMode } from '@docusaurus/theme-common';
 import {
   AngularIcon,
-  ElectronIcon,
+  // ElectronIcon,
   FlutterIcon,
   HTMLIcon,
   JSIcon,
@@ -84,27 +84,7 @@ export default function SDKsSection() {
             </p>
             <Link className="text-sm">Learn More &rarr;</Link>
           </div>
-          <div className="flex-1 rounded-3xl bg-secondary-800 p-6 px-8">
-            <h4>Core SDK</h4>
-            <p className="text-sm leading-relaxed text-text-400">
-              Build high-quality custom video and voice calls with real-time
-              communication using fully customizable and easy to integrate Core
-              SDKs.
-            </p>
-            <ul className="mb-0 flex list-none flex-col gap-2 pl-0">
-              <li>
-                <SDKLink href="web-core" Icon={JSIcon} label="JavaScript" />
-              </li>
-              <li>
-                <SDKLink
-                  href="react-ui-kit/basics/using-hooks"
-                  Icon={ReactIcon}
-                  label="React"
-                />
-              </li>
-            </ul>
-          </div>
-          <div className="flex-1 p-6 px-8">
+          <div className="flex-1 p-6 px-8 bg-secondary-800 rounded-l-3xl">
             <h4>UI Kit</h4>
             <p className="text-sm leading-relaxed text-text-400">
               Integrate video and voice calls to your app or website in minutes
@@ -135,6 +115,26 @@ export default function SDKsSection() {
               </ul>
             </div>
           </div>
+          <div className="flex-1 rounded-r-3xl bg-secondary-800 p-6 px-8">
+            <h4>Core SDK</h4>
+            <p className="text-sm leading-relaxed text-text-400">
+              Build high-quality custom video and voice calls with real-time
+              communication using fully customizable and easy to integrate Core
+              SDKs.
+            </p>
+            <ul className="mb-0 flex list-none flex-col gap-2 pl-0">
+              <li>
+                <SDKLink href="web-core" Icon={JSIcon} label="JavaScript" />
+              </li>
+              <li>
+                <SDKLink
+                  href="react-ui-kit/basics/using-hooks"
+                  Icon={ReactIcon}
+                  label="React"
+                />
+              </li>
+            </ul>
+          </div>
         </div>
 
         <div
@@ -153,7 +153,42 @@ export default function SDKsSection() {
               Learn More &rarr;
             </Link>
           </div>
-          <div className="flex-1 rounded-3xl bg-secondary-800 p-6 px-8">
+          <div className="flex-1 flex flex-col p-6 px-8 bg-secondary-800 rounded-l-3xl">
+            <h4>UI Kit</h4>
+            <p className="text-sm leading-relaxed text-text-400">
+              Integrate video and voice calls to your app or website in minutes
+              using Dyte&apos;s prebuilt design library of UI components.
+            </p>
+            <div className="flex flex-1 flex-col justify-end">
+              <div className="rounded-2xl bg-secondary-700 p-4 dark:bg-secondary-800">
+                <h5 className="text-center text-xs text-text-400">
+                  COMING SOON
+                </h5>
+                <ul className="mb-0 flex list-none flex-col gap-2 pl-0">
+                  <li>
+                    <SDKLink
+                      href="#"
+                      Icon={ReactIcon}
+                      label="React Native"
+                      disabled
+                    />
+                  </li>
+                  <li>
+                    <SDKLink
+                      href="#"
+                      Icon={KotlinIcon}
+                      label="Android"
+                      disabled
+                    />
+                  </li>
+                  <li>
+                    <SDKLink href="#" Icon={SwiftIcon} label="iOS" disabled />
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div className="flex-1 bg-secondary-800 rounded-r-3xl p-6 px-8">
             <h4>Core SDK</h4>
             <p className="text-sm leading-relaxed text-text-400">
               Build high-quality custom video and voice calls with real-time
@@ -184,41 +219,6 @@ export default function SDKsSection() {
               </ul>
             </div>
           </div>
-          <div className="flex-1 p-6 px-8">
-            <h4>UI Kit</h4>
-            <p className="text-sm leading-relaxed text-text-400">
-              Integrate video and voice calls to your app or website in minutes
-              using Dyte&apos;s prebuilt design library of UI components.
-            </p>
-            <div>
-              <div className="rounded-2xl bg-secondary-700 p-4 dark:bg-secondary-800">
-                <h5 className="text-center text-xs text-text-400">
-                  COMING SOON
-                </h5>
-                <ul className="mb-0 flex list-none flex-col gap-2 pl-0">
-                  <li>
-                    <SDKLink
-                      href="#"
-                      Icon={ReactIcon}
-                      label="React Native"
-                      disabled
-                    />
-                  </li>
-                  <li>
-                    <SDKLink
-                      href="#"
-                      Icon={KotlinIcon}
-                      label="Android"
-                      disabled
-                    />
-                  </li>
-                  <li>
-                    <SDKLink href="#" Icon={SwiftIcon} label="iOS" disabled />
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
         </div>
 
         <div
@@ -244,7 +244,7 @@ export default function SDKsSection() {
           </div>
         </div>
 
-        <div
+        {/* <div
           className="sdk-section mb-16 flex flex-col rounded-3xl bg-secondary-900 lg:flex-row"
           data-section="desktop"
         >
@@ -297,7 +297,7 @@ export default function SDKsSection() {
               </ul>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
