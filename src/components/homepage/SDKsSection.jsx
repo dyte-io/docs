@@ -14,6 +14,7 @@ import {
   VueIcon,
 } from '../../icons';
 import Head from '@docusaurus/Head';
+import { useState } from 'react';
 
 function SDKLink({ href, Icon, label, disabled = false }) {
   // yes, this is a weird way to do it :)
@@ -35,27 +36,36 @@ function SDKLink({ href, Icon, label, disabled = false }) {
   );
 }
 
+const SECTIONS = ['web', 'mobile', 'plugin'];
+
 export default function SDKsSection() {
   const { colorMode } = useColorMode();
+  const [visibleSection, setVisibleSection] = useState('Web');
 
-  // useEffect(() => {
-  //   const observer = new IntersectionObserver((entries) => {
-  //     for (const entry of entries) {
-  //       if (entry.isIntersecting) {
-  //         entry.target.classList.add('intersected');
-  //       }
-  //     }
-  //   });
+  React.useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        const section = entry.target.getAttribute('data-section');
+        if (entry.isIntersecting) {
+          entry.target.classList.add('intersected');
+          setVisibleSection(section);
+        } else {
+          if (section !== 'web') {
+            setVisibleSection(SECTIONS[SECTIONS.indexOf(section) - 1]);
+          }
+        }
+      }
+    });
 
-  //   const elements = document.querySelectorAll('.sdk-section');
-  //   for (const el of elements) {
-  //     observer.observe(el);
-  //   }
+    const elements = document.querySelectorAll('.sdk-section');
+    for (const el of elements) {
+      observer.observe(el);
+    }
 
-  //   return () => {
-  //     observer.disconnect();
-  //   };
-  // }, []);
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <section className="py-20 px-4" id="start-building">
@@ -65,9 +75,43 @@ export default function SDKsSection() {
       </Head>
       <div className="mx-auto max-w-7xl">
         <div className="dyte-badge mb-4">SDKs</div>
-        <h2 className="mb-20 font-jakarta text-3xl">
-          We support your tech stack!
-        </h2>
+
+        <div className="sticky top-14 mb-20 flex flex-col items-center gap-12 bg-secondary-1000 lg:flex-row lg:justify-between">
+          <h2 className="my-0 font-jakarta text-3xl">
+            We support your tech stack!
+          </h2>
+          <div className="mx-auto flex h-20 w-full flex-1 items-center justify-center self-start lg:w-auto lg:justify-end">
+            <div className="flex max-w-sm flex-1 items-center rounded-full border border-solid border-text-400">
+              <div
+                className={clsx(
+                  'flex-1 py-1 text-center',
+                  visibleSection === 'web' &&
+                    'rounded-full border-2 border-solid'
+                )}
+              >
+                Web
+              </div>
+              <div
+                className={clsx(
+                  'flex-1 py-1 text-center',
+                  visibleSection === 'mobile' &&
+                    'rounded-full border-2 border-solid'
+                )}
+              >
+                Mobile
+              </div>
+              <div
+                className={clsx(
+                  'flex-1 py-1 text-center',
+                  visibleSection === 'plugin' &&
+                    'rounded-full border-2 border-solid'
+                )}
+              >
+                Plugin
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div
           className="sdk-section mb-16 flex flex-col rounded-3xl bg-secondary-900 lg:flex-row"
@@ -296,6 +340,13 @@ export default function SDKsSection() {
             </div>
           </div>
         </div> */}
+
+        <div className="text-center">
+          <p>
+            Don&apos;t see your tech stack here?{' '}
+            <Link href="#">Contact Us</Link>
+          </p>
+        </div>
       </div>
     </section>
   );

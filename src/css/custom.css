@@ -360,8 +360,13 @@ nav.menu {
 .dev-portal-link {
   background-color: theme('colors.primary.200');
   border-radius: 4px;
-  margin-right: 12px;
   transition-property: all;
+  padding: 0.25rem 0.75rem !important;
+  margin: 0 0.5rem;
+}
+
+.dev-portal-link:last-child {
+  margin-right: 0;
 }
 
 .dev-portal-link svg {
@@ -911,4 +916,33 @@ img[src$='#terminal'] {
   .hr-line {
     @apply my-6 h-px w-full bg-zinc-200 dark:bg-zinc-800;
   }
+}
+
+/* Search bar styling */
+
+:root {
+  --docsearch-searchbox-background: #f5f5f7 !important;
+  --docsearch-key-gradient: #dcdcdc !important;
+  --docsearch-muted-color: rgb(47, 47, 47) !important;
+  --docsearch-text-color: rgb(47, 47, 47) !important;
+  --docsearch-key-shadow: none !important;
+}
+
+html[data-theme='dark'] {
+  --docsearch-searchbox-background: #2a2a2a !important;
+  --docsearch-key-gradient: #696969 !important;
+  --docsearch-muted-color: rgb(201, 201, 201) !important;
+  --docsearch-text-color: rgb(201, 201, 201) !important;
+}
+
+.DocSearch-Button {
+  @apply lg:min-w-[264px] lg:!rounded-md;
+}
+
+.DocSearch-Button-Keys {
+  @apply flex items-center justify-center;
+}
+
+.DocSearch-Button-Placeholder {
+  @apply !text-sm;
 }
