@@ -1,0 +1,26 @@
+---
+title: Create a Plugin
+sidebar_position: 2
+---
+
+:::info before you start
+- Ensure Dyte CLI is installed on your machine. Run the following command to verify: `dyte help`. For more information on how to install Dyte CLI, see [Setup Dyte CLI](https://docs.dyte.io/cli).
+
+- Ensure you have an account on the Dyte Developer Portal. [Sign up](https://dev.dyte.io) for an account if you haven't already.
+:::
+ 
+Perform the following steps to create a Plugin.
+
+1.Run the following command to create a Plugin.
+```shell
+cd <your-project-directory> && dyte plugins create
+```
+
+2. Once your plugin has been created, verify whether it appears in the list of plugins for your organization. 
+```shell
+dyte plugins ls
+```
+
+3. Configure permissions and settings
+[//]: # (TODO:(ishita1805) Add more content here)
+Once your plugin is created, you can configure how users with different presets will interact with it via the [Developer Portal](https://dev.dyte.io). You can also configure details of your plugin like it's name, icon, description and much more. Checkout [Configure a Plugin](https://docs.dyte.io/plugin-sdk/config/configuration).
