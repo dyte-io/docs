@@ -14,6 +14,14 @@ The plugin provides certain methods to emit custom events to other peers in the 
 | data | any | Event payload. | - | false |
 | peerIds | string[] | IDs of peers to whom you wish to emit the event. | - | false |
 
+
+Note a few event names are reserved and cannot be used:
+- `opened` - Emitted when a plugin is opened.
+- `closed` - Emitted when a plugin is closed.
+- `dyteStateUpdate` - Emitted when the state of the plugin has changed.
+- `ready` - Emitted when the plugin is ready to exchange data with client SDK.
+- `toggleViewMode` - Emitted when the control is toggled for users with view-only permissions for a plugin.
+
 ```tsx
 plugin.emit('myAwesomeEvent', { key: 'value' });
 ```
