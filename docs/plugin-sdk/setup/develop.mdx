@@ -1,16 +1,61 @@
 ---
 title: Setup Development Environment
-sidebar_position: 2
+sidebar_position: 1
 ---
 
-You must enable the dev tools module in the client SDK to test and develop plugins locally. This adds `Localhost Dev` to the plugins tab's list of plugins. 
+In order to develop your plugin, you need to setup your development environment. You can open your plugin inside a dyte meeting in order to develop it. 
 
-You can run your plugin application on `localhost:5000` and view it by opening the `Localhost Dev` plugin in your meeting.
+For this you would need to have a dyte meeting setup first. Dyte meetings use the client SDKs. 
 
-[//]: # (TODO:ishita1805 - Tabs for all distributions of web-core)
+The code snippet below shows how you can quickly setup a dyte meeting.
+
+You must enable the dev tools module in the client SDK. This adds `Localhost Dev` to the list of plugins. You need to run your plugin application on `localhost:5000` and open the `Localhost Dev` plugin to view your plugin.
+
+
+<Tabs
+  groupId="dyte-packages"
+  defaultValue="react"
+  values={[
+    { label: "HTML", value: "html" },
+    { label: "React", value: "react" },
+    { label: "Angular", value: "angular" },
+  ]}
+>
+<TabItem value="html">
 
 :::info before you start
-Install `@dytesdk/react-web-core@0.10.x` or higher to use dev tools.
+  Install `@dytesdk/web-core@0.10.x` or higher to use dev tools.
+:::
+
+```ts
+<body>
+  <dyte-meeting id="my-meeting"></dyte-meeting>
+
+  <script>
+    const init = async () => {
+      const meeting = await DyteClient.init({
+        authToken: '',
+        roomName: '',
+        defaults: {
+          audio: true,
+          video: true,
+        },
+      });
+
+      document.getElementById('my-meeting').meeting = meeting;
+    };
+
+    init();
+  </script>
+</body>
+```
+
+</TabItem>
+
+<TabItem value="react">
+
+:::info before you start
+  Install `@dytesdk/react-web-core@0.10.x` or higher to use dev tools.
 :::
 
 ```ts
@@ -24,10 +69,6 @@ export default function App() {
     initMeeting({
       roomName: '<room-name>',
       authToken: '<auth-token>',
-      defaults: {
-        audio: false,
-        video: false,
-      },
       modules: {
         devTools: true,
       }
@@ -38,5 +79,45 @@ export default function App() {
       <DyteMeeting mode="fill" meeting={meeting} />
   );
 }
-
 ```
+
+</TabItem>
+
+<TabItem value="angular">
+
+:::info before you start
+  Install `@dytesdk/angular-web-core@0.10.x` or higher to use dev tools.
+:::
+
+Put the dyte component in component.html file
+
+```ts
+<dyte-meeting #myid></dyte-meeting>
+```
+
+Then in the component.ts or component.js file initialize the meeting
+
+```ts
+class AppComponent {
+  title = 'MyProject';
+  @ViewChild('myid') meetingComponent: DyteMeeting;
+  dyteMeeting: DyteClient;
+
+  async ngAfterViewInit() {
+    const meeting = await DyteClient.init({
+      roomName: '<room-name>',
+      authToken: '<auth-token>',
+      modules: {
+        devTools: true,
+      }
+    });
+    meeting.joinRoom();
+    this.dyteMeeting = meeting;
+    if (this.meetingComponent) this.meetingComponent.meeting = meeting;
+  }
+}
+```
+
+</TabItem>
+
+</Tabs>
