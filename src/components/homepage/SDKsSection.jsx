@@ -68,7 +68,7 @@ export default function SDKsSection() {
   }, []);
 
   return (
-    <section className="py-20 px-4" id="start-building">
+    <section className="py-20 px-4 bg-secondary-1000" id="start-building">
       <Head>
         <link rel="prefetch" href="/static/landing-page/plugin-sdk-light.png" />
         <link rel="prefetch" href="/static/landing-page/plugin-sdk-dark.png" />
@@ -76,12 +76,12 @@ export default function SDKsSection() {
       <div className="mx-auto max-w-7xl">
         <div className="dyte-badge mb-4">SDKs</div>
 
-        <div className="sticky top-14 mb-20 flex flex-col items-center gap-12 bg-secondary-1000 lg:flex-row lg:justify-between">
-          <h2 className="my-0 font-jakarta text-3xl">
+        <div className="sticky py-6 top-14 mb-20 flex flex-col items-center gap-6 bg-secondary-1000 lg:flex-row lg:justify-between">
+          <h2 className="my-0 font-jakarta lg:text-3xl">
             We support your tech stack!
           </h2>
           <div className="mx-auto flex h-20 w-full flex-1 items-center justify-center self-start lg:w-auto lg:justify-end">
-            <div className="flex max-w-sm flex-1 items-center rounded-full border border-solid border-text-400">
+            <div className="flex max-w-sm flex-1 items-center rounded-full border border-solid border-text-400 text-sm lg:text-base">
               <div
                 className={clsx(
                   'flex-1 py-1 text-center',
@@ -126,7 +126,7 @@ export default function SDKsSection() {
             </p>
             <Link className="text-sm">Learn More &rarr;</Link>
           </div>
-          <div className="flex-1 rounded-l-3xl bg-secondary-800 p-6 px-8">
+          <div className="flex-1 lg:rounded-l-3xl bg-secondary-800 p-6 px-8">
             <h4>UI Kit</h4>
             <p className="text-sm leading-relaxed text-text-400">
               Integrate video and voice calls to your app or website in minutes
@@ -157,7 +157,7 @@ export default function SDKsSection() {
               </ul>
             </div>
           </div>
-          <div className="flex-1 rounded-r-3xl bg-secondary-800 p-6 px-8">
+          <div className="flex-1 rounded-b-3xl lg:rounded-bl-none lg:rounded-r-3xl bg-secondary-800 p-6 px-8">
             <h4>Core SDK</h4>
             <p className="text-sm leading-relaxed text-text-400">
               Build high-quality custom video and voice calls with real-time
@@ -195,7 +195,7 @@ export default function SDKsSection() {
               Learn More &rarr;
             </Link>
           </div>
-          <div className="flex flex-1 flex-col rounded-l-3xl bg-secondary-800 p-6 px-8">
+          <div className="flex flex-1 flex-col lg:rounded-l-3xl bg-secondary-800 p-6 px-8">
             <h4>UI Kit</h4>
             <p className="text-sm leading-relaxed text-text-400">
               Integrate video and voice calls to your app or website in minutes
@@ -230,7 +230,7 @@ export default function SDKsSection() {
               </div>
             </div>
           </div>
-          <div className="flex-1 rounded-r-3xl bg-secondary-800 p-6 px-8">
+          <div className="flex-1 rounded-b-3xl lg:rounded-bl-none lg:rounded-r-3xl bg-secondary-800 p-6 px-8">
             <h4>Core SDK</h4>
             <p className="text-sm leading-relaxed text-text-400">
               Build high-quality custom video and voice calls with real-time

@@ -22,6 +22,7 @@ export default function Homepage() {
       <div className="relative">
         <APIReferenceSection />
         <div className="absolute top-1/2 bottom-0 -z-10 w-full bg-secondary-800 dark:bg-secondary-900"></div>
+        <div className="absolute top-0 bottom-1/2 -z-10 w-full bg-secondary-1000"></div>
       </div>
 
       <div className="z-0 bg-secondary-800 dark:bg-secondary-900">

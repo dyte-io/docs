@@ -171,8 +171,8 @@ const config = {
     tailwindPlugin,
     webpackPlugin,
     posthogPlugin,
-    ...SECTIONS,
-    ...UIKitReferencePlugins,
+    // ...SECTIONS,
+    // ...UIKitReferencePlugins,
   ],
 
   themes: ['@docusaurus/theme-live-codeblock'],
