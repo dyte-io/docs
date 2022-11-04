@@ -60,7 +60,7 @@ function Accordion({ title, tags, children, open: defaultOpen }) {
         role="heading"
         tabIndex={0}
         className={clsx(
-          'flex w-full cursor-pointer select-none items-center justify-between border-0 border-solid bg-transparent text-lg font-semibold',
+          'flex w-full cursor-pointer select-none items-center justify-between border-0 border-solid bg-transparent px-0 text-lg font-semibold',
           open && 'text-primary-100'
         )}
         onClick={() => setOpen((open) => !open)}
