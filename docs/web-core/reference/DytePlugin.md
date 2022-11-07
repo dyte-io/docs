@@ -1,6 +1,6 @@
 ---
 sidebar_position: 12
-web_core_version: 0.38.0
+web_core_version: 0.42.0
 ---
 
 <!-- Auto Generated Below -->
@@ -21,8 +21,10 @@ const plugin2 = meeting.plugins.all.get(pluginId);
     * [.sendData(data)](#module_DytePlugin+sendData)
     * [.removePluginView(viewId)](#module_DytePlugin+removePluginView)
     * [.addPluginView(iframe, viewId)](#module_DytePlugin+addPluginView)
-    * [.enable()](#module_DytePlugin+enable)
-    * [.disable()](#module_DytePlugin+disable)
+    * [.activateForSelf()](#module_DytePlugin+activateForSelf)
+    * [.deactivateForSelf()](#module_DytePlugin+deactivateForSelf)
+    * ~~[.enable()](#module_DytePlugin+enable)~~
+    * ~~[.disable()](#module_DytePlugin+disable)~~
     * [.activate()](#module_DytePlugin+activate)
     * [.deactivate()](#module_DytePlugin+deactivate)
 
@@ -71,16 +73,24 @@ and the core application (meeting object) in the main window.
 | iframe |  | Iframe element to display this plugin. |
 | viewId | <code>default</code> | ID of the view corresponding to this iframe. Default is 'default'. |
 
+<a name="module_DytePlugin+activateForSelf"></a>
+
+### plugin.activateForSelf()
+**Kind**: instance method of [<code>DytePlugin</code>](#module_DytePlugin)  
+<a name="module_DytePlugin+deactivateForSelf"></a>
+
+### plugin.deactivateForSelf()
+**Kind**: instance method of [<code>DytePlugin</code>](#module_DytePlugin)  
 <a name="module_DytePlugin+enable"></a>
 
-### plugin.enable()
-Enable this plugin for the current user.
+### ~~plugin.enable()~~
+***Deprecated***
 
 **Kind**: instance method of [<code>DytePlugin</code>](#module_DytePlugin)  
 <a name="module_DytePlugin+disable"></a>
 
-### plugin.disable()
-Disable this plugin for the current user.
+### ~~plugin.disable()~~
+***Deprecated***
 
 **Kind**: instance method of [<code>DytePlugin</code>](#module_DytePlugin)  
 <a name="module_DytePlugin+activate"></a>
