@@ -12,6 +12,58 @@ Global States object which are shared among components
 
 ## Properties
 
+### activeBreakoutRoomGrid
+
+• `Optional` **activeBreakoutRoomGrid**: `boolean`
+
+___
+
+### activeBreakoutRooms
+
+• `Optional` **activeBreakoutRooms**: `boolean`
+
+___
+
+### activeBreakoutRoomsManager
+
+• `Optional` **activeBreakoutRoomsManager**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `active` | `boolean` |
+| `data?` | `any` |
+| `mode?` | ``"create"`` \| ``"edit"`` |
+
+___
+
+### activeBroadcastMessageModal
+
+• `Optional` **activeBroadcastMessageModal**: `boolean`
+
+___
+
+### activeConfirmationModal
+
+• `Optional` **activeConfirmationModal**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `active` | `boolean` |
+| `cancelText?` | `string` |
+| `case?` | `string` |
+| `content?` | `string` |
+| `ctaText?` | `string` |
+| `data?` | `any` |
+| `onClick?` | (...`args`: `any`) => `void` |
+| `onClose?` | (...`args`: `any`) => `void` |
+| `variant?` | `ButtonVariant` |
+
+___
+
 ### activeJoinStage
 
 • `Optional` **activeJoinStage**: `boolean`
@@ -30,9 +82,37 @@ ___
 
 ___
 
+### activeMuteAllConfirmation
+
+• `Optional` **activeMuteAllConfirmation**: `boolean`
+
+___
+
+### activeOverlayModal
+
+• `Optional` **activeOverlayModal**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `active` | `boolean` |
+| `description?` | `string` |
+| `icon?` | `string` |
+| `timeout?` | `number` |
+| `title?` | `string` |
+
+___
+
 ### activePermissionsMessage
 
 • `Optional` **activePermissionsMessage**: `boolean`
+
+___
+
+### activePipMode
+
+• `Optional` **activePipMode**: `boolean`
 
 ___
 
@@ -86,7 +166,7 @@ ___
 
 ### meeting
 
-• `Optional` **meeting**: ``"idle"`` \| ``"setup"`` \| ``"joined"`` \| ``"ended"`` \| ``"waiting"``
+• `Optional` **meeting**: ``"joined"`` \| ``"idle"`` \| ``"setup"`` \| ``"ended"`` \| ``"waiting"``
 
 ___
 

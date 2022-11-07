@@ -1,6 +1,6 @@
 ---
 sidebar_position: 15
-web_core_version: 0.38.0
+web_core_version: 0.42.0
 ---
 
 <!-- Auto Generated Below -->
@@ -15,7 +15,7 @@ to start/stop recordings and check if there's a recording in progress.
     * [.recordingId](#module_DyteRecording+recordingId)
     * [.start()](#module_DyteRecording+start)
     * [.stop()](#module_DyteRecording+stop)
-    * [.refreshActiveRecordingState()](#module_DyteRecording+refreshActiveRecordingState)
+    * [.getRecordingId()](#module_DyteRecording+getRecordingId)
 
 <a name="module_DyteRecording+recordingId"></a>
 
@@ -38,9 +38,9 @@ Stops recording the meeting assuming there
 is a recording in progress.
 
 **Kind**: instance method of [<code>DyteRecording</code>](#module_DyteRecording)  
-<a name="module_DyteRecording+refreshActiveRecordingState"></a>
+<a name="module_DyteRecording+getRecordingId"></a>
 
-### meeting.recording.refreshActiveRecordingState()
+### meeting.recording.getRecordingId()
 Refreshes current recording state.
 
 **Kind**: instance method of [<code>DyteRecording</code>](#module_DyteRecording)  

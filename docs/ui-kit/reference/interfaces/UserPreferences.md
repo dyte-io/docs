@@ -9,12 +9,6 @@ shared within the global States object.
 
 ## Properties
 
-### autoScroll
-
-• `Optional` **autoScroll**: `boolean`
-
-___
-
 ### mirrorVideo
 
 • `Optional` **mirrorVideo**: `boolean`

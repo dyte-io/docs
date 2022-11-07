@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-web_core_version: 0.38.0
+web_core_version: 0.42.0
 ---
 
 <!-- Auto Generated Below -->
@@ -23,7 +23,8 @@ this module.
     * [.screenShareEnabled](#module_DyteSelf+screenShareEnabled)
     * [.mediaPermissions](#module_DyteSelf+mediaPermissions)
     * [.permissions](#module_DyteSelf+permissions)
-    * [.suggestedTheme](#module_DyteSelf+suggestedTheme)
+    * ~~[.suggestedTheme](#module_DyteSelf+suggestedTheme)~~
+    * [.config](#module_DyteSelf+config)
     * [.roomJoined](#module_DyteSelf+roomJoined)
     * [.isPinned](#module_DyteSelf+isPinned)
     * [.addAudioMiddleware()](#module_DyteSelf+addAudioMiddleware)
@@ -119,8 +120,14 @@ Returns the current permission given to the user for the meeting.
 **Kind**: instance property of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+suggestedTheme"></a>
 
-### meeting.self.suggestedTheme
-Returns suggested theme for the meeting.
+### ~~meeting.self.suggestedTheme~~
+***Deprecated***
+
+**Kind**: instance property of [<code>DyteSelf</code>](#module_DyteSelf)  
+<a name="module_DyteSelf+config"></a>
+
+### meeting.self.config
+Returns configuration for the meeting.
 
 **Kind**: instance property of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+roomJoined"></a>
