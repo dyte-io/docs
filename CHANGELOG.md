@@ -1,3 +1,17 @@
+# [1.28.0](https://github.com/dyte-in/docs/compare/v1.27.0...v1.28.0) (2022-11-07)
+
+
+### Bug Fixes
+
+* api heading styling ([8486c00](https://github.com/dyte-in/docs/commit/8486c009c9b0e3c264165e1c3108ce9bca80becc))
+* **deviceUpdate:** event name change ([215f265](https://github.com/dyte-in/docs/commit/215f26572e675d0d8aac5d8ee97aace24654b540))
+* **livestream:** grammatical mistake ([d342fbb](https://github.com/dyte-in/docs/commit/d342fbb95dd518ded6f6279a1d679cfc48d19c3b))
+
+
+### Features
+
+* docs updated for android-core ([34be36f](https://github.com/dyte-in/docs/commit/34be36f012ee21c74f8c358fbd28aa790bf6dc7a))
+
 # [1.27.0](https://github.com/dyte-in/docs/compare/v1.26.1...v1.27.0) (2022-10-18)
 
 
