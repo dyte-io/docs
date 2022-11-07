@@ -1,6 +1,6 @@
 ---
 sidebar_position: 6
-web_core_version: 0.38.0
+web_core_version: 0.42.0
 ---
 
 <!-- Auto Generated Below -->
@@ -21,17 +21,24 @@ The DytePermissionsPreset class represents the meeting permissions for the curre
     * [.kickParticipant](#module_DytePermissionsPreset+kickParticipant)
     * [.pinParticipant](#module_DytePermissionsPreset+pinParticipant)
     * [.canRecord](#module_DytePermissionsPreset+canRecord)
-    * [.waitingRoomType](#module_DytePermissionsPreset+waitingRoomType)
+    * ~~[.waitingRoomType](#module_DytePermissionsPreset+waitingRoomType)~~
+    * [.waitingRoomBehaviour](#module_DytePermissionsPreset+waitingRoomBehaviour)
     * [.plugins](#module_DytePermissionsPreset+plugins)
     * [.polls](#module_DytePermissionsPreset+polls)
-    * [.produceVideo](#module_DytePermissionsPreset+produceVideo)
-    * [.produceScreenshare](#module_DytePermissionsPreset+produceScreenshare)
-    * [.produceAudio](#module_DytePermissionsPreset+produceAudio)
+    * ~~[.produceVideo](#module_DytePermissionsPreset+produceVideo)~~
+    * ~~[.requestProduce](#module_DytePermissionsPreset+requestProduce)~~
+    * [.canProduceVideo](#module_DytePermissionsPreset+canProduceVideo)
+    * ~~[.produceScreenshare](#module_DytePermissionsPreset+produceScreenshare)~~
+    * [.canProduceScreenshare](#module_DytePermissionsPreset+canProduceScreenshare)
+    * ~~[.produceAudio](#module_DytePermissionsPreset+produceAudio)~~
+    * [.canProduceAudio](#module_DytePermissionsPreset+canProduceAudio)
     * [.chatPublic](#module_DytePermissionsPreset+chatPublic)
     * [.chatPrivate](#module_DytePermissionsPreset+chatPrivate)
     * [.hiddenParticipant](#module_DytePermissionsPreset+hiddenParticipant)
     * [.showParticipantList](#module_DytePermissionsPreset+showParticipantList)
     * [.canChangeParticipantRole](#module_DytePermissionsPreset+canChangeParticipantRole)
+    * ~~[.canChangeTheme](#module_DytePermissionsPreset+canChangeTheme)~~
+    * ~~[.canPresent](#module_DytePermissionsPreset+canPresent)~~
 
 <a name="module_DytePermissionsPreset+acceptWaitingRequests"></a>
 
@@ -108,7 +115,13 @@ If `true`, participant can record the meeting.
 **Kind**: instance property of [<code>DytePermissionsPreset</code>](#module_DytePermissionsPreset)  
 <a name="module_DytePermissionsPreset+waitingRoomType"></a>
 
-### meeting.self.permissions.waitingRoomType
+### ~~meeting.self.permissions.waitingRoomType~~
+***Deprecated***
+
+**Kind**: instance property of [<code>DytePermissionsPreset</code>](#module_DytePermissionsPreset)  
+<a name="module_DytePermissionsPreset+waitingRoomBehaviour"></a>
+
+### meeting.self.permissions.waitingRoomBehaviour
 The `waitingRoomType` returns string value.
 type of waiting room behavior
 possible values are `SKIP`, `ON_PRIVILEGED_USER_ENTRY`, `SKIP_ON_ACCEPT`
@@ -130,22 +143,46 @@ There are 3 permissions with boolean values, `canCreate`, `canVote`, `canViewRes
 **Kind**: instance property of [<code>DytePermissionsPreset</code>](#module_DytePermissionsPreset)  
 <a name="module_DytePermissionsPreset+produceVideo"></a>
 
-### meeting.self.permissions.produceVideo
-The `produceVideo` shows permissions for enabling video.
+### ~~meeting.self.permissions.produceVideo~~
+***Deprecated***
+
+**Kind**: instance property of [<code>DytePermissionsPreset</code>](#module_DytePermissionsPreset)  
+<a name="module_DytePermissionsPreset+requestProduce"></a>
+
+### ~~meeting.self.permissions.requestProduce~~
+***Deprecated***
+
+**Kind**: instance property of [<code>DytePermissionsPreset</code>](#module_DytePermissionsPreset)  
+<a name="module_DytePermissionsPreset+canProduceVideo"></a>
+
+### meeting.self.permissions.canProduceVideo
+The `canProduceVideo` shows permissions for enabling video.
 There possible values are `ALLOWED`, `NOT_ALLOWED`, `CAN_REQUEST`
 
 **Kind**: instance property of [<code>DytePermissionsPreset</code>](#module_DytePermissionsPreset)  
 <a name="module_DytePermissionsPreset+produceScreenshare"></a>
 
-### meeting.self.permissions.produceScreenshare
-The `produceVideo` shows permissions for sharing screen.
+### ~~meeting.self.permissions.produceScreenshare~~
+***Deprecated***
+
+**Kind**: instance property of [<code>DytePermissionsPreset</code>](#module_DytePermissionsPreset)  
+<a name="module_DytePermissionsPreset+canProduceScreenshare"></a>
+
+### meeting.self.permissions.canProduceScreenshare
+The `canProduceScreenshare` shows permissions for sharing screen.
 There possible values are `ALLOWED`, `NOT_ALLOWED`, `CAN_REQUEST`
 
 **Kind**: instance property of [<code>DytePermissionsPreset</code>](#module_DytePermissionsPreset)  
 <a name="module_DytePermissionsPreset+produceAudio"></a>
 
-### meeting.self.permissions.produceAudio
-The `produceVideo` shows permissions for enabling audio.
+### ~~meeting.self.permissions.produceAudio~~
+***Deprecated***
+
+**Kind**: instance property of [<code>DytePermissionsPreset</code>](#module_DytePermissionsPreset)  
+<a name="module_DytePermissionsPreset+canProduceAudio"></a>
+
+### meeting.self.permissions.canProduceAudio
+The `canProduceAudio` shows permissions for enabling audio.
 There possible values are `ALLOWED`, `NOT_ALLOWED`, `CAN_REQUEST`
 
 **Kind**: instance property of [<code>DytePermissionsPreset</code>](#module_DytePermissionsPreset)  
@@ -189,5 +226,17 @@ If `true`, participant list can be shown to the participant.
 ### meeting.self.permissions.canChangeParticipantRole
 The `canChangeParticipantRole` returns boolean value.
 If `true`, allow changing the participants' role.
+
+**Kind**: instance property of [<code>DytePermissionsPreset</code>](#module_DytePermissionsPreset)  
+<a name="module_DytePermissionsPreset+canChangeTheme"></a>
+
+### ~~meeting.self.permissions.canChangeTheme~~
+***Deprecated***
+
+**Kind**: instance property of [<code>DytePermissionsPreset</code>](#module_DytePermissionsPreset)  
+<a name="module_DytePermissionsPreset+canPresent"></a>
+
+### ~~meeting.self.permissions.canPresent~~
+***Deprecated***
 
 **Kind**: instance property of [<code>DytePermissionsPreset</code>](#module_DytePermissionsPreset)  

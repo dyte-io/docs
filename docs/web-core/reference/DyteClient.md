@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-web_core_version: 0.38.0
+web_core_version: 0.42.0
 ---
 
 <!-- Auto Generated Below -->
@@ -23,6 +23,7 @@ named `meeting`.
         * [.polls](#module_DyteClient+polls)
         * [.remote](#module_DyteClient+remote)
         * [.connectedMeetings](#module_DyteClient+connectedMeetings)
+        * [.__internals__](#module_DyteClient+__internals__)
         * [.joinRoom()](#module_DyteClient+joinRoom)
         * [.leaveRoom()](#module_DyteClient+leaveRoom)
     * _static_
@@ -84,6 +85,15 @@ It exposes methods to request, accept and end the remote control.
 ### meeting.connectedMeetings
 The connectedMeetings object stores the connected meetings states.
 It exposes methods to create/read/update/delete methods for connected meetings.
+
+**Kind**: instance property of [<code>DyteClient</code>](#module_DyteClient)  
+<a name="module_DyteClient+__internals__"></a>
+
+### meeting.\_\_internals\_\_
+The __internals__ object exposes the internal tools & utilities such as features and logger
+so that client can utilise the same to build their own feature based UI.
+DyteLogger (__internals__.logger) can be used to send logs to Dyte's servers
+ to inform Dyte of issues, if any, proactively.
 
 **Kind**: instance property of [<code>DyteClient</code>](#module_DyteClient)  
 <a name="module_DyteClient+joinRoom"></a>
