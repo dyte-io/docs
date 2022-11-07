@@ -7,8 +7,7 @@ const UIKitReferencePlugins = require('./plugins/ui-kit-reference-plugin.cjs');
 const { webpackPlugin } = require('./plugins/webpack-plugin.cjs');
 const posthogPlugin = require('./plugins/posthog-plugin.cjs');
 
-/** @type {import('@docusaurus/preset-classic').Options} */
-const defaultSettings = {
+/** @type {import('@docusaurus/preset-classic').Options} */ defaultSettings = {
   remarkPlugins: [
     [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
   ],
@@ -43,12 +42,13 @@ function defineSection(section, version = {}, options = {}) {
 
 const latestVersions = {
   'ui-kit': '1.x.x',
-  'web-core': '0.27.x',
+  'web-core': '0.38.x',
   'react-native': '0.23.x',
   android: '0.14.x',
   ios: '1.33.x',
   flutter: '0.7.x',
-  'android-core': '1.0.0'
+  'rn-core': '1.x.x',
+  'android-core': '1.x.x'
 };
 
 const SECTIONS = [
@@ -84,6 +84,10 @@ const SECTIONS = [
 
 
   // [mobile]
+  defineSection('rn-core', {
+    label: latestVersions['rn-core'],
+  }),
+
   defineSection('react-native', {
     label: latestVersions['react-native'],
   }),
@@ -146,6 +150,9 @@ const config = {
             require.resolve('./src/css/custom.css'),
             require.resolve('./src/css/api-reference.css'),
           ],
+        },
+        googleAnalytics: {
+          trackingID: 'UA-173908240-1',
         },
       }),
     ],

@@ -1,3 +1,111 @@
+# [1.28.0](https://github.com/dyte-in/docs/compare/v1.27.0...v1.28.0) (2022-11-07)
+
+
+### Bug Fixes
+
+* api heading styling ([8486c00](https://github.com/dyte-in/docs/commit/8486c009c9b0e3c264165e1c3108ce9bca80becc))
+* **deviceUpdate:** event name change ([215f265](https://github.com/dyte-in/docs/commit/215f26572e675d0d8aac5d8ee97aace24654b540))
+* **livestream:** grammatical mistake ([d342fbb](https://github.com/dyte-in/docs/commit/d342fbb95dd518ded6f6279a1d679cfc48d19c3b))
+
+
+### Features
+
+* docs updated for android-core ([34be36f](https://github.com/dyte-in/docs/commit/34be36f012ee21c74f8c358fbd28aa790bf6dc7a))
+
+# [1.27.0](https://github.com/dyte-in/docs/compare/v1.26.1...v1.27.0) (2022-10-18)
+
+
+### Features
+
+* **livestream:** adding api integration guide ([61d4f29](https://github.com/dyte-in/docs/commit/61d4f2991537861517f13a868fb9c37166e78e77))
+
+## [1.26.1](https://github.com/dyte-in/docs/compare/v1.26.0...v1.26.1) (2022-10-14)
+
+
+### Bug Fixes
+
+* move redirects to static folder ([4b103c2](https://github.com/dyte-in/docs/commit/4b103c213b2a82e9da12e53ce92d41b84d979e32))
+* seo fixes ([0bfab36](https://github.com/dyte-in/docs/commit/0bfab3655164f98bc9dc585ad7dd011e7be1d42f))
+
+# [1.26.0](https://github.com/dyte-in/docs/compare/v1.25.0...v1.26.0) (2022-10-10)
+
+
+### Features
+
+* added android ui kit docs ([f6cdda9](https://github.com/dyte-in/docs/commit/f6cdda94ea2df3cd971548a66a49b7804ceb4c01))
+* added android ui kit docs ([9329718](https://github.com/dyte-in/docs/commit/9329718e70e5f193c64855b036090fbe8185524e))
+
+# [1.25.0](https://github.com/dyte-in/docs/compare/v1.24.1...v1.25.0) (2022-10-03)
+
+
+### Bug Fixes
+
+* **v2.yaml:** Added missing ChatMessage schema ([0e2ae01](https://github.com/dyte-in/docs/commit/0e2ae017c718d22e6b0b8720d2d5600bf8839419))
+
+
+### Features
+
+* added proguard docs for android-core ([8b1a98d](https://github.com/dyte-in/docs/commit/8b1a98d516f2797de662df2ae02605145f6bb820))
+* **api:** Added preferred region ([dd70782](https://github.com/dyte-in/docs/commit/dd707828c4d2eed8940f7ea14c553e939db97a52))
+
+## [1.24.1](https://github.com/dyte-in/docs/compare/v1.24.0...v1.24.1) (2022-09-12)
+
+
+### Bug Fixes
+
+* deprecate enable and disable plugin methods ([#70](https://github.com/dyte-in/docs/issues/70)) ([989f657](https://github.com/dyte-in/docs/commit/989f657edd059a70aa7bf5c9b034bd4bac64b50f))
+* revert base url change ([df60257](https://github.com/dyte-in/docs/commit/df60257c9f810580a2d8325ed436985e558d542a))
+* use `/docs` as base url ([b8f8dcc](https://github.com/dyte-in/docs/commit/b8f8dcc5a89161bf71b0fcde1647e3b4593443ef))
+
+# [1.24.0](https://github.com/dyte-in/docs/compare/v1.23.0...v1.24.0) (2022-09-06)
+
+
+### Features
+
+* update web-core references to 0.38.0 ([df28832](https://github.com/dyte-in/docs/commit/df28832bff55e7f631ff6e61fdd3093a4e1932aa))
+
+# [1.23.0](https://github.com/dyte-in/docs/compare/v1.22.0...v1.23.0) (2022-08-16)
+
+
+### Bug Fixes
+
+* separate login and signup buttons ([0b84e69](https://github.com/dyte-in/docs/commit/0b84e69d39877ea58aa0fa02d9b3d082ca838a17))
+* **typo:** typo ([b76d429](https://github.com/dyte-in/docs/commit/b76d42957308622350e96156118eed5b64a086ce))
+* **ui:** light theme navbar link color ([7dbb626](https://github.com/dyte-in/docs/commit/7dbb62609557103ec0d4071a073321d04d103661))
+* **ui:** styling of new navbar buttons ([1980198](https://github.com/dyte-in/docs/commit/1980198865097e7d3d6feac5e2b991b449b85f7c))
+
+
+### Features
+
+* **recording:** add documentation about azure and more cloud providers for recording cloud transfer ([dffc3b0](https://github.com/dyte-in/docs/commit/dffc3b0d170830f938ee3878a71665635dc81c26))
+* **recording:** add maxSeconds, and fileNamePrefix, and azure to start recording API ([ccc3a27](https://github.com/dyte-in/docs/commit/ccc3a27af2838e8479e64ceff92e78deac418eef))
+
+# [1.22.0](https://github.com/dyte-in/docs/compare/v1.21.0...v1.22.0) (2022-08-06)
+
+
+### Bug Fixes
+
+* android-core version imports ([f55a82f](https://github.com/dyte-in/docs/commit/f55a82fdfabe594aa10a6e05e841531ad5556d70))
+* linting error and issue ([5704439](https://github.com/dyte-in/docs/commit/5704439ad1503972bf5a2e224d515b2f3c5b6ea6))
+* **ui:** design fixes ([ede3f76](https://github.com/dyte-in/docs/commit/ede3f760ff634bb51d8c6416fa57d4461d02b4bf))
+* update api tooltip message ([571b239](https://github.com/dyte-in/docs/commit/571b23953df4a9dc240c5e29e5c9f7357389094b))
+
+
+### Features
+
+* (WIP) android core reference ([f3a65ee](https://github.com/dyte-in/docs/commit/f3a65eebae4fa7d3ea1e5d01ff5b2905a0ac7eb8))
+* added google analytics ([cf05ba4](https://github.com/dyte-in/docs/commit/cf05ba4ea45957389cc8c6561ccc4674dfaa1f14))
+* added mobile core docs ([6ade164](https://github.com/dyte-in/docs/commit/6ade164140a30c9b926c3cbfa4fba275bae2f324))
+* update ui kit package and fix windows script usage ([4b5591a](https://github.com/dyte-in/docs/commit/4b5591a000746e661b45b175a75f66f391a9cc7c))
+* upgrade docusaurus to `2.0.1` ([e5946db](https://github.com/dyte-in/docs/commit/e5946db7930d413a1506639255248fc7559365e9))
+
+# [1.21.0](https://github.com/dyte-in/docs/compare/v1.20.0...v1.21.0) (2022-07-26)
+
+
+### Features
+
+* add react-native-core docs ([61bd0c9](https://github.com/dyte-in/docs/commit/61bd0c9558854b6a47f882d6bcbbb6250a7119a6))
+
 # [1.20.0](https://github.com/dyte-in/docs/compare/v1.19.1...v1.20.0) (2022-07-26)
 
 
