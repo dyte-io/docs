@@ -4,6 +4,10 @@ title: "Reference"
 custom_edit_url: null
 ---
 
+## Classes
+
+- [DyteNotificationsAudio](classes/DyteNotificationsAudio.md)
+
 ## Interfaces
 
 - [Notification](interfaces/Notification.md)
@@ -60,6 +64,12 @@ ___
 
 Screen breakpoints
 
+___
+
+### Sound
+
+Ƭ **Sound**: keyof typeof `SOUNDS`
+
 ## Variables
 
 ### defaultConfig
@@ -74,11 +84,16 @@ ___
 
 • `Const` **defaultIconPack**: `Object`
 
+Default Icon Pack for UI Kit
+
 #### Type declaration
 
 | Name | Type |
 | :------ | :------ |
+| `add` | `string` |
 | `attach` | `string` |
+| `back` | `string` |
+| `breakout_rooms` | `string` |
 | `call_end` | `string` |
 | `chat` | `string` |
 | `checkmark` | `string` |
@@ -88,9 +103,11 @@ ___
 | `chevron_up` | `string` |
 | `clock` | `string` |
 | `copy` | `string` |
+| `delete` | `string` |
 | `disconnected` | `string` |
 | `dismiss` | `string` |
 | `download` | `string` |
+| `edit` | `string` |
 | `emoji_multiple` | `string` |
 | `full_screen_maximize` | `string` |
 | `full_screen_minimize` | `string` |
@@ -105,9 +122,12 @@ ___
 | `people` | `string` |
 | `pin` | `string` |
 | `pin_off` | `string` |
+| `pip_off` | `string` |
+| `pip_on` | `string` |
 | `poll` | `string` |
 | `recording` | `string` |
 | `rocket` | `string` |
+| `save` | `string` |
 | `search` | `string` |
 | `send` | `string` |
 | `settings` | `string` |
@@ -115,17 +135,18 @@ ___
 | `share_screen_person` | `string` |
 | `share_screen_start` | `string` |
 | `share_screen_stop` | `string` |
+| `shuffle` | `string` |
 | `speaker` | `string` |
+| `speaker_off` | `string` |
 | `spinner` | `string` |
 | `spotlight` | `string` |
 | `stop_recording` | `string` |
 | `subtract` | `string` |
-| `vertical_scroll` | `string` |
-| `vertical_scroll_disabled` | `string` |
 | `video_off` | `string` |
 | `video_on` | `string` |
 | `wand` | `string` |
 | `warning` | `string` |
+| `web` | `string` |
 | `wifi` | `string` |
 
 ___
@@ -143,25 +164,37 @@ Default language dictionary
 | `audio` | `string` |
 | `cancel` | `string` |
 | `chat` | `string` |
+| `chat.new` | `string` |
 | `connection` | `string` |
 | `dismiss` | `string` |
 | `end_meeting_for_all` | `string` |
 | `full_screen` | `string` |
 | `full_screen.exit` | `string` |
+| `kick` | `string` |
 | `leave` | `string` |
 | `leave_confirmation` | `string` |
 | `left_meeting` | `string` |
 | `mic_off` | `string` |
 | `mic_on` | `string` |
+| `mute` | `string` |
+| `mute_all` | `string` |
+| `mute_all.allow_unmute` | `string` |
+| `mute_all.description` | `string` |
+| `mute_all.header` | `string` |
 | `page` | `string` |
+| `participant.turn_off_video` | `string` |
 | `participants` | `string` |
 | `perm.sys_denied.message` | `string` |
 | `perm_browser_denied` | `string` |
 | `perm_denied_text` | `string` |
 | `perm_denied_title` | `string` |
 | `perm_sys_denied` | `string` |
+| `pip_off` | `string` |
+| `pip_on` | `string` |
 | `plugins` | `string` |
 | `polls` | `string` |
+| `recording.started` | `string` |
+| `recording.stopped` | `string` |
 | `settings` | `string` |
 | `setup_screen.join_in_as` | `string` |
 | `setup_screen.joining_as` | `string` |
@@ -176,12 +209,14 @@ Default language dictionary
 | `stage.join_confirm` | `string` |
 | `stage.join_summary` | `string` |
 | `stage.join_title` | `string` |
+| `stage.reconnecting` | `string` |
 | `stage.remove_from_stage` | `string` |
 | `stage_request.accept_all` | `string` |
 | `stage_request.accept_request` | `string` |
 | `stage_request.approval_pending` | `string` |
 | `stage_request.denied` | `string` |
 | `stage_request.denied_tip` | `string` |
+| `stage_request.deny_all` | `string` |
 | `stage_request.deny_request` | `string` |
 | `stage_request.header_title` | `string` |
 | `stage_request.leave_stage` | `string` |
@@ -267,7 +302,7 @@ ___
 
 ### sendNotification
 
-▸ **sendNotification**(`notification`): `boolean`
+▸ **sendNotification**(`notification`, `playSound?`): `boolean`
 
 Send notification which will be displayed in the `<dyte-notifications />` component.
 
@@ -276,6 +311,7 @@ Send notification which will be displayed in the `<dyte-notifications />` compon
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `notification` | [`Notification`](interfaces/Notification.md) | Notification object |
+| `playSound?` | ``"joined"`` \| ``"left"`` \| ``"message"`` | Sound type, if sound type is sent plays that sound with the notification. |
 
 #### Returns
 
