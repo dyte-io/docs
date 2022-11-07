@@ -1,16 +1,16 @@
 openapi: 3.0.0
 servers:
   - url: 'https://api.cluster.dyte.in/v2'
-    description: ''
+    description: 'Production server'
     variables: {}
 info:
   version: v2
   title: Dyte v2 Collection
-  description: Next generation APIs
-  termsOfService: ''
-  contact: {}
-  license:
-    name: ''
+  description: Create and manage your Dyte meetings easily using Dyte APIs
+  contact:
+    name: Dyte Developer Support
+    url: 'https://dyte.io'
+    email: support@dyte.io
 paths:
   /livestreams:
     post:
@@ -190,7 +190,9 @@ paths:
                           id: 82e363e9-6ce2-462a-a9e5-37068a729548
                           stream_key: sk_ap-south-1_6z1GZy7HtfQh_9qCdXZVrLV8E2xDxrkPO0uzXSvB2Eg
                           playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.rHYG1VHblte6.m3u8'
-      description: 'Get all livestreams created for an organization. Response includes meetings created for an organization and the meetings which are livestreamed by that organization, in order to only get livestreams not associated with a meeting, use query param of excludeMeetings.'
+        '201':
+          description: Created
+      description: 'Get all livestreams created for an organization. Response includes meetings created for an organization and the meetings which are livestreamed by that organization, in order to only get livestreams not associated with a meeting, use query param of `excludeMeetings`.'
       tags:
         - LiveStreams
   '/meetings/{meetingId}/livestreams':
@@ -407,7 +409,7 @@ paths:
                     success: true
                     data:
                       message: livestream stopped
-      description: Stop an active livestream of a meeting
+      description: Stop an active livestream of a meeting.
       tags:
         - LiveStreams
     parameters:
@@ -475,7 +477,7 @@ paths:
                       id: 7088bba8-f522-49a8-b59b-3cd0e946bbb0
                       stream_key: sk_ap-south-1_AfnVpeYZjidO_fBpWKody7sDUOEfy9Zc6XAZegkR0Va
                       playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.rVKA2KM5Lunt.m3u8'
-      description: Get details about a livestream from it's ID
+      description: Get details about a livestream from its ID.
       tags:
         - LiveStreams
     parameters:
@@ -668,26 +670,6 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/GetSessionDetails'
-  '/meetings/{meetingId}/sessions':
-    get:
-      summary: Get all session of a meeting
-      description: 'Returns all current and past sessions of meeting from meetingId'
-      operationId: GetMeetingSessions
-      tags:
-        - Sessions
-      parameters:
-        - $ref: '#/components/parameters/meetingId'
-        - $ref: '#/components/parameters/pageNo'
-        - $ref: '#/components/parameters/perPage'
-        - $ref: '#/components/parameters/sortOrder'
-        - $ref: '#/components/parameters/search'
-        - $ref: '#/components/parameters/startTime'
-        - $ref: '#/components/parameters/endTime'
-        - $ref: '#/components/parameters/participants'
-        - $ref: '#/components/parameters/status'
-      responses:
-        '200':
-          $ref: '#/components/responses/GetSessions'
   '/sessions/{sessionId}/participants':
     get:
       summary: Get participants list of a session
@@ -718,10 +700,10 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/GetParticipantDetails'
-  "/sessions/{sessionId}/chat":
+  '/sessions/{sessionId}/chat':
     get:
-      summary: Fetches all chat message of a session.
-      description: Sends download link to download all chat messages of a session in CSV format.
+      summary: Fetches all chat messages of a session.
+      description: Returns a URL to download all chat messages of a session in CSV format.
       operationId: GetSessionChat
       tags:
         - Sessions
@@ -730,10 +712,618 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/GetSessionChat'
-        '404':
-          $ref: '#/components/responses/SessionChatNotFound'
+  /analytics/stats:
+    get:
+      summary: Fetches overall stats of an organization.
+      description: Returns overall and daywise stats of an organization in a give time period.
+      operationId: GetOverallStats
+      tags:
+        - Analytics
+      parameters:
+        - $ref: '#/components/parameters/startDate'
+        - $ref: '#/components/parameters/endDate'
+      responses:
+        '200':
+          $ref: '#/components/responses/GetOverallStats'
+  /webhooks:
+    summary: Represents webhooks for organization
+    description: Represents webhooks for organization
+    get:
+      summary: Get all webhooks
+      tags:
+        - Webhooks
+      description: Gets details of all webhooks that have been registered for the organization
+      operationId: getAllWebhooks
+      responses:
+        '200':
+          description: Operation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhooksListSuccessResponse'
+              example: |
+                {
+                  success: true,
+                  data: [
+                    {
+                      id: '901e9adf-ebd9-41f0-9098-28171bc04ddd',
+                      name: 'test',
+                      events: [ 'meeting.started' ],
+                      url: 'https://testURL.com',
+                      created_at: '2021-09-09T10:25:12.330Z',
+                      updated_at: '2021-09-09T10:25:12.330Z'
+                    }
+                  ]
+                }
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              example: |
+                {
+                  message: "Unauthorized"
+                }
+    post:
+      summary: Add a new webhook
+      tags:
+        - Webhooks
+      description: Add a new webhook to organization
+      operationId: addWebhook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+            example: |
+              {
+                name: 'test',
+                events: [ 'meeting.started' ],
+                url: 'https://testURL.com'
+              }
+      responses:
+        '201':
+          description: Webhook registered successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookSuccessResponse'
+              example: |
+                {
+                  success: true,
+                  data: {
+                    id: '901e9adf-ebd9-41f0-9098-28171bc04ddd',
+                    name: 'test',
+                    events: [ 'meeting.started' ],
+                    url: 'https://testURL.com',
+                    created_at: '2021-09-09T10:25:12.330Z',
+                    updated_at: '2021-09-09T10:25:12.330Z'
+                  }
+                }
+        '400':
+          description: Error - malformed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example: |
+                {
+                  success: false,
+                  error: { code: 400, message: 'BAD_REQUEST: "name" is required' }
+                }
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              example: |
+                {
+                  message: "Unauthorized"
+                }
+  '/webhooks/{id}':
+    summary: Represents a single webhook
+    description: Represents a single webhook for an organization by ID
+    get:
+      summary: Get details of a webhook
+      description: Get details of a single webhook by its ID
+      tags:
+        - Webhooks
+      operationId: getWebhook
+      parameters:
+        - name: id
+          in: path
+          description: ID of webhook
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Operation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookSuccessResponse'
+              example: |
+                {
+                  success: true,
+                  data: {
+                    id: '901e9adf-ebd9-41f0-9098-28171bc04ddd',
+                    name: 'test',
+                    events: [ 'meeting.started' ],
+                    url: 'https://testURL.com',
+                    created_at: '2021-09-09T10:25:12.330Z',
+                    updated_at: '2021-09-09T10:25:12.330Z'
+                  }
+                }
+        '400':
+          description: Error - malformed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example: |
+                {
+                  success: false,
+                  error: { code: 400, message: 'BAD_REQUEST: "id" must be a valid GUID' }
+                }
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              example: |
+                {
+                  message: "Unauthorized"
+                }
+    put:
+      summary: Replace a webhook
+      description: Replace all details of a single webhook
+      tags:
+        - Webhooks
+      operationId: replaceWebhook
+      parameters:
+        - name: id
+          in: path
+          description: ID of webhook
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+            example: |
+              {
+                name: 'test',
+                events: [ 'meeting.started' ],
+                url: 'https://testURL.com'
+              }
+      responses:
+        '200':
+          description: Operation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookSuccessResponse'
+              example: |
+                {
+                  success: true,
+                  data: {
+                    id: '901e9adf-ebd9-41f0-9098-28171bc04ddd',
+                    name: 'test',
+                    events: [ 'meeting.started' ],
+                    url: 'https://testURL.com',
+                    created_at: '2021-09-09T10:25:12.330Z',
+                    updated_at: '2021-09-09T10:25:12.376Z'
+                  }
+                }
+        '400':
+          description: Error - malformed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example: |
+                {
+                  success: false,
+                  error: { code: 400, message: 'BAD_REQUEST: "id" must be a valid GUID' }
+                }
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              example: |
+                {
+                  message: "Unauthorized"
+                }
+    patch:
+      summary: Edit a webhook
+      description: Partially edit details of a single webhook
+      tags:
+        - Webhooks
+      operationId: editWebhook
+      parameters:
+        - name: id
+          in: path
+          description: ID of webhook
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchWebhookRequest'
+            example: |
+              {
+                name: 'test2',
+                events: [ 'meeting.ended' ],
+                url: 'https://testURL2.com'
+              }
+      responses:
+        '200':
+          description: Operation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookSuccessResponse'
+              example: |
+                {
+                  success: true,
+                  data: {
+                    id: '901e9adf-ebd9-41f0-9098-28171bc04ddd',
+                    name: 'test2',
+                    events: [ 'meeting.ended' ],
+                    url: 'https://testURL2.com',
+                    created_at: '2021-09-09T10:25:12.330Z',
+                    updated_at: '2021-09-09T10:25:12.367Z'
+                  }
+                }
+        '400':
+          description: Error - malformed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example: |
+                {
+                  success: false,
+                  error: { code: 400, message: 'BAD_REQUEST: "id" must be a valid GUID' }
+                }
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              example: |
+                {
+                  message: "Unauthorized"
+                }
+    delete:
+      summary: Delete a webhook
+      description: Remove a single webhook by ID
+      tags:
+        - Webhooks
+      operationId: deleteWebhook
+      parameters:
+        - name: id
+          in: path
+          description: ID of webhook
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Operation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookSuccessResponse'
+              example: |
+                {
+                  success: true,
+                  data: {
+                    id: '901e9adf-ebd9-41f0-9098-28171bc04ddd',
+                    name: 'test2',
+                    events: [ 'meeting.ended' ],
+                    url: 'https://testURL2.com',
+                    created_at: '2021-09-09T10:25:12.330Z',
+                    updated_at: '2021-09-09T10:25:12.367Z'
+                  }
+                }
+        '400':
+          description: Error - malformed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example: |
+                {
+                  success: false,
+                  error: { code: 400, message: 'BAD_REQUEST: "id" must be a valid GUID' }
+                }
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              example: |
+                {
+                  message: "Unauthorized"
+                }
+  /orgs:
+    get:
+      summary: Gets all the user's organizations.
+      description: Gets all the user's organizations. This endpoint is paginated.
+      tags:
+        - Organizations
+      operationId: getAllOrgs
+      security:
+        - userAuth: []
+      parameters:
+        - in: query
+          name: per_page
+          schema:
+            type: integer
+            minimum: 1
+          description: Number of values to return in a single page. Default value is 25.
+        - in: query
+          name: page_no
+          schema:
+            type: integer
+            minimum: 1
+          description: The page number to return. Default value is 1.
+      responses:
+        '200':
+          description: Operation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationListSuccessResponse'
+        '400':
+          description: Malformed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      summary: Create a new organization
+      description: Create a new organization. The authenticated user becomes the owner of this organization.
+      tags:
+        - Organizations
+      operationId: createOrg
+      security:
+        - userAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationRequest'
+      responses:
+        '201':
+          description: Operation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationSuccessResponse'
+        '400':
+          description: Malformed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Organization with the provided name already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/orgs/{id}':
+    get:
+      summary: Get details of a single organization.
+      description: Fetches details of a single organization by ID. User must be an owner of this organization.
+      tags:
+        - Organizations
+      operationId: getOrg
+      security:
+        - userAuth: []
+      responses:
+        '200':
+          description: Operation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationSuccessResponse'
+        '400':
+          description: Malformed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: User is not authorized to perform this operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    patch:
+      summary: Edit details of an organization.
+      description: Fetches details of a single organization. User must be an owner of this org.
+      tags:
+        - Organizations
+      operationId: editOrg
+      security:
+        - userAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchOrganizationRequest'
+      responses:
+        '200':
+          description: Operation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationSuccessResponse'
+        '400':
+          description: Malformed request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: ID of the organization
 components:
   schemas:
+    Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 0d1f069d-43bb-489a-ad8c-7eb95592ba8e
+        name:
+          type: string
+          example: All events webhook
+        url:
+          type: string
+          format: uri
+          example: 'https://webhook.site/b23a5bbd-c7b0-4ced-a9e2-78ae7889897e'
+        events:
+          type: array
+          items:
+            type: string
+            enum:
+              - meeting.started
+              - meeting.ended
+              - meeting.participantJoined
+              - meeting.participantLeft
+              - meeting.statusUpdate
+          example:
+            - meeting.started
+            - meeting.ended
+            - meeting.participantJoined
+            - meeting.participantLeft
+            - meeting.statusUpdate
+        created_at:
+          type: string
+          format: date-time
+          example: '2022-05-28T07:01:53.075Z'
+        updated_at:
+          type: string
+          format: date-time
+          example: '2022-05-28T07:01:53.075Z'
+    WebhookSuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          $ref: '#/components/schemas/Webhook'
+    WebhooksListSuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Webhook'
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: object
+          properties:
+            code:
+              type: number
+              example: 404
+            message:
+              type: string
+              example: 'Error: resource not found'
+    WebhookRequest:
+      type: object
+      required:
+        - name
+        - url
+        - events
+      properties:
+        name:
+          type: string
+          example: All events webhook
+        url:
+          type: string
+          format: uri
+          example: 'https://webhook.site/#!/b23a5bbd-c7b0-4ced-a9e2-78ae7889897e'
+        events:
+          type: array
+          items:
+            type: string
+            enum:
+              - meeting.started
+              - meeting.ended
+              - meeting.participantJoined
+              - meeting.participantLeft
+              - meeting.statusUpdate
+          example:
+            - meeting.started
+            - meeting.ended
+            - meeting.participantJoined
+            - meeting.participantLeft
+            - meeting.statusUpdate
+    PatchWebhookRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+          format: uri
+          example: 'https://webhook.site/b23a5bbd-c7b0-4ced-a9e2-78ae7889897e'
+        events:
+          type: array
+          items:
+            type: string
+            enum:
+              - meeting.started
+              - meeting.ended
+              - meeting.participantJoined
+              - meeting.participantLeft
+              - meeting.statusUpdate
     ActiveSession:
       type: object
       properties:
@@ -749,6 +1339,7 @@ components:
           enum:
             - meeting
             - livestream
+            - participant
         status:
           type: string
           description: current status of session
@@ -761,9 +1352,6 @@ components:
         max_concurrent_participants:
           type: number
           description: number of maximum participants that were in the session
-        total_participants:
-          type: number
-          description: number of unique participants that were part of this session.
         minutes_consumed:
           type: number
           description: number of minutes consumed since the session started
@@ -797,6 +1385,13 @@ components:
               type: number
             message:
               type: string
+    ChatMessage:
+      type: object
+      properties:
+        chat_download_url:
+          type: string
+        chat_download_url_expiry:
+          type: string
     Participant:
       type: object
       properties:
@@ -1032,13 +1627,170 @@ components:
                       type: number
                     quality:
                       type: number
-    ChatMessage: 
+    OverallStats:
       type: object
       properties:
-        chat_download_url:
+        day_wise:
+          type: array
+          items:
+            type: object
+            properties:
+              date:
+                type: string
+              sessions_count:
+                type: number
+              sessions_minutes_consumed:
+                type: number
+              recordings_minutes_consumed:
+                type: number
+        total_sessions_count:
+          type: number
+        total_sessions_minutes_consumed:
+          type: number
+        total_recordings_minutes_consumed:
+          type: number
+    OrganizationRequest:
+      type: object
+      required:
+        - name
+        - contact
+        - website
+      properties:
+        name:
+          description: Must be a unique organization name
           type: string
-        chat_download_url_expiry:
+          example: Dyte
+        contact:
           type: string
+          example: 778-330-2389
+        website:
+          type: string
+          format: uri
+          example: 'https://www.dyte.io'
+        feature_flags:
+          type: array
+          items:
+            type: string
+        preferred_region:
+          type: string
+          enum:
+            - ap-south-1
+            - ap-southeast-1
+            - us-west-1
+          default: ap-south-1
+          example: us-west-1
+    PatchOrganizationRequest:
+      type: object
+      properties:
+        name:
+          description: Must be a unique organization name
+          type: string
+        contact:
+          type: string
+        website:
+          type: string
+          format: uri
+          example: 'https://www.dyte.io'
+        feature_flags:
+          type: array
+          items:
+            type: string
+        preferred_region:
+          type: string
+          enum:
+            - ap-south-1
+            - ap-southeast-1
+            - us-west-1
+    OrganizationData:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: bbb0e958-93ce-41c7-9745-16e7aa51c568
+        name:
+          description: Must be a unique organization name
+          type: string
+          example: Dyte
+        contact:
+          type: string
+          example: 778-330-2389
+        website:
+          type: string
+          format: uri
+          example: 'https://www.dyte.io'
+        apikey:
+          type: string
+          example: 4deeb3d8e8b5e74d5522
+        preferred_region:
+          type: string
+          example: us-west-1
+        feature_flags:
+          type: array
+          items:
+            type: string
+          example: []
+        created_at:
+          type: string
+          format: date-time
+          example: '2022-05-28T08:18:34.804Z'
+        updated_at:
+          type: string
+          format: date-time
+          example: '2022-05-28T08:18:34.804Z'
+      required:
+        - id
+        - name
+        - contact
+        - website
+        - preferred_region
+        - feature_flags
+        - created_at
+        - updated_at
+        - apikey
+    OrganizationSuccessResponse:
+      type: object
+      required:
+        - success
+        - data
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          allOf:
+            - $ref: '#/components/schemas/OrganizationData'
+    OrganizationListSuccessResponse:
+      type: object
+      required:
+        - success
+        - data
+        - paging
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/OrganizationData'
+        paging:
+          type: object
+          properties:
+            total_count:
+              type: number
+              example: 30
+            start_offset:
+              type: number
+              example: 1
+            end_offset:
+              type: number
+              example: 30
+          required:
+            - total_count
+            - start_offset
+            - end_offset
   parameters:
     Content-Type:
       name: Content-Type
@@ -1136,6 +1888,18 @@ components:
         enum:
           - joinedAt
           - duration
+    startDate:
+      name: start_date
+      in: query
+      schema:
+        type: string
+      example: '2022-09-01'
+    endDate:
+      name: end_date
+      in: query
+      schema:
+        type: string
+      example: '2022-09-22'
   requestBodies:
     KickParticipantsBody:
       description: Request body for kicking participants from active session. Only one of `participant_id` or `custom_participant_id` is required
@@ -1373,17 +2137,24 @@ components:
               success:
                 type: boolean
               data:
-                type: object 
-                $ref: "#/components/schemas/ChatMessage"
-    SessionChatNotFound:
-      description: No chat dump found for this session.
+                type: object
+                $ref: '#/components/schemas/ChatMessage'
+    GetOverallStats:
+      description: Returns overall and daywise stats of an organization
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/GenericErrorResponse'
-          examples:
-            chatDumpNotFound:
-              $ref: '#/components/examples/GetSessionChatNotFoundResponse'
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: object
+                properties:
+                  stats:
+                    $ref: '#/components/schemas/OverallStats'
+          example:
+            $ref: '#'
   examples:
     GetActiveSessionSuccessResponse:
       summary: Success response for fetching active session
@@ -1415,26 +2186,37 @@ components:
         error:
           code: 404
           message: No user found with id 813432c7-3c5a-45e2-9acf-eef7061c7584
-    GetSessionChatNotFoundResponse:
-      summary: Chat Dump not found
+    OverallStatsSuccessResponse:
+      summary: Overall Stats response
       value:
-        success: false
-        error:
-          code: 404
-          message: No chat dump found for this session!
+        success: true
+        data:
+          stats:
+            dayWise:
+              - date: '2022-09-01'
+                sessions_count: 12
+                sessions_minutes_consumed: 756.12
+                recordings_minutes_consumed: 123.45
+              - date: '2022-09-02'
+                sessions_count: 14
+                sessions_minutes_consumed: 567.11
+                recordings_minutes_consumed: 345.4432
+            total_sessions_count: 26
+            total_sessions_minutes_consumed: 1323.23
+            total_recordings_minutes_consumed: 468.8932
   securitySchemes:
     Authorization:
       type: http
       scheme: basic
       description: |-
-        Username is Organization ID
-        Password is API Key
+        Your `username` is your **Organization ID**, and the `password` is **API Key**
 tags:
   - name: LiveStreams
   - name: ActiveSession
   - name: Sessions
+  - name: Analytics
 externalDocs:
-  url: ''
+  url: 'https://docs.dyte.io'
   description: ''
 security:
   - Authorization: []
