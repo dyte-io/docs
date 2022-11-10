@@ -6,15 +6,12 @@ image: /static/ui-kit/1.x.x/components/dyte-spotlight-grid.svg
 
 A grid component that renders two lists of participants: `pinnedParticipants` and `participants`.
 
-You can customize the layout to a `column` view, by default is is `row`.
-
 - Participants from `pinnedParticipants[]` are rendered inside a larger grid.
 - Participants from `participants[]` array are rendered in a smaller grid.
 
 ```jsx live
 <DyteSpotlightGrid
-  layout="row"
-  participants={meeting.participants.active.toArray()}
+  participants={[meeting.self]}
   pinnedParticipants={[meeting.self]}
   style={{ height: '360px', width: '100%' }}
 />
