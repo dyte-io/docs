@@ -1,3 +1,10 @@
+## [1.28.1](https://github.com/dyte-in/docs/compare/v1.28.0...v1.28.1) (2022-11-10)
+
+
+### Bug Fixes
+
+* revert "docs: update ui-kit docs" ([b2c91aa](https://github.com/dyte-in/docs/commit/b2c91aa5643d2f93aef1688a0c37afcb18d10bf9))
+
 # [1.28.0](https://github.com/dyte-in/docs/compare/v1.27.0...v1.28.0) (2022-11-07)
 
 
