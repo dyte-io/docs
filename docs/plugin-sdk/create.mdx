@@ -1,30 +1,35 @@
 ---
 title: Create a Plugin
-sidebar_position: 2
+sidebar_position: 3
 ---
 
-:::info Prerequisites
-- Plugin SDK does not support the old Web SDK. Please use the [new Web SDKs](http://localhost:3000/react-ui-kit).
+:::info prerequisites
+- Ensure that you're using the [new Web SDKs](http://localhost:3000/react-ui-kit), old Web SDKs are not supported.
 
-- Ensure Dyte CLI is installed on your machine. Run the following command to verify: `dyte help`. For more information on how to install Dyte CLI, see [Setup Dyte CLI](https://docs.dyte.io/cli).
+- Ensure that Dyte CLI is installed on your machine. Run the following command to verify: `dyte help`. For more information on how to install Dyte CLI, see [Setup Dyte CLI](https://docs.dyte.io/cli).
 
-- Ensure you have an account on the Dyte Developer Portal. [Sign up](https://dev.dyte.io) for an account if you haven't already.
+- Ensure that you have created an account on the Dyte Developer Portal. [Sign up](https://dev.dyte.io) for an account if you haven't already.
 :::
  
-### Steps to create a Plugin
+## Steps to create a Plugin
 
-1. Run the following command to create a Plugin. Once your plugin is created you should see a config file called `dyte-config.json`. You can use this to [configure your plugin properties](https://docs.dyte.io/plugin-sdk/setup/customize).
+1. Run the following command to create a Plugin. 
 ```shell
 cd <your-project-directory> && dyte plugins create
 ```
+Once your plugin is created you should see a config file called `dyte-config.json`. You can use this JSON file to [configure your plugin properties](https://docs.dyte.io/plugin-sdk/setup/customize).
 
-2. Once your plugin has been created, verify whether it appears in the list of plugins for your organization. 
+2. Verify whether it appears in the list of plugins for your organization. 
 ```shell
 dyte plugins ls
 ```
 
-### Next Step
+## Next Steps
 
-There are several settings that can be configured for your plugin. Read: [Manage your plugin](https://docs.dyte.io/plugin-sdk/setup/manage).
+### Set up your development environment
+You can develop you plugin like any other web-application and view it in realtime as a part of the Dyte ecosystem.
 
-Once your plugin is created, you can alter how different users will interact with it via the [Developer Portal](https://dev.dyte.io). You can also [modify details](https://docs.dyte.io/plugin-sdk/config/configuration) of your plugin like it's name, icon, description and much more. 
+### Customize your plugin
+- change control based on presets (dev portal)
+- change visibility of plugin based on preset (dev portal)
+- update plugin properties like name, description, logo etc using plugin-config.json and dyte CLI
