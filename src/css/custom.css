@@ -800,7 +800,6 @@ details p {
   font-weight: 300;
 }
 
-
 @media screen and (max-width: 1160px) {
   /* Hide icons when header UI breaks */
   .pseudo-icon {
@@ -815,4 +814,13 @@ details p {
   .two-cols .section-content {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
+}
+
+/* Overriding Docusaurus styles */
+.collapsibleContent_node_modules-\@docusaurus-theme-common-lib-components-Details-styles-module {
+  border-top: 1px solid var(--code-border-color) !important;
+}
+
+.details_node_modules-\@docusaurus-theme-common-lib-components-Details-styles-module > summary::before {
+  border-color: transparent transparent transparent var(--docs-color-text-100) !important;
 }
