@@ -299,7 +299,7 @@ const config = {
               },
               {
                 label: 'Contact Us',
-                href: 'mailto:support@dyte.in',
+                href: 'https://dyte.io/contact',
               },
             ],
           },

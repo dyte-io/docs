@@ -165,8 +165,9 @@ const FAQs = [
       <p>
         On Dyte, you can have up to 200 people on the same call with video and
         voice enabled. However, if you have any specific requirements that
-        require more people joining the same call, please contact us. We will
-        support you with your requirements.
+        require more people joining the same call, please{' '}
+        <Link href="https://dyte.io/contact">contact us</Link>. We will support
+        you with your requirements.
       </p>
     ),
     tags: ['General'],
@@ -184,8 +185,8 @@ const FAQs = [
         500. One user with the audio-video enabled and everyone else attending
         the call (aka one host webinar). However, if you have any specific
         requirements that require more people joining the same call, please{' '}
-        <Link href="https://dev.dyte.io/signup">contact us</Link>. We will
-        support you with your requirements.
+        <Link href="https://dyte.io/contact">contact us</Link>. We will support
+        you with your requirements.
       </p>
     ),
     tags: ['General'],
@@ -527,7 +528,10 @@ const FAQs = [
           </tbody>
         </table>
 
-        <p>Please contact us for volume discounts.</p>
+        <p>
+          Please <Link href="https://dyte.io/contact">contact us</Link> for
+          volume discounts.
+        </p>
       </>
     ),
     tags: ['Pricing'],

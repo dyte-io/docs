@@ -44,7 +44,7 @@ export default function Homepage() {
                   Contact us for a demo. We are looking forward to connecting
                   with you.
                 </p>
-                <Link href="#" className="text-primary dark:text-primary-100">
+                <Link href="https://dyte.io/contact" className="text-primary dark:text-primary-100">
                   Schedule a Call &rarr;
                 </Link>
               </div>
@@ -59,7 +59,7 @@ export default function Homepage() {
                   Dyte&apos;s expert support team is excited to help. Connect
                   for dedicated 1:1 support!
                 </p>
-                <Link href="#" className="darktext-primary-100 :text-primary">
+                <Link href="https://dyte.io/contact" className="darktext-primary-100 :text-primary">
                   Contact Us &rarr;
                 </Link>
               </div>
@@ -74,7 +74,7 @@ export default function Homepage() {
                   Browse through our FAQs to find answers to commonly asked
                   questions.
                 </p>
-                <Link href="#" className="text-primary dark:text-primary-100">
+                <Link href="/faq" className="text-primary dark:text-primary-100">
                   View FAQs &rarr;
                 </Link>
               </div>

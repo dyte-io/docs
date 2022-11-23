@@ -339,7 +339,7 @@ export default function SDKsSection() {
         <div className="text-center">
           <p>
             Don&apos;t see your tech stack here?{' '}
-            <Link href="#">Contact Us</Link>
+            <Link href="https://dyte.io/contact">Contact Us</Link>
           </p>
         </div>
       </div>
