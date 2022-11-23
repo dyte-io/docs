@@ -41,16 +41,19 @@ export default function SDKsSection() {
   const [visibleSection, setVisibleSection] = useState('Web');
 
   React.useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      for (const entry of entries) {
-        const section = entry.target.getAttribute('data-section');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const section = entry.target.getAttribute('data-section');
 
-        if (entry.isIntersecting) {
-          entry.target.classList.add('intersected');
-          setVisibleSection(section);
+          if (entry.isIntersecting) {
+            entry.target.classList.add('intersected');
+            setVisibleSection(section);
+          }
         }
-      }
-    });
+      },
+      { rootMargin: '-50% 0% -50% 0%' }
+    );
 
     const elements = document.querySelectorAll('.sdk-section');
     for (const el of elements) {
