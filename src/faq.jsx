@@ -152,7 +152,7 @@ const FAQs = [
         Log into{' '}
         <Link href="https://dev.dyte.io/apikeys">
           https://dev.dyte.io/apikeys
-        </Link>
+        </Link>{' '}
         with the credentials you used to sign up for Dyte.
       </p>
     ),

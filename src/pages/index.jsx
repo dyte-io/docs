@@ -29,7 +29,7 @@ export default function Homepage() {
         <ResourcesSection />
 
         <section className="px-4 pt-16">
-          <div className="mx-auto -mb-48 max-w-7xl rounded-3xl bg-white p-4 text-black dark:bg-black dark:text-white lg:p-24 lg:py-20">
+          <div className="mx-auto -mb-48 max-w-7xl rounded-3xl bg-white p-4 text-black dark:bg-black dark:text-white lg:p-24 py-10 lg:py-20">
             <h2 className="mb-12 text-center lg:text-3xl">
               How can we help you today?
             </h2>
