@@ -31,7 +31,7 @@ You can also import utilities or any other export from CDN:
     import {
       provideDyteDesignSystem,
       extendConfig,
-    } from 'https://cdn.jsdelivr.net/npm/@dytesdk/ui-kit@1.15.1/dist/index.js';
+    } from 'https://cdn.jsdelivr.net/npm/@dytesdk/ui-kit/dist/esm/index.js';
   </script>
 </head>
 ```
@@ -45,3 +45,15 @@ npm install @dytesdk/ui-kit @dytesdk/web-core
 
   </TabItem>
 </Tabs>
+
+It is better to use a fixed version when using UI Kit from the CDN to avoid cache related errors in production.
+
+Do so by adding the version in the URL as follows (note the `@x.y.z` part):
+
+```
+https://cdn.jsdelivr.net/npm/@dytesdk/ui-kit@1.38.1/dist/esm/index.js
+```
+
+import UIKitLatestVersion from '@site/src/components/UIKitLatestVersion';
+
+<UIKitLatestVersion />
