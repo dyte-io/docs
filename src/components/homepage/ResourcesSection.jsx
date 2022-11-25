@@ -19,10 +19,14 @@ export default function ResourcesSection() {
               <div>
                 <img
                   src={resource.image}
-                  className="mb-3 aspect-square rounded-lg"
+                  className="mb-3 aspect-square w-full rounded-lg object-cover"
                 />
                 <h3 className="font-semibold lg:text-xl">
-                  <Link href={resource.url} className="text-inherit">
+                  <Link
+                    href={resource.url}
+                    className="text-inherit"
+                    target="_blank"
+                  >
                     {resource.title}
                   </Link>
                 </h3>

@@ -82,28 +82,43 @@ export default function SDKsSection() {
             <div className="flex max-w-sm flex-1 items-center rounded-full border border-solid border-text-400 text-sm lg:text-base">
               <div
                 className={clsx(
-                  'flex-1 py-1 text-center',
+                  'flex-1 py-1 text-center cursor-pointer',
                   visibleSection === 'web' &&
                     'rounded-full border-2 border-solid'
                 )}
+                onClick={() => {
+                  document
+                    .getElementById('web')
+                    .scrollIntoView({ block: 'center' });
+                }}
               >
                 Web
               </div>
               <div
                 className={clsx(
-                  'flex-1 py-1 text-center',
+                  'flex-1 py-1 text-center cursor-pointer',
                   visibleSection === 'mobile' &&
                     'rounded-full border-2 border-solid'
                 )}
+                onClick={() => {
+                  document
+                    .getElementById('mobile')
+                    .scrollIntoView({ block: 'center' });
+                }}
               >
                 Mobile
               </div>
               <div
                 className={clsx(
-                  'flex-1 py-1 text-center',
+                  'flex-1 py-1 text-center cursor-pointer',
                   visibleSection === 'plugin' &&
                     'rounded-full border-2 border-solid'
                 )}
+                onClick={() => {
+                  document
+                    .getElementById('plugin')
+                    .scrollIntoView({ block: 'center' });
+                }}
               >
                 Plugin
               </div>
@@ -114,6 +129,7 @@ export default function SDKsSection() {
         <div
           className="sdk-section mb-16 flex flex-col rounded-3xl bg-secondary-900 lg:flex-row"
           data-section="web"
+          id="web"
         >
           <div className="flex flex-[2] flex-col justify-center p-6 text-center lg:pl-16 lg:text-left">
             <h3 className="text-3xl">Web</h3>
@@ -180,6 +196,7 @@ export default function SDKsSection() {
         <div
           className="sdk-section mb-16 flex flex-col rounded-3xl bg-secondary-900 lg:flex-row"
           data-section="mobile"
+          id="mobile"
         >
           <div className="flex flex-[2] flex-col justify-center p-6 text-center lg:pl-16 lg:text-left">
             <h3 className="text-3xl">Mobile</h3>
@@ -264,6 +281,7 @@ export default function SDKsSection() {
         <div
           className="sdk-section mb-16 flex flex-col rounded-3xl bg-secondary-900 lg:flex-row"
           data-section="plugin"
+          id="plugin"
         >
           <div className="flex flex-1 flex-col justify-center p-6 text-center lg:pl-16 lg:text-left">
             <h3 className="text-3xl">Plugin SDK</h3>
@@ -287,6 +305,7 @@ export default function SDKsSection() {
         {/* <div
           className="sdk-section mb-16 flex flex-col rounded-3xl bg-secondary-900 lg:flex-row"
           data-section="desktop"
+          id="desktop"
         >
           <div className="flex flex-[2] flex-col justify-center p-6 text-center lg:pl-16 lg:text-left">
             <div className="mb-4 text-xs font-semibold">COMING SOON</div>
