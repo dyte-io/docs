@@ -1,3 +1,10 @@
+## [1.28.2](https://github.com/dyte-in/docs/compare/v1.28.1...v1.28.2) (2022-12-01)
+
+
+### Bug Fixes
+
+* **removeRoles:** roles are not more supported ([0bddfdf](https://github.com/dyte-in/docs/commit/0bddfdf2f4455e430e6e01f5c7c9228dcea44165))
+
 ## [1.28.1](https://github.com/dyte-in/docs/compare/v1.28.0...v1.28.1) (2022-11-10)
 
 
