@@ -1,0 +1,34 @@
+# Exporting Chat Dump of a Session
+
+Dyte enables you to export the whole chat dump of any session using [Chat Replay API](/api/?v=v2#/operations/GetSessionChat).
+You can download the chat dump in CSV format in 3 easy steps-
+
+1. Get Chat Replay API enabled for your organisation by [contacting us](https://dyte.io/contact). 
+2. Get `chat_download_url` using [Chat Replay API](/api/?v=v2#/operations/GetSessionChat).
+3. Download the chat dump CSV file.
+
+## Getting `chat_download_url`
+
+Once, Chat Replay API is enabled for your organisation. Make a `HTTP GET` request to [Chat Replay API](/api/?v=v2#/operations/GetSessionChat).
+It responds with
+```json
+    {
+        "success": true,
+        "data": {
+            "chat_download_url": "string",
+            "chat_download_url_expiry": "string"
+        }
+    }
+```
+
+`chat_download_url` is the AWS S3 signed URL to download the whole chat dump of a session in a CSV format.
+
+`chat_download_url_expiry` timestamp indicates when the `chat_download_url` will expire. If a `chat_download_url` is expired, just call this endpoint again to generate a new download URL.
+
+## Downloading the chat dump file
+
+You can download the chat dump file in CSV format by making `HTTP GET` request to `chat_download_url` that you obtained from the above step. 
+If you want to learn about the exact process of downloading the file, please refer to our detailed [blog post](https://dyte.io/blog/fetch-chat-history-of-a-dyte-session/).
+
+The downloaded Chat dump file will look like this
+![Sample Chat Dump File](https://dyte.io/blog/content/images/size/w1600/2022/11/Dyte-Blog---Sample-Chat-Dump.png)
