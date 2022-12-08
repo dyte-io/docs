@@ -13,44 +13,39 @@ You can subscribe to various events on the local user by implementing `DyteSelfE
 ### Room joined
 
 Triggered when the room join event completes and now the meeting is ready to produce and consume media.
+While implementing `DyteSelfEventsListener` we have :
+```dart
+  void onMeetingRoomJoined() {
+    // When the local user joins the meeting room, this callback is triggered
+    // We can handle the state here.
+  }
 
-```kotlin
-meeting.addSelfEventsListener(object : DyteSelfEventsListener {
-    override fun onRoomJoined() {
-      super.onRoomJoined()
-    }
-});
 ```
 ### Video update
 
 Triggered when the user starts / stops the video using `enableVideo` or `disableVideo`
 
-```kotlin
-meeting.addSelfEventsListener(object : DyteSelfEventsListener {
-    override fun onVideoUpdate(videoEnabled: Boolean) {
-      super.onVideoUpdate(videoEnabled)
-      if (videoEnabled) {
-        // video is enabled, and other participants in room can see local user
-      } else {
-        // video is disabled, and other participants in room can not see local user.
-      }
-    }
-});
+```dart
+ void onVideoUpdate(bool videoEnabled) {
+  if(isVideoEnabled){
+    // Video is enabled, other users can see the video.
+  } else {
+    // Video is disabled, others users can't see the video.
+  }
+ }
 ```
 
 ### Audio update
 
 Triggered when the user starts / stops the audio using `enableAudio` or `disableAudio`
 
-```kotlin
-meeting.addSelfEventsListener(object : DyteSelfEventsListener {
-    override fun onAudioUpdate(audioEnabled: Boolean) {
-      super.onAudioUpdate(videoEnabled)
-      if (audioEnabled) {
+```dart
+  void onAudioUpdate(bool audioEnabled) {
+    if (audioEnabled) {
         // audio is enabled, and other participants in room can hear local user
       } else {
         // audio is disabled, and other participants in room can not hear local user.
       }
-    }
-});
+  }
+
 ```
