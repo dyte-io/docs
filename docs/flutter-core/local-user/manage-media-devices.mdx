@@ -10,18 +10,18 @@ tags: [web-core, local-user, self, self events]
 Media devices represents the hardwar for the camera, microphone and speaker devices.
 To get the list of media devices that are currently being used, you can use the following methods:
 
-```kotlin
+```dart
 // Get all audio devices
-val audioDevices = meeting.self.getAudioDevices();
+final audioDevices = await meeting.localUser.getAudioDevices();
 
 // Get all video devices
-val videoDevices = meeting.self.getVideoDevices();
+final videoDevices = await meeting.localUser.getVideoDevices();
 ```
 
 ## Set device
 
 To set a device as an active device, you can call `setDevice` method. This takes a `MediaDeviceInfo` object, and replaces the same `kind` device. 
 
-```kotlin
-meeting.self.setDevice(device);
+```dart
+await meeting.localUser.setDevice(device);
 ```
