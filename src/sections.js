@@ -77,6 +77,12 @@ const SECTIONS = [
     section: 'mobile-core',
   },
   {
+    name: 'Flutter Core',
+    id: 'flutter-core',
+    icon: FlutterIcon,
+    section: 'mobile-core',
+  },
+  {
     name: 'React Native',
     id: 'react-native',
     icon: ReactIcon,
