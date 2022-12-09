@@ -13,27 +13,27 @@ As mentioned in [introduction](./introduction), there are 3 types of chat messag
 
 To send a text message, the `meeting.chat.sendTextMessage()` method can be used. This accepts a string `message` and sends it to the room.
 
-```kotlin
-val message = "Is this the real life?"
-meeting.chat.sendTextMessage(message)
+```dart
+final message = "Is this the real life?";
+meeting.chat.sendTextMessage(message);
 ```
 
 ## Send an image
 
 You can send an image with the help of `meeting.chat.sendImageMessage()` and sends it to the participants in the meeting.
 
-```kotlin
-val filePath = "file_path_of_image"
-val fileName = "file_name"
-meeting.chat.sendImageMessage(filePath, fileName)   
+```dart
+final filePath = "file_path_of_image";
+final fileName = "file_name";
+meeting.chat.sendImageMessage(filePath, fileName);
 ```
 
 ## Send a file
 
 Sending a file is quite similar to sending an image. The only difference is that when you send an image, a preview will be shown in the meeting chat, which is not the case for sending files. That being said, an image can be sent as a file too using `meeting.chat.sendFileMessage()`.
 
-```kotlin
-val filePath = "file_path_of_image"
-val fileName = "file_name"
-meeting.chat.sendFileMessage(filePath, fileName)   
+```dart
+final filePath = "file_path_of_image";
+final fileName = "file_name";
+meeting.chat.sendFileMessage(filePath, fileName);   
 ```
