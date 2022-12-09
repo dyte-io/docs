@@ -1,3 +1,10 @@
+# [1.29.0](https://github.com/dyte-in/docs/compare/v1.28.2...v1.29.0) (2022-12-09)
+
+
+### Features
+
+* update how-dyte-works page ([3124e2e](https://github.com/dyte-in/docs/commit/3124e2e660e47955059797819ddadebb7a9a47d0))
+
 ## [1.28.2](https://github.com/dyte-in/docs/compare/v1.28.1...v1.28.2) (2022-12-01)
 
 
