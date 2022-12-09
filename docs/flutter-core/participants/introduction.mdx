@@ -10,9 +10,9 @@ tags: [mobile-core, participants, participant]
 The data regarding all meeting participants is stored under `meeting.participants`. Use the methods and events to consume the participants data. 
 For example, to get all the participants who joined the meeting:
 
-```kotlin
+```dart
 // get all joined participants
-val joinedParticipants = meeting.participants.joined;
+final joinedParticipants = meeting.participants.joined;
 ```
 
 The `meeting.participants` object has the following properties.
@@ -33,84 +33,35 @@ You can subscribe to various events on the participants by implementing `DytePar
 
 Triggered when the user starts / stops the video using `enableVideo` or `disableVideo`
 
-```kotlin
-meeting.self.addParticipantEventsListener(object : DyteParticipantEventsListener {
-     override fun videoUpdate(videoEnabled: Boolean, participant: DyteMeetingParticipant) {
-      super.videoUpdate(videoEnabled, participant)
-      if (videoEnabled) {
-        // video is enabled, and other participants in room can see local user
-      } else {
-        // video is disabled, and other participants in room can not see local user.
-      }
+```dart
+
+void onVideoUpdate(bool videoEnabled) {
+  if (videoEnabled) {
+      // video is enabled, and other participants in room can see local user
+    } else {
+      // video is disabled, and other participants in room can not see local user.
     }
-})
+}
+
 ```
 
 ### Audio update
 
 Triggered when the user starts / stops the audio using `enableAudio` or `disableAudio`
 
-```kotlin
-meeting.self.addSelfEventsListener(object : DyteSelfEventsListener {
-    override fun audioUpdate(audioEnabled: Boolean, participant: DyteMeetingParticipant) {
-      super.audioUpdate(audioEnabled, participant)
-      if (audioEnabled) {
-        // audio is enabled, and other participants in room can hear local user
-      } else {
-        // audio is disabled, and other participants in room can not hear local user.
-      }
+```dart
+
+void audioUpdate({
+  required bool audioEnabled,
+  required DyteMeetingParticipant participant,
+}) {
+    if (audioEnabled) {
+      // audio is enabled, and other participants in room can hear local user
+    } else {
+      // audio is disabled, and other participants in room can not hear local user.
     }
-})
+}
+
 ```
 
-## Set mode of pagination
-
-The SDK allows you to view grid in two differant modes. First is `Grid` where SDK gives you list of `active` participants to show. Second is `Paginated` where user decides which page to view.
-
-```kotlin
-// for grid mode
-meeting.participants.setMode(PageViewMode.GRID)
-
-// for paginated mode
-meeting.participants.setMode(PageViewMode.PAGINATED)
-```
-
-## Move between pages in paginated mode
-
-The `setPage(pageNumber: Int)` method allows you to switch between pages of participants present in the meeting.
-
-```kotlin
-// switch to 1st page
-meeting.participants.setPage(1)
-```
  
-## Host control methods
-
-The `meeting.participants` object has host control methods that allow you to disable the audio and video streams of other users in the meeting (given that the user preset has the right permissions).
-
-```kotlin
-// mute all participants
-meeting.participants.disableAllAudio();
-
-// mute a single participant
-val participantToUpdate = meeting.participants.joined.first()
-participantToUpdate.disableAudio()
-
-// disable video for all participants
-meeting.participants.disableAllVideo();
-
-// disable video for a single participant
-val participantToUpdate = meeting.participants.joined.first()
-participantToUpdate.disableVideo()
-```
-
-To remove all participants from a meeting, you can call the `kickAll()` method.
-
-```kotlin
-// remove all participants from the meeting
-meeting.participants.kickAll();
-
-// remove a single participant
-val participantToRemove = meeting.participants.joined.first()
-participantToRemove.kick()
-```
