@@ -16,41 +16,31 @@ The participant object has the following properties.
 - `name`: The participant's name.
 - `picture`: The participant's picture (if any).
 - `clientSpecificId`: An arbitrary ID that can be set to identify the participant.
-- `videoTrack`: The video track of the participant.
-- `audioTrack`: The audio track of the participant.
-- `screenShareTracks`: The video and audio (if any) track of the participant's screen share stream.
 - `videoEnabled`: Set to true if the participant's camera is on.
 - `audioEnabled`: Set to true if the participant is unmuted.
 
 To be able to listen to participant updates you can use `DyteParticipantEventsListener`, pass object of this call using `meeting.addParticipantEventsListener(dyteParticipantEventsListener)`.
 
-```kotlin
-    private val dyteParticipantEventsListener = object : DyteParticipantEventsListener {
-        override fun audioUpdate(audioEnabled: Boolean, participant: DyteMeetingParticipant) {
-            super.audioUpdate(audioEnabled, participant)
-            // audio toggle for participant
-        }
+```dart
 
-        override fun videoUpdate(videoEnabled: Boolean, participant: DyteMeetingParticipant) {
-            super.videoUpdate(videoEnabled, participant)
-            // videp toggle for participant
-        }
+@override
+void onVideoUpdate(bool videoEnabled) {
+  if (videoEnabled) {
+      // video is enabled, and other participants in room can see local user
+    } else {
+      // video is disabled, and other participants in room can not see local user.
     }
-```
+}
 
-## Host controls methods
-
-If you (the local user) have the relevant permissions in the meeting, you can disable a participant's video/audio streams, or even remove them from the meeting.
-
-```kotlin
-val participant = meeting.participants.joined.get(0);
-
-// To disable a participant's video stream
-participant.disableVideo();
-
-// To disable a participant's audio stream
-participant.disableAudio();
-
-// To kick a participant from the meeting
-participant.kick();
+@override
+void audioUpdate({
+  required bool audioEnabled,
+  required DyteMeetingParticipant participant,
+}) {
+    if (audioEnabled) {
+      // audio is enabled, and other participants in room can hear local user
+    } else {
+      // audio is disabled, and other participants in room can not hear local user.
+    }
+}
 ```
