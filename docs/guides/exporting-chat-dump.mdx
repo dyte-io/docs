@@ -2,9 +2,13 @@
 
 You can programmatically retrieve all chat messages of a Dyte session using [Chat Replay API](/api/?v=v2#/operations/GetSessionChat).
 
-**Note: Chat Replay API is not enabled by default for your organization. [Contact Us](https://dyte.io/contact) to enable the Chat Replay API for your organziation.**
+:::caution Note
 
-Once [Chat Replay API](/api/?v=v2#/operations/GetSessionChat) is enabled, do the following to download the chat dump in CSV format:
+Chat Replay API is not enabled by default for your organization. [Contact Us](https://dyte.io/contact) to enable the Chat Replay API for your organziation.
+
+:::
+
+Once [Chat Replay API](/api/?v=v2#/operations/GetSessionChat) is enabled, do the following:
 
 1. Get the `chat_download_url` using [Chat Replay API](/api/?v=v2#/operations/GetSessionChat).
 2. Download the chat dump CSV file.
@@ -32,7 +36,7 @@ You can download the chat dump file in CSV format by making `HTTP GET` request t
 
 The process of downloading any file from a HTTP URL in JavaScript differs slightly based on whether you are doing it on client side or server side.
 
-### Downloading on the client
+### Download on the client
 To download at client side, do the following:
 
 1. Make a GET request to the `chat_download_url`.
@@ -40,7 +44,7 @@ To download at client side, do the following:
 3. Create an invisible `<a>` HTML element with download attribute and add the above blob to it's `href`.
 3. Programatically click on the `<a>` element so that the browser automatically starts downloading and then remove the `<a>` element.
 
-### Downloading on the server
+### Download on the server
 We use `Node.js` streams to download files on the server, so the steps are as follows:
 
 1. Create a writable stream for a local file.
