@@ -7,7 +7,8 @@ export default function UIKitIcon(props) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
-      {...props}>
+      {...props}
+    >
       <rect width={48} height={48} rx={10} fill="#8000FF" />
       <path
         fillRule="evenodd"

@@ -19,15 +19,16 @@ export default function SidebarMenu() {
   const handleSectionChange = (selectedSection) => {
     if (selectedSection !== id) {
       const { pathname, hash } = router.location;
-      const page = `/${selectedSection}/` + pathname.split('/').slice(2).join('/');
+      const page =
+        `/${selectedSection}/` + pathname.split('/').slice(2).join('/');
 
       const selectedSectionDocs = allDocs[selectedSection].versions[0].docs;
 
       if (selectedSectionDocs.find((doc) => doc.path === page)) {
-        const path = page + (hash && hash.length > 0 ? '#' + hash : '')
+        const path = page + (hash && hash.length > 0 ? '#' + hash : '');
         router.push(path);
       } else {
-        router.push(selectedSectionDocs[0].path)
+        router.push(selectedSectionDocs[0].path);
       }
     }
   };
@@ -41,7 +42,11 @@ export default function SidebarMenu() {
           onValueChange={handleSectionChange}
           triggerClassName={styles.sectionsMenu}
         />
-        <VersionDropdown docsPluginId={id} dropdownItemsBefore={[]} dropdownItemsAfter={[]} />
+        <VersionDropdown
+          docsPluginId={id}
+          dropdownItemsBefore={[]}
+          dropdownItemsAfter={[]}
+        />
       </div>
     );
   }
@@ -59,7 +64,10 @@ export default function SidebarMenu() {
 
         return (
           <div
-            className={clsx(styles.section, isCurrentSection && styles.sectionActive)}
+            className={clsx(
+              styles.section,
+              isCurrentSection && styles.sectionActive
+            )}
             onClick={navigateToFirstSection}
             onKeyDown={(e) => {
               if (e.code === 'Space' || e.code == 'Enter') {
@@ -69,7 +77,9 @@ export default function SidebarMenu() {
             tabIndex={0}
             key={section}
           >
-            <div className={styles.label + (isNew ? ' new-badge' : '')}>{name}</div>
+            <div className={styles.label + (isNew ? ' new-badge' : '')}>
+              {name}
+            </div>
             <div>
               {isCurrentSection ? (
                 <div className={styles.row}>

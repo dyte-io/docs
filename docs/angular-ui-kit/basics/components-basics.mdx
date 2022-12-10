@@ -4,15 +4,18 @@ sidebar_position: 1
 
 # Components Basics
 
-Learn about the structure of an individual component and figure out how to use the UI Kit effectively.
+Learn about the structure of an individual component and figure out how to use
+the UI Kit effectively.
 
 ## Usage Guide
 
-With the UI Kit, we provide a few set of ways to use it, depending on your needs and use case.
+With the UI Kit, we provide a few set of ways to use it, depending on your needs
+and use case.
 
 ### Write less code
 
-You can use the provided `<dyte-meeting />` monolith component in case you want to write less code and not handle all the states and components rendering.
+You can use the provided `<dyte-meeting />` monolith component in case you want
+to write less code and not handle all the states and components rendering.
 
 It takes care of all of it and loads the entire meeting UI from your preset.
 
@@ -41,7 +44,8 @@ It takes care of all of it and loads the entire meeting UI from your preset.
 
 ### Using individual components
 
-If you wish to integrate UI Kit components into your UI at various parts, you can use the individual components.
+If you wish to integrate UI Kit components into your UI at various parts, you
+can use the individual components.
 
 Here is a basic example which renders a grid if you join the meeting.
 
@@ -82,16 +86,19 @@ Here is a basic example which renders a grid if you join the meeting.
 
 ## Default Props
 
-Most of the components accept a set of a **Default Props** for essential features such as meeting data, meeting APIs, UI Configuration, internationalisation & icons.
+Most of the components accept a set of a **Default Props** for essential
+features such as meeting data, meeting APIs, UI Configuration,
+internationalisation & icons.
 
 | Prop       | Description                                                                      |
 | :--------- | :------------------------------------------------------------------------------- |
 | `meeting`  | The web-core `DyteClient` object. Contains all the meeting specific data & APIs. |
-| `config`   | The [`UI Config`](../reference/interfaces/UIConfig) config                                 |
-| `t`        | [i18n helper](../reference/#dytei18n) method                                   |
+| `config`   | The [`UI Config`](../reference/interfaces/UIConfig) config                       |
+| `t`        | [i18n helper](../reference/#dytei18n) method                                     |
 | `iconPack` | [`IconPack`](../reference/#iconpack) object                                      |
 
-Here is a simple example of how you pass these props to components, here a `DyteGrid`:
+Here is a simple example of how you pass these props to components, here a
+`DyteGrid`:
 
 ```js
 const gridEl = document.createElement('dyte-grid');
@@ -119,9 +126,11 @@ Here are some examples:
 
 ### Participant components
 
-These are components which depend on a single participant object or a participant list.
+These are components which depend on a single participant object or a
+participant list.
 
-`meeting.self` and participant objects from `meeting.participants` can be passed as a participant to this prop.
+`meeting.self` and participant objects from `meeting.participants` can be passed
+as a participant to this prop.
 
 ```js
 const nameTagSelf = document.createElement('dyte-grid');
@@ -136,16 +145,20 @@ nameTagSelfWithYou.meeting = meeting;
 
 ### Grid Components
 
-We have a set of grid components that help you to have any kind of grid you wish.
+We have a set of grid components that help you to have any kind of grid you
+wish.
 
-There are two types of grid components, so that the grid can be easily extended and modularized.
+There are two types of grid components, so that the grid can be easily extended
+and modularized.
 
 - Parent Grid component - `dyte-grid`
-- Normal Grid components - `dyte-simple-grid`, `dyte-mixed-grid`, `dyte-spotlight-grid`
+- Normal Grid components - `dyte-simple-grid`, `dyte-mixed-grid`,
+  `dyte-spotlight-grid`
 
 #### Parent Grid Component
 
-The `DyteGrid` component is a monolith component which handles all grid related events and data on it's own and passes the following props to it's children.
+The `DyteGrid` component is a monolith component which handles all grid related
+events and data on it's own and passes the following props to it's children.
 
 | Prop                        | Description                         |
 | :-------------------------- | :---------------------------------- |
@@ -154,7 +167,8 @@ The `DyteGrid` component is a monolith component which handles all grid related 
 | `screenShareParticipants[]` | Participants who are screen sharing |
 | `plugins[]`                 | Active Plugins                      |
 
-These props are passed to it's children which it computes from the UI Config which is passed to it. By default it will use the default UI Config.
+These props are passed to it's children which it computes from the UI Config
+which is passed to it. By default it will use the default UI Config.
 
 :::tip
 
@@ -184,15 +198,19 @@ It also brings `pinnedParticipants` to the start of the grid.
 
 Accepts: `participants`, `pinnedParticipants`.
 
-This grid renders the ParticipantTiles of the participants and pinnedParticipants in separate grids.
+This grid renders the ParticipantTiles of the participants and
+pinnedParticipants in separate grids.
 
 Pinned participants are in spotlight area, i.e; larger grid.
 
 ##### DyteMixedGrid
 
-Accepts: `participants`, `pinnedParticipants`, `screenShareParticipants`, `plugins`.
+Accepts: `participants`, `pinnedParticipants`, `screenShareParticipants`,
+`plugins`.
 
-This grid renders screenshares as well as plugins in the main larger view and renders a smaller grid on the right side which is configurable via the UI Config. You can use SimleGrid or SpotlightGrid here.
+This grid renders screenshares as well as plugins in the main larger view and
+renders a smaller grid on the right side which is configurable via the UI
+Config. You can use SimleGrid or SpotlightGrid here.
 
 If you just want to render `self` twice in a SimpleGrid:
 
