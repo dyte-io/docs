@@ -12,9 +12,19 @@ export default function RunInPostmanButton(props) {
         o
           .getElementsByTagName('head')[0]
           .appendChild(
-            ((n = o.createElement('script')), (n.id = s + t), (n.async = 1), (n.src = m), n)
+            ((n = o.createElement('script')),
+            (n.id = s + t),
+            (n.async = 1),
+            (n.src = m),
+            n)
           );
-    })(window, document, '_pm', 'PostmanRunObject', 'https://run.pstmn.io/button.js');
+    })(
+      window,
+      document,
+      '_pm',
+      'PostmanRunObject',
+      'https://run.pstmn.io/button.js'
+    );
   }, []);
 
   return (

@@ -16,7 +16,9 @@
     "lint": "eslint . --ext .js --ext .jsx",
     "lint:fix": "npm run lint -- --fix",
     "prepare": "is-ci || husky install",
-    "test": "jest --passWithNoTests"
+    "test": "jest --passWithNoTests",
+    "format:docs": "prettier -w docs",
+    "format:src": "prettier -w src"
   },
   "dependencies": {
     "@docusaurus/core": "^2.0.1",
@@ -79,7 +81,8 @@
   },
   "prettier": {
     "singleQuote": true,
-    "tabWidth": 2
+    "tabWidth": 2,
+    "proseWrap": "always"
   },
   "config": {
     "commitizen": {

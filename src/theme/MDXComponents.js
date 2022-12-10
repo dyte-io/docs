@@ -23,5 +23,5 @@ export default {
   VideoPlayer,
   InfoTooltip,
   PropsTable,
-  ComponentsGrid
+  ComponentsGrid,
 };
