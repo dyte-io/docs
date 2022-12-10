@@ -11,9 +11,17 @@ import styles from './styles.module.css';
  */
 function Card({ item, basePath }) {
   return (
-    <Link className={styles.card} to={`./components/${item.component}`} key={item.component}>
+    <Link
+      className={styles.card}
+      to={`./components/${item.component}`}
+      key={item.component}
+    >
       <div className={styles.imageContainer}>
-        <img src={`${basePath}/${item.component}.svg`} alt="" className={styles.image} />
+        <img
+          src={`${basePath}/${item.component}.svg`}
+          alt=""
+          className={styles.image}
+        />
       </div>
       <div>{item.name}</div>
     </Link>

@@ -14,7 +14,7 @@
 .elements-container {
   --ifm-link-color: currentColor;
   --ifm-link-decoration: none;
-  
+
   flex-grow: 1;
   height: 100%;
 }
@@ -42,11 +42,15 @@ html[data-theme='dark'] .TryItPanel {
   --color-canvas-200: var(--docs-color-background-200) !important;
 }
 
-html[data-theme='dark'] .elements-container :is(.token.string, .token.function, .token.property) {
+html[data-theme='dark']
+  .elements-container
+  :is(.token.string, .token.function, .token.property) {
   color: var(--docs-color-primary-100) !important;
 }
 
-html[data-theme='dark'] .elements-container :is(.token.punctuation, .token.operator) {
+html[data-theme='dark']
+  .elements-container
+  :is(.token.punctuation, .token.operator) {
   color: #fff !important;
 }
 

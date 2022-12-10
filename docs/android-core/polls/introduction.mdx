@@ -7,11 +7,14 @@ tags: [mobile-core, polls]
 
 # Introduction
 
-The meetings polls object can be accessed using `meeting.polls`. It provides methods to create polls, vote, and more. 
+The meetings polls object can be accessed using `meeting.polls`. It provides
+methods to create polls, vote, and more.
 
-`meeting.polls.polls` returns an array of all polls created in a meeting, where each element is an object of type  `DytePollMessage`.
+`meeting.polls.polls` returns an array of all polls created in a meeting, where
+each element is an object of type `DytePollMessage`.
 
 The type `DytePollMessage` is defined in the following manner.
+
 ```kotlin
 data class DytePollMessage(
   val id: String,
