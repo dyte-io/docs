@@ -16,7 +16,8 @@ export default function FooterLinkItem({ item }) {
         : {
             to: toUrl,
           })}
-      {...props}>
+      {...props}
+    >
       {label}
     </Link>
   );

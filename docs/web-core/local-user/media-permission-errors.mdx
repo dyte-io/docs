@@ -7,7 +7,8 @@ tags: [web-core, local-user, self, self events]
 
 # Media Permission Errors
 
-This event is triggered when Dyte fails to acquire the user's local media (camera and/or microphone) or user revokes the permission for media devices.
+This event is triggered when Dyte fails to acquire the user's local media
+(camera and/or microphone) or user revokes the permission for media devices.
 
 Your application can catch these errors like below:
 
@@ -20,11 +21,12 @@ meeting.self.on('mediaPermissionError', ({
 });
 ```
 
-This event shares information that can be used to show appropriate message for the user.
+This event shares information that can be used to show appropriate message for
+the user.
 
 Possible values for **message** are
 
-    DENIED  - Permission was denied by the user 
+    DENIED  - Permission was denied by the user
 
     SYSTEM_DENIED   - Permission was denied by the system
 

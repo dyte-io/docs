@@ -18,7 +18,10 @@ export default function ColorPalette({ name, shades, desc, rgb }) {
 
           return (
             <div key={shade} className={styles.shade}>
-              <div className={styles.color} style={{ backgroundColor: color }} />
+              <div
+                className={styles.color}
+                style={{ backgroundColor: color }}
+              />
               <div className={clsx(styles.info, rgb && styles.infoRGB)}>
                 <div>{shade}</div>
                 <div className={styles.colorCode}>{color}</div>

@@ -4,7 +4,14 @@ sidebar_position: 6
 
 # Events
 
-To integrate well with modern workflows, Dyte SDK also emits a rich set of events on meeting events and state changes. Using these events on the client side, you can make your app event driven and respond to changes in the meeting in real-time. You can subscribe to the following events on the [`DyteMeetingViewDelegate`](./reference/dyte-meeting-events). To do this, you need to set the `delegate` for `DyteMeetingView` to an object (such as `self`) that implements the `DyteMeetingViewDelegate` protocol. The methods in this protocol correspond to events for the given meeting.
+To integrate well with modern workflows, Dyte SDK also emits a rich set of
+events on meeting events and state changes. Using these events on the client
+side, you can make your app event driven and respond to changes in the meeting
+in real-time. You can subscribe to the following events on the
+[`DyteMeetingViewDelegate`](./reference/dyte-meeting-events). To do this, you
+need to set the `delegate` for `DyteMeetingView` to an object (such as `self`)
+that implements the `DyteMeetingViewDelegate` protocol. The methods in this
+protocol correspond to events for the given meeting.
 
 <Tabs
   groupId="ios-language"
@@ -30,13 +37,23 @@ dyteView.delegate = self;
 </TabItem>
 </Tabs>
 
-While the delegate methods can now directly be implemented by the class that `self` refers to if you are using Objective-C, you will have to go a little roundabout way if you are using Swift. You would need to create an extension of the class that extends the class using the protocol, and then from the delegate method inside this extension you would need to call a private function of the base class.
+While the delegate methods can now directly be implemented by the class that
+`self` refers to if you are using Objective-C, you will have to go a little
+roundabout way if you are using Swift. You would need to create an extension of
+the class that extends the class using the protocol, and then from the delegate
+method inside this extension you would need to call a private function of the
+base class.
 
-Remember the golden rule of thumb for iOS: all UI related operations need to be dispatched on the `mainQueue`. Since delegates are asynchronous and are not guaranteed to be called on the `mainQueue`, any delegates methods that deal with UI need to explicitly specify the thread for such operations.
+Remember the golden rule of thumb for iOS: all UI related operations need to be
+dispatched on the `mainQueue`. Since delegates are asynchronous and are not
+guaranteed to be called on the `mainQueue`, any delegates methods that deal with
+UI need to explicitly specify the thread for such operations.
 
 ### Connected to the meeting
 
-This event is triggered when the participant has connected to the meeting but hasn't started producing or consuming content streams. Think of this as establishing a successful connection to the meeting and nothing else.
+This event is triggered when the participant has connected to the meeting but
+hasn't started producing or consuming content streams. Think of this as
+establishing a successful connection to the meeting and nothing else.
 
 <Tabs
   groupId="ios-language"
@@ -68,7 +85,8 @@ extension ViewController: DyteMeetingViewDelegate {
 
 ### Joined the meeting
 
-This event is triggered when the participant actually joins the meeting, and can start producing as well as consuming content streams.
+This event is triggered when the participant actually joins the meeting, and can
+start producing as well as consuming content streams.
 
 <Tabs
   groupId="ios-language"
@@ -100,7 +118,10 @@ extension ViewController: DyteMeetingViewDelegate {
 
 ### Disconnected from the meeting
 
-This event is triggered when the participant gets disconnected from the meeting for any reason. It could be a bad network connection, the meeting being exited by the participant manually, the meeting tab / browser / app being closed by the participant, or just any other reason.
+This event is triggered when the participant gets disconnected from the meeting
+for any reason. It could be a bad network connection, the meeting being exited
+by the participant manually, the meeting tab / browser / app being closed by the
+participant, or just any other reason.
 
 <Tabs
   groupId="ios-language"
@@ -132,7 +153,11 @@ extension ViewController: DyteMeetingViewDelegate {
 
 ### Input media devices get connected to the meeting
 
-This event is triggered when the participant's local media input devices (camera, mic) are initialized and connected to the meeting for the first time. Since the media device states can be toggled only after the device is connected, you need to use this event to manage the starting state of participant's audio or video.
+This event is triggered when the participant's local media input devices
+(camera, mic) are initialized and connected to the meeting for the first time.
+Since the media device states can be toggled only after the device is connected,
+you need to use this event to manage the starting state of participant's audio
+or video.
 
 <Tabs
   groupId="ios-language"
@@ -164,7 +189,10 @@ extension ViewController: DyteMeetingViewDelegate {
 
 ### End of the meeting
 
-This event is triggered when the meeting is ended by the host or by the organization (as an admin function). In this case, all the participants are kicked out and you can take actions such as asking for feedback or redirecting to an exercise.
+This event is triggered when the meeting is ended by the host or by the
+organization (as an admin function). In this case, all the participants are
+kicked out and you can take actions such as asking for feedback or redirecting
+to an exercise.
 
 <Tabs
   groupId="ios-language"
@@ -196,7 +224,10 @@ extension ViewController: DyteMeetingViewDelegate {
 
 ### Another participant joins the meeting
 
-This event is triggered when another participant joins the meeting. "Join" here as the same context as the `meetingJoined` event: so when that event triggers for the a participant, this event triggers for all other participants that have already joined the meeting.
+This event is triggered when another participant joins the meeting. "Join" here
+as the same context as the `meetingJoined` event: so when that event triggers
+for the a participant, this event triggers for all other participants that have
+already joined the meeting.
 
 <Tabs
   groupId="ios-language"
@@ -228,7 +259,10 @@ extension ViewController: DyteMeetingViewDelegate {
 
 ### Another participant leaves the meeting
 
-This event is triggered when another participant disconnects from the meeting. "Disconnect" here as the same context as the `disconnect` event: so when that event triggers for the a participant, this event triggers for all other participants that have already joined the meeting.
+This event is triggered when another participant disconnects from the meeting.
+"Disconnect" here as the same context as the `disconnect` event: so when that
+event triggers for the a participant, this event triggers for all other
+participants that have already joined the meeting.
 
 <Tabs
   groupId="ios-language"
@@ -260,7 +294,8 @@ extension ViewController: DyteMeetingViewDelegate {
 
 ### Receiving a custom broadcast event
 
-This event is triggered when a custom message is broadcast to all participants in the meeting. A custom message may contain any serializable data.
+This event is triggered when a custom message is broadcast to all participants
+in the meeting. A custom message may contain any serializable data.
 
 <Tabs
   groupId="ios-language"
@@ -292,7 +327,9 @@ extension ViewController: DyteMeetingViewDelegate {
 
 ### Receiving a custom targeted event
 
-This event is triggered when a custom message is targeted to a particular participant in the meeting and only the target participant receives this event. A custom message may contain any serializable data.
+This event is triggered when a custom message is targeted to a particular
+participant in the meeting and only the target participant receives this event.
+A custom message may contain any serializable data.
 
 <Tabs
   groupId="ios-language"
@@ -324,7 +361,12 @@ extension ViewController: DyteMeetingViewDelegate {
 
 ### Detecting change in active speaker
 
-This event is triggered when the active speaker in the meeting changes. Active speaker is the participant whose audio level has most recently been the highest (kind of like LRU with the selection factor being audio level). The `participant` is an instance of `Participant`, whose prototype is defined below in the reference section and can be directly used as a type if you prefer using TypeScript bindings.
+This event is triggered when the active speaker in the meeting changes. Active
+speaker is the participant whose audio level has most recently been the highest
+(kind of like LRU with the selection factor being audio level). The
+`participant` is an instance of `Participant`, whose prototype is defined below
+in the reference section and can be directly used as a type if you prefer using
+TypeScript bindings.
 
 <Tabs
   groupId="ios-language"

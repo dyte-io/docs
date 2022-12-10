@@ -6,19 +6,22 @@ sidebar_position: 1
 
 Inspired by [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/) principles, our UI Kit is built in layers.
 
-What that means is you can quickly get started by using just one component and keep combining even more components that will give you an entire prebuilt UI.
+What that means is you can quickly get started by using just one component and
+keep combining even more components that will give you an entire prebuilt UI.
 
 But you can also go down layers as your need for customization evolves.
 
 ![Atomic Design Illustration](/static/ui-kit/1.x.x/atomic-design.svg)
 
-Check out the [Components](../components/) page to see the full list of grouped components.
+Check out the [Components](../components/) page to see the full list of grouped
+components.
 
 ## Pages
 
 Our topmost, easiest to use layer.
 
-An example is the `DyteMeeting` component you saw in the [Quickstart](/react-ui-kit/) page.
+An example is the `DyteMeeting` component you saw in the
+[Quickstart](/react-ui-kit/) page.
 
 Implement quickly with just a few lines of code!
 
@@ -49,7 +52,8 @@ Now going down layers for more customization.
 
 ## Atoms
 
-Atoms are the basic building blocks of matter. Applied to web interfaces, atoms are our HTML tags, such as a form label, an input, image or a button.
+Atoms are the basic building blocks of matter. Applied to web interfaces, atoms
+are our HTML tags, such as a form label, an input, image or a button.
 
 Design tokens such as brand colors, font, spacing are also part of atoms.
 
@@ -62,9 +66,11 @@ Design tokens such as brand colors, font, spacing are also part of atoms.
 
 ## Molecules
 
-Things start getting more interesting and tangible when we start combining atoms together.
+Things start getting more interesting and tangible when we start combining atoms
+together.
 
-Here is the Notification component which uses the Button component and animates a notification for you!
+Here is the Notification component which uses the Button component and animates
+a notification for you!
 
 ```html
 <dyte-notification id="my-notification"></dyte-notification>
@@ -85,7 +91,8 @@ Here is the Notification component which uses the Button component and animates 
 
 ## Organisms
 
-Organisms are groups of molecules joined together to form a relatively complex, distinct section of an interface.
+Organisms are groups of molecules joined together to form a relatively complex,
+distinct section of an interface.
 
 Render a participants grid, in a single line of code with `DyteGrid`.
 
@@ -102,6 +109,8 @@ This component will handle all Participant Tiles, Screenshare Views, Plugins.
 
 ### Tight integration with our Core SDK
 
-You don't need to handle all the participants, screenshares, plugins. You just pass the Core SDK `meeting` object.
+You don't need to handle all the participants, screenshares, plugins. You just
+pass the Core SDK `meeting` object.
 
-It takes all the data on its own, listens to all the events and calls every method it needs to call on its own.
+It takes all the data on its own, listens to all the events and calls every
+method it needs to call on its own.

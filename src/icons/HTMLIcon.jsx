@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from 'react';
 
 export default function HTMLIcon(props) {
   return (
@@ -43,5 +43,5 @@ export default function HTMLIcon(props) {
         </clipPath>
       </defs>
     </svg>
-  )
+  );
 }
