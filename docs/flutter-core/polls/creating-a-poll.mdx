@@ -7,14 +7,16 @@ tags: [mobile-core, polls, create]
 
 # Creating a poll
 
-A new poll can be created using the `create` method from the [`meeting.polls`](./introduction) object. The `meeting.polls.create()` method accepts the following params.
+A new poll can be created using the `create` method from the
+[`meeting.polls`](./introduction) object. The `meeting.polls.create()` method
+accepts the following params.
 
-| Param     | Type     | Default Value | Required | Description                                                |
-|-----------|----------|---------------|----------|------------------------------------------------------------|
-| question  | string   |       -       | yes      | The question that is to be voted for.                      |
-| options   | string[] |       -       | yes      | The options of the poll.                                   |
-| anonymous | boolean  |       -       | yes      | If true, the poll votes are anonymous.                     |
-| hideVotes | boolean  |       -       | yes      | If true, the votes on the poll are hidden.                 |
+| Param     | Type     | Default Value | Required | Description                                |
+| --------- | -------- | ------------- | -------- | ------------------------------------------ |
+| question  | string   | -             | yes      | The question that is to be voted for.      |
+| options   | string[] | -             | yes      | The options of the poll.                   |
+| anonymous | boolean  | -             | yes      | If true, the poll votes are anonymous.     |
+| hideVotes | boolean  | -             | yes      | If true, the votes on the poll are hidden. |
 
 The following snippet creates a poll where votes are anonymous.
 

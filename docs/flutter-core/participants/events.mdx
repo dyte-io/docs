@@ -5,8 +5,9 @@ sidebar_position: 3
 tags: [mobile-core, participants, self]
 ---
 
-
-You can subscribe to events for all participants by implementing `DyteParticipantEventsListener` callback and then passing that object to `meeeting.addParticipantEventsListener(dyteParticipantEventsListener)` method.
+You can subscribe to events for all participants by implementing
+`DyteParticipantEventsListener` callback and then passing that object to
+`meeeting.addParticipantEventsListener(dyteParticipantEventsListener)` method.
 Here are the supported methods:
 
 ### Page change
@@ -79,7 +80,7 @@ Trigger an event when any participant starts / stops screen share.
 ```dart
     @override
     void onScreenSharesUpdated() {
-        // all screenshare participants can be fetched via 
+        // all screenshare participants can be fetched via
         // meeting.participants.screenshares
         }
 ```
