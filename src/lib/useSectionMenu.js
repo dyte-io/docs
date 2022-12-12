@@ -27,7 +27,7 @@ export default function useSectionMenu() {
             name,
             description,
             items: SECTIONS.filter((item) => item.section === section),
-            isNew
+            isNew,
           };
         }
       }

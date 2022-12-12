@@ -88,7 +88,6 @@ const SECTIONS = [
     label: latestVersions['flutter-core'],
   }),
 
-
   // [mobile]
   defineSection('react-native', {
     label: latestVersions['react-native'],

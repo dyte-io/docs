@@ -7,22 +7,28 @@ tags: [web-core, chat]
 
 # Other chat functions
 
-The `meeting.chat` object exposes certain other methods for convenience when working with chat.
+The `meeting.chat` object exposes certain other methods for convenience when
+working with chat.
 
 ## Get messages by a user
 
-You can get messages by a particular user by passing the user's ID to the `meeting.chat.getMessagesByUser()` method.
+You can get messages by a particular user by passing the user's ID to the
+`meeting.chat.getMessagesByUser()` method.
 
 ```ts
 // Find the userId of the user with name "Freddie".
-const { userId } = meeting.participants.joined.toArray().find((p) => p.name === 'Freddie');
+const { userId } = meeting.participants.joined
+  .toArray()
+  .find((p) => p.name === 'Freddie');
 
 const messages = meeting.chat.getMessagesByUser(userId);
 ```
 
 ## Get messages of a particular type
 
-You can also get messages of a particular type using the `meeting.chat.getMessagesByType()` method. For example, you can get all image messages present in the chat using the following snippet.
+You can also get messages of a particular type using the
+`meeting.chat.getMessagesByType()` method. For example, you can get all image
+messages present in the chat using the following snippet.
 
 ```ts
 const imageMessages = meeting.chat.getMessagesByType('image');
@@ -30,7 +36,9 @@ const imageMessages = meeting.chat.getMessagesByType('image');
 
 ## Pinning a chat message
 
-You can `pin` a number of messages to the chat. When you pin a message, the message object will have the attribute `pinned: true`, using which you can identify if a message is pinned.
+You can `pin` a number of messages to the chat. When you pin a message, the
+message object will have the attribute `pinned: true`, using which you can
+identify if a message is pinned.
 
 To pin a message, run the following snippet.
 

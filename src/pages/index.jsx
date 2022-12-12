@@ -44,9 +44,9 @@ export default function Homepage() {
 
           <Section title="Get to know Dyte">
             <Card
-              title="How Dyte works"
-              description="Essential reading for a better understanding of how to best use Dyte SDKs"
-              to="/how-dyte-works"
+              title="Getting started with Dyte"
+              description="Essential reading for a better understanding of how to get started with Dyte"
+              to="/getting-started"
             />
             <Card
               title="Guides"

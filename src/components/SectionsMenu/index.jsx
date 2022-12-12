@@ -1,6 +1,10 @@
 import React, { forwardRef } from 'react';
 import * as Select from '@radix-ui/react-select';
-import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons';
+import {
+  CheckIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+} from '@radix-ui/react-icons';
 import clsx from 'clsx';
 
 const SectionsMenu = forwardRef(
