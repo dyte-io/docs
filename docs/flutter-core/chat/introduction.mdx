@@ -7,13 +7,17 @@ tags: [mobile-core, chat]
 
 # Introducing chat
 
-The meeting chat object is stored in `meeting.chat`, which has methods for sending and receiving messages. There are 3 types of messages that can be sent in chat - text messages, images, and files.
+The meeting chat object is stored in `meeting.chat`, which has methods for
+sending and receiving messages. There are 3 types of messages that can be sent
+in chat - text messages, images, and files.
 
-The `meeting.chat.messages` array contains all the messages that have been sent in the chat. This is an array of objects, where each object is of type `DyteChatMessage`.
+The `meeting.chat.messages` array contains all the messages that have been sent
+in the chat. This is an array of objects, where each object is of type
+`DyteChatMessage`.
 
 The type `DyteChatMessage` is defined in the following manner.
 
-```dart 
+```dart
 import 'dart:convert';
 
 class DyteChatMessage {
@@ -174,5 +178,4 @@ class DyteFileMessage extends DyteChatMessage {
     required super.type,
   });
 }
-
 ```

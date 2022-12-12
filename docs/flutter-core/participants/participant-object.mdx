@@ -7,7 +7,11 @@ tags: [mobile-core, participants, participant]
 
 # The participant object
 
-The `participant` object consists of all the information related to a particular participant. For instance, it contains a participants video/audio/screenshare stream, and the participant's name. It also contains state variables that indicate whether a participant's camera is on or off, and whether they are muted or unmuted.
+The `participant` object consists of all the information related to a particular
+participant. For instance, it contains a participants video/audio/screenshare
+stream, and the participant's name. It also contains state variables that
+indicate whether a participant's camera is on or off, and whether they are muted
+or unmuted.
 
 The participant object has the following properties.
 
@@ -15,11 +19,14 @@ The participant object has the following properties.
 - `userId`: The `userId` of the participant.
 - `name`: The participant's name.
 - `picture`: The participant's picture (if any).
-- `clientSpecificId`: An arbitrary ID that can be set to identify the participant.
+- `clientSpecificId`: An arbitrary ID that can be set to identify the
+  participant.
 - `videoEnabled`: Set to true if the participant's camera is on.
 - `audioEnabled`: Set to true if the participant is unmuted.
 
-To be able to listen to participant updates you can use `DyteParticipantEventsListener`, pass object of this call using `meeting.addParticipantEventsListener(dyteParticipantEventsListener)`.
+To be able to listen to participant updates you can use
+`DyteParticipantEventsListener`, pass object of this call using
+`meeting.addParticipantEventsListener(dyteParticipantEventsListener)`.
 
 ```dart
 
