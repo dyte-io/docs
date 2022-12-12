@@ -75,7 +75,9 @@ export default function Home() {
         <link rel="stylesheet" href="/assets/css/elements.min.css" />
       </Head>
       <div className="header">
-        <h1 style={{ fontSize: '1rem', fontWeight: '600' }}>Dyte Backend API {currentVersion}</h1>
+        <h1 style={{ fontSize: '1rem', fontWeight: '600' }}>
+          Dyte Backend API {currentVersion}
+        </h1>
         <div className="aside">
           <RunInPostmanButton />
           <DyteTooltip

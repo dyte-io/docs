@@ -48,7 +48,8 @@ const latestVersions = {
   android: '0.14.x',
   ios: '1.33.x',
   flutter: '0.7.x',
-  'android-core': '1.0.0'
+  'android-core': '1.0.0',
+  'flutter-core': '1.0.0'
 };
 
 const SECTIONS = [
@@ -77,11 +78,15 @@ const SECTIONS = [
     label: latestVersions['web-core'],
   }),
 
-  // [web] mobile-core
+  // [web] android-core
   defineSection('android-core', {
     label: latestVersions['android-core'],
   }),
 
+  // [web] flutter-core
+  defineSection('flutter-core', {
+    label: latestVersions['flutter-core'],
+  }),
 
   // [mobile]
   defineSection('react-native', {
