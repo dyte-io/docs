@@ -1,8 +1,11 @@
 # Livestreaming Dyte Meetings to other platforms
 
-Dyte can livestream your meeting to any platform which supports an RTMP endpoint like YouTube, Twitch etc. All you need to do is pass that RTMP endpoint while you [start the recording](/api/#/operations/start_recording).
+Dyte can livestream your meeting to any platform which supports an RTMP endpoint
+like YouTube, Twitch etc. All you need to do is pass that RTMP endpoint while
+you [start the recording](/api/#/operations/start_recording).
 
-For example, if you want to stream it to [restream.io](https://restream.io), you can do:
+For example, if you want to stream it to [restream.io](https://restream.io), you
+can do:
 
 ```shell
 curl --request POST \
@@ -20,5 +23,6 @@ And it just works 🙌
 
 ### Considerations
 
-1. Currently, you need to [start a recording](/api/#/operations/start_recording) to live stream your content.
+1. Currently, you need to [start a recording](/api/#/operations/start_recording)
+   to live stream your content.
 2. There is few seconds of lag between the meeting and the stream.

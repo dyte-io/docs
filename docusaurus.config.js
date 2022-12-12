@@ -88,7 +88,6 @@ const SECTIONS = [
     label: latestVersions['ios-core'],
   }),
 
-
   // [mobile]
   defineSection('react-native', {
     label: latestVersions['react-native'],
@@ -229,13 +228,13 @@ const config = {
           },
           {
             label: 'Sign Up',
-            href: 'https://accounts.dyte.io/auth/register',
+            href: 'https://dev.dyte.io/register',
             position: 'right',
             className: 'dev-portal-signup dev-portal-link',
           },
           {
             label: 'Login',
-            href: 'https://accounts.dyte.io/auth/login',
+            href: 'https://dev.dyte.io/login',
             position: 'right',
             className: 'dev-portal-login dev-portal-link',
           },
@@ -280,7 +279,7 @@ const config = {
               },
               {
                 label: 'Privacy Policy',
-                href: 'https://dyte.io/privacy-policy.html',
+                href: 'https://dyte.io/privacy-policy',
               },
               {
                 label: 'Contact Us',

@@ -136,7 +136,7 @@ const MULTI_SECTIONS = [
       isNew: true,
       description: 'Build your own UI from scratch, use our low level APIs.',
     },
-  ]
+  ],
 ];
 
 export { SECTIONS, MULTI_SECTIONS };

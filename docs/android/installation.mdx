@@ -1,65 +1,68 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
+slug: /
 ---
 
 # Installation
 
-1. In your project, add the Maven repository `https://maven.dyte.in`. The repository typically goes into the `build.gradle` file in the root of your project.
+1. In your project, add the Maven repository `https://maven.dyte.in`. The
+   repository typically goes into the `build.gradle` file in the root of your
+   project.
 
 ```groovy
 allprojects {
     repositories {
-        google()
-        jcenter()
-        maven {
-            url "https://maven.dyte.in"
-        }
+        // (other repositories)
+        mavenCentral()
     }
 }
 ```
 
-2. Add the dependency `com.dyteclientmobile:sdk`. Dependency definitions belong in the individual module `build.gradle` files.
+2. Add the dependency `com.dyteclientmobile:sdk`. Dependency definitions belong
+   in the individual module `build.gradle` files.
 
 ```groovy
 dependencies {
     // (other dependencies)
-        implementation "com.dyteclientmobile:sdk:+"
-    // optionally if you app does not have support libraries
-    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
+    implementation 'io.dyte:uikit:0.0.3'
 }
-```
-
-3. Register the activity in `AndroidManifest.xml`.
-
-```xml
-<activity
-            android:name="com.dyteclientmobile.DyteMeetingActivity"
-            android:launchMode="singleTask"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
-            android:windowSoftInputMode="adjustResize">
- </activity>
 ```
 
 :::info
 
-The below instructions are for the release builds, debug builds should work without any additional steps.
+The below instructions are for the release builds, debug builds should work
+without any additional steps.
 
 :::
 
-1. Edit your `android/gradle.properties` and add the following line
+1. Create / append to the file `android/app/proguard-rules.pro`
 
 ```groovy
-android.enableDexingArtifactTransform.desugaring=false
-```
+# Keep `Companion` object fields of serializable classes.
+# This avoids serializer lookup through `getDeclaredClasses` as done for named companion objects.
+-if @kotlinx.serialization.Serializable class **
+-keepclassmembers class <1> {
+   static <1>$Companion Companion;
+}
 
-2. Create / append to the file `android/app/proguard-rules.pro`
+# Keep `serializer()` on companion objects (both default and named) of serializable classes.
+-if @kotlinx.serialization.Serializable class ** {
+   static **$* *;
+}
+-keepclassmembers class <2>$<3> {
+   kotlinx.serialization.KSerializer serializer(...);
+}
 
-```groovy
+# keep webrtc classes
 -keep class org.webrtc.** { *; }
 -dontwarn org.chromium.build.BuildHooksAndroid
+
+# keep ktor classes
+-keep class io.ktor.** { *; }
 ```
 
-3. In your `android/app/build.gradle` edit the release configuration and add the following line importing the proguard configuration
+3. In your `android/app/build.gradle` edit the release configuration and add the
+   following line importing the proguard configuration
 
 ```groovy
 buildTypes {
@@ -71,3 +74,13 @@ buildTypes {
         }
     }
 ```
+
+## Configure the meeting connection
+
+You need to pass a [`DyteUIKitConfig`](./reference/dyte-ui-kit-config) to
+[`DyteUIKitBuilder`](./reference/dyte-ui-kit-builder) to define which meeting
+should the client connect to and a couple of other setup parameters, out of
+which only `authToken` and `roomName` are mandatory.
+
+`DyteUIKitBuilder` is a static class and can be used to control and observe the
+meeting from anywhere in your application.

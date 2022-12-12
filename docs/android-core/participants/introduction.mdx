@@ -7,8 +7,9 @@ tags: [mobile-core, participants, participant]
 
 # Introduction - Participants
 
-The data regarding all meeting participants is stored under `meeting.participants`. Use the methods and events to consume the participants data. 
-For example, to get all the participants who joined the meeting:
+The data regarding all meeting participants is stored under
+`meeting.participants`. Use the methods and events to consume the participants
+data. For example, to get all the participants who joined the meeting:
 
 ```kotlin
 // get all joined participants
@@ -17,21 +18,31 @@ val joinedParticipants = meeting.participants.joined;
 
 The `meeting.participants` object has the following properties.
 
-- `joined`: A list that contains all the participants who have joined the meeting.
-- `waitlisted`: A list that contains all the participants waiting to join the meeting.
-- `active`: A list that contains all the participants except the local user who are supposed to be on the screen at the moment 
+- `joined`: A list that contains all the participants who have joined the
+  meeting.
+- `waitlisted`: A list that contains all the participants waiting to join the
+  meeting.
+- `active`: A list that contains all the participants except the local user who
+  are supposed to be on the screen at the moment
 - `pinned`: A list that contains all the pinned participants of the meeting.
-- `screenshares`: A list that contains all the participants who have shared screen in the meeting.
+- `screenshares`: A list that contains all the participants who have shared
+  screen in the meeting.
 
-Therefore, if you were to make a grid of participants, you'd use the `active` list, but to display all participants in the meeting you'd use the `joined` list.
+Therefore, if you were to make a grid of participants, you'd use the `active`
+list, but to display all participants in the meeting you'd use the `joined`
+list.
 
-Each participant in each of the `joined`, `waitlisted`, `active`, `pinned` and `screenshares` list is of type `DyteMeetingParticipant`.
+Each participant in each of the `joined`, `waitlisted`, `active`, `pinned` and
+`screenshares` list is of type `DyteMeetingParticipant`.
 
-You can subscribe to various events on the participants by implementing `DyteParticipantEventsListener` and passing the object to `meeting.addParticipantEventsListener(dyteParticipantEventsListener)`.
+You can subscribe to various events on the participants by implementing
+`DyteParticipantEventsListener` and passing the object to
+`meeting.addParticipantEventsListener(dyteParticipantEventsListener)`.
 
 ### Video update
 
-Triggered when the user starts / stops the video using `enableVideo` or `disableVideo`
+Triggered when the user starts / stops the video using `enableVideo` or
+`disableVideo`
 
 ```kotlin
 meeting.self.addParticipantEventsListener(object : DyteParticipantEventsListener {
@@ -48,7 +59,8 @@ meeting.self.addParticipantEventsListener(object : DyteParticipantEventsListener
 
 ### Audio update
 
-Triggered when the user starts / stops the audio using `enableAudio` or `disableAudio`
+Triggered when the user starts / stops the audio using `enableAudio` or
+`disableAudio`
 
 ```kotlin
 meeting.self.addSelfEventsListener(object : DyteSelfEventsListener {
@@ -65,7 +77,9 @@ meeting.self.addSelfEventsListener(object : DyteSelfEventsListener {
 
 ## Set mode of pagination
 
-The SDK allows you to view grid in two differant modes. First is `Grid` where SDK gives you list of `active` participants to show. Second is `Paginated` where user decides which page to view.
+The SDK allows you to view grid in two differant modes. First is `Grid` where
+SDK gives you list of `active` participants to show. Second is `Paginated` where
+user decides which page to view.
 
 ```kotlin
 // for grid mode
@@ -77,16 +91,19 @@ meeting.participants.setMode(PageViewMode.PAGINATED)
 
 ## Move between pages in paginated mode
 
-The `setPage(pageNumber: Int)` method allows you to switch between pages of participants present in the meeting.
+The `setPage(pageNumber: Int)` method allows you to switch between pages of
+participants present in the meeting.
 
 ```kotlin
 // switch to 1st page
 meeting.participants.setPage(1)
 ```
- 
+
 ## Host control methods
 
-The `meeting.participants` object has host control methods that allow you to disable the audio and video streams of other users in the meeting (given that the user preset has the right permissions).
+The `meeting.participants` object has host control methods that allow you to
+disable the audio and video streams of other users in the meeting (given that
+the user preset has the right permissions).
 
 ```kotlin
 // mute all participants

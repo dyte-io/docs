@@ -14,13 +14,15 @@ flutter pub add dyte_client
 
 :::caution
 
-Check `/android/app/build.gradle` to ensure that the minimum SDK version of your Flutter Android project is **21**.
+Check `/android/app/build.gradle` to ensure that the minimum SDK version of your
+Flutter Android project is **21**.
 
 :::
 
 :::info
 
-The below instructions are for the release builds, debug builds should work without any additional steps.
+The below instructions are for the release builds, debug builds should work
+without any additional steps.
 
 :::
 
@@ -37,7 +39,8 @@ android.enableDexingArtifactTransform.desugaring=false
 -dontwarn org.chromium.build.BuildHooksAndroid
 ```
 
-3. In your `android/app/build.gradle` edit the release configuration and add the following line importing the proguard configuration
+3. In your `android/app/build.gradle` edit the release configuration and add the
+   following line importing the proguard configuration
 
 ```
 buildTypes {
@@ -54,7 +57,8 @@ buildTypes {
 
 :::caution
 
-Please make sure you are running Xcode using Rosetta on the newer Apple Silicon based Macs.
+Please make sure you are running Xcode using Rosetta on the newer Apple Silicon
+based Macs.
 
 :::
 
@@ -92,7 +96,8 @@ platform :ios, '12.0'
 <false/>
 ```
 
-2. Ensure in your `Podfile` you have an entry like below declaring platform of **11.0** or above and disable `BITCODE`.
+2. Ensure in your `Podfile` you have an entry like below declaring platform of
+   **11.0** or above and disable `BITCODE`.
 
 ```ruby
 post_install do |installer|
