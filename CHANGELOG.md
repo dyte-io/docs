@@ -1,3 +1,12 @@
+# [1.30.0](https://github.com/dyte-in/docs/compare/v1.29.0...v1.30.0) (2022-12-12)
+
+
+### Features
+
+* add installation ([016492c](https://github.com/dyte-in/docs/commit/016492c9ced6151ae48fe649377c387b9431f343))
+* **component:** docs for participants are updated ([c0ebc67](https://github.com/dyte-in/docs/commit/c0ebc67574cda24d5661d2c8313503bb3fbf9f38))
+* flutter-core docs in place ([f37f992](https://github.com/dyte-in/docs/commit/f37f992a45f67dfba5bcda9e41e4bfe459a37a2f))
+
 # [1.29.0](https://github.com/dyte-in/docs/compare/v1.28.2...v1.29.0) (2022-12-09)
 
 
