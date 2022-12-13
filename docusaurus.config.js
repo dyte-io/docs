@@ -1,4 +1,5 @@
 /* eslint-disable */
+const fs = require('fs');
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/vsDark');
@@ -6,6 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/vsDark');
 const UIKitReferencePlugins = require('./plugins/ui-kit-reference-plugin.cjs');
 const { webpackPlugin } = require('./plugins/webpack-plugin.cjs');
 const posthogPlugin = require('./plugins/posthog-plugin.cjs');
+const tailwindPlugin = require('./plugins/tailwind-plugin.cjs');
 
 /** @type {import('@docusaurus/preset-classic').Options} */
 const defaultSettings = {
@@ -49,7 +51,7 @@ const latestVersions = {
   ios: '1.33.x',
   flutter: '0.7.x',
   'android-core': '1.0.0',
-  'flutter-core': '1.0.0'
+  'flutter-core': '1.0.0',
 };
 
 const SECTIONS = [
@@ -103,6 +105,9 @@ const SECTIONS = [
   }),
 ];
 
+const sdksHTML = fs.readFileSync('./src/snippets/sdks.html', 'utf-8');
+const resourcesHTML = fs.readFileSync('./src/snippets/resources.html', 'utf-8');
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Dyte Docs',
@@ -114,6 +119,18 @@ const config = {
   onBrokenMarkdownLinks: 'warn',
   favicon: '/favicon.ico',
   trailingSlash: false,
+  stylesheets: [
+    { href: 'https://fonts.googleapis.com', rel: 'preconnect' },
+    { href: 'https://fonts.gstatic.com', rel: 'preconnect', crossOrigin: true },
+    {
+      href: 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&display=swap',
+      rel: 'stylesheet',
+    },
+    {
+      href: 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital@1&family=Plus+Jakarta+Sans:wght@400;600;700&family=Rubik:wght@400;600;700&display=swap',
+      rel: 'stylesheet',
+    },
+  ],
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -157,10 +174,11 @@ const config = {
   ],
 
   plugins: [
-    ...SECTIONS,
-    ...UIKitReferencePlugins,
+    tailwindPlugin,
     webpackPlugin,
     posthogPlugin,
+    ...SECTIONS,
+    ...UIKitReferencePlugins,
   ],
 
   themes: ['@docusaurus/theme-live-codeblock'],
@@ -185,58 +203,62 @@ const config = {
           src: '/logo/light.svg',
           srcDark: '/logo/dark.svg',
           alt: 'Dyte Docs',
-          height: '26px',
-          width: '114px',
+          height: '40px',
+          width: '101px',
         },
         items: [
           {
-            label: 'Web SDKs',
-            to: 'react-ui-kit',
-            position: 'left',
-            className: 'new-badge',
-            activeBaseRegex: '(.*ui-kit|.*web-core)',
-          },
-          {
-            label: 'Mobile SDKs',
-            to: 'react-native',
-            position: 'left',
-            activeBaseRegex: '(react-native|android|ios|flutter)',
-          },
-          {
-            label: 'API Reference',
-            to: '/api/',
-            position: 'left',
+            label: 'SDKs',
+            type: 'dropdown',
+            className: 'dyte-dropdown',
+            items: [
+              {
+                type: 'html',
+                value: sdksHTML,
+                className: 'dyte-dropdown',
+              },
+            ],
           },
           {
             label: 'Guides',
             to: 'guides',
-            position: 'left',
           },
           {
-            href: 'https://github.com/dyte-in',
-            className: 'pseudo-icon github-icon',
-            position: 'right',
+            label: 'API Reference',
+            to: '/api/',
           },
           {
-            href: 'https://community.dyte.io',
-            className: 'pseudo-icon discord-icon',
-            position: 'right',
+            label: 'Resources',
+            type: 'dropdown',
+            className: 'dyte-dropdown resources-dropdown',
+            items: [
+              {
+                type: 'html',
+                value: resourcesHTML,
+                className: 'dyte-dropdown',
+              },
+            ],
           },
+          {
+            label: 'Support',
+            to: '#',
+          },
+
           {
             type: 'search',
             position: 'right',
+          },
+          {
+            label: 'Book a demo',
+            href: 'https://dyte.io/schedule-demo',
+            position: 'right',
+            className: 'navbar-book-demo',
           },
           {
             label: 'Sign Up',
             href: 'https://dev.dyte.io/register',
             position: 'right',
             className: 'dev-portal-signup dev-portal-link',
-          },
-          {
-            label: 'Login',
-            href: 'https://dev.dyte.io/login',
-            position: 'right',
-            className: 'dev-portal-login dev-portal-link',
           },
         ],
       },
@@ -283,7 +305,7 @@ const config = {
               },
               {
                 label: 'Contact Us',
-                href: 'mailto:support@dyte.in',
+                href: 'https://dyte.io/contact',
               },
             ],
           },
