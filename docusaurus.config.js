@@ -55,7 +55,12 @@ const latestVersions = {
 };
 
 const SECTIONS = [
-  defineSection('guides'),
+  defineSection('guides', {
+    label: 'v1'
+  }),
+  defineSection('guides-v2', {
+    label: 'v2'
+  }),
   defineSection('cli'),
 
   defineSection('react', { label: '0.x.x' }),
@@ -102,7 +107,7 @@ const SECTIONS = [
   }),
   defineSection('flutter', {
     label: latestVersions['flutter'],
-  }),
+  })
 ];
 
 const sdksHTML = fs.readFileSync('./src/snippets/sdks.html', 'utf-8');
@@ -222,6 +227,8 @@ const config = {
           {
             label: 'Guides',
             to: 'guides',
+            position: 'left',
+            className: 'new-badge'
           },
           {
             label: 'API Reference',

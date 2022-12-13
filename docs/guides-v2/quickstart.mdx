@@ -1,0 +1,269 @@
+---
+title: 'Quickstart'
+---
+
+# Quickstart
+
+A typical workflow for using Dyte’s APIs usually involves the following steps:
+
+- Create a meeting
+- Add participants to the meeting
+- Record the meeting
+- Receive events using webhooks
+
+We will be exploring how to perform the above actions using Dyte’s API.
+
+# Create a meeting
+
+Before anything else, a meeting must be created. This is the building block of
+audio/video calls using Dyte. You can create a meeting by calling:
+
+```jsx
+curl --request POST \
+  --url https://api.cluster.dyte.in/v2/meetings \
+  --header 'Authorization: Basic ZGV2QGR5dGUuaW46MTIzNDU2Nzg5YXNkaGZnaGo=' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "title": "Sample meeting",
+  "preferred_region": "ap-south-1",
+  "record_on_start": false
+}'
+```
+
+This will return a response of the type:
+
+```jsx
+{
+  "success": true,
+  "data": {
+    "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
+    "preferred_region": "ap-south-1",
+    "waiting_room": true,
+    "record_on_start": true,
+    "created_at": "2019-08-24T14:15:22Z",
+    "updated_at": "2019-08-24T14:15:22Z"
+  }
+}
+```
+
+The `id` field in the response is the meeting ID, using which we can perform
+further operations.
+
+# Adding participants
+
+Now we have a meeting, but there’s nobody in there! To add participants, make
+the following call:
+
+```jsx
+curl --request POST \
+  --url https://api.cluster.dyte.in/v2/meetings/<meetingId>/participants \
+  --header 'Authorization: Basic ZGV2QGR5dGUuaW46MTIzNDU2Nzg5YXNkaGZnaGo=' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "name": "Mary Sue",
+  "picture": "https://i.imgur.com/test.jpg",
+  "preset_name": "string",
+  "client_specific_id": "string"
+}'
+```
+
+Note that you should substitute `<meetingId>` in the URL with the meeting ID
+returned in the Create Meeting step.
+
+This call returns a response of the following type:
+
+```jsx
+{
+  "success": true,
+  "data": {
+    "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
+    "name": "string",
+    "picture": "http://example.com",
+    "client_specific_id": "string",
+    "preset_name": "string",
+    "created_at": "2019-08-24T14:15:22Z",
+    "updated_at": "2019-08-24T14:15:22Z",
+    "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdJZCI6IjM5MGJmMjc0LTQxMzMtNDI2ZC04NDkxLWVhN2ExYTE5MDQ4YiIsIm1lZXRpbmdJZCI6ImY5MTMzODM0LWE4MmYtNGNhYi05OTRiLWY3M2RiMmQwNmY4OCIsInBhcnRpY2lwYW50SWQiOiIxZDVhNTkyMy1iYzY5LTQ5ZDAtODJhNy1lZDIzZmE0ZTUyZWYiLCJwcmVzZXRJZCI6Ijg3NzNiZDAzLTkzNjItNDdjNy1hNzlkLThmNTQxMWMyNDc2NiIsImlhdCI6MTY2OTgzMDE5OCwiZXhwIjoxNjc4NDcwMTk4fQ.ngSKuI24JHtPxiimrGT1Vkk7_AdvrMRwkbltvlWpyWmmm14-Kl4OUVw2nm7q0S2uEgw7xXRz8faxzzJTMogkKlUSXGXOpUc_lXYH9h7u29MCFf3nJDy_FZIsSgPmULLoF3p4OlU9wNSwEnO0h856PdB4MfAuXxa24vkgI1tplzBPOS4NcW9x8pfE7J98ixVZKcPvqNig_pLOypy0j5Pd3CHdi25EFml1Fr0iyui4hDrjE-mzMnYwvojkXSb47MSxVoOLGvWn__dL2qrPSho4C3fhb_HEupWAzCHMDBpl1IGhazN1-mZ40WNYsKFFcch89qOsr0dA2C_d0PHVzCVP3A"
+  }
+}
+```
+
+Pay attention to the token returned from this call. You will need this to
+initialize our frontend (web/mobile) SDKs. You can view guides for frontend
+integration (here?).
+
+# Record the meeting
+
+Many times, you want to record a meeting as it’s going on. Here’s how you can
+control recordings for a meeting.
+
+One important thing to note with recording routes is that they can be
+authenticated with both `Basic` and `Bearer` schemes. The `Basic` scheme is the
+same as for all other routes, while the `Bearer` scheme utilizes the `token`
+returned by the _Add Participant_ route. This way, both participants or your
+backend can trigger recordings.
+
+eg: `
+
+## Start recording a meeting
+
+Make a request similar to the following. Note that the `storage_config` is
+optional.
+
+```bash
+curl --request POST \
+  --url https://api.cluster.dyte.in/v2/recordings \
+  --header 'Authorization: Basic MzkwYmYyNzQtNDEzMy00MjZkLTg0OTEtZWE3YTFhMTkwNDhiOjdmYTQzNjAwZjk3ZTVkZGI5NmIw' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "meeting_id": "97440c6a-140b-40a9-9499-b23fd7a3868a",
+  "storage_config": {
+    "type": "aws",
+    "access_key": "string",
+    "secret_key": "string",
+    "region": "us-east-1",
+    "bucket": "string",
+    "path": "string"
+  }
+}'
+```
+
+This will return a response in the following format
+
+```bash
+{
+  "success": true,
+  "data": {
+    "id": "a776cc7e-54b8-4915-a748-8afc6bf98140",
+    "download_url": null,
+    "download_url_expiry": null,
+    "file_size": null,
+    "session_id": null,
+    "output_file_name": "d9fc4d6a-a5a0-4430-9a73-d4ba14e597f9_1669882270392.mp4",
+    "status": "INVOKED",
+    "invoked_time": "2022-12-01T08:11:10.430Z",
+    "started_time": null,
+    "stopped_time": null,
+    "storage_config": {
+      "id": "5f48f84c-4628-44b8-8953-64c67c714de7",
+      "type": "aws",
+      "region": "ap-south-1",
+      "bucket": "dyte",
+      "path": "/"
+    }
+  }
+}
+```
+
+## Stopping the recording
+
+You can stop an active recording at any time by using the following API route.
+
+```bash
+curl --request PUT \
+  --url https://api.staging.dyte.in/v2/recordings/<recordingId> \
+  --header 'Authorization: Basic NzBjNWQzOTEtNGJhYy00Y2YzLTk5MDctYmVjMjA1Nzk4YWRiOmQyNzBmYjJmOGNiNGUzZWY1MGI1' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "action": "stop"
+}'
+```
+
+Note that you should substitute `<recordingId>` in the path parameters with the
+ID returned in the **\*\***\*\*\*\***\*\***Create
+recording**\*\***\*\*\*\***\*\*** call.
+
+This call returns a response like the following
+
+```bash
+{
+  "success": true,
+  "data": {
+    "id": "a776cc7e-54b8-4915-a748-8afc6bf98140",
+    "download_url": null,
+    "download_url_expiry": null,
+    "file_size": null,
+    "session_id": "622dfa7b-ae00-4ba1-bba0-d6d0cc9e6c7d",
+    "output_file_name": "d9fc4d6a-a5a0-4430-9a73-d4ba14e597f9_1669882270392.mp4",
+    "status": "UPLOADING",
+    "invoked_time": "2022-12-01T08:11:10.430Z",
+    "started_time": "2022-12-01T08:11:12.023Z",
+    "meeting": {
+      "waiting_room": false,
+      "id": "d9fc4d6a-a5a0-4430-9a73-d4ba14e597f9",
+      "title": "Backend Standup",
+      "record_on_start": false,
+      "created_at": "2022-12-01T07:01:23.990Z",
+      "updated_at": "2022-12-01T07:01:23.990Z"
+    },
+    "storage_config": {
+      "id": "5f38f84c-4628-44b8-8953-64c67c714de7",
+      "type": "aws",
+      "region": "ap-south-1",
+      "bucket": "dyte-smoketest",
+      "path": "/"
+    }
+  }
+}
+```
+
+Note that the `status` is UPLOADING. As recordings are large files, they are
+uploaded asynchronously. You can monitor the status of recordings by listening
+for `recording.statusUpdate` events on our webhooks.
+
+# Webhooks
+
+Often, you want to listen for events that our systems emit in order to perform
+various actions. For example, you might want to know when a user joins so you
+can mark them as present for a class.
+
+For this very scenario, Dyte runs a webhook service that calls registered
+webhooks with the desired events.
+
+## Creating a webhook
+
+To create a webhook, simply make the following call
+
+```bash
+curl --request POST \
+  --url https://api.cluster.dyte.in/v2/webhooks \
+  --header 'Authorization: Basic NzBjNWQzOTEtNGJhYy00Y2YzLTk5MDctYmVjMjA1Nzk4YWRiOmQyNzBmYjJmOGNiNGUzZWY1MGI1' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "name": "Attendance",
+  "url": "https://webhook.site/#!/b23a5bbd-c8b0-4ced-a9e2-78ae7889897e",
+  "events": [
+    "meeting.participantJoined",
+    "meeting.participantLeft"
+  ]
+}'
+```
+
+This will create a webhook that calls the `url` field whenever a participant
+joins or leaves a meeting. The body of the webhook request is as follows:
+
+```bash
+{
+  "event": "meeting.participantJoined",
+  "meeting": {
+    "id": "d9fc4d6a-a5a0-4430-9a73-d4ba14e597f9",
+    "title": "Backend Standup",
+    "roomName": "d9fc4d6a-a5a0-4430-9a73-d4ba14e597f9",
+    "status": "LIVE",
+    "createdAt": "2022-12-01T08:08:36.593Z",
+    "startedAt": "2022-12-01T08:08:36.593Z",
+    "organizedBy": {
+      "id": "70c5d391-4bac-4cf3-9907-bec205798adb",
+      "name": "Test Org"
+    }
+  },
+  "participant": {
+    "peerId": "1087822b-0673-47c9-abc9-582ccc8b4057",
+    "userDisplayName": "Participant nfiu92xa1jd",
+    "clientSpecificId": "anrxl1m34a4"
+  }
+}
+```
+
+For a complete guide to using webhooks, check out the webhooks integration
+guide.

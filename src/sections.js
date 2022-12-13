@@ -17,10 +17,15 @@ const SECTIONS = [
     section: false,
   },
   {
+    name: 'Guides v1',
     id: 'guides',
-    section: false,
+    section: 'guide',
   },
-
+  {
+    name: 'Guides v2',
+    id: 'guides-v2',
+    section: 'guide',
+  },
   {
     name: 'React SDK',
     id: 'react',
@@ -134,7 +139,7 @@ const MULTI_SECTIONS = [
       section: 'mobile-core',
       isNew: true,
       description: 'Build your own UI from scratch, use our low level APIs.',
-    },
+    }
   ],
 ];
 
