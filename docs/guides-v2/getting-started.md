@@ -1,5 +1,5 @@
 ---
-title: 'Getting started with V2 APIs'
+title: 'Getting started'
 ---
 
 Before we start, you should familiarize yourself with a few terms that are
