@@ -39,3 +39,133 @@ individual endpoints for specific events.
 
 Use the [events overview guide](/guides-v2/webhooks/webhook-events) to identify
 the events your webhook endpoint needs to parse.
+
+## Step 2: Create a webhook endpoint
+
+Set up an HTTP endpoint that can accept webhook requests with a POST method. For
+example, this route in express is a map to a Node.js webhook function.
+
+```js
+const express = require('express');
+const app = express();
+
+app.post('/webhook', express.json({ type: 'application/json' }), (req, res) => {
+  const event = request.body;
+  // ... do further processing
+});
+```
+
+## Step 3: Handle requests from Dyte
+
+Your endpoint must be configured to receive events for the type of event
+notifications you want to receive. Dyte sends events to your webhook endpoint as
+part of a POST request with a JSON payload.
+
+### Registering your endpoint
+
+You can register your endpoint as a webhook and listen for specific events using
+our [dev portal](https://dev.dyte.io) or by making an API request. For example,
+to receive all events, you can make a request like:
+
+```bash
+curl --location --request POST 'https://api.cluster.dyte.in/v2/webhooks' \
+--header 'Authorization: Basic WRiOmQyNzBmYjJmOGNiNGUzZWY1MGI1' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "All events webhook",
+    "url": "<your endpoint here>",
+    "events": [
+        "meeting.started",
+        "meeting.ended",
+        "meeting.participantJoined",
+        "meeting.participantLeft",
+        "recording.statusUpdate",
+        "livestreaming.statusUpdate"
+    ]
+}'
+```
+
+For more information, check out the
+[webhooks API reference](http://docs.dyte.io/api/?v=v2#/operations/addWebhook).
+
+### Return a 2xx response
+
+Your endpoint must quickly return a successful status code (`2xx`) prior to any
+complex logic that could cause a timeout.
+
+```js
+app.post('/webhook', express.json({ type: 'application/json' }), (req, res) => {
+  const event = request.body;
+  // ... do further processing
+  return res.status(200).send();
+});
+```
+
+### Built-in retries
+
+Dyte webhooks have built-in retry methods for `3xx`, `4xx` or `5xx` response
+status codes. If Dyte doesn't receive a `2xx` response status code for an event,
+we mark the event as failed and retry up to 5 times.
+
+## Step 4: Secure your webhooks (recommended)
+
+Use [webhook signatures](/guides-v2/webhooks/signatures) to verify that Dyte
+generated a webhook request and that it didn't come from a malicious server
+pretending to be Dyte.
+
+## Sample code
+
+<Tabs>
+
+<TabItem value="node" label="Node.js">
+
+```js
+const express = require('express');
+const app = express();
+
+app.post('/webhook', express.json({ type: 'application/json' }), (req, res) => {
+  // verify signature
+  // ...
+
+  // parse event body
+  switch (req.body.event) {
+    case 'meeting.participantJoined':
+      const { meeting, participant } = req.body;
+      // Then define and call a method to handle the joined participant
+      // handleParticipantJoined(meeting, participant);
+      break;
+    case 'recording.statusUpdate':
+      const { meeting, recording } = req.body;
+      // Then define and call a method to handle the recording status update
+      // handleRecordingUpdate(meeting, recording);
+      break;
+    // ... handle other event types
+    default:
+      console.log(`Unhandled event type ${event.type}`);
+  }
+});
+
+app.listen(8000, () => console.log('Running on port 8000'));
+```
+
+</TabItem>
+
+<TabItem value="OFFLINE" label="OFFLINE">
+
+```json
+{
+  "event": "livestreaming.statusUpdate",
+  "streamId": "d231d346-c422-43a6-a324-c0d65b79c8a7",
+  "status": "OFFLINE"
+}
+```
+
+</TabItem>
+
+</Tabs>
+
+## See also
+
+- [Events overview guide](/guides-v2/webhooks/webhook-events)
+- [Webhooks API reference](http://docs.dyte.io/api/?v=v2#/operations/addWebhook)
+- [Webhook signatures](/guides-v2/webhooks/signatures)
