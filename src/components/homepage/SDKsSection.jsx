@@ -82,7 +82,7 @@ export default function SDKsSection() {
             <div className="flex max-w-sm flex-1 items-center rounded-full border border-solid border-text-400 text-sm lg:text-base">
               <div
                 className={clsx(
-                  'flex-1 py-1 text-center cursor-pointer',
+                  'flex-1 cursor-pointer py-1 text-center',
                   visibleSection === 'web' &&
                     'rounded-full border-2 border-solid'
                 )}
@@ -96,7 +96,7 @@ export default function SDKsSection() {
               </div>
               <div
                 className={clsx(
-                  'flex-1 py-1 text-center cursor-pointer',
+                  'flex-1 cursor-pointer py-1 text-center',
                   visibleSection === 'mobile' &&
                     'rounded-full border-2 border-solid'
                 )}
@@ -110,7 +110,7 @@ export default function SDKsSection() {
               </div>
               <div
                 className={clsx(
-                  'flex-1 py-1 text-center cursor-pointer',
+                  'flex-1 cursor-pointer py-1 text-center',
                   visibleSection === 'plugin' &&
                     'rounded-full border-2 border-solid'
                 )}

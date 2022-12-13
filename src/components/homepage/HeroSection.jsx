@@ -31,10 +31,10 @@ export default function HeroSection() {
               Start building
             </Link>
             <Link
-              href="/how-dyte-works"
+              href="/getting-started"
               className="rounded-sm border border-solid border-primary bg-primary/10 px-12 py-2.5 text-center font-semibold text-primary hover:text-primary dark:border-primary-100 dark:text-primary-100"
             >
-              How Dyte Works
+              Getting started
             </Link>
           </div>
         </div>

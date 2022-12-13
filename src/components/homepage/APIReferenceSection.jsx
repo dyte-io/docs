@@ -8,7 +8,7 @@ export default function APIReferenceSection() {
   const { colorMode } = useColorMode();
 
   return (
-    <section className="mb-20 px-6 relative">
+    <section className="relative mb-20 px-6">
       <Head>
         <link rel="prefetch" href="/static/landing-page/api-ref-light.png" />
         <link rel="prefetch" href="/static/landing-page/api-ref-dark.png" />

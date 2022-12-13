@@ -250,7 +250,7 @@ const config = {
           },
           {
             label: 'Book a demo',
-            href: '#',
+            href: 'https://dyte.io/schedule-demo',
             position: 'right',
             className: 'navbar-book-demo',
           },
