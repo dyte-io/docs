@@ -260,6 +260,13 @@ export default function SDKsSection() {
                   label="Android"
                 />
               </li>
+              <li>
+                <SDKLink
+                  Icon={FlutterIcon}
+                  label="Flutter"
+                  href="flutter-core"
+                />
+              </li>
             </ul>
             <div className="rounded-2xl bg-secondary-700 p-4 dark:bg-secondary-900">
               <h5 className="text-center text-xs text-text-400">COMING SOON</h5>
@@ -269,9 +276,6 @@ export default function SDKsSection() {
                 </li>
                 <li>
                   <SDKLink disabled Icon={SwiftIcon} label="iOS" />
-                </li>
-                <li>
-                  <SDKLink disabled Icon={FlutterIcon} label="Flutter" />
                 </li>
               </ul>
             </div>
