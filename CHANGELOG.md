@@ -1,3 +1,39 @@
+# [1.31.0](https://github.com/dyte-in/docs/compare/v1.30.0...v1.31.0) (2022-12-13)
+
+
+### Bug Fixes
+
+* hide incomplete sections ([b49d7cc](https://github.com/dyte-in/docs/commit/b49d7cc3898979e424391199a97cea4c83d7cd5d))
+* icon size in resources dropdown ([b1b8430](https://github.com/dyte-in/docs/commit/b1b84309a7041869ea9cd58b9434fbb7c443fa1e))
+* **landing-page:** design updates ([9abfab6](https://github.com/dyte-in/docs/commit/9abfab6ca467599689af4f1d58ad7643ab379f5c))
+* **landing-page:** link start building cta to section ([068c85b](https://github.com/dyte-in/docs/commit/068c85b9c7002eb44f7004119e076ec72b9b9279))
+* navbar dropdown fixes ([1ef768a](https://github.com/dyte-in/docs/commit/1ef768a377bb04d4d90fce6598143cd45e96559d))
+* polishing redesign ([1c53562](https://github.com/dyte-in/docs/commit/1c53562b32976867587b652c413a2909b9627c78))
+* sdk section active menu ([795f254](https://github.com/dyte-in/docs/commit/795f25414fcab10a9d95c065b05f3d016a11be1b))
+* sdks dropdown and intersection viewer ([08dcbe6](https://github.com/dyte-in/docs/commit/08dcbe613f2defe824a94eebfa7772992c52d76f))
+* small design updates ([5d85d77](https://github.com/dyte-in/docs/commit/5d85d77d21181ca78ca5fb8d6e8e4309471b9204))
+* smol fixes ([c11252d](https://github.com/dyte-in/docs/commit/c11252d4557a35eb540bd9373f040b07b6a05a28))
+* **ui:** position of text ([ca0a3a7](https://github.com/dyte-in/docs/commit/ca0a3a7d5ffc56f816b1bb35e3a66908a4683eca))
+* update release notes icon ([a1979c8](https://github.com/dyte-in/docs/commit/a1979c80dbcad53a5a2669c1d24ce9ff59c9c0ac))
+* updated assets, links ([3e373e1](https://github.com/dyte-in/docs/commit/3e373e151723a021cd23e5e74020bf8b33723496))
+* view all sections ([2592684](https://github.com/dyte-in/docs/commit/25926843ce2f65ddcd011066555b3d6869f0042f))
+
+
+### Features
+
+* add installation ([82f69b1](https://github.com/dyte-in/docs/commit/82f69b135a24b85a5d061fc32b9c6145b47b894b))
+* added faq page ([c075647](https://github.com/dyte-in/docs/commit/c0756471ccf15252f2fd2b35aee853a7b5810876))
+* added faqs ([677a208](https://github.com/dyte-in/docs/commit/677a20868a7edcb281e0d9343bd4b7590f89678e))
+* **component:** docs for participants are updated ([375cdc9](https://github.com/dyte-in/docs/commit/375cdc90db81276fcb6dc72bb12227c5e9ed6bbf))
+* design updates ([8400706](https://github.com/dyte-in/docs/commit/8400706e907c4edd4dedea0aa7c75ed52b4707d0))
+* flutter-core docs in place ([cb6d468](https://github.com/dyte-in/docs/commit/cb6d468d719da28014c00c98d1dfce701f584e50))
+* flutter-core on landing page ([21e923b](https://github.com/dyte-in/docs/commit/21e923bff924d3a7440ae694bfab00a1cc1cd223))
+* landing page redesigned ([6826859](https://github.com/dyte-in/docs/commit/6826859534f94d3b96d2be19f17c3275ff6afe3a))
+* **landing-page:** resources section added ([69c798b](https://github.com/dyte-in/docs/commit/69c798b8fa2d29db406d3d43257728467b0c6b37))
+* new navbar with dropdown menus ([939f94d](https://github.com/dyte-in/docs/commit/939f94db7786b84b64fc2b08a32b5c4c9ba8e758))
+* **ui:** dropdown design changed ([4106734](https://github.com/dyte-in/docs/commit/4106734feb013788ae7f7962165761743d0b0fda))
+* upgrade docusaurus packages ([6332900](https://github.com/dyte-in/docs/commit/63329001c54f26723ec0a599d7de66e5ab80ddfe))
+
 # [1.30.0](https://github.com/dyte-in/docs/compare/v1.29.0...v1.30.0) (2022-12-12)
 
 
