@@ -131,7 +131,7 @@ export default function FAQPage() {
           <div className="relative flex w-full max-w-md items-center text-zinc-700">
             <MagnifyingGlassIcon className="z-10 h-5 w-5 translate-x-1.5" />
             <input
-              type="search"
+              type="text"
               className="-ml-5 h-10 flex-1 rounded-md border-none bg-white px-3 pl-8 text-sm text-zinc-700"
               placeholder="Search your query...(sdk, api, write code)"
               value={query}

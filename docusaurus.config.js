@@ -241,7 +241,7 @@ const config = {
           },
           {
             label: 'Support',
-            to: '#',
+            to: 'https://dyte.io/contact',
           },
 
           {
