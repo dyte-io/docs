@@ -38,11 +38,15 @@ export default function GuidesSection({ title, className }) {
         description="Dyte allows livestreaming, via RTMP as well as HLS, for all Dyte meetings."
         to="/guides/integrating-with-webhooks"
       />
-
       <Card
         title="Controlling an Active Session"
         description="Control an active meeting with REST APIs"
         to="/guides/controlling-an-active-session"
+      />
+      <Card
+        title="Exporting Chat Dump"
+        description="Programmatically retrieve all chat messages of a session using Chat Replay API."
+        to="/guides/exporting-chat-dump"
       />
     </Section>
   );

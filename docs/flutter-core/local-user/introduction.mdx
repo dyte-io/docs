@@ -7,7 +7,8 @@ tags: [mobile-core, local-user, self]
 
 # Introduction - Local User
 
-The local user has the methods and properties on the local user media controls. Accessible via `localUser` within the `meeting` object.
+The local user has the methods and properties on the local user media controls.
+Accessible via `localUser` within the `meeting` object.
 
 ## Properties
 
@@ -20,14 +21,16 @@ Here is a list of properties that local user provides:
 - `flags`: It is of type `ParticipantFlags` and it contains two boolean values
   - `recorder`: if the participant is recorder
   - `hidden`: if the participant is hidden
-- `clientSpecificId`: Identifier provided by the developer while adding the participant.
+- `clientSpecificId`: Identifier provided by the developer while adding the
+  participant.
 - `audioEnabled`: A boolean value indicating if the audio currently enabled.
 - `videoEnabled`: A boolean value indicating if the video currently enabled.
 
 ## Change default audio / video settings
 
-By default as soon as you join the meeting the SDK will produce your video and audio streams.
-To change this behaviour use the `audioEnabled` & `videoEnabled` parameter
+By default as soon as you join the meeting the SDK will produce your video and
+audio streams. To change this behaviour use the `audioEnabled` & `videoEnabled`
+parameter
 
 ```dart
 final meetingInfo = DyteMeetingInfo(
@@ -41,7 +44,9 @@ final meetingInfo = DyteMeetingInfo(
 
 ## Turn audio/video tracks after joining the room
 
-If audio and video tracks are disabled during the `DyteMobileClient` initialization process. You can setup the audio and video tracks by simply calling `enableAudio()` and `enableVideo()` like below:
+If audio and video tracks are disabled during the `DyteMobileClient`
+initialization process. You can setup the audio and video tracks by simply
+calling `enableAudio()` and `enableVideo()` like below:
 
 ```dart
 meeting.localUser.enableAudio();
@@ -50,7 +55,9 @@ meeting.localUser.enableVideo();
 
 ## Change the name of the local user
 
-Change the user's name by calling `setDisplayName` method. The changed name will reflect across all participants ONLY if the change happens before joining the meeting.
+Change the user's name by calling `setDisplayName` method. The changed name will
+reflect across all participants ONLY if the change happens before joining the
+meeting.
 
 ```dart
 meeting.localUser.setDisplayName("New Name")
