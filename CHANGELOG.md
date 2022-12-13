@@ -1,3 +1,10 @@
+## [1.31.3](https://github.com/dyte-in/docs/compare/v1.31.2...v1.31.3) (2022-12-13)
+
+
+### Bug Fixes
+
+* disable container styling in tailwind ([7dfa1be](https://github.com/dyte-in/docs/commit/7dfa1befd2716321c8f81061930804635a997c7d))
+
 ## [1.31.2](https://github.com/dyte-in/docs/compare/v1.31.1...v1.31.2) (2022-12-13)
 
 
