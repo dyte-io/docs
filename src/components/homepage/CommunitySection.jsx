@@ -57,7 +57,7 @@ export default function CommunitySection() {
           </Link>
           <Link
             className="flex w-full items-center justify-center gap-2 rounded-sm border border-solid border-primary-100 bg-primary-100/10 px-2 py-2 text-primary-100 lg:w-auto"
-            href="#"
+            href="https://www.linkedin.com/company/dyteio"
           >
             <LinkedInLogoIcon /> LinkedIn &rarr;
           </Link>
