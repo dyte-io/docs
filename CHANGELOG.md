@@ -1,3 +1,11 @@
+## [1.31.2](https://github.com/dyte-in/docs/compare/v1.31.1...v1.31.2) (2022-12-13)
+
+
+### Bug Fixes
+
+* broken links ([54e3e8b](https://github.com/dyte-in/docs/commit/54e3e8b7ef5366d6708b79b02234841c571325a9))
+* broken links, content ([9a74cd0](https://github.com/dyte-in/docs/commit/9a74cd0ea06eb34c9164ea3447cdd84ce22fcaf2))
+
 ## [1.31.1](https://github.com/dyte-in/docs/compare/v1.31.0...v1.31.1) (2022-12-13)
 
 
