@@ -1,5 +1,6 @@
 ---
 title: 'Verify signatures'
+sidebar_position: 2
 ---
 
 Dyte signs the webhook events it sends to your endpoints by including a
@@ -9,4 +10,51 @@ This allows you to verify that the event came from Dyte itself and not a
 malicious server pretending to be Dyte. You can verify signatures by performing
 the following steps.
 
-## Obtain our private key
+### Obtain our public key
+
+Our public key is available at
+`https://api.cluster.dyte.in/.well-known/webhooks.json`. You can obtain it by
+making a GET request to this endpoint.
+
+```
+curl -X GET "https://api.cluster.dyte.in/.well-known/webhooks.json"
+```
+
+### Check for the signature header
+
+Every incoming request will have a custom `dyte-signature` header. This is the
+value that you should verify in the next step.
+
+### Verify the signature
+
+The signature is based on the `RSA-SHA256` digest of the request payload. You
+can calculate this on your end and compare it against the one supplied in the
+header. If the two values are equal, you can safely consider that this request
+indeed originated from Dyte.
+
+### Sample code
+
+<Tabs>
+
+<TabItem value="node" label="Node.js">
+
+```js
+const crypto = require('crypto');
+
+app.post('/webhook', express.json({ type: 'application/json' }), (req, res) => {
+  const signature = req.headers['dyte-signature'];
+  const payload = req.body;
+
+  const isVerified = crypto.verify(
+    'RSA-SHA256',
+    Buffer.from(JSON.stringify(payload)),
+    dytePublicKey,
+    Buffer.from(signature, 'base64')
+  );
+  // ... do further processing
+});
+```
+
+</TabItem>
+
+</Tabs>

@@ -93,7 +93,7 @@ For more information, check out the
 Each webhook will have a unique value for the `dyte-uuid` header. You can use
 these to ensure you don't process any retries.
 
-### Return a 2xx response
+### Return a `2xx` response
 
 Your endpoint must quickly return a successful status code (`2xx`) prior to any
 complex logic that could cause a timeout.
@@ -151,18 +151,6 @@ app.post('/webhook', express.json({ type: 'application/json' }), (req, res) => {
 });
 
 app.listen(8000, () => console.log('Running on port 8000'));
-```
-
-</TabItem>
-
-<TabItem value="OFFLINE" label="OFFLINE">
-
-```json
-{
-  "event": "livestreaming.statusUpdate",
-  "streamId": "d231d346-c422-43a6-a324-c0d65b79c8a7",
-  "status": "OFFLINE"
-}
 ```
 
 </TabItem>
