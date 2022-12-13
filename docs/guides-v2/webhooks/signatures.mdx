@@ -1,0 +1,12 @@
+---
+title: 'Verify signatures'
+---
+
+Dyte signs the webhook events it sends to your endpoints by including a
+signature in each event's `dyte-signature` header
+
+This allows you to verify that the event came from Dyte itself and not a
+malicious server pretending to be Dyte. You can verify signatures by performing
+the following steps.
+
+## Obtain our private key
