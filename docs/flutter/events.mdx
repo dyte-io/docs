@@ -4,11 +4,17 @@ sidebar_position: 6
 
 # Events
 
-To integrate well with modern workflows, Dyte SDK also emits a rich set of events on meeting events and state changes. Using these events on the client side, you can make your app event driven and respond to changes in the meeting in real-time. You can subscribe to the following events on the `meeting` object, which is an instance of [`Meeting`](./reference/meeting).
+To integrate well with modern workflows, Dyte SDK also emits a rich set of
+events on meeting events and state changes. Using these events on the client
+side, you can make your app event driven and respond to changes in the meeting
+in real-time. You can subscribe to the following events on the `meeting` object,
+which is an instance of [`Meeting`](./reference/meeting).
 
 ### Connected to the meeting
 
-This event is triggered when the participant has connected to the meeting but hasn't started producing or consuming content streams. Think of this as establishing a successful connection to the meeting and nothing else.
+This event is triggered when the participant has connected to the meeting but
+hasn't started producing or consuming content streams. Think of this as
+establishing a successful connection to the meeting and nothing else.
 
 <!-- ```dart
 meeting.events.on('connect', this, (ev, cont) {
@@ -24,7 +30,8 @@ meeting.events.on('meetingConnected', this, (ev, cont) {
 
 ### Joined the meeting
 
-This event is triggered when the participant actually joins the meeting, and can start producing as well as consuming content streams.
+This event is triggered when the participant actually joins the meeting, and can
+start producing as well as consuming content streams.
 
 ```dart
 meeting.events.on('meetingJoin', this, (ev, cont) {
@@ -34,7 +41,10 @@ meeting.events.on('meetingJoin', this, (ev, cont) {
 
 ### Disconnected from the meeting
 
-This event is triggered when the participant gets disconnected from the meeting for any reason. It could be a bad network connection, the meeting being exited by the participant manually, the meeting tab / browser / app being closed by the participant, or just any other reason.
+This event is triggered when the participant gets disconnected from the meeting
+for any reason. It could be a bad network connection, the meeting being exited
+by the participant manually, the meeting tab / browser / app being closed by the
+participant, or just any other reason.
 
 ```dart
 meeting.events.on('meetingDisconnected', this, (ev, cont) {
@@ -44,7 +54,10 @@ meeting.events.on('meetingDisconnected', this, (ev, cont) {
 
 ### End of the meeting
 
-This event is triggered when the meeting is ended by the host or by the organization (as an admin function). In this case, all the participants are kicked out and you can take actions such as asking for feedback or redirecting to an exercise.
+This event is triggered when the meeting is ended by the host or by the
+organization (as an admin function). In this case, all the participants are
+kicked out and you can take actions such as asking for feedback or redirecting
+to an exercise.
 
 ```dart
 meeting.events.on('meetingEnd', this, (ev, cont) {
@@ -54,7 +67,11 @@ meeting.events.on('meetingEnd', this, (ev, cont) {
 
 ### Input media devices get connected to the meeting
 
-This event is triggered when the participant's local media input devices (camera, mic) are initialized and connected to the meeting for the first time. Since the media device states can be toggled only after the device is connected, you need to use this event to manage the starting state of participant's audio or video.
+This event is triggered when the participant's local media input devices
+(camera, mic) are initialized and connected to the meeting for the first time.
+Since the media device states can be toggled only after the device is connected,
+you need to use this event to manage the starting state of participant's audio
+or video.
 
 ```dart
  meeting.events.on('localMediaConnected', null, (a, b) {
@@ -64,7 +81,10 @@ This event is triggered when the participant's local media input devices (camera
 
 ### Another participant joins the meeting
 
-This event is triggered when another participant joins the meeting. "Join" here as the same context as the `meetingJoined` event: so when that event triggers for the a participant, this event triggers for all other participants that have already joined the meeting.
+This event is triggered when another participant joins the meeting. "Join" here
+as the same context as the `meetingJoined` event: so when that event triggers
+for the a participant, this event triggers for all other participants that have
+already joined the meeting.
 
 ```dart
 import 'package:dyte_client/dyteParticipant.dart';
@@ -75,7 +95,10 @@ meeting.events.on('participantJoin', this, (ev, cont) {
 
 ### Another participant leaves the meeting
 
-This event is triggered when another participant disconnects from the meeting. "Disconnect" here as the same context as the `disconnect` event: so when that event triggers for the a participant, this event triggers for all other participants that have already joined the meeting.
+This event is triggered when another participant disconnects from the meeting.
+"Disconnect" here as the same context as the `disconnect` event: so when that
+event triggers for the a participant, this event triggers for all other
+participants that have already joined the meeting.
 
 ```dart
 import 'package:dyte_client/dyteParticipant.dart';

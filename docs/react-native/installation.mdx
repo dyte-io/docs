@@ -28,7 +28,8 @@ registerGlobals();
 
 :::info
 
-The below instructions are for the release builds, debug builds should work without any additional steps.
+The below instructions are for the release builds, debug builds should work
+without any additional steps.
 
 :::
 
@@ -45,7 +46,8 @@ android.enableDexingArtifactTransform.desugaring=false
 -dontwarn org.chromium.build.BuildHooksAndroid
 ```
 
-3. In your `android/app/build.gradle` edit the release configuration and add the following line importing the proguard configuration
+3. In your `android/app/build.gradle` edit the release configuration and add the
+   following line importing the proguard configuration
 
 ```
 buildTypes {
@@ -60,7 +62,9 @@ buildTypes {
 
 :::info
 
-If you encounter chinese characters in your app instead of icons, please apply this fix mentioned in [react-native-vector-icons issue](https://github.com/oblador/react-native-vector-icons/issues/1106#issuecomment-574683931)
+If you encounter chinese characters in your app instead of icons, please apply
+this fix mentioned in
+[react-native-vector-icons issue](https://github.com/oblador/react-native-vector-icons/issues/1106#issuecomment-574683931)
 
 :::
 

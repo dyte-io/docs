@@ -29,13 +29,13 @@ export default function GuidesSection({ title, className }) {
         to="/guides/livestreaming-other-platforms"
       />
       <Card
-        title="Livestreaming to HLS"
+        title="Livestreaming API Integration Guide"
         description="Livestream to HLS using REST APIs"
-        to="/guides/livestreaming-rtmp-hls"
+        to="/guides/livestreaming-api-integration"
       />
       <Card
         title="Livestreaming any RTMP input"
-        description="Livestream to any service that accepts an RTMP input"
+        description="Dyte allows livestreaming, via RTMP as well as HLS, for all Dyte meetings."
         to="/guides/integrating-with-webhooks"
       />
 

@@ -16,7 +16,8 @@
     "lint": "eslint . --ext .js --ext .jsx",
     "lint:fix": "npm run lint -- --fix",
     "prepare": "is-ci || husky install",
-    "test": "jest --passWithNoTests"
+    "test": "jest --passWithNoTests",
+    "format": "prettier -w src docs"
   },
   "dependencies": {
     "@docusaurus/core": "^2.1.0",
@@ -52,6 +53,8 @@
     "cz-conventional-changelog": "^3.3.0",
     "docusaurus-plugin-typedoc": "^0.17.5",
     "eslint": "^8.19.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.30.1",
     "husky": "^7.0.0",
     "is-ci": "^3.0.1",
@@ -83,7 +86,8 @@
   },
   "prettier": {
     "singleQuote": true,
-    "tabWidth": 2
+    "tabWidth": 2,
+    "proseWrap": "always"
   },
   "config": {
     "commitizen": {

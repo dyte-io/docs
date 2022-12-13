@@ -1,19 +1,28 @@
 # Recording your meetings via Dyte
 
-We allows recordings for all Dyte meetings. This feature records the grid part of the meeting. The result of the recording is an mp4 file, encoded using `H.264` codec (this can be changed).
+We allows recordings for all Dyte meetings. This feature records the grid part
+of the meeting. The result of the recording is an mp4 file, encoded using
+`H.264` codec (this can be changed).
 
 Usually to record a meeting, the flow of APIs is like below:
 
-1. Start a recording by using the [`POST` endpoint](/api/#/operations/start_recording).
-2. Poll the [`GET` endpoint](/api/#/operations/get_recording) to check the status of recording.
-3. Stop the recording by using the [`PUT` endpoint](/api/#/operations/stop_recording).
-4. Use the [`GET` endpoint](/api/#/operations/get_recording) again to get a pre-signed URL for downloading the recording.
+1. Start a recording by using the
+   [`POST` endpoint](/api/#/operations/start_recording).
+2. Poll the [`GET` endpoint](/api/#/operations/get_recording) to check the
+   status of recording.
+3. Stop the recording by using the
+   [`PUT` endpoint](/api/#/operations/stop_recording).
+4. Use the [`GET` endpoint](/api/#/operations/get_recording) again to get a
+   pre-signed URL for downloading the recording.
 
-You can also use [webhooks as described here](./integrating-with-webhooks#recordingstatusupdate) to subscribe to meeting status update events instead of polling.
+You can also use
+[webhooks as described here](./integrating-with-webhooks#recordingstatusupdate)
+to subscribe to meeting status update events instead of polling.
 
 ## Recording states
 
-Recording can have one of these states, which are also notified through [webhooks](./integrating-with-webhooks#recordingstatusupdate):
+Recording can have one of these states, which are also notified through
+[webhooks](./integrating-with-webhooks#recordingstatusupdate):
 
 | Name      | Description                                                                                                                                                                |
 | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -25,26 +34,37 @@ Recording can have one of these states, which are also notified through [webhook
 
 ## Considerations for a recording
 
-1. Recording will stop if there is no participant in the meeting for 60 seconds (1 minute).
+1. Recording will stop if there is no participant in the meeting for 60 seconds
+   (1 minute).
 2. There can only be one active recording of a meeting.
 3. Average size for one hour of recording is approximately `300MB`.
-4. Maximum recording time is 3 hours. Recording will automatically stop after the expiry of that period from the time of recording start. This option can be configured by passing the `maxSeconds` parameter in the start recording API.
+4. Maximum recording time is 24 hours. Recording will automatically stop after
+   the expiry of that period from the time of recording start. This option can
+   be configured by passing the `maxSeconds` parameter in the start recording
+   API.
 
 ## Recording settings
 
-You can modify the codec which is used for recording the videos. We currently support three codecs
+You can modify the codec which is used for recording the videos. We currently
+support three codecs
 
-1. H264 (default): [sample recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/h264_sample.webm)
-2. VP8: [sample recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/vp8_sample.webm)
-3. VP9: [sample recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/vp9_sample.webm)
+1. H264 (default):
+   [sample recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/h264_sample.webm)
+2. VP8:
+   [sample recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/vp8_sample.webm)
+3. VP9:
+   [sample recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/vp9_sample.webm)
 
 :::caution Resolution
 
-By default, Dyte uses a resolution of 720p for all recordings. If there is a requirement for a higher resolution, please contact us directly to configure the same for your organization.
+By default, Dyte uses a resolution of 720p for all recordings. If there is a
+requirement for a higher resolution, please contact us directly to configure the
+same for your organization.
 
 :::
 
-You can change the codec by specifying the codec in `videoConfig` when you are creating a recording.
+You can change the codec by specifying the codec in `videoConfig` when you are
+creating a recording.
 
 ```shell
 curl --request POST \
@@ -60,11 +80,17 @@ curl --request POST \
 
 ## Publishing a recording to your cloud provider
 
-You can pass an optional object `storageConfig` in the start recording request and we will publish the recording directly to your cloud provider once it stops. If a `path` is specified, the recorded video will be stored there, otherwise the default is the root of the directory. The filename for recording will be the same as given in `outputFileName` in the [start recording](ref:startrecording) response.
+You can pass an optional object `storageConfig` in the start recording request
+and we will publish the recording directly to your cloud provider once it stops.
+If a `path` is specified, the recorded video will be stored there, otherwise the
+default is the root of the directory. The filename for recording will be the
+same as given in `outputFileName` in the [start recording](ref:startrecording)
+response.
 
 :::caution Limited access keys
 
-Please make sure that the cloud keys you provide to Dyte APIs have only limited access.
+Please make sure that the cloud keys you provide to Dyte APIs have only limited
+access.
 
 :::
 
@@ -84,16 +110,25 @@ curl --request POST \
 }'
 ```
 
-The currently supported providers are listed below and their relevant parameters are described alongside.
+The currently supported providers are listed below and their relevant parameters
+are described alongside.
 
 ### AWS S3 (Amazon Web Services)
-Dyte supports transferring recordings to **AWS S3**. To set this up, set the following fields on the storage config. (For more information on how to generate these credentials, please refer to [this page from aws](https://aws.amazon.com/premiumsupport/knowledge-center/create-access-key/)):
+
+Dyte supports transferring recordings to **AWS S3**. To set this up, set the
+following fields on the storage config. (For more information on how to generate
+these credentials, please refer to
+[this page from aws](https://aws.amazon.com/premiumsupport/knowledge-center/create-access-key/)):
+
 - `type` must be set to **aws**.
 - `accessKey` must be set to your AWS access key.
 - `bucket` must be set to the name of your AWS S3 bucket.
-- `path` is optional and can contain the path to a sub-folder where recordings must be transferred. By default, if this parameter is not passed, recordings will be transferred in the root folder of the bucket.
+- `path` is optional and can contain the path to a sub-folder where recordings
+  must be transferred. By default, if this parameter is not passed, recordings
+  will be transferred in the root folder of the bucket.
 - `secret` must be set to the your AWS access secret.
-- `region` must be set to the region where your spaces bucket is hosted. (Eg: `ap-south-1`)
+- `region` must be set to the region where your spaces bucket is hosted. (Eg:
+  `ap-south-1`)
 
 ```json
 {
@@ -109,13 +144,21 @@ Dyte supports transferring recordings to **AWS S3**. To set this up, set the fol
 ```
 
 ### DigitalOcean Spaces (DigitalOcean)
-Dyte supports transferring recordings to **Digital Ocean Spaces**. To set this up, set the following fields on the storage config. (For more information on how to generate these credentials, please refer to [this page from digital ocean](https://www.digitalocean.com/community/tutorials/how-to-create-a-digitalocean-space-and-api-key)):
+
+Dyte supports transferring recordings to **Digital Ocean Spaces**. To set this
+up, set the following fields on the storage config. (For more information on how
+to generate these credentials, please refer to
+[this page from digital ocean](https://www.digitalocean.com/community/tutorials/how-to-create-a-digitalocean-space-and-api-key)):
+
 - `type` must be set to **digitalocean**.
 - `accessKey` must be set to your digital ocean access key.
 - `bucket` must be set to the name of your spaces bucket.
-- `path` is optional and can contain the path to a sub-folder where recordings must be transferred. By default, if this parameter is not passed, recordings will be transferred in the root folder of the bucket.
+- `path` is optional and can contain the path to a sub-folder where recordings
+  must be transferred. By default, if this parameter is not passed, recordings
+  will be transferred in the root folder of the bucket.
 - `secret` must be set to the your digital ocean access secret.
-- `region` must be set to the region where your spaces bucket is hosted. (Eg: `SGP1`)
+- `region` must be set to the region where your spaces bucket is hosted. (Eg:
+  `SGP1`)
 
 ```json
 {
@@ -131,11 +174,19 @@ Dyte supports transferring recordings to **Digital Ocean Spaces**. To set this u
 ```
 
 ### Azure Blob Storage (Azure)
-Dyte supports transferring recordings to **Azure Blob Storage**. To set this up, set the following fields on the storage config:
+
+Dyte supports transferring recordings to **Azure Blob Storage**. To set this up,
+set the following fields on the storage config:
+
 - `type` must be set to **azure**.
-- `accessKey` must have your azure connection string. (Refer to [this page on the azure docs](https://docs.microsoft.com/en-us/azure/storage/common/storage-configure-connection-string) for instructions on how to generate this string)
-- `bucket` must have the name of your `container` in the same storage account as the connection string where the recordings must be transferred.
-- `path` is optional and can contain the path to a sub-folder where recordings must be transferred. By default, if this parameter is not passed, recordings will be transferred in the root folder of the container.
+- `accessKey` must have your azure connection string. (Refer to
+  [this page on the azure docs](https://docs.microsoft.com/en-us/azure/storage/common/storage-configure-connection-string)
+  for instructions on how to generate this string)
+- `bucket` must have the name of your `container` in the same storage account as
+  the connection string where the recordings must be transferred.
+- `path` is optional and can contain the path to a sub-folder where recordings
+  must be transferred. By default, if this parameter is not passed, recordings
+  will be transferred in the root folder of the container.
 - `secret` must be set to a blank string `""`.
 - `region` must be set to a blank string `""`.
 
@@ -152,4 +203,6 @@ Dyte supports transferring recordings to **Azure Blob Storage**. To set this up,
 }
 ```
 
-As always, you can view the [complete API reference](/api/#/operations/start_recording) to see all available options for a recording.
+As always, you can view the
+[complete API reference](/api/#/operations/start_recording) to see all available
+options for a recording.

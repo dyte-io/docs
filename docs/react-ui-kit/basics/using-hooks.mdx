@@ -4,14 +4,17 @@ sidebar_position: 4
 
 # Using Web Core Hooks
 
-For a seamless developer experience when integrating UI Kit in your React project,
-we also have a package `@dytesdk/react-web-core` which is a hooks wrapper on `@dytesdk/web-core`.
+For a seamless developer experience when integrating UI Kit in your React
+project, we also have a package `@dytesdk/react-web-core` which is a hooks
+wrapper on `@dytesdk/web-core`.
 
-While the Quickstart example uses the `useDyteClient` hook internally, here is a more complete example:
+While the Quickstart example uses the `useDyteClient` hook internally, here is a
+more complete example:
 
 ## `<DyteProvider />`
 
-It is a simple context provider providing the meeting object to child components.
+It is a simple context provider providing the meeting object to child
+components.
 
 ```jsx
 import { useDyteClient } from '@dytesdk/react-web-core';
@@ -39,7 +42,8 @@ function App() {
 }
 ```
 
-And to consume the context value, we provide two more hooks, each serving a specific purpose nicely.
+And to consume the context value, we provide two more hooks, each serving a
+specific purpose nicely.
 
 These are:
 
@@ -48,9 +52,11 @@ These are:
 
 ## `useDyteMeeting()`
 
-This hook essentially returns the `meeting` object you passed to the `DyteProvider`.
+This hook essentially returns the `meeting` object you passed to the
+`DyteProvider`.
 
-The value returned doesn't re-render always whenever properties inside the object change.
+The value returned doesn't re-render always whenever properties inside the
+object change.
 
 ```jsx
 import { useDyteSelector, useDyteMeeting } from '@dytesdk/';
@@ -73,19 +79,26 @@ function Meeting() {
 
 ## `useDyteSelector()`
 
-If you're familiar with Redux's [useSelector](https://react-redux.js.org/api/hooks#useselector) hook, this hook works in a similar way.
+If you're familiar with Redux's
+[useSelector](https://react-redux.js.org/api/hooks#useselector) hook, this hook
+works in a similar way.
 
-It allows you to extract data from the `meeting` object using a selector function.
+It allows you to extract data from the `meeting` object using a selector
+function.
 
-This hook will only cause a re-render when the actual data you returned for changes.
+This hook will only cause a re-render when the actual data you returned for
+changes.
 
 Here is how you can get all the joined participants data:
 
 ```jsx
-const joinedParticipants = useDyteSelector((meeting) => meeting.participants.joined);
+const joinedParticipants = useDyteSelector(
+  (meeting) => meeting.participants.joined
+);
 ```
 
-Refer to core [documentation for reference](/web-core/reference/DyteClient) on the various properties of the `meeting` object.
+Refer to core [documentation for reference](/web-core/reference/DyteClient) on
+the various properties of the `meeting` object.
 
 ### Example
 

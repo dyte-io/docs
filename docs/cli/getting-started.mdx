@@ -4,11 +4,14 @@ sidebar_position: 2
 
 # Getting started
 
-The Dyte CLI needs a little bit of work to get started. We're working on reducing the amount of effort required, but for now you'll have to do the following.
+The Dyte CLI needs a little bit of work to get started. We're working on
+reducing the amount of effort required, but for now you'll have to do the
+following.
 
 ## Configuration
 
-1. Authorize yourself with the Dyte Dev Portal. This allows you to access all the organizations that you belong to from the CLI.
+1. Authorize yourself with the Dyte Dev Portal. This allows you to access all
+   the organizations that you belong to from the CLI.
 
 ```shell
 dyte auth login
@@ -24,7 +27,9 @@ dyte auth org
 
 ### General
 
-The Dyte CLI is [POSIX compliant](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html). This means in general, a command has the following format:
+The Dyte CLI is
+[POSIX compliant](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html).
+This means in general, a command has the following format:
 
 ```shell
 dyte <command> [subcommand] [options]
@@ -32,18 +37,21 @@ dyte <command> [subcommand] [options]
 
 ### Getting help
 
-The `dyte help` command shows you a comprehensive list of all the top-level commands and a short description of what each command does. You can run `dyte <command> help` to know more about the command and its subcommands (if any).
+The `dyte help` command shows you a comprehensive list of all the top-level
+commands and a short description of what each command does. You can run
+`dyte <command> help` to know more about the command and its subcommands (if
+any).
 
 ```shell
 dyte help
 ```
 
-![cli-help](/static/cli/cli-help.png#terminal)
-_Dyte help screen_
+![cli-help](/static/cli/cli-help.png#terminal) _Dyte help screen_
 
 ### Switching organizations
 
-Simply run the following command again to switch to another organization. The list of organizations can be filtered by name or ID.
+Simply run the following command again to switch to another organization. The
+list of organizations can be filtered by name or ID.
 
 ```shell
 dyte auth org

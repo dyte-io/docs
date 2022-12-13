@@ -4,11 +4,17 @@ sidebar_position: 3
 
 # Events
 
-To integrate well with modern workflows, Dyte SDK also emits a rich set of events on meeting events and state changes. Using these events on the client side, you can make your app event driven and respond to changes in the meeting in real-time. You can subscribe to the following events on the [`DyteMobileClient`](./reference/meeting) class.
+To integrate well with modern workflows, Dyte SDK also emits a rich set of
+events on meeting events and state changes. Using these events on the client
+side, you can make your app event driven and respond to changes in the meeting
+in real-time. You can subscribe to the following events on the
+[`DyteMobileClient`](./reference/meeting) class.
 
 ### Connected to the meeting
 
-This event is triggered when the participant has connected to the meeting but hasn't started producing or consuming content streams. Think of this as establishing a successful connection to the meeting and nothing else.
+This event is triggered when the participant has connected to the meeting but
+hasn't started producing or consuming content streams. Think of this as
+establishing a successful connection to the meeting and nothing else.
 
 ```kotlin
 DyteMobileClient.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
@@ -20,7 +26,8 @@ DyteMobileClient.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsList
 
 ### Joined the meeting
 
-This event is triggered when the participant actually joins the meeting, and can start producing as well as consuming content streams.
+This event is triggered when the participant actually joins the meeting, and can
+start producing as well as consuming content streams.
 
 ```kotlin
 DyteMobileClient.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
@@ -32,7 +39,10 @@ DyteMobileClient.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsList
 
 ### Disconnected from the meeting
 
-This event is triggered when the participant gets disconnected from the meeting for any reason. It could be a bad network connection, the meeting being exited by the participant manually, the meeting tab / browser / app being closed by the participant, or just any other reason.
+This event is triggered when the participant gets disconnected from the meeting
+for any reason. It could be a bad network connection, the meeting being exited
+by the participant manually, the meeting tab / browser / app being closed by the
+participant, or just any other reason.
 
 ```kotlin
 DyteMobileClient.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
@@ -44,7 +54,10 @@ DyteMobileClient.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsList
 
 ### Another participant joins the meeting
 
-This event is triggered when another participant joins the meeting. "Join" here as the same context as the `meetingJoined` event: so when that event triggers for the a participant, this event triggers for all other participants that have already joined the meeting.
+This event is triggered when another participant joins the meeting. "Join" here
+as the same context as the `meetingJoined` event: so when that event triggers
+for the a participant, this event triggers for all other participants that have
+already joined the meeting.
 
 ```kotlin
 DyteMobileClient.addParticipantEventsListener(object : DyteParticipantEventsListener {
@@ -56,7 +69,10 @@ DyteMobileClient.addParticipantEventsListener(object : DyteParticipantEventsList
 
 ### Another participant leaves the meeting
 
-This event is triggered when another participant disconnects from the meeting. "Disconnect" here as the same context as the `disconnect` event: so when that event triggers for the a participant, this event triggers for all other participants that have already joined the meeting.
+This event is triggered when another participant disconnects from the meeting.
+"Disconnect" here as the same context as the `disconnect` event: so when that
+event triggers for the a participant, this event triggers for all other
+participants that have already joined the meeting.
 
 ```kotlin
 DyteMobileClient.addParticipantEventsListener(object : DyteParticipantEventsListener {
@@ -80,7 +96,11 @@ DyteMobileClient.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsList
 
 ### Detecting change in active speaker
 
-This event is triggered when the active speaker in the meeting changes. Active speaker is the participant whose audio level has most recently been the highest (kind of like LRU with the selection factor being audio level). The `participant` is an instance of [`DyteParticipant`](./reference/participant), whose prototype is defined in the reference section.
+This event is triggered when the active speaker in the meeting changes. Active
+speaker is the participant whose audio level has most recently been the highest
+(kind of like LRU with the selection factor being audio level). The
+`participant` is an instance of [`DyteParticipant`](./reference/participant),
+whose prototype is defined in the reference section.
 
 ```java
 DyteMobileClient.addParticipantEventsListener(object : DyteParticipantEventsListener {
@@ -96,7 +116,9 @@ DyteMobileClient.addParticipantEventsListener(object : DyteParticipantEventsList
 
 ### Recording events
 
-This event is triggered when a recording of the meeting is started by the host or by the organization (as an admin function). You can use this event to show a popup or a warning to the participants about the meeting being recorded.
+This event is triggered when a recording of the meeting is started by the host
+or by the organization (as an admin function). You can use this event to show a
+popup or a warning to the participants about the meeting being recorded.
 
 ```kotlin
 DyteMobileClient.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
