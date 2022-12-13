@@ -138,7 +138,7 @@ export default function SDKsSection() {
               section covers everything you need to know for creating live video
               and voice solutions for web applications.
             </p>
-            <Link className="text-sm">Learn More &rarr;</Link>
+            {/* <Link className="text-sm">Learn More &rarr;</Link> */}
           </div>
           <div className="flex-1 bg-secondary-800 p-6 px-8 lg:rounded-l-3xl">
             <h4>UI Kit</h4>
@@ -206,9 +206,9 @@ export default function SDKsSection() {
               help you deliver best-in-class real-time communication experience
               for your mobile applications.
             </p>
-            <Link className="text-sm" href="#">
+            {/* <Link className="text-sm" href="#">
               Learn More &rarr;
-            </Link>
+            </Link> */}
           </div>
           <div className="flex flex-1 flex-col bg-secondary-800 p-6 px-8 lg:rounded-l-3xl">
             <h4>UI Kit</h4>
@@ -217,7 +217,7 @@ export default function SDKsSection() {
               using Dyte&apos;s prebuilt design library of UI components.
             </p>
             <div className="flex flex-1 flex-col justify-end">
-              <div className="rounded-2xl bg-secondary-700 p-4 dark:bg-secondary-800">
+              <div className="rounded-2xl bg-secondary-700 p-4 dark:bg-secondary-900">
                 <h5 className="text-center text-xs text-text-400">
                   COMING SOON
                 </h5>
