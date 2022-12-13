@@ -1,3 +1,10 @@
+## [1.31.1](https://github.com/dyte-in/docs/compare/v1.31.0...v1.31.1) (2022-12-13)
+
+
+### Bug Fixes
+
+* smol ui fixes ([e0f158e](https://github.com/dyte-in/docs/commit/e0f158e7fba6de6a6c91115e223745b0b0e474ff))
+
 # [1.31.0](https://github.com/dyte-in/docs/compare/v1.30.0...v1.31.0) (2022-12-13)
 
 
