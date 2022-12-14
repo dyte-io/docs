@@ -1,0 +1,114 @@
+---
+title: 'Livestreaming using Dyte'
+sidebar_position: 4
+---
+
+# Livestreaming API Integration Guide
+
+#
+
+Dyte Livestreaming adds live video and voice interactive streaming to any online
+experience. It provides complete control over the streaming experience, from a
+simple one-to-many stream to a highly interactive live event.
+
+Dyte allows livestreaming, via RTMP as well as HLS, for all Dyte meetings. If
+you want us to manage the output to RTMP instead, check
+[this doc instead](./livestreaming-other-platforms).
+
+Dyte Livestreaming provides two modes of operations:
+
+1. Livestreaming Independently
+2. Livestreaming a Meeting
+
+These modes help you manage various livestream usecases. Let’s understand what
+both of these mean:
+
+- **Livestreaming Independently**: If you want to control what you stream and
+  how it is distributed, this is the way to go. Individual ingest URLs can be
+  created for ingesting a livestream from apps like OBS, ffmpeg, and others, as
+  well as playback URLs to play it in your preferred player. For more
+  information, follow the guide [here](/guides-v2/livestream-any-rtmp).
+
+- **Livestreaming a Meeting**: If you want to stream a meeting to a large number
+  of people, this is an excellent option. Dyte provides APIs to automatically
+  start livestreaming a meeting, as well as an SDK player that allows users to
+  watch the livestream in high quality. For example, livestream a meeting for an
+  events platform, a virtual workspace to host large events such as hackathons,
+  conferences, or even your own metaverse party.
+
+## Livestreaming a meeting
+
+Starting a meeting livestream is as simple as making the following request:
+
+```bash title="Starting a livestream"
+curl --request POST \
+  --url https://api.cluster.dyte.in/v2/meetings/{meetingId}/livestreams \
+  --header 'Authorization: Basic <token>' \
+  --header 'Content-Type: application/json'
+```
+
+```json title="Livestream started response"
+{
+  "success": true,
+  "data": {
+    "status": "OFFLINE",
+    "name": null,
+    "meeting_id": "188566bc-8770-4ca0-9eb3-24b594ecaf7e",
+    "ingest_server": "rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/",
+    "id": "7088bba8-f522-49a8-b59b-3cd0e946bbb0",
+    "stream_key": "sk_ap-south-1_AfnVpeYZjidO_fBpWKody7sDUOEfy9Zc6XAZegkR0Va",
+    "playback_url": "https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.rVKA2KM5Lunt.m3u8"
+  }
+}
+```
+
+### Fetching active livestreams
+
+Fetching details about an active livestreaming is also an HTTP request away.
+
+```bash title="Fetching details about an active livestream"
+curl --request GET \
+  --url https://api.cluster.dyte.in/v2/meetings/{meetingId}/active-livestream \
+  --header 'Authorization: Basic <token>' \
+  --header 'Content-Type: application/json'
+```
+
+```json title="Active livestream response"
+{
+  "success": true,
+  "data": {
+    "status": "LIVE",
+    "name": null,
+    "meeting_id": "188566bc-8770-4ca0-9eb3-24b594ecaf7e",
+    "ingest_seconds": 0,
+    "viewer_seconds": 0,
+    "ingest_server": "rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/",
+    "id": "7088bba8-f522-49a8-b59b-3cd0e946bbb0",
+    "stream_key": "sk_ap-south-1_AfnVpeYZjidO_fBpWKody7sDUOEfy9Zc6XAZegkR0Va",
+    "playback_url": "https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.rVKA2KM5Lunt.m3u8"
+  }
+}
+```
+
+### Stopping a livestream
+
+You guessed it, it's also an HTTP request away.
+
+```bash title="Stop livestream request"
+curl --request POST \
+  --url https://api.cluster.dyte.in/v2/meetings/meetingId/active-livestream/stop \
+  --header 'Authorization: Basic <token>' \
+  --header 'Content-Type: application/json'
+```
+
+```json title="Stop livestream response"
+{
+  "success": true,
+  "data": {
+    "message": "livestream stopped"
+  }
+}
+```
+
+To learn more about the Dyte livestreaming APIs, explore our
+[API Reference](https://docs.dyte.io/api#/).

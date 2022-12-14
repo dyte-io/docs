@@ -1,6 +1,5 @@
 import {
   ReactIcon,
-  UIKitIcon,
   AngularIcon,
   AndroidIcon,
   AppleIcon,
