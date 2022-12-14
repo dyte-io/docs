@@ -1,5 +1,6 @@
 ---
 title: 'Getting started'
+sidebar_position: 1
 ---
 
 Before we start, you should familiarize yourself with a few terms that are

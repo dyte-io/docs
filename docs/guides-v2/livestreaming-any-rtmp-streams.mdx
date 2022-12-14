@@ -1,0 +1,73 @@
+# Livestreaming any RTMP input using Dyte
+
+Dyte can livestream video from any application that is capable of streaming via
+RTMP in a few simple steps.
+
+## Step 1: Create a livestream
+
+Creating a livestream is straightforward; all it requires is an HTTP request to
+our livestreaming API. For more information, head to our [API reference](/api).
+
+### Sample request
+
+```bash title="Request"
+curl --location --request POST 'https://api.cluster.dyte.in/v2/livestreams' \
+     --header 'Content-Type: application/json' \
+     --header 'Authorization: Basic ZGVtbzpwQDU1dzByZA==' \
+     --data-raw '{
+    "name": "test_livestream"
+}'
+```
+
+```json title="Response"
+{
+  "success": true,
+  "data": {
+    "status": "OFFLINE",
+    "name": "test_livestream",
+    "meeting_id": null,
+    "ingest_seconds": 0,
+    "viewer_seconds": 0,
+    "ingest_server": "rtmps://2bd803bb7b1.global-contribute.live-video.net:443/app/",
+    "id": "9fb22eea-3392-42ad-b884-1129a4f517d2",
+    "stream_key": "sk_ap-south-2_JKLBQlfOE_eb14jL5zj3lbj58xHSb",
+    "playback_url": "https://2bd803bb7b1.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.e1lAS0BHpDxP.m3u8"
+  }
+}
+```
+
+## Step 2: start streaming video to the RTMP ingestion URL
+
+`data.input_rtmp_url` from the above response can be used as an RTMP ingestion
+server that apps can stream to.
+
+For example, to livestream via [OBS](https://obsproject.com):
+
+![obs-example](/static/guides/obs-example.png) _User is adding the input stream
+to OBS_
+
+## Get details of an existing livestream
+
+Request:
+
+```shell title="Request"
+curl --location \
+     --request GET 'https://api.cluster.dyte.in/v2/livestreams/STREAMID' \
+     --header 'Authorization: Basic ZGVtbzpwQDU1dzByZA=='
+```
+
+```json title="Response"
+{
+  "success": true,
+  "data": {
+    "id": "STREAMID",
+    "title": "STREAMNAME",
+    "input_rtmp_url": "rtmp://URL/LiveApp/STREAMID?token=TOKENID",
+    "token_id": "TOKENID",
+    "stream_key": "STREAMID?token=TOKENID",
+    "player_url": "https://URL/LiveApp/play.html?name=STREAMID",
+    "status": "OFFLINE",
+    "hls_play_url": "https://URL/LiveApp/streams/STREAMID.m3u8"
+  }
+}
+```

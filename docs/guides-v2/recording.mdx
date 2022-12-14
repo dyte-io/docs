@@ -1,0 +1,88 @@
+---
+title: 'Record meetings using Dyte'
+sidebar_position: 4
+---
+
+Dyte allows you to record your meetings. Note that this feature will only record
+the Grid part of the meeting. Typically, the result of such a recording is a
+MPEG-4 (.mp4) file, encoded using the H.264 codec; however, you can change this
+if you wish.
+
+## Workflow
+
+A typical workflow for recording a meeting involves the following steps:
+
+1. Start a recording by using the
+   [`POST` endpoint](http://docs.dyte.io/api/?v=v1#/operations/start_recording).
+2. Stop the recording by using the
+   [`PUT` endpoint](https://docs.dyte.io/api#/operations/stop_recording).
+3. Use the
+   [`GET` endpoint](http://docs.dyte.io/api/?v=v1#/operations/get_recording) to
+   fetch a pre-signed URL for downloading the recording.
+
+## Recording states
+
+Recording can have one of these states, which are also notified through
+[webhooks](./integrating-with-webhooks#recordingstatusupdate):
+
+| Name      | Description                                                                                                                                                                |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| INVOKED   | The recording function has been invoked and will start recording the meeting very shortly.                                                                                 |
+| RECORDING | The meeting is currently being recorded.                                                                                                                                   |
+| UPLOADING | The recording has been stopped and the file is being uploaded to cloud storage. The storage would be Dyte's if no storage parameters are passed in the recording API call. |
+| UPLOADED  | The recording file upload is complete.                                                                                                                                     |
+| ERRORED   | There was an error while recording the meeting and the file wouldn't be available.                                                                                         |
+
+:::info Considerations
+
+1. Recording will stop if there are no participants in a meeting for 60 seconds
+   (1 minute).
+2. There can only be one active recording of a meeting at any given time.
+3. The average file size for one hour of recording is approximately `300MB`.
+4. Maximum recording time is 24 hours. Recording will automatically stop after
+   24 hours have elapsed since the recording's start time. This option can be
+   configured to any value up to 24 hours by passing the `maxSeconds` parameter
+   in the start recording API request.
+
+:::
+
+## Recording settings
+
+It is possible to modify the codec which is used for recording the videos. We
+currently support three codecs:
+
+1. H264 (default):
+   [sample recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/h264_sample.webm)
+2. VP8:
+   [sample recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/vp8_sample.webm)
+3. VP9:
+   [sample recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/vp9_sample.webm)
+
+You can change the codec by specifying the codec in the `videoConfig` field when
+you are creating a recording. eg:
+
+```
+curl --request POST \
+  --url https://api.cluster.dyte.in/v2/recordings \
+  --header 'Authorization: Basic NzBjNWy00Y2YzLTk5MDctYmVGNiNGUzZWY1MGI1' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "meeting_id": "97440c6a-140b-40a9-9499-b23fd7a3868a",
+  "storage_config": {
+    "type": "aws",
+    "access_key": "string",
+    "secret_key": "string",
+    "region": "us-east-1",
+    "bucket": "string",
+    "path": "string"
+  }
+}'
+```
+
+:::caution Resolution
+
+By default, Dyte uses a resolution of **1280 x 720** (720p) for all recordings.
+If you require a higher resolution, please contact us directly to enable
+recordings in **1920 x 1080** (1080p) for your organization.
+
+:::
