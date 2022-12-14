@@ -26,8 +26,6 @@ curl --location --request POST 'https://api.cluster.dyte.in/v2/livestreams' \
     "status": "OFFLINE",
     "name": "test_livestream",
     "meeting_id": null,
-    "ingest_seconds": 0,
-    "viewer_seconds": 0,
     "ingest_server": "rtmps://2bd803bb7b1.global-contribute.live-video.net:443/app/",
     "id": "9fb22eea-3392-42ad-b884-1129a4f517d2",
     "stream_key": "sk_ap-south-2_JKLBQlfOE_eb14jL5zj3lbj58xHSb",
@@ -52,7 +50,7 @@ Request:
 
 ```shell title="Request"
 curl --location \
-     --request GET 'https://api.cluster.dyte.in/v2/livestreams/STREAMID' \
+     --request GET 'https://api.cluster.dyte.in/v2/livestreams/9fb22eea-3392-42ad-b884-1129a4f517d2' \
      --header 'Authorization: Basic ZGVtbzpwQDU1dzByZA=='
 ```
 
@@ -60,14 +58,15 @@ curl --location \
 {
   "success": true,
   "data": {
-    "id": "STREAMID",
-    "title": "STREAMNAME",
-    "input_rtmp_url": "rtmp://URL/LiveApp/STREAMID?token=TOKENID",
-    "token_id": "TOKENID",
-    "stream_key": "STREAMID?token=TOKENID",
-    "player_url": "https://URL/LiveApp/play.html?name=STREAMID",
     "status": "OFFLINE",
-    "hls_play_url": "https://URL/LiveApp/streams/STREAMID.m3u8"
+    "name": "test_livestream",
+    "meeting_id": null,
+    "ingest_seconds": 0,
+    "viewer_seconds": 0,
+    "ingest_server": "rtmps://2bd803bb7b1.global-contribute.live-video.net:443/app/",
+    "id": "9fb22eea-3392-42ad-b884-1129a4f517d2",
+    "stream_key": "sk_ap-south-2_JKLBQlfOE_eb14jL5zj3lbj58xHSb",
+    "playback_url": "https://2bd803bb7b1.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.e1lAS0BHpDxP.m3u8"
   }
 }
 ```
