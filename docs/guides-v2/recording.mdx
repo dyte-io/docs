@@ -86,3 +86,132 @@ If you require a higher resolution, please contact us directly to enable
 recordings in **1920 x 1080** (1080p) for your organization.
 
 :::
+
+## Publishing a recording to your cloud provider
+
+You can pass an optional object `storageConfig` in the start recording request
+and we will publish the recording directly to your cloud provider once it stops.
+If a `path` is specified, the recorded video will be stored there, otherwise the
+default is the root of the directory. The filename for recording will be the
+same as given in `outputFileName` in the [start recording](ref:startrecording)
+response.
+
+:::caution Limited access keys
+
+Please make sure that the cloud keys you provide to Dyte APIs have only limited
+access.
+
+:::
+
+```shell
+curl --request POST \
+  --url https://api.cluster.dyte.in/v2/recordings \
+  --header 'Authorization: Basic your-api-key' \
+  --header 'Content-Type: application/json' \
+  --data '{
+	    "storageConfig": {
+                "type": "aws",
+                "accessKey": "aws_access_key",
+                "secret": "aws_secret",
+                "bucket": "bucket_name",
+                "region": "aws_region"
+            }
+}'
+```
+
+The currently supported providers are listed below and their relevant parameters
+are described alongside.
+
+### AWS S3 (Amazon Web Services)
+
+Dyte supports transferring recordings to **AWS S3**. To set this up, set the
+following fields on the storage config. (For more information on how to generate
+these credentials, please refer to
+[this page from aws](https://aws.amazon.com/premiumsupport/knowledge-center/create-access-key/)):
+
+- `type` must be set to **aws**.
+- `accessKey` must be set to your AWS access key.
+- `bucket` must be set to the name of your AWS S3 bucket.
+- `path` is optional and can contain the path to a sub-folder where recordings
+  must be transferred. By default, if this parameter is not passed, recordings
+  will be transferred in the root folder of the bucket.
+- `secret` must be set to the your AWS access secret.
+- `region` must be set to the region where your bucket is hosted. (Eg:
+  `ap-south-1`)
+
+```json
+{
+  "storageConfig": {
+    "type": "aws",
+    "accessKey": "aws_access_key",
+    "secret": "aws_secret",
+    "bucket": "bucket_name",
+    "region": "aws_region",
+    "path": "/path/to/a/sub/folder"
+  }
+}
+```
+
+### DigitalOcean Spaces (DigitalOcean)
+
+Dyte supports transferring recordings to **DigitalOcean Spaces**. To set this
+up, set the following fields on the storage config. (For more information on how
+to generate these credentials, please refer to
+[this page from digital ocean](https://www.digitalocean.com/community/tutorials/how-to-create-a-digitalocean-space-and-api-key)):
+
+- `type` must be set to **digitalocean**.
+- `accessKey` must be set to your digital ocean access key.
+- `bucket` must be set to the name of your spaces bucket.
+- `path` is optional and can contain the path to a sub-folder where recordings
+  must be transferred. By default, if this parameter is not passed, recordings
+  will be transferred in the root folder of the bucket.
+- `secret` must be set to the your digital ocean access secret.
+- `region` must be set to the region where your spaces bucket is hosted. (Eg:
+  `SGP1`)
+
+```json
+{
+  "storageConfig": {
+    "type": "digitalocean",
+    "accessKey": "do_spaces_key",
+    "secret": "do_spaces_secret",
+    "bucket": "do_space_or_bucket_name",
+    "region": "do_spaces_region",
+    "path": "/path/to/a/sub/folder"
+  }
+}
+```
+
+### Azure Blob Storage (Azure)
+
+Dyte supports transferring recordings to **Azure Blob Storage**. To set this up,
+set the following fields on the storage config:
+
+- `type` must be set to **azure**.
+- `accessKey` must have your azure connection string. (Refer to
+  [this page on the azure docs](https://docs.microsoft.com/en-us/azure/storage/common/storage-configure-connection-string)
+  for instructions on how to generate this string)
+- `bucket` must have the name of your `container` in the same storage account as
+  the connection string where the recordings must be transferred.
+- `path` is optional and can contain the path to a sub-folder where recordings
+  must be transferred. By default, if this parameter is not passed, recordings
+  will be transferred in the root folder of the container.
+- `secret` must be set to a blank string `""`.
+- `region` must be set to a blank string `""`.
+
+```json
+{
+  "storageConfig": {
+    "type": "azure",
+    "accessKey": "connection_string",
+    "secret": "",
+    "bucket": "container_name",
+    "region": "",
+    "path": "/path/to/a/sub/folder"
+  }
+}
+```
+
+As always, you can view the
+[complete API reference](/api/#/operations/start_recording) to see all available
+options for a recording.
