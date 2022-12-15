@@ -1,0 +1,181 @@
+---
+title: Introducing chat
+description: Send and receive chat messages in a meeting.
+sidebar_position: 1
+tags: [mobile-core, chat]
+---
+
+# Introducing chat
+
+The meeting chat object is stored in `meeting.chat`, which has methods for
+sending and receiving messages. There are 3 types of messages that can be sent
+in chat - text messages, images, and files.
+
+The `meeting.chat.messages` array contains all the messages that have been sent
+in the chat. This is an array of objects, where each object is of type
+`DyteChatMessage`.
+
+The type `DyteChatMessage` is defined in the following manner.
+
+```dart
+import 'dart:convert';
+
+class DyteChatMessage {
+  DyteChatMessage({
+    required this.userId,
+    required this.displayName,
+    required this.read,
+    this.pluginId,
+    required this.type,
+  });
+  final String userId;
+  final String displayName;
+  final bool read;
+  final String? pluginId;
+  final DyteMessageType type;
+
+  static DyteTextMessage textMessage({
+    required String userId,
+    required String displayName,
+    required bool read,
+    String? pluginId,
+    required String message,
+  }) {
+    return DyteTextMessage(
+      message: message,
+      userId: userId,
+      displayName: displayName,
+      read: read,
+      type: DyteMessageType.text,
+    );
+  }
+
+  static DyteImageMessage imageMessage({
+    required String userId,
+    required String displayName,
+    required bool read,
+    String? pluginId,
+    required String message,
+    required String link,
+    required String fileUri,
+    required String fileName,
+  }) {
+    return DyteImageMessage(
+      fileName: fileName,
+      fileUri: fileUri,
+      link: link,
+      userId: userId,
+      displayName: displayName,
+      read: read,
+      type: DyteMessageType.image,
+    );
+  }
+
+  static DyteFileMessage fileMessage({
+    required String userId,
+    required String displayName,
+    required bool read,
+    String? pluginId,
+    required String message,
+    required String name,
+    required String fileUri,
+  }) {
+    return DyteFileMessage(
+      name: name,
+      fileUri: fileUri,
+      userId: userId,
+      displayName: displayName,
+      read: read,
+      type: DyteMessageType.image,
+    );
+  }
+
+  factory DyteChatMessage.fromMap(Map<String, dynamic> map) {
+    final type = _decodeType(map["type"]);
+    switch (type) {
+      case DyteMessageType.text:
+        return DyteTextMessage(
+          message: map["message"],
+          userId: map["userId"],
+          displayName: map["displayName"],
+          read: map["read"],
+          type: type,
+        );
+      case DyteMessageType.image:
+        return DyteImageMessage(
+          fileName: map["fileName"] ?? '',
+          fileUri: map["fileUri"] ?? '',
+          link: map["link"],
+          userId: map["userId"],
+          displayName: map["displayName"],
+          read: map["read"],
+          type: type,
+        );
+      case DyteMessageType.file:
+        return DyteFileMessage(
+          name: map["name"],
+          fileUri: map["fileUri"],
+          userId: map["userId"],
+          displayName: map["displayName"],
+          read: map["read"],
+          type: type,
+        );
+    }
+  }
+
+  static DyteMessageType _decodeType(String type) {
+    if (type == "TEXT") {
+      return DyteMessageType.text;
+    } else if (type == "IMAGE") {
+      return DyteMessageType.image;
+    } else {
+      return DyteMessageType.file;
+    }
+  }
+
+  factory DyteChatMessage.fromJson(String source) =>
+      DyteChatMessage.fromMap(json.decode(source));
+}
+
+/// [DyteMessageType]
+enum DyteMessageType { text, image, file }
+
+class DyteTextMessage extends DyteChatMessage {
+  final String message;
+  DyteTextMessage({
+    required this.message,
+    required super.userId,
+    required super.displayName,
+    required super.read,
+    required super.type,
+  });
+}
+
+class DyteImageMessage extends DyteChatMessage {
+  final String link;
+  final String fileUri;
+  final String fileName;
+  DyteImageMessage({
+    required this.fileName,
+    required this.fileUri,
+    required this.link,
+    required super.userId,
+    required super.displayName,
+    required super.read,
+    required super.type,
+  });
+}
+
+class DyteFileMessage extends DyteChatMessage {
+  final String name;
+  final String fileUri;
+  DyteFileMessage({
+    required this.name,
+    required this.fileUri,
+    required super.userId,
+    required super.displayName,
+    required super.read,
+    required super.type,
+  });
+}
+```

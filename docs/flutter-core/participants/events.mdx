@@ -1,0 +1,86 @@
+---
+title: Participant Events
+description: Event handling for participants.
+sidebar_position: 3
+tags: [mobile-core, participants, self]
+---
+
+You can subscribe to events for all participants by implementing
+`DyteParticipantEventsListener` callback and then passing that object to
+`meeeting.addParticipantEventsListener(dyteParticipantEventsListener)` method.
+Here are the supported methods:
+
+### Page change
+
+```dart
+    @override
+    void onParticipantsUpdated({
+        required DyteRoomParticipants participants,
+        required bool isNextPagePossible,
+        required bool isPreviousPagePossible,
+    }) {
+        // your code here to handle page updates.
+    }
+```
+
+### Participant joined
+
+Trigger an event when any participant joins the meeting.
+
+```dart
+  @override
+  void onParticipantUpdated(DyteMeetingParticipant participant) {
+            // your code here to handle new participant
+    }
+```
+
+### Participant left
+
+Trigger an event when any participant leaves the meeting.
+
+```dart
+  @override
+  void onParticipantLeave(DyteMeetingParticipant participant) {
+            // your code here to handle participant left from meeting
+    }
+```
+
+### Video update
+
+Trigger an event when any participant starts / stops video.
+
+```dart
+  @override
+  void videoUpdate({
+    required bool videoEnabled,
+    required DyteMeetingParticipant participant,
+  }) {
+            // your code here to handle participant video toggle update
+    }
+```
+
+### Audio update
+
+Trigger an event when any participant starts / stops audio.
+
+```dart
+  @override
+  void audioUpdate({
+    required bool audioEnabled,
+    required DyteMeetingParticipant participant,
+  }) {
+            // your code here to handle participant audio toggle update
+    }
+```
+
+### Screen share update
+
+Trigger an event when any participant starts / stops screen share.
+
+```dart
+    @override
+    void onScreenSharesUpdated() {
+        // all screenshare participants can be fetched via
+        // meeting.participants.screenshares
+        }
+```

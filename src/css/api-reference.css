@@ -2,7 +2,7 @@
 
 :root {
   --font-ui: var(--ifm-font-family-base) !important;
-  --font-prose: var(--font-ui) !important;
+  --font-prose: theme('fontFamily.jakarta');
   --font-mono: var(--ifm-font-family-monospace) !important;
 
   --color-canvas: var(--ifm-background-color) !important;
@@ -29,7 +29,7 @@
 }
 
 .ElementsTableOfContentsItem .sl-bg-primary-tint {
-  border-color: var(--docs-color-primary-100) !important;
+  border-color: theme('colors.primary.100') !important;
 }
 
 html[data-theme='dark'] .elements-container {

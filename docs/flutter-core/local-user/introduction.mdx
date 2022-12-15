@@ -1,0 +1,97 @@
+---
+title: Introduction
+description: Local user setup guide.
+sidebar_position: 1
+tags: [mobile-core, local-user, self]
+---
+
+# Introduction - Local User
+
+The local user has the methods and properties on the local user media controls.
+Accessible via `localUser` within the `meeting` object.
+
+## Properties
+
+Here is a list of properties that local user provides:
+
+- `id`: The ID of the participant pertaining to local user.
+- `name`: Contains Name of the local user.
+- `userId`:
+- `picture`: Link to the url of the participant
+- `flags`: It is of type `ParticipantFlags` and it contains two boolean values
+  - `recorder`: if the participant is recorder
+  - `hidden`: if the participant is hidden
+- `clientSpecificId`: Identifier provided by the developer while adding the
+  participant.
+- `audioEnabled`: A boolean value indicating if the audio currently enabled.
+- `videoEnabled`: A boolean value indicating if the video currently enabled.
+
+## Change default audio / video settings
+
+By default as soon as you join the meeting the SDK will produce your video and
+audio streams. To change this behaviour use the `audioEnabled` & `videoEnabled`
+parameter
+
+```dart
+final meetingInfo = DyteMeetingInfo(
+      orgId = ORGNIZATION_ID,
+      roomName = MEETING_ROOM_NAME,
+      authToken = AUTH_TOKEN,
+      audioEnabled = false,
+      videoEnabled = true
+    );
+```
+
+## Turn audio/video tracks after joining the room
+
+If audio and video tracks are disabled during the `DyteMobileClient`
+initialization process. You can setup the audio and video tracks by simply
+calling `enableAudio()` and `enableVideo()` like below:
+
+```dart
+meeting.localUser.enableAudio();
+meeting.localUser.enableVideo();
+```
+
+## Change the name of the local user
+
+Change the user's name by calling `setDisplayName` method. The changed name will
+reflect across all participants ONLY if the change happens before joining the
+meeting.
+
+```dart
+meeting.localUser.setDisplayName("New Name")
+```
+
+## Mute/Unmute microphone
+
+```dart
+// Mute Audio
+meeting.localUser.disableAudio();
+
+// Unmute Audio
+meeting.localUser.enableAudio();
+
+// Get current status
+final isAudioEnabled = meeting.localUser.audioEnabled;
+```
+
+## Enable/Disable camera
+
+```dart
+// Disable Video
+meeting.localUser.disableVideo();
+
+// Enable Video
+meeting.localUser.enableVideo();
+
+// Get current status
+final isVideoEnabled = meeting.localUser.videoEnabled;
+```
+
+## Switch camera between primary and secondary
+
+```dart
+// switch camera
+meeting.localUser.switchCamera();
+```

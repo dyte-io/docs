@@ -1,0 +1,216 @@
+<script>
+  function showMenu(menu) {
+    console.log('adding class', menu);
+    document.body.classList.remove('web', 'mobile', 'desktop', 'plugin');
+    document.body.classList.add(menu);
+  }
+
+  window.showMenu = showMenu;
+</script>
+<div class="sdks-dropdown flex max-w-lg flex-col rounded-2xl lg:min-w-[768px]">
+  <div class="flex flex-col bg-secondary-800 p-4 lg:flex-row">
+    <div class="flex flex-1 flex-col gap-8 rounded-xl bg-secondary-1000 p-6">
+      <button
+        data-dropdown-sdks-menu="web"
+        class="flex cursor-pointer items-start justify-start gap-2 border-none bg-transparent"
+        onfocus="document.body.setAttribute('data-sdk-menu', 'web')"
+        onmouseover="document.body.setAttribute('data-sdk-menu', 'web')"
+      >
+        <div class="flex-shrink-0">
+          <img
+            src="/static/landing-page/sdk-icons/resources/laptop.png"
+            class="h-6 w-6"
+          />
+        </div>
+        <div class="flex flex-col items-start justify-start gap-1">
+          <div class="text-base font-semibold">Web</div>
+          <p class="mb-0 text-left text-sm text-text-400">
+            Get up and running on new features and techniques.
+          </p>
+        </div>
+      </button>
+      <button
+        class="flex cursor-pointer items-start justify-start gap-2 border-none bg-transparent"
+        data-dropdown-sdks-menu="mobile"
+        onfocus="document.body.setAttribute('data-sdk-menu', 'mobile')"
+        onmouseover="document.body.setAttribute('data-sdk-menu', 'mobile')"
+      >
+        <div class="flex-shrink-0">
+          <img
+            src="/static/landing-page/sdk-icons/resources/mobile.png"
+            class="h-6 w-6"
+          />
+        </div>
+        <div class="flex flex-col items-start justify-start gap-1">
+          <div class="text-base font-semibold">Mobile</div>
+          <p class="mb-0 text-left text-sm text-text-400">
+            Get up and running on new features and techniques.
+          </p>
+        </div>
+      </button>
+      <a
+        class="flex cursor-pointer items-start justify-start gap-2 border-none bg-transparent text-black dark:text-white"
+        data-dropdown-sdks-menu="plugin"
+        href="plugin-sdk"
+      >
+        <div class="flex-shrink-0">
+          <img
+            src="/static/landing-page/sdk-icons/resources/plugin.png"
+            class="h-6 w-6"
+          />
+        </div>
+        <div class="flex flex-col items-start justify-start gap-1">
+          <div class="text-base font-semibold">Plugin</div>
+          <p class="mb-0 text-left text-sm text-text-400">
+            Get up and running on new features and techniques.
+          </p>
+        </div>
+      </a>
+    </div>
+    <div class="flex-1 p-6">
+      <div class="flex gap-2" data-dropdown-sdks="web">
+        <div class="flex-1">
+          <h3>UI Kit</h3>
+
+          <ul class="list-none pl-0">
+            <li>
+              <a href="/react-ui-kit" class="sdk-link">
+                <img src="/static/landing-page/sdk-icons/react.png" />
+                React
+              </a>
+            </li>
+            <li>
+              <a href="/angular-ui-kit" class="sdk-link">
+                <img src="/static/landing-page/sdk-icons/angular.png" />
+                Angular
+              </a>
+            </li>
+            <li>
+              <a href="/vue-ui-kit" class="sdk-link">
+                <img src="/static/landing-page/sdk-icons/vue.png" />
+                Vue
+              </a>
+            </li>
+            <li>
+              <a href="/ui-kit" class="sdk-link">
+                <img src="/static/landing-page/sdk-icons/html.png" />
+                Web Components
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="flex-1">
+          <h3>Core SDK</h3>
+
+          <ul class="list-none pl-0">
+            <li>
+              <a href="/web-core" class="sdk-link">
+                <img src="/static/landing-page/sdk-icons/js.png" />
+                JavaScript
+              </a>
+            </li>
+            <li>
+              <a href="/react-ui-kit/basics/using-hooks" class="sdk-link">
+                <img src="/static/landing-page/sdk-icons/react.png" />
+                React
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-2" data-dropdown-sdks="mobile">
+        <div class="flex w-full gap-2">
+          <div class="flex-1">
+            <h3>Core SDK</h3>
+            <ul class="list-none pl-0">
+              <li>
+                <a href="/android-core" class="sdk-link">
+                  <img src="/static/landing-page/sdk-icons/kotlin.png" />
+                  Android
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="flex-1">
+            <h3>UI Kit</h3>
+          </div>
+        </div>
+
+        <div class="flex w-full gap-2">
+          <div class="mt-4 w-full rounded-lg bg-secondary-700 p-4">
+            <div class="mb-3 text-xs text-text-400">COMING SOON</div>
+
+            <div class="flex gap-2">
+              <div class="flex-1">
+                <ul class="list-none pl-0">
+                  <li>
+                    <a href="#" class="sdk-link">
+                      <img src="/static/landing-page/sdk-icons/react.png" />
+                      React Native
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="sdk-link">
+                      <img src="/static/landing-page/sdk-icons/swift.png" />
+                      iOS
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="sdk-link">
+                      <img src="/static/landing-page/sdk-icons/flutter.png" />
+                      Flutter
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="flex-1">
+                <ul class="list-none pl-0">
+                  <li>
+                    <a href="#" class="sdk-link">
+                      <img src="/static/landing-page/sdk-icons/react.png" />
+                      React Native
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="sdk-link">
+                      <img src="/static/landing-page/sdk-icons/kotlin.png" />
+                      Android
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="sdk-link">
+                      <img src="/static/landing-page/sdk-icons/swift.png" />
+                      iOS
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <a
+    href="#"
+    class="flex items-center justify-between bg-secondary-1000 p-6 text-current"
+  >
+    <div class="flex flex-col gap-2">
+      <div class="flex items-center gap-2 lg:text-lg">
+        <img
+          src="/static/landing-page/sdk-icons/resources/library-books.png"
+          alt="SDK Overview"
+          class="h-6 w-6"
+        />
+        SDK Overview
+      </div>
+      <div class="text-sm text-text-400">
+        Get up and running on new features and techniques.
+      </div>
+    </div>
+    <div>&rarr;</div>
+  </a> -->
+</div>

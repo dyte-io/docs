@@ -7,6 +7,7 @@ import {
   FlutterIcon,
   HTMLIcon,
   VueIcon,
+  JSIcon,
 } from './icons';
 
 const SECTIONS = [
@@ -29,14 +30,14 @@ const SECTIONS = [
   {
     name: 'JavaScript SDK',
     id: 'javascript',
-    icon: UIKitIcon,
+    icon: JSIcon,
     section: 'old-web-sdks',
   },
 
   // Web SDKs
   // - ui-sdk
   {
-    name: 'HTML Web Components',
+    name: 'Web Components',
     id: 'ui-kit',
     icon: HTMLIcon,
     section: 'ui-sdk',
@@ -65,7 +66,7 @@ const SECTIONS = [
   {
     name: 'JavaScript',
     id: 'web-core',
-    icon: UIKitIcon,
+    icon: JSIcon,
     section: 'core-sdk',
   },
 
@@ -84,6 +85,12 @@ const SECTIONS = [
     section: 'mobile-core',
   },
 
+  {
+    name: 'Flutter Core',
+    id: 'flutter-core',
+    icon: FlutterIcon,
+    section: 'mobile-core',
+  },
   {
     name: 'React Native',
     id: 'react-native',

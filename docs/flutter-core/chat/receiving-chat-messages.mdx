@@ -1,0 +1,31 @@
+---
+title: Receiving chat messages
+description: Receive chat messages that has been sent in a meeting.
+sidebar_position: 3
+tags: [mobile-core, chat]
+---
+
+# Receiving chat messages
+
+To be able to receive chat messages you need to implement a method
+`onChatUpdates()` method from callback `DyteMeetingRoomEventsListener`. You can
+subscribe to this events by calling
+`meeting.addMeetingEventsListener(dyteMeetingRoomEventsListener)`
+
+```dart
+@override
+void onChatUpdates(
+        newMessage: Boolean,
+        message: DyteChatMessage?,
+        messages: List<DyteChatMessage>
+      ) {
+        // your code to handle new chat message
+      }
+```
+
+Here, the `message` is of type `Message`, as defined in
+[introduction](./introduction). `messages` is a list of all chat messages in the
+meeting, which is the same as `meeting.chat.messages`.
+
+When a chat message is received, the `meeting.chat.messages` list is also
+updated.
