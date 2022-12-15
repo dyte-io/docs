@@ -114,7 +114,7 @@ const FAQs = [
     tags: ['General'],
   },
   {
-    question: 'What are Code SDKs used for?',
+    question: 'What are Core SDKs used for?',
     answer: (
       <>
         The core SDKs are required to begin integrating Dyte into your web and
@@ -242,56 +242,23 @@ const FAQs = [
       'What are the minimum browser and internet requirements for Dyte?',
     answer: (
       <>
-        <p>
-          Browser Requirements:
-          <ul>
-            <li>Chrome (or Chromium based) 74+</li>
-            <li>Firefox 78+</li>
-            <li>Opera 64+</li>
-            <li>Safari 12+</li>
-            <li>Edge 79+</li>
-            <li>iOS (Safari) 12.1+</li>
-            <li>iOS (Non-Safari) 15+</li>
-          </ul>
-        </p>
-        <p>
-          Internet Requirements:
-          <ul>
-            <li>Downlink (Minimum) 4 Mbps</li>
-            <li>Downlink (Optimal) 8 Mbps</li>
-            <li>Uplink (Minimum) 2 Mbps</li>
-            <li>Uplink (Optimal) 4 Mbps</li>
-          </ul>
-        </p>
-      </>
-    ),
-    tags: ['Technical'],
-  },
-  {
-    question: 'What is the size of different SDKs?',
-    answer: (
-      <>
-        <p>
-          The size of different SDKs are as following:
-          <ul>
-            <li>
-              iOS
-              <ul>
-                <li>React Native (1 mb)</li>
-                <li>Flutter (2 mb)</li>
-                <li>Swift (0.5 mb)</li>
-              </ul>
-            </li>
-            <li>
-              Android
-              <ul>
-                <li>React Native (1 mb)</li>
-                <li>Flutter (2 mb)</li>
-                <li>Swift (0.5 mb)</li>
-              </ul>
-            </li>
-          </ul>
-        </p>
+        <p>Browser Requirements:</p>
+        <ul>
+          <li>Chrome (or Chromium based) 74+</li>
+          <li>Firefox 78+</li>
+          <li>Opera 64+</li>
+          <li>Safari 12+</li>
+          <li>Edge 79+</li>
+          <li>iOS (Safari) 12.1+</li>
+          <li>iOS (Non-Safari) 15+</li>
+        </ul>
+        <p>Internet Requirements:</p>
+        <ul>
+          <li>Downlink (Minimum) 4 Mbps</li>
+          <li>Downlink (Optimal) 8 Mbps</li>
+          <li>Uplink (Minimum) 2 Mbps</li>
+          <li>Uplink (Optimal) 4 Mbps</li>
+        </ul>
       </>
     ),
     tags: ['Technical'],
@@ -381,7 +348,7 @@ const FAQs = [
         <ul>
           <li>Web: React JS, Angular, Vue, Javascript</li>
           <li>Mobile: Flutter, Kotlin, Swift, React Native</li>
-          <li>Desktop: Flutter</li>
+          <li>Desktop: Electron</li>
         </ul>
       </>
     ),
@@ -462,79 +429,6 @@ const FAQs = [
       </>
     ),
     tags: ['Technical'],
-  },
-  {
-    question: 'How does pricing work for Dyte?',
-    answer: (
-      <>
-        <p>
-          Dyte provides 10,000 minutes free every month. After that we charge as
-          the following:
-        </p>
-        <table>
-          <thead>
-            <tr>
-              <th></th>
-              <th>
-                <b>Video Conferencing</b>
-              </th>
-              <th>
-                <b>Audio Conferencing</b>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <b>Usage Minutes</b>
-              </td>
-              <td>$0.004/user min</td>
-              <td>$0.001/user min</td>
-            </tr>
-            <tr>
-              <td>
-                <b>Cloud Recording</b>
-              </td>
-              <td>$0.010/min</td>
-              <td>$0.010/min</td>
-            </tr>
-            <tr>
-              <td>
-                <b>Streaming to other platforms (RTMP out)</b>
-              </td>
-              <td>$0.015/min</td>
-              <td>$0.010/min</td>
-            </tr>
-            <tr>
-              <td>
-                <b>Streaming (HLS) Viewers</b>
-              </td>
-              <td>
-                $0.0016/ min (viewers) <br />
-                $0.004/ min (host)
-              </td>
-              <td>
-                $0.0016/ min (viewers) <br />
-                $0.004/ min (host)
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <b>Encoding</b>
-              </td>
-              <td>$0.15/min</td>
-              <td>$0.15/min</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <p>
-          Please <Link href="https://dyte.io/contact">contact us</Link> for
-          volume discounts.
-        </p>
-      </>
-    ),
-    tags: ['Pricing'],
   },
   {
     question: 'How do I make a payment?',

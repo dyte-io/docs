@@ -290,9 +290,10 @@ export default function SDKsSection() {
           <div className="flex flex-1 flex-col justify-center p-6 text-center lg:pl-16 lg:text-left">
             <h3 className="text-3xl">Plugin SDK</h3>
             <p className="text-sm leading-relaxed text-text-400 lg:max-w-sm">
-              Interested to build using JavaScript, React, Angular, or Vue, this
-              section covers everything you need to know for creating live video
-              and voice solutions for web applications.
+              Add the most immersive, collaborative, and more human interaction
+              right in your video and voice calls using Dyte&apos;s
+              out-of-the-box plugins. Dive into the resources here to get
+              started with building your own plugins for your applications.
             </p>
             <Link className="text-sm" href="/plugin-sdk">
               Learn More &rarr;
