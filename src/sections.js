@@ -16,13 +16,13 @@ const SECTIONS = [
     section: false,
   },
   {
-    name: 'Guides v1',
-    id: 'guides',
+    name: 'Guides v2',
+    id: 'guides-v2',
     section: 'guide',
   },
   {
-    name: 'Guides v2',
-    id: 'guides-v2',
+    name: 'Guides v1',
+    id: 'guides',
     section: 'guide',
   },
   {

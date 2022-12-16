@@ -55,7 +55,7 @@ export default function Home() {
     `https://docs.dyte.io${location.pathname}${location.search}`
   );
 
-  const currentVersion = url.searchParams.get('v') || 'v1';
+  const currentVersion = url.searchParams.get('v') || 'v2';
 
   useEffect(() => {
     // show V2 tooltip only if user hasn't seen it yet
