@@ -1,3 +1,11 @@
+## [1.31.4](https://github.com/dyte-in/docs/compare/v1.31.3...v1.31.4) (2022-12-19)
+
+
+### Bug Fixes
+
+* **api:** h1 styling ([c117f65](https://github.com/dyte-in/docs/commit/c117f65d5377d4775646c7469745aca1988164c4))
+* image overflow in getting-started page ([722474d](https://github.com/dyte-in/docs/commit/722474dd7e9fe85f678bd3fd1db741410374eaa5))
+
 ## [1.31.3](https://github.com/dyte-in/docs/compare/v1.31.2...v1.31.3) (2022-12-13)
 
 
