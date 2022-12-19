@@ -242,27 +242,23 @@ const FAQs = [
       'What are the minimum browser and internet requirements for Dyte?',
     answer: (
       <>
-        <p>
-          Browser Requirements:
-          <ul>
-            <li>Chrome (or Chromium based) 74+</li>
-            <li>Firefox 78+</li>
-            <li>Opera 64+</li>
-            <li>Safari 12+</li>
-            <li>Edge 79+</li>
-            <li>iOS (Safari) 12.1+</li>
-            <li>iOS (Non-Safari) 15+</li>
-          </ul>
-        </p>
-        <p>
-          Internet Requirements:
-          <ul>
-            <li>Downlink (Minimum) 4 Mbps</li>
-            <li>Downlink (Optimal) 8 Mbps</li>
-            <li>Uplink (Minimum) 2 Mbps</li>
-            <li>Uplink (Optimal) 4 Mbps</li>
-          </ul>
-        </p>
+        <p>Browser Requirements:</p>
+        <ul>
+          <li>Chrome (or Chromium based) 74+</li>
+          <li>Firefox 78+</li>
+          <li>Opera 64+</li>
+          <li>Safari 12+</li>
+          <li>Edge 79+</li>
+          <li>iOS (Safari) 12.1+</li>
+          <li>iOS (Non-Safari) 15+</li>
+        </ul>
+        <p>Internet Requirements:</p>
+        <ul>
+          <li>Downlink (Minimum) 4 Mbps</li>
+          <li>Downlink (Optimal) 8 Mbps</li>
+          <li>Uplink (Minimum) 2 Mbps</li>
+          <li>Uplink (Optimal) 4 Mbps</li>
+        </ul>
       </>
     ),
     tags: ['Technical'],

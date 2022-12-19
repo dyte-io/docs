@@ -45,7 +45,7 @@ function Accordion({ title, tags, children, open: defaultOpen }) {
         >
           {tags.map((tag) => (
             <div
-              className="rounded-full bg-secondary-700 px-2 py-px text-xs text-black dark:text-white"
+              className="w-fit rounded-full bg-secondary-700 px-2 py-px text-xs text-black dark:text-white"
               key={tag}
               data-tag={tag}
             >
