@@ -16,11 +16,11 @@ Here are the supported methods:
     private val participantEventsListener = object : DyteParticipantEventsListener {
         override fun onParticipantsUpdated(
             participants: DyteRoomParticipants,
-            isNextPagePossible: Boolean,
-            isPreviousPagePossible: Boolean
+            gridPagesInfo: GridPagesInfo
             ) {
-            super.onParticipantsUpdated(participants, isNextPagePossible, isPreviousPagePossible)
+            super.onParticipantsUpdated(participants, gridPagesInfo)
             // your code here to handle page updates.
+            // gridPagesInfo contains currentPageNumber, pageCount, isNextPagePossible, isPreviousPagePossible.
         }
     }
 ```
