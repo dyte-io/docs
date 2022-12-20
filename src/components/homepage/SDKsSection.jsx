@@ -211,39 +211,37 @@ export default function SDKsSection() {
             </Link> */}
           </div>
           <div className="flex flex-1 flex-col bg-secondary-800 p-6 px-8 lg:rounded-l-3xl">
-            <h4>UI Kit</h4>
+            <h4>Prebuilt SDK</h4>
             <p className="text-sm leading-relaxed text-text-400">
               Integrate video and voice calls to your app or website in minutes
               using Dyte&apos;s prebuilt design library of UI components.
             </p>
-            <div className="flex flex-1 flex-col justify-end">
+            <ul className="flex list-none flex-col gap-2 pl-0">
+              <li>
+                <SDKLink href="/android" Icon={KotlinIcon} label="Android" />
+              </li>
+              <li>
+                <SDKLink href="/ios" Icon={SwiftIcon} label="iOS" />
+              </li>
+              <li>
+                <SDKLink
+                  href="/react-native"
+                  Icon={ReactIcon}
+                  label="React Native"
+                />
+              </li>
+              <li>
+                <SDKLink href="/flutter" Icon={FlutterIcon} label="Flutter" />
+              </li>
+            </ul>
+            {/* <div className="flex flex-1 flex-col justify-end">
               <div className="rounded-2xl bg-secondary-700 p-4 dark:bg-secondary-900">
                 <h5 className="text-center text-xs text-text-400">
                   COMING SOON
                 </h5>
-                <ul className="mb-0 flex list-none flex-col gap-2 pl-0">
-                  <li>
-                    <SDKLink
-                      href="#"
-                      Icon={ReactIcon}
-                      label="React Native"
-                      disabled
-                    />
-                  </li>
-                  <li>
-                    <SDKLink
-                      href="#"
-                      Icon={KotlinIcon}
-                      label="Android"
-                      disabled
-                    />
-                  </li>
-                  <li>
-                    <SDKLink href="#" Icon={SwiftIcon} label="iOS" disabled />
-                  </li>
-                </ul>
+                <ul className="mb-0 flex list-none flex-col gap-2 pl-0"></ul>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="flex-1 rounded-b-3xl bg-secondary-800 p-6 px-8 lg:rounded-r-3xl lg:rounded-bl-none">
             <h4>Core SDK</h4>
