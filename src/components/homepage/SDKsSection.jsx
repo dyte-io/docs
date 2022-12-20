@@ -218,20 +218,20 @@ export default function SDKsSection() {
             </p>
             <ul className="flex list-none flex-col gap-2 pl-0">
               <li>
-                <SDKLink href="/android" Icon={KotlinIcon} label="Android" />
+                <SDKLink href="android" Icon={KotlinIcon} label="Android" />
               </li>
               <li>
-                <SDKLink href="/ios" Icon={SwiftIcon} label="iOS" />
+                <SDKLink href="ios" Icon={SwiftIcon} label="iOS" />
               </li>
               <li>
                 <SDKLink
-                  href="/react-native"
+                  href="react-native"
                   Icon={ReactIcon}
                   label="React Native"
                 />
               </li>
               <li>
-                <SDKLink href="/flutter" Icon={FlutterIcon} label="Flutter" />
+                <SDKLink href="flutter" Icon={FlutterIcon} label="Flutter" />
               </li>
             </ul>
             {/* <div className="flex flex-1 flex-col justify-end">
@@ -265,13 +265,17 @@ export default function SDKsSection() {
                   href="flutter-core"
                 />
               </li>
+              <li>
+                <SDKLink
+                  href="react-native-core"
+                  Icon={ReactIcon}
+                  label="React Native"
+                />
+              </li>
             </ul>
             <div className="rounded-2xl bg-secondary-700 p-4 dark:bg-secondary-900">
               <h5 className="text-center text-xs text-text-400">COMING SOON</h5>
               <ul className="mb-0 flex list-none flex-col gap-2 pl-0">
-                <li>
-                  <SDKLink disabled Icon={ReactIcon} label="React Native" />
-                </li>
                 <li>
                   <SDKLink disabled Icon={SwiftIcon} label="iOS" />
                 </li>
@@ -293,7 +297,7 @@ export default function SDKsSection() {
               out-of-the-box plugins. Dive into the resources here to get
               started with building your own plugins for your applications.
             </p>
-            <Link className="text-sm" href="/plugin-sdk">
+            <Link className="text-sm" href="plugin-sdk">
               Learn More &rarr;
             </Link>
           </div>
