@@ -1,3 +1,10 @@
+# [1.32.0](https://github.com/dyte-in/docs/compare/v1.31.4...v1.32.0) (2022-12-20)
+
+
+### Features
+
+* added pin participant and pagination api changes docs ([b41519c](https://github.com/dyte-in/docs/commit/b41519c526ec3131dba5e93ac822d1d448d1fa44))
+
 ## [1.31.4](https://github.com/dyte-in/docs/compare/v1.31.3...v1.31.4) (2022-12-19)
 
 
