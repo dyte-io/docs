@@ -2392,6 +2392,10 @@ components:
           type: string
           format: date-time
           description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the meeting room was created.'
+        sessionId:
+          type: string
+          format: uuid
+          description: Unique id of the the session of the meeting
       required:
         - id
         - roomName
@@ -2840,6 +2844,7 @@ components:
               logId: d2062bfa-97e3-46e4-80bf-86fffbf5d060
               headers:
                 dyte-signature: random_secure_signature
+                dyte-uuid: unique_uuid_for_this_webhook
               payload:
                 event: meeting.started
                 meeting:
@@ -2847,6 +2852,7 @@ components:
                   roomName: unique-roomname
                   status: LIVE
                   createdAt: '2021-10-13T17:01:12.747Z'
+                  sessionId: '544c9d4b-6311-4e00-a5a5-ca0d677e011e'
                 participants:
                   - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
                     name: Mangoman
@@ -2859,6 +2865,7 @@ components:
               logId: ae6fa0d8-9273-4f36-ad65-d049ca73805f
               headers:
                 dyte-signature: random_secure_signature
+                dyte-uuid: unique_uuid_for_this_webhook
               payload:
                 event: meeting.started
                 meeting:
@@ -2866,6 +2873,7 @@ components:
                   roomName: unique-roomname
                   status: LIVE
                   createdAt: '2021-10-13T17:01:12.747Z'
+                  sessionId: '544c9d4b-6311-4e00-a5a5-ca0d677e011e'
                 participants:
                   - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
                     name: Mangoman
@@ -2881,6 +2889,7 @@ components:
               logId: d2062bfa-97e3-46e4-80bf-86fffbf5d060
               headers:
                 dyte-signature: random_secure_signature
+                dyte-uuid: unique_uuid_for_this_webhook
               payload:
                 event: meeting.participantJoined
                 meeting:
@@ -2888,9 +2897,13 @@ components:
                   roomName: unique-roomname
                   status: LIVE
                   createdAt: '2021-10-13T17:01:12.747Z'
+                  sessionId: '544c9d4b-6311-4e00-a5a5-ca0d677e011e'
                 participant:
                   peerId: 60a07d40-746d-414c-b70b-908ca16e7459
                   userDisplayName: Appleman
+                  clientSpecificId: a-unique-user-id
+                  joinedAt: 2022-12-21T14:02:46.924Z
+                  leftAt: 2022-12-21T14:06:42.934Z
                 participants:
                   - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
                     name: Mangoman
@@ -2903,6 +2916,7 @@ components:
               logId: ae6fa0d8-9273-4f36-ad65-d049ca73805f
               headers:
                 dyte-signature: random_secure_signature
+                dyte-uuid: unique_uuid_for_this_webhook
               payload:
                 event: meeting.participantJoined
                 meeting:
@@ -2910,9 +2924,13 @@ components:
                   roomName: unique-roomname
                   status: LIVE
                   createdAt: '2021-12-21T14:15:22Z'
+                  sessionId: '544c9d4b-6311-4e00-a5a5-ca0d677e011e'
                 participant:
                   peerId: 384538f7-55ef-4770-823b-f3a433c1cf35
                   userDisplayName: Orangeman
+                  clientSpecificId: dumbledore
+                  joinedAt: 2022-12-21T14:02:46.924Z
+                  leftAt: 2022-12-21T14:06:42.934Z
                 participants:
                   - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
                     name: Mangoman
@@ -2951,10 +2969,14 @@ components:
                 description: Headers for the given webhook request.
                 required:
                   - dyte-signature
+                  - dyte-uuid
                 properties:
                   dyte-signature:
                     type: string
                     description: 'Signature generated for the webhook request, using Dyte''s private keys. Refer webhooks guide <insert_link> for more details.'
+                  dyte-uuid:
+                    type: string
+                    description: 'Unique uuid generated for the webhook event to avoid re-processing of the same webhook'
               payload:
                 type: object
                 description: Event payload data for the given webhook request.
@@ -2989,6 +3011,17 @@ components:
                       userDisplayName:
                         type: string
                         description: 'Name of the participant, as displayed in the meeting room.'
+                      clientSpecificId:
+                        type: string
+                        description: 'clientSpecificId that was passed in the add-participant API call'
+                      leftAt:
+                        type: string
+                        description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2022-12-21T00:00:00.000Z`) When, recently, the participant left the current session of the meeting?'
+                        format: date-time
+                      joinedAt:
+                        type: string
+                        description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2022-12-21T00:00:00.000Z`) When, recently, the participant joined the current session of the meeting?'
+                        format: date-time
                   participants:
                     type: array
                     uniqueItems: true
