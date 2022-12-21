@@ -1,3 +1,11 @@
+## [1.32.1](https://github.com/dyte-in/docs/compare/v1.32.0...v1.32.1) (2022-12-21)
+
+
+### Bug Fixes
+
+* mobile sdks navigation ([2b73842](https://github.com/dyte-in/docs/commit/2b73842fc621979f984b219ecc89295c8bbf04cf))
+* updated mobile sdk nav ([cbaa3ec](https://github.com/dyte-in/docs/commit/cbaa3ec4bcaf6f3ffa177f9b22d5a7c8f6fec27b))
+
 # [1.32.0](https://github.com/dyte-in/docs/compare/v1.31.4...v1.32.0) (2022-12-20)
 
 
