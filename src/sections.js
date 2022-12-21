@@ -69,7 +69,12 @@ const SECTIONS = [
     icon: JSIcon,
     section: 'core-sdk',
   },
-
+  {
+    name: 'React Native Core',
+    id: 'rn-core',
+    icon: ReactIcon,
+    section: 'mobile-core',
+  },
   // Mobile SDKs
   {
     name: 'Android Core',
