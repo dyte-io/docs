@@ -1,3 +1,12 @@
+## [1.32.2](https://github.com/dyte-in/docs/compare/v1.32.1...v1.32.2) (2022-12-23)
+
+
+### Bug Fixes
+
+* font weight in header heading ([81e37e8](https://github.com/dyte-in/docs/commit/81e37e8ed94905959fc7c97250e3e45ce1e890f9))
+* icons in contact section ([dd652d9](https://github.com/dyte-in/docs/commit/dd652d94cf035b2c4f00911c44fc5009bd663a1e))
+* icons used in new headers ([32ced9b](https://github.com/dyte-in/docs/commit/32ced9b88f7793ba5840c2bf0b910299442f251a))
+
 ## [1.32.1](https://github.com/dyte-in/docs/compare/v1.32.0...v1.32.1) (2022-12-21)
 
 
