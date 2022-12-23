@@ -32,26 +32,26 @@ communication features into your app using Dyte.
    the Developer portal. These API Keys are unique to your organization and are
    required to use Dyte REST APIs such as when instantiating a meeting
 
-  ![APIKeys](/static/home/api-keys.png)
+![APIKeys](/static/home/api-keys.png)
 
 3. [Create presets](https://dev.dyte.io/roles-presets) using the Developer
    portal. A preset is a set of permissions and UI configurations that would be
    applied to a participant
 
-  ![PresetEditor](/static/home/create-preset.png)
+![PresetEditor](/static/home/create-preset.png)
 
 4. Create a Dyte meeting using the
    [Create Meeting API](/api#/operations/create_meeting). This API returns a
    unique identifier for your meeting. <br/>
 
-  :::tip
+:::tip
 
-  You may want to persist the meeting ID in your database.
+You may want to persist the meeting ID in your database.
 
-  :::
+:::
 
-  ![Diagram explaining how Dyte works](/static/home/how-dyte-works-v2.png)
-  _Diagram explaining how Dyte works_
+![Diagram explaining how Dyte works](/static/home/how-dyte-works-v2.png)
+_Diagram explaining how Dyte works_
 
 5. After you've created the meeting, add each participant to the meeting using
    the [Add Participant API](/api#/operations/add_participant) (The `presetName`
