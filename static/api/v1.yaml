@@ -2,7 +2,45 @@ openapi: 3.0.0
 info:
   version: 0.1.0
   title: Dyte REST API
-  description: Create and manage your Dyte meetings easily using Dyte APIs
+  description: |-
+    Create and manage your Dyte meetings easily using Dyte APIs
+
+    ## Rate Limiting
+
+    Rate limits specify the maximum number of requests (GET, POST, PUT, or DELETE) a user can make in a given time period. When you exceed a rate limit, the API request fails and returns the HTTP 429 status code. The HTTP 429 status code indicates that the user made too many requests in a given period of time ("rate limiting").
+
+    We apply rate limits at the IP address level.
+
+    ### Rate Limit by IP Address
+
+    The rate limit threshold is set at 500 calls per minute per IP address. After 500 calls, a 429 status code is sent, and access to any of our APIs is denied. 
+
+    Note: Rate limit is applied at the domain level, which means that all APIs are included in the threshold.
+
+    | Number of Requests | Resources | Time Window | Status Code Returned when Threshold Exceeds |
+    |--|--|--|--|
+    | 500 | Per IP | Per minute | HTTP 429 |
+
+    ### Sample
+
+    The following sample shows the API response for the status code 429.
+
+    ```http
+    HTTP/1.1 429 Too Many Requests
+    retry-after: 4
+    x-envoy-ratelimited: true
+    date: Tue, 06 Sep 2022 08:32:55 GMT
+    server: envoy
+    ```
+
+    ### Why Do You Set a Rate Limit?
+
+    Rate limiting is required to prevent the network from becoming overloaded as a result of numerous requests. This could be due to hacking activity, overuse of the Dyte APIs by a bot, or a bug in the code. Setting a rate limit helps to prevent this type of API overuse.
+
+    Setting a rate limit also protects us from various types of attacks, such as:
+    - [Brute Force Attack](https://www.fortinet.com/resources/cyberglossary/brute-force-attack)
+    - [DDOS attack](https://aws.amazon.com/shield/ddos-attack-protection/)
+    - [Web-scraping](https://www.geeksforgeeks.org/what-is-web-scraping-and-how-to-use-it/)
   contact:
     name: Dyte Developer Support
     url: 'https://dyte.io'
@@ -98,6 +136,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CreateMeetingRequestBody'
+            examples: {}
     parameters:
       - schema:
           type: string
@@ -3091,31 +3130,31 @@ components:
       x-stoplight:
         id: 2eyriwfjqx03h
       type: object
+      x-internal: true
       properties:
         recordOnStart:
           type: boolean
           default: false
           description: |-
             Start live streaming the meeting as soon as the meeting starts.
-            <!-- theme: warning -->
-            >  ### Beware!
+            <!-- theme: note -->
+            >  ### Note
             > This field cannot be set at the same time as `liveStreamOnStart`.
-      x-internal: true
     LiveStreamOnStart:
       title: LiveStreamOnStart
       x-stoplight:
         id: 2eyriwfjqx03h
       type: object
+      x-internal: true
       properties:
         liveStreamOnStart:
           type: boolean
           default: false
           description: |-
             Start live streaming the meeting as soon as the meeting starts.
-            <!-- theme: warning -->
-            > ### Beware!
+            <!-- theme: note -->
+            > ### Note
             > this field cannot be set at the same time as `recordOnStart`.
-      x-internal: true
     UpdateMeetingRequestBody:
       title: UpdateMeetingRequestBody
       x-stoplight:
