@@ -45,7 +45,12 @@ html[data-theme='dark'] .TryItPanel {
 html[data-theme='dark']
   .elements-container
   :is(.token.string, .token.function, .token.property) {
-  color: var(--docs-color-primary-100) !important;
+  @apply !text-primary-100;
+}
+
+/* Hides title in elements */
+.sl-elements-api > div:first-child > div:first-child > div:first-child {
+  @apply hidden;
 }
 
 html[data-theme='dark']

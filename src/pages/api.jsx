@@ -9,6 +9,7 @@ import clsx from 'clsx';
 import useBreakpoint from '../lib/useBreakpoint';
 import SectionsMenu from '../components/SectionsMenu';
 import RunInPostmanButton from '../components/RunInPostmanButton';
+import { DesktopIcon } from '@radix-ui/react-icons';
 
 const API_TOOLTIP_KEY = 'dyte-api-v2-tooltip-shown';
 
@@ -28,12 +29,13 @@ function APIElement({ layout = 'sidebar', currentVersion = 'v1' }) {
         return (
           <div className={clsx('elements-container', layout)}>
             <API
+              className="stacked"
               apiDescriptionUrl={`/api/${currentVersion}.yaml`}
               basePath="/"
               router="hash"
               layout={layout}
               hideSchemas
-              className="stacked"
+              hideInternal
             />
           </div>
         );
@@ -74,9 +76,15 @@ export default function Home() {
         <link rel="preload" href="/assets/css/elements.min.css" as="style" />
         <link rel="stylesheet" href="/assets/css/elements.min.css" />
       </Head>
+
+      <div className="flex flex-col items-center justify-center gap-4 border-b py-12 lg:hidden">
+        <DesktopIcon className="h-12 w-12" />
+        This page is best viewed in a desktop browser.
+      </div>
+
       <div className="header">
         <h1 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: 0 }}>
-          Dyte Backend API {currentVersion}
+          Dyte REST API {currentVersion}
         </h1>
         <div className="aside">
           <RunInPostmanButton />
