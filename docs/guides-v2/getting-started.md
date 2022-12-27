@@ -13,9 +13,8 @@ relevant to our APIs.
   **participants**. The session ends when all participants leave. When a
   participant joins an empty meeting, a new session is created. Our **analytics
   APIs** enable you to view useful stats about your sessions!
-- **Participant** - Pretty self-explanatory; a participant is a person who joins
-  a meeting. You can manage participants in a **session** using our **active
-  session APIs**.
+- **Participant** - A participant is a user who joins a meeting. You can manage
+  participants in a **session** using our **active session APIs**.
 
 # Accessing our APIs
 
