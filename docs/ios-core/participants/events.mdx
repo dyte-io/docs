@@ -12,13 +12,8 @@ Here are the supported methods:
 ### Page change
 
 ```kotlin
-    private val participantEventsListener = object : DyteParticipantEventsListener {
-        override fun onParticipantsUpdated(
-            participants: DyteRoomParticipants,
-            isNextPagePossible: Boolean,
-            isPreviousPagePossible: Boolean
-            ) {
-            super.onParticipantsUpdated(participants, isNextPagePossible, isPreviousPagePossible)
+    extension MeetingViewModel: DyteParticipantEventsListener {
+    func onParticipantsUpdated(participants: DyteRoomParticipants, gridPagesInfo: GridPagesInfo) {
             // your code here to handle page updates.
         }
     }
@@ -29,9 +24,8 @@ Here are the supported methods:
 Trigger an event when any participant joins the meeting.
 
 ```kotlin
-    private val participantEventsListener = object : DyteParticipantEventsListener {
-        override fun onParticipantJoin(participant: DyteMeetingParticipant) {
-            super.onParticipantJoin(participant)
+    extension MeetingViewModel: DyteMeetingRoomEventsListener {
+        func onParticipantJoin(participant: DyteMeetingParticipant) {
             // your code here to handle new participant
         }
     }
@@ -42,9 +36,8 @@ Trigger an event when any participant joins the meeting.
 Trigger an event when any participant leaves the meeting.
 
 ```kotlin
-    private val participantEventsListener = object : DyteParticipantEventsListener {
-        override fun onParticipantLeave(participant: DyteMeetingParticipant) {
-            super.onParticipantLeave(participant)
+    extension MeetingViewModel: DyteMeetingRoomEventsListener {
+        func onParticipantLeave(participant: DyteMeetingParticipant) {
             // your code here to handle participant left from meeting
         }
     }
@@ -55,9 +48,8 @@ Trigger an event when any participant leaves the meeting.
 Trigger an event when any participant starts / stops video.
 
 ```kotlin
-    private val participantEventsListener = object : DyteParticipantEventsListener {
-        override fun videoUpdate(videoEnabled: Boolean, participant: DyteMeetingParticipant) {
-            super.videoUpdate(videoEnabled, participant)
+    extension MeetingViewModel: DyteParticipantEventsListener {
+        func videoUpdate(videoEnabled: Boolean, participant: DyteMeetingParticipant) {
             // your code here to handle participant video toggle update
         }
     }
@@ -68,9 +60,8 @@ Trigger an event when any participant starts / stops video.
 Trigger an event when any participant starts / stops audio.
 
 ```kotlin
-    private val participantEventsListener = object : DyteParticipantEventsListener {
-        override fun audioUpdate(audioEnbled: Boolean, participant: DyteMeetingParticipant) {
-            super.audioUpdate(audioEnbled, participant)
+    extension MeetingViewModel: DyteParticipantEventsListener {
+        func audioUpdate(audioEnbled: Boolean, participant: DyteMeetingParticipant) {
             // your code here to handle participant audio toggle update
         }
     }
@@ -81,9 +72,8 @@ Trigger an event when any participant starts / stops audio.
 Trigger an event when any participant starts / stops screen share.
 
 ```kotlin
-    private val participantEventsListener = object : DyteParticipantEventsListener {
-        override fun onScreenSharesUpdated() {
-            super.onScreenSharesUpdated() 
+    extension MeetingViewModel: DyteParticipantEventsListener {
+        func onScreenSharesUpdated() {
             // all screenshare participants can be fetched via 
             // meeting.participants.screenshares
         }

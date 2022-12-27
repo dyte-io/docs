@@ -43,7 +43,7 @@ To be able to listen to participant updates you can use `DyteParticipantEventsLi
 If you (the local user) have the relevant permissions in the meeting, you can disable a participant's video/audio streams, or even remove them from the meeting.
 
 ```kotlin
-val participant = meeting.participants.joined.get(0);
+val participant = meeting.participants.joined[0];
 
 // To disable a participant's video stream
 participant.disableVideo();

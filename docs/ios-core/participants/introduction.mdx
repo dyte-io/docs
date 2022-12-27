@@ -34,16 +34,15 @@ You can subscribe to various events on the participants by implementing `DytePar
 Triggered when the user starts / stops the video using `enableVideo` or `disableVideo`
 
 ```kotlin
-meeting.self.addParticipantEventsListener(object : DyteParticipantEventsListener {
-     override fun videoUpdate(videoEnabled: Boolean, participant: DyteMeetingParticipant) {
-      super.videoUpdate(videoEnabled, participant)
+extension MeetingViewModel: DyteParticipantEventsListener {
+     func videoUpdate(videoEnabled: Boolean, participant: DyteMeetingParticipant) {
       if (videoEnabled) {
         // video is enabled, and other participants in room can see local user
       } else {
         // video is disabled, and other participants in room can not see local user.
       }
     }
-})
+}
 ```
 
 ### Audio update
@@ -51,16 +50,15 @@ meeting.self.addParticipantEventsListener(object : DyteParticipantEventsListener
 Triggered when the user starts / stops the audio using `enableAudio` or `disableAudio`
 
 ```kotlin
-meeting.self.addSelfEventsListener(object : DyteSelfEventsListener {
-    override fun audioUpdate(audioEnabled: Boolean, participant: DyteMeetingParticipant) {
-      super.audioUpdate(audioEnabled, participant)
+extension MeetingViewModel: DyteParticipantEventsListener {
+    func audioUpdate(audioEnabled: Boolean, participant: DyteMeetingParticipant) {
       if (audioEnabled) {
         // audio is enabled, and other participants in room can hear local user
       } else {
         // audio is disabled, and other participants in room can not hear local user.
       }
     }
-})
+}
 ```
 
 ## Set mode of pagination
