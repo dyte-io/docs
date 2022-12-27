@@ -266,11 +266,7 @@ export default function SDKsSection() {
                 />
               </li>
               <li>
-                <SDKLink
-                  href="react-native-core"
-                  Icon={ReactIcon}
-                  label="React Native"
-                />
+                <SDKLink href="rn-core" Icon={ReactIcon} label="React Native" />
               </li>
             </ul>
             <div className="rounded-2xl bg-secondary-700 p-4 dark:bg-secondary-900">
