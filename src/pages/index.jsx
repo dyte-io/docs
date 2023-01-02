@@ -54,7 +54,7 @@ export default function Homepage() {
 
               <div className="rounded-lg bg-zinc-100 p-6 dark:bg-zinc-900">
                 <img
-                  src="/static/landing-page/calendar.svg"
+                  src="/static/landing-page/customer.svg"
                   alt="Book a demo"
                 />
                 <h4 className="my-3">Support</h4>
@@ -71,10 +71,7 @@ export default function Homepage() {
               </div>
 
               <div className="rounded-lg bg-zinc-100 p-6 dark:bg-zinc-900">
-                <img
-                  src="/static/landing-page/calendar.svg"
-                  alt="Book a demo"
-                />
+                <img src="/static/landing-page/chat.svg" alt="Book a demo" />
                 <h4 className="my-3">FAQs</h4>
                 <p className="text-zinc-600 dark:text-zinc-400">
                   Browse through our FAQs to find answers to commonly asked
