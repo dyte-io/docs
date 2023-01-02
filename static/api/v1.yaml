@@ -2410,6 +2410,64 @@ components:
     Meeting:
       type: object
       description: Object containing details of a meeting room.
+      x-examples:
+        example-1:
+          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+          roomName: unique-roomname
+          status: LIVE
+          createdAt: '2021-12-21T14:15:22Z'
+        example-2:
+          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+          title: Meeting Title
+          roomName: unique-roomname
+          status: CREATED
+          createdAt: '2021-12-21T14:15:22Z'
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique ID of the meeting room.
+        title:
+          type: string
+          description: Display title of the meeting room.
+        roomName:
+          type: string
+          description: Unique room name of the meeting room.
+        status:
+          type: string
+          enum:
+            - LIVE
+            - CREATED
+          description: Status of the meeting room.
+        createdAt:
+          type: string
+          format: date-time
+          description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the meeting room was created.'
+      required:
+        - id
+        - roomName
+        - status
+        - createdAt
+    WebhookLogsMeetingResponse:
+      type: object
+      description: Object containing details of a meeting room.
+      x-examples:
+        example-1:
+          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+          roomName: unique-roomname
+          status: LIVE
+          createdAt: '2021-12-21T14:15:22Z'
+          sessionId: 544c9d4b-6311-4e00-a5a5-ca0d677e011e
+        example-2:
+          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+          title: Meeting Title
+          roomName: unique-roomname
+          status: CREATED
+          createdAt: '2021-12-21T14:15:22Z'
+          sessionId: 544c9d4b-6311-4e00-a5a5-ca0d677e011e
+      x-stoplight:
+        id: 7b48e433f203d
+      title: WebhookLogsMeetingResponse
       properties:
         id:
           type: string
@@ -2434,24 +2492,13 @@ components:
         sessionId:
           type: string
           format: uuid
-          description: Unique id of the the session of the meeting
+          description: Unique id of this session of the meeting
       required:
         - id
         - roomName
         - status
         - createdAt
-      x-examples:
-        example-1:
-          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
-          roomName: unique-roomname
-          status: LIVE
-          createdAt: '2021-12-21T14:15:22Z'
-        example-2:
-          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
-          title: Meeting Title
-          roomName: unique-roomname
-          status: CREATED
-          createdAt: '2021-12-21T14:15:22Z'
+        - sessionId
     CreatePresetRoleResponse:
       allOf:
         - $ref: '#/components/schemas/APIResponse'
@@ -2872,7 +2919,6 @@ components:
           required:
             - data
     WebhookLogs:
-      description: ''
       type: object
       x-examples:
         example-1:
@@ -2883,7 +2929,7 @@ components:
               logId: d2062bfa-97e3-46e4-80bf-86fffbf5d060
               headers:
                 dyte-signature: random_secure_signature
-                dyte-uuid: unique_uuid_for_this_webhook
+                dyte-uuid: unique_uuid_for_this_webhook_log
               payload:
                 event: meeting.started
                 meeting:
@@ -2891,7 +2937,7 @@ components:
                   roomName: unique-roomname
                   status: LIVE
                   createdAt: '2021-10-13T17:01:12.747Z'
-                  sessionId: '544c9d4b-6311-4e00-a5a5-ca0d677e011e'
+                  sessionId: 544c9d4b-6311-4e00-a5a5-ca0d677e011e
                 participants:
                   - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
                     name: Mangoman
@@ -2904,7 +2950,7 @@ components:
               logId: ae6fa0d8-9273-4f36-ad65-d049ca73805f
               headers:
                 dyte-signature: random_secure_signature
-                dyte-uuid: unique_uuid_for_this_webhook
+                dyte-uuid: unique_uuid_for_this_webhook_log
               payload:
                 event: meeting.started
                 meeting:
@@ -2912,7 +2958,6 @@ components:
                   roomName: unique-roomname
                   status: LIVE
                   createdAt: '2021-10-13T17:01:12.747Z'
-                  sessionId: '544c9d4b-6311-4e00-a5a5-ca0d677e011e'
                 participants:
                   - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
                     name: Mangoman
@@ -2928,7 +2973,7 @@ components:
               logId: d2062bfa-97e3-46e4-80bf-86fffbf5d060
               headers:
                 dyte-signature: random_secure_signature
-                dyte-uuid: unique_uuid_for_this_webhook
+                dyte-uuid: unique_uuid_for_this_webhook_log
               payload:
                 event: meeting.participantJoined
                 meeting:
@@ -2936,13 +2981,13 @@ components:
                   roomName: unique-roomname
                   status: LIVE
                   createdAt: '2021-10-13T17:01:12.747Z'
-                  sessionId: '544c9d4b-6311-4e00-a5a5-ca0d677e011e'
+                  sessionId: 544c9d4b-6311-4e00-a5a5-ca0d677e011e
                 participant:
                   peerId: 60a07d40-746d-414c-b70b-908ca16e7459
                   userDisplayName: Appleman
-                  clientSpecificId: a-unique-user-id
-                  joinedAt: 2022-12-21T14:02:46.924Z
-                  leftAt: 2022-12-21T14:06:42.934Z
+                  clientSpecificId: Dumbledore
+                  joinedAt: '2022-12-21T14:02:46.924Z'
+                  leftAt: '2022-12-21T14:06:42.934Z'
                 participants:
                   - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
                     name: Mangoman
@@ -2955,7 +3000,7 @@ components:
               logId: ae6fa0d8-9273-4f36-ad65-d049ca73805f
               headers:
                 dyte-signature: random_secure_signature
-                dyte-uuid: unique_uuid_for_this_webhook
+                dyte-uuid: unique_uuid_for_this_webhook_log
               payload:
                 event: meeting.participantJoined
                 meeting:
@@ -2963,13 +3008,12 @@ components:
                   roomName: unique-roomname
                   status: LIVE
                   createdAt: '2021-12-21T14:15:22Z'
-                  sessionId: '544c9d4b-6311-4e00-a5a5-ca0d677e011e'
                 participant:
                   peerId: 384538f7-55ef-4770-823b-f3a433c1cf35
                   userDisplayName: Orangeman
-                  clientSpecificId: dumbledore
-                  joinedAt: 2022-12-21T14:02:46.924Z
-                  leftAt: 2022-12-21T14:06:42.934Z
+                  clientSpecificId: Dumbledore
+                  joinedAt: '2022-12-21T14:02:46.924Z'
+                  leftAt: '2022-12-21T14:06:42.934Z'
                 participants:
                   - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
                     name: Mangoman
@@ -3015,7 +3059,8 @@ components:
                     description: 'Signature generated for the webhook request, using Dyte''s private keys. Refer webhooks guide <insert_link> for more details.'
                   dyte-uuid:
                     type: string
-                    description: 'Unique uuid generated for the webhook event to avoid re-processing of the same webhook'
+                    format: uuid
+                    description: Unique uuid generated for the webhook event to avoid re-processing of the same webhook
               payload:
                 type: object
                 description: Event payload data for the given webhook request.
@@ -3035,13 +3080,16 @@ components:
                       - recording.statusUpdate
                     description: The event for which the current webhook was triggered.
                   meeting:
-                    $ref: '#/components/schemas/Meeting'
+                    $ref: '#/components/schemas/WebhookLogsMeetingResponse'
                   participant:
                     type: object
+                    description: Object defining the participant corresponding to whom the event was generated.
                     required:
                       - peerId
                       - userDisplayName
-                    description: Object defining the participant corresponding to whom the event was generated.
+                      - clientSpecificId
+                      - leftAt
+                      - joinedAt
                     properties:
                       peerId:
                         type: string
@@ -3052,15 +3100,15 @@ components:
                         description: 'Name of the participant, as displayed in the meeting room.'
                       clientSpecificId:
                         type: string
-                        description: 'clientSpecificId that was passed in the add-participant API call'
+                        description: clientSpecificId that was passed in the add-participant API call
                       leftAt:
                         type: string
-                        description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2022-12-21T00:00:00.000Z`) When, recently, the participant left the current session of the meeting?'
                         format: date-time
+                        description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2022-12-21T00:00:00.000Z`) indicating the time at which the participant left this session of the meeting'
                       joinedAt:
                         type: string
-                        description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2022-12-21T00:00:00.000Z`) When, recently, the participant joined the current session of the meeting?'
                         format: date-time
+                        description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2022-12-21T00:00:00.000Z`) indicating the time at which the participant joined this session of the meeting'
                   participants:
                     type: array
                     uniqueItems: true
