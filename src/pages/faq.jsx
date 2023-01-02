@@ -30,43 +30,24 @@ function Accordion({ title, tags, children, open: defaultOpen }) {
   return (
     <div
       className={clsx(
-        'dyte-accordion border-0 border-solid p-6',
+        'dyte-accordion cursor-pointer border-0 border-solid p-6',
         open && 'rounded-2xl bg-secondary-800',
         !open && 'border-b border-zinc-300 pb-6 dark:border-zinc-700'
       )}
+      role="tab"
+      tabIndex={0}
+      onClick={() => setOpen((open) => !open)}
+      aria-expanded={open}
+      aria-controls={panelId}
     >
-      {/* Tag */}
-      {tags && tags.length > 0 && (
-        <div
-          className={clsx(
-            'mb-2 flex select-none items-center gap-2',
-            open ? 'block' : 'hidden'
-          )}
-        >
-          {tags.map((tag) => (
-            <div
-              className="w-fit rounded-full bg-secondary-700 px-2 py-px text-xs text-black dark:text-white"
-              key={tag}
-              data-tag={tag}
-            >
-              {tag}
-            </div>
-          ))}
-        </div>
-      )}
-
       {/* Summary */}
-      <button
+      <div
         role="heading"
-        tabIndex={0}
         className={clsx(
           'flex w-full cursor-pointer select-none items-center justify-between border-0 border-solid bg-transparent px-0 text-lg font-semibold',
           open && 'text-primary-100'
         )}
-        onClick={() => setOpen((open) => !open)}
         id={headingId}
-        aria-expanded={open}
-        aria-controls={panelId}
       >
         <div className="">{title}</div>
         <div className="text-zinc-300">
@@ -83,7 +64,7 @@ function Accordion({ title, tags, children, open: defaultOpen }) {
             )}
           />
         </div>
-      </button>
+      </div>
 
       {/* Contents */}
       <div
@@ -93,6 +74,26 @@ function Accordion({ title, tags, children, open: defaultOpen }) {
         className={clsx('accordion-content mt-3', open ? 'block' : 'hidden')}
       >
         {children}
+
+        {/* Tag */}
+        {tags && tags.length > 0 && (
+          <div
+            className={clsx(
+              'mb-2 flex select-none items-center gap-2',
+              open ? 'block' : 'hidden'
+            )}
+          >
+            {tags.map((tag) => (
+              <div
+                className="w-fit rounded-full bg-secondary-700 px-2 py-px text-xs text-black dark:text-white"
+                key={tag}
+                data-tag={tag}
+              >
+                {tag}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -146,8 +147,8 @@ export default function FAQPage() {
           {query.trim() !== '' ? (
             filteredFAQs.length === 0 ? (
               <div>
-                <div className="mb-12 text-4xl font-semibold">
-                  Sorry, no results matched your search terms
+                <div className="mb-12 text-2xl font-semibold">
+                  😢 Sorry, no results matched your search terms
                 </div>
               </div>
             ) : (
@@ -189,12 +190,11 @@ export default function FAQPage() {
 
           {/* FAQs */}
           <div className="mt-12 flex flex-col gap-4">
-            {filteredFAQs.map((faq, index) => (
+            {filteredFAQs.map((faq) => (
               <Accordion
                 title={faq.question}
                 tags={faq.tags}
                 key={faq.question}
-                open={index === 0}
               >
                 {faq.answer}
               </Accordion>

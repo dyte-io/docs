@@ -25,7 +25,7 @@ function SDKLink({ href, Icon, label, disabled = false }) {
   return (
     <Link
       className={clsx(
-        'flex items-center gap-2 rounded-md p-2 text-current transition hover:bg-secondary-700 hover:text-black dark:hover:text-white',
+        'flex items-center gap-2 rounded-md p-2 text-current transition hover:bg-secondary-700 hover:text-black hover:no-underline dark:hover:text-white',
         disabled && 'cursor-not-allowed'
       )}
       {...props}
@@ -72,12 +72,13 @@ export default function SDKsSection() {
         <link rel="prefetch" href="/static/landing-page/plugin-sdk-dark.png" />
       </Head>
       <div className="mx-auto max-w-7xl">
-        <div className="dyte-badge mb-4">SDKs</div>
+        <div className="dyte-badge">SDKs</div>
 
-        <div className="sticky top-14 mb-20 flex flex-col items-center gap-6 bg-secondary-1000 py-6 lg:flex-row lg:justify-between">
+        <div className="sticky top-14 -mt-4 flex flex-col items-center gap-6 bg-secondary-1000 lg:flex-row lg:justify-between">
           <h2 className="my-0 font-jakarta lg:text-3xl">
             We support your tech stack!
           </h2>
+
           <div className="mx-auto flex h-20 w-full flex-1 items-center justify-center self-start lg:w-auto lg:justify-end">
             <div className="flex max-w-sm flex-1 items-center rounded-full border border-solid border-text-400 text-sm lg:text-base">
               <div
@@ -127,7 +128,7 @@ export default function SDKsSection() {
         </div>
 
         <div
-          className="sdk-section mb-16 flex flex-col rounded-3xl bg-secondary-900 lg:flex-row"
+          className="sdk-section my-16 flex flex-col rounded-3xl bg-secondary-900 lg:flex-row"
           data-section="web"
           id="web"
         >
@@ -360,13 +361,12 @@ export default function SDKsSection() {
             </div>
           </div>
         </div> */}
-
-        <div className="text-center">
-          <p>
-            Don&apos;t see your tech stack here?{' '}
-            <Link href="https://dyte.io/contact">Contact Us</Link>
-          </p>
-        </div>
+      </div>
+      <div className="text-center">
+        <p>
+          Don&apos;t see your tech stack here?{' '}
+          <Link href="https://dyte.io/contact">Contact Us</Link>
+        </p>
       </div>
     </section>
   );
