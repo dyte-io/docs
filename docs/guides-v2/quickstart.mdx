@@ -1,14 +1,15 @@
 ---
 title: 'Dyte REST API Quickstart'
-sidebar_position: 2
+sidebar_position: 1
 ---
 
 # Dyte REST API Quickstart
 
 Dyte’s API follows the
 [REST](https://en.wikipedia.org/wiki/Representational_state_transfer)
-principles. It has predictable resource-oriented URLs, accepts JSON-encoded
-request bodies, returns JSON-encoded responses, and uses standard HTTP response
+principles. It has predictable resource-oriented URLs, accepts
+[JSON-encoded](http://www.json.org/) request bodies, returns
+[JSON-encoded](http://www.json.org/) responses, and uses standard HTTP response
 codes, authentication, and verbs.
 
 This topic describes how to get started with Dyte v2 REST APIs.
@@ -32,11 +33,12 @@ Perform the following steps to get started with Dyte APIs:
 ### Step 1: Access APIs
 
 You can access all of our v2 API endpoints at `https://api.cluster.dyte.in/v2/`.
-For the complete list of routes, see our [API documentation](/api/?v=v2).
+For the complete list of routes, see [API documentation](/api/?v=v2).
 
-### Step 2: Authenticate using your API Key
+### Step 2: Authenticate using your API Keys
 
-Dyte's APIs use API Keys to authenticate requests via HTTP Basic Auth. To
+Dyte's APIs use API Keys to authenticate requests via
+[HTTP Basic Auth](http://en.wikipedia.org/wiki/Basic_access_authentication). To
 perform the authentication, an HTTP request is sent with an Authorization header
 that contains the word Basic followed by a space and a base64-encoded string
 `username:password`.
@@ -50,8 +52,9 @@ For example, `Authorization: Basic ZGVtbzpwQDU1dzByZA==`
 
 ### Step 3: Create Presets
 
-Create presets using the Developer portal. A preset is a set of permissions and
-UI configurations that is applied to a participant.
+[Create presets](https://dev.dyte.io/roles-presets) using the Developer portal.
+A preset is a set of permissions and UI configurations that is applied to a
+participant.
 
 ## Add Video Calls to your Application using Dyte APIs
 
