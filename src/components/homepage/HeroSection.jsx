@@ -7,7 +7,7 @@ export default function HeroSection() {
   const { colorMode } = useColorMode();
 
   return (
-    <section className="noise-bg py-16 px-4 lg:py-12">
+    <section className="noise-bg no-underline-links py-16 px-4 lg:py-12">
       <Head>
         <link rel="prefetch" href="/static/landing-page/hero-light.png" />
         <link rel="prefetch" href="/static/landing-page/hero-dark.png" />
