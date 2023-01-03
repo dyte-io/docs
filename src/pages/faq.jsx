@@ -79,7 +79,7 @@ function Accordion({ title, tags, children, open: defaultOpen }) {
         {tags && tags.length > 0 && (
           <div
             className={clsx(
-              'mb-2 flex select-none items-center gap-2',
+              'mt-3 flex select-none items-center gap-2',
               open ? 'block' : 'hidden'
             )}
           >

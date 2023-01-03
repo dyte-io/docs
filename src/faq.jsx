@@ -132,8 +132,8 @@ const FAQs = [
       <>
         Dyte provides a prebuilt design library of UI components that you can
         use to build video and voice calls in minutes. This layer is used on top
-        of the Core SDKs. See
-        <Link href="/">Dyte docs</Link> for more information.
+        of the Core SDKs. See <Link href="/">Dyte docs</Link> for more
+        information.
       </>
     ),
     tags: ['General'],
@@ -435,10 +435,117 @@ const FAQs = [
     answer: (
       <>
         Once Dyte has generated an invoice, you can pay using a link, a saved
-        card, or do a direct bank transfer.{' '}
+        card, or do a direct bank transfer.
       </>
     ),
     tags: ['Pricing'],
+  },
+
+  {
+    question: 'Can I send an attachment via chat in a live session?',
+    answer: (
+      <>
+        Yes, you can share media files via chat during a live session. You can
+        send files, pdfs, images, and more. You can also use plugins such as Doc
+        sync to view the shared file as a group and annotate the points that you
+        would want to clarify.
+      </>
+    ),
+    tags: ['Technical'],
+  },
+  {
+    question: 'Can I retrieve the chat history of a session?',
+    answer: (
+      <>
+        You can programmatically retrieve all chat messages of a Dyte session
+        using
+        <Link href="/guides/exporting-chat-dump">Chat Replay API</Link>. For
+        more information, see{' '}
+        <Link href="/guides/exporting-chat-dump">
+          Export Chat Dump of a Session
+        </Link>{' '}
+        and{' '}
+        <Link href="https://dyte.io/blog/fetch-chat-history-of-a-dyte-session/">
+          How to Fetch Chat History of a Dyte Session
+        </Link>{' '}
+        blog.
+      </>
+    ),
+    tags: ['Technical'],
+  },
+  {
+    question:
+      'How do I view session metadata such as start time, end time, number of participants, and so on?',
+    answer: (
+      <>
+        You can use the{' '}
+        <Link href="/api?v=v2#/operations/GetSessionDetails">Session API</Link>{' '}
+        to fetch the metadata for a given session.
+      </>
+    ),
+    tags: ['Technical'],
+  },
+  {
+    question:
+      'Is there a way for me to write on the screen during the meeting?',
+    answer: (
+      <>
+        Dyte provides multiple out-of-the-box plugins, for example, YouTube,
+        Miro, WhiteBoard, and so on. You can use WhiteBoard for the
+        collaboration.
+      </>
+    ),
+    tags: ['Technical'],
+  },
+  {
+    question: 'Can I add participants when creating a meeting only?',
+    answer: (
+      <>
+        No, after creating a meeting, use the{' '}
+        <Link href="https://docs.dyte.io/api/?v=v2#/operations/add_participant">
+          Add Participants API
+        </Link>{' '}
+        to add participants to the meeting.
+      </>
+    ),
+    tags: ['Technical'],
+  },
+  {
+    question:
+      'Can I pass recording parameters such as codec and storage configurations when creating a meeting or create a template that can be used for all the meetings?',
+    answer: (
+      <>
+        Yes, codec and storage information can be passed through the recording
+        API. Per recording, you can pass the parameters storageConfig and
+        videoConfig. You can also send an email to{' '}
+        <Link href="mailto:dev@dyte.io">dev@dyte.io</Link> to set the orgs
+        default configuration.
+      </>
+    ),
+    tags: ['Technical'],
+  },
+  {
+    question:
+      'What if our server fails to consume the webhook? When will they be fired again, and are they idempotent?',
+    answer: (
+      <>
+        For timeouts and 5xx errors, we retry three times with a one-second
+        delay between each retry.
+      </>
+    ),
+    tags: ['Technical'],
+  },
+  {
+    question:
+      'Is it possible to get the total running time of a session from the meeting.ended webhook?',
+    answer: (
+      <>
+        We send <code>startedAt</code> and <code>endedAt</code> timestamps in a
+        <code>meeting.ended</code> webhook that can be used to compute the
+        session&apos;s running time.
+      </>
+    ),
+    tags: ['Technical'],
   },
 ];
 
