@@ -785,19 +785,19 @@ paths:
         in: path
         required: true
         description: ID of the session
-  /analytics/stats:
-    get:
-      summary: Fetch statistics of an organization
-      description: Returns complete statistics of an organization for the given time period.
-      operationId: GetOverallStats
-      tags:
-        - Analytics
-      parameters:
-        - $ref: '#/components/parameters/startDate'
-        - $ref: '#/components/parameters/endDate'
-      responses:
-        '200':
-          $ref: '#/components/responses/GetOverallStats'
+  # /analytics/stats:
+  #   get:
+  #     summary: Fetch statistics of an organization
+  #     description: Returns complete statistics of an organization for the given time period.
+  #     operationId: GetOverallStats
+  #     tags:
+  #       - Analytics
+  #     parameters:
+  #       - $ref: '#/components/parameters/startDate'
+  #       - $ref: '#/components/parameters/endDate'
+  #     responses:
+  #       '200':
+  #         $ref: '#/components/responses/GetOverallStats'
   /webhooks:
     summary: Represents webhooks for organization
     description: Represents webhooks for organization
@@ -3622,7 +3622,7 @@ tags:
   - name: Webhooks
   - name: Active session
   - name: Live streams
-  - name: Analytics
+  # - name: Analytics
   - name: Organizations
 externalDocs:
   url: 'https://docs.dyte.io'
