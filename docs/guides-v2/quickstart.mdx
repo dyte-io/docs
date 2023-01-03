@@ -1,25 +1,79 @@
 ---
-title: 'Quickstart'
+title: 'Dyte REST API Quickstart'
 sidebar_position: 2
 ---
 
-# Quickstart
+# Dyte REST API Quickstart
 
-A typical workflow for using Dyte’s APIs usually involves the following steps:
+Dyte’s API follows the
+[REST](https://en.wikipedia.org/wiki/Representational_state_transfer)
+principles. It has predictable resource-oriented URLs, accepts JSON-encoded
+request bodies, returns JSON-encoded responses, and uses standard HTTP response
+codes, authentication, and verbs.
 
-- Create a meeting
-- Add participants to the meeting
-- Record the meeting
-- Receive events using webhooks
+This topic describes how to get started with Dyte v2 REST APIs.
 
-We will be exploring how to perform the above actions using Dyte’s API.
+Before getting started with this quickstart guide, we recommend that you read
+[Getting Started with Dyte](/getting-started) to familiarize yourself with Dyte.
 
-# Create a meeting
+## Objectives
 
-Before anything else, a meeting must be created. This is the building block of
-audio/video calls using Dyte. You can create a meeting by calling:
+In this quickstart you’ll learn:
 
-```jsx
+- How to access Dyte APIs
+- How to authenticate the requests
+- How to create presets
+- How to add voice and video calls to your applications using Dyte APIs
+
+## Initial Setup
+
+Perform the following steps to get started with Dyte APIs:
+
+### Step 1: Access APIs
+
+You can access all of our v2 API endpoints at `https://api.cluster.dyte.in/v2/`.
+For the complete list of routes, see our [API documentation](/api/?v=v2).
+
+### Step 2: Authenticate using your API Key
+
+Dyte's APIs use API Keys to authenticate requests via HTTP Basic Auth. To
+perform the authentication, an HTTP request is sent with an Authorization header
+that contains the word Basic followed by a space and a base64-encoded string
+`username:password`.
+
+For example, `Authorization: Basic ZGVtbzpwQDU1dzByZA==`
+
+1.  First, register on our [Developer Portal](https://dev.dyte.io).
+2.  Copy the API Key for your organization. This API Key is unique to your
+    organization. The organization ID acts as the username, and the API Key is
+    your password.
+
+### Step 3: Create Presets
+
+Create presets using the Developer portal. A preset is a set of permissions and
+UI configurations that is applied to a participant.
+
+## Add Video Calls to your Application using Dyte APIs
+
+This section focuses on how to add voice and video calls to your applications
+using Dyte APIs. A typical workflow includes the following steps:
+
+1.  Create a meeting
+2.  Add participants to the meeting
+3.  Record the meeting
+4.  Receive events using webhooks
+
+### Step 1: Create a Meeting
+
+You must first create a meeting in order to begin using Dyte for voice and video
+calls.
+
+#### Request
+
+This request returns a parameter called `id`, which is your `meeting ID`. The
+meeting ID is required for subsequent operations like adding participants.
+
+```bash
 curl --request POST \
   --url https://api.cluster.dyte.in/v2/meetings \
   --header 'Authorization: Basic ZGV2QGR5dGUuaW46MTIzNDU2Nzg5YXNkaGZnaGo=' \
@@ -31,9 +85,9 @@ curl --request POST \
 }'
 ```
 
-This will return a response of the type:
+#### Response
 
-```jsx
+```json
 {
   "success": true,
   "data": {
@@ -47,15 +101,21 @@ This will return a response of the type:
 }
 ```
 
-The `id` field in the response is the meeting ID, using which we can perform
-further operations.
+### Step 2: Add Participants
 
-# Adding participants
+Once you’ve created a meeting, you can add participants to the meeting.
 
-Now we have a meeting, but there’s nobody in there! To add participants, make
-the following call:
+#### Request
 
-```jsx
+This request returns a token, which is required to initialize the frontend SDKs.
+
+:::tip Note
+
+The preset name created earlier must be passed in the request.
+
+:::
+
+```bash
 curl --request POST \
   --url https://api.cluster.dyte.in/v2/meetings/<meetingId>/participants \
   --header 'Authorization: Basic ZGV2QGR5dGUuaW46MTIzNDU2Nzg5YXNkaGZnaGo=' \
@@ -68,12 +128,9 @@ curl --request POST \
 }'
 ```
 
-Note that you should substitute `<meetingId>` in the URL with the meeting ID
-returned in the Create Meeting step.
+#### Response
 
-This call returns a response of the following type:
-
-```jsx
+```json
 {
   "success": true,
   "data": {
@@ -89,25 +146,19 @@ This call returns a response of the following type:
 }
 ```
 
-Pay attention to the token returned from this call. You will need this to
-initialize our frontend (web/mobile) SDKs. You can view guides for frontend
-integration (here?).
+### Step 3: Record the Meeting
 
-# Record the meeting
+You can manage your recordings in Dyte using `Basic` or `Bearer` authentication
+methods. If you’re using `Bearer` authentication, then you need to use the
+`token` returned by the [Add Participants](/api#/operations/add_participant) API
+request.
 
-Many times, you want to record a meeting as it’s going on. Here’s how you can
-control recordings for a meeting.
+#### Start recording
 
-One important thing to note with recording routes is that they can be
-authenticated with both `Basic` and `Bearer` schemes. The `Basic` scheme is the
-same as for all other routes, while the `Bearer` scheme utilizes the `token`
-returned by the _Add Participant_ route. This way, both participants or your
-backend can trigger recordings.
+`storage_config` is an optional parameter. If you specify the storage
+configuration, the recording will be stored in your S3 bucket as well.
 
-## Start recording a meeting
-
-Make a request similar to the following. Note that the `storage_config` is
-optional.
+##### Request
 
 ```bash
 curl --request POST \
@@ -127,9 +178,9 @@ curl --request POST \
 }'
 ```
 
-This will return a response in the following format
+##### Response
 
-```bash
+```json
 {
   "success": true,
   "data": {
@@ -154,9 +205,9 @@ This will return a response in the following format
 }
 ```
 
-## Stopping the recording
+#### Stop recording
 
-You can stop an active recording at any time by using the following API route.
+##### Request
 
 ```bash
 curl --request PUT \
@@ -168,13 +219,16 @@ curl --request PUT \
 }'
 ```
 
-Note that you should substitute `<recordingId>` in the path parameters with the
-ID returned in the **\*\***\*\*\*\***\*\***Create
-recording**\*\***\*\*\*\***\*\*** call.
+##### Response
 
-This call returns a response like the following
+The `UPLOADING` status indicates that the recording is still being uploaded to
+the server asynchronously. The upload process may take longer depending on the
+size of the file.
 
-```bash
+To monitor the status of recordings, you can listen to the
+[`recording.statusUpdate`](/guides-v2/webhooks) events using webhooks.
+
+```json
 {
   "success": true,
   "data": {
@@ -199,29 +253,30 @@ This call returns a response like the following
       "id": "5f38f84c-4628-44b8-8953-64c67c714de7",
       "type": "aws",
       "region": "ap-south-1",
-      "bucket": "dyte-smoketest",
+      "bucket": "dyte",
       "path": "/"
     }
   }
 }
 ```
 
-Note that the `status` is UPLOADING. As recordings are large files, they are
-uploaded asynchronously. You can monitor the status of recordings by listening
-for `recording.statusUpdate` events on our webhooks.
+### Step 4: Add a Webhook
 
-# Webhooks
+Dyte uses webhooks to notify your application when an event occurs. Webhooks are
+especially useful for asynchronous events like when a recording is uploaded or a
+new participant joins the meeting.
 
-Often, you want to listen for events that our systems emit in order to perform
-various actions. For example, you might want to know when a user joins so you
-can mark them as present for a class.
+Dyte can push real-time updates to your application via a webhook. Events are
+sent to your webhook endpoint as a JSON payload over HTTPS. These events can
+then be used to perform actions in your backend systems.
 
-For this very scenario, Dyte runs a webhook service that calls registered
-webhooks with the desired events.
+For example, here is how to create a webhook that listens for all participant
+joining/leaving events.
 
-## Creating a webhook
+#### Request
 
-To create a webhook, simply make the following call
+When a participant joins or leaves a meeting, this will trigger the webhook and
+send the event.
 
 ```bash
 curl --request POST \
@@ -238,10 +293,9 @@ curl --request POST \
 }'
 ```
 
-This will create a webhook that calls the `url` field whenever a participant
-joins or leaves a meeting. The body of the webhook request is as follows:
+#### Response
 
-```bash
+```json
 {
   "event": "meeting.participantJoined",
   "meeting": {
@@ -264,5 +318,5 @@ joins or leaves a meeting. The body of the webhook request is as follows:
 }
 ```
 
-For a complete guide to using webhooks, check out the webhooks integration
-guide.
+For more information on how to create webhook endpoints, see
+[Creating webhook endpoints](/api#/operations/addWebhook).
