@@ -10,11 +10,12 @@
 <div class="sdks-dropdown flex max-w-lg flex-col rounded-2xl lg:min-w-[768px]">
   <div class="flex flex-col bg-secondary-800 p-4 lg:flex-row">
     <div class="flex flex-1 flex-col gap-8 rounded-xl bg-secondary-1000 p-6">
-      <button
+      <a
         data-dropdown-sdks-menu="web"
-        class="flex cursor-pointer items-start justify-start gap-2 border-none bg-transparent"
         onfocus="document.body.setAttribute('data-sdk-menu', 'web')"
         onmouseover="document.body.setAttribute('data-sdk-menu', 'web')"
+        class="flex cursor-pointer items-start justify-start gap-2 border-none bg-transparent text-black dark:text-white"
+        href="/react-ui-kit"
       >
         <div class="flex-shrink-0">
           <img
@@ -28,12 +29,13 @@
             Get up and running on new features and techniques.
           </p>
         </div>
-      </button>
-      <button
-        class="flex cursor-pointer items-start justify-start gap-2 border-none bg-transparent"
+      </a>
+      <a
         data-dropdown-sdks-menu="mobile"
         onfocus="document.body.setAttribute('data-sdk-menu', 'mobile')"
         onmouseover="document.body.setAttribute('data-sdk-menu', 'mobile')"
+        class="flex cursor-pointer items-start justify-start gap-2 border-none bg-transparent text-black dark:text-white"
+        href="/react-native"
       >
         <div class="flex-shrink-0">
           <img
@@ -47,7 +49,7 @@
             Get up and running on new features and techniques.
           </p>
         </div>
-      </button>
+      </a>
       <a
         class="flex cursor-pointer items-start justify-start gap-2 border-none bg-transparent text-black dark:text-white"
         data-dropdown-sdks-menu="plugin"

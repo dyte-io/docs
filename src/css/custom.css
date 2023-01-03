@@ -29,8 +29,11 @@
   }
 
   .homepage a {
-    --ifm-link-hover-decoration: none;
     --ifm-link-hover-color: currentColor;
+  }
+
+  .no-underline-links {
+    --ifm-link-hover-decoration: none;
   }
 
   h1,
@@ -100,7 +103,7 @@
   } */
 
   .dyte-badge {
-    @apply mb-4 inline-block rounded-sm bg-zinc-200 p-2 text-text-400 dark:bg-zinc-800;
+    @apply mb-4 inline-block rounded-sm bg-zinc-200 py-1 px-2 text-text-400 dark:bg-zinc-800;
   }
 }
 
@@ -956,4 +959,8 @@ img[src$='#terminal'] {
 
 .navbar-book-demo svg {
   display: none;
+}
+
+.theme-doc-markdown.markdown {
+  @apply mt-4;
 }

@@ -64,7 +64,7 @@ export default function Homepage() {
                 </p>
                 <Link
                   href="https://dyte.io/contact"
-                  className="darktext-primary-100 :text-primary"
+                  className="text-primary dark:text-primary-100"
                 >
                   Contact Us &rarr;
                 </Link>
