@@ -9,10 +9,13 @@ import {
   PlusIcon,
 } from '@radix-ui/react-icons';
 import { paramCase } from 'param-case';
+import ReactMarkdown from 'react-markdown';
 
 import FAQs from '../faq';
 
 const tags = FAQs.reduce((allTags, faq) => {
+  if (!faq.tags) return allTags;
+
   for (const tag of faq.tags) {
     if (!allTags.includes(tag)) {
       allTags.push(tag);
@@ -146,10 +149,8 @@ export default function FAQPage() {
         <div className="mx-auto max-w-7xl">
           {query.trim() !== '' ? (
             filteredFAQs.length === 0 ? (
-              <div>
-                <div className="mb-12 text-2xl font-semibold">
-                  😢 Sorry, no results matched your search terms
-                </div>
+              <div className="mb-12 text-2xl font-semibold">
+                😢 Sorry, no results matched your search terms
               </div>
             ) : (
               <div className="mb-12 text-xl font-semibold">
@@ -193,10 +194,10 @@ export default function FAQPage() {
             {filteredFAQs.map((faq) => (
               <Accordion
                 title={faq.question}
-                tags={faq.tags}
+                tags={faq.tags || []}
                 key={faq.question}
               >
-                {faq.answer}
+                <ReactMarkdown>{faq.answer}</ReactMarkdown>
               </Accordion>
             ))}
           </div>
