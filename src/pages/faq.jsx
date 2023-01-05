@@ -33,9 +33,10 @@ function Accordion({ title, tags, children, open: defaultOpen }) {
   return (
     <div
       className={clsx(
-        'dyte-accordion cursor-pointer border-0 border-solid p-6',
-        open && 'rounded-2xl bg-secondary-800',
-        !open && 'border-b border-zinc-300 pb-6 dark:border-zinc-700'
+        'dyte-accordion cursor-pointer border-0 border-solid p-6 last-of-type:border-0',
+        open
+          ? 'mb-4 rounded-2xl bg-secondary-800'
+          : 'border-b border-zinc-300 dark:border-zinc-700'
       )}
       role="tab"
       tabIndex={0}
@@ -48,7 +49,7 @@ function Accordion({ title, tags, children, open: defaultOpen }) {
         role="heading"
         className={clsx(
           'flex w-full cursor-pointer select-none items-center justify-between border-0 border-solid bg-transparent px-0 text-lg font-semibold',
-          open && 'text-primary-100'
+          open && 'text-primary dark:text-primary-100'
         )}
         id={headingId}
       >
@@ -190,7 +191,7 @@ export default function FAQPage() {
           )}
 
           {/* FAQs */}
-          <div className="mt-12 flex flex-col gap-4">
+          <div className="mt-12 flex flex-col gap-3">
             {filteredFAQs.map((faq) => (
               <Accordion
                 title={faq.question}
