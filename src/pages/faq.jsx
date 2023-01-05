@@ -9,10 +9,13 @@ import {
   PlusIcon,
 } from '@radix-ui/react-icons';
 import { paramCase } from 'param-case';
+import ReactMarkdown from 'react-markdown';
 
 import FAQs from '../faq';
 
 const tags = FAQs.reduce((allTags, faq) => {
+  if (!faq.tags) return allTags;
+
   for (const tag of faq.tags) {
     if (!allTags.includes(tag)) {
       allTags.push(tag);
@@ -30,9 +33,10 @@ function Accordion({ title, tags, children, open: defaultOpen }) {
   return (
     <div
       className={clsx(
-        'dyte-accordion cursor-pointer border-0 border-solid p-6',
-        open && 'rounded-2xl bg-secondary-800',
-        !open && 'border-b border-zinc-300 pb-6 dark:border-zinc-700'
+        'dyte-accordion cursor-pointer border-0 border-solid p-6 last-of-type:border-0',
+        open
+          ? 'mb-4 rounded-2xl bg-secondary-800'
+          : 'border-b border-zinc-300 dark:border-zinc-700'
       )}
       role="tab"
       tabIndex={0}
@@ -45,7 +49,7 @@ function Accordion({ title, tags, children, open: defaultOpen }) {
         role="heading"
         className={clsx(
           'flex w-full cursor-pointer select-none items-center justify-between border-0 border-solid bg-transparent px-0 text-lg font-semibold',
-          open && 'text-primary-100'
+          open && 'text-primary dark:text-primary-100'
         )}
         id={headingId}
       >
@@ -79,7 +83,7 @@ function Accordion({ title, tags, children, open: defaultOpen }) {
         {tags && tags.length > 0 && (
           <div
             className={clsx(
-              'mb-2 flex select-none items-center gap-2',
+              'mt-3 flex select-none items-center gap-2',
               open ? 'block' : 'hidden'
             )}
           >
@@ -146,10 +150,8 @@ export default function FAQPage() {
         <div className="mx-auto max-w-7xl">
           {query.trim() !== '' ? (
             filteredFAQs.length === 0 ? (
-              <div>
-                <div className="mb-12 text-2xl font-semibold">
-                  😢 Sorry, no results matched your search terms
-                </div>
+              <div className="mb-12 text-2xl font-semibold">
+                😢 Sorry, no results matched your search terms
               </div>
             ) : (
               <div className="mb-12 text-xl font-semibold">
@@ -189,14 +191,14 @@ export default function FAQPage() {
           )}
 
           {/* FAQs */}
-          <div className="mt-12 flex flex-col gap-4">
+          <div className="mt-12 flex flex-col gap-3">
             {filteredFAQs.map((faq) => (
               <Accordion
                 title={faq.question}
-                tags={faq.tags}
+                tags={faq.tags || []}
                 key={faq.question}
               >
-                {faq.answer}
+                <ReactMarkdown>{faq.answer}</ReactMarkdown>
               </Accordion>
             ))}
           </div>
