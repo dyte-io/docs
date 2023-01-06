@@ -65,6 +65,26 @@ export default function SDKsSection() {
     };
   }, []);
 
+  function Pill({ section }) {
+    return (
+      <div
+        className={clsx(
+          'flex-1 cursor-pointer rounded-md py-2 px-6 text-center font-jakarta text-sm font-semibold',
+          visibleSection === section
+            ? 'bg-primary text-white'
+            : 'text-black dark:text-white'
+        )}
+        onClick={() => {
+          document
+            .getElementById(section)
+            ?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }}
+      >
+        {`${section[0].toUpperCase()}${section.substring(1)}`}
+      </div>
+    );
+  }
+
   return (
     <section className="bg-secondary-1000 py-20 px-4" id="start-building">
       <Head>
@@ -80,49 +100,10 @@ export default function SDKsSection() {
           </h2>
 
           <div className="mx-auto flex h-20 w-full flex-1 items-center justify-center self-start lg:w-auto lg:justify-end">
-            <div className="flex max-w-sm flex-1 items-center rounded-full border border-solid border-text-400 text-sm lg:text-base">
-              <div
-                className={clsx(
-                  'flex-1 cursor-pointer py-1 text-center',
-                  visibleSection === 'web' &&
-                    'rounded-full border-2 border-solid'
-                )}
-                onClick={() => {
-                  document
-                    .getElementById('web')
-                    .scrollIntoView({ block: 'center' });
-                }}
-              >
-                Web
-              </div>
-              <div
-                className={clsx(
-                  'flex-1 cursor-pointer py-1 text-center',
-                  visibleSection === 'mobile' &&
-                    'rounded-full border-2 border-solid'
-                )}
-                onClick={() => {
-                  document
-                    .getElementById('mobile')
-                    .scrollIntoView({ block: 'center' });
-                }}
-              >
-                Mobile
-              </div>
-              <div
-                className={clsx(
-                  'flex-1 cursor-pointer py-1 text-center',
-                  visibleSection === 'plugin' &&
-                    'rounded-full border-2 border-solid'
-                )}
-                onClick={() => {
-                  document
-                    .getElementById('plugin')
-                    .scrollIntoView({ block: 'center' });
-                }}
-              >
-                Plugin
-              </div>
+            <div className="inline-flex items-center rounded-lg bg-zinc-100 p-2 text-sm dark:bg-zinc-800 lg:text-base">
+              <Pill section="web" />
+              <Pill section="mobile" />
+              <Pill section="plugin" />
             </div>
           </div>
         </div>
