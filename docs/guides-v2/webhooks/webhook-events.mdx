@@ -1,22 +1,27 @@
 ---
-title: 'Events overview'
+title: 'Webhook Events List'
 sidebar_position: 1
 ---
 
-# Event overview
+# View Webhook Events List
 
-This is a list of all the types of events we currently send. We may add more in
-the future, so in developing and maintaining your code, you should not assume
-that only these types exist.
+This topic provides an up-to-date list of all the events that can be used with
+webhooks. Please note that we're constantly adding new events.
 
-## Types of events
+All events follow a pattern, `resource.event`. Our goal is to design a
+consistent system that makes things easier to anticipate and code against.
 
-You'll notice that all events follow a pattern: `resource.event`. Our goal is to
-design a consistent system that makes things easier to anticipate and code
-against.
+:::info NOTE
 
-Events are subscription-only; i.e: you need to opt-in to receive them. You will
-not receive updates for event types that you have not opted-in to receive.
+Events are subscription-only, which means you **must opt-in to** receive them.
+You **will not** receive updates for event types for which you have not opted
+in.
+
+:::
+
+## List of Events
+
+Following are the events:
 
 ### `meeting.started`
 

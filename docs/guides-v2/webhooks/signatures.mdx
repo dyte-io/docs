@@ -1,16 +1,15 @@
 ---
-title: 'Verify signatures'
+title: "Verify Webhooks Using Dyte's Signature"
 sidebar_position: 2
 ---
 
-Dyte signs the webhook events it sends to your endpoints by including a
-signature in each event's `dyte-signature` header
+Dyte verifies the webhook events it sends to your endpoints by including a
+signature in the dyte-signature header of each event. This allows you to confirm
+that the event came from Dyte and not a malicious server impersonating Dyte.
 
-This allows you to verify that the event came from Dyte itself and not a
-malicious server pretending to be Dyte. You can verify signatures by performing
-the following steps.
+Perform the following steps to verify signatures.
 
-### Obtain our public key
+## Obtain our public key
 
 Our public key is available at
 `https://api.cluster.dyte.in/.well-known/webhooks.json`. You can obtain it by
@@ -20,12 +19,12 @@ making a GET request to this endpoint.
 curl -X GET "https://api.cluster.dyte.in/.well-known/webhooks.json"
 ```
 
-### Check for the signature header
+## Check for the signature header
 
 Every incoming request will have a custom `dyte-signature` header. This is the
 value that you should verify in the next step.
 
-### Verify the signature
+## Verify the signature
 
 The signature is based on the `RSA-SHA256` digest of the request payload. You
 can calculate this on your end and compare it against the one supplied in the

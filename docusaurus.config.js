@@ -226,7 +226,7 @@ const config = {
           },
           {
             label: 'Guides',
-            to: 'guides-v2/getting-started',
+            to: 'guides-v2/quickstart',
             position: 'left',
             className: 'new-badge'
           },
