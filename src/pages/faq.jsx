@@ -12,6 +12,7 @@ import { paramCase } from 'param-case';
 import ReactMarkdown from 'react-markdown';
 
 import FAQs from '../faq';
+import { useEffect } from 'react';
 
 const tags = FAQs.reduce((allTags, faq) => {
   if (!faq.tags) return allTags;
@@ -24,23 +25,30 @@ const tags = FAQs.reduce((allTags, faq) => {
   return allTags;
 }, []);
 
-function Accordion({ title, tags, children, open: defaultOpen }) {
-  const [open, setOpen] = useState(defaultOpen);
-
+function Accordion({ title, tags, children, open, onOpen, onClose }) {
   const headingId = paramCase(title);
   const panelId = headingId + '-panel';
 
+  const handleOpen = () => {
+    if (!open) {
+      onOpen();
+      history.pushState({}, '', '#' + headingId);
+    } else {
+      onClose();
+      history.pushState({}, '', '');
+    }
+  };
+
   return (
     <div
+      id={'parent-' + headingId}
       className={clsx(
-        'dyte-accordion cursor-pointer border-0 border-solid p-6 last-of-type:border-0',
+        'dyte-accordion cursor-pointer border-0 border-solid last-of-type:border-0',
         open
           ? 'mb-4 rounded-2xl bg-secondary-800'
           : 'border-b border-zinc-300 dark:border-zinc-700'
       )}
       role="tab"
-      tabIndex={0}
-      onClick={() => setOpen((open) => !open)}
       aria-expanded={open}
       aria-controls={panelId}
     >
@@ -48,12 +56,20 @@ function Accordion({ title, tags, children, open: defaultOpen }) {
       <div
         role="heading"
         className={clsx(
-          'flex w-full cursor-pointer select-none items-center justify-between border-0 border-solid bg-transparent px-0 text-lg font-semibold',
-          open && 'text-primary dark:text-primary-100'
+          'flex w-full cursor-pointer select-none items-center justify-between border-0 border-solid bg-transparent p-6 text-lg font-semibold',
+          open && 'pb-0 text-primary dark:text-primary-100'
         )}
+        tabIndex={0}
+        onClick={handleOpen}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handleOpen();
+          }
+        }}
         id={headingId}
       >
-        <div className="">{title}</div>
+        <h3 id={headingId}>{title}</h3>
         <div className="text-zinc-300">
           <MinusIcon
             className={clsx(
@@ -75,7 +91,10 @@ function Accordion({ title, tags, children, open: defaultOpen }) {
         role="region"
         id={panelId}
         aria-labelledby={headingId}
-        className={clsx('accordion-content mt-3', open ? 'block' : 'hidden')}
+        className={clsx(
+          'accordion-content mt-3 p-6 pt-0',
+          open ? 'block' : 'hidden'
+        )}
       >
         {children}
 
@@ -104,8 +123,24 @@ function Accordion({ title, tags, children, open: defaultOpen }) {
 }
 
 export default function FAQPage() {
+  const [activeFAQ, setActiveFAQ] = useState('');
   const [query, setQuery] = useState('');
   const [activeTab, setActiveTab] = useState('All');
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const faqId = window.location.hash.substring(1);
+
+    if (faqId !== '') {
+      setActiveFAQ(faqId);
+      document.querySelector('#parent-' + faqId)?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'center',
+      });
+    }
+  }, []);
 
   const filteredFAQs = useMemo(() => {
     if (query.trim() === '') {
@@ -120,6 +155,23 @@ export default function FAQPage() {
       return str.toLowerCase().includes(query.toLowerCase());
     });
   }, [activeTab, query]);
+
+  function Pill({ tag }) {
+    return (
+      <button
+        className={clsx(
+          'cursor-pointer rounded-md border-none bg-secondary-800 px-3.5 py-1.5 font-jakarta text-sm font-medium',
+          activeTab === tag
+            ? 'bg-primary text-white'
+            : 'text-black dark:text-white'
+        )}
+        data-tag={tag}
+        onClick={() => setActiveTab(tag)}
+      >
+        {tag}
+      </button>
+    );
+  }
 
   return (
     <Layout wrapperClassName="faq-page bg-secondary-1000" noFooter>
@@ -146,7 +198,7 @@ export default function FAQPage() {
         </div>
       </section>
 
-      <section className="px-6 py-12">
+      <section className="mb-20 px-6 py-12">
         <div className="mx-auto max-w-7xl">
           {query.trim() !== '' ? (
             filteredFAQs.length === 0 ? (
@@ -159,48 +211,35 @@ export default function FAQPage() {
               </div>
             )
           ) : (
-            <div className="flex items-center gap-3">
-              <button
-                className={clsx(
-                  'cursor-pointer rounded-full border-none bg-secondary-800 px-3 py-2',
-                  activeTab === 'All'
-                    ? 'bg-primary text-white'
-                    : 'text-black dark:text-white'
-                )}
-                data-tag="All"
-                onClick={() => setActiveTab('All')}
-              >
-                All
-              </button>
+            <div className="inline-flex items-center gap-2 rounded-lg bg-zinc-100 p-2 dark:bg-zinc-800">
+              <Pill tag="All" />
               {tags.map((tag) => (
-                <button
-                  className={clsx(
-                    'cursor-pointer rounded-full border-none bg-secondary-800 px-3 py-2',
-                    activeTab === tag
-                      ? 'bg-primary text-white'
-                      : 'text-black dark:text-white'
-                  )}
-                  key={tag}
-                  data-tag={tag}
-                  onClick={() => setActiveTab(tag)}
-                >
-                  {tag}
-                </button>
+                <Pill tag={tag} key={tag} />
               ))}
             </div>
           )}
 
           {/* FAQs */}
           <div className="mt-12 flex flex-col gap-3">
-            {filteredFAQs.map((faq) => (
-              <Accordion
-                title={faq.question}
-                tags={faq.tags || []}
-                key={faq.question}
-              >
-                <ReactMarkdown>{faq.answer}</ReactMarkdown>
-              </Accordion>
-            ))}
+            {filteredFAQs.map((faq) => {
+              const id = paramCase(faq.question);
+              return (
+                <Accordion
+                  title={faq.question}
+                  tags={faq.tags || []}
+                  key={faq.question}
+                  open={activeFAQ === id}
+                  onOpen={() => {
+                    setActiveFAQ(id);
+                  }}
+                  onClose={() => {
+                    setActiveFAQ('');
+                  }}
+                >
+                  <ReactMarkdown>{faq.answer}</ReactMarkdown>
+                </Accordion>
+              );
+            })}
           </div>
         </div>
       </section>
