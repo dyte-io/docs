@@ -77,7 +77,7 @@
       url('/static/landing-page/noise-light.png'),
       linear-gradient(
         to bottom,
-        transparent,
+        transparent 40%,
         rgb(var(--docs-color-secondary-700))
       );
     background-size: 48px 48px, 100% 100%, 100%;
@@ -85,7 +85,12 @@
 
   html[data-theme='dark'] .noise-bg {
     background-image: url('/static/landing-page/grid-dark.svg'),
-      url('/static/landing-page/noise-dark.png');
+      url('/static/landing-page/noise-dark.png'),
+      linear-gradient(
+        to bottom,
+        transparent 40%,
+        rgb(var(--docs-color-secondary-900))
+      );
   }
 
   /* .sdk-section {
@@ -779,8 +784,9 @@ body[data-sdk-menu='mobile'] [data-dropdown-sdks='mobile'] {
 }
 
 body[data-sdk-menu='web'] [data-dropdown-sdks-menu='web'],
-body[data-sdk-menu='mobile'] [data-dropdown-sdks-menu='mobile'] {
-  @apply border-l-primary-100 dark:border-l-primary;
+body[data-sdk-menu='mobile'] [data-dropdown-sdks-menu='mobile'],
+body[data-sdk-menu='plugin'] [data-dropdown-sdks-menu='plugin'] {
+  @apply border-l-primary;
 }
 
 .resources-dropdown-menu a {

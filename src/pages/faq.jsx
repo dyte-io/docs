@@ -176,20 +176,20 @@ export default function FAQPage() {
   return (
     <Layout wrapperClassName="faq-page bg-secondary-1000" noFooter>
       {/* Hero? */}
-      <section className="bg-gradient-to-b from-primary to-secondary-1000 px-6 py-24">
+      <section className="noise-bg px-6 py-24">
         <div className="mx-auto flex max-w-7xl flex-col place-items-center justify-center">
-          <div className="font-semibold text-zinc-200 dark:text-zinc-300">
+          <div className="font-semibold text-zinc-800 dark:text-zinc-300">
             Frequently Asked Questions
           </div>
-          <div className="my-8 text-center text-4xl font-bold leading-tight text-white lg:text-6xl">
+          <div className="my-8 text-center text-4xl font-bold leading-tight text-zinc-800 dark:text-zinc-100 lg:text-6xl">
             <div>Any questions?</div>
             <div>We got you.</div>
           </div>
-          <div className="relative flex w-full max-w-md items-center text-zinc-700">
+          <div className="relative flex w-full max-w-md items-center text-zinc-700 dark:text-white">
             <MagnifyingGlassIcon className="z-10 h-5 w-5 translate-x-1.5" />
             <input
               type="text"
-              className="-ml-5 h-10 flex-1 rounded-md border-none bg-white px-3 pl-8 text-sm text-zinc-700"
+              className="-ml-5 h-10 flex-1 rounded-md border border-solid border-zinc-200 bg-white px-3 pl-8 text-sm text-zinc-700 dark:border-zinc-800 dark:bg-secondary-1000 dark:text-zinc-200"
               placeholder="Search your query...(sdk, api, write code)"
               value={query}
               onInput={(e) => setQuery(e.currentTarget.value)}
