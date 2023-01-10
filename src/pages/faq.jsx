@@ -13,6 +13,7 @@ import ReactMarkdown from 'react-markdown';
 
 import FAQs from '../faq';
 import { useEffect } from 'react';
+import HelpSection from '../components/homepage/HelpSection';
 
 const tags = FAQs.reduce((allTags, faq) => {
   if (!faq.tags) return allTags;
@@ -56,7 +57,7 @@ function Accordion({ title, tags, children, open, onOpen, onClose }) {
       <div
         role="heading"
         className={clsx(
-          'flex w-full cursor-pointer select-none items-center justify-between border-0 border-solid bg-transparent p-6 text-lg font-semibold',
+          'flex w-full cursor-pointer select-none items-center justify-between gap-4 border-0 border-solid bg-transparent p-6',
           open && 'pb-0 text-primary dark:text-primary-100'
         )}
         tabIndex={0}
@@ -69,7 +70,9 @@ function Accordion({ title, tags, children, open, onOpen, onClose }) {
         }}
         id={headingId}
       >
-        <h3 id={headingId}>{title}</h3>
+        <h3 id={headingId} className="text-lg font-semibold">
+          {title}
+        </h3>
         <div className="text-zinc-300">
           <MinusIcon
             className={clsx(
@@ -97,26 +100,6 @@ function Accordion({ title, tags, children, open, onOpen, onClose }) {
         )}
       >
         {children}
-
-        {/* Tag */}
-        {tags && tags.length > 0 && (
-          <div
-            className={clsx(
-              'mt-3 flex select-none items-center gap-2',
-              open ? 'block' : 'hidden'
-            )}
-          >
-            {tags.map((tag) => (
-              <div
-                className="w-fit rounded-full bg-secondary-700 px-2 py-px text-xs text-black dark:text-white"
-                key={tag}
-                data-tag={tag}
-              >
-                {tag}
-              </div>
-            ))}
-          </div>
-        )}
       </div>
     </div>
   );
@@ -244,7 +227,9 @@ export default function FAQPage() {
         </div>
       </section>
 
-      <HomeFooter />
+      <HelpSection className="relative z-10 border border-solid border-secondary-700" />
+
+      <HomeFooter className="-mt-20 pt-32 pb-12" />
     </Layout>
   );
 }
