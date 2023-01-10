@@ -275,7 +275,7 @@ export default function SDKsSection() {
               out-of-the-box plugins. Dive into the resources here to get
               started with building your own plugins for your applications.
             </p>
-            <Link className="text-sm" href="plugin-sdk">
+            <Link className="text-sm" href="/plugin-sdk">
               Learn More &rarr;
             </Link>
           </div>
