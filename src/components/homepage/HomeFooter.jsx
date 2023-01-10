@@ -7,13 +7,19 @@ import {
   LinkedInLogoIcon,
   TwitterLogoIcon,
 } from '@radix-ui/react-icons';
+import clsx from 'clsx';
 
-export default function HomeFooter() {
+export default function HomeFooter({ className }) {
   const { colorMode } = useColorMode();
 
   return (
-    <footer>
-      <div className="mx-auto flex max-w-7xl flex-col gap-4 px-10 py-8 lg:flex-row lg:items-center lg:gap-8">
+    <footer className="bg-secondary-900">
+      <div
+        className={clsx(
+          'mx-auto flex max-w-7xl flex-col gap-4 px-10 py-8 lg:flex-row lg:items-center lg:gap-8',
+          className
+        )}
+      >
         <div>
           <img src={`/logo/${colorMode}.svg`} alt="Logo" className="h-10" />
         </div>
