@@ -95,7 +95,7 @@ function Accordion({ title, tags, children, open, onOpen, onClose }) {
         id={panelId}
         aria-labelledby={headingId}
         className={clsx(
-          'accordion-content mt-3 p-6 pt-0',
+          'accordion-content p-6 pt-0',
           open ? 'block' : 'hidden'
         )}
       >
