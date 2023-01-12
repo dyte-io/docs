@@ -36,13 +36,13 @@ val meetingInfo = DyteMeetingInfo(
 meeting.init(meetingInfo)
 ```
 
-You can get the `roomName` and
-`authToken` using our backend APIs. Please refer
+You can get the `roomName` and `authToken` using our backend APIs. Please refer
 [for room name](https://docs.dyte.io/api#/operations/create_meeting) &
 [for auth token](https://docs.dyte.io/api#/operations/add_participant)
 
-:::info Init meeting event listeners
-Once you call `init()`, you can listen to callbacks for this action on meeting object by registering observer as follows.
+:::info Init meeting event listeners Once you call `init()`, you can listen to
+callbacks for this action on meeting object by registering observer as follows.
+
 ```kotlin
 meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
     override fun onMeetingInitStarted() {
@@ -61,9 +61,8 @@ meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
     }
   })
 ```
+
 :::
-
-
 
 Now to join in the room, use
 
@@ -71,8 +70,9 @@ Now to join in the room, use
 meeting.joinRoom()
 ```
 
-:::info Join room event listeners
-Once you call `joinRoom()`, you can listen to callbacks for this action on meeting object by registering observer as follows.
+:::info Join room event listeners Once you call `joinRoom()`, you can listen to
+callbacks for this action on meeting object by registering observer as follows.
+
 ```kotlin
 meeting.addSelfEventsListener(object : DyteSelfEventsListener {
     override fun onMeetingRoomJoinStarted() {
@@ -91,6 +91,7 @@ meeting.addSelfEventsListener(object : DyteSelfEventsListener {
     }
   })
 ```
+
 :::
 
 And voila, you just joined a room with Dyte's mobile SDK.
@@ -101,8 +102,9 @@ Similarely to leave the meeting you can call `leaveRoom()` on `meeting` object.
 meeting.leaveRoom()
 ```
 
-:::info Leave room event listeners
-You can listen to `leaveRoom()` callbacks by registering obsever on meeting object as follows
+:::info Leave room event listeners You can listen to `leaveRoom()` callbacks by
+registering obsever on meeting object as follows
+
 ```kotlin
 meeting.addSelfEventsListener(object : DyteMeetingRoomEventsListener {
     override fun onMeetingRoomLeaveStarted() {

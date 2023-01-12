@@ -26,15 +26,21 @@ The participant object has the following properties.
   screen share stream.
 - `videoEnabled`: Set to true if the participant's camera is on.
 - `audioEnabled`: Set to true if the participant is unmuted.
-- `isScreenShareParticipant`: Set to true if the participant is a screenshare participant.
+- `isScreenShareParticipant`: Set to true if the participant is a screenshare
+  participant.
 - `isPinned`: True if current user is pinned in the meering roomm
 
 ## To get Video view of a given participant
-You can call `participant.getVideoView()` which will return a View which further can used to add in any View Group in android.
+
+You can call `participant.getVideoView()` which will return a View which further
+can used to add in any View Group in android.
 
 ## Audio/Video updates for participant
-  
-You can listen to audio/video changes for a single participant by calling `addParticipantUpdateListener(listener: DyteParticipantUpdateListener)` on any participant object.
+
+You can listen to audio/video changes for a single participant by calling
+`addParticipantUpdateListener(listener: DyteParticipantUpdateListener)` on any
+participant object.
+
 ```kotlin
 dyteParticipant.addParticipantUpdateListener(object : DyteParticipantUpdateListener {
       override fun onAudioUpdate(participant: DyteMeetingParticipant, isEnabled: Boolean) {
@@ -48,8 +54,10 @@ dyteParticipant.addParticipantUpdateListener(object : DyteParticipantUpdateListe
       }
     })
 ```
-Also make sure to remove event listener when they are no longer used. You can remove DyteParticipantUpdateListener by calling `removeParticipantUpdateListener(listener)`
 
+Also make sure to remove event listener when they are no longer used. You can
+remove DyteParticipantUpdateListener by calling
+`removeParticipantUpdateListener(listener)`
 
 ## Host controls methods
 

@@ -5,7 +5,10 @@ sidebar_position: 3
 tags: [mobile-core, participants, self]
 ---
 
-You can subscribe to events for all participants by implementing `DyteParticipantEventsListener` callback and then passing that object to `meeeting.addParticipantEventsListener(dyteParticipantEventsListener)` method. Here are the supported methods:
+You can subscribe to events for all participants by implementing
+`DyteParticipantEventsListener` callback and then passing that object to
+`meeeting.addParticipantEventsListener(dyteParticipantEventsListener)` method.
+Here are the supported methods:
 
 ## Participant joined
 
@@ -49,7 +52,8 @@ Triggers an event when there is any change in screenshares in a meeting.
 
 ## Grid change
 
-Whenever there is any change in `GridInfo` for the room following method is called.
+Whenever there is any change in `GridInfo` for the room following method is
+called.
 
 ```kotlin
     private val participantEventsListener = object : DyteParticipantEventsListener {
@@ -134,4 +138,3 @@ Triggers an event when any is change in active participants list in the meeting.
         }
     }
 ```
-

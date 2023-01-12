@@ -18,13 +18,15 @@ Here is a list of properties that local user provides:
 - `name`: Contains Name of the local user.
 - `clientSpecificId`: Identifier provided by the developer while adding the
   participant.
-- `permissions`: The permissions related to various capabilities within a meeting context for the local user
+- `permissions`: The permissions related to various capabilities within a
+  meeting context for the local user
 - `audioTrack`: The audio track for the local user.
 - `videoTrack`: The video track for the local user.
 - `screenShareTrack`: The screen share video tracks for the local user.
 - `audioEnabled`: A boolean value indicating if the audio currently enabled.
 - `videoEnabled`: A boolean value indicating if the video currently enabled.
-- `isScreenShareParticipant`: A boolean value indicating if the participant is a screen share participant in this meeting.
+- `isScreenShareParticipant`: A boolean value indicating if the participant is a
+  screen share participant in this meeting.
 
 ## Change default audio / video settings
 
@@ -43,7 +45,9 @@ val meetingInfo = DyteMeetingInfo(
 
 ## Get local user video view
 
-To show localUser preview inside a view. use `getVideoView()` method on localUser. This method returns a View which can be added in any ViewGroup in android.
+To show localUser preview inside a view. use `getVideoView()` method on
+localUser. This method returns a View which can be added in any ViewGroup in
+android.
 
 ```kotlin
 meeting.localUser.getVideoView()
@@ -63,8 +67,8 @@ meeting.localUser.enableVideo()
 ## Change the name of the local user
 
 Change the user's name by calling `setDisplayName` method. The changed name will
-reflect across all participants ONLY if the change happens before `joinRoom()` the
-meeting and after `init()`.
+reflect across all participants ONLY if the change happens before `joinRoom()`
+the meeting and after `init()`.
 
 ```kotlin
 meeting.localUser.setDisplayName("New Name")
