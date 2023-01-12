@@ -1,26 +1,38 @@
 # Integrating with Webhooks
 
-At Dyte, we run a webhook service for you to be able to subscribe to server events. These webhook events enable you to take certain server actions based on Dyte meeting events and state changes.
+At Dyte, we run a webhook service for you to be able to subscribe to server
+events. These webhook events enable you to take certain server actions based on
+Dyte meeting events and state changes.
 
 ## Setting a webhook
 
-There are 2 ways to manage Dyte webhooks for your organization - using APIs and using our dev portal.
+There are 2 ways to manage Dyte webhooks for your organization - using APIs and
+using our dev portal.
 
 ### Using webhook APIs
 
-You can make simple REST API calls to add, remove or edit a webhook for your organization. Please refer to [webhooks](/api#/operations/create_webhook) section under [API reference](/api) to get more details on these APIs.
+You can make simple REST API calls to add, remove or edit a webhook for your
+organization. Please refer to [webhooks](/api#/operations/create_webhook)
+section under [API reference](/api) to get more details on these APIs.
 
 ### Using Dyte dev portal
 
-On the dev portal, you can navigate to the webhook section and click on the "Create a new webhook" card.
+On the dev portal, you can navigate to the webhook section and click on the
+"Create a new webhook" card.
 
-On clicking this, you will get to the interface that helps you add a webhook for your organization. You can fill in the details and click the "Create" button to save and create the webhook.
+On clicking this, you will get to the interface that helps you add a webhook for
+your organization. You can fill in the details and click the "Create" button to
+save and create the webhook.
 
-Once created, you can view the webhook details by clicking on the relevant card. You can also click the "Edit" button on the details screen to edit an existing webhook.
+Once created, you can view the webhook details by clicking on the relevant card.
+You can also click the "Edit" button on the details screen to edit an existing
+webhook.
 
 ## Webhooks
 
-Each webhook request is an HTTPS `POST` request to the URL provided by you, where the details about the event are sent in the message body in `JSON` format and we expect an HTTP status of `200 OK` in response.
+Each webhook request is an HTTPS `POST` request to the URL provided by you,
+where the details about the event are sent in the message body in `JSON` format
+and we expect an HTTP status of `200 OK` in response.
 
 ### Supported events
 
@@ -34,7 +46,9 @@ We currently support notifications for the following event via webhooks.
 
 ### Interfaces
 
-In order to simplify the webhook structure, we start by defining some types / interfaces / entities which are typically used in the webhook requests. These will later be used as references to explain the webhook request bodies.
+In order to simplify the webhook structure, we start by defining some types /
+interfaces / entities which are typically used in the webhook requests. These
+will later be used as references to explain the webhook request bodies.
 
 #### Meeting Interface
 
@@ -67,7 +81,7 @@ interface Participant {
 ```ts
 interface Recording {
   recordingId: string;
-  status: "INVOKED" | "RECORDING" | "UPLOADING" | "UPLOADED" | "ERRORED";
+  status: 'INVOKED' | 'RECORDING' | 'UPLOADING' | 'UPLOADED' | 'ERRORED';
   startedTime: string;
   stoppedTime: string;
   downloadUrl?: string;
@@ -82,44 +96,58 @@ interface Recording {
 
 ```ts
 interface LiveStreaming {
-    streamId: string;
-    status: "LIVE" | "OFFLINE";
+  streamId: string;
+  status: 'LIVE' | 'OFFLINE';
 }
 ```
 
 ### Verifying a webhook call using signature
 
-Each webhook request is signed using Dyte's private key, and the same can be verified at your end by following the below steps.
+Each webhook request is signed using Dyte's private key, and the same can be
+verified at your end by following the below steps.
 
-1. **Get Dyte's public key**: This can be done by making a `GET` request to this URL - `https://api.cluster.dyte.in/.well-known/webhooks.json`.
+1. **Get Dyte's public key**: This can be done by making a `GET` request to this
+   URL - `https://api.cluster.dyte.in/.well-known/webhooks.json`.
 
    ```shell
    curl -X GET "https://api.cluster.dyte.in/.well-known/webhooks.json"
    ```
 
-2. **Check for the signature header**: Each incoming request should have a custom `dyte-signature` header. This is the signature value that you would be verifying in the next step.
+2. **Check for the signature header**: Each incoming request should have a
+   custom `dyte-signature` header. This is the signature value that you would be
+   verifying in the next step.
 
-3. **Verify the signature**: The signature value is based on `RSA-SHA256` digest of the payload. You can calculate the same at your end, and if the value matches the one supplied in the header as described by previous step, you should consider the webhook to be originating from the correct server. For example, you can do the following:
+3. **Verify the signature**: The signature value is based on `RSA-SHA256` digest
+   of the payload. You can calculate the same at your end, and if the value
+   matches the one supplied in the header as described by previous step, you
+   should consider the webhook to be originating from the correct server. For
+   example, you can do the following:
 
    ```js
-   const signature = req.headers["dyte-signature"];
+   const signature = req.headers['dyte-signature'];
    const payload = req.body;
 
    const isVerified = crypto.verify(
-     "RSA-SHA256",
+     'RSA-SHA256',
      Buffer.from(JSON.stringify(payload)),
      dytePublicKey,
-     Buffer.from(signature, "base64")
+     Buffer.from(signature, 'base64')
    );
    ```
 
 :::tip JSON Stringification
-Few languages like Python, and maybe if you are using a specific library for JSON processing, your `JSON.stringify` results may not be consistent. Please make sure that there are no such quirks as spaces in between the stringified JSON before trying to verify the webhook signature.
+
+Few languages like Python, and maybe if you are using a specific library for
+JSON processing, your `JSON.stringify` results may not be consistent. Please
+make sure that there are no such quirks as spaces in between the stringified
+JSON before trying to verify the webhook signature.
+
 :::
 
 ## Event details and descriptions
 
-In the following sections, we describe each event and the kind of data that is sent along with the webhook.
+In the following sections, we describe each event and the kind of data that is
+sent along with the webhook.
 
 ### meeting.started
 
@@ -129,7 +157,7 @@ This event is fired when the first participant joins a meeting.
 
 ```ts
 interface MeetingCreated {
-  event: "meeting.started";
+  event: 'meeting.started';
   meeting: Meeting;
 }
 ```
@@ -155,15 +183,17 @@ interface MeetingCreated {
 
 ### meeting.ended
 
-This event is fired 1 minute after all the participants leave the meeting or host end the meeting. We add a minute delay to make sure we don't end a meeting due to disconnects.
+This event is fired 1 minute after all the participants leave the meeting or
+host end the meeting. We add a minute delay to make sure we don't end a meeting
+due to disconnects.
 
 #### Structure of webhook body
 
 ```ts
 interface MeetingEnded {
-  event: "meeting.ended";
+  event: 'meeting.ended';
   meeting: Meeting;
-  reason: "ALL_PARTICIPANTS_LEFT" |  "HOST_ENDED_MEETING"
+  reason: 'ALL_PARTICIPANTS_LEFT' | 'HOST_ENDED_MEETING';
 }
 ```
 
@@ -195,7 +225,7 @@ This event is fired whenever a participant joins a meeting.
 
 ```ts
 interface MeetingParticipantJoined {
-  event: "meeting.participantJoined";
+  event: 'meeting.participantJoined';
   meeting: Meeting;
   participant: Participant;
 }
@@ -227,13 +257,14 @@ interface MeetingParticipantJoined {
 
 ### meeting.participantLeft
 
-This event is fired whenever a participant leaves a meeting. This event is also fired when a participant gets disconnected.
+This event is fired whenever a participant leaves a meeting. This event is also
+fired when a participant gets disconnected.
 
 #### Structure of webhook body
 
 ```ts
 interface MeetingParticipantLeft {
-  event: "meeting.participantLeft";
+  event: 'meeting.participantLeft';
   meeting: Meeting;
   participant: Participant;
 }
@@ -265,19 +296,24 @@ interface MeetingParticipantLeft {
 
 ### recording.statusUpdate
 
-This event is fired whenever there is a status update for a meeting recording. There are five such statuses for now:
+This event is fired whenever there is a status update for a meeting recording.
+There are five such statuses for now:
 
-- `INVOKED`: The recording function has been invoked and will start recording the meeting very shortly.
+- `INVOKED`: The recording function has been invoked and will start recording
+  the meeting very shortly.
 - `RECORDING`: The meeting is currently being recorded.
-- `UPLOADING`: The recording has been stopped and the file is being uploaded to cloud storage. The storage would be Dyte's if no storage parameters are passed in the recording API call.
+- `UPLOADING`: The recording has been stopped and the file is being uploaded to
+  cloud storage. The storage would be Dyte's if no storage parameters are passed
+  in the recording API call.
 - `UPLOADED`: The recording file upload is complete.
-- `ERRORED`: There was an error while recording the meeting and the file wouldn't be available.
+- `ERRORED`: There was an error while recording the meeting and the file
+  wouldn't be available.
 
 #### Structure of webhook body
 
 ```ts
 interface RecordingStatusUpdate {
-  event: "recording.statusUpdate";
+  event: 'recording.statusUpdate';
   meeting: Meeting;
   recording: Recording;
 }
@@ -418,15 +454,16 @@ interface RecordingStatusUpdate {
 
 ### livestreaming.statusUpdate
 
-This event is fired whenever there is a status update for a registered live stream. Eg, live stream started or ended.
+This event is fired whenever there is a status update for a registered live
+stream. Eg, live stream started or ended.
 
 #### Structure of webhook body
 
 ```ts
 interface LiveStreamStatus {
-  event: "livestreaming.statusUpdate";
+  event: 'livestreaming.statusUpdate';
   streamId: string;
-  status: "LIVE" | "OFFLINE";
+  status: 'LIVE' | 'OFFLINE';
 }
 ```
 

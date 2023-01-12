@@ -7,6 +7,7 @@ import {
   FlutterIcon,
   HTMLIcon,
   VueIcon,
+  JSIcon,
 } from './icons';
 
 const SECTIONS = [
@@ -29,7 +30,7 @@ const SECTIONS = [
   {
     name: 'JavaScript SDK',
     id: 'javascript',
-    icon: UIKitIcon,
+    icon: JSIcon,
     section: 'old-web-sdks',
   },
 
@@ -45,7 +46,7 @@ const SECTIONS = [
   // Web SDKs
   // - ui-sdk
   {
-    name: 'HTML Web Components',
+    name: 'Web Components',
     id: 'ui-kit',
     icon: HTMLIcon,
     section: 'ui-sdk',
@@ -74,7 +75,7 @@ const SECTIONS = [
   {
     name: 'JavaScript',
     id: 'web-core',
-    icon: UIKitIcon,
+    icon: JSIcon,
     section: 'core-sdk',
   },
 
@@ -83,6 +84,12 @@ const SECTIONS = [
     name: 'Android Core',
     id: 'android-core',
     icon: AndroidIcon,
+    section: 'mobile-core',
+  },
+  {
+    name: 'Flutter Core',
+    id: 'flutter-core',
+    icon: FlutterIcon,
     section: 'mobile-core',
   },
   {
@@ -142,10 +149,9 @@ const MULTI_SECTIONS = [
     {
       name: 'Plugin SDK for Web',
       section: 'plugin-sdk',
-      description: 'Build real-time collaborative apps using Dyte.'
+      description: 'Build real-time collaborative apps using Dyte.',
     },
-  ]
-
+  ],
 ];
 
 export { SECTIONS, MULTI_SECTIONS };

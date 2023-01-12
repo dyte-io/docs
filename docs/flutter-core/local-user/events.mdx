@@ -1,0 +1,56 @@
+---
+title: Events
+description: Local user events guide.
+sidebar_position: 2
+tags: [mobile-core, local-user, self]
+---
+
+# Local User - Events
+
+You can subscribe to various events on the local user by implementing
+`DyteSelfEventsListener` and passing the object to
+`meeting.addSelfEventsListener(dyteSelfEventsListener)`.
+
+### Room joined
+
+Triggered when the room join event completes and now the meeting is ready to
+produce and consume media. While implementing `DyteSelfEventsListener` we have :
+
+```dart
+  void onMeetingRoomJoined() {
+    // When the local user joins the meeting room, this callback is triggered
+    // We can handle the state here.
+  }
+
+```
+
+### Video update
+
+Triggered when the user starts / stops the video using `enableVideo` or
+`disableVideo`
+
+```dart
+ void onVideoUpdate(bool videoEnabled) {
+  if(isVideoEnabled){
+    // Video is enabled, other users can see the video.
+  } else {
+    // Video is disabled, others users can't see the video.
+  }
+ }
+```
+
+### Audio update
+
+Triggered when the user starts / stops the audio using `enableAudio` or
+`disableAudio`
+
+```dart
+  void onAudioUpdate(bool audioEnabled) {
+    if (audioEnabled) {
+        // audio is enabled, and other participants in room can hear local user
+      } else {
+        // audio is disabled, and other participants in room can not hear local user.
+      }
+  }
+
+```

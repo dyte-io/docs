@@ -4,9 +4,18 @@ sidebar_position: 2
 
 # Quickstart
 
-Get the `roomName` for the meeting and the participant's `authToken` from our backend APIs (read more about our server APIs [here](/api/)), and pass them to Dyte's client SDK.
-To launch the meeting in your app the setup is straightforward.
-This will launch a fullscreen view with your meeting.
+:::info Before Getting Started
+
+Before you start integrating Dyte into your application, make sure you've read
+the [Getting Started with Dyte](/getting-started) topic and completed the steps
+in the [Integrate Dyte](/getting-started#integrate-dyte) section.
+
+:::
+
+Get the `roomName` for the meeting and the participant's `authToken` from our
+backend APIs (read more about our server APIs [here](/api/)), and pass them to
+Dyte's client SDK. To launch the meeting in your app the setup is
+straightforward. This will launch a fullscreen view with your meeting.
 
 <Tabs
 groupId="android-language"
@@ -54,10 +63,10 @@ DyteMeetingInfo meetingInfo = new DyteMeetingInfo(
     "YOUR_ORG_ID_HERE",
     "ROOM_NAME_HERE",
     "AUTH_TOKEN_HERE",
-    true, // enable audio 
+    true, // enable audio
     true, // enable video
-    "BASE_URL_HERE", 
-    "this is name" // display name here 
+    "BASE_URL_HERE",
+    "this is name" // display name here
 );
 // pass in activity context for the SDK
 DyteUIKitConfig config = new DyteUIKitConfig(
@@ -67,7 +76,7 @@ DyteUIKitConfig config = new DyteUIKitConfig(
 // initialise an instance
 DyteUIKit dyteUIKit = DyteUIKitBuilder.INSTANCE.build(config);
 // launch the activity
-dyteUIKit.loadUi();  
+dyteUIKit.loadUi();
 ```
 
 </TabItem>

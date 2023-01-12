@@ -29,20 +29,24 @@ export default function GuidesSection({ title, className }) {
         to="/guides/livestreaming-other-platforms"
       />
       <Card
-        title="Livestreaming to HLS"
+        title="Livestreaming API Integration Guide"
         description="Livestream to HLS using REST APIs"
-        to="/guides/livestreaming-rtmp-hls"
+        to="/guides/livestreaming-api-integration"
       />
       <Card
         title="Livestreaming any RTMP input"
-        description="Livestream to any service that accepts an RTMP input"
+        description="Dyte allows livestreaming, via RTMP as well as HLS, for all Dyte meetings."
         to="/guides/integrating-with-webhooks"
       />
-
       <Card
         title="Controlling an Active Session"
         description="Control an active meeting with REST APIs"
         to="/guides/controlling-an-active-session"
+      />
+      <Card
+        title="Exporting Chat Dump"
+        description="Programmatically retrieve all chat messages of a session using Chat Replay API."
+        to="/guides/exporting-chat-dump"
       />
     </Section>
   );

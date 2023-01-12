@@ -17,11 +17,13 @@ description: Details about the Design System in Dyte's UI Kit.
   </li>
 </ul>
 
-Read this blog post to know more: https://dyte.io/blog/new-dyte-video-sdk-design-system/
+Read this blog post to know more:
+https://dyte.io/blog/new-dyte-video-sdk-design-system/
 
 ## `provideDyteDesignSystem()` utility
 
-This is a very handy utility to configure the design system of UI Kit components programmatically, with very lines of code.
+This is a very handy utility to configure the design system of UI Kit components
+programmatically, with very lines of code.
 
 ```jsx live
 function Example() {
@@ -63,13 +65,15 @@ Read on to learn more about each token in detail.
 
 ## Design Tokens
 
-UI Kit uses [design tokens](https://css-tricks.com/what-are-design-tokens/) for it's design system.
+UI Kit uses [design tokens](https://css-tricks.com/what-are-design-tokens/) for
+it's design system.
 
-Design tokens are the design related values which are used to maintain a design system,
-which provides flexibility in customizing the overall design of a system with values such as:
-typography, spacing, colors etc.
+Design tokens are the design related values which are used to maintain a design
+system, which provides flexibility in customizing the overall design of a system
+with values such as: typography, spacing, colors etc.
 
-These design tokens are stored and shared among components with the help of [CSS variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties).
+These design tokens are stored and shared among components with the help of
+[CSS variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties).
 
 ### Typography
 
@@ -77,7 +81,8 @@ These design tokens are stored and shared among components with the help of [CSS
 --dyte-font-family: Inter;
 ```
 
-You can tweak the font family used in your UI Kit components easily with this token.
+You can tweak the font family used in your UI Kit components easily with this
+token.
 
 You can edit this value in two ways with the provideDyteDesignSystem utility.
 
@@ -93,7 +98,8 @@ const designTokens = {
 
 Set either of these values in your design tokens.
 
-1. With `fontFamily` 🪡 - Use a custom font family, you'll have to load the font manually.
+1. With `fontFamily` 🪡 - Use a custom font family, you'll have to load the font
+   manually.
 2. With `googleFont` ✨ - Use a google font, the font is loaded automatically.
 
 ### Colors
@@ -159,27 +165,34 @@ Here are all the color tokens, along with their default values.
 
 <ColorPalette
   name="Singular Colors"
-  shades={{ 'video-bg': '#181818', success: '#83D017', warning: '#FFCD07', danger: '#FF2D2D' }}
+  shades={{
+    'video-bg': '#181818',
+    success: '#83D017',
+    warning: '#FFCD07',
+    danger: '#FF2D2D',
+  }}
 />
 
 #### Usage
 
 :::info
 
-Note the exception of `text` and `text-on-brand` colors, you only specify a single color even though there are the following shades: 1000 - 600.
+Note the exception of `text` and `text-on-brand` colors, you only specify a
+single color even though there are the following shades: 1000 - 600.
 
-This is because the `provideDyteDesignSystem()` utility sets the color you pass to `text-1000` and calculates lighter shades and sets them as well.
+This is because the `provideDyteDesignSystem()` utility sets the color you pass
+to `text-1000` and calculates lighter shades and sets them as well.
 
 Only pass objects for `brand` and `background` colors.
 
 :::
 
-A set of commonly used `background` shades are available by default with the `theme` property.
+A set of commonly used `background` shades are available by default with the
+`theme` property.
 
 Theme values are: `light`, `dark`, `darkest`.
 
-Edit color tokens like this.
-Only the colors you specify will be set.
+Edit color tokens like this. Only the colors you specify will be set.
 
 ```js
 const designTokens = {
@@ -201,7 +214,8 @@ const designTokens = {
 /* ... rest of the spacing scale */
 ```
 
-The spacing scale is used for setting width, height, margins, paddings, positions etc. throughout the components.
+The spacing scale is used for setting width, height, margins, paddings,
+positions etc. throughout the components.
 
 - The default value for the spacing scale base is `4px`.
 - Rest of the values are calculated with this base, set to `--dyte-space-1`.
@@ -219,7 +233,8 @@ const designTokens = {
 
 ### Border Width & Border Radius
 
-Border Width and Border Radius properties can also be customized with design tokens!
+Border Width and Border Radius properties can also be customized with design
+tokens!
 
 | Token Name     | Values                                          |
 | :------------- | :---------------------------------------------- |

@@ -4,9 +4,15 @@ sidebar_position: 4
 
 # Customize the meeting UI
 
-Dyte offers a host of customizations for the UI of meetings, some of which also defines the interactions the participants can have within a meeting room. While the initial values for these options are picked up from the `preset` used to generate the `authToken`, you can override them at the client end based on specific use cases or events.
+Dyte offers a host of customizations for the UI of meetings, some of which also
+defines the interactions the participants can have within a meeting room. While
+the initial values for these options are picked up from the `preset` used to
+generate the `authToken`, you can override them at the client end based on
+specific use cases or events.
 
-Call the `updateUIConfig` method on [`meeting` instance](./reference/meeting) and pass the [`uiConfigOptions`](./reference/dyte-ui-config) as a parameter to this call.
+Call the `updateUIConfig` method on [`meeting` instance](./reference/meeting)
+and pass the [`uiConfigOptions`](./reference/dyte-ui-config) as a parameter to
+this call.
 
 ```dart
 meeting.updateUIConfig(uiConfigOptions);
@@ -14,7 +20,9 @@ meeting.updateUIConfig(uiConfigOptions);
 
 where `uiConfigOptions` is a `Map` of type `<String, dynamic>`.
 
-Described below are various different options that you can customize in a meeting. The complete reference for UI config options can be found [here](./reference/dyte-ui-config).
+Described below are various different options that you can customize in a
+meeting. The complete reference for UI config options can be found
+[here](./reference/dyte-ui-config).
 
 Here is a pictorial representation of all the config options defined below.
 
@@ -22,7 +30,8 @@ Here is a pictorial representation of all the config options defined below.
 
 ## Set your logo in the meeting room
 
-You can change the logo in the meeting room to reflect your brand or your organization.
+You can change the logo in the meeting room to reflect your brand or your
+organization.
 
 ```dart
 meeting.updateUIConfig({ 'logo': '<logoUrlString>' });
@@ -30,14 +39,17 @@ meeting.updateUIConfig({ 'logo': '<logoUrlString>' });
 
 ## Change the color scheme to your brand / theme
 
-You can change the color scheme of the meeting to reflect your brand and theme. Dyte allows you to specify four color values.
+You can change the color scheme of the meeting to reflect your brand and theme.
+Dyte allows you to specify four color values.
 
 - `primary`: color of the primary elements like participant name box
-- `secondary`: color of the secondary elements like control bar, control buttons, hover
+- `secondary`: color of the secondary elements like control bar, control
+  buttons, hover
 - `textPrimary`: color of the text elements
 - `videoBackground`: color behind the video when the video is turned off
 
-The default values for each of these are shown in the below example. Remember to specify all the colors, otherwise this feature won't work.
+The default values for each of these are shown in the below example. Remember to
+specify all the colors, otherwise this feature won't work.
 
 ```dart
 meeting.updateUIConfig({
@@ -54,7 +66,11 @@ meeting.updateUIConfig({
 
 ## Adjust the meeting size to a custom container
 
-The default behaviour of a meeting on Dyte is to take up the full viewport. However, if you want to customize the size of a meeting to fit within a certain container or `div`, you can do so by specifying the `width` and `height` under `dimensions` as numerical values which are taken as pixels (`px` in CSS). Remember to specify both, otherwise this feature won't work.
+The default behaviour of a meeting on Dyte is to take up the full viewport.
+However, if you want to customize the size of a meeting to fit within a certain
+container or `div`, you can do so by specifying the `width` and `height` under
+`dimensions` as numerical values which are taken as pixels (`px` in CSS).
+Remember to specify both, otherwise this feature won't work.
 
 ```dart
 meeting.updateUIConfig({
@@ -67,7 +83,9 @@ meeting.updateUIConfig({
 
 ## Make the meeting fit your container size (dynamic)
 
-Similarly, if you want to make the size of a meeting dynamically fit to within the bounds of its parent container or `div`, you can do so by specifying the `mode` under `dimensions` and set the value to `fillParent`.
+Similarly, if you want to make the size of a meeting dynamically fit to within
+the bounds of its parent container or `div`, you can do so by specifying the
+`mode` under `dimensions` and set the value to `fillParent`.
 
 ```dart
 meeting.updateUIConfig({
@@ -79,13 +97,15 @@ meeting.updateUIConfig({
 
 :::caution
 
-Use either the `width` and `height` OR the `mode` under `dimensions`, but not both.
+Use either the `width` and `height` OR the `mode` under `dimensions`, but not
+both.
 
 :::
 
 ## Hide the bottom control bar
 
-You can hide the bottom control bar by setting `controlBar` to `false` in config. The default value is `true`, which means the control bar is visible.
+You can hide the bottom control bar by setting `controlBar` to `false` in
+config. The default value is `true`, which means the control bar is visible.
 
 ```dart
 meeting.updateUIConfig({ 'controlBar': true });
@@ -95,7 +115,9 @@ meeting.updateUIConfig({ 'controlBar': true });
 
 ## Hide individual controls from the bottom control bar
 
-You can hide individual controls from the bottom control bar by setting their respective options to `false` in the config. The default value is `true` for all controls, which means all the controls are visible.
+You can hide individual controls from the bottom control bar by setting their
+respective options to `false` in the config. The default value is `true` for all
+controls, which means all the controls are visible.
 
 ```dart
 meeting.updateUIConfig({
@@ -112,11 +134,15 @@ meeting.updateUIConfig({
 });
 ```
 
-<VideoPlayer src="/static/mobile/0.x.x/mobile-control-bar-elements.mp4" mobile />
+<VideoPlayer
+  src="/static/mobile/0.x.x/mobile-control-bar-elements.mp4"
+  mobile
+/>
 
 ## Hide the header bar
 
-You can hide the header bar by setting `header` to `false` in config. The default value is `true`, which means the header is visible.
+You can hide the header bar by setting `header` to `false` in config. The
+default value is `true`, which means the header is visible.
 
 ```dart
 meeting.updateUIConfig({ 'header': true });
@@ -126,7 +152,9 @@ meeting.updateUIConfig({ 'header': true });
 
 ## Hide individual controls from the header bar
 
-You can hide individual elements from the header bar by setting their respective options to `false` in the config. The default value is `true` for all elements, which means all the elements are visible.
+You can hide individual elements from the header bar by setting their respective
+options to `false` in the config. The default value is `true` for all elements,
+which means all the elements are visible.
 
 ```dart
 meeting.updateUIConfig({

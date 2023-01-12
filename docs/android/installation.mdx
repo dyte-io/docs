@@ -5,7 +5,9 @@ slug: /
 
 # Installation
 
-1. In your project, add the Maven repository `https://maven.dyte.in`. The repository typically goes into the `build.gradle` file in the root of your project.
+1. In your project, add the Maven repository `https://maven.dyte.in`. The
+   repository typically goes into the `build.gradle` file in the root of your
+   project.
 
 ```groovy
 allprojects {
@@ -16,7 +18,8 @@ allprojects {
 }
 ```
 
-2. Add the dependency `com.dyteclientmobile:sdk`. Dependency definitions belong in the individual module `build.gradle` files.
+2. Add the dependency `com.dyteclientmobile:sdk`. Dependency definitions belong
+   in the individual module `build.gradle` files.
 
 ```groovy
 dependencies {
@@ -27,7 +30,8 @@ dependencies {
 
 :::info
 
-The below instructions are for the release builds, debug builds should work without any additional steps.
+The below instructions are for the release builds, debug builds should work
+without any additional steps.
 
 :::
 
@@ -57,7 +61,8 @@ The below instructions are for the release builds, debug builds should work with
 -keep class io.ktor.** { *; }
 ```
 
-3. In your `android/app/build.gradle` edit the release configuration and add the following line importing the proguard configuration
+3. In your `android/app/build.gradle` edit the release configuration and add the
+   following line importing the proguard configuration
 
 ```groovy
 buildTypes {
@@ -72,6 +77,10 @@ buildTypes {
 
 ## Configure the meeting connection
 
-You need to pass a [`DyteUIKitConfig`](./reference/dyte-ui-kit-config) to [`DyteUIKitBuilder`](./reference/dyte-ui-kit-builder) to define which meeting should the client connect to and a couple of other setup parameters, out of which only `authToken` and `roomName` are mandatory.
+You need to pass a [`DyteUIKitConfig`](./reference/dyte-ui-kit-config) to
+[`DyteUIKitBuilder`](./reference/dyte-ui-kit-builder) to define which meeting
+should the client connect to and a couple of other setup parameters, out of
+which only `authToken` and `roomName` are mandatory.
 
-`DyteUIKitBuilder` is a static class and can be used to control and observe the meeting from anywhere in your application.
+`DyteUIKitBuilder` is a static class and can be used to control and observe the
+meeting from anywhere in your application.

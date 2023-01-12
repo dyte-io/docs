@@ -1,0 +1,128 @@
+---
+title: Introduction
+description: Create, receive and interact with polls in a meeting.
+sidebar_position: 1
+tags: [mobile-core, polls]
+---
+
+# Introduction
+
+The meetings polls object can be accessed using `meeting.polls`. It provides
+methods to create polls, vote, and more.
+
+`meeting.polls.polls` returns an array of all polls created in a meeting, where
+each element is an object of type `DytePollMessage`.
+
+The type `DytePollMessage` is defined in the following manner.
+
+```dart
+import 'dart:convert';
+
+class DytePollMessage {
+  final String id;
+  final String question;
+  final bool anonymous;
+  final bool hideVotes;
+  final String createdBy;
+  final List<DytePollOption> options;
+  DytePollMessage({
+    required this.id,
+    required this.question,
+    required this.anonymous,
+    required this.hideVotes,
+    required this.createdBy,
+    required this.options,
+  });
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'id': id,
+      'question': question,
+      'anonymous': anonymous,
+      'hideVotes': hideVotes,
+      'createdBy': createdBy,
+      'options': options.map((x) => x.toMap()).toList(),
+    };
+  }
+
+  factory DytePollMessage.fromMap(Map<String, dynamic> map) {
+    return DytePollMessage(
+      id: map['id'],
+      question: map['question'],
+      anonymous: map['anonymous'],
+      hideVotes: map['hideVotes'],
+      createdBy: map['createdBy'],
+      options: List<DytePollOption>.from(
+          map['options'].map((x) => DytePollOption.fromMap(x))),
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory DytePollMessage.fromJson(String source) =>
+      DytePollMessage.fromMap(json.decode(source));
+}
+
+class DytePollOption {
+  final String text;
+  final List<DytePollVote> votes;
+  final int count;
+  DytePollOption({
+    required this.text,
+    required this.votes,
+    required this.count,
+  });
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'text': text,
+      'votes': votes.map((x) => x.toMap()).toList(),
+      'count': count,
+    };
+  }
+
+  factory DytePollOption.fromMap(Map<String, dynamic> map) {
+    return DytePollOption(
+      text: map['text'],
+      votes: List<DytePollVote>.from(
+          map['votes'].map((x) => DytePollVote.fromMap(x))),
+      count: map['count']?.toInt(),
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory DytePollOption.fromJson(String source) =>
+      DytePollOption.fromMap(json.decode(source));
+}
+
+class DytePollVote {
+  final String id;
+  final String name;
+
+  DytePollVote({
+    required this.id,
+    required this.name,
+  });
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'id': id,
+      'name': name,
+    };
+  }
+
+  factory DytePollVote.fromMap(Map<String, dynamic> map) {
+    return DytePollVote(
+      id: map['id'],
+      name: map['name'],
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory DytePollVote.fromJson(String source) =>
+      DytePollVote.fromMap(json.decode(source));
+}
+
+```

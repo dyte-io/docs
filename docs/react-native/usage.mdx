@@ -6,13 +6,18 @@ sidebar_position: 3
 
 ## Include Dyte's React Native component in your app
 
-[`DyteMeeting`](./reference/dyte-meeting) is a React Native component that can be included in your React Native application to show the Dyte Meeting UI.
+[`DyteMeeting`](./reference/dyte-meeting) is a React Native component that can
+be included in your React Native application to show the Dyte Meeting UI.
 
-It has 3 mandatory and 2 optional properties. The mandatory ones are defined below along with their usage, and the optional ones can be found [here in the advanced usage](./advanced-usage#turn-on-the-setup--preview-screen) page.
+It has 3 mandatory and 2 optional properties. The mandatory ones are defined
+below along with their usage, and the optional ones can be found
+[here in the advanced usage](./advanced-usage#turn-on-the-setup--preview-screen)
+page.
 
 ### Pass Client ID for verification
 
-You need to pass a `clientId` prop to `DyteMeeting` to verify the participant's `authToken` against.
+You need to pass a `clientId` prop to `DyteMeeting` to verify the participant's
+`authToken` against.
 
 ```jsx {2}
 <DyteMeeting
@@ -22,7 +27,9 @@ You need to pass a `clientId` prop to `DyteMeeting` to verify the participant's 
 
 ### Configure the meeting connection
 
-You need to pass a `meetingConfig` prop to `DyteMeeting` to define which meeting should the client connect to and a couple of other setup parameters, out of which only `authToken` and `roomName` are mandatory.
+You need to pass a `meetingConfig` prop to `DyteMeeting` to define which meeting
+should the client connect to and a couple of other setup parameters, out of
+which only `authToken` and `roomName` are mandatory.
 
 ```jsx {3-6}
 <DyteMeeting
@@ -36,7 +43,11 @@ You need to pass a `meetingConfig` prop to `DyteMeeting` to define which meeting
 
 ### Get meeting instance on successful creation
 
-You need to pass an `onInit` prop to `DyteMeeting` to get reference to the meeting instance that is created. `onInit` expects a function which has a single param of type [`Meeting`](./reference/meeting) and is not expected to return anything. This `Meeting` reference can be used to take further actions and make customizations to the meeting.
+You need to pass an `onInit` prop to `DyteMeeting` to get reference to the
+meeting instance that is created. `onInit` expects a function which has a single
+param of type [`Meeting`](./reference/meeting) and is not expected to return
+anything. This `Meeting` reference can be used to take further actions and make
+customizations to the meeting.
 
 ```jsx {2}
 <DyteMeeting
