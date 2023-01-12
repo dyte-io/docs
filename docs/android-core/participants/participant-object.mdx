@@ -22,29 +22,34 @@ The participant object has the following properties.
 - `clientSpecificId`: An arbitrary ID that can be set to identify the
   participant.
 - `videoTrack`: The video track of the participant.
-- `audioTrack`: The audio track of the participant.
-- `screenShareTracks`: The video and audio (if any) track of the participant's
+- `screenShareTrack`: The video and audio (if any) track of the participant's
   screen share stream.
 - `videoEnabled`: Set to true if the participant's camera is on.
 - `audioEnabled`: Set to true if the participant is unmuted.
+- `isScreenShareParticipant`: Set to true if the participant is a screenshare participant.
+- `isPinned`: True if current user is pinned in the meering roomm
 
-To be able to listen to participant updates you can use
-`DyteParticipantEventsListener`, pass object of this call using
-`meeting.addParticipantEventsListener(dyteParticipantEventsListener)`.
+## To get Video view of a given participant
+You can call `participant.getVideoView()` which will return a View which further can used to add in any View Group in android.
 
+## Audio/Video updates for participant
+  
+You can listen to audio/video changes for a single participant by calling `addParticipantUpdateListener(listener: DyteParticipantUpdateListener)` on any participant object.
 ```kotlin
-    private val dyteParticipantEventsListener = object : DyteParticipantEventsListener {
-        override fun audioUpdate(audioEnabled: Boolean, participant: DyteMeetingParticipant) {
-            super.audioUpdate(audioEnabled, participant)
-            // audio toggle for participant
-        }
+dyteParticipant.addParticipantUpdateListener(object : DyteParticipantUpdateListener {
+      override fun onAudioUpdate(participant: DyteMeetingParticipant, isEnabled: Boolean) {
+        super.onAudioUpdate(participant, isEnabled)
+        // on audio update
+      }
 
-        override fun videoUpdate(videoEnabled: Boolean, participant: DyteMeetingParticipant) {
-            super.videoUpdate(videoEnabled, participant)
-            // videp toggle for participant
-        }
-    }
+      override fun onVideoUpdate(participant: DyteMeetingParticipant, isEnabled: Boolean) {
+        super.onVideoUpdate(participant, isEnabled)
+        // on video update
+      }
+    })
 ```
+Also make sure to remove event listener when they are no longer used. You can remove DyteParticipantUpdateListener by calling `removeParticipantUpdateListener(listener)`
+
 
 ## Host controls methods
 
@@ -67,6 +72,6 @@ participant.kick();
 // to pin a participant in a meeting
 participant.pin();
 
-// to retrieve the participant who is already pinned in a meeting
-meeting.participants.pinnedParticipant()
+// to retrieve if current participant is already pinned in a meeting
+participant.isPinned
 ```

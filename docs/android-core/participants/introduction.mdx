@@ -5,18 +5,13 @@ sidebar_position: 1
 tags: [mobile-core, participants, participant]
 ---
 
-# Introduction - Participants
+# Introduction - Room paricipants
 
 The data regarding all meeting participants is stored under
 `meeting.participants`. Use the methods and events to consume the participants
-data. For example, to get all the participants who joined the meeting:
+data. 
 
-```kotlin
-// get all joined participants
-val joinedParticipants = meeting.participants.joined;
-```
-
-The `meeting.participants` object has the following properties.
+## Room participants object.
 
 - `joined`: A list that contains all the participants who have joined the
   meeting.
@@ -24,22 +19,44 @@ The `meeting.participants` object has the following properties.
   meeting.
 - `active`: A list that contains all the participants except the local user who
   are supposed to be on the screen at the moment
-- `pinned`: A list that contains all the pinned participants of the meeting.
+- `pinned`: A nullable participant object. If any participant is pinned is that participant else it is null.
 - `screenshares`: A list that contains all the participants who have shared
   screen in the meeting.
+- `gridInfo`: This object has all data related to pages in the room.
+
+Each participant in each of the `joined`, `waitlisted`, `active` and
+`screenshares` list is of type `DyteMeetingParticipant`.
+
+For example, to get all the participants who joined the meeting:
+```kotlin
+// get all joined participants
+val joinedParticipants = meeting.participants.joined;
+```
+
+For example, to get all the active participants in the meeting:
+```kotlin
+// get all active participants
+val joinedParticipants = meeting.participants.active;
+```
 
 Therefore, if you were to make a grid of participants, you'd use the `active`
 list, but to display all participants in the meeting you'd use the `joined`
 list.
 
-Each participant in each of the `joined`, `waitlisted`, `active`, `pinned` and
-`screenshares` list is of type `DyteMeetingParticipant`.
+## Grid info for the room
 
-You can subscribe to various events on the participants by implementing
-`DyteParticipantEventsListener` and passing the object to
-`meeting.addParticipantEventsListener(dyteParticipantEventsListener)`.
+Following object can be retrieved from `meeting` object by using `meeting.participants.gridInfo`. This object will have necessary information regarding pageCount, next page, previos page, current page, etc.
 
-### Video update
+```kotlin
+  val pageCount: Int 
+  val currentPageNumber: Int
+  val isNextPagePossible: Boolean,
+  val isPreviousPagePossible: Boolean,
+  val shouldShowPaginator: Boolean,
+  val maxVideoCountPerPage: Int
+```
+
+## Video update for all participants
 
 Triggered when the user starts / stops the video using `enableVideo` or
 `disableVideo`
@@ -57,13 +74,10 @@ meeting.self.addParticipantEventsListener(object : DyteParticipantEventsListener
 })
 ```
 
-### Audio update
-
-Triggered when the user starts / stops the audio using `enableAudio` or
-`disableAudio`
+## Audio update for all partcipants
 
 ```kotlin
-meeting.self.addSelfEventsListener(object : DyteSelfEventsListener {
+meeting.self.addParticipantEventsListener(object : DyteParticipantEventsListener {
     override fun audioUpdate(audioEnabled: Boolean, participant: DyteMeetingParticipant) {
       super.audioUpdate(audioEnabled, participant)
       if (audioEnabled) {
@@ -73,20 +87,6 @@ meeting.self.addSelfEventsListener(object : DyteSelfEventsListener {
       }
     }
 })
-```
-
-## Set mode of pagination
-
-The SDK allows you to view grid in two differant modes. First is `Grid` where
-SDK gives you list of `active` participants to show. Second is `Paginated` where
-user decides which page to view.
-
-```kotlin
-// for grid mode
-meeting.participants.setMode(PageViewMode.GRID)
-
-// for paginated mode
-meeting.participants.setMode(PageViewMode.PAGINATED)
 ```
 
 ## Move between pages in paginated mode

@@ -19,7 +19,7 @@ The DyteMobileClient is the main class of the SDK. It is the main entry point of
 the SDK. It is the only class that you need to instantiate in order to use the
 SDK. To instantiate DyteMobileClient, you should use
 `DyteAndroidClientBuilder.build(activity)` and pass your activity instance
-there.:
+there.
 
 ```kotlin
 val meeting = DyteAndroidClientBuilder.build(activity);
@@ -30,18 +30,40 @@ connection to the meeting server, you can do that with
 
 ```kotlin
 val meetingInfo = DyteMeetingInfo(
-    orgId = ORGNIZATION_ID,
     roomName = MEETING_ROOM_NAME,
     authToken = AUTH_TOKEN
 )
-meeting.init(meetingInfo, activity)
+meeting.init(meetingInfo)
 ```
 
-`orgId`, `baseUrl` can be found at
-[Dyte developer portal](https://dev.dyte.in/). You can get the `roomName` and
+You can get the `roomName` and
 `authToken` using our backend APIs. Please refer
-[this for room name](https://docs.dyte.io/api#/operations/createMeeting) &
-[this for auth token](https://docs.dyte.io/api#/operations/addParticipant)
+[for room name](https://docs.dyte.io/api#/operations/create_meeting) &
+[for auth token](https://docs.dyte.io/api#/operations/add_participant)
+
+:::info Init meeting event listeners
+Once you call `init()`, you can listen to callbacks for this action on meeting object by registering observer as follows.
+```kotlin
+meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
+    override fun onMeetingInitStarted() {
+      super.onMeetingInitStarted()
+      // on meeting init started
+    }
+
+    override fun onMeetingInitCompleted() {
+      super.onMeetingInitCompleted()
+      // on meeting init completed
+    }
+
+    override fun onMeetingInitFailed(exception: Exception) {
+      super.onMeetingInitFailed(exception)
+      // on meeting init failed
+    }
+  })
+```
+:::
+
+
 
 Now to join in the room, use
 
@@ -49,4 +71,50 @@ Now to join in the room, use
 meeting.joinRoom()
 ```
 
+:::info Join room event listeners
+Once you call `joinRoom()`, you can listen to callbacks for this action on meeting object by registering observer as follows.
+```kotlin
+meeting.addSelfEventsListener(object : DyteSelfEventsListener {
+    override fun onMeetingRoomJoinStarted() {
+      super.onMeetingRoomJoinStarted()
+      // meeting join started
+    }
+
+    override fun onMeetingRoomJoined() {
+      super.onMeetingRoomJoined()
+      // meeting room joined succesfully
+    }
+
+    override fun onMeetingRoomJoinFailed(exception: Exception) {
+      super.onMeetingRoomJoinFailed(exception)
+      // error in joining meeting room.
+    }
+  })
+```
+:::
+
 And voila, you just joined a room with Dyte's mobile SDK.
+
+Similarely to leave the meeting you can call `leaveRoom()` on `meeting` object.
+
+```kotlin
+meeting.leaveRoom()
+```
+
+:::info Leave room event listeners
+You can listen to `leaveRoom()` callbacks by registering obsever on meeting object as follows
+```kotlin
+meeting.addSelfEventsListener(object : DyteMeetingRoomEventsListener {
+    override fun onMeetingRoomLeaveStarted() {
+      super.onMeetingRoomLeaveStarted()
+      // meeting room leave started
+    }
+
+    override fun onMeetingRoomLeft() {
+      super.onMeetingRoomLeft()
+      // meeting room leave completed
+    }
+  })
+```
+
+:::
