@@ -4,9 +4,11 @@ description: Install plugin-sdk.
 sidebar_position: 1
 tags: [plugin-sdk, installation, setup]
 ---
+
 # Installation
 
-The Plugin SDK powers your plugin with realtime capabilities. You can install the SDK using the following utilities.
+The Plugin SDK powers your plugin with realtime capabilities. You can install
+the SDK using the following utilities.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -43,23 +45,24 @@ yarn add @dytesdk/plugin-sdk
   </TabItem>
 </Tabs>
 
-Here's an example of an easy plugin that sends a welcome message whenever a new person joins the meeting.
+Here's an example of an easy plugin that sends a welcome message whenever a new
+person joins the meeting.
 
-:::tip
-Try using `const plugin = DytePlugin.init({ready: false})` and then call `plugin.ready()` when you want the plugin to start communicating with the Client SDK.
-:::
+:::tip Try using `const plugin = DytePlugin.init({ready: false})` and then call
+`plugin.ready()` when you want the plugin to start communicating with the Client
+SDK. :::
 
 ```ts
-import DytePlugin from "@dytesdk/plugin-sdk";
+import DytePlugin from '@dytesdk/plugin-sdk';
 
 const plugin = DytePlugin.init();
 await plugin.stores.populate('storeName');
 
-plugin.room.on('peerJoined', async () => { 
-    const message: ChatMessage = { 
-        type: 'text',
-        message: 'A new user has joined!',
-    };
-    await plugin.room.sendChatMessage(message);
+plugin.room.on('peerJoined', async () => {
+  const message: ChatMessage = {
+    type: 'text',
+    message: 'A new user has joined!',
+  };
+  await plugin.room.sendChatMessage(message);
 });
 ```
