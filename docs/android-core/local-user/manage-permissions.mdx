@@ -10,8 +10,10 @@ tags: [mobile-core, local-user, self, self events]
 To get media permissions (audio/video) for localUser we can do as follows
 
 ```kotlin
-    val isCameraPermissionGranted = meeting.localUser.isCameraPermissionGranted
-    val isMicrophonePermissionGranted = meeting.localUser.isMicrophonePermissionGranted
+val isCameraPermissionGranted 
+  = meeting.localUser.isCameraPermissionGranted
+val isMicrophonePermissionGranted 
+  = meeting.localUser.isMicrophonePermissionGranted
 ```
 
 Similarely to listen to callbacks regarding media permissions once user joins
