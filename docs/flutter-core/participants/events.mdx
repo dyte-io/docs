@@ -2,13 +2,13 @@
 title: Participant Events
 description: Event handling for participants.
 sidebar_position: 3
-tags: [mobile-core, participants, self]
+tags: [flutter-core, participants, self]
 ---
 
 You can subscribe to events for all participants by implementing
 `DyteParticipantEventsListener` callback and then passing that object to
-`ref.watch(dyteClient).addParticipantEventsListener(dyteParticipantEventsListener)` method.
-Here are the supported methods:
+`ref.watch(dyteClient).addParticipantEventsListener(dyteParticipantEventsListener)`
+method. Here are the supported methods:
 
 ### Page change
 
@@ -22,12 +22,15 @@ Here are the supported methods:
     }
 ```
 
-`DyteGridPagesInfo` can be used for pagination purposes and contains following info:
+`DyteGridPagesInfo` can be used for pagination purposes and contains following
+info:
+
 - `pageCount`: Total page that will contain all the participants.
 - `currentPageNumber`: Current page number that was returned (indexed from 0)
-- `shouldShowPaginator`: Should it show paginator or not. (dots at the bottom of the Video Views)
+- `shouldShowPaginator`: Should it show paginator or not. (dots at the bottom of
+  the Video Views)
 - `isNextPagePossible`: Bool whether the next page is available or not.
-- `isPreviousPagePossible`: Bool whether the previous page is available or not. 
+- `isPreviousPagePossible`: Bool whether the previous page is available or not.
 
 ### Participant joined
 
@@ -103,7 +106,9 @@ Trigger an event when any participant starts / stops screen share.
 ```
 
 ### Participants updated
-Triggers an event when participants are updated, and therefore return the new DyteGridPagesInfo
+
+Triggers an event when participants are updated, and therefore return the new
+DyteGridPagesInfo
 
 ```dart
     @override
@@ -116,11 +121,26 @@ Triggers an event when participants are updated, and therefore return the new Dy
       }
 ```
 
-Other callbacks: 
+Other callbacks:
 
-- <span style={{fontSize:"1em", fontWeight:"bold"}}>onActiveSpeakerChanged(DyteMeetingParticipant participant)</span>: Triggered when active speaker is changed to <code>participant</code>.
-- <span style={{fontSize:"1em", fontWeight:"bold"}}>onNoActiveSpeaker()</span>: Triggered when there is no active participant.
-- <span style={{fontSize:"1em", fontWeight:"bold"}}>onParticipantPinned(DyteMeetingParticipant participant)</span>: Triggered when the <code>participant</code> is pinned.
-- <span style={{fontSize:"1em", fontWeight:"bold"}}>onParticipantUnpinned()</span>: Trigerred when participant is unpinned.
-- <span style={{fontSize:"1em", fontWeight:"bold"}}>onActiveParticipantsChanged(`required List DyteMeetingParticipant activeParticipants)</span>: Triggered when active participants changes to <code>activeParticipants</code>
-
+- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
+    onActiveSpeakerChanged(DyteMeetingParticipant participant)
+  </span>
+  : Triggered when active speaker is changed to <code>participant</code>.
+- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
+    onNoActiveSpeaker()
+  </span>
+  : Triggered when there is no active participant.
+- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
+    onParticipantPinned(DyteMeetingParticipant participant)
+  </span>
+  : Triggered when the <code>participant</code> is pinned.
+- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
+    onParticipantUnpinned()
+  </span>
+  : Trigerred when participant is unpinned.
+- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
+    onActiveParticipantsChanged(`required List DyteMeetingParticipant
+    activeParticipants)
+  </span>
+  : Triggered when active participants changes to <code>activeParticipants</code>

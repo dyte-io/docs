@@ -2,19 +2,21 @@
 title: Introduction
 description: Events, methods and data pertaining to meeting participants.
 sidebar_position: 1
-tags: [mobile-core, participants, participant]
+tags: [flutter-core, participants, participant]
 ---
 
 # Introduction - Participants
 
-The data regarding all meeting participants is stored under
-`participants` objects of `DyteMobileClient()` provider. 
-To get all the objects and methods related to participants:
+The data regarding all meeting participants is stored under `participants`
+objects of `DyteMobileClient()` provider. To get all the objects and methods
+related to participants:
+
 ```dart
   final participants = ref.watch(dyteClient).particiants;
-``` 
-Use the methods and events to consume the participants
-data. For example, to get all the participants who joined the meeting:
+```
+
+Use the methods and events to consume the participants data. For example, to get
+all the participants who joined the meeting:
 
 ```dart
 // get all joined participants
@@ -81,6 +83,5 @@ void audioUpdate({
 
 ```
 
-There are some other callbacks which we are'nt using in flutter frontend, what to do with them?
-
-
+There are some other callbacks which we are'nt using in flutter frontend, what
+to do with them?

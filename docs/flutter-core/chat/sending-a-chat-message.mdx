@@ -2,19 +2,20 @@
 title: Sending a chat message
 description: Send a chat message in a meeting.
 sidebar_position: 2
-tags: [mobile-core, chat]
+tags: [flutter-core, chat]
 ---
 
 # Sending a chat message
 
 As mentioned in [introduction](./introduction), there are 3 types of chat
-messages - `text`, `images`, and `file`. There are methods in `DyteChat`
-to send a message of each type.
+messages - `text`, `images`, and `file`. There are methods in `DyteChat` to send
+a message of each type.
 
 ## Send a text message
 
-To send a text message, the `ref.watch(dyteClient).chat.sendTextMessage()` method can be used.
-It take a string `message` as an argument and sends it to the room.
+To send a text message, the `ref.watch(dyteClient).chat.sendTextMessage()`
+method can be used. It take a string `message` as an argument and sends it to
+the room.
 
 ```dart
 final message = "Is this the real life?";
@@ -23,8 +24,9 @@ ref.watch(dyteClient).chat.sendTextMessage(message);
 
 ## Send an image
 
-You can send an image with the help of `ref.watch(dyteClient).chat.sendImageMessage()` and
-sends it to the participants in the meeting.
+You can send an image with the help of
+`ref.watch(dyteClient).chat.sendImageMessage()` and sends it to the participants
+in the meeting.
 
 ```dart
 final filePath = "file_path_of_image";

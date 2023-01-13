@@ -2,18 +2,18 @@
 title: Voting on a poll
 description: Voting on polls in a meeting.
 sidebar_position: 3
-tags: [web-core, polls, votes]
+tags: [flutter-core, polls, votes]
 ---
 
 # Voting on a poll
 
-The `ref.watch(dyteClient).polls.vote()` method can be used to register a vote on a poll. It
-accepts the following params.
+The `ref.watch(dyteClient).polls.vote()` method can be used to register a vote
+on a poll. It accepts the following params.
 
-| Param         | Type            | Default Value | Required | Description                                                |
-| -----         | ------          | ------------- | -------- | ------------------------------------------                 |
-| pollMessage   | DytePollMessage | -             | yes      | Contains all the poll properties (question, options, etc.) |
-| pollOption    | DytePollOption  | yes           | yes      | Option on which the user voted                             |
+| Param       | Type            | Default Value | Required | Description                                                |
+| ----------- | --------------- | ------------- | -------- | ---------------------------------------------------------- |
+| pollMessage | DytePollMessage | -             | yes      | Contains all the poll properties (question, options, etc.) |
+| pollOption  | DytePollOption  | yes           | yes      | Option on which the user voted                             |
 
 The following snippet votes for the 1st option on the 1st poll created in the
 meeting.

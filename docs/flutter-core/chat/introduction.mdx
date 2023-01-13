@@ -2,44 +2,52 @@
 title: Introducing chat
 description: Send and receive chat messages in a meeting.
 sidebar_position: 1
-tags: [mobile-core, chat]
+tags: [flutter-core, chat]
 ---
 
 # Introduction
 
-The meeting chat object is stored in `ref.watch(dyteClient).chat`, which has methods for
-sending and receiving messages. There are 3 types of messages that can be sent
-in chat - text messages, images, and files.
+The meeting chat object is stored in `ref.watch(dyteClient).chat`, which has
+methods for sending and receiving messages. There are 3 types of messages that
+can be sent in chat - text messages, images, and files.
 
-The `ref.watch(dyteClient).chat.messages` array contains all the messages that have been sent
-in the chat. This is an array of objects, where each object is of type
-`DyteChatMessage`.
+The `ref.watch(dyteClient).chat.messages` array contains all the messages that
+have been sent in the chat. This is an array of objects, where each object is of
+type `DyteChatMessage`.
 
 The `DyteChatMessage` class has the following properties:
+
 - `userId` : UserID of the sender.
 - `displayName` : Display name of the sender.
 - `read` : Boolean whether the message is read or not.
 - `pluginId` : Plugin ID of the message.
-- `type` : `DyteMessageType` for type of message being sent (whether `DyteMessageType.text`, `DyteMessageType.image` or `DyteMessageType.file`).
+- `type` : `DyteMessageType` for type of message being sent (whether
+  `DyteMessageType.text`, `DyteMessageType.image` or `DyteMessageType.file`).
 
-There are 3 message classes that extends `DyteChatMessage`, and each has some extra parameter apart from `DyteChatMessage` ones:
+There are 3 message classes that extends `DyteChatMessage`, and each has some
+extra parameter apart from `DyteChatMessage` ones:
+
 - `DyteTextMessage`
 - `DyteImageMessage`
-- `DyteFileMessage` 
+- `DyteFileMessage`
 
 #### DyteTextMessage:
+
 - `message`: Text message sent.
 
 #### DyteImageMessage:
+
 - `link`: URL to the bucket where the image is stored.
 - `fileUri`: Local path URL of image selected.
 - `fileName`: Name of image selected.
 
 #### DyteFileMessage:
+
 - `name`: Name of the file to be sent.
 - `fileUri`: Local path URL of the file selected.
 
 <--
+
 ```dart
 import 'dart:convert';
 

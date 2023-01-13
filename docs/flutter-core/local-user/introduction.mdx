@@ -2,13 +2,13 @@
 title: Introduction
 description: Local user setup guide.
 sidebar_position: 1
-tags: [mobile-core, local-user, self]
+tags: [flutter-core, local-user, self]
 ---
 
 # Introduction - Local User
 
-Local User object contain all the methods and properties about the local user 
-media controls for the current room. 
+Local User object contain all the methods and properties about the local user
+media controls for the current room.
 
 ## Properties
 
@@ -18,7 +18,8 @@ Here is a list of properties that local user provides:
 - `userId`: The `userId` of the participant.
 - `name`: Contains Name of the local user.
 - `picture`: Link to the url of the participant
-- `isHost`: Boolean value indicating whether this user is host of current meeting or not.
+- `isHost`: Boolean value indicating whether this user is host of current
+  meeting or not.
 - `clientSpecificId`: Identifier provided by the developer while adding the
   participant.
 - `flags`: Type `ParticipantFlags` and it contains two boolean values
@@ -27,10 +28,12 @@ Here is a list of properties that local user provides:
 - `audioEnabled`: Boolean value indicating if the audio currently enabled.
 - `videoEnabled`: Boolean value indicating if the video currently enabled.
 
-Local user properties can be fetched via `localUser` getter on obtained `dyteClient` provider.
+Local user properties can be fetched via `localUser` getter on obtained
+`dyteClient` provider.
+
 ```dart
 final localUserProperties = ref.watch(dyteClient).localUser;
-``` 
+```
 
 ## Change default audio / video settings
 
@@ -38,7 +41,7 @@ By default as soon as you join the meeting, Dyte SDK will produce your video and
 audio streams. To change this behaviour, use the `audioEnabled` & `videoEnabled`
 parameter
 
-```dart
+```dart {5,6}
 final meetingInfo = DyteMeetingInfo(
       orgId = ORGNIZATION_ID,
       roomName = MEETING_ROOM_NAME,

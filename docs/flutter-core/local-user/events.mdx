@@ -2,16 +2,17 @@
 title: Events
 description: Local user events guide.
 sidebar_position: 2
-tags: [mobile-core, local-user, self]
+tags: [flutter-core, local-user, self]
 ---
 
 # Local User - Events
 
-You can subscribe to various events on the local user.
-For subscribing:
-- Implement `DyteSelfEventsListener` class to a `StateNotifier` class (say `LocalUserNotifier`). 
-- Now to subscribe, pass the notifier of this `LocalUserNotifier` class to `addSelfEventsListener()` 
-method of `dyteClient` provider as follows:
+You can subscribe to various events on the local user. For subscribing:
+
+- Implement `DyteSelfEventsListener` class to a `StateNotifier` class (say
+  `LocalUserNotifier`).
+- Now to subscribe, pass the notifier of this `LocalUserNotifier` class to
+  `addSelfEventsListener()` method of `dyteClient` provider as follows:
 
 ```dart
 final localUserProvider =
@@ -25,8 +26,8 @@ final localUserProvider =
 ### Room joined
 
 Triggered when the room join event completes and now the meeting is ready to
-produce and consume media. At this stage, you can move to meeting room.
-While implementing `DyteSelfEventsListener` we have :
+produce and consume media. At this stage, you can move to meeting room. While
+implementing `DyteSelfEventsListener` we have :
 
 ```dart
   @override
@@ -73,13 +74,36 @@ Triggered when the user starts / stops the audio using `enableAudio` or
   }
 ```
 
-There are several other callbacks, that you can implement according to the needs, here's a list of them:
+There are several other callbacks, that you can implement according to the
+needs, here's a list of them:
 
-- <span style={{fontSize:"1em", fontWeight:"bold"}}>onMeetingRoomJoinStarted()</span>: callback when meet room join has started.<br />
-- <span style={{fontSize:"1em", fontWeight:"bold"}}>onMeetingRoomDisconnected()</span>: callback when meet room join is disconnected.<br />
-- <span style={{fontSize:"1em", fontWeight:"bold"}}>onMeetingRoomJoinFailed()</span>: callback when meet room join failed.<br />
-- <span style={{fontSize:"1em", fontWeight:"bold"}}>onUpdate()</span>: callback when any update occurs in the meet room 
-(example any other participant joins the meet).<br />
-- <span style={{fontSize:"1em", fontWeight:"bold"}}>onProximityChanged()</span>: callback when proximity of your device changes from body 
-(as when phone sleeps when near your ears when on a phone call).<br />
-- <span style={{fontSize:"1em", fontWeight:"bold"}}>onAudioDevicesUpdated()</span>: callback when the audio devices are updated.<br />
+- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
+    onMeetingRoomJoinStarted()
+  </span>
+  : callback when meet room join has started.
+  <br />
+- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
+    onMeetingRoomDisconnected()
+  </span>
+  : callback when meet room join is disconnected.
+  <br />
+- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
+    onMeetingRoomJoinFailed()
+  </span>
+  : callback when meet room join failed.
+  <br />
+- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>onUpdate()</span>:
+  callback when any update occurs in the meet room (example any other
+  participant joins the meet).
+  <br />
+- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
+    onProximityChanged()
+  </span>
+  : callback when proximity of your device changes from body (as when phone
+  sleeps when near your ears when on a phone call).
+  <br />
+- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
+    onAudioDevicesUpdated()
+  </span>
+  : callback when the audio devices are updated.
+  <br />

@@ -2,7 +2,7 @@
 title: Quickstart
 description: Quickstart guide for android mobile core.
 sidebar_position: 2
-tags: [mobile-core, quickstart]
+tags: [flutter-core, quickstart]
 ---
 
 # Quickstart
@@ -15,20 +15,23 @@ in the [Integrate Dyte](/getting-started#integrate-dyte) section.
 
 :::
 
-The `DyteMobileClient` is the main class of the SDK. It is the main entry point and
-the ONLY class required to instantiate Dyte SDK.  
+The `DyteMobileClient` is the main class of the SDK. It is the main entry point
+and the ONLY class required to instantiate Dyte SDK.
 
-In our case, we are using `Riverpod` state management. Hence, we create a provider for `DyteMobileClient` 
-as shown below:
+In our case, we are using `Riverpod` state management. Hence, we create a
+provider for `DyteMobileClient` as shown below:
+
 ```dart
 final dyteClient = Provider((ref) => DyteMobileClient());
 ```
 
-First step is to establish a connection to the meeting server with set default properties. Properties can be
-set with `DyteMeetingInfo` class. To initialize the connection request, call the `init()` method on 
-obtained `dyteClient` provider with `meetingInfo` argument as follows:
+First step is to establish a connection to the meeting server with set default
+properties. Properties can be set with `DyteMeetingInfo` class. To initialize
+the connection request, call the `init()` method on obtained `dyteClient`
+provider with `meetingInfo` argument as follows:
 
-*Note: We obtain the provider in Riverpod by `ref.watch(providerName)` method. For more info: refer [here](https://riverpod.dev/docs/concepts/reading)*
+_Note: We obtain the provider in Riverpod by `ref.watch(providerName)` method.
+For more info: refer [here](https://riverpod.dev/docs/concepts/reading)_
 
 ```dart
 final meetingInfo = DyteMeetingInfo(
@@ -41,13 +44,18 @@ final meetingInfo = DyteMeetingInfo(
 
 ref.watch(dyteClient).init(meetingInfo)
 ```
-Kindly refer to links below to get corresponding arguments:   
-`baseUrl`: [Dyte developer portal](https://dev.dyte.in/).  
-`roomName`: [this for `roomName`](https://docs.dyte.io/api/#/operations/create_meeting)   
-`authToken`: [this for `authToken`](https://docs.dyte.io/api/#/operations/add_participant).
 
-Now, you have established the connection with Dyte meeting server succesfully. Next step is to join the room.  
+Kindly refer to links below to get corresponding arguments:  
+`baseUrl`: [Dyte developer portal](https://dev.dyte.in/).  
+`roomName`:
+[this for `roomName`](https://docs.dyte.io/api/#/operations/create_meeting)  
+`authToken`:
+[this for `authToken`](https://docs.dyte.io/api/#/operations/add_participant).
+
+Now, you have established the connection with Dyte meeting server succesfully.
+Next step is to join the room.  
 To join, call `joinRoom()` method on `dyteClient` provider as shown below.
+
 ```dart
 ref.watch(dyteClient).joinRoom();
 ```
