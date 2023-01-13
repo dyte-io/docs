@@ -7,14 +7,32 @@ tags: [mobile-core, polls]
 
 # Introduction
 
-The meetings polls object can be accessed using `meeting.polls`. It provides
+The meetings polls object can be accessed using `ref.watch(dyteClient).polls`. It provides
 methods to create polls, vote, and more.
 
-`meeting.polls.polls` returns an array of all polls created in a meeting, where
+`ref.watch(dyteClient).polls.polls` returns an array of all polls created in a meeting, where
 each element is an object of type `DytePollMessage`.
 
-The type `DytePollMessage` is defined in the following manner.
+The `DytePollMessage` class has the following properties:
 
+- `id`: Unique ID assigned to each poll.
+- `question`: Question of the poll.
+- `anonymous`: To hide the votes of each user even after completion. (false by default)
+- `hideVotes`: Hide votes until the voting is complete. (enabled if anonymous is enabled)
+- `createdBy`: Name of creator the poll.
+- `options`: Array of `DytePollOption` object, contains all the options to the poll question.
+
+`DytePollOption` has the following properties:
+- `text` : Contains the option text.
+- `votes` : List of `DytePollVote` object, which contains info about voters of this option.  
+- `count` : Int of number of votes given to this option.
+
+`DytePollVote` has the following properties:
+- `id` : ID of the voter.
+- `name` : Name of the voter.
+
+
+<--
 ```dart
 import 'dart:convert';
 
@@ -126,3 +144,4 @@ class DytePollVote {
 }
 
 ```
+>

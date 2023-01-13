@@ -7,19 +7,19 @@ tags: [web-core, polls, votes]
 
 # Voting on a poll
 
-The `meeting.polls.vote()` method can be used to register a vote on a poll. It
+The `ref.watch(dyteClient).polls.vote()` method can be used to register a vote on a poll. It
 accepts the following params.
 
-| Param | Type   | Default Value | Required | Description                                |
-| ----- | ------ | ------------- | -------- | ------------------------------------------ |
-| id    | string | -             | yes      | The ID of the poll that is to be voted on. |
-| index | number | -             | yes      | The index of the option.                   |
+| Param         | Type            | Default Value | Required | Description                                                |
+| -----         | ------          | ------------- | -------- | ------------------------------------------                 |
+| pollMessage   | DytePollMessage | -             | yes      | Contains all the poll properties (question, options, etc.) |
+| pollOption    | DytePollOption  | yes           | yes      | Option on which the user voted                             |
 
 The following snippet votes for the 1st option on the 1st poll created in the
 meeting.
 
 ```dart
-final poll = meeting.polls.items[0];
+final poll = ref.watch(dyteClient).polls.polls[0];
 final selectedPollOption = poll.options[0];
-meeting.poll.vote(poll, selectedPollOption);
+meeting.polls.vote(poll, selectedPollOption);
 ```

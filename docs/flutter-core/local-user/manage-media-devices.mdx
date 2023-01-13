@@ -13,10 +13,10 @@ use the following methods:
 
 ```dart
 // Get all audio devices
-final audioDevices = await meeting.localUser.getAudioDevices();
+final audioDevices = await ref.watch(dyteClient).localUser.getAudioDevices();
 
 // Get all video devices
-final videoDevices = await meeting.localUser.getVideoDevices();
+final videoDevices = await ref.watch(dyteClient).localUser.getVideoDevices();
 ```
 
 ## Set device
@@ -25,5 +25,5 @@ To set a device as an active device, you can call `setDevice` method. This takes
 a `MediaDeviceInfo` object, and replaces the same `kind` device.
 
 ```dart
-await meeting.localUser.setDevice(device);
+await ref.watch(dyteClient).localUser.setDevice(device);
 ```

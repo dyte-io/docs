@@ -5,9 +5,9 @@ sidebar_position: 2
 tags: [mobile-core, participants, participant]
 ---
 
-# The participant object
+# The DyteMeetingParticipant object
 
-The `participant` object consists of all the information related to a particular
+The `DyteMeetingParticipant` object consists of all the information related to a particular
 participant. For instance, it contains a participants video/audio/screenshare
 stream, and the participant's name. It also contains state variables that
 indicate whether a participant's camera is on or off, and whether they are muted
@@ -17,16 +17,17 @@ The participant object has the following properties.
 
 - `id`: The `participantId` of the participant (aka `peerId`).
 - `userId`: The `userId` of the participant.
-- `name`: The participant's name.
-- `picture`: The participant's picture (if any).
-- `clientSpecificId`: An arbitrary ID that can be set to identify the
+- `name`: Contains participant's name.
+- `picture`: Contains participant's picture (if any).
+- `isHost`: Boolean value indicating whether this user is host of current meeting or not.
+- `clientSpecificId`: Arbitrary ID that can be set to identify the
   participant.
 - `videoEnabled`: Set to true if the participant's camera is on.
 - `audioEnabled`: Set to true if the participant is unmuted.
 
 To be able to listen to participant updates you can use
 `DyteParticipantEventsListener`, pass object of this call using
-`meeting.addParticipantEventsListener(dyteParticipantEventsListener)`.
+`ref.watch(dyteClient).addParticipantEventsListener(dyteParticipantEventsListener)`.
 
 ```dart
 

@@ -8,7 +8,7 @@ tags: [mobile-core, polls, create]
 # Creating a poll
 
 A new poll can be created using the `create` method from the
-[`meeting.polls`](./introduction) object. The `meeting.polls.create()` method
+[`ref.watch(dyteClient).polls`](./introduction) object. The `ref.watch(dyteClient).polls.create()` method
 accepts the following params.
 
 | Param     | Type     | Default Value | Required | Description                                |
@@ -21,7 +21,7 @@ accepts the following params.
 The following snippet creates a poll where votes are anonymous.
 
 ```dart
-meeting.poll.create(
+ref.watch(dyteClient).polls.create(
     question: "Are you an early bird or a night owl?",
     options: ["Early bird", "Night owl"],
     anonymous: true,

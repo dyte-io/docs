@@ -15,16 +15,20 @@ in the [Integrate Dyte](/getting-started#integrate-dyte) section.
 
 :::
 
-The DyteMobileClient is the main class of the SDK. It is the main entry point of
-the SDK. It is the only class that you need to instantiate in order to use the
-SDK. To instantiate DyteMobileClient, you should use `DyteMobileClient`.
+The `DyteMobileClient` is the main class of the SDK. It is the main entry point and
+the ONLY class required to instantiate Dyte SDK.  
 
+In our case, we are using `Riverpod` state management. Hence, we create a provider for `DyteMobileClient` 
+as shown below:
 ```dart
-final meeting = DyteMobileClient();
+final dyteClient = Provider((ref) => DyteMobileClient());
 ```
 
-Now you can use `meeting` to join in the room. First step is to establish a
-connection to the meeting server, you can do that with
+First step is to establish a connection to the meeting server with set default properties. Properties can be
+set with `DyteMeetingInfo` class. To initialize the connection request, call the `init()` method on 
+obtained `dyteClient` provider with `meetingInfo` argument as follows:
+
+*Note: We obtain the provider in Riverpod by `ref.watch(providerName)` method. For more info: refer [here](https://riverpod.dev/docs/concepts/reading)*
 
 ```dart
 final meetingInfo = DyteMeetingInfo(
@@ -35,19 +39,17 @@ final meetingInfo = DyteMeetingInfo(
                     orgId: "<org_id>",
                   );
 
-meeting.init(meetingInfo)
+ref.watch(dyteClient).init(meetingInfo)
 ```
+Kindly refer to links below to get corresponding arguments:   
+`baseUrl`: [Dyte developer portal](https://dev.dyte.in/).  
+`roomName`: [this for `roomName`](https://docs.dyte.io/api/#/operations/create_meeting)   
+`authToken`: [this for `authToken`](https://docs.dyte.io/api/#/operations/add_participant).
 
-`orgId`, `baseUrl` can be found at
-[Dyte developer portal](https://dev.dyte.in/). You can get the `roomName` and
-`authToken` using our backend APIs. Please refer
-[this for room name](https://docs.dyte.io/api#/operations/createMeeting) &
-[this for auth token](https://docs.dyte.io/api#/operations/addParticipant)
-
-Now to join in the room, use
-
+Now, you have established the connection with Dyte meeting server succesfully. Next step is to join the room.  
+To join, call `joinRoom()` method on `dyteClient` provider as shown below.
 ```dart
-meeting.joinRoom()
+ref.watch(dyteClient).joinRoom();
 ```
 
-And voila, you just joined a room with Dyte's mobile SDK.
+Congratulations! You've successfully joined the room.

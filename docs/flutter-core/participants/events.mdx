@@ -7,7 +7,7 @@ tags: [mobile-core, participants, self]
 
 You can subscribe to events for all participants by implementing
 `DyteParticipantEventsListener` callback and then passing that object to
-`meeeting.addParticipantEventsListener(dyteParticipantEventsListener)` method.
+`ref.watch(dyteClient).addParticipantEventsListener(dyteParticipantEventsListener)` method.
 Here are the supported methods:
 
 ### Page change
@@ -16,16 +16,33 @@ Here are the supported methods:
     @override
     void onParticipantsUpdated({
         required DyteRoomParticipants participants,
-        required bool isNextPagePossible,
-        required bool isPreviousPagePossible,
+        required DyteGridPagesInfo gridPagesInfo,
     }) {
         // your code here to handle page updates.
     }
 ```
 
+`DyteGridPagesInfo` can be used for pagination purposes and contains following info:
+- `pageCount`: Total page that will contain all the participants.
+- `currentPageNumber`: Current page number that was returned (indexed from 0)
+- `shouldShowPaginator`: Should it show paginator or not. (dots at the bottom of the Video Views)
+- `isNextPagePossible`: Bool whether the next page is available or not.
+- `isPreviousPagePossible`: Bool whether the previous page is available or not. 
+
 ### Participant joined
 
 Trigger an event when any participant joins the meeting.
+
+```dart
+  @override
+  void onParticipantUpdated(DyteMeetingParticipant participant) {
+            // your code here to handle new participant
+    }
+```
+
+### Participant updated
+
+Trigger an event when any participant update in meet.
 
 ```dart
   @override
@@ -84,3 +101,26 @@ Trigger an event when any participant starts / stops screen share.
         // meeting.participants.screenshares
         }
 ```
+
+### Participants updated
+Triggers an event when participants are updated, and therefore return the new DyteGridPagesInfo
+
+```dart
+    @override
+    void onParticipantsUpdated({
+      required DyteRoomParticipants participants,
+      required DyteGridPagesInfo gridPagesInfo,
+    }){
+        // whenever participants are updated in the room
+        // it returns a updated `DyteRoomParticipants` and `DyteGridPagesInfo` with it.
+      }
+```
+
+Other callbacks: 
+
+- <span style={{fontSize:"1em", fontWeight:"bold"}}>onActiveSpeakerChanged(DyteMeetingParticipant participant)</span>: Triggered when active speaker is changed to <code>participant</code>.
+- <span style={{fontSize:"1em", fontWeight:"bold"}}>onNoActiveSpeaker()</span>: Triggered when there is no active participant.
+- <span style={{fontSize:"1em", fontWeight:"bold"}}>onParticipantPinned(DyteMeetingParticipant participant)</span>: Triggered when the <code>participant</code> is pinned.
+- <span style={{fontSize:"1em", fontWeight:"bold"}}>onParticipantUnpinned()</span>: Trigerred when participant is unpinned.
+- <span style={{fontSize:"1em", fontWeight:"bold"}}>onActiveParticipantsChanged(`required List DyteMeetingParticipant activeParticipants)</span>: Triggered when active participants changes to <code>activeParticipants</code>
+
