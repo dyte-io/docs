@@ -36,3 +36,30 @@ meeting.recording.stop();
 The `meeting.recording.recordingState` property describes the current state of
 the recording. The valid states are `IDLE`, `STARTING`, `RECORDING`, and
 `STOPPING`.
+
+## Listen to recording state changes
+
+The changes to `meeting.recording.recordingState` can be listened by implementing `onMeetingRecordingStateUpdated` from `DyteMeetingRoomEventsListener`. You can attach this obserbver by calling `meeting.addMeetingRoomEventsListener(listener)`.
+```kotlin
+meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
+    override fun onMeetingRecordingStarted() {
+      super.onMeetingRecordingStarted()
+      // on recording started
+    }
+
+    override fun onMeetingRecordingEnded() {
+      super.onMeetingRecordingEnded()
+      // on recording ended
+    }
+
+    override fun onMeetingRecordingStateUpdated(state: DyteRecordingState) {
+      super.onMeetingRecordingStateUpdated(state)
+      // on recording state update
+    }
+
+    override fun onMeetingRecordingStopError(e: Exception) {
+      super.onMeetingRecordingStopError(e)
+      // when local user tried to end recording but it fails
+    }
+  })
+```

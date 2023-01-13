@@ -42,6 +42,7 @@ You can get the `roomName` and `authToken` using our backend APIs. Please refer
 
 :::info Init meeting event listeners Once you call `init()`, you can listen to
 callbacks for this action on meeting object by registering observer as follows.
+:::
 
 ```kotlin
 meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
@@ -62,8 +63,6 @@ meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
   })
 ```
 
-:::
-
 Now to join in the room, use
 
 ```kotlin
@@ -72,6 +71,7 @@ meeting.joinRoom()
 
 :::info Join room event listeners Once you call `joinRoom()`, you can listen to
 callbacks for this action on meeting object by registering observer as follows.
+:::
 
 ```kotlin
 meeting.addSelfEventsListener(object : DyteSelfEventsListener {
@@ -92,8 +92,6 @@ meeting.addSelfEventsListener(object : DyteSelfEventsListener {
   })
 ```
 
-:::
-
 And voila, you just joined a room with Dyte's mobile SDK.
 
 Similarely to leave the meeting you can call `leaveRoom()` on `meeting` object.
@@ -104,6 +102,7 @@ meeting.leaveRoom()
 
 :::info Leave room event listeners You can listen to `leaveRoom()` callbacks by
 registering obsever on meeting object as follows
+:::
 
 ```kotlin
 meeting.addSelfEventsListener(object : DyteMeetingRoomEventsListener {
@@ -118,5 +117,3 @@ meeting.addSelfEventsListener(object : DyteMeetingRoomEventsListener {
     }
   })
 ```
-
-:::

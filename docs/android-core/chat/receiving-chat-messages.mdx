@@ -16,19 +16,15 @@ subscribe to this events by calling
     meeting.addMeetingRoomEventsListener(object :
       DyteMeetingRoomEventsListener {
       override fun onChatUpdates(
-        newMessage: Boolean,
-        message: DyteChatMessage?,
         messages: List<DyteChatMessage>
       ) {
-        super.onChatUpdates(newMessage, message, messages)
-        // your code to handle new chat message
+        super.onChatUpdates(messages)
+        // any update in chat messages
+      }
+
+      override fun onNewChatMessage(message: DyteChatMessage) {
+        super.onNewChatMessage(message)
+        // updates for new chat messages only
       }
     })
 ```
-
-Here, the `message` is of type `Message`, as defined in
-[introduction](./introduction). `messages` is a list of all chat messages in the
-meeting, which is the same as `meeting.chat.messages`.
-
-When a chat message is received, the `meeting.chat.messages` list is also
-updated.
