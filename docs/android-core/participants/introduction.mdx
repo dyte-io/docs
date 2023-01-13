@@ -9,7 +9,7 @@ tags: [mobile-core, participants, participant]
 
 The data regarding all meeting participants is stored under
 `meeting.participants`. Use the methods and events to consume the participants
-data. 
+data.
 
 ## Room participants object.
 
@@ -19,7 +19,8 @@ data.
   meeting.
 - `active`: A list that contains all the participants except the local user who
   are supposed to be on the screen at the moment
-- `pinned`: A nullable participant object. If any participant is pinned is that participant else it is null.
+- `pinned`: A nullable participant object. If any participant is pinned is that
+  participant else it is null.
 - `screenshares`: A list that contains all the participants who have shared
   screen in the meeting.
 - `gridInfo`: This object has all data related to pages in the room.
@@ -28,12 +29,14 @@ Each participant in each of the `joined`, `waitlisted`, `active` and
 `screenshares` list is of type `DyteMeetingParticipant`.
 
 For example, to get all the participants who joined the meeting:
+
 ```kotlin
 // get all joined participants
 val joinedParticipants = meeting.participants.joined;
 ```
 
 For example, to get all the active participants in the meeting:
+
 ```kotlin
 // get all active participants
 val joinedParticipants = meeting.participants.active;
@@ -45,10 +48,12 @@ list.
 
 ## Grid info for the room
 
-Following object can be retrieved from `meeting` object by using `meeting.participants.gridInfo`. This object will have necessary information regarding pageCount, next page, previos page, current page, etc.
+Following object can be retrieved from `meeting` object by using
+`meeting.participants.gridInfo`. This object will have necessary information
+regarding pageCount, next page, previos page, current page, etc.
 
 ```kotlin
-  val pageCount: Int 
+  val pageCount: Int
   val currentPageNumber: Int
   val isNextPagePossible: Boolean,
   val isPreviousPagePossible: Boolean,
@@ -74,7 +79,7 @@ meeting.self.addParticipantEventsListener(object : DyteParticipantEventsListener
 })
 ```
 
-## Audio update for all partcipants 
+## Audio update for all partcipants
 
 ```kotlin
 meeting.self.addParticipantEventsListener(object : DyteParticipantEventsListener {

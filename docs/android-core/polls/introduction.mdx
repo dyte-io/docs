@@ -13,9 +13,13 @@ methods to create polls, vote, and more.
 `meeting.polls.polls` returns an array of all polls created in a meeting, where
 each element is an object of type `DytePollMessage`.
 
-The type `DytePollMessage` is the main class for any poll in Dyte. It also contains list of `DytePollOption` which are options for a given poll. And every `DytePollOption` has list of votes inside of it. Votes are objects of class `DytePollVote` which internally has id and name of the vote.
+The type `DytePollMessage` is the main class for any poll in Dyte. It also
+contains list of `DytePollOption` which are options for a given poll. And every
+`DytePollOption` has list of votes inside of it. Votes are objects of class
+`DytePollVote` which internally has id and name of the vote.
 
-One can easily create, vote and view polls by listening to callbacks on `meeting` object.
+One can easily create, vote and view polls by listening to callbacks on
+`meeting` object.
 
 ## Listening to new polls in a meeting
 

@@ -7,14 +7,21 @@ tags: [mobile-core, plugins]
 
 # Plugins
 
-The meetings plugins can be accessed using `meeting.plugins`. It provides two main objects, `all` which contains list of all Plugin objects in a `DyteMeeting`. And `active` list which contains plugins which are enabled and are currently being used in this meeting.
+The meetings plugins can be accessed using `meeting.plugins`. It provides two
+main objects, `all` which contains list of all Plugin objects in a
+`DyteMeeting`. And `active` list which contains plugins which are enabled and
+are currently being used in this meeting.
 
 ## Playing with plugins
 
-Plugins are webviews which can be added in any view group in android. To be able to get webview from DytePlugin one needs to first acivate a plugin. To do that all we need to do is call `plugin.active()` which will trigger a callback in `onPluginActivated()`. Similarely to deactivate a plugin one can call `plugin.deactivate()` and that plugin will be deactivated in the meeting.
+Plugins are webviews which can be added in any view group in android. To be able
+to get webview from DytePlugin one needs to first acivate a plugin. To do that
+all we need to do is call `plugin.active()` which will trigger a callback in
+`onPluginActivated()`. Similarely to deactivate a plugin one can call
+`plugin.deactivate()` and that plugin will be deactivated in the meeting.
 
 ```kotlin
-plugin.activate() // to activate a plugin 
+plugin.activate() // to activate a plugin
 plugin.deactivate()   // to deactivate a plugin
 ```
 
@@ -28,7 +35,9 @@ val isActive = plugin.isActive
 
 ## Listening to plugins in a meeting
 
-To be able to listen to plugin events you need to implement a methods from callback `DytePluginEventsListener`. You can subscribe to this events by calling `meeting.addPluginEventsListener(dytePluginEventsListener)`
+To be able to listen to plugin events you need to implement a methods from
+callback `DytePluginEventsListener`. You can subscribe to this events by calling
+`meeting.addPluginEventsListener(dytePluginEventsListener)`
 
 ```kotlin
     meeting.addMeetingRoomEventsListener(object :

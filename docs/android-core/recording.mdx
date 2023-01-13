@@ -39,7 +39,11 @@ the recording. The valid states are `IDLE`, `STARTING`, `RECORDING`, and
 
 ## Listen to recording state changes
 
-The changes to `meeting.recording.recordingState` can be listened by implementing `onMeetingRecordingStateUpdated` from `DyteMeetingRoomEventsListener`. You can attach this obserbver by calling `meeting.addMeetingRoomEventsListener(listener)`.
+The changes to `meeting.recording.recordingState` can be listened by
+implementing `onMeetingRecordingStateUpdated` from
+`DyteMeetingRoomEventsListener`. You can attach this obserbver by calling
+`meeting.addMeetingRoomEventsListener(listener)`.
+
 ```kotlin
 meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
     override fun onMeetingRecordingStarted() {
