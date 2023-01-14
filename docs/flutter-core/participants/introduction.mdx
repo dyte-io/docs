@@ -44,9 +44,59 @@ Each participant in each of the `joined`, `waitlisted`, `active`, `pinned` and
 
 You can subscribe to various events on the participants by implementing
 `DyteParticipantEventsListener` and passing the object to
-`ref.watch(dyteClient).addParticipantEventsListener(dyteParticipantEventsListener)`.
 
-### Video update
+```dart
+ref.watch(dyteClient).addParticipantEventsListener(dyteParticipantEventsListener);
+```
+
+## Grid info for the room
+
+`DyteGridPagesInfo` object is intended for pagination. It is returned with
+`ParticipantEventStates.onParticipantsUpdated` state.
+
+```dart {6}
+    ref.listen<ParticipantEventStates>(participantEventStateNotifierProvider,
+      (_, next) {
+        next.maybeMap(
+          onParticipantsUpdated: (res) {
+            ...
+            _gridPagesInfo = res.gridPagesInfo;
+            ...
+          },
+          orElse: () => print("ORELSE STATE")
+      }
+```
+
+It contains the following properties:
+
+- `currentPageNumber`: Int, returns the current page number (currently displayed
+  by the client).
+- `pageCount`: Int, max pages possible with current number of participants.
+- `isNextPagePossible`: bool, if the next page of participants is available.
+- `isPreviousPagePossible`: bool, if previous page of participants is available.
+- `shouldShowPaginator`: bool, to show the paginator or not.
+
+## Move between pages in paginated mode
+
+The `setPage(int pageNumber)` method allows you to switch between pages of
+participants present in the meeting. It will set the active participants list to
+participants on `pageNumber` page, and participant list is returned with
+`ParticipantEventStates.onParticipantsUpdated` state.
+
+```dart {6}
+    ref.listen<ParticipantEventStates>(participantEventStateNotifierProvider,
+      (_, next) {
+        next.maybeMap(
+          onParticipantsUpdated: (res) {
+            ...
+            _activeParticipants = res.participants.active;
+            ...
+          },
+          orElse: () => print("ORELSE STATE")
+      }
+```
+
+## Video update for all participants
 
 Triggered when the user starts / stops the video using `enableVideo` or
 `disableVideo`
@@ -63,7 +113,7 @@ void onVideoUpdate(bool videoEnabled) {
 
 ```
 
-### Audio update
+## Audio update
 
 Triggered when the user starts / stops the audio using `enableAudio` or
 `disableAudio`
