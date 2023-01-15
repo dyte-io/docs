@@ -50,7 +50,7 @@ const latestVersions = {
   android: '0.14.x',
   ios: '1.33.x',
   flutter: '0.7.x',
-  'android-core': '1.8.0',
+  'android-core': '1.x.x',
   'flutter-core': '1.0.0',
 };
 
