@@ -37,7 +37,7 @@ without any additional steps.
 
 1. Create / append to the file `android/app/proguard-rules.pro`
 
-```groovy
+```python
 # Keep `Companion` object fields of serializable classes.
 # This avoids serializer lookup through `getDeclaredClasses` as done for named companion objects.
 -if @kotlinx.serialization.Serializable class **
