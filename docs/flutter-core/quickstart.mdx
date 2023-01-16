@@ -53,7 +53,8 @@ Kindly refer to links below to get corresponding arguments:
 
 :::info Init meeting event listeners Once you call `init()`, you can listen to
 callbacks for this action on meeting object by registering state observers as
-follows. :::
+follows. 
+:::
 
 ```dart
     ref.listen<RoomEventStates>(roomEventStateNotifierProvider, (_, next) {
@@ -85,7 +86,8 @@ ref.watch(dyteClient).joinRoom();
 
 :::info Join room event listeners Once you call `joinRoom()`, you can listen to
 callbacks for this action on meeting object by registering state observers as
-follows. :::
+follows. 
+:::
 
 ```dart
     ref.listen<LocalUserEventStates>(localUserProvider, (previous, next) {
@@ -108,7 +110,8 @@ follows. :::
 ```
 
 :::info Leave room event listeners You can listen to `leaveRoom()` callbacks by
-registering state obsever on meeting object as follows :::
+registering state obsever on meeting object as follows 
+:::
 
 ```dart
     ref.listen<RoomEventStates>(roomEventStateNotifierProvider,
