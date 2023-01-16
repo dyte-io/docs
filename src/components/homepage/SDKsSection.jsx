@@ -17,18 +17,13 @@ import Head from '@docusaurus/Head';
 import { useState } from 'react';
 
 function SDKLink({ href, Icon, label, disabled = false }) {
-  // yes, this is a weird way to do it :)
-  const props = {
-    ...(!disabled && { href }),
-  };
-
   return (
     <Link
       className={clsx(
         'flex items-center gap-2 rounded-md p-2 text-current transition hover:bg-secondary-700 hover:text-black hover:no-underline dark:hover:text-white',
-        disabled && 'cursor-not-allowed'
+        disabled && 'cursor-default'
       )}
-      {...props}
+      href={!disabled ? href : undefined}
     >
       <Icon className="h-8 w-8" />
       {label}
@@ -65,6 +60,26 @@ export default function SDKsSection() {
     };
   }, []);
 
+  function Pill({ section }) {
+    return (
+      <div
+        className={clsx(
+          'flex-1 cursor-pointer rounded-md py-2 px-6 text-center font-jakarta text-sm font-semibold',
+          visibleSection === section
+            ? 'bg-primary text-white'
+            : 'text-black dark:text-white'
+        )}
+        onClick={() => {
+          document
+            .getElementById(section)
+            ?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }}
+      >
+        {`${section[0].toUpperCase()}${section.substring(1)}`}
+      </div>
+    );
+  }
+
   return (
     <section className="bg-secondary-1000 py-20 px-4" id="start-building">
       <Head>
@@ -80,49 +95,10 @@ export default function SDKsSection() {
           </h2>
 
           <div className="mx-auto flex h-20 w-full flex-1 items-center justify-center self-start lg:w-auto lg:justify-end">
-            <div className="flex max-w-sm flex-1 items-center rounded-full border border-solid border-text-400 text-sm lg:text-base">
-              <div
-                className={clsx(
-                  'flex-1 cursor-pointer py-1 text-center',
-                  visibleSection === 'web' &&
-                    'rounded-full border-2 border-solid'
-                )}
-                onClick={() => {
-                  document
-                    .getElementById('web')
-                    .scrollIntoView({ block: 'center' });
-                }}
-              >
-                Web
-              </div>
-              <div
-                className={clsx(
-                  'flex-1 cursor-pointer py-1 text-center',
-                  visibleSection === 'mobile' &&
-                    'rounded-full border-2 border-solid'
-                )}
-                onClick={() => {
-                  document
-                    .getElementById('mobile')
-                    .scrollIntoView({ block: 'center' });
-                }}
-              >
-                Mobile
-              </div>
-              <div
-                className={clsx(
-                  'flex-1 cursor-pointer py-1 text-center',
-                  visibleSection === 'plugin' &&
-                    'rounded-full border-2 border-solid'
-                )}
-                onClick={() => {
-                  document
-                    .getElementById('plugin')
-                    .scrollIntoView({ block: 'center' });
-                }}
-              >
-                Plugin
-              </div>
+            <div className="inline-flex items-center rounded-lg bg-zinc-100 p-2 text-sm dark:bg-zinc-800 lg:text-base">
+              <Pill section="web" />
+              <Pill section="mobile" />
+              <Pill section="plugin" />
             </div>
           </div>
         </div>
@@ -133,7 +109,7 @@ export default function SDKsSection() {
           id="web"
         >
           <div className="flex flex-[2] flex-col justify-center p-6 text-center lg:pl-16 lg:text-left">
-            <h3 className="text-3xl">Web</h3>
+            <h3 className="text-4xl font-semibold">Web</h3>
             <p className="text-sm leading-relaxed text-text-400 lg:max-w-sm">
               Interested to build using JavaScript, React, Angular, or Vue, this
               section covers everything you need to know for creating live video
@@ -200,7 +176,7 @@ export default function SDKsSection() {
           id="mobile"
         >
           <div className="flex flex-[2] flex-col justify-center p-6 text-center lg:pl-16 lg:text-left">
-            <h3 className="text-3xl">Mobile</h3>
+            <h3 className="text-4xl font-semibold">Mobile</h3>
             <p className="text-sm leading-relaxed text-text-400 lg:max-w-sm">
               Plan to build a video/voice solution for Android, React Native,
               iOS, or Flutter, check the docs here to understand how Dyte can
@@ -270,8 +246,10 @@ export default function SDKsSection() {
                 <SDKLink href="rn-core" Icon={ReactIcon} label="React Native" />
               </li>
             </ul>
-            <div className="rounded-2xl bg-secondary-700 p-4 dark:bg-secondary-900">
-              <h5 className="text-center text-xs text-text-400">COMING SOON</h5>
+            <div className="rounded-2xl bg-secondary-700 p-4 opacity-40 dark:bg-secondary-900">
+              <h5 className="text-center text-xs uppercase text-text-400">
+                Coming soon
+              </h5>
               <ul className="mb-0 flex list-none flex-col gap-2 pl-0">
                 <li>
                   <SDKLink disabled Icon={SwiftIcon} label="iOS" />
@@ -287,14 +265,14 @@ export default function SDKsSection() {
           id="plugin"
         >
           <div className="flex flex-1 flex-col justify-center p-6 text-center lg:pl-16 lg:text-left">
-            <h3 className="text-3xl">Plugin SDK</h3>
+            <h3 className="text-4xl font-semibold">Plugin SDK</h3>
             <p className="text-sm leading-relaxed text-text-400 lg:max-w-sm">
               Add the most immersive, collaborative, and more human interaction
               right in your video and voice calls using Dyte&apos;s
               out-of-the-box plugins. Dive into the resources here to get
               started with building your own plugins for your applications.
             </p>
-            <Link className="text-sm" href="plugin-sdk">
+            <Link className="text-sm" href="/plugin-sdk">
               Learn More &rarr;
             </Link>
           </div>
@@ -313,7 +291,7 @@ export default function SDKsSection() {
         >
           <div className="flex flex-[2] flex-col justify-center p-6 text-center lg:pl-16 lg:text-left">
             <div className="mb-4 text-xs font-semibold">COMING SOON</div>
-            <h3 className="text-3xl">Desktop</h3>
+            <h3 className="text-4xl font-semibold">Desktop</h3>
             <p className="text-sm leading-relaxed text-text-400 lg:max-w-sm">
               Take Dyte for a spin to build real-time communication solutions
               for Electron. Read the docs to get started with your desktop
@@ -362,7 +340,7 @@ export default function SDKsSection() {
           </div>
         </div> */}
       </div>
-      <div className="text-center">
+      <div className="text-center text-text-400">
         <p>
           Don&apos;t see your tech stack here?{' '}
           <Link href="https://dyte.io/contact">Contact Us</Link>
