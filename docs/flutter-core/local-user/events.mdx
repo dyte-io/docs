@@ -33,11 +33,11 @@ produce and consume media. At this stage, you can move to meeting room. While
 implementing `DyteSelfEventsListener` we have :
 
 ```dart
-  @override
-  void onMeetingRoomJoined() {
-    // When the local user joins the meeting room, this callback is triggered
-    // We can handle the state here.
-  }
+@override
+void onMeetingRoomJoined() {
+  // When the local user joins the meeting room, this callback is triggered
+  // We can handle the state here.
+}
 
 ```
 
@@ -47,16 +47,16 @@ Triggered when the user starts / stops the video using `enableVideo` or
 `disableVideo`
 
 ```dart
-  @override
-  void onVideoUpdate(bool videoEnabled) {
-    if(isVideoEnabled){
-      // Video is enabled, other users can see the video.
-    } else {
-      // Video is disabled, others users can't see the video.
-    }
-
-    //  or alternatively you can pass the bool through state as demonstrated in example app.
+@override
+void onVideoUpdate(bool videoEnabled) {
+  if(isVideoEnabled){
+    // Video is enabled, other users can see the video.
+  } else {
+    // Video is disabled, others users can't see the video.
   }
+
+  //  or alternatively you can pass the bool through state as demonstrated in example app.
+}
 ```
 
 ### Audio update
@@ -65,16 +65,16 @@ Triggered when the user starts / stops the audio using `enableAudio` or
 `disableAudio`
 
 ```dart
-  @override
-  void onAudioUpdate(bool audioEnabled) {
-    if (audioEnabled) {
-        // audio is enabled, and other participants in room can hear local user
-      } else {
-        // audio is disabled, and other participants in room can not hear local user.
-      }
-
-    //  or alternatively you can pass the bool through state as demonstrated in example app.
-  }
+@override
+void onAudioUpdate(bool audioEnabled) {
+  if (audioEnabled) {
+      // audio is enabled, and other participants in room can hear local user
+    } else {
+      // audio is disabled, and other participants in room can not hear local user.
+    }
+    
+  //  or alternatively you can pass the bool through state as demonstrated in example app.
+}
 ```
 
 There are several other callbacks, that you can implement according to the

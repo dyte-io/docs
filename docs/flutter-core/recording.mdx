@@ -7,4 +7,47 @@ tags: [flutter-core, recording]
 
 # Recording
 
-/// yet to be implemented in flutter-core
+The `ref.watch(dyteClient).recording` object can be used start and stop recordings in a meeting. 
+
+To get the current status of the recording, you need to listen for `onMeetingRecordingStateUpdated()` event.
+This returns `DyteRecordingStatus` object with it.
+
+There can be 4 states:
+- `idle`
+- `starting`
+- `recording`
+- `stopping`
+
+## Start a recording
+To start a recording, you need to call the `start()` method in the `ref.watch(dyteClient).recording` object, as shown below.
+
+```dart
+ref.watch(dyteClient).recording.start();
+```
+
+## Stop a recording
+To stop a recording, you need to call the `stop()` method in the `ref.watch(dyteClient).recording` object, as shown below.
+
+```dart
+ref.watch(dyteClient).recording.stop();
+```
+
+## Listen to recording state changes
+
+The changes to recording state can be listened by implementing 
+`onMeetingRecordingStateUpdated` from `DyteMeetingRoomEventsListener`. 
+You can attach this observer by calling `ref.watch(dyteClient).addMeetingRoomEventsListener(listener)`.
+
+```dart
+ref.listen<RoomEventStates>(roomEventStateNotifierProvider,
+    (previous, next) {
+  next.maybeMap(
+    onMeetingRecordingStateUpdated: (res) {
+      // You can access the updated recording state by calling `res.recordingState`
+    },
+  );
+});
+```
+ 
+
+

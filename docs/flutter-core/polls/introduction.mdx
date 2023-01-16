@@ -51,11 +51,11 @@ To listen to poll updates, listen to `onPollUpdates()` callback:
 
 ```dart
 @override
-  void onPollUpdates({
-    required bool newPoll,
-    required List<DytePollMessage> pollMessages,
-    DytePollMessage? updatedPollMessage,
-  }) {
-    /// code to handle polls
-  }
+void onPollUpdates({
+  required bool newPoll,
+  required List<DytePollMessage> pollMessages,
+  DytePollMessage? updatedPollMessage,
+}) {
+  /// code to handle polls
+}
 ```

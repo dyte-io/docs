@@ -57,23 +57,22 @@ follows.
 :::
 
 ```dart
-    ref.listen<RoomEventStates>(roomEventStateNotifierProvider, (_, next) {
-      next.maybeWhen(
-        onMeetingInitStarted: () {
-          /// Handle init starting process
-        },
-
-        onMeetingInitCompleted: () {
-          /// Handle Meeting init complete, ex: move to next page
-        },
-
-        onMeetingInitFailed: (exception){
-          /// Handle failure
-        },
-
-        orElse: () {},
-      );
-    });
+  ref.listen<RoomEventStates>(roomEventStateNotifierProvider, (_, next) {
+    next.maybeWhen(
+      onMeetingInitStarted: () {
+        /// Handle init starting process
+      },
+  
+      onMeetingInitCompleted: () {
+        /// Handle Meeting init complete, ex: move to next page
+      },
+      
+      onMeetingInitFailed: (exception){
+        /// Handle failure
+      },
+      orElse: () {},
+    );
+  });
 ```
 
 Now, you have established the connection with Dyte meeting server succesfully.
@@ -90,23 +89,23 @@ follows.
 :::
 
 ```dart
-    ref.listen<LocalUserEventStates>(localUserProvider, (previous, next) {
-      next.maybeWhen(
-        onMeetingRoomJoinStarted: () {
-          /// Handle join start state
-        },
+ref.listen<LocalUserEventStates>(localUserProvider, (previous, next) {
+  next.maybeWhen(
+    onMeetingRoomJoinStarted: () {
+      /// Handle join start state
+    },
 
-        onMeetingRoomJoined: () {
-          /// Handle joining completion, ex: move to room screen
-        },
+    onMeetingRoomJoined: () {
+      /// Handle joining completion, ex: move to room screen
+    },
 
-        onMeetingRoomJoinFailed: (exception){
-          /// Handle failure
-        }
-
-        orElse: () {},
-      );
-    });
+    onMeetingRoomJoinFailed: (exception){
+      /// Handle failure
+    },
+  
+    orElse: () {},
+  );
+});
 ```
 
 :::info Leave room event listeners You can listen to `leaveRoom()` callbacks by
@@ -114,21 +113,20 @@ registering state obsever on meeting object as follows
 :::
 
 ```dart
-    ref.listen<RoomEventStates>(roomEventStateNotifierProvider,
-        (previous, next) {
-      next.maybeMap(
+ref.listen<RoomEventStates>(roomEventStateNotifierProvider,
+    (previous, next) {
+  next.maybeMap(
+    onMeetingRoomLeaveStarted: (_){
+      /// Handle leaving starting process
+    },
 
-        onMeetingRoomLeaveStarted: (_){
-          /// Handle leaving starting process
-        },
-
-        onMeetingRoomLeft: (_) {
-          /// Handle meeting room left, ex: move out to home screen
-        }
-
-        orElse: () {},
-      );
-    });
+    onMeetingRoomLeft: (_) {
+      /// Handle meeting room left, ex: move out to home screen
+    },
+    
+    orElse: () {},
+  );
+});
 ```
 
 Congratulations! You've successfully joined the room.

@@ -13,13 +13,13 @@ method. Here are the supported methods:
 ## Page change
 
 ```dart
-    @override
-    void onParticipantsUpdated({
-        required DyteRoomParticipants participants,
-        required DyteGridPagesInfo gridPagesInfo,
-    }) {
-        // your code here to handle page updates.
-    }
+@override
+void onParticipantsUpdated({
+    required DyteRoomParticipants participants,
+    required DyteGridPagesInfo gridPagesInfo,
+}) {
+    // your code here to handle page updates.
+}
 ```
 
 `DyteGridPagesInfo` can be used for pagination purposes and contains following
@@ -37,10 +37,10 @@ info:
 Trigger an event when any participant joins the meeting.
 
 ```dart
-  @override
-  void onParticipantUpdated(DyteMeetingParticipant participant) {
-            // your code here to handle new participant
-    }
+@override
+void onParticipantUpdated(DyteMeetingParticipant participant) {
+          // your code here to handle new participant
+}
 ```
 
 ## Participant updated
@@ -48,10 +48,10 @@ Trigger an event when any participant joins the meeting.
 Trigger an event when any participant update in meet.
 
 ```dart
-  @override
-  void onParticipantUpdated(DyteMeetingParticipant participant) {
-            // your code here to handle new participant
-    }
+@override
+void onParticipantUpdated(DyteMeetingParticipant participant) {
+          // your code here to handle new participant
+}
 ```
 
 ## Participant left
@@ -59,10 +59,10 @@ Trigger an event when any participant update in meet.
 Trigger an event when any participant leaves the meeting.
 
 ```dart
-  @override
-  void onParticipantLeave(DyteMeetingParticipant participant) {
-            // your code here to handle participant left from meeting
-    }
+@override
+void onParticipantLeave(DyteMeetingParticipant participant) {
+          // your code here to handle participant left from meeting
+}
 ```
 
 ## Video update
@@ -70,13 +70,13 @@ Trigger an event when any participant leaves the meeting.
 Trigger an event when any participant starts / stops video.
 
 ```dart
-  @override
-  void videoUpdate({
-    required bool videoEnabled,
-    required DyteMeetingParticipant participant,
-  }) {
-            // your code here to handle participant video toggle update
-    }
+@override
+void videoUpdate({
+  required bool videoEnabled,
+  required DyteMeetingParticipant participant,
+}) {
+          // your code here to handle participant video toggle update
+}
 ```
 
 ## Audio update
@@ -84,13 +84,13 @@ Trigger an event when any participant starts / stops video.
 Trigger an event when any participant starts / stops audio.
 
 ```dart
-  @override
-  void audioUpdate({
-    required bool audioEnabled,
-    required DyteMeetingParticipant participant,
-  }) {
-            // your code here to handle participant audio toggle update
-    }
+@override
+void audioUpdate({
+  required bool audioEnabled,
+  required DyteMeetingParticipant participant,
+}) {
+          // your code here to handle participant audio toggle update
+}
 ```
 
 ## Screen share update
@@ -98,11 +98,11 @@ Trigger an event when any participant starts / stops audio.
 Trigger an event when any participant starts / stops screen share.
 
 ```dart
-    @override
-    void onScreenSharesUpdated() {
-        // all screenshare participants can be fetched via
-        // ref.watch(dyteClient).participants.screenshares
-        }
+@override
+void onScreenSharesUpdated() {
+    // all screenshare participants can be fetched via
+    // ref.watch(dyteClient).participants.screenshares
+}
 ```
 
 ## Participants updated
@@ -111,14 +111,14 @@ Triggers an event when participants are updated, and therefore return the new
 DyteGridPagesInfo
 
 ```dart
-    @override
-    void onParticipantsUpdated({
-      required DyteRoomParticipants participants,
-      required DyteGridPagesInfo gridPagesInfo,
-    }){
-        // whenever participants are updated in the room
-        // it returns a updated `DyteRoomParticipants` and `DyteGridPagesInfo` with it.
-      }
+@override
+void onParticipantsUpdated({
+  required DyteRoomParticipants participants,
+  required DyteGridPagesInfo gridPagesInfo,
+}){
+    // whenever participants are updated in the room
+    // it returns a updated `DyteRoomParticipants` and `DyteGridPagesInfo` with it.
+}
 ```
 
 ## Active Participants changed
@@ -127,10 +127,10 @@ Trigger when active participant changes, for ex. when you move to next page of
 participant, this state gives you the participants of this current page.
 
 ```dart
-    @override
-    void onActiveParticipantsChanged({required List<DyteMeetingParticipant> activeParticipants}) {
-            /// these active participants return new page participants
-        }
+@override
+void onActiveParticipantsChanged({required List<DyteMeetingParticipant> activeParticipants}) {
+    /// these active participants return new page participants
+}
 ```
 
 Other callbacks:
