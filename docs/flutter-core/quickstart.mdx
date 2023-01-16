@@ -52,12 +52,73 @@ Kindly refer to links below to get corresponding arguments:
 `authToken`:
 [this for `authToken`](https://docs.dyte.io/api/#/operations/add_participant).
 
+:::info Init meeting event listeners Once you call `init()`, you can listen to
+callbacks for this action on meeting object by registering state observers as
+follows. :::
+
+```dart
+    ref.listen<RoomEventStates>(roomEventStateNotifierProvider, (_, next) {
+      next.maybeWhen(
+        onMeetingInitFailed: (exception) =>
+            log("MEETING INIT FAILED EXCEPTION: ${exception.toString()}"),
+        onMeetingInitStarted: () => log("MEETING INIT STARTED!!"),
+        onMeetingInitCompleted: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return const StagingRoom();
+          }));
+        },
+        orElse: () {},
+      );
+    });
+```
+
 Now, you have established the connection with Dyte meeting server succesfully.
 Next step is to join the room.  
 To join, call `joinRoom()` method on `dyteClient` provider as shown below.
 
 ```dart
 ref.watch(dyteClient).joinRoom();
+```
+
+:::info Join room event listeners Once you call `joinRoom()`, you can listen to
+callbacks for this action on meeting object by registering state observers as
+follows. :::
+
+```dart
+    ref.listen<LocalUserEventStates>(localUserProvider, (previous, next) {
+      next.maybeWhen(
+        onMeetingRoomJoinStarted: () => log("MEET ROOM JOINING"),
+        onMeetingRoomJoinFailed: (exception) =>
+            log("MEET ROOM JOINING FAILED WITH EXCEPTION: $exception"),
+        onMeetingRoomDisconnected: () => log("MEETING ROOM DISCONNECTED"),
+        onMeetingRoomJoined: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return const DyteRoom();
+          }));
+        },
+        orElse: () {},
+      );
+    });
+```
+
+:::info Leave room event listeners You can listen to `leaveRoom()` callbacks by
+registering state obsever on meeting object as follows :::
+
+```dart
+    ref.listen<RoomEventStates>(roomEventStateNotifierProvider,
+        (previous, next) {
+      next.maybeMap(
+        onMeetingRoomLeaveStarted: (value) => log("LEAVING ROOM..."),
+        onMeetingRoomLeft: (value) => Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomePage(),
+          ),
+          (route) => false,
+        ),
+        orElse: () {},
+      );
+    });
 ```
 
 Congratulations! You've successfully joined the room.
