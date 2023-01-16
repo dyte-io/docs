@@ -13,22 +13,22 @@ export default function ResourcesSection() {
           quickly. <br />
         </p>
 
-        <div className="mt-10 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+        <div className="no-underline-links mt-10 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
           {RESOURCES.map((resource) => (
-            <div key={resource.title} className="flex flex-col justify-between">
+            <Link
+              className="group flex flex-col justify-between"
+              key={resource.title}
+              href={resource.url}
+            >
               <div>
-                <img
-                  src={resource.image}
-                  className="mb-3 aspect-square w-full rounded-lg object-cover"
-                />
-                <h3 className="font-semibold lg:text-xl">
-                  <Link
-                    href={resource.url}
-                    className="text-inherit"
-                    target="_blank"
-                  >
-                    {resource.title}
-                  </Link>
+                <div className="mb-3 overflow-hidden rounded-lg">
+                  <img
+                    src={resource.image}
+                    className="aspect-square h-full w-full object-cover transition-transform group-hover:scale-110"
+                  />
+                </div>
+                <h3 className="font-semibold text-black group-hover:text-primary dark:text-white dark:group-hover:text-primary-100 lg:text-xl">
+                  {resource.title}
                 </h3>
                 <p className="leading-snug text-text-400">
                   {resource.description}
@@ -44,16 +44,12 @@ export default function ResourcesSection() {
                   }`}
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
-        <p className="mt-20 text-center">
-          {"Can't find what you're looking for?"}
-        </p>
-
-        <div className="mb-20 flex flex-wrap items-center justify-center gap-3 text-center">
-          <span>View All</span>
+        <div className="my-20 flex flex-wrap items-center justify-center gap-3 text-center">
+          <span>View all</span>
           <div className="flex gap-2">
             <Link className="underline underline-offset-8" href="/guides">
               Guides

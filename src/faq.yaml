@@ -1,0 +1,324 @@
+#
+# General FAQs
+#
+
+- question: What does Dyte do?
+  tags: ['General']
+  answer: |-
+    Dyte offers a real-time video and voice solution for integrating
+    high-quality video/voice calls into your web, mobile, and desktop
+    applications and websites.
+
+    Call recording, live streaming, webinars,
+    live transcription and translation, chatting, polling, quizzes, and
+    many other features are available with Dyte.
+
+    Dyte includes:
+
+    **Core SDKs:** These SDKs enable you to create high-quality custom
+    video and voice calls with real-time communication. Core SDKs are
+    completely customizable and simple to integrate.
+
+    **UI Kit:** Using Dyte&quot;s prebuilt design library of UI
+    components, you can integrate video and voice calls into your app or
+    website in minutes.
+
+    The following platforms are currently supported:
+
+    - Mobile: Flutter, Android (Java/Kotlin), iOS(Objective-C/Swift), React Native
+    - Web: Javascript Core SDK + UI Kit for React JS, Angular, Vue, Web Components for everything else
+    - Desktop: Electron
+
+    For more information, see [Dyte docs](/)
+
+- question: What businesses can use Dyte?
+  tags: ['General']
+  answer: |-
+    Dyte can add value to a wide range of industries, including telehealth, eLearning, gaming, remote working, education, event management, metaverse, adult entertainment, and others.
+
+- question: What is a Developer Portal?
+  tags: ['General']
+  answer: |-
+    To get started with Dyte, you must first register in the developer portal.
+
+    The developer portal provides the following information:
+
+    - Dashboard: A view of your usage, billing, and organization details etc.
+    - API Keys: The API Keys are required to instantiate a meeting.
+      The values for Organization ID, API Key, and Base URL are generated
+      dynamically for your Organization. You require these settings when
+      performing different actions, such as, create a meeting, delete a
+      meeting, add a participant, etc. Learn more: [Web SDKs](/react-ui-kit), [Mobile SDKs](/react-native), [APIs](/api).
+    - Logs and Sample Apps: You can view logs and sample apps in developer portal.
+
+    You can also create a webhook, roles, presets, and so on using the developer portal.
+
+- question: What are Presets?
+  tags: ['General']
+  answer: |-
+    A set of roles, UI elements, buttons, and configurations that determines how the meeting will appear for a specific participant. Learn more: [DytePermissionsPreset](/rn-core/reference/DytePermissionsPreset#module_DytePermissionsPreset).
+
+- question: What are Core SDKs used for?
+  tags: ['General']
+  answer: |-
+    The core SDKs are required to begin integrating Dyte into your web and
+    mobile applications. Core SDKs allow you to create fully customizable
+    video and voice calls with real-time communication for your
+    applications. See [Dyte docs](/)
+
+- question: What is the UI Kit?
+  tags: ['General']
+  answer: |-
+    Dyte provides a prebuilt design library of UI components that you can
+    use to build video and voice calls in minutes. This layer is used on top
+    of the Core SDKs. See [Dyte docs](/)
+
+- question: What is the Plugin SDK?
+  tags: ['General']
+  answer: |-
+    You can use Dyte plugin SDKs to add third-party plugins to experience the most immersive, collaborative, and more human interaction right in your video and audio calls. Dyte provides multiple out-of-the-box plugins, for example, YouTube, Miro, WhiteBoard, and so on.
+
+- question: How to access API Keys and other details from the Developer Portal?
+  tags: ['General']
+  answer: |-
+    Log onto [https://dev.dyte.io/apikeys](https://dev.dyte.io/apikeys) with the credentials you used to sign up for Dyte.
+
+- question:
+    How many people can join a Dyte meeting with audio & video turned ON?
+  tags: ['General']
+  answer: |-
+    On Dyte, you can have up to 200 people on the same call with video and voice enabled.
+    However, if you have any specific requirements that require more people joining the same call, please
+    [contact us](https://dyte.io/contact).
+
+    We will support you with your requirements.
+
+- question: How many attendees can be seen on a live grid?'
+  tags: ['General']
+  answer: |-
+    In order to provide the best possible experience, we have limited the number of attendees to 6-9. However, we can tailor it to a maximum of 12 attendees.
+
+- question: How many people can join a Dyte webinar?
+  tags: ['General']
+  answer: |-
+    500 people. One user with the audio-video enabled and everyone else attending
+    the call (aka one host webinar). However, if you have any specific
+    requirements that require more people joining the same call, please 
+    [contact us](https://dyte.io/contact).
+
+    We will support you with your requirements.
+
+- question: What is an organization in Dyte?
+  tags: ['General']
+  answer: |-
+    In Dyte, organization allows you to group all of your company's
+    members. This is a top-level entity to which all members of your group
+    are added. Dyte also considers the organization to be a billing unit.
+
+- question: Where can I find my auth token and room name?
+  tags: ['General']
+  answer: |-
+    The Add Participant API call returns your authentication token.
+
+    See [Add a participant](/api#/operations/addParticipant).
+
+    Room name is generated when you create a meeting. You can get the room
+    name from the developer portal or using REST APIs. For example,
+
+    ![Create Meeting response](/static/faq/create-meeting.png)
+
+    For more information, see [Create a meeting](/api#/operations/createMeeting).
+
+- question: Can I join a meeting from the mobile which is started on the web?
+  tags: ['General']
+  answer: |-
+    Yes, you can.
+
+#
+# Technical FAQs
+#
+
+- question: What are the minimum browser and internet requirements for Dyte?
+  tags: ['Technical']
+  answer: |-
+    Browser Requirements:
+    - Chrome (or Chromium based) 74+
+    - Firefox 78+
+    - Opera 64+
+    - Safari 12+
+    - Edge 79+
+    - iOS (Safari) 12.1+
+    - iOS (Non-Safari) 15+
+
+    Internet Requirements:
+    - Downlink (Minimum) 4 Mbps
+    - Downlink (Optimal) 8 Mbps
+    - Uplink (Minimum) 2 Mbps
+    - Uplink (Optimal) 4 Mbps
+
+- question: What is the difference between a meeting and a session?
+  tags: ['Technical']
+  answer: |-
+    Every Dyte communication channel is referred to as a meeting. A meeting is basically a recurring instance of that communication channel, and an ongoing meeting is referred to as a session.
+
+- question: Which part of the meeting is customizable?
+  tags: ['Technical']
+  answer: |-
+    To match your branding, you can change the logo, colors, font, border,
+    and spacing. Design tokens in UI Kit are used to customize these
+    components.
+
+    Our Core SDKs can also be used to create fully customized video/voice
+    calls for your applications.
+
+- question: Can I record a meeting?
+  tags: ['Technical']
+  answer: |-
+    Yes. See [recording a meeting](/cli/recording).
+
+- question: Where are the meeting recordings stored?
+  tags: ['Technical']
+  answer: |-
+    We store the recordings where you provide us storage access. For
+    example, your AWS S3 bucket, DigitalOcean Spaces, or Azure storage
+    account. See [Start recording a meeting for the given ID](/api#/operations/startRecording) and [Publishing a recording to your cloud provider](/guides/recording-your-meetings#publishing-a-recording-to-your-cloud-provider)
+
+- question: Where is Dyte hosted?
+  tags: ['Technical']
+  answer: |-
+    Resiliency is important. Dyte uses multi-cloud and multi-region
+    architecture to provide that seamless experience. Dyte is hosted in
+    Mumbai, Virginia (US East), Singapore, and Frankfurt. You can also read
+    through [this](https://dyte.io/blog/multi-region-resiliency/) blog to understand how Dyte manages a multi-region setup.
+
+- question: Can I self-host Dyte on my own servers?
+  tags: ['Technical']
+  answer: |-
+    No. Dyte is a Software as a Service (SaaS), fully managed and hosted by Dyte.
+
+- question:
+    What platforms, language, and technologies can I build on using Dyte?
+  tags: ['Technical']
+  answer: |-
+    The following are the supported platforms:
+    - Web: React JS, Angular, Vue, Javascript
+    - Mobile: Flutter, Kotlin, Swift, React Native
+    - Desktop: Electron
+
+- question: What backend services can I use with Dyte?
+  tags: ['Technical']
+  answer: |-
+    We have no restrictions on our end. Our APIs are HTTP REST APIs and thus
+    can be called from services written in any language or framework. To
+    find your language-specific backend code, refer to our [API reference](/api)
+
+- question: What are webhooks?
+  tags: ['Technical']
+  answer: |-
+    Webhook service enables you to subscribe to server events. These events
+    allow to trigger specific server actions in response to Dyte meeting
+    events and state changes. We currently support notifications for the
+    following events via webhooks:
+
+    - meeting.started
+    - meeting.ended
+    - meeting.participantJoined
+    - meeting.participantLeft
+    - recording.statusUpdate
+
+    Learn more: [Integrating with Webhooks](/guides/integrating-with-webhooks)
+
+- question:
+    How do I set up and transfer a recording to my storage configuration?
+  tags: ['Technical']
+  answer:
+    You can pass an optional object storageConfig in the start recording
+    request, and we will publish the recording directly to your cloud provider
+    once it stops. For more information, see [Publishing a recording to your
+    cloud
+    provider](/guides/recording-your-meetings#publishing-a-recording-to-your-cloud-provider).
+
+- question: How do I create a region-specific room?
+  tags: ['Technical']
+  answer: |-
+    To create a meeting in your preferred region, pass preferredRegion in
+    the body of the createMeeting endpoint. For more information, see [Create a meeting](/api#/operations/createMeeting).
+
+- question:
+    Do we record the entire screen, or can we record specific streams or users
+    regardless of who is on screen?
+  tags: ['Technical']
+  answer: |-
+    Yes, we record the entire screen rather than individual streams or users.
+
+- question: Can I send an attachment via chat in a live session?
+  tags: ['Technical']
+  answer: |-
+    Yes, you can share media files via chat during a live session. You can
+    send files, pdfs, images, and more. You can also use plugins such as Doc
+    sync to view the shared file as a group and annotate the points that you
+    would want to clarify.
+
+- question: Can I retrieve the chat history of a session?
+  tags: ['Technical']
+  answer: |-
+    You can programmatically retrieve all chat messages of a Dyte session using [Chat Replay API](/guides/exporting-chat-dump).
+    For more information, see [Exporting Chat Dump of a Session](/guides/exporting-chat-dump) and [How to Fetch Chat History of a Dyte Session](https://dyte.io/blog/fetch-chat-history-of-a-dyte-session/)
+    blog.
+
+- question:
+    How do I view session metadata such as start time, end time, number of
+    participants, and so on?
+  tags: ['Technical']
+  answer:
+    You can use the [Session API](/api?v=v2#/operations/GetSessionDetails) to
+    fetch the metadata for a given session.
+
+- question: Is there a way for me to write on the screen during the meeting?
+  tags: ['Technical']
+  answer:
+    Dyte provides multiple out-of-the-box plugins, for example, YouTube, Miro,
+    WhiteBoard, and so on. You can use WhiteBoard for the collaboration.
+
+- question: Can I add participants when creating a meeting only?
+  tags: ['Technical']
+  answer:
+    No, after creating a meeting, use the [Add Participants
+    API](/api/?v=v2#/operations/add_participant) to add participants to the
+    meeting.
+
+- question:
+    Can I pass recording parameters such as codec and storage configurations
+    when creating a meeting or create a template that can be used for all the
+    meetings?
+  tags: ['Technical']
+  answer:
+    Yes, codec and storage information can be passed through the recording API.
+    Per recording, you can pass the parameters storageConfig and videoConfig.
+    You can also send an email to [dev@dyte.io](mailto:dev.dyte.io) to set the
+    orgs default configuration.
+
+- question:
+    What if our server fails to consume the webhook? When will they be fired
+    again, and are they idempotent?
+  tags: ['Technical']
+  answer:
+    For timeouts and 5xx errors, we retry three times with a one-second delay
+    between each retry.
+
+- question:
+    Is it possible to get the total running time of a session from the
+    meeting.ended webhook?
+  tags: ['Technical']
+  answer:
+    We send `startedAt` and `endedAt` timestamps in a `meeting.ended` webhook
+    that can be used to compute the session's running time.
+
+#
+# Pricing FAQs
+#
+
+- question: How do I make a payment?
+  tags: ['Pricing']
+  answer: |-
+    Once Dyte has generated an invoice, you can pay using a link, a saved card, or do a direct bank transfer.

@@ -13,7 +13,7 @@ export default function APIReferenceSection() {
         <link rel="prefetch" href="/static/landing-page/api-ref-light.png" />
         <link rel="prefetch" href="/static/landing-page/api-ref-dark.png" />
       </Head>
-      <div className="relative mx-auto flex w-full max-w-7xl flex-col items-center gap-10 rounded-2xl bg-gradient-to-r from-black to-zinc-800 px-6 py-20 text-center text-white dark:from-zinc-100 dark:to-white dark:text-black lg:flex-row lg:p-20 lg:py-32 lg:text-left">
+      <div className="relative mx-auto flex w-full max-w-7xl flex-col items-center gap-10 rounded-2xl bg-gradient-to-r from-black to-zinc-800 px-6 py-20 text-center text-white dark:from-zinc-100 dark:to-white dark:text-black lg:flex-row lg:p-20 lg:text-left">
         <Link
           href="/api"
           target="_blank"
@@ -28,11 +28,14 @@ export default function APIReferenceSection() {
             developer-friendly APIs and integrate video and voice communication
             into your web, mobile, or desktop applications programmatically.
           </p>
-          <Link href="/api" className="text-primary-100 dark:text-primary">
+          <Link
+            href="/api"
+            className="font-medium text-primary-100 dark:text-primary"
+          >
             Get started with Dyte APIs &rarr;
           </Link>
           <ul className="mt-10 flex list-none flex-col gap-4 text-left lg:pl-0">
-            <li className="flex flex-col gap-2">
+            <li className="flex flex-col gap-1">
               <Link
                 href="/api/#/operations/createMeeting"
                 className="group font-jakarta font-semibold text-current"
@@ -46,7 +49,7 @@ export default function APIReferenceSection() {
                 Create a meeting for your organization
               </div>
             </li>
-            <li className="flex flex-col gap-2">
+            <li className="flex flex-col gap-1">
               <Link
                 href="/api/#/operations/addPreset"
                 className="group font-jakarta font-semibold text-current"
@@ -60,7 +63,7 @@ export default function APIReferenceSection() {
                 Add a preset for the given organization ID
               </div>
             </li>
-            <li className="flex flex-col gap-2">
+            <li className="flex flex-col gap-1">
               <Link
                 href="/api/#/operations/deleteParticipant"
                 className="group font-jakarta font-semibold text-current"
