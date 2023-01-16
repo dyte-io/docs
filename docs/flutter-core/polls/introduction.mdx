@@ -36,3 +36,26 @@ The `DytePollMessage` class has the following properties:
 
 - `id` : ID of the voter.
 - `name` : Name of the voter.
+
+## Listening to new polls in a meeting
+
+To be able to receive new poll messages you need to implement a method
+`onPollUpdates()` method from callback `DyteMeetingRoomEventsListener`. You can
+subscribe to this events by calling
+
+```dart
+ref.watch(dyteClient).addMeetingEventsListener(dyteMeetingRoomEventsListener)
+```
+
+To listen to poll updates, listen to `onPollUpdates()` callback:
+
+```dart
+@override
+  void onPollUpdates({
+    required bool newPoll,
+    required List<DytePollMessage> pollMessages,
+    DytePollMessage? updatedPollMessage,
+  }) {
+    /// code to handle polls
+  }
+```
