@@ -11,8 +11,6 @@ You can subscribe to various events on the local user. For subscribing:
 
 - Implement `DyteSelfEventsListener` class to a `StateNotifier` class (say
   `LocalUserNotifier`).
-- Now to subscribe, pass the notifier of this `LocalUserNotifier` class to
-  `addSelfEventsListener()` method of `dyteClient` provider as follows:
 
 ```dart
 final localUserProvider =
@@ -21,7 +19,12 @@ final localUserProvider =
 });
 ```
 
-`ref.watch(dyteClient).addSelfEventsListener(localUserProvider.notifier)`.
+- Now to subscribe, pass the notifier of this `LocalUserNotifier` class to
+  `addSelfEventsListener()` method of `dyteClient` provider as follows:
+
+```dart
+ref.watch(dyteClient).addSelfEventsListener(localUserProvider.notifier);
+```
 
 ### Room joined
 

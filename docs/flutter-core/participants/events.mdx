@@ -101,7 +101,7 @@ Trigger an event when any participant starts / stops screen share.
     @override
     void onScreenSharesUpdated() {
         // all screenshare participants can be fetched via
-        // meeting.participants.screenshares
+        // ref.watch(dyteClient).participants.screenshares
         }
 ```
 
@@ -119,6 +119,18 @@ DyteGridPagesInfo
         // whenever participants are updated in the room
         // it returns a updated `DyteRoomParticipants` and `DyteGridPagesInfo` with it.
       }
+```
+
+## Active Participants changed
+
+Trigger when active participant changes, for ex. when you move to next page of
+participant, this state gives you the participants of this current page.
+
+```dart
+    @override
+    void onActiveParticipantsChanged({required List<DyteMeetingParticipant> activeParticipants}) {
+            /// these active participants return new page participants
+        }
 ```
 
 Other callbacks:
@@ -139,10 +151,3 @@ Other callbacks:
     onParticipantUnpinned()
   </span>
   : Trigerred when participant is unpinned.
-- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
-    onActiveParticipantsChanged(`required List DyteMeetingParticipant
-    activeParticipants)
-  </span>
-  : Triggered when active participants changes to <code>
-    activeParticipants
-  </code>
