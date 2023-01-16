@@ -106,11 +106,20 @@ The payload for this event is like the following:
   "participant": {
     "peerId": "e32fb785-ddd0-4b96-b577-879327c0082f",
     "userDisplayName": "John Doe",
-    "clientSpecificId": "l08is183rld",
+    // highlight-next-line-error
+    "clientSpecificId": "l08is183rld", // deprecated, use `customParticipantId` instead
+    "customParticipantId": "l08is183rld",
     "joinedAt": "2022-12-13T06:57:51.631Z"
   }
 }
 ```
+
+:::danger attention!
+
+The `clientSpecificId` field is deprecated. Please use `customParticipantId`
+instead.
+
+:::
 
 ### `meeting.participantLeft`
 
@@ -136,12 +145,21 @@ The payload for this event is like the following:
   "participant": {
     "peerId": "023d3ea6-0af0-40ad-8aa3-6645c4ff1db8",
     "userDisplayName": "Mary Sue",
-    "clientSpecificId": "dj287lon9c",
+    // highlight-next-line-error
+    "clientSpecificId": "dj287lon9c", // deprecated, use `customParticipantId` instead
+    "customParticipantId": "dj287lon9c",
     "joinedAt": "2022-12-13T07:01:41.535Z",
     "leftAt": "2022-12-13T07:03:42.420Z"
   }
 }
 ```
+
+:::danger attention!
+
+The `clientSpecificId` field is deprecated. Please use `customParticipantId`
+instead.
+
+:::
 
 ### `recording.statusUpdate`
 

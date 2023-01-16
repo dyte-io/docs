@@ -56,10 +56,10 @@ const latestVersions = {
 
 const SECTIONS = [
   defineSection('guides', {
-    label: 'v1'
+    label: 'v1',
   }),
   defineSection('guides-v2', {
-    label: 'v2'
+    label: 'v2',
   }),
   defineSection('cli'),
 
@@ -107,7 +107,7 @@ const SECTIONS = [
   }),
   defineSection('flutter', {
     label: latestVersions['flutter'],
-  })
+  }),
 ];
 
 const sdksHTML = fs.readFileSync('./src/snippets/sdks.html', 'utf-8');
@@ -228,7 +228,7 @@ const config = {
             label: 'Guides',
             to: 'guides-v2/quickstart',
             position: 'left',
-            className: 'new-badge'
+            className: 'new-badge',
           },
           {
             label: 'API Reference',
@@ -347,6 +347,17 @@ const config = {
           'java',
           'swift',
           'objectivec',
+        ],
+        magicComments: [
+          {
+            className: 'theme-code-block-highlighted-line',
+            line: 'highlight-next-line',
+            block: { start: 'highlight-start', end: 'highlight-end' },
+          },
+          {
+            className: 'code-block-error-line',
+            line: 'highlight-next-line-error',
+          },
         ],
       },
       liveCodeBlock: {
