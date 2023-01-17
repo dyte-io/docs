@@ -9,10 +9,14 @@ tags: [mobile-core, chat]
 
 To be able to receive chat messages you need to implement a method `onChatUpdates()` method from callback `DyteMeetingRoomEventsListener`. You can subscribe to this events by calling `meeting.addMeetingEventsListener(dyteMeetingRoomEventsListener)`
 
-```kotlin
+```swift
     extension MeetingViewModel: DyteMeetingRoomEventsListener {
-      func onChatUpdates(newMessage: Bool, message: DyteChatMessage?, messages: [DyteChatMessage]) {
-        // your code to handle new chat message
+      func onChatUpdates(messages: [DyteChatMessage]) {
+        // any update in chat messages
+      }
+
+      func onNewChatMessage(message: DyteChatMessage) {
+        // updates for new chat messages only
       }
     }
 ```

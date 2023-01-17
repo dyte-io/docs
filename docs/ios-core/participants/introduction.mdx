@@ -5,35 +5,67 @@ sidebar_position: 1
 tags: [mobile-core, participants, participant]
 ---
 
-# Introduction - Participants
+# Introduction - Room paricipants
 
-The data regarding all meeting participants is stored under `meeting.participants`. Use the methods and events to consume the participants data. 
+The data regarding all meeting participants is stored under
+`meeting.participants`. Use the methods and events to consume the participants
+data.
+
+## Room participants object.
+
+- `joined`: A list that contains all the participants who have joined the
+  meeting.
+- `waitlisted`: A list that contains all the participants waiting to join the
+  meeting.
+- `active`: A list that contains all the participants except the local user who
+  are supposed to be on the screen at the moment
+- `pinned`: A nullable participant object. If any participant is pinned is that
+  participant else it is null.
+- `screenshares`: A list that contains all the participants who have shared
+  screen in the meeting.
+- `gridInfo`: This object has all data related to pages in the room.
+
+Each participant in each of the `joined`, `waitlisted`, `active` and
+`screenshares` list is of type `DyteMeetingParticipant`.
+
 For example, to get all the participants who joined the meeting:
 
-```kotlin
+```swift
 // get all joined participants
-val joinedParticipants = meeting.participants.joined;
+let joinedParticipants = meeting.participants.joined;
 ```
 
-The `meeting.participants` object has the following properties.
+For example, to get all the active participants in the meeting:
 
-- `joined`: A list that contains all the participants who have joined the meeting.
-- `waitlisted`: A list that contains all the participants waiting to join the meeting.
-- `active`: A list that contains all the participants except the local user who are supposed to be on the screen at the moment 
-- `pinned`: A list that contains all the pinned participants of the meeting.
-- `screenshares`: A list that contains all the participants who have shared screen in the meeting.
+```swift
+// get all active participants
+let joinedParticipants = meeting.participants.active;
+```
 
-Therefore, if you were to make a grid of participants, you'd use the `active` list, but to display all participants in the meeting you'd use the `joined` list.
+Therefore, if you were to make a grid of participants, you'd use the `active`
+list, but to display all participants in the meeting you'd use the `joined`
+list.
 
-Each participant in each of the `joined`, `waitlisted`, `active`, `pinned` and `screenshares` list is of type `DyteMeetingParticipant`.
+## Grid info for the room
 
-You can subscribe to various events on the participants by implementing `DyteParticipantEventsListener` and passing the object to `meeting.addParticipantEventsListener(dyteParticipantEventsListener)`.
+Following object can be retrieved from `meeting` object by using
+`meeting.participants.gridInfo`. This object will have necessary information
+regarding pageCount, next page, previos page, current page, etc.
 
-### Video update
+```swift
+  let pageCount: Int
+  let currentPageNumber: Int
+  let isNextPagePossible: Bool
+  let isPreviousPagePossible: Bool
+  let shouldShowPaginator: Bool
+  let maxVideoCountPerPage: Int
+```
+
+## Video update for all participants
 
 Triggered when the user starts / stops the video using `enableVideo` or `disableVideo`
 
-```kotlin
+```swift
 extension MeetingViewModel: DyteParticipantEventsListener {
      func videoUpdate(videoEnabled: Boolean, participant: DyteMeetingParticipant) {
       if (videoEnabled) {
@@ -45,11 +77,11 @@ extension MeetingViewModel: DyteParticipantEventsListener {
 }
 ```
 
-### Audio update
+## Audio update for all participants
 
 Triggered when the user starts / stops the audio using `enableAudio` or `disableAudio`
 
-```kotlin
+```swift
 extension MeetingViewModel: DyteParticipantEventsListener {
     func audioUpdate(audioEnabled: Boolean, participant: DyteMeetingParticipant) {
       if (audioEnabled) {
@@ -61,23 +93,11 @@ extension MeetingViewModel: DyteParticipantEventsListener {
 }
 ```
 
-## Set mode of pagination
-
-The SDK allows you to view grid in two differant modes. First is `Grid` where SDK gives you list of `active` participants to show. Second is `Paginated` where user decides which page to view.
-
-```kotlin
-// for grid mode
-meeting.participants.setMode(PageViewMode.GRID)
-
-// for paginated mode
-meeting.participants.setMode(PageViewMode.PAGINATED)
-```
-
 ## Move between pages in paginated mode
 
 The `setPage(pageNumber: Int)` method allows you to switch between pages of participants present in the meeting.
 
-```kotlin
+```swift
 // switch to 1st page
 meeting.participants.setPage(1)
 ```
@@ -86,29 +106,29 @@ meeting.participants.setPage(1)
 
 The `meeting.participants` object has host control methods that allow you to disable the audio and video streams of other users in the meeting (given that the user preset has the right permissions).
 
-```kotlin
+```swift
 // mute all participants
 meeting.participants.disableAllAudio();
 
 // mute a single participant
-val participantToUpdate = meeting.participants.joined.first()
+let participantToUpdate = meeting.participants.joined.first
 participantToUpdate.disableAudio()
 
 // disable video for all participants
-meeting.participants.disableAllVideo();
+meeting.participants.disableAllVideo()
 
 // disable video for a single participant
-val participantToUpdate = meeting.participants.joined.first()
+let participantToUpdate = meeting.participants.joined.first()
 participantToUpdate.disableVideo()
 ```
 
 To remove all participants from a meeting, you can call the `kickAll()` method.
 
-```kotlin
+```swift
 // remove all participants from the meeting
 meeting.participants.kickAll();
 
 // remove a single participant
-val participantToRemove = meeting.participants.joined.first()
+let participantToRemove = meeting.participants.joined.first()
 participantToRemove.kick()
 ```

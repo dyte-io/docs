@@ -18,11 +18,11 @@ A new poll can be created using the `create` method from the [`meeting.polls`](.
 
 The following snippet creates a poll where votes are anonymous.
 
-```kotlin
-meeting.poll.create(
-    "Are you an early bird or a night owl?",
-    listOf("Early bird", "Night owl"),
-    true,
-    false
+```swift
+meeting.polls.create(
+    question: "Are you an early bird or a night owl?",
+    options: ["Early bird", "Night owl"],
+    anonymous: true,
+    hideVotes: false
 )
 ```

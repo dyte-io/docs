@@ -10,6 +10,19 @@ tags: [mobile-core, local-user, self]
 
 You can subscribe to various events on the local user by implementing `DyteSelfEventsListener` and passing the object to `meeting.addSelfEventsListener(dyteSelfEventsListener)`.
 
+### Room joined
+
+Triggered when the room join event completes and now the meeting is ready to
+produce and consume media.
+
+```swift
+extension MeetingViewModel: DyteSelfEventsListener {
+    func onRoomJoined() {
+        //Room Joined
+    }
+}
+```
+
 ### Video update
 
 Triggered when the user starts / stops the video using `enableVideo` or `disableVideo`
@@ -30,7 +43,7 @@ extension MeetingViewModel: DyteSelfEventsListener {
 
 Triggered when the user starts / stops the audio using `enableAudio` or `disableAudio`
 
-```kotlin
+```swift
 
 extension MeetingViewModel: DyteSelfEventsListener {
     func onAudioUpdate(audioEnabled: Bool) {
@@ -39,6 +52,52 @@ extension MeetingViewModel: DyteSelfEventsListener {
       } else {
         // audio is disabled, and other participants in room can not hear local user.
       }
+    }
+}
+```
+### Room disconnected update
+
+Triggered when the user is disconnected due to media/network errors
+
+```kotlin
+extension MeetingViewModel: DyteSelfEventsListener {
+    func onMeetingRoomDisconnected() {
+      //disconnected
+    }
+}
+```
+
+### Proximity changed
+
+Triggered when there is any change in proximity. Meaning if device is near ear
+piece which triggers display on/off.
+
+```swift
+extension MeetingViewModel: DyteSelfEventsListener {
+    func onProximityChanged(isNear: Bool) {
+      // isNear
+      // if true, display should be turned off, as user might be speaking through earpience
+      // if false, display should be tunred on, as user might be looking at display and listening through speaker/earphones.
+    }
+}
+```
+
+### Waitlist status
+
+For meetings whose waiting room is enabled:
+
+To get status of localUser in waiting room we can use
+
+```swift
+val waitListStatus = meeting.localUser.waitListStatus
+```
+
+Developers can listen to those changes in `onWaitListStatusUpdate()` callbacks
+
+```swift
+extension MeetingViewModel: DyteSelfEventsListener {
+    func onWaitListStatusUpdate(waitListStatus: WaitListStatus) {
+      
     }
 }
 ```

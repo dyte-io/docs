@@ -7,16 +7,21 @@ image: /static/ui-kit/1.x.x/components/dyte-spotlight-grid.svg
 A grid component that renders two lists of participants: `pinnedParticipants`
 and `participants`.
 
+You can customize the layout to a `column` view, by default is is `row`.
+
 - Participants from `pinnedParticipants[]` are rendered inside a larger grid.
 - Participants from `participants[]` array are rendered in a smaller grid.
 
 ```html
-<dyte-spotlight-grid id="dyte-el"></dyte-spotlight-grid>
+<dyte-spotlight-grid class="dyte-el"></dyte-spotlight-grid>
+<dyte-spotlight-grid layout="column" class="dyte-el"></dyte-spotlight-grid>
 
 <script>
-  const el = document.getElementBydId('dyte-el');
-  el.participants = [meeting.self];
-  el.pinnedParticipants = [meeting.self];
+  const elements = document.getElementsByClassName('dyte-el');
+  for (const el of elements) {
+    el.participants = [meeting.self];
+    el.pinnedParticipants = [meeting.self];
+  }
 </script>
 
 <style>
