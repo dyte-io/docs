@@ -16,10 +16,10 @@ in the [Integrate Dyte](/getting-started#integrate-dyte) section.
 
 :::
 
-The DyteMobileClient is the main class of the SDK. It is the main entry point of the SDK. It is the only class that you need to instantiate in order to use the SDK. To instantiate DyteMobileClient, you should use `DyteiOSClientBuilder().build()` and pass your activity instance there.:
+The DyteMobileClient is the main class of the SDK. It is the main entry point of the SDK. It is the only class that you need to instantiate in order to use the SDK. To instantiate DyteMobileClient, you should use `DyteiOSClientBuilder().build()` and pass your activity instance there.
 
 ```swift
-val meeting = DyteiOSClientBuilder().build()
+let meeting = DyteiOSClientBuilder().build()
 ```
 Add listeners and implement callback stubs
 
@@ -75,7 +75,7 @@ extension MeetingViewModel: DyteMeetingRoomEventsListener {
 
 And voila, you just joined a room with Dyte's mobile SDK.
 
-Similarely to leave the meeting you can call `leaveRoom()` on `meeting` object.
+Similarly to leave the meeting you can call `leaveRoom()` on `meeting` object.
 
 ```swift
 meeting.leaveRoom()
