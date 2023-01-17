@@ -2354,6 +2354,19 @@ components:
     Participant:
       type: object
       description: Object containing details of a participant.
+      x-examples:
+        example-1:
+          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+          createdAt: '2021-12-21T14:15:22Z'
+        example-2:
+          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+          name: Mangoman
+          createdAt: '2019-08-24T14:15:22Z'
+        example-3:
+          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+          name: Mangoman
+          picture: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png'
+          createdAt: '2019-08-24T14:15:22Z'
       properties:
         id:
           type: string
@@ -2369,27 +2382,14 @@ components:
         picture:
           type: string
           format: uri
-          description: Publicly accessible URL for the participant display picture.
+          description: Publicly accessible URL of the participant display picture.
         createdAt:
           type: string
           format: date-time
-          description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the participant was created.'
+          description: 'Timestamp indicating when the participant was created (in ISO 8601 format with UTC timezone, for example, 2022-12-21T00:00:00.000Z).'
       required:
         - id
         - createdAt
-      x-examples:
-        example-1:
-          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
-          createdAt: '2021-12-21T14:15:22Z'
-        example-2:
-          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
-          name: Mangoman
-          createdAt: '2019-08-24T14:15:22Z'
-        example-3:
-          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
-          name: Mangoman
-          picture: 'https://mir-s3-cdn-cf.behance.net/project_modules/1400/9d27a222281235.5630faea59f01.png'
-          createdAt: '2019-08-24T14:15:22Z'
     AuthResponse:
       type: object
       description: 'Object containing auth details of a participant, used to join a specific meeting.'
@@ -3042,10 +3042,10 @@ components:
                 description: Unique ID of the webhook to which the current event was sent.
               name:
                 type: string
-                description: Name of the webhook as set during the webhook creation.
+                description: Name of the webhook that was specified when it was created.
               logId:
                 type: string
-                description: Unique ID of the current webhook log.
+                description: Unique ID of the webhook log.
                 format: uuid
               headers:
                 type: object
@@ -3060,7 +3060,7 @@ components:
                   dyte-uuid:
                     type: string
                     format: uuid
-                    description: Unique uuid generated for the webhook event to avoid re-processing of the same webhook
+                    description: Unique uuid generated for the webhook event. This prevents the same webhook from being processed multiple times.
               payload:
                 type: object
                 description: Event payload data for the given webhook request.
@@ -3083,7 +3083,7 @@ components:
                     $ref: '#/components/schemas/WebhookLogsMeetingResponse'
                   participant:
                     type: object
-                    description: Object defining the participant corresponding to whom the event was generated.
+                    description: Object defining the participant for whom the event was generated.
                     required:
                       - peerId
                       - userDisplayName
@@ -3097,18 +3097,18 @@ components:
                         description: Unique ID of the participant in Dyte system.
                       userDisplayName:
                         type: string
-                        description: 'Name of the participant, as displayed in the meeting room.'
+                        description: Name of the participant as it appears in the meeting room.
                       clientSpecificId:
                         type: string
-                        description: clientSpecificId that was passed in the add-participant API call
+                        description: ID of the client as passed in the Add participant API.
                       leftAt:
                         type: string
                         format: date-time
-                        description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2022-12-21T00:00:00.000Z`) indicating the time at which the participant left this session of the meeting'
+                        description: 'Timestamp indicating when the participant left this meeting session (in ISO 8601 format with UTC timezone, for example, 2022-12-21T00:00:00.000Z).'
                       joinedAt:
                         type: string
                         format: date-time
-                        description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2022-12-21T00:00:00.000Z`) indicating the time at which the participant joined this session of the meeting'
+                        description: 'Timestamp indicating when the participant joined this meeting session (in ISO 8601 format with UTC timezone, for example, 2022-12-21T00:00:00.000Z).'
                   participants:
                     type: array
                     uniqueItems: true
@@ -3117,8 +3117,8 @@ components:
                       $ref: '#/components/schemas/Participant'
               timestamp:
                 type: string
-                description: 'Timestamp (in ISO 8601 format with UTC timezone, eg `2021-12-21T00:00:00.000Z`) when the current event was triggered.'
                 format: date-time
+                description: 'Timestamp indicating when the current event was triggered (in ISO 8601 format with UTC timezone, for example, 2022-12-21T00:00:00.000Z).'
               statusCode:
                 type: number
                 description: HTTP status code received by Dyte when trying to connect with the webhook to send this particular event.
