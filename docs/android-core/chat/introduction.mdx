@@ -15,47 +15,11 @@ The `meeting.chat.messages` array contains all the messages that have been sent
 in the chat. This is an array of objects, where each object is of type
 `DyteChatMessage`.
 
-The type `DyteChatMessage` is defined in the following manner.
+We support three types of chat messages, they are as follows
 
-```kotlin
-sealed class DyteChatMessage(
-  val userId: String,
-  val displayName: String,
-  val read: Boolean,
-  val pluginId: String?,
-  val type: DyteMessageType
-) {
-  class DyteTextMessage(
-    userId: String,
-    displayName: String,
-    read: Boolean,
-    pluginId: String?,
-    val message: String
-  ) : DyteChatMessage(userId, displayName, read, pluginId, TEXT)
+- Text Message
+- Image Message
+- File Message
 
-  class ImageMessage(
-    userId: String,
-    displayName: String,
-    read: Boolean,
-    pluginId: String?,
-    val link: String,
-    val fileUri: String?,
-    val fileName: String?
-  ) : DyteChatMessage(userId, displayName, read, pluginId, IMAGE)
-
-  class FileMessage(
-    userId: String,
-    displayName: String,
-    read: Boolean,
-    pluginId: String?,
-    val name: String,
-    val fileUri: String?,
-  ) : DyteChatMessage(userId, displayName, read, pluginId, FILE)
-}
-
-enum class DyteMessageType {
-  TEXT,
-  IMAGE,
-  FILE;
-}
-```
+All above objects are of type `DyteChatMessage` along with their own class
+variables.
