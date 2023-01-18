@@ -5,52 +5,118 @@ sidebar_position: 2
 tags: [flutter-core, quickstart]
 ---
 
-# Quickstart
+# Flutter Core SDK Quickstart
 
-:::info Before Getting Started
+This quickstart shows how to use Dyte's Flutter Core SDK to add live video and
+audio to your Flutter applications.
 
-Before you start integrating Dyte into your application, make sure you've read
-the [Getting Started with Dyte](/getting-started) topic and completed the steps
-in the [Integrate Dyte](/getting-started#integrate-dyte) section.
+For getting started quickly, you can use our sample code from the SDK README.
+You can also clone and run a sample application from the Flutter Core SDK GitHub
+repository.
 
-:::
+## Objective
 
-The `DyteMobileClient` is the main class of the SDK. It is the main entry point
-and the ONLY class required to instantiate Dyte SDK.
+You’ll learn how to:
+
+- Install the Dyte SDK
+- Initialize the SDK
+- Configure a Dyte meeting
+- Initialize the Dyte meeting
+- And go live with your Dyte meeting
+
+## Before Getting Started
+
+- Make sure you've read the
+  [Getting Started with Dyte](https://docs.dyte.io/getting-started) topic and
+  completed the steps in the
+  [Integrate Dyte](https://docs.dyte.io/getting-started#integrate-dyte) section.
+  You must complete the following steps:
+  - Create a [Dyte Developer Account](https://dev.dyte.io/)
+  - Create [Presets](https://dev.dyte.io/roles-presets)
+  - Create a
+    [Dyte Meeting](https://docs.dyte.io/api/?v=v2#/operations/create_meeting)
+  - [Add Participant](https://docs.dyte.io/api/?v=v2#/operations/add_participant)
+    to the meeting
+- Install Flutter on your device
+- (For iOS apps) Install
+  [Xcode](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwin55bqodH8AhUVQXwKHaR-DAsQFnoECA0QAQ&url=https%3A%2F%2Fapps.apple.com%2Fus%2Fapp%2Fxcode%2Fid497799835%3Fmt%3D12&usg=AOvVaw2fEvMbfRtGhB4SPHYB54NX)
+- (For Android apps) Install
+  [Android Studio](https://developer.android.com/studio), or install the Android
+  SDK for Command-Line Interface (CLI) only.
+
+## Step 1: Install the SDK
+
+1. To install the SDK, add the Dyte Core Flutter SDK dependency into the
+   `pubspec.yaml` file.
+
+   ```dart
+   flutter pub add dyte_core
+   ```
+
+2. Then import the following package into your project:
+
+   ```dart
+   import 'package:dyte_core/dyte_core.dart';
+   ```
+
+_Note: If you intend to publish your app to the Google Play or App Store, you'll
+need to perform a few additional steps. So if you’re working on release builds
+and not debug builds, refer to Release Builds._
+
+3. Add the following permissions to the AndroidManifest.xml file.
+
+```dart
+<uses-permission android:name="android.permission.RECORD_AUDIO" />
+<uses-permission android:name="android.permission.CAMERA" />
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.BLUETOOTH" />
+<uses-permission android:name="android.permission.WAKE_LOCK" />
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+```
+
+## Step 2: Initialize the SDK
+
+The `DyteMobileClient` is the main class of the SDK. It is the entry point and
+the only class required to initialize Dyte SDK.
 
 ```dart
 final dyteClient = DyteMobileClient();
 ```
 
-First step is to establish a connection to the meeting server with set default
-properties. Properties can be set with `DyteMeetingInfo` class. To initialize
-the connection request, call the `init()` method on obtained `dyteClient`
-instance with `meetingInfo` argument as follows:
+## Step 3: Set the meeting properties
+
+Set the properties in the `DyteMeetingInfo` class. You need to provide the
+meeting's `roomName` and the participant's `authToken`. Optionally you can also
+add `baseUrl`.
+
+| Name                      | Description                                                                                                                                                                                                                                                                                                                              |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `baseUrl`<br/> (optional) | The question that is to be voted for.<br/> You can set to any of the following: <br/>(Default) [https://api.cluster.dyte.in](https://api.cluster.dyte.in) <br/> [https://api.staging.dyte.in](https://api.staging.dyte.in)                                                                                                               |
+| `roomName` or `meetingID` | - for v1 APIs: pass the [roomName](https://docs.dyte.io/api/?v=v1#/operations/get_all_meetings)<br/> - for v2 APIs: pass the [meetingID](https://docs.dyte.io/api/?v=v2#/operations/create_meeting)                                                                                                                                      |
+| `authToken`               | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](https://docs.dyte.io/api#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
 
 ```dart
 final meetingInfo = DyteMeetingInfo(
                     roomName: "<room_name>",
                     authToken: '<auth_token>',
                   );
+```
 
+## Step 4: Initialize the connection request
+
+To initialize the connection request, call the `init()` method obtained on
+`dyteClient` with the `meetingInfo` argument. This will establish the connection
+with the Dyte meeting server.
+
+```dart
 dyteClient.init(meetingInfo)
 ```
 
-Kindly refer to links below to get corresponding arguments:  
-`baseUrl`: [Dyte developer portal](https://dev.dyte.in/).  
-`roomName`:
-[this for `roomName`](https://docs.dyte.io/api/#/operations/create_meeting)  
-`authToken`:
-[this for `authToken`](https://docs.dyte.io/api/#/operations/add_participant).
-
-:::info
-
-Init meeting event listeners Once you call `init()`, you can listen to callbacks
-for this action on meeting object by registering state observers as follows.
-
-:::
+By registering state observers, you receive callbacks for this action on the
+meeting object.
 
 ```dart
+
 class RoomStateNotifier with DyteMeetingRoomEventsListener {
 
   ...
@@ -75,25 +141,27 @@ class RoomStateNotifier with DyteMeetingRoomEventsListener {
 
 ```
 
-Now, you have established the connection with Dyte meeting server succesfully.
-Next step is to join the room.  
-To join, call `joinRoom()` method on `dyteClient` instance as shown below.
+## Step 5: Connect to the meeting
+
+Now, you have established the connection with the Dyte meeting server
+successfully. Next step is to join the room.
+
+### Join the room
+
+To join the meeting room, call `joinRoom()` method on the `dyteClient` instance
+as shown below.
 
 ```dart
 dyteClient.joinRoom();
 ```
 
-:::info
-
-Join room event listeners Once you call `joinRoom()`, you can listen to
-callbacks for this action on meeting object by registering state observers as
-follows.
-
-:::
+By registering state observers, you receive callbacks for this action on the
+meeting object.
 
 ```dart
-
 class LocalUserStatesNotifier with DyteSelfEventsListener {
+
+  ...
 
   @override
   onMeetingRoomJoinStarted() {
@@ -109,22 +177,24 @@ class LocalUserStatesNotifier with DyteSelfEventsListener {
   onMeetingRoomJoinFailed: (exception){
     /// Handle failure
   },
-}
 
+  ...
+}
 ```
 
-Now to leave, call `leaveRoom()` method on `dyteClient` instance as shown below.
+### Leave the room
+
+Once the meeting is over, you can leave the meeting room.
+
+To leave the meeting room, call `leaveRoom()` method on the `dyteClient` as
+shown below.
 
 ```dart
-dyteClient.leaveRoom()
+dyteClient.leaveRoom();
 ```
 
-:::info
-
-Leave room event listeners You can listen to `leaveRoom()` callbacks by
-registering state obsever on meeting object as follows
-
-:::
+By registering state observers, you receive callbacks for this action on the
+meeting object.
 
 ```dart
 class RoomStateNotifier with DyteMeetingRoomEventsListener {
@@ -144,7 +214,108 @@ class RoomStateNotifier with DyteMeetingRoomEventsListener {
   ...
 
 }
+```
+
+## Sample Code for a Flutter Application
+
+Here is a sample code for using Dyte with the Flutter application.
+
+## Release Builds
+
+If you intend to publish your app to the Google Play or App Store, perform the
+following steps after installing the SDKs. So if you’re working on release
+builds and not debug builds, do the following:
+
+### For Android release builds
+
+Perform the following steps, for Android release builds:
+
+1. Create `/android/app/proguard-rules.pro` file.
+
+```dart
+# Keep `Companion` object fields of serializable classes.
+# This avoids serializer lookup through `getDeclaredClasses` as done for named companion objects.
+-if @kotlinx.serialization.Serializable class **
+-keepclassmembers class <1> {
+   static <1>$Companion Companion;
+}
+
+# Keep `serializer()` on companion objects (both default and named) of serializable classes.
+-if @kotlinx.serialization.Serializable class ** {
+   static **$* *;
+}
+-keepclassmembers class <2>$<3> {
+   kotlinx.serialization.KSerializer serializer(...);
+}
+
+# keep webrtc classes
+-keep class org.webrtc.** { *; }
+-dontwarn org.chromium.build.BuildHooksAndroid
+
+# keep ktor classes
+-keep class io.ktor.** { *; }
 
 ```
 
-Congratulations! You've successfully joined the room.
+Add the following to your `android/app/build.gradle` to import the proguard
+configuration.
+
+```dart
+buildTypes {
+        release {
+            ...
+            ...
+            ...
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+```
+
+### For iOS release builds
+
+Before getting started with iOS release builds, complete the following
+prerequisites.
+
+#### Prerequisites:
+
+- Ensure that Rosetta is installed with Xcode on Mac computers with Apple
+  silicon.
+- Make sure your Mac computers are running macOS version 12.0 Monterey or
+  higher.
+
+#### Perform the following steps for the iOS release builds:
+
+1. Set your platform to iOS 12.0 or above in your Podfile.
+
+```dart
+platform :ios, '12.0'
+```
+
+2. Add the following entries to the `info.plist` file. This gives permission to
+   your app to access the camera and microphone, access photos, install the
+   required fonts and icons.
+
+```dart
+<key>NSBluetoothPeripheralUsageDescription</key>
+<string>We will use your Bluetooth to access your Bluetooth headphones.</string>
+<key>NSBluetoothAlwaysUsageDescription</key>
+<string>We will use your Bluetooth to access your Bluetooth headphones.</string>
+<key>NSCameraUsageDescription</key>
+<string>For people to see you during meetings, we need access to your camera.</string>
+<key>NSMicrophoneUsageDescription</key>
+<string>For people to hear you during meetings, we need access to your microphone.</string>
+<key>NSPhotoLibraryUsageDescription</key>
+<string>For people to share, we need access to your photos.</string>
+```
+
+3. Disable `BITCODE` in your Podfile.
+
+```dart
+post_install do |installer|
+   installer.pods_project.targets.each do |target|
+       target.build_configurations.each do |config|
+           config.build_settings['ENABLE_BITCODE'] = 'NO'
+       end
+   end
+end
+```
