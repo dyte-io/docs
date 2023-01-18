@@ -1,0 +1,147 @@
+---
+title: Events
+description: Local user events guide.
+sidebar_position: 2
+tags: [web-core, local-user, self, self events]
+---
+
+# Local User - Events
+
+You can subscribe to various events on the local user by calling
+`meeting.self.on(EVENT_NAME)`.
+
+## Room joined
+
+Triggered when the room join event completes and now the `meeting` is ready to
+produce and consume media.
+
+```ts
+meeting.self.on('roomJoined', () => {
+  console.log(
+    'User has joied the meeting and ready to produce and consume media'
+  );
+});
+```
+
+## Room left
+
+Triggered when the local user leaves the meeting.
+
+```js
+meeting.self.on('roomLeft', () => {
+  console.log('User has left the meeting');
+});
+```
+
+## Video update
+
+Triggered when the user starts / stops the video using `enableVideo` or
+`disableVideo`
+
+```ts
+const videoElem = document.getElementById('my-video');
+
+meeting.self.on('videoUpdate', async ({ videoEnabled, videoTrack }) => {
+  if (videoEnabled) {
+    const stream = new MediaStream();
+    stream.addTrack(videoTrack);
+    videoElem.srcObject = stream;
+    videoElem.play();
+  } else {
+    videoElem.stop();
+  }
+});
+```
+
+## Audio update
+
+Triggered when the user starts / stops the audio using `enableAudio` or
+`disableAudio`
+
+```ts
+const audioElem = document.getElementById('my-audio');
+
+meeting.self.on('audioUpdate', async ({ audioEnabled, audioTrack }) => {
+  if (audioEnabled) {
+    const stream = new MediaStream();
+    stream.addTrack(audioTrack);
+    audioElem.srcObject = stream;
+    audioElem.play();
+  } else {
+    audioElem.stop();
+  }
+});
+```
+
+## Screenshare update
+
+Triggered when the user starts / stops the screen share using
+`enableScreenShare()` or `disableScreenShare()`.
+
+```ts
+const screenElem = document.getElementById('my-screen-share');
+
+meeting.self.on(
+  'screenShareUpdate',
+  async ({ screenShareEnabled, screenShareTracks }) => {
+    if (screenShareEnabled) {
+      const stream = new MediaStream();
+      stream.addTrack(screenShareTracks.video);
+      screenElem.srcObject(stream);
+      await screenElem.play();
+    } else {
+      await screenElem.stop();
+    }
+  }
+);
+```
+
+## Device update
+
+Subscribe to the `deviceUpdate` event to handle the changing video, audio and
+speaker devices
+
+```ts
+meeting.self.on('deviceUpdate', ({ device }) => {
+  // handle microphone device change
+  if (device.kind === 'audioinput') {
+    console.log('mic change', device);
+  }
+  // handle camera device change
+  if (device.kind === 'videoinput') {
+    console.log('camera change', device);
+  }
+  // handle speaker device change
+  if (device.kind === 'audiooutput') {
+    console.log('speaker change', device);
+  }
+});
+```
+
+## Network quality score
+
+Subscribe to the `mediaScoreUpdate` event to monitor network
+
+```ts
+meeting.self.on('mediaScoreUpdate', ({ kind, isScreenshare, score }) => {
+  if (kind === 'video') {
+    console.log(
+      `Your ${isScreenshare ? 'screenshare' : 'video'} quality score is `,
+      score
+    );
+  }
+
+  if (kind === 'audio') {
+    console.log('Your audio quality score is ', score);
+  }
+
+  if (score < 5) {
+    console.log('Your media quality is poor');
+  }
+});
+```
+
+## Webinar Stage events
+
+In a `WEBINAR` setup (more details here), below events can be used to bring a
+user on to stage
