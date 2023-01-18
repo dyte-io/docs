@@ -10,6 +10,7 @@ tags: [web-core, installation, setup]
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import { WebCoreCDNInstallation } from '@site/src/components/LatestInstallation';
 
 <Tabs
   groupId="node-pm"
@@ -27,6 +28,8 @@ Install the SDK using npm.
 npm install @dytesdk/web-core
 ```
 
+[![npm version](https://badge.fury.io/js/@dytesdk%2Fweb-core.svg)](https://badge.fury.io/js/@dytesdk%2Fweb-core)
+
   </TabItem>
   <TabItem value="yarn">
 Install the SDK using yarn.
@@ -35,13 +38,12 @@ Install the SDK using yarn.
 yarn add @dytesdk/web-core
 ```
 
+[![npm version](https://badge.fury.io/js/@dytesdk%2Fweb-core.svg)](https://badge.fury.io/js/@dytesdk%2Fweb-core)
+
   </TabItem>
   <TabItem value="CDN">
 Add the following script tag in the head of your HTML file.
-
-```html
-<script src="https://cdn.dyte.in/core/dyte.js" />
-```
-
+  
+  <WebCoreCDNInstallation />
   </TabItem>
 </Tabs>
