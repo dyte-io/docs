@@ -23,6 +23,16 @@ meeting.self.on('roomJoined', () => {
 });
 ```
 
+## Room left
+
+Triggered when the local user leaves the meeting.
+
+```js
+meeting.self.on('roomLeft', () => {
+  console.log('User has left the meeting');
+});
+```
+
 ## Video update
 
 Triggered when the user starts / stops the video using `enableVideo` or
