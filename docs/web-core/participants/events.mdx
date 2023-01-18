@@ -128,6 +128,37 @@ meeting.participants.joined.on('screenShareUpdate', (participant) => {
 });
 ```
 
+## Network quality score
+
+Subscribe to the `mediaScoreUpdate` event to monitor network
+
+```ts
+meeting.participants.joined.on(
+  'mediaScoreUpdate',
+  ({ participantId, kind, isScreenshare, score }) => {
+    if (kind === 'video') {
+      console.log(
+        `Participant ${participantId}'s ${
+          isScreenshare ? 'screenshare' : 'video'
+        } quality score is `,
+        score
+      );
+    }
+
+    if (kind === 'audio') {
+      console.log(
+        `Participant ${participantId}'s audio quality score is `,
+        score
+      );
+    }
+
+    if (score < 5) {
+      console.log(`Participant ${participantId}'s media quality is poor`);
+    }
+  }
+);
+```
+
 ## Events for specific participant
 
 If you want to subscribe to above events but for a specific participant only,
