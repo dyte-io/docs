@@ -15,7 +15,7 @@ You can subscribe to various events on the local user by calling
 Triggered when the room join event completes and now the `meeting` is ready to
 produce and consume media.
 
-```js
+```ts
 meeting.self.on('roomJoined', () => {
   console.log(
     'User has joied the meeting and ready to produce and consume media'
@@ -28,7 +28,7 @@ meeting.self.on('roomJoined', () => {
 Triggered when the user starts / stops the video using `enableVideo` or
 `disableVideo`
 
-```js
+```ts
 const videoElem = document.getElementById('my-video');
 
 meeting.self.on('videoUpdate', async ({ videoEnabled, videoTrack }) => {
@@ -48,7 +48,7 @@ meeting.self.on('videoUpdate', async ({ videoEnabled, videoTrack }) => {
 Triggered when the user starts / stops the audio using `enableAudio` or
 `disableAudio`
 
-```js
+```ts
 const audioElem = document.getElementById('my-audio');
 
 meeting.self.on('audioUpdate', async ({ audioEnabled, audioTrack }) => {
@@ -68,7 +68,7 @@ meeting.self.on('audioUpdate', async ({ audioEnabled, audioTrack }) => {
 Triggered when the user starts / stops the screen share using
 `enableScreenShare()` or `disableScreenShare()`.
 
-```js
+```ts
 const screenElem = document.getElementById('my-screen-share');
 
 meeting.self.on(
@@ -91,7 +91,7 @@ meeting.self.on(
 Subscribe to the `deviceUpdate` event to handle the changing video, audio and
 speaker devices
 
-```js
+```ts
 meeting.self.on('deviceUpdate', ({ device }) => {
   // handle microphone device change
   if (device.kind === 'audioinput') {
@@ -107,3 +107,31 @@ meeting.self.on('deviceUpdate', ({ device }) => {
   }
 });
 ```
+
+## Network quality score
+
+Subscribe to the `mediaScoreUpdate` event to monitor network
+
+```ts
+meeting.self.on('mediaScoreUpdate', ({ kind, isScreenshare, score }) => {
+  if (kind === 'video') {
+    console.log(
+      `Your ${isScreenshare ? 'screenshare' : 'video'} quality score is `,
+      score
+    );
+  }
+
+  if (kind === 'audio') {
+    console.log('Your audio quality score is ', score);
+  }
+
+  if (score < 5) {
+    console.log('Your media quality is poor');
+  }
+});
+```
+
+## Webinar Stage events
+
+In a `WEBINAR` setup (more details here), below events can be used to bring a
+user on to stage
