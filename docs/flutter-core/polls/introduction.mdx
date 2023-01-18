@@ -7,11 +7,11 @@ tags: [flutter-core, polls]
 
 # Introduction
 
-The meetings polls object can be accessed using `dyteClient.polls`.
-It provides methods to create polls, vote, and more.
+The meetings polls object can be accessed using `dyteClient.polls`. It provides
+methods to create polls, vote, and more.
 
-`dyteClient.polls.polls` returns an array of all polls created in a
-meeting, where each element is an object of type `DytePollMessage`.
+`dyteClient.polls.polls` returns an array of all polls created in a meeting,
+where each element is an object of type `DytePollMessage`.
 
 The `DytePollMessage` class has the following properties:
 
@@ -47,7 +47,7 @@ To get poll updates, listen to `onPollUpdates()` callback:
 ```dart
 
 class MeetingRoomEventsListener with DyteMeetingRoomEventsListener {
-  
+
   ...
 
   @override

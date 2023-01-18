@@ -43,11 +43,10 @@ Kindly refer to links below to get corresponding arguments:
 `authToken`:
 [this for `authToken`](https://docs.dyte.io/api/#/operations/add_participant).
 
-:::info 
+:::info
 
-Init meeting event listeners Once you call `init()`, you can listen to
-callbacks for this action on meeting object by registering state observers as
-follows. 
+Init meeting event listeners Once you call `init()`, you can listen to callbacks
+for this action on meeting object by registering state observers as follows.
 
 :::
 
@@ -84,11 +83,11 @@ To join, call `joinRoom()` method on `dyteClient` instance as shown below.
 dyteClient.joinRoom();
 ```
 
-:::info 
+:::info
 
 Join room event listeners Once you call `joinRoom()`, you can listen to
 callbacks for this action on meeting object by registering state observers as
-follows. 
+follows.
 
 :::
 
@@ -110,27 +109,26 @@ class LocalUserStatesNotifier with DyteSelfEventsListener {
   onMeetingRoomJoinFailed: (exception){
     /// Handle failure
   },
-} 
+}
 
 ```
 
-Now to leave,
-call `leaveRoom()` method on `dyteClient` instance as shown below.
+Now to leave, call `leaveRoom()` method on `dyteClient` instance as shown below.
 
 ```dart
 dyteClient.leaveRoom()
 ```
 
-:::info 
+:::info
 
 Leave room event listeners You can listen to `leaveRoom()` callbacks by
-registering state obsever on meeting object as follows 
+registering state obsever on meeting object as follows
 
 :::
 
 ```dart
 class RoomStateNotifier with DyteMeetingRoomEventsListener {
-  
+
   ...
 
   @override

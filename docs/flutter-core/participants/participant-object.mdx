@@ -25,12 +25,12 @@ The participant object has the following properties.
 - `videoEnabled`: Set to true if the participant's camera is on.
 - `audioEnabled`: Set to true if the participant is unmuted.
 
-
 You can subscribe to various participants events. For subscribing:
 
--  Implement `DyteParticipantEventsListener` to a class say `ParticipantEventListener`, 
-and listen to event from `DyteParticipantEventsListener` by overriding them. 
-This class can be user to manage your state in the application.
+- Implement `DyteParticipantEventsListener` to a class say
+  `ParticipantEventListener`, and listen to event from
+  `DyteParticipantEventsListener` by overriding them. This class can be user to
+  manage your state in the application.
 
 ```dart
 class ParticipantEventListener with DyteParticipantEventsListener {
@@ -71,7 +71,7 @@ class ParticipantEventListener with DyteParticipantEventsListener {
   @override
   void onActiveParticipantsChanged(
       {required List<DyteMeetingParticipant> active}) {
-    /// handle changed active participants of the page 
+    /// handle changed active participants of the page
   }
 
   @override
@@ -112,8 +112,9 @@ class ParticipantEventListener with DyteParticipantEventsListener {
 }
 ```
 
-- Now to subscribe, pass the instance of `DyteParticipantEventsListener` class created above to
-  `addParticipantEventsListener()` method of `dyteClient` instance as follows:
+- Now to subscribe, pass the instance of `DyteParticipantEventsListener` class
+  created above to `addParticipantEventsListener()` method of `dyteClient`
+  instance as follows:
 
 ```dart {2}
 dyteClient.addParticipantEventsListener(

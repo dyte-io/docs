@@ -40,14 +40,13 @@ list, but to display all participants in the meeting you'd use the `joined`
 list.
 
 - `dyteClient.pinned` is of type `DyteMeetingParticipant`.
-- All participant in each of the `joined`, `waitlisted`, `active`,  and
-`screenshares` list is of type `DyteMeetingParticipant`.
+- All participant in each of the `joined`, `waitlisted`, `active`, and
+  `screenshares` list is of type `DyteMeetingParticipant`.
 
 ## Grid info for the room
 
-`DyteGridPagesInfo` object is designed to help you with pagination decisions. 
-It is returned with `onGridUpdated` event.
-It contains the following properties:
+`DyteGridPagesInfo` object is designed to help you with pagination decisions. It
+is returned with `onGridUpdated` event. It contains the following properties:
 
 - `currentPageNumber`: Int, returns the current page number (currently displayed
   by the client).
@@ -58,8 +57,8 @@ It contains the following properties:
 
 ## Move between pages in paginated mode
 
-The `setPage(int pageNumber)` method allows you to switch between 
-pages of participants present in the meeting.
+The `setPage(int pageNumber)` method allows you to switch between pages of
+participants present in the meeting.
 
 _Note: Indexing of page starts from 0_
 

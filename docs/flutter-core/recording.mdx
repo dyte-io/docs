@@ -7,11 +7,13 @@ tags: [flutter-core, recording]
 
 # Recording
 
-The `dyteClient.recording` object can be used start and stop
-recordings in a meeting.
+The `dyteClient.recording` object can be used start and stop recordings in a
+meeting.
 
 The `dyteClient.recording` object has the following properties:
-- recordingState: `Future<DyteRecordingType>`, Indicates the current recording state of the meeting.
+
+- recordingState: `Future<DyteRecordingType>`, Indicates the current recording
+  state of the meeting.
 
 To listen recording status updates, you need to listen for
 `onMeetingRecordingStateUpdated()` event. This returns `DyteRecordingState`

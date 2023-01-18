@@ -9,9 +9,9 @@ tags: [flutter-core, local-user, self]
 
 You can subscribe to various local user events. For subscribing:
 
--  Implement `DyteSelfEventsListener` to a class say `LocalUserListener`, 
-and listen to event from `DyteSelfEventsListener` by overriding them. 
-This class can be user to manage your state in the application.
+- Implement `DyteSelfEventsListener` to a class say `LocalUserListener`, and
+  listen to event from `DyteSelfEventsListener` by overriding them. This class
+  can be user to manage your state in the application.
 
 ```dart
 class LocalUserListener with DyteSelfEventsListener {
@@ -27,8 +27,8 @@ class LocalUserListener with DyteSelfEventsListener {
 }
 ```
 
-- Now to subscribe, pass the instance of `LocalUserListener` class created above to
-  `addSelfEventsListener()` method of `dyteClient` instance as follows:
+- Now to subscribe, pass the instance of `LocalUserListener` class created above
+  to `addSelfEventsListener()` method of `dyteClient` instance as follows:
 
 ```dart {2}
 dyteClient.addSelfEventsListener(
@@ -82,7 +82,7 @@ void onAudioUpdate(bool audioEnabled) {
     } else {
       // audio is disabled, and other participants in room can not hear local user.
     }
-    
+
   //  or alternatively you can pass the bool through state as demonstrated in example app.
 }
 ```
