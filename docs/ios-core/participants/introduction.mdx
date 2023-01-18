@@ -108,7 +108,7 @@ The `meeting.participants` object has host control methods that allow you to dis
 
 ```swift
 // mute all participants
-meeting.participants.disableAllAudio();
+meeting.participants.disableAllAudio()
 
 // mute a single participant
 let participantToUpdate = meeting.participants.joined.first
@@ -126,7 +126,7 @@ To remove all participants from a meeting, you can call the `kickAll()` method.
 
 ```swift
 // remove all participants from the meeting
-meeting.participants.kickAll();
+meeting.participants.kickAll()
 
 // remove a single participant
 let participantToRemove = meeting.participants.joined.first()

@@ -11,7 +11,7 @@ The local user has the methods and properties on the local user media controls. 
 
 ## Properties
 
-Here is a list of properties that local user provides:
+Here is a list of properties that `meeting.localUser` user provides:
 
 - `id`: The ID of the participant pertaining to local user.
 - `name`: Contains Name of the local user.
@@ -43,8 +43,7 @@ let meetingInfo = DyteMeetingInfo(
 ## Get local user video view
 
 To show localUser preview inside a view. Use `getVideoView()` method on
-localUser. This method returns a View which can be added in any ViewGroup in
-android.
+localUser. This method returns a View which can be added in any View.
 
 ```swift
 meeting.localUser.getVideoView()
@@ -106,5 +105,5 @@ OR
 If you want to set video device yourself:
 
 ```swift
-meeting.localUser.setVideoDeviceo(videoDevice: DyteVideoDevice)
+meeting.localUser.setVideoDevice(videoDevice: DyteVideoDevice)
 ```
