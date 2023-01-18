@@ -25,9 +25,103 @@ The participant object has the following properties.
 - `videoEnabled`: Set to true if the participant's camera is on.
 - `audioEnabled`: Set to true if the participant is unmuted.
 
-To be able to listen to participant updates you can use
-`DyteParticipantEventsListener`, pass object of this call using
-`ref.watch(dyteClient).addParticipantEventsListener(dyteParticipantEventsListener)`.
+
+You can subscribe to various participants events. For subscribing:
+
+-  Implement `DyteParticipantEventsListener` to a class say `ParticipantEventListener`, 
+and listen to event from `DyteParticipantEventsListener` by overriding them. 
+This class can be user to manage your state in the application.
+
+```dart
+class ParticipantEventListener with DyteParticipantEventsListener {
+
+  @override
+  void audioUpdate({
+    required bool audioEnabled,
+    required DyteMeetingParticipant participant,
+  }) {
+    /// handle audioUpdate of `DyteMeetingParticipant` participant
+  }
+
+  @override
+  void onActiveSpeakerChanged(DyteMeetingParticipant participant) {
+    /// handle active speaker changing to `DyteMeetingParticipant` participant
+  }
+
+  @override
+  void onNoActiveSpeaker() {
+    /// handle no active speaker
+  }
+
+  @override
+  void onParticipantJoin(DyteMeetingParticipant participant) {
+    /// handle joining of `DyteMeetingParticipant` participant
+  }
+
+  @override
+  void onParticipantLeave(DyteMeetingParticipant participant) {
+    /// handle leaving of `DyteMeetingParticipant` participant
+  }
+
+  @override
+  void onParticipantPinned(DyteMeetingParticipant participant) {
+    /// handle pinning of `DyteMeetingParticipant` participant
+  }
+
+  @override
+  void onActiveParticipantsChanged(
+      {required List<DyteMeetingParticipant> active}) {
+    /// handle changed active participants of the page 
+  }
+
+  @override
+  void onParticipantUnpinned() {
+    /// handle unpinning the pinned participant
+  }
+
+  @override
+  void onParticipantUpdated(DyteMeetingParticipant participant) {
+    /// handle onParticipantUpdated on `DyteMeetingParticipant` participant
+  }
+
+  @override
+  void onParticipantsUpdated({
+    required DyteRoomParticipants participants,
+    required GridPagesInfo gridPagesInfo,
+  }) {
+    /// handle participants updation in the grid
+  }
+
+  @override
+  void onScreenSharesUpdated() {
+    /// handle screen share
+  }
+
+  @override
+  void videoUpdate({
+    required bool videoEnabled,
+    required DyteMeetingParticipant participant,
+  }) {
+    /// handle videoUpdate of `DyteMeetingParticipant` participant
+  }
+
+  @override
+  void onUpdate(DyteRoomParticipants participants) {
+    /// handle update on DyteRoomParticipants
+  }
+}
+```
+
+- Now to subscribe, pass the instance of `DyteParticipantEventsListener` class created above to
+  `addParticipantEventsListener()` method of `dyteClient` instance as follows:
+
+```dart {2}
+dyteClient.addParticipantEventsListener(
+  //  class ParticipantEventListener instance
+);
+```
+
+## Audio/Video updates for participant
 
 ```dart
 

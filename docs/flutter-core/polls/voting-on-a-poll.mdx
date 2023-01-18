@@ -7,7 +7,7 @@ tags: [flutter-core, polls, votes]
 
 # Voting on a poll
 
-The `ref.watch(dyteClient).polls.vote()` method can be used to register a vote
+The `dyteClient.polls.vote()` method can be used to register a vote
 on a poll. It accepts the following params.
 
 | Param       | Type            | Default Value | Required | Description                                                |
@@ -19,7 +19,7 @@ The following snippet votes for the 1st option on the 1st poll created in the
 meeting.
 
 ```dart
-final poll = ref.watch(dyteClient).polls.polls[0];
+final poll = dyteClient.polls.polls[0];
 final selectedPollOption = poll.options[0];
-meeting.polls.vote(poll, selectedPollOption);
+dyteClient.polls.vote(poll, selectedPollOption);
 ```

@@ -8,8 +8,8 @@ tags: [flutter-core, polls, create]
 # Creating a poll
 
 A new poll can be created using the `create` method from the
-[`ref.watch(dyteClient).polls`](./introduction) object. The
-`ref.watch(dyteClient).polls.create()` method accepts the following params.
+[`dyteClient.polls`](./introduction) object. The
+`dyteClient.polls.create()` method accepts the following params.
 
 | Param     | Type     | Default Value | Required | Description                                |
 | --------- | -------- | ------------- | -------- | ------------------------------------------ |
@@ -21,7 +21,7 @@ A new poll can be created using the `create` method from the
 The following snippet creates a poll where votes are anonymous.
 
 ```dart
-ref.watch(dyteClient).polls.create(
+dyteClient.polls.create(
     question: "Are you an early bird or a night owl?",
     options: ["Early bird", "Night owl"],
     anonymous: true,

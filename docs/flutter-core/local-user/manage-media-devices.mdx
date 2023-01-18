@@ -19,7 +19,7 @@ an audio device of the system.
 
 ```dart
 // Get all audio devices
-final audioDevices = await ref.watch(dyteClient).localUser.getAudioDevices();
+final audioDevices = await dyteClient.localUser.getAudioDevices();
 ```
 
 ### For video devices
@@ -30,7 +30,7 @@ an video device of the system.
 
 ```dart
 // Get all video devices
-final videoDevices = await ref.watch(dyteClient).localUser.getVideoDevices();
+final videoDevices = await dyteClient.localUser.getVideoDevices();
 ```
 
 ## Set Audio Device
@@ -39,7 +39,7 @@ To set an active audio device, you can call `setAudioDevice()` method. This
 takes a `DyteAudioDevice` object that needs to be set active for audio.
 
 ```dart
-await ref.watch(dyteClient).localUser.setAudioDevice(device);
+await dyteClient.localUser.setAudioDevice(device);
 ```
 
 ## Set Video Device
@@ -48,5 +48,5 @@ To set a active video device, you can call `setVideoDevice()` method. This takes
 a `DyteVideoDevice` object that needs to be set active for video.
 
 ```dart
-await ref.watch(dyteClient).localUser.setVideoDevice(device);
+await dyteClient.localUser.setVideoDevice(device);
 ```

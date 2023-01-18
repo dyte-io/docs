@@ -90,11 +90,6 @@ platform :ios, '12.0'
 2. Add the fonts and permission entries in `info.plist`
 
 ```xml
-<key>UIAppFonts</key>
-<array>
-    <string>MaterialCommunityIcons.ttf</string>
-    <string>MaterialIcons.ttf</string>
-</array>
 <key>NSBluetoothPeripheralUsageDescription</key>
 <string>We will use your Bluetooth to access your Bluetooth headphones.</string>
 <key>NSBluetoothAlwaysUsageDescription</key>
@@ -105,8 +100,6 @@ platform :ios, '12.0'
 <string>For people to hear you during meetings, we need access to your microphone.</string>
 <key>NSPhotoLibraryUsageDescription</key>
 <string>For people to share, we need access to your photos.</string>
-<key>UIViewControllerBasedStatusBarAppearance</key>
-<false/>
 ```
 
 2. Ensure in your `Podfile` you have an entry like below declaring platform of

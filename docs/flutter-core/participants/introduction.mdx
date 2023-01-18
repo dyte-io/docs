@@ -8,11 +8,11 @@ tags: [flutter-core, participants, participant]
 # Introduction - Participants
 
 The data regarding all meeting participants is stored under `participants`
-objects of `DyteMobileClient()` provider. To get all the objects and methods
+objects of `DyteMobileClient()` instance. To get all the objects and methods
 related to participants:
 
 ```dart
-  final participants = ref.watch(dyteClient).particiants;
+  final participants = dyteClient.particiants;
 ```
 
 Use the methods and events to consume the participants data. For example, to get
@@ -20,10 +20,10 @@ all the participants who joined the meeting:
 
 ```dart
 // get all joined participants
-final joinedParticipants = ref.watch(dyteClient).participants.joined;
+final joinedParticipants = dyteClient.participants.joined;
 ```
 
-The `ref.watch(dyteClient).participants` object has the following properties.
+The `dyteClient.participants` object has the following properties.
 
 - `waitlisted`: A list that contains all the participants waiting to join the
   meeting.
@@ -33,40 +33,20 @@ The `ref.watch(dyteClient).participants` object has the following properties.
   are supposed to be on the screen at the moment
 - `screenshares`: A list that contains all the participants who have shared
   screen in the meeting.
-- `pinned`: Pinned participant of the meeting.
+- `pinned`: Pinned participant of the meeting. It can be nullable as well.
 
 Therefore, if you were to make a grid of participants, you'd use the `active`
 list, but to display all participants in the meeting you'd use the `joined`
 list.
 
-Each participant in each of the `joined`, `waitlisted`, `active`, `pinned` and
+- `dyteClient.pinned` is of type `DyteMeetingParticipant`.
+- All participant in each of the `joined`, `waitlisted`, `active`,  and
 `screenshares` list is of type `DyteMeetingParticipant`.
-
-You can subscribe to various events on the participants by implementing
-`DyteParticipantEventsListener` and passing the object to
-
-```dart
-ref.watch(dyteClient).addParticipantEventsListener(dyteParticipantEventsListener);
-```
 
 ## Grid info for the room
 
-`DyteGridPagesInfo` object is intended for pagination. It is returned with
-`ParticipantEventStates.onParticipantsUpdated` state.
-
-```dart {6}
-ref.listen<ParticipantEventStates>(participantEventStateNotifierProvider,
-  (_, next) {
-    next.maybeMap(
-      onParticipantsUpdated: (res) {
-        ...
-        _gridPagesInfo = res.gridPagesInfo;
-        ...
-      },
-      orElse: () => print("ORELSE STATE")
-  }
-```
-
+`DyteGridPagesInfo` object is designed to help you with pagination decisions. 
+It is returned with `onGridUpdated` event.
 It contains the following properties:
 
 - `currentPageNumber`: Int, returns the current page number (currently displayed
@@ -78,22 +58,14 @@ It contains the following properties:
 
 ## Move between pages in paginated mode
 
-The `setPage(int pageNumber)` method allows you to switch between pages of
-participants present in the meeting. It will set the active participants list to
-participants on `pageNumber` page, and participant list is returned with
-`ParticipantEventStates.onParticipantsUpdated` state.
+The `setPage(int pageNumber)` method allows you to switch between 
+pages of participants present in the meeting.
 
-```dart {6}
-ref.listen<ParticipantEventStates>(participantEventStateNotifierProvider,
-  (_, next) {
-    next.maybeMap(
-      onParticipantsUpdated: (res) {
-        ...
-        _activeParticipants = res.participants.active;
-        ...
-      },
-      orElse: () => print("ORELSE STATE")
-  }
+_Note: Indexing of page starts from 0_
+
+```dart
+// switch to page 1
+dyteClient.setPage(1);
 ```
 
 ## Video update for all participants

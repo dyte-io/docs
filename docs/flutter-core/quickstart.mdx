@@ -18,30 +18,22 @@ in the [Integrate Dyte](/getting-started#integrate-dyte) section.
 The `DyteMobileClient` is the main class of the SDK. It is the main entry point
 and the ONLY class required to instantiate Dyte SDK.
 
-In our case, we are using `Riverpod` state management. Hence, we create a
-provider for `DyteMobileClient` as shown below:
-
 ```dart
-final dyteClient = Provider((ref) => DyteMobileClient());
+final dyteClient = DyteMobileClient();
 ```
 
 First step is to establish a connection to the meeting server with set default
 properties. Properties can be set with `DyteMeetingInfo` class. To initialize
 the connection request, call the `init()` method on obtained `dyteClient`
-provider with `meetingInfo` argument as follows:
-
-_Note: We obtain the provider in Riverpod by `ref.watch(providerName)` method.
-For more info: refer [here](https://riverpod.dev/docs/concepts/reading)_
+instance with `meetingInfo` argument as follows:
 
 ```dart
 final meetingInfo = DyteMeetingInfo(
                     roomName: "<room_name>",
-                    enableAudio: true,
-                    displayName: 'Flutter core',
                     authToken: '<auth_token>',
                   );
 
-ref.watch(dyteClient).init(meetingInfo)
+dyteClient.init(meetingInfo)
 ```
 
 Kindly refer to links below to get corresponding arguments:  
@@ -51,82 +43,110 @@ Kindly refer to links below to get corresponding arguments:
 `authToken`:
 [this for `authToken`](https://docs.dyte.io/api/#/operations/add_participant).
 
-:::info Init meeting event listeners Once you call `init()`, you can listen to
+:::info 
+
+Init meeting event listeners Once you call `init()`, you can listen to
 callbacks for this action on meeting object by registering state observers as
 follows. 
+
 :::
 
 ```dart
-  ref.listen<RoomEventStates>(roomEventStateNotifierProvider, (_, next) {
-    next.maybeWhen(
-      onMeetingInitStarted: () {
-        /// Handle init starting process
-      },
-  
-      onMeetingInitCompleted: () {
-        /// Handle Meeting init complete, ex: move to next page
-      },
-      
-      onMeetingInitFailed: (exception){
-        /// Handle failure
-      },
-      orElse: () {},
-    );
-  });
+class RoomStateNotifier with DyteMeetingRoomEventsListener {
+
+  ...
+
+  @override
+  void onMeetingInitStarted() {
+    /// on meeting init started
+  }
+
+  override
+  void onMeetingInitCompleted() {
+    /// on meeting init completed
+  }
+
+  @override
+  void onMeetingInitFailed(Exception exception) {
+    /// on meeting init failed
+  }
+
+  ...
+}
+
 ```
 
 Now, you have established the connection with Dyte meeting server succesfully.
 Next step is to join the room.  
-To join, call `joinRoom()` method on `dyteClient` provider as shown below.
+To join, call `joinRoom()` method on `dyteClient` instance as shown below.
 
 ```dart
-ref.watch(dyteClient).joinRoom();
+dyteClient.joinRoom();
 ```
 
-:::info Join room event listeners Once you call `joinRoom()`, you can listen to
+:::info 
+
+Join room event listeners Once you call `joinRoom()`, you can listen to
 callbacks for this action on meeting object by registering state observers as
 follows. 
+
 :::
 
 ```dart
-ref.listen<LocalUserEventStates>(localUserProvider, (previous, next) {
-  next.maybeWhen(
-    onMeetingRoomJoinStarted: () {
-      /// Handle join start state
-    },
 
-    onMeetingRoomJoined: () {
-      /// Handle joining completion, ex: move to room screen
-    },
+class LocalUserStatesNotifier with DyteSelfEventsListener {
 
-    onMeetingRoomJoinFailed: (exception){
-      /// Handle failure
-    },
-  
-    orElse: () {},
-  );
-});
+  @override
+  onMeetingRoomJoinStarted() {
+    /// Handle join start state
+  }
+
+  @override
+  onMeetingRoomJoined: () {
+    /// Handle joining completion, ex: move to room screen
+  },
+
+  @override
+  onMeetingRoomJoinFailed: (exception){
+    /// Handle failure
+  },
+} 
+
 ```
 
-:::info Leave room event listeners You can listen to `leaveRoom()` callbacks by
+Now to leave,
+call `leaveRoom()` method on `dyteClient` instance as shown below.
+
+```dart
+dyteClient.leaveRoom()
+```
+
+:::info 
+
+Leave room event listeners You can listen to `leaveRoom()` callbacks by
 registering state obsever on meeting object as follows 
+
 :::
 
 ```dart
-ref.listen<RoomEventStates>(roomEventStateNotifierProvider,
-    (previous, next) {
-  next.maybeMap(
-    onMeetingRoomLeaveStarted: (_){
-      /// Handle leaving starting process
-    },
+class RoomStateNotifier with DyteMeetingRoomEventsListener {
+  
+  ...
 
-    onMeetingRoomLeft: (_) {
-      /// Handle meeting room left, ex: move out to home screen
-    },
-    
-    orElse: () {},
-  );
-});
+  @override
+  void onMeetingRoomLeaveStarted() {
+    /// on meeting room leave started
+  }
+
+  @override
+  void onMeetingRoomLeft() {
+    /// on meeting room left
+  }
+
+  ...
+
+}
+
 ```
 
 Congratulations! You've successfully joined the room.

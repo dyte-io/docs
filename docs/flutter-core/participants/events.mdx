@@ -5,10 +5,6 @@ sidebar_position: 3
 tags: [flutter-core, participants, self]
 ---
 
-You can subscribe to events for all participants by implementing
-`DyteParticipantEventsListener` callback and then passing that object to
-`ref.watch(dyteClient).addParticipantEventsListener(dyteParticipantEventsListener)`
-method. Here are the supported methods:
 
 ## Page change
 
@@ -101,7 +97,7 @@ Trigger an event when any participant starts / stops screen share.
 @override
 void onScreenSharesUpdated() {
     // all screenshare participants can be fetched via
-    // ref.watch(dyteClient).participants.screenshares
+    // dyteClient.participants.screenshares
 }
 ```
 

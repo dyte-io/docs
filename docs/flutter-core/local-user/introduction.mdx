@@ -28,11 +28,11 @@ Here is a list of properties that local user provides:
 - `audioEnabled`: Boolean value indicating if the audio currently enabled.
 - `videoEnabled`: Boolean value indicating if the video currently enabled.
 
-Local user properties can be fetched via `localUser` getter on obtained
-`dyteClient` provider.
+Local user properties can be fetched via `localUser` getter on the
+`dyteClient`.
 
 ```dart
-final localUserProperties = ref.watch(dyteClient).localUser;
+final localUserProperties = dyteClient.localUser;
 ```
 
 ## Change default audio / video settings
@@ -57,8 +57,8 @@ initialization process. You can setup the audio and video tracks by simply
 calling `enableAudio()` and `enableVideo()` like below:
 
 ```dart
-ref.watch(dyteClient).localUser.enableAudio();
-ref.watch(dyteClient).localUser.enableVideo();
+dyteClient.localUser.enableAudio();
+dyteClient.localUser.enableVideo();
 ```
 
 ## Change the name of the local user
@@ -68,38 +68,38 @@ reflect across all participants ONLY if the change happens before joining the
 meeting.
 
 ```dart
-ref.watch(dyteClient).localUser.setDisplayName("New Name")
+dyteClient.localUser.setDisplayName("New Name")
 ```
 
 ## Mute/Unmute microphone
 
 ```dart
 // Mute Audio
-ref.watch(dyteClient).localUser.disableAudio();
+dyteClient.localUser.disableAudio();
 
 // Unmute Audio
-ref.watch(dyteClient).localUser.enableAudio();
+dyteClient.localUser.enableAudio();
 
 // Get current status
-final isAudioEnabled = ref.watch(dyteClient).localUser.audioEnabled;
+final isAudioEnabled = dyteClient.localUser.audioEnabled;
 ```
 
 ## Enable/Disable camera
 
 ```dart
 // Disable Video
-ref.watch(dyteClient).localUser.disableVideo();
+dyteClient.localUser.disableVideo();
 
 // Enable Video
-ref.watch(dyteClient).localUser.enableVideo();
+dyteClient.localUser.enableVideo();
 
 // Get current status
-final isVideoEnabled = ref.watch(dyteClient).localUser.videoEnabled;
+final isVideoEnabled = dyteClient.localUser.videoEnabled;
 ```
 
 ## Switch camera between primary and secondary
 
 ```dart
 // switch camera
-ref.watch(dyteClient).localUser.switchCamera();
+dyteClient.localUser.switchCamera();
 ```

@@ -7,23 +7,33 @@ tags: [flutter-core, local-user, self]
 
 # Local User - Events
 
-You can subscribe to various events on the local user. For subscribing:
+You can subscribe to various local user events. For subscribing:
 
-- Implement `DyteSelfEventsListener` class to a `StateNotifier` class (say
-  `LocalUserNotifier`).
+-  Implement `DyteSelfEventsListener` to a class say `LocalUserListener`, 
+and listen to event from `DyteSelfEventsListener` by overriding them. 
+This class can be user to manage your state in the application.
 
 ```dart
-final localUserProvider =
-    StateNotifierProvider<LocalUserNotifier, LocalUserEventStates>((ref) {
-  return LocalUserNotifier();
-});
+class LocalUserListener with DyteSelfEventsListener {
+
+  ...
+
+  @override
+  void onAudioDevicesUpdated() {
+    /// code to handle onAudioDevicesUpdated() event
+  }
+
+  ...
+}
 ```
 
-- Now to subscribe, pass the notifier of this `LocalUserNotifier` class to
-  `addSelfEventsListener()` method of `dyteClient` provider as follows:
+- Now to subscribe, pass the instance of `LocalUserListener` class created above to
+  `addSelfEventsListener()` method of `dyteClient` instance as follows:
 
-```dart
-ref.watch(dyteClient).addSelfEventsListener(localUserProvider.notifier);
+```dart {2}
+dyteClient.addSelfEventsListener(
+  // LocalUserListener class instance
+);
 ```
 
 ### Room joined
