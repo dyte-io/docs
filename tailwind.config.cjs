@@ -6,10 +6,7 @@ module.exports = {
     container: false,
   },
   darkMode: ['class', '[data-theme="dark"]'],
-  content: [
-    './src/{components,pages}/**/*.{js,jsx}',
-    './src/snippets/**/*.html',
-  ],
+  content: ['./src/**/*.{jsx,html}'],
   theme: {
     extend: {
       fontFamily: {

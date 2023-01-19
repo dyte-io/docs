@@ -12,7 +12,7 @@ export default function HeroSection() {
         <link rel="prefetch" href="/static/landing-page/hero-light.png" />
         <link rel="prefetch" href="/static/landing-page/hero-dark.png" />
       </Head>
-      <div className="mx-auto flex max-w-7xl flex-col items-center lg:flex-row">
+      <div className="mx-auto flex max-w-7xl flex-col items-center lg:h-[540px] lg:flex-row">
         <div className="flex-1 text-center lg:text-left">
           <h1 className="mb-6 font-jakarta text-4xl font-bold lg:text-6xl">
             Build with Dyte
@@ -38,7 +38,7 @@ export default function HeroSection() {
             </Link>
           </div>
         </div>
-        <div className="">
+        <div className="flex-1 xl:flex-none">
           <img
             src={`/static/landing-page/hero-${colorMode}.png`}
             alt="Preview of using Dyte SDKs"
