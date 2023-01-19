@@ -147,7 +147,11 @@ const config = {
     locales: ['en'],
   },
 
-  clientModules: [require.resolve('./src/client/define-ui-kit.js')],
+  clientModules: [
+    require.resolve('./src/css/custom.css'),
+    require.resolve('./src/css/api-reference.css'),
+    require.resolve('./src/client/define-ui-kit.js'),
+  ],
 
   presets: [
     [
@@ -165,12 +169,6 @@ const config = {
           ...defaultSettings,
         },
         blog: false,
-        theme: {
-          customCss: [
-            require.resolve('./src/css/custom.css'),
-            require.resolve('./src/css/api-reference.css'),
-          ],
-        },
       }),
     ],
   ],

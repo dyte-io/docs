@@ -24,7 +24,6 @@ Install the SDK using npm.
 
 ```shell
 npm install @dytesdk/react-native-core react-native-webrtc
-
 ```
 
   </TabItem>
@@ -38,6 +37,7 @@ yarn add @dytesdk/react-native-core react-native-webrtc
   </TabItem>
 </Tabs>
 
+[![npm version](https://badge.fury.io/js/@dytesdk%2Freact-native-core.svg)](https://badge.fury.io/js/@dytesdk%2Freact-native-core)
 
 <Tabs
   groupId="mobile-pm"
@@ -49,8 +49,8 @@ yarn add @dytesdk/react-native-core react-native-webrtc
 >
   <TabItem value="android">
 
-:::info
-The below instructions are for the release builds, debug builds should work without any additional steps.
+:::info The below instructions are for the release builds, debug builds should
+work without any additional steps. 
 :::
 
 1. Edit your `android/gradle.properties` and add the following line
@@ -66,7 +66,8 @@ android.enableDexingArtifactTransform.desugaring=false
 -dontwarn org.chromium.build.BuildHooksAndroid
 ```
 
-3. In your `android/app/build.gradle` edit the release configuration and add the following line importing the proguard configuration
+3. In your `android/app/build.gradle` edit the release configuration and add the
+   following line importing the proguard configuration
 
 ```groovy
 buildTypes {
@@ -111,5 +112,6 @@ platform :ios, '12.0'
 <key>UIViewControllerBasedStatusBarAppearance</key>
 <false/>
 ```
+
   </TabItem>
 </Tabs>

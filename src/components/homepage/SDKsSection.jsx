@@ -89,7 +89,7 @@ export default function SDKsSection() {
       <div className="mx-auto max-w-7xl">
         <div className="dyte-badge">SDKs</div>
 
-        <div className="sticky top-14 -mt-4 flex flex-col items-center gap-6 bg-secondary-1000 lg:flex-row lg:justify-between">
+        <div className="sticky top-14 z-20 -mt-4 flex flex-col items-center gap-6 bg-secondary-1000 py-6 lg:flex-row lg:justify-between lg:py-0">
           <h2 className="my-0 font-jakarta lg:text-3xl">
             We support your tech stack!
           </h2>
