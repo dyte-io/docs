@@ -980,10 +980,16 @@ img[src$='#terminal'] {
 }
 
 .notesContainer .type {
-  min-width: 11rem;
+  width: 11rem;
   border-right:2px solid;
   color: #757275;
   @apply border-b-0 align-top font-bold;
+}
+
+@media screen and (max-width: 768px) {
+  .notesContainer .type {
+    width: 6rem;
+  }
 }
 
 .notesContainer .depreciated .type {
