@@ -11,7 +11,6 @@ import {
   KotlinIcon,
   ReactIcon,
   SwiftIcon,
-  VueIcon,
 } from '../../icons';
 import Head from '@docusaurus/Head';
 import { useState } from 'react';
@@ -111,7 +110,7 @@ export default function SDKsSection() {
           <div className="flex flex-[2] flex-col justify-center p-6 text-center lg:pl-16 lg:text-left">
             <h3 className="text-4xl font-semibold">Web</h3>
             <p className="text-sm leading-relaxed text-text-400 lg:max-w-sm">
-              Interested to build using JavaScript, React, Angular, or Vue, this
+              Interested to build using React, Angular or Web Components this
               section covers everything you need to know for creating live video
               and voice solutions for web applications.
             </p>
@@ -134,9 +133,6 @@ export default function SDKsSection() {
                     Icon={AngularIcon}
                     label="Angular"
                   />
-                </li>
-                <li>
-                  <SDKLink href="vue-ui-kit" Icon={VueIcon} label="Vue" />
                 </li>
                 <li>
                   <SDKLink

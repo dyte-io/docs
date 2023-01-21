@@ -5,7 +5,6 @@ export { default as FlutterIcon } from './FlutterIcon';
 export { default as ReactIcon } from './ReactIcon';
 export { default as UIKitIcon } from './UIKitIcon';
 export { default as HTMLIcon } from './HTMLIcon';
-export { default as VueIcon } from './VueIcon';
 export { default as SwiftIcon } from './SwiftIcon';
 export { default as KotlinIcon } from './KotlinIcon';
 export { default as JSIcon } from './JSIcon';
