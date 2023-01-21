@@ -4,7 +4,6 @@ const fs = require('fs');
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/vsDark');
 
-const UIKitReferencePlugins = require('./plugins/ui-kit-reference-plugin.cjs');
 const { webpackPlugin } = require('./plugins/webpack-plugin.cjs');
 const posthogPlugin = require('./plugins/posthog-plugin.cjs');
 const tailwindPlugin = require('./plugins/tailwind-plugin.cjs');
@@ -45,8 +44,8 @@ function defineSection(section, version = {}, options = {}) {
 
 const latestVersions = {
   'ui-kit': '1.x.x',
-  'web-core': '0.27.x',
-  'react-native': '0.23.x',
+  'web-core': '1.x.x',
+  'react-native': '0.25.x',
   android: '0.14.x',
   ios: '1.33.x',
   flutter: '0.7.x',
@@ -70,9 +69,6 @@ const SECTIONS = [
     label: latestVersions['ui-kit'],
   }),
   defineSection('angular-ui-kit', {
-    label: latestVersions['ui-kit'],
-  }),
-  defineSection('vue-ui-kit', {
     label: latestVersions['ui-kit'],
   }),
 
@@ -178,7 +174,6 @@ const config = {
     webpackPlugin,
     posthogPlugin,
     ...SECTIONS,
-    ...UIKitReferencePlugins,
   ],
 
   themes: ['@docusaurus/theme-live-codeblock'],
