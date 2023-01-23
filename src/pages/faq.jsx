@@ -26,7 +26,7 @@ const tags = FAQs.reduce((allTags, faq) => {
   return allTags;
 }, []);
 
-function Accordion({ title, tags, children, open, onOpen, onClose }) {
+function Accordion({ title, children, open, onOpen, onClose }) {
   const headingId = paramCase(title);
   const panelId = headingId + '-panel';
 
@@ -58,7 +58,7 @@ function Accordion({ title, tags, children, open, onOpen, onClose }) {
         role="heading"
         className={clsx(
           'flex w-full cursor-pointer select-none items-center justify-between gap-4 border-0 border-solid bg-transparent p-6',
-          open && 'pb-0 text-primary dark:text-primary-100'
+          open && '!pb-0 text-primary dark:text-primary-100'
         )}
         tabIndex={0}
         onClick={handleOpen}
@@ -95,7 +95,7 @@ function Accordion({ title, tags, children, open, onOpen, onClose }) {
         id={panelId}
         aria-labelledby={headingId}
         className={clsx(
-          'accordion-content p-6 pt-0',
+          'accordion-content p-6 !pt-0',
           open ? 'block' : 'hidden'
         )}
       >
