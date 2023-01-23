@@ -155,6 +155,7 @@ const config = {
     require.resolve('./src/css/custom.css'),
     require.resolve('./src/css/api-reference.css'),
     require.resolve('./src/client/define-ui-kit.js'),
+    require.resolve('./src/lib/banner.js'),
   ],
 
   presets: [
@@ -177,12 +178,7 @@ const config = {
     ],
   ],
 
-  plugins: [
-    tailwindPlugin,
-    webpackPlugin,
-    posthogPlugin,
-    ...SECTIONS,
-  ],
+  plugins: [tailwindPlugin, webpackPlugin, posthogPlugin, ...SECTIONS],
 
   themes: ['@docusaurus/theme-live-codeblock'],
 
@@ -197,6 +193,13 @@ const config = {
         sidebar: {
           hideable: true,
         },
+      },
+      announcementBar: {
+        id: 'ph-banner',
+        content: '<ph-banner />',
+        backgroundColor: '#F65B34',
+        textColor: '#fff',
+        isCloseable: false,
       },
       navbar: {
         // NOTE: hideOnScroll breaks on `/api`, enable when fixed
