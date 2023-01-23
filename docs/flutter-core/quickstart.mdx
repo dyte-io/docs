@@ -40,6 +40,10 @@ You’ll learn how to:
 - Install Flutter on your device
 - (For iOS apps) Install
   [Xcode](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwin55bqodH8AhUVQXwKHaR-DAsQFnoECA0QAQ&url=https%3A%2F%2Fapps.apple.com%2Fus%2Fapp%2Fxcode%2Fid497799835%3Fmt%3D12&usg=AOvVaw2fEvMbfRtGhB4SPHYB54NX)
+- Ensure that Rosetta is installed with Xcode on Mac computers with Apple
+  silicon.
+- Make sure your Mac computers are running macOS version 12.0 Monterey or
+  higher.
 - (For Android apps) Install
   [Android Studio](https://developer.android.com/studio), or install the Android
   SDK for Command-Line Interface (CLI) only.
@@ -285,8 +289,8 @@ Perform the following steps, for Android release builds:
 
 ```
 
-Add the following to your `android/app/build.gradle` to import the proguard
-configuration.
+2. Add the following to your `android/app/build.gradle` to import the proguard
+   configuration.
 
 ```dart
 buildTypes {
@@ -300,18 +304,6 @@ buildTypes {
 ```
 
 ### For iOS release builds
-
-Before getting started with iOS release builds, complete the following
-prerequisites.
-
-#### Prerequisites:
-
-- Ensure that Rosetta is installed with Xcode on Mac computers with Apple
-  silicon.
-- Make sure your Mac computers are running macOS version 12.0 Monterey or
-  higher.
-
-#### Perform the following steps for the iOS release builds:
 
 Disable `BITCODE` in your Podfile.
 
