@@ -4,7 +4,6 @@ const fs = require('fs');
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/vsDark');
 
-const UIKitReferencePlugins = require('./plugins/ui-kit-reference-plugin.cjs');
 const { webpackPlugin } = require('./plugins/webpack-plugin.cjs');
 const posthogPlugin = require('./plugins/posthog-plugin.cjs');
 const tailwindPlugin = require('./plugins/tailwind-plugin.cjs');
@@ -45,12 +44,13 @@ function defineSection(section, version = {}, options = {}) {
 
 const latestVersions = {
   'ui-kit': '1.x.x',
-  'web-core': '0.27.x',
-  'react-native': '0.23.x',
+  'web-core': '1.x.x',
+  'react-native': '0.25.x',
   android: '0.14.x',
   ios: '1.33.x',
   flutter: '0.7.x',
-  'android-core': '1.0.0',
+  'android-core': '1.x.x',
+  'rn-core': '1.x.x',
   'flutter-core': '1.0.0',
 };
 
@@ -73,9 +73,6 @@ const SECTIONS = [
   defineSection('angular-ui-kit', {
     label: latestVersions['ui-kit'],
   }),
-  defineSection('vue-ui-kit', {
-    label: latestVersions['ui-kit'],
-  }),
 
   // [web] core-sdk
   defineSection('web-core', {
@@ -90,6 +87,11 @@ const SECTIONS = [
   // [web] flutter-core
   defineSection('flutter-core', {
     label: latestVersions['flutter-core'],
+  }),
+
+  // [web] rn-core
+  defineSection('rn-core', {
+    label: latestVersions['rn-core'],
   }),
 
   // [mobile]
@@ -143,7 +145,11 @@ const config = {
     locales: ['en'],
   },
 
-  clientModules: [require.resolve('./src/client/define-ui-kit.js')],
+  clientModules: [
+    require.resolve('./src/css/custom.css'),
+    require.resolve('./src/css/api-reference.css'),
+    require.resolve('./src/client/define-ui-kit.js'),
+  ],
 
   presets: [
     [
@@ -161,12 +167,6 @@ const config = {
           ...defaultSettings,
         },
         blog: false,
-        theme: {
-          customCss: [
-            require.resolve('./src/css/custom.css'),
-            require.resolve('./src/css/api-reference.css'),
-          ],
-        },
       }),
     ],
   ],
@@ -176,7 +176,6 @@ const config = {
     webpackPlugin,
     posthogPlugin,
     ...SECTIONS,
-    ...UIKitReferencePlugins,
   ],
 
   themes: ['@docusaurus/theme-live-codeblock'],

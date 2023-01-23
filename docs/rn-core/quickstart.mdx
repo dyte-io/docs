@@ -1,0 +1,57 @@
+---
+title: Quickstart
+description: Quickstart guide for web-core.
+sidebar_position: 2
+tags: [web-core, quickstart, setup]
+---
+
+# Quickstart
+
+:::info Before Getting Started
+
+Before you start integrating Dyte into your application, make sure you've read
+the [Getting Started with Dyte](/getting-started) topic and completed the steps
+in the [Integrate Dyte](/getting-started#integrate-dyte) section.
+
+:::
+
+The DyteClient is the root class of the SDK. It is the main entry point of the
+SDK. It is the only class that you need to instantiate in order to use the SDK.
+
+To instantiate DyteClient, you can run the following command:
+
+```js
+const meeting = await DyteClient.init({
+  roomName,
+  authToken,
+});
+await meeting.joinRoom();
+```
+
+You can get the roomName and authToken using our backend APIs and then pass it
+to the init method of DyteClient.
+
+:::info
+
+Once join room process completes `roomJoined` event is emitted on `meeting.self`
+namespace. If you want to take any actions like enabling audio, video or start
+and stop recording etc. it should be done after the `roomJoined` event is fired.
+
+For example:
+
+    meeting.self.on('roomJoined', () => {
+        console.log('User has joined the room', meeting.self.roomJoined);
+        // run my actions.
+    });
+
+    await meeting.joinRoom();
+
+:::
+
+### Leave room
+
+Leave the meeting room.
+
+```js
+await meeting.leaveRoom();
+```

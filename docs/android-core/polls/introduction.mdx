@@ -13,26 +13,32 @@ methods to create polls, vote, and more.
 `meeting.polls.polls` returns an array of all polls created in a meeting, where
 each element is an object of type `DytePollMessage`.
 
-The type `DytePollMessage` is defined in the following manner.
+The type `DytePollMessage` is the main class for any poll in Dyte. It also
+contains list of `DytePollOption` which are options for a given poll. And every
+`DytePollOption` has list of votes inside of it. Votes are objects of class
+`DytePollVote` which internally has id and name of the vote.
+
+One can easily create, vote and view polls by listening to callbacks on
+`meeting` object.
+
+## Listening to new polls in a meeting
+
+To be able to receive new poll messages you need to implement a method
+`onPollUpdates()` method from callback `DyteMeetingRoomEventsListener`. You can
+subscribe to this events by calling
+`meeting.addMeetingEventsListener(dyteMeetingRoomEventsListener)`
 
 ```kotlin
-data class DytePollMessage(
-  val id: String,
-  val quesion: String,
-  val anonymous: Boolean,
-  val hideVotes: Boolean,
-  val createdBy: String,
-  val options: List<DytePollOption>
-)
+    meeting.addMeetingRoomEventsListener(object :
+      DyteMeetingRoomEventsListener {
+      override fun onNewPoll(poll: DytePollMessage) {
+        super.onNewPoll(poll)
+        // code to handle new poll
+      }
 
-data class DytePollOption(
-  val text: String,
-  val votes: List<DytePollVote>,
-  val count: Number
-)
-
-data class DytePollVote(
-  val id: String,
-  val name: String,
-)
+      override fun onPollUpdates(pollMessages: List<DytePollMessage>) {
+        super.onPollUpdates(pollMessages)
+        // code to handle polls and their vote updates.
+      }
+    })
 ```

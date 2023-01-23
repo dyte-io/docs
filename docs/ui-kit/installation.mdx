@@ -5,6 +5,11 @@ description: Installation guide for UI Kit.
 
 # Installation
 
+import {
+  HTMLUIKitUtilsInstallation,
+  HTMLUIKitInstallation,
+} from '@site/src/components/LatestInstallation';
+
 There are two ways to use UI Kit in your project, according to your project
 setup.
 
@@ -14,53 +19,30 @@ setup.
 To set up UI Kit components and web-core, add the following script tags inside
 the `<head />` tag.
 
-```html
-<head>
-  <script type="module">
-    import { defineCustomElements } from 'https://cdn.jsdelivr.net/npm/@dytesdk/ui-kit/loader/index.es2017.js';
-    defineCustomElements();
-  </script>
-  <!-- Import Web Core via CDN too -->
-  <script src="https://cdn.dyte.in/core/dyte.js"></script>
-</head>
-```
+<HTMLUIKitInstallation />
 
 You can also import utilities or any other export from CDN:
 
-```html
-<head>
-  <script type="module">
-    import {
-      provideDyteDesignSystem,
-      extendConfig,
-    } from 'https://cdn.jsdelivr.net/npm/@dytesdk/ui-kit/dist/esm/index.js';
-  </script>
-</head>
-```
+<HTMLUIKitUtilsInstallation />
 
   </TabItem>
   <TabItem value="npm" label="npm">
 
-```bash npm2yarn
+```bash
 npm install @dytesdk/ui-kit @dytesdk/web-core
 ```
 
+[![npm version](https://badge.fury.io/js/@dytesdk%2Fui-kit.svg)](https://badge.fury.io/js/@dytesdk%2Fui-kit)
+
+  </TabItem>
+
+  <TabItem value="yarn" label="yarn">
+
+```bash
+yarn add @dytesdk/ui-kit @dytesdk/web-core
+```
+
+[![npm version](https://badge.fury.io/js/@dytesdk%2Fui-kit.svg)](https://badge.fury.io/js/@dytesdk%2Fui-kit)
+
   </TabItem>
 </Tabs>
-
-import UIKitLatestVersion from '@site/src/components/UIKitLatestVersion';
-
-:::caution
-
-It is better to use a fixed version when using UI Kit from the CDN to avoid
-cache related errors in production.
-
-Do so by adding the version in the URL as follows (note the `@x.y.z` part):
-
-```
-https://cdn.jsdelivr.net/npm/@dytesdk/ui-kit@1.38.1/dist/esm/index.js
-```
-
-<UIKitLatestVersion />
-
-:::

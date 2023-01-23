@@ -39,7 +39,7 @@ meeting.addSelfEventsListener(object : DyteSelfEventsListener {
         // video is disabled, and other participants in room can not see local user.
       }
     }
-});
+})
 ```
 
 ### Audio update
@@ -56,6 +56,54 @@ meeting.addSelfEventsListener(object : DyteSelfEventsListener {
       } else {
         // audio is disabled, and other participants in room can not hear local user.
       }
+    }
+})
+```
+
+### Room disconnected update
+
+Triggered when the user is disconnected due to media/network errors
+
+```kotlin
+meeting.addSelfEventsListener(object : DyteSelfEventsListener {
+    override fun onMeetingRoomDisconnected() {
+      super.onMeetingRoomDisconnected()
+    }
+})
+```
+
+### Proximity changed
+
+Triggered when there is any change in proximity. Meaning if device is near ear
+piece which triggers display on/off.
+
+```kotlin
+meeting.addSelfEventsListener(object : DyteSelfEventsListener {
+    override fun onProximityChanged(isNear: Boolean) {
+      super.onProximityChanged(isNear)
+      // isNear
+      // if true, display should be turned off, as user might be speaking through earpience
+      // if false, display should be tunred on, as user might be looking at display and listening through speaker/earphones.
+    }
+})
+```
+
+### Waitlist status
+
+For meetings whose waiting room is enabled:
+
+To get status of localUser in waiting room we can use
+
+```kotlin
+val waitListStatus = meeting.localUser.waitListStatus
+```
+
+Developers can listen to those changes in `onWaitListStatusUpdate()` callbacks
+
+```kotlin
+meeting.addSelfEventsListener(object : DyteSelfEventsListener {
+    override fun onWaitListStatusUpdate(waitListStatus: WaitListStatus) {
+      super.onWaitListStatusUpdate(waitListStatus)
     }
 });
 ```

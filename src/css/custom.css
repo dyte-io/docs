@@ -1,3 +1,29 @@
+@font-face {
+  font-family: Inter var;
+  font-weight: 100 900;
+  font-display: block;
+  font-style: normal;
+  font-named-instance: 'Regular';
+  src: url(/static/fonts/Inter-roman.var.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: Inter var;
+  font-weight: 100 900;
+  font-display: block;
+  font-style: italic;
+  font-named-instance: 'Italic';
+  src: url(/static/fonts/Inter-italic.var.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: Fira Code VF;
+  font-weight: 300 700;
+  font-style: normal;
+  src: url(/static/fonts/FiraCode-VF.woff2) format('woff2-variations'),
+    url(/static/fonts/FiraCode-VF.woff) format('woff-variations');
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -113,32 +139,6 @@
 }
 
 /* Fonts */
-
-@font-face {
-  font-family: Inter var;
-  font-weight: 100 900;
-  font-display: block;
-  font-style: normal;
-  font-named-instance: 'Regular';
-  src: url(/static/fonts/Inter-roman.var.woff2) format('woff2');
-}
-
-@font-face {
-  font-family: Inter var;
-  font-weight: 100 900;
-  font-display: block;
-  font-style: italic;
-  font-named-instance: 'Italic';
-  src: url(/static/fonts/Inter-italic.var.woff2) format('woff2');
-}
-
-@font-face {
-  font-family: Fira Code VF;
-  font-weight: 300 700;
-  font-style: normal;
-  src: url(/static/fonts/FiraCode-VF.woff2) format('woff2-variations'),
-    url(/static/fonts/FiraCode-VF.woff) format('woff-variations');
-}
 
 pre,
 code {
@@ -977,4 +977,59 @@ img[src$='#terminal'] {
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
   border-left: 3px solid #ff000080;
+}
+
+.notesContainer h4{
+  @apply mb-8;
+}
+
+.releaseNotes ul {
+  @apply mb-0;
+}
+
+.notesContainer .type {
+  width: 11rem;
+  border-right:2px solid;
+  color: #757275;
+  @apply border-b-0 align-top font-bold;
+}
+
+@media screen and (max-width: 768px) {
+  .notesContainer .type {
+    width: 6rem;
+  }
+}
+
+.notesContainer .depreciated .type {
+  color: #de4e2b;
+}
+
+.notesContainer .depreciated .sublist {
+  background-color: #e01e5a1a;
+}
+
+.sublist {
+  @apply py-0;
+}
+
+.sublist tr {
+  @apply py-1;
+}
+
+.sublist tr:last-child > td {
+  @apply border-0;
+}
+
+.sublist tr:last-child {
+  @apply border-0;
+}
+
+.changeline p {
+  @apply mb-0;
+}
+
+.releaseSidebarHeading {
+  @apply !mt-2 pt-1 border-t-secondary-700;
+  border-top-style: solid;
+  border-top-width: 1px;
 }
