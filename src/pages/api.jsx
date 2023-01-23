@@ -91,7 +91,7 @@ export default function Home() {
           <DyteTooltip
             placement="bottom"
             variant="primary"
-            label="Hey, we have v2 version for our APIs rolling out slowly, you can check them out here."
+            label="We have rolled out a new V2 version for our REST APIs, you can still check out the old V1 APIs from here"
             open={showV2Tooltip}
             onDyteOpenChange={(open) => {
               if (!open) {

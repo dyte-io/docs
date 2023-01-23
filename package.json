@@ -3,7 +3,7 @@
   "version": "1.20.0",
   "private": true,
   "scripts": {
-    "postinstall": "node ./bin/ui-kit/component-docs.cjs",
+    "postinstall": "node ./bin/ui-kit/component-docs.cjs && patch-package",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "docusaurus build",
@@ -35,6 +35,7 @@
     "@stoplight/elements": "^7.7.7",
     "clsx": "^1.2.1",
     "param-case": "^3.0.4",
+    "patch-package": "^6.5.1",
     "prism-react-renderer": "^1.3.5",
     "raw-loader": "^4.0.2",
     "react": "^17.0.2",
