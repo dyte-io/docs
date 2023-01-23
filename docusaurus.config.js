@@ -56,9 +56,6 @@ const latestVersions = {
 
 const SECTIONS = [
   defineSection('guides', {
-    label: 'v1',
-  }),
-  defineSection('guides-v2', {
     label: 'v2',
   }),
   defineSection('cli'),
@@ -222,7 +219,7 @@ const config = {
           },
           {
             label: 'Guides',
-            to: 'guides-v2/quickstart',
+            to: 'guides/quickstart',
             position: 'left',
             className: 'new-badge',
           },

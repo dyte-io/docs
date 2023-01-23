@@ -16,16 +16,6 @@ const SECTIONS = [
     section: false,
   },
   {
-    name: 'Guides v2',
-    id: 'guides-v2',
-    section: 'guide',
-  },
-  {
-    name: 'Guides v1',
-    id: 'guides',
-    section: 'guide',
-  },
-  {
     name: 'React SDK',
     id: 'react',
     icon: ReactIcon,

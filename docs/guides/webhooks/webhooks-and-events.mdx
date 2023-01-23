@@ -7,8 +7,8 @@ sidebar_position: 2
 
 This topic explains how to set up webhooks to receive real-time updates for
 specific events. Refer
-[View Webhook Events List](/guides-v2/webhooks/webhook-events) to view the list
-of events for which notifications can be sent. Setting up a webhook to start
+[View Webhook Events List](/guides/webhooks/webhook-events) to view the list of
+events for which notifications can be sent. Setting up a webhook to start
 receiving notifications in your application involves the following steps:
 
 1. Identify the events you want to monitor and the event payloads you want to
@@ -26,8 +26,8 @@ receiving notifications in your application involves the following steps:
 
 ### Step 1: Identify the events to monitor
 
-Use the [events overview guide](/guides-v2/webhooks/webhook-events) to identify
-the events your webhook endpoint needs to parse.
+Use the [events overview guide](/guides/webhooks/webhook-events) to identify the
+events your webhook endpoint needs to parse.
 
 ### Step 2: Create a webhook endpoint
 
@@ -105,7 +105,7 @@ we mark the event as failed and retry up to 5 times.
 
 ### Step 4: Secure your webhooks (recommended)
 
-Use [webhook signatures](/guides-v2/webhooks/signatures) to verify that Dyte
+Use [webhook signatures](/guides/webhooks/signatures) to verify that Dyte
 generated a webhook request and that it didn't come from a malicious server
 pretending to be Dyte.
 
@@ -156,6 +156,6 @@ Register your publicly accessible HTTPS URL using the
 
 ## See also
 
-- [Events overview guide](/guides-v2/webhooks/webhook-events)
+- [Events overview guide](/guides/webhooks/webhook-events)
 - [Webhooks API reference](http://docs.dyte.io/api/?v=v2#/operations/addWebhook)
-- [Webhook signatures](/guides-v2/webhooks/signatures)
+- [Webhook signatures](/guides/webhooks/signatures)
