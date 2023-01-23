@@ -6,7 +6,6 @@ import {
   AppleIcon,
   FlutterIcon,
   HTMLIcon,
-  VueIcon,
   JSIcon,
 } from './icons';
 
@@ -53,13 +52,6 @@ const SECTIONS = [
     id: 'angular-ui-kit',
     icon: AngularIcon,
     section: 'ui-sdk',
-  },
-  {
-    name: 'Vue UI Kit',
-    id: 'vue-ui-kit',
-    icon: VueIcon,
-    section: 'ui-sdk',
-    disabled: true,
   },
 
   // - core-sdk
