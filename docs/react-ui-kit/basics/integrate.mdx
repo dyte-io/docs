@@ -1,0 +1,95 @@
+---
+sidebar_position: 2
+---
+
+# Integrate UI Kit Components
+
+Dyte allows you to build your own UI using various individual components. This
+topic explains how to quickly get started with individual components using
+hooks.
+
+Before you begin, review and understand the
+[Components Basics](/react-ui-kit/basics/components-basics).
+
+## Prerequisite
+
+You need to add the following components to your meeting:
+
+### DyteParticipantsAudio
+
+This component is required for audio playback. You will not be able to hear
+audio without this component.
+
+This component also displays a dialog if the browser throws an auto play error,
+requiring user interaction to allow audio to be played.
+
+```jsx
+<DyteParticipantsAudio meeting={meeting} />
+```
+
+### DyteNotifications
+
+This component is required for receiving notifications. If you don't have this
+component, you won't be notified of events like network disconnection or poor
+network.
+
+If you have not configured this component, you'll also not be able to leave the
+meeting. [DyteDialogManager](/react-ui-kit/components/dyte-dialog-manager) will
+be unable to send `dyte-leave-meeting` notifications.
+
+```jsx
+<DyteNotifications
+  meeting={meeting}
+  config={{
+    config: {
+      // which notifications to show
+      notifications: ['chat', 'participant_joined', 'participant_left'],
+      // which notifications should have sounds
+      notification_sounds: ['chat', 'participant_joined', 'participant_left'],
+      // maximum number of participant joined sound notifications
+      participant_joined_sound_notification_limit: 10,
+      // maximum number of chat message sound notifications
+      participant_chat_message_sound_notification_limit: 10,
+    },
+  }}
+/>
+```
+
+## Build Using Individual Components
+
+If you wish to integrate UI Kit components into your UI at various parts, you
+can use the individual components.
+
+Here is a basic example with the help of hooks.
+
+```jsx live
+function MyMeeting() {
+  const roomJoined = useDyteSelector((meeting) => meeting.self.roomJoined);
+  const activeParticipants = useDyteSelector(
+    (meeting) => meeting.participants.active
+  );
+
+  if (!roomJoined) return null;
+
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        placeItems: 'center',
+        justifyContent: 'center',
+        gap: '12px',
+      }}
+    >
+      {activeParticipants.toArray().map((participant) => (
+        <DyteParticipantTile participant={participant} key={participant.id}>
+          <DyteAvatar participant={participant} />
+          <DyteNameTag participant={participant}>
+            <DyteAudioVisualizer participant={participant} slot="start" />
+          </DyteNameTag>
+        </DyteParticipantTile>
+      ))}
+    </div>
+  );
+}
+```

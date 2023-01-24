@@ -1,0 +1,57 @@
+---
+sidebar_position: 3
+---
+
+# Examples
+
+This topic lists some of the most common use cases.
+
+## Simple Active Participant Grid
+
+```jsx live
+function Meeting() {
+  const { meeting } = useDyteMeeting();
+
+  const activeParticipants = useDyteSelector(
+    (meeting) => meeting.participants.active
+  );
+
+  function ParticipantTile({ participant, meeting }) {
+    return (
+      <DyteParticipantTile
+        participant={participant}
+        style={{
+          maxWidth: '240px',
+        }}
+      >
+        <DyteNameTag participant={participant} meeting={meeting}>
+          <DyteAudioVisualizer participant={participant} />
+        </DyteNameTag>
+        <DyteAvatar size="sm" participant={participant} />
+      </DyteParticipantTile>
+    );
+  }
+
+  return (
+    <div id="meeting">
+      <div id="stage">
+        <div
+          id="grid"
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignContent: 'center',
+            justifyContent: 'center',
+            gap: '1rem',
+          }}
+        >
+          {activeParticipants.toArray().map((participant) => (
+            <ParticipantTile participant={participant} meeting={meeting} />
+          ))}
+          <ParticipantTile participant={meeting.self} meeting={meeting} />
+        </div>
+      </div>
+    </div>
+  );
+}
+```

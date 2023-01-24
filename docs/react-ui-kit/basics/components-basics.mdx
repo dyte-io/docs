@@ -4,72 +4,8 @@ sidebar_position: 1
 
 # Components Basics
 
-Learn about the structure of an individual component and figure out how to use
-the UI Kit effectively.
-
-## Usage Guide
-
-With the UI Kit, we provide a few set of ways to use it, depending on your needs
-and use case.
-
-### Write less code
-
-You can use the provided `<DyteMeeting />` monolith component in case you want
-to write less code and not handle all the states and components rendering.
-
-DyteMeeting takes care of all of it and loads the entire meeting UI from your
-preset.
-
-```jsx live
-function MyMeeting() {
-  const { meeting } = useDyteMeeting();
-
-  return (
-    <div style={{ height: '480px' }}>
-      <DyteMeeting mode="fill" meeting={meeting} />
-    </div>
-  );
-}
-```
-
-### Using individual components
-
-If you wish to integrate UI Kit components into your UI at various parts, you
-can use the individual components.
-
-Here is a basic example with the help of hooks.
-
-```jsx live
-function MyMeeting() {
-  const roomJoined = useDyteSelector((meeting) => meeting.self.roomJoined);
-  const activeParticipants = useDyteSelector(
-    (meeting) => meeting.participants.active
-  );
-
-  if (!roomJoined) return null;
-
-  return (
-    <div
-      style={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        placeItems: 'center',
-        justifyContent: 'center',
-        gap: '12px',
-      }}
-    >
-      {activeParticipants.toArray().map((participant) => (
-        <DyteParticipantTile participant={participant} key={participant.id}>
-          <DyteAvatar participant={participant} />
-          <DyteNameTag participant={participant}>
-            <DyteAudioVisualizer participant={participant} slot="start" />
-          </DyteNameTag>
-        </DyteParticipantTile>
-      ))}
-    </div>
-  );
-}
-```
+Let's look at the structure of individual components and how to use them when
+building your own UI.
 
 ## Default Props
 
