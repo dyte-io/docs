@@ -155,8 +155,9 @@ const config = {
     require.resolve('./src/css/custom.css'),
     require.resolve('./src/css/api-reference.css'),
     require.resolve('./src/client/define-ui-kit.js'),
-    require.resolve('./src/lib/banner.js'),
   ],
+
+  scripts: ['/js/banner.js'],
 
   presets: [
     [
@@ -196,9 +197,7 @@ const config = {
       },
       announcementBar: {
         id: 'ph-banner',
-        content: '<ph-banner />',
-        backgroundColor: '#F65B34',
-        textColor: '#fff',
+        content: '<div id="ph-banner"/>',
         isCloseable: false,
       },
       navbar: {
