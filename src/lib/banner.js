@@ -223,7 +223,7 @@ const DAY = 1000 * 60 * 60 * 24;
 const HOUR = 1000 * 60 * 60;
 const MINUTE = 1000 * 60;
 const COOKIE_NAME = 'ph-banner';
-const END_DATE = '2023-02-10T00:00:00.000Z';
+const END_DATE = '2023-01-30T00:01:00.000Z';
 
 function setCookie(value) {
   const date = new Date();
