@@ -2,25 +2,52 @@
 title: Events
 description: Local user events guide.
 sidebar_position: 2
-tags: [mobile-core, local-user, self]
+tags: [flutter-core, local-user, self]
 ---
 
 # Local User - Events
 
-You can subscribe to various events on the local user by implementing
-`DyteSelfEventsListener` and passing the object to
-`meeting.addSelfEventsListener(dyteSelfEventsListener)`.
+You can subscribe to various local user events. For subscribing:
+
+- Implement `DyteSelfEventsListener` to a class say `LocalUserListener`, and
+  listen to event from `DyteSelfEventsListener` by overriding them. This class
+  can be user to manage your state in the application.
+
+```dart
+class LocalUserListener with DyteSelfEventsListener {
+
+  ...
+
+  @override
+  void onAudioDevicesUpdated() {
+    /// code to handle onAudioDevicesUpdated() event
+  }
+
+  ...
+}
+```
+
+- Now to subscribe, pass the instance of `LocalUserListener` class created above
+  to `addSelfEventsListener()` method of `dyteClient` instance as follows:
+
+```dart {2}
+dyteClient.addSelfEventsListener(
+  // LocalUserListener class instance
+);
+```
 
 ### Room joined
 
 Triggered when the room join event completes and now the meeting is ready to
-produce and consume media. While implementing `DyteSelfEventsListener` we have :
+produce and consume media. At this stage, you can move to meeting room. While
+implementing `DyteSelfEventsListener` we have :
 
 ```dart
-  void onMeetingRoomJoined() {
-    // When the local user joins the meeting room, this callback is triggered
-    // We can handle the state here.
-  }
+@override
+void onMeetingRoomJoined() {
+  // When the local user joins the meeting room, this callback is triggered
+  // We can handle the state here.
+}
 
 ```
 
@@ -30,13 +57,16 @@ Triggered when the user starts / stops the video using `enableVideo` or
 `disableVideo`
 
 ```dart
- void onVideoUpdate(bool videoEnabled) {
+@override
+void onVideoUpdate(bool videoEnabled) {
   if(isVideoEnabled){
     // Video is enabled, other users can see the video.
   } else {
     // Video is disabled, others users can't see the video.
   }
- }
+
+  //  or alternatively you can pass the bool through state as demonstrated in example app.
+}
 ```
 
 ### Audio update
@@ -45,12 +75,48 @@ Triggered when the user starts / stops the audio using `enableAudio` or
 `disableAudio`
 
 ```dart
-  void onAudioUpdate(bool audioEnabled) {
-    if (audioEnabled) {
-        // audio is enabled, and other participants in room can hear local user
-      } else {
-        // audio is disabled, and other participants in room can not hear local user.
-      }
-  }
+@override
+void onAudioUpdate(bool audioEnabled) {
+  if (audioEnabled) {
+      // audio is enabled, and other participants in room can hear local user
+    } else {
+      // audio is disabled, and other participants in room can not hear local user.
+    }
 
+  //  or alternatively you can pass the bool through state as demonstrated in example app.
+}
 ```
+
+There are several other callbacks, that you can implement according to the
+needs, here's a list of them:
+
+- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
+    onMeetingRoomJoinStarted()
+  </span>
+  : callback when meet room join has started.
+  <br />
+- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
+    onMeetingRoomDisconnected()
+  </span>
+  : callback when meet room join is disconnected.
+  <br />
+- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
+    onMeetingRoomJoinFailed()
+  </span>
+  : callback when meet room join failed.
+  <br />
+- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>onUpdate()</span>:
+  callback when any update occurs in the meet room (example any other
+  participant joins the meet).
+  <br />
+- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
+    onProximityChanged()
+  </span>
+  : callback when proximity of your device changes from body (as when phone sleeps
+  when near your ears when on a phone call).
+  <br />
+- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
+    onAudioDevicesUpdated()
+  </span>
+  : callback when the audio devices are updated.
+  <br />

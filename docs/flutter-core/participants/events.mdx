@@ -2,85 +2,147 @@
 title: Participant Events
 description: Event handling for participants.
 sidebar_position: 3
-tags: [mobile-core, participants, self]
+tags: [flutter-core, participants, self]
 ---
 
-You can subscribe to events for all participants by implementing
-`DyteParticipantEventsListener` callback and then passing that object to
-`meeeting.addParticipantEventsListener(dyteParticipantEventsListener)` method.
-Here are the supported methods:
-
-### Page change
+## Page change
 
 ```dart
-    @override
-    void onParticipantsUpdated({
-        required DyteRoomParticipants participants,
-        required bool isNextPagePossible,
-        required bool isPreviousPagePossible,
-    }) {
-        // your code here to handle page updates.
-    }
+@override
+void onParticipantsUpdated({
+    required DyteRoomParticipants participants,
+    required DyteGridPagesInfo gridPagesInfo,
+}) {
+    // your code here to handle page updates.
+}
 ```
 
-### Participant joined
+`DyteGridPagesInfo` can be used for pagination purposes and contains following
+info:
+
+- `pageCount`: Total page that will contain all the participants.
+- `currentPageNumber`: Current page number that was returned (indexed from 0)
+- `shouldShowPaginator`: Should it show paginator or not. (dots at the bottom of
+  the Video Views)
+- `isNextPagePossible`: Bool whether the next page is available or not.
+- `isPreviousPagePossible`: Bool whether the previous page is available or not.
+
+## Participant joined
 
 Trigger an event when any participant joins the meeting.
 
 ```dart
-  @override
-  void onParticipantUpdated(DyteMeetingParticipant participant) {
-            // your code here to handle new participant
-    }
+@override
+void onParticipantUpdated(DyteMeetingParticipant participant) {
+          // your code here to handle new participant
+}
 ```
 
-### Participant left
+## Participant updated
+
+Trigger an event when any participant update in meet.
+
+```dart
+@override
+void onParticipantUpdated(DyteMeetingParticipant participant) {
+          // your code here to handle new participant
+}
+```
+
+## Participant left
 
 Trigger an event when any participant leaves the meeting.
 
 ```dart
-  @override
-  void onParticipantLeave(DyteMeetingParticipant participant) {
-            // your code here to handle participant left from meeting
-    }
+@override
+void onParticipantLeave(DyteMeetingParticipant participant) {
+          // your code here to handle participant left from meeting
+}
 ```
 
-### Video update
+## Video update
 
 Trigger an event when any participant starts / stops video.
 
 ```dart
-  @override
-  void videoUpdate({
-    required bool videoEnabled,
-    required DyteMeetingParticipant participant,
-  }) {
-            // your code here to handle participant video toggle update
-    }
+@override
+void videoUpdate({
+  required bool videoEnabled,
+  required DyteMeetingParticipant participant,
+}) {
+          // your code here to handle participant video toggle update
+}
 ```
 
-### Audio update
+## Audio update
 
 Trigger an event when any participant starts / stops audio.
 
 ```dart
-  @override
-  void audioUpdate({
-    required bool audioEnabled,
-    required DyteMeetingParticipant participant,
-  }) {
-            // your code here to handle participant audio toggle update
-    }
+@override
+void audioUpdate({
+  required bool audioEnabled,
+  required DyteMeetingParticipant participant,
+}) {
+          // your code here to handle participant audio toggle update
+}
 ```
 
-### Screen share update
+## Screen share update
 
 Trigger an event when any participant starts / stops screen share.
 
 ```dart
-    @override
-    void onScreenSharesUpdated() {
-        // all screenshare participants can be fetched via
-        // meeting.participants.screenshares
-        }
+@override
+void onScreenSharesUpdated() {
+    // all screenshare participants can be fetched via
+    // dyteClient.participants.screenshares
+}
 ```
+
+## Participants updated
+
+Triggers an event when participants are updated, and therefore return the new
+DyteGridPagesInfo
+
+```dart
+@override
+void onParticipantsUpdated({
+  required DyteRoomParticipants participants,
+  required DyteGridPagesInfo gridPagesInfo,
+}){
+    // whenever participants are updated in the room
+    // it returns a updated `DyteRoomParticipants` and `DyteGridPagesInfo` with it.
+}
+```
+
+## Active Participants changed
+
+Trigger when active participant changes, for ex. when you move to next page of
+participant, this state gives you the participants of this current page.
+
+```dart
+@override
+void onActiveParticipantsChanged({required List<DyteMeetingParticipant> activeParticipants}) {
+    /// these active participants return new page participants
+}
+```
+
+Other callbacks:
+
+- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
+    onActiveSpeakerChanged(DyteMeetingParticipant participant)
+  </span>
+  : Triggered when active speaker is changed to <code>participant</code>.
+- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
+    onNoActiveSpeaker()
+  </span>
+  : Triggered when there is no active participant.
+- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
+    onParticipantPinned(DyteMeetingParticipant participant)
+  </span>
+  : Triggered when the <code>participant</code> is pinned.
+- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
+    onParticipantUnpinned()
+  </span>
+  : Trigerred when participant is unpinned.
