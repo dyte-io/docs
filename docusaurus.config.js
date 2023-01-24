@@ -55,7 +55,9 @@ const latestVersions = {
 };
 
 const SECTIONS = [
-  defineSection('guides'),
+  defineSection('guides', {
+    label: 'v2',
+  }),
   defineSection('cli'),
 
   defineSection('react', { label: '0.x.x' }),
@@ -216,7 +218,9 @@ const config = {
           },
           {
             label: 'Guides',
-            to: 'guides',
+            to: 'guides/quickstart',
+            position: 'left',
+            className: 'new-badge',
           },
           {
             label: 'API Reference',
@@ -335,6 +339,17 @@ const config = {
           'java',
           'swift',
           'objectivec',
+        ],
+        magicComments: [
+          {
+            className: 'theme-code-block-highlighted-line',
+            line: 'highlight-next-line',
+            block: { start: 'highlight-start', end: 'highlight-end' },
+          },
+          {
+            className: 'code-block-error-line',
+            line: 'highlight-next-line-error',
+          },
         ],
       },
       liveCodeBlock: {

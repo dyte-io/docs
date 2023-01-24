@@ -10,20 +10,17 @@ Here's an example with all the available options:
 
 ```html
 <iframe
-  src="https://app.dyte.in/meeting/stage/<roomName>?authToken=<authToken>&showSetupScreen=true&disableVideoBackground=true&orgId=<orgId>"
+  src="https://app.dyte.in/v2/meeting?id=<meetingId>&authToken=<authToken>&showSetupScreen=true&disableVideoBackground=true&orgId=<orgId>"
   allow="camera;microphone;fullscreen;display-capture;picture-in-picture;clipboard-write;"
 />
 ```
 
 ## Query Parameters
 
-| Name                     | Required   | Description                                                                                                      |
-| :----------------------- | :--------- | :--------------------------------------------------------------------------------------------------------------- |
-| `authToken`              | `required` | The `authToken` string you receive when you [Add a Participant](/api/#/operations/add_participant) to a meeting. |
-| `orgId`                  | `optional` | Pass your organization if you want to use your custom presets.                                                   |
-| `showSetupScreen`        | `optional` | Whether to show the Setup Screen Defaults to `true`.                                                             |
-| `disableVideoBackground` | `optional` | Whether to disable the video background changer button on the control bar. Defaults to `false`.                  |
-| `endRedirectURL`         | `optional` | The URL to redirect to on end of meeting                                                                         |
+| Name             | Required   | Description                                                                                                  |
+| :--------------- | :--------- | :----------------------------------------------------------------------------------------------------------- |
+| `authToken`      | `required` | The `token` string you receive when you [Add a Participant](/api/#/operations/add_participant) to a meeting. |
+| `endRedirectURL` | `optional` | The URL to redirect to on end of meeting                                                                     |
 
 ## Events
 

@@ -1,0 +1,303 @@
+---
+title: 'Webhook Events List'
+sidebar_position: 3
+---
+
+# View Webhook Events List
+
+This topic provides an up-to-date list of all the events that can be used with
+webhooks. Please note that we're constantly adding new events.
+
+All events follow a pattern, `resource.event`. Our goal is to design a
+consistent system that makes things easier to anticipate and code against.
+
+:::info NOTE
+
+Events are subscription-only, which means you **must opt-in to** receive them.
+You **will not** receive updates for event types for which you have not opted
+in.
+
+:::
+
+## List of Events
+
+Following are the events:
+
+### `meeting.started`
+
+This event is received when a meeting starts. i.e: When the first participant
+joins a meeting.
+
+The payload for this event is like the following:
+
+```json
+{
+  "event": "meeting.started",
+  "meeting": {
+    "id": "50c8940e-1b97-402a-97d6-2708b7feca41",
+    "sessionId": "05e57591-d89e-45c9-ae44-08dc1eaad0e0",
+    "title": "Meeting title",
+    "status": "LIVE",
+    "createdAt": "2022-12-13T06:57:09.736Z",
+    "startedAt": "2022-12-13T06:57:09.736Z",
+    "organizedBy": {
+      "id": "70c5d391-5bca-4cf3-9907-bec205798adb",
+      "name": "Dyte"
+    }
+  }
+}
+```
+
+### `meeting.ended`
+
+This event is received when a meeting ends. i.e: When the last participant
+leaves a meeting or the host ends the meeting manually.
+
+The payload for this event is like the following:
+
+```json
+{
+  "event": "meeting.ended",
+  "meeting": {
+    "id": "50c8940e-1b97-402a-97d6-2708b7feca41",
+    "sessionId": "05e57591-d89e-45c9-ae44-58dc1eaad0e0",
+    "title": "Meeting title",
+    "status": "LIVE",
+    "createdAt": "2022-12-13T06:57:09.736Z",
+    "startedAt": "2022-12-13T06:57:09.736Z",
+    "endedAt": "2022-12-13T07:04:37.052Z",
+    "organizedBy": {
+      "id": "70c5d391-5bca-4cf3-9907-bec205798adb",
+      "name": "Dyte"
+    }
+  },
+  "reason": "HOST_ENDED_MEETING"
+}
+```
+
+:::info
+
+Note that the `reason` can be one of `HOST_ENDED_MEETING` or
+`ALL_PARTICIPANTS_LEFT`.
+
+:::
+
+### `meeting.participantJoined`
+
+This event is received when a participant joins the meeting.
+
+The payload for this event is like the following:
+
+```json
+{
+  "event": "meeting.participantJoined",
+  "meeting": {
+    "id": "50c8940e-1b97-402a-97d6-240227feca41",
+    "sessionId": "05e57591-d89e-45c9-ae44-78d53eaad0e0",
+    "title": "Meeting title",
+    "status": "LIVE",
+    "createdAt": "2022-12-13T06:57:09.736Z",
+    "startedAt": "2022-12-13T06:57:09.736Z",
+    "organizedBy": {
+      "id": "70c5d391-4bac-4cf3-9907-bec242342adb",
+      "name": "Dyte"
+    }
+  },
+  "participant": {
+    "peerId": "e32fb785-ddd0-4b96-b577-879327c0082f",
+    "userDisplayName": "John Doe",
+    // highlight-next-line-error
+    "clientSpecificId": "l08is183rld", // deprecated, use `customParticipantId` instead
+    "customParticipantId": "l08is183rld",
+    "joinedAt": "2022-12-13T06:57:51.631Z"
+  }
+}
+```
+
+:::danger attention!
+
+The `clientSpecificId` field is deprecated. Please use `customParticipantId`
+instead.
+
+:::
+
+### `meeting.participantLeft`
+
+This event is received when a participant leaves the meeting
+
+The payload for this event is like the following:
+
+```json
+{
+  "event": "meeting.participantLeft",
+  "meeting": {
+    "id": "d9fc4d6a-a5a0-4430-9a73-d4ba14e597f9",
+    "sessionId": "79365b9b-e5ef-452f-934e-e171d75d254b",
+    "title": "Meeting title",
+    "status": "LIVE",
+    "createdAt": "2022-12-13T07:00:23.404Z",
+    "startedAt": "2022-12-13T07:00:23.404Z",
+    "organizedBy": {
+      "id": "70c5d391-4bac-4cf3-9907-bec205798adb",
+      "name": "Dyte"
+    }
+  },
+  "participant": {
+    "peerId": "023d3ea6-0af0-40ad-8aa3-6645c4ff1db8",
+    "userDisplayName": "Mary Sue",
+    // highlight-next-line-error
+    "clientSpecificId": "dj287lon9c", // deprecated, use `customParticipantId` instead
+    "customParticipantId": "dj287lon9c",
+    "joinedAt": "2022-12-13T07:01:41.535Z",
+    "leftAt": "2022-12-13T07:03:42.420Z"
+  }
+}
+```
+
+:::danger attention!
+
+The `clientSpecificId` field is deprecated. Please use `customParticipantId`
+instead.
+
+:::
+
+### `recording.statusUpdate`
+
+This event is received when the status of a recording changes. The possible
+values for a recording's status are `INVOKED`, `RECORDING`, `UPLOADING`,
+`UPLOADED`, and `ERRORED`
+
+<Tabs
+groupId="recording-body"
+defaultValue="RECORDING"
+values={[
+  {label: 'RECORDING', value: 'RECORDING'},
+  {label: 'UPLOADING', value: 'UPLOADING'},
+  {label: 'UPLOADED', value: 'UPLOADED'},
+]}>
+
+<TabItem value="RECORDING">
+
+```json
+{
+  "event": "recording.statusUpdate",
+  "recording": {
+    "id": "6c81b7c4-4465-4e16-a36f-21b501d619bc",
+    "recordingId": "6c81b7c4-4465-4e16-a36f-21b501d619bc",
+    "meetingId": "50c8940e-1b97-402a-97d6-2408b7feca41",
+    "organizationId": "70c5d391-4bac-4cf3-9907-bec205798adb",
+    "status": "RECORDING",
+    "startedTime": "2022-12-13 07:08:39.051621Z",
+    "outputFileName": "50c8940e-1b97-402a-97d6-2408b7feca41_1670915317403.mp4"
+  },
+  "meeting": {
+    "id": "50c8940e-1b97-402a-97d6-2408b7feca41",
+    "title": "Meeting title",
+    "createdAt": "2022-12-12T06:26:07.310Z",
+    "status": "LIVE",
+    "organizedBy": {
+      "id": "70c5d391-4bac-4cf3-9907-bec205798adb",
+      "name": "Dyte"
+    }
+  }
+}
+```
+
+</TabItem>
+
+<TabItem value="UPLOADING">
+
+```json
+{
+  "event": "recording.statusUpdate",
+  "recording": {
+    "id": "6c81b7c4-4465-4e16-a36f-21b501d619bc",
+    "recordingId": "6c81b7c4-4465-4e16-a36f-21b501d619bc",
+    "startedTime": "2022-12-13 07:08:39.051621Z",
+    "stoppedTime": "2022-12-13 07:09:45.865627Z",
+    "fileSize": 216787,
+    "status": "UPLOADING"
+  },
+  "meeting": {
+    "id": "50c8940e-1b97-402a-97d6-2408b7feca41",
+    "title": "Meeting title",
+    "createdAt": "2022-12-12T06:26:07.310Z",
+    "status": "LIVE",
+    "organizedBy": {
+      "id": "70c5d391-4bac-4cf3-9907-bec205798adb",
+      "name": "Dyte"
+    }
+  }
+}
+```
+
+</TabItem>
+
+<TabItem value="UPLOADED">
+
+```json
+{
+  "event": "recording.statusUpdate",
+  "recording": {
+    "id": "6c81b7c4-4465-4e16-a36f-21b501d619bc",
+    "recordingId": "6c81b7c4-4465-4e16-a36f-21b501d619bc",
+    "status": "UPLOADED",
+    "roomUUID": "70f41786-7e59-4e70-92ff-ae0504327ba7",
+    "downloadUrl": "https://dyte-recordings.s3.ap-south-1.amazonaws.com/70c5d391-4bac-4cf3-9907-bec205798adb/50c8940e-1b97-402a-97d6-2408b7feca41_1670915317403.mp4",
+    "downloadUrlExpiry": "2022-12-20 07:09:46.020343Z",
+    "startedTime": "2022-12-13 07:08:39.051621Z",
+    "stoppedTime": "2022-12-13 07:09:45.865627Z",
+    "fileSize": 216787,
+    "outputFileName": "50c8940e-1b97-402a-97d6-2408b7feca41_1670915317403.mp4",
+    "meetingId": "50c8940e-1b97-402a-97d6-2408b7feca41",
+    "organizationId": "70c5d391-4bac-4cf3-9907-bec205798adb"
+  },
+  "meeting": {
+    "id": "50c8940e-1b97-402a-97d6-2408b7feca41",
+    "title": "Meeting Title",
+    "createdAt": "2022-12-12T06:26:07.310Z",
+    "status": "LIVE",
+    "organizedBy": {
+      "id": "70c5d391-4bac-4cf3-9907-bec205798adb",
+      "name": "Dyte"
+    }
+  }
+}
+```
+
+</TabItem>
+
+</Tabs>
+
+### `livestreaming.statusUpdate`
+
+This event is triggered when a livestream's status changes. Possible values for
+`status` are `LIVE` and `OFFLINE`.
+
+<Tabs>
+
+<TabItem value="LIVE" label="LIVE">
+
+```json
+{
+  "event": "livestreaming.statusUpdate",
+  "streamId": "d231d346-c422-43a6-a324-c0d65b79c8a7",
+  "status": "LIVE"
+}
+```
+
+</TabItem>
+
+<TabItem value="OFFLINE" label="OFFLINE">
+
+```json
+{
+  "event": "livestreaming.statusUpdate",
+  "streamId": "d231d346-c422-43a6-a324-c0d65b79c8a7",
+  "status": "OFFLINE"
+}
+```
+
+</TabItem>
+
+</Tabs>
