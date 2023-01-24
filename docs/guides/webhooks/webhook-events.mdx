@@ -161,6 +161,27 @@ instead.
 
 :::
 
+### `meeting.chatSynced`
+
+This event is received when the chat messages dump of a meeting becomes
+available after the meeting ends.
+
+The payload for this event is like the following:
+
+```json
+{
+  "event": "meeting.chatSynced",
+  "sessionId": "79365b9b-e5ef-452f-934e-e171d75d254b",
+  "meetingId": "d9fc4d6a-a5a0-4430-9a73-d4ba14e597f9",
+  "chatDownloadUrl": "https://sample.com",
+  "chatDownloadUrlExpiry": "2022-12-13 07:08:39.051621Z",
+  "organizedBy": {
+    "id": "70c5d391-4bac-4cf3-9907-bec205798adb",
+    "name": "Dyte"
+  }
+}
+```
+
 ### `recording.statusUpdate`
 
 This event is received when the status of a recording changes. The possible
