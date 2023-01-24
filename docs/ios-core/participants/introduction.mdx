@@ -63,7 +63,8 @@ regarding pageCount, next page, previos page, current page, etc.
 
 ## Video update for all participants
 
-Triggered when the user starts / stops the video using `enableVideo` or `disableVideo`
+Triggered when the user starts / stops the video using `enableVideo` or
+`disableVideo`
 
 ```swift
 extension MeetingViewModel: DyteParticipantEventsListener {
@@ -79,7 +80,8 @@ extension MeetingViewModel: DyteParticipantEventsListener {
 
 ## Audio update for all participants
 
-Triggered when the user starts / stops the audio using `enableAudio` or `disableAudio`
+Triggered when the user starts / stops the audio using `enableAudio` or
+`disableAudio`
 
 ```swift
 extension MeetingViewModel: DyteParticipantEventsListener {
@@ -95,16 +97,19 @@ extension MeetingViewModel: DyteParticipantEventsListener {
 
 ## Move between pages in paginated mode
 
-The `setPage(pageNumber: Int)` method allows you to switch between pages of participants present in the meeting.
+The `setPage(pageNumber: Int)` method allows you to switch between pages of
+participants present in the meeting.
 
 ```swift
 // switch to 1st page
 meeting.participants.setPage(1)
 ```
- 
+
 ## Host control methods
 
-The `meeting.participants` object has host control methods that allow you to disable the audio and video streams of other users in the meeting (given that the user preset has the right permissions).
+The `meeting.participants` object has host control methods that allow you to
+disable the audio and video streams of other users in the meeting (given that
+the user preset has the right permissions).
 
 ```swift
 // mute all participants

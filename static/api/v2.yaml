@@ -2404,7 +2404,7 @@ components:
           format: uri
           description: URL to a picture of the participant.
           nullable: true
-        client_specific_id:
+        custom_participant_id:
           type: string
           description: ID used internally by the client.
         preset_name:
@@ -2420,7 +2420,7 @@ components:
           description: When this object was updated.
       required:
         - id
-        - client_specific_id
+        - custom_participant_id
         - preset_name
         - created_at
         - updated_at
@@ -3140,12 +3140,12 @@ components:
               preset_name:
                 type: string
                 description: Name of the preset to apply to this participant.
-              client_specific_id:
+              custom_participant_id:
                 type: string
                 description: ID used internally by the client.
             required:
               - preset_name
-              - client_specific_id
+              - custom_participant_id
     EditParticipantBody:
       content:
         application/json:
@@ -3484,7 +3484,7 @@ components:
                   data:
                     type: object
                     properties:
-                      client_specific_id:
+                      custom_participant_id:
                         type: string
                       preset_id:
                         type: string
@@ -3499,7 +3499,7 @@ components:
                         format: date-time
                         description: Timestamp this object was updated at.
                     required:
-                      - client_specific_id
+                      - custom_participant_id
                       - preset_id
                       - created_at
                       - updated_at
@@ -3664,7 +3664,7 @@ components:
     Bearer:
       type: http
       scheme: bearer
-      description: Provide bearer token for a participant who has permissions for recording. Note that this is only useful for the recording routes
+      description: Provide bearer token for a participant who has permissions for recording. Note that this is only useful for the `/recordings` routes.
 tags:
   - name: Meetings
   - name: Presets

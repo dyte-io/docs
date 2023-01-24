@@ -7,7 +7,8 @@ tags: [mobile-core, local-user, self]
 
 # Introduction - Local User
 
-The local user has the methods and properties on the local user media controls. Accessible via `localUser` within the `meeting` object.
+The local user has the methods and properties on the local user media controls.
+Accessible via `localUser` within the `meeting` object.
 
 ## Properties
 
@@ -29,8 +30,9 @@ Here is a list of properties that `meeting.localUser` user provides:
 
 ## Change default audio / video settings
 
-By default as soon as you join the meeting the SDK will produce your video and audio streams.
-To change this behaviour use the `audioEnabled` & `videoEnabled` parameter
+By default as soon as you join the meeting the SDK will produce your video and
+audio streams. To change this behaviour use the `audioEnabled` & `videoEnabled`
+parameter
 
 ```swift
 let meetingInfo = DyteMeetingInfo(
@@ -51,7 +53,9 @@ meeting.localUser.getVideoView()
 
 ## Turn audio/video tracks after joining the room
 
-If audio and video tracks are disabled during the `DyteMobileClient` initialization process. You can setup the audio and video tracks by simply calling `enableAudio()` and `enableVideo()` like below:
+If audio and video tracks are disabled during the `DyteMobileClient`
+initialization process. You can setup the audio and video tracks by simply
+calling `enableAudio()` and `enableVideo()` like below:
 
 ```swift
 meeting.localUser.enableAudio()
@@ -100,7 +104,8 @@ meeting.localUser.videoEnabled
 // switch camera
 meeting.localUser.switchCamera()
 ```
-OR 
+
+OR
 
 If you want to set video device yourself:
 
