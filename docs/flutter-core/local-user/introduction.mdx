@@ -2,44 +2,51 @@
 title: Introduction
 description: Local user setup guide.
 sidebar_position: 1
-tags: [mobile-core, local-user, self]
+tags: [flutter-core, local-user, self]
 ---
 
 # Introduction - Local User
 
-The local user has the methods and properties on the local user media controls.
-Accessible via `localUser` within the `meeting` object.
+Local User object contain all the methods and properties about the local user
+media controls for the current room.
 
 ## Properties
 
 Here is a list of properties that local user provides:
 
-- `id`: The ID of the participant pertaining to local user.
+- `id`: ID of the participant pertaining to local user. (aka `peerId`)
+- `userId`: The `userId` of the participant.
 - `name`: Contains Name of the local user.
-- `userId`:
 - `picture`: Link to the url of the participant
-- `flags`: It is of type `ParticipantFlags` and it contains two boolean values
-  - `recorder`: if the participant is recorder
-  - `hidden`: if the participant is hidden
+- `isHost`: Boolean value indicating whether this user is host of current
+  meeting or not.
 - `clientSpecificId`: Identifier provided by the developer while adding the
   participant.
-- `audioEnabled`: A boolean value indicating if the audio currently enabled.
-- `videoEnabled`: A boolean value indicating if the video currently enabled.
+- `flags`: Type `ParticipantFlags` and it contains two boolean values
+  - `recorder`: if the participant is recorder
+  - `hidden`: if the participant is hidden
+- `audioEnabled`: Boolean value indicating if the audio currently enabled.
+- `videoEnabled`: Boolean value indicating if the video currently enabled.
+
+Local user properties can be fetched via `localUser` getter on the `dyteClient`.
+
+```dart
+final localUserProperties = dyteClient.localUser;
+```
 
 ## Change default audio / video settings
 
-By default as soon as you join the meeting the SDK will produce your video and
-audio streams. To change this behaviour use the `audioEnabled` & `videoEnabled`
+By default as soon as you join the meeting, Dyte SDK will produce your video and
+audio streams. To change this behaviour, use the `audioEnabled` & `videoEnabled`
 parameter
 
-```dart
+```dart {4,5}
 final meetingInfo = DyteMeetingInfo(
-      orgId = ORGNIZATION_ID,
-      roomName = MEETING_ROOM_NAME,
-      authToken = AUTH_TOKEN,
-      audioEnabled = false,
-      videoEnabled = true
-    );
+  roomName = MEETING_ROOM_NAME,
+  authToken = AUTH_TOKEN,
+  audioEnabled = false,
+  videoEnabled = true
+);
 ```
 
 ## Turn audio/video tracks after joining the room
@@ -49,8 +56,8 @@ initialization process. You can setup the audio and video tracks by simply
 calling `enableAudio()` and `enableVideo()` like below:
 
 ```dart
-meeting.localUser.enableAudio();
-meeting.localUser.enableVideo();
+dyteClient.localUser.enableAudio();
+dyteClient.localUser.enableVideo();
 ```
 
 ## Change the name of the local user
@@ -60,38 +67,38 @@ reflect across all participants ONLY if the change happens before joining the
 meeting.
 
 ```dart
-meeting.localUser.setDisplayName("New Name")
+dyteClient.localUser.setDisplayName("New Name")
 ```
 
 ## Mute/Unmute microphone
 
 ```dart
 // Mute Audio
-meeting.localUser.disableAudio();
+dyteClient.localUser.disableAudio();
 
 // Unmute Audio
-meeting.localUser.enableAudio();
+dyteClient.localUser.enableAudio();
 
 // Get current status
-final isAudioEnabled = meeting.localUser.audioEnabled;
+final isAudioEnabled = dyteClient.localUser.audioEnabled;
 ```
 
 ## Enable/Disable camera
 
 ```dart
 // Disable Video
-meeting.localUser.disableVideo();
+dyteClient.localUser.disableVideo();
 
 // Enable Video
-meeting.localUser.enableVideo();
+dyteClient.localUser.enableVideo();
 
 // Get current status
-final isVideoEnabled = meeting.localUser.videoEnabled;
+final isVideoEnabled = dyteClient.localUser.videoEnabled;
 ```
 
 ## Switch camera between primary and secondary
 
 ```dart
 // switch camera
-meeting.localUser.switchCamera();
+dyteClient.localUser.switchCamera();
 ```

@@ -2,180 +2,46 @@
 title: Introducing chat
 description: Send and receive chat messages in a meeting.
 sidebar_position: 1
-tags: [mobile-core, chat]
+tags: [flutter-core, chat]
 ---
 
-# Introducing chat
+# Introduction
 
-The meeting chat object is stored in `meeting.chat`, which has methods for
+The meeting chat object is stored in `dyteClient.chat`, which has methods for
 sending and receiving messages. There are 3 types of messages that can be sent
-in chat - text messages, images, and files.
+in chat - `text`, `images`, and `files`.
 
-The `meeting.chat.messages` array contains all the messages that have been sent
-in the chat. This is an array of objects, where each object is of type
+The `dyteClient.chat.messages` array contains all the messages that have been
+sent in the chat. This is an array of objects, where each object is of type
 `DyteChatMessage`.
 
-The type `DyteChatMessage` is defined in the following manner.
+The `DyteChatMessage` class has the following properties:
 
-```dart
-import 'dart:convert';
+- `userId` : UserID of the sender.
+- `displayName` : Display name of the sender.
+- `read` : Boolean whether the message is read or not.
+- `pluginId` : Plugin ID of the message.
+- `type` : `DyteMessageType` for type of message being sent (whether
+  `DyteMessageType.text`, `DyteMessageType.image` or `DyteMessageType.file`).
 
-class DyteChatMessage {
-  DyteChatMessage({
-    required this.userId,
-    required this.displayName,
-    required this.read,
-    this.pluginId,
-    required this.type,
-  });
-  final String userId;
-  final String displayName;
-  final bool read;
-  final String? pluginId;
-  final DyteMessageType type;
+There are 3 message classes that extends `DyteChatMessage`, and each has some
+extra parameter apart from `DyteChatMessage` ones:
 
-  static DyteTextMessage textMessage({
-    required String userId,
-    required String displayName,
-    required bool read,
-    String? pluginId,
-    required String message,
-  }) {
-    return DyteTextMessage(
-      message: message,
-      userId: userId,
-      displayName: displayName,
-      read: read,
-      type: DyteMessageType.text,
-    );
-  }
+- `DyteTextMessage`
+- `DyteImageMessage`
+- `DyteFileMessage`
 
-  static DyteImageMessage imageMessage({
-    required String userId,
-    required String displayName,
-    required bool read,
-    String? pluginId,
-    required String message,
-    required String link,
-    required String fileUri,
-    required String fileName,
-  }) {
-    return DyteImageMessage(
-      fileName: fileName,
-      fileUri: fileUri,
-      link: link,
-      userId: userId,
-      displayName: displayName,
-      read: read,
-      type: DyteMessageType.image,
-    );
-  }
+#### DyteTextMessage:
 
-  static DyteFileMessage fileMessage({
-    required String userId,
-    required String displayName,
-    required bool read,
-    String? pluginId,
-    required String message,
-    required String name,
-    required String fileUri,
-  }) {
-    return DyteFileMessage(
-      name: name,
-      fileUri: fileUri,
-      userId: userId,
-      displayName: displayName,
-      read: read,
-      type: DyteMessageType.image,
-    );
-  }
+- `message`: Text message sent.
 
-  factory DyteChatMessage.fromMap(Map<String, dynamic> map) {
-    final type = _decodeType(map["type"]);
-    switch (type) {
-      case DyteMessageType.text:
-        return DyteTextMessage(
-          message: map["message"],
-          userId: map["userId"],
-          displayName: map["displayName"],
-          read: map["read"],
-          type: type,
-        );
-      case DyteMessageType.image:
-        return DyteImageMessage(
-          fileName: map["fileName"] ?? '',
-          fileUri: map["fileUri"] ?? '',
-          link: map["link"],
-          userId: map["userId"],
-          displayName: map["displayName"],
-          read: map["read"],
-          type: type,
-        );
-      case DyteMessageType.file:
-        return DyteFileMessage(
-          name: map["name"],
-          fileUri: map["fileUri"],
-          userId: map["userId"],
-          displayName: map["displayName"],
-          read: map["read"],
-          type: type,
-        );
-    }
-  }
+#### DyteImageMessage:
 
-  static DyteMessageType _decodeType(String type) {
-    if (type == "TEXT") {
-      return DyteMessageType.text;
-    } else if (type == "IMAGE") {
-      return DyteMessageType.image;
-    } else {
-      return DyteMessageType.file;
-    }
-  }
+- `link`: URL to the bucket where the image is stored.
+- `fileUri`: Local path URL of image selected.
+- `fileName`: Name of image selected.
 
-  factory DyteChatMessage.fromJson(String source) =>
-      DyteChatMessage.fromMap(json.decode(source));
-}
+#### DyteFileMessage:
 
-/// [DyteMessageType]
-enum DyteMessageType { text, image, file }
-
-class DyteTextMessage extends DyteChatMessage {
-  final String message;
-  DyteTextMessage({
-    required this.message,
-    required super.userId,
-    required super.displayName,
-    required super.read,
-    required super.type,
-  });
-}
-
-class DyteImageMessage extends DyteChatMessage {
-  final String link;
-  final String fileUri;
-  final String fileName;
-  DyteImageMessage({
-    required this.fileName,
-    required this.fileUri,
-    required this.link,
-    required super.userId,
-    required super.displayName,
-    required super.read,
-    required super.type,
-  });
-}
-
-class DyteFileMessage extends DyteChatMessage {
-  final String name;
-  final String fileUri;
-  DyteFileMessage({
-    required this.name,
-    required this.fileUri,
-    required super.userId,
-    required super.displayName,
-    required super.read,
-    required super.type,
-  });
-}
-```
+- `name`: Name of the file to be sent.
+- `fileUri`: Local path URL of the file selected.

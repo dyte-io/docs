@@ -1,0 +1,40 @@
+---
+title: Other poll functions
+description: Other poll functions
+sidebar_position: 4
+tags: [web-core, polls, results, updates]
+---
+
+# Other poll functions
+
+## View poll results
+
+**The total votes on a poll can be accessed in the following manner.**
+
+```ts
+const poll = meeting.polls.items[0];
+const votes = poll.voted;
+```
+
+`votes` is an array of participant ID's (`meeting.participant.id`).
+
+**The total votes on a poll option can be accessed in the following manner.**
+
+```ts
+const poll = meeting.polls.items[0];
+const options = poll.options;
+```
+
+`options` returns an array of objects, where each object is of type
+[`PollObject`](./introduction).
+
+## Get notified when a new poll is created
+
+An event is fired each time `meeting.polls.items` is updated. User can listen
+for this to get the updated list of polls.
+
+```ts
+meeting.polls.on('pollsUpdate', ({ polls }) => {
+  console.log(polls);
+});
+```

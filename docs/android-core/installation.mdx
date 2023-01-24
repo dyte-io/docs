@@ -10,12 +10,11 @@ slug: /
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import { AndroidCoreLatestInstallation } from '@site/src/components/LatestInstallation';
 
 Install the SDK using maven dependency.
 
-```shell
-implementation 'io.dyte:core-android:{latest-version}'
-```
+<AndroidCoreLatestInstallation />
 
 :::info
 
@@ -26,7 +25,7 @@ without any additional steps.
 
 1. Create / append to the file `android/app/proguard-rules.pro`
 
-```groovy
+```python
 # Keep `Companion` object fields of serializable classes.
 # This avoids serializer lookup through `getDeclaredClasses` as done for named companion objects.
 -if @kotlinx.serialization.Serializable class **

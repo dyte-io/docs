@@ -1,0 +1,39 @@
+---
+sidebar_position: 1
+---
+
+# Webhooks Overview
+
+Webhooks are
+[HTTP-based](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) callback
+functions that can be defined by the user to allow lightweight, event-driven
+communication between two APIs.
+
+Setting up a webhook involves the following steps:
+
+1. The client provides a unique URL to the server API and specifies which event
+   it wanted to be notified about.
+2. Once the webhook is configured, the server automatically sends the relevant
+   payload to the client's webhook URL when the specified event occurs.
+
+Dyte uses webhooks to notify your application when an event happens. Webhooks
+are particularly useful for asynchronous events, such as when a recording is
+uploaded or when a participant joins your meeting.
+
+### How does Dyte use Webhooks?
+
+A webhook enables Dyte to push real-time updates to your applications. When the
+event occurs, Dyte makes an HTTP request (usually a POST) to the URL you
+configured for the webhook and sends the updates to your application as a JSON
+payload. You can then use these events to perform actions in your backend
+systems. To learn more, see Dyte webhook events overview.
+
+Webhooks are particularly useful for asynchronous events, such as when a
+recording is uploaded or when a participant joins the meeting.
+
+Let’s say you have a meeting that you want to record. You have registered to
+receive the `meeting.started` and `meeting.ended` event. A webhook notifies your
+app when the meeting starts and when it ends. After your webhook endpoint
+receives the meeting.started event, your webhook function can then run backend
+actions to start recording the meeting and end the recording of the meeting when
+`meeting.ended` event is received.
