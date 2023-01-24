@@ -1,0 +1,99 @@
+---
+title: Quickstart
+description: Quickstart guide for iOS mobile core.
+sidebar_position: 2
+tags: [mobile-core, quickstart]
+slug: /
+---
+
+# Quickstart
+
+:::info Before Getting Started
+
+Before you start integrating Dyte into your application, make sure you've read
+the [Getting Started with Dyte](/getting-started) topic and completed the steps
+in the [Integrate Dyte](/getting-started#integrate-dyte) section.
+
+:::
+
+The DyteMobileClient is the main class of the SDK. It is the main entry point of the SDK. It is the only class that you need to instantiate in order to use the SDK. To instantiate DyteMobileClient, you should use `DyteiOSClientBuilder().build()`.
+
+```swift
+let meeting = DyteiOSClientBuilder().build()
+```
+Add listeners and implement callback stubs
+
+```swift
+meeting.addMeetingRoomEventsListener(meetingRoomEventsListener: self)
+meeting.addParticipantEventsListener(participantEventsListener: self)
+meeting.addSelfEventsListener(selfEventsListener: self)
+```
+
+Now you can use `meeting` to join in the room.
+First step is to establish a connection to the meeting server, you can do that with 
+
+```swift
+let meetingInfo = DyteMeetingInfo(roomName: MEETING_ROOM_NAME,
+                                          authToken: AUTH_TOKEN,
+                                          enableAudio: true,
+                                          enableVideo: true,
+                                          baseUrl: Constants.BASE_URL)
+
+meeting.doInit(dyteMeetingInfo: meetingInfo)
+```
+
+`baseUrl` can be found at [Dyte developer portal](https://dev.dyte.in/).
+You can get the `roomName` and `authToken` using our backend APIs. Please refer [this for room name](https://docs.dyte.io/api#/operations/createMeeting) & [this for auth token](https://docs.dyte.io/api#/operations/addParticipant)
+
+
+after `onMeetingInitCompleted()` Now to join in the room, use 
+
+```swift
+meeting.joinRoom()
+```
+
+:::info Join room event listeners 
+Once you call `joinRoom()`, you can listen to
+callbacks for this action on meeting object by registering observer.
+:::
+
+```swift
+extension MeetingViewModel: DyteSelfEventsListener {
+    func onMeetingRoomJoinStarted() {
+        // meeting join started
+    }
+
+    func onMeetingRoomJoined() {
+        // meeting room joined succesfully
+    }
+
+    func onMeetingRoomJoinFailed(exception: KotlinException) {
+        // error in joining meeting room.
+    }
+  }
+```
+
+And voila, you just joined a room with Dyte's mobile SDK.
+
+Similarly to leave the meeting you can call `leaveRoom()` on `meeting` object.
+
+```swift
+meeting.leaveRoom()
+```
+
+:::info Leave room event listeners 
+You can listen to `leaveRoom()` callbacks by
+registering obsever on meeting object as follows
+:::
+
+```swift
+extension MeetingViewModel: DyteSelfEventsListener {
+    func onMeetingRoomLeaveStarted() {
+        // meeting room leave started    
+    }
+    
+    func onMeetingRoomLeft() {
+        // meeting room leave completed
+    }      
+}
+```

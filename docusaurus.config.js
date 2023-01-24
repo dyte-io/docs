@@ -52,6 +52,7 @@ const latestVersions = {
   'android-core': '1.x.x',
   'rn-core': '1.x.x',
   'flutter-core': '1.0.0',
+  'ios-core': '1.0.0'
 };
 
 const SECTIONS = [
@@ -89,7 +90,12 @@ const SECTIONS = [
     label: latestVersions['flutter-core'],
   }),
 
-  // [web] rn-core
+  //mobile-core
+  defineSection('ios-core', {
+    label: latestVersions['ios-core'],
+  }),
+
+  // rn-core
   defineSection('rn-core', {
     label: latestVersions['rn-core'],
   }),
