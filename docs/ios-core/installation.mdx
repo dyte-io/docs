@@ -1,0 +1,49 @@
+---
+title: Installation
+description: Quickstart guide for iOS mobile core.
+sidebar_position: 1
+tags: [mobile-core, quickstart]
+---
+
+# Installation
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+:::tip iOS minimum version 11.0
+
+We support minimum OS version `11.0` for our iOS SDK.
+
+:::
+
+1. Add the following line to your `Podfile`
+
+```ruby
+pod 'DyteiOSCore', '0.0.6'
+pod 'DyteiOSSocketIO'
+pod "mediasoup_ios_client"
+```
+
+2. Install the client SDK from pod
+
+```shell
+pod install
+```
+
+3. Add the fonts and permission entries in `info.plist` - the strings are
+   displayed in the permission pop-ups, feel free to customize them to suit your
+   audience
+
+```xml
+<key>NSBluetoothPeripheralUsageDescription</key>
+<string>We will use your Bluetooth to access your Bluetooth headphones.</string>
+<key>NSBluetoothAlwaysUsageDescription</key>
+<string>We will use your Bluetooth to access your Bluetooth headphones.</string>
+<key>NSCameraUsageDescription</key>
+<string>For people to see you during meetings, we need access to your camera.</string>
+<key>NSMicrophoneUsageDescription</key>
+<string>For people to hear you during meetings, we need access to your microphone.</string>
+<key>NSPhotoLibraryUsageDescription</key>
+<string>For people to share, we need access to your photos.</string>
+<false/>
+```
