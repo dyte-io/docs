@@ -34,9 +34,8 @@ By default as soon as you join the meeting the SDK will produce your video and
 audio streams. To change this behaviour use the `audioEnabled` & `videoEnabled`
 parameter
 
-```kotlin {4,5}
+```kotlin {3,4}
 val meetingInfo = DyteMeetingInfo(
-      roomName = MEETING_ROOM_NAME,
       authToken = AUTH_TOKEN,
       audioEnabled = false,
       videoEnabled = true
