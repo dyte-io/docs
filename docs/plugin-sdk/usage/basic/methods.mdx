@@ -29,8 +29,12 @@ plugin.ready();
 
 ## Methods specific to staggered plugins
 
-:::info Staggered plugins are plugins that are enabled only for specific users.
-By default these are only enabled for the user that opens them. :::
+:::info Before you start
+
+Staggered plugins are plugins that are enabled only for specific users. By
+default these are only enabled for the user that opens them.
+
+:::
 
 ### Enable plugin for all users
 
@@ -40,9 +44,9 @@ await plugin.enableForAll();
 
 ### Enable plugin for specific users
 
-| Param   | Type     | Description                                          | Default Value | Required |
-| ------- | -------- | ---------------------------------------------------- | ------------- | -------- |
-| peerIds | string[] | List of peer IDs for which plugin has to be enabled. | -             | false    |
+| Param   | Type       | Description                                          | Default Value | Required |
+| ------- | ---------- | ---------------------------------------------------- | ------------- | -------- |
+| peerIds | `string[]` | List of peer IDs for which plugin has to be enabled. | -             | false    |
 
 ```jsx
 const peerIds: string[] = ['...'];
@@ -57,9 +61,9 @@ await plugin.disableForAll();
 
 ### Disable plugin for specific users
 
-| Param   | Type     | Description                                           | Default Value | Required |
-| ------- | -------- | ----------------------------------------------------- | ------------- | -------- |
-| peerIds | string[] | List of peer IDs for which plugin has to be disabled. | -             | false    |
+| Param   | Type       | Description                                           | Default Value | Required |
+| ------- | ---------- | ----------------------------------------------------- | ------------- | -------- |
+| peerIds | `string[]` | List of peer IDs for which plugin has to be disabled. | -             | false    |
 
 ```tsx
 const peerIds: string[] = ['...'];

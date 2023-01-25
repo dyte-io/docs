@@ -10,36 +10,26 @@ the SDK.
 A plugin object can be created using `DytePlugin.init()` method. The `init()`
 method can take an **_optional_** `config` object.
 
-:::tip Do checkout **_“Guides”_** for end to end examples on the usage of these
-modules. :::
+:::tip tip
+
+Do checkout **_“Guides”_** for end to end examples on the usage of these
+modules.
+
+:::
 
 The following is the schema for the `config` object :
 
-| **Param**                            | **Type** | **Description**                                 | **Default Value**          | **Required** |
-| ------------------------------------ | -------- | ----------------------------------------------- | -------------------------- | ------------ |
-| authToken                            | string   | Authorisation token.                            | auto-filled by client SDK. | false        |
-| baseURL                              | string   | Server URL being used by the parent app.        | auto-filled by client SDK. | false        |
-| parentURL                            | string   | URL of the parent app the plugin is opened in.  | auto-filled by client SDK. | false        |
-| pluginId                             | string   | ID generated using Dyte CLI.                    | auto-filled by client SDK. | false        |
-| ready                                | boolean  | True when the plugin is ready to accept events. |
-| Can be set using plugin.ready() too. | true     | false                                           |
+| **Param** | **Type** | **Description**                                      | **Default Value**          | **Required** |
+| --------- | -------- | ---------------------------------------------------- | -------------------------- | ------------ |
+| authToken | string   | Authorisation token.                                 | auto-filled by client SDK. | false        |
+| baseURL   | string   | Server URL being used by the parent app.             | auto-filled by client SDK. | false        |
+| parentURL | string   | URL of the parent app the plugin is opened in.       | auto-filled by client SDK. | false        |
+| pluginId  | string   | ID generated using Dyte CLI.                         | auto-filled by client SDK. | false        |
+| ready     | boolean  | `true` when the plugin initialization has completed. | `true`                     | false        |
 
 ```jsx
 import DytePlugin from "@dytesdk/plugin-sdk";
 ...
 const plugin = DytePlugin.init();
 await plugin.stores.populate('storeName');
-```
-
-**_or_**
-
-```jsx
-import DytePlugin from "@dytesdk/plugin-sdk";
-...
-const plugin = DytePlugin.init({ ready: false });
-await plugin.stores.populate('storeName');
-
-// do something ...
-
-plugin.ready();
 ```

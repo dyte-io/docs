@@ -16,10 +16,8 @@ dyte plugins version list
 
 You can now select the version you wish to deploy.
 
-If you do not add the `--v` flag, it re-deploys the latest version.
-
 ```shell
-dyte plugins deploy --v-1.x.x
+dyte plugins version change-latest -v <version>
 ```
 
 ### Unpublishing
@@ -47,10 +45,30 @@ plugin.
 
 Each Dyte user is associated to a preset. This preset dictates the meeting
 expirence for that user. You can customize how this preset can interact with a
-plugin using [Developer Portal](https://dev.dyte.io) presets.
+plugin using the [Preset Editor](https://dev.dyte.io/roles-presets).
 
-Customize who can view, launch & control a plugin using the
-[Preset Editor](https://dev.dyte.io/roles-presets).
+In your preset editor you can select the plugins you want a preset to have
+access to.
+
+**Manage Plugin Interactions**
+
+We let you manage how your users interacts with a plugin. This setting can be
+configured differently for each plugin.
+
+| ** Control ** | ** Description **                                              |
+| ------------- | -------------------------------------------------------------- |
+| View Only     | The user can only view the plugin.                             |
+| Full Access   | The user can interact with the plugin and has control over it. |
+
+**Manage Access Control.**
+
+You can specify who has access to launch/close plugins.
+
+| ** Control ** | ** Description **                                                     |
+| ------------- | --------------------------------------------------------------------- |
+| Launch        | Preset can launch plugins                                             |
+| Close         | Preset can close plugins                                              |
+| Control       | Preset can give others the access to launch/close plugins temporarily |
 
 ### Next Step
 

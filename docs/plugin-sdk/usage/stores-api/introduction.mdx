@@ -22,12 +22,20 @@ The value can assume the following types:
 ### Create a Store
 
 You can create a **global store** (Realtime store) or a **local store**
-(Available only to you, not other users). :::info note This method only creates
-a store for the current user (self), hence it must be executed for every user.
-::: | Param | Type | Description | Default Value | Required | | --- | --- | ---
-| --- | --- | | key | string | Name of the store. | - | true | | options |
-Options | The options object | { local: false } | false | | `options.local` |
-boolean | Creates a local store when true. | false | false |
+(Available only to you, not other users).
+
+:::info note
+
+This method only creates a store for the current user (self), hence it must be
+executed for every user.
+
+:::
+
+| Param           | Type    | Description                      | Default Value    | Required |
+| --------------- | ------- | -------------------------------- | ---------------- | -------- |
+| key             | string  | Name of the store.               | -                | true     |
+| options         | Options | The options object               | { local: false } | false    |
+| `options.local` | boolean | Creates a local store when true. | false            | false    |
 
 ```tsx
 type Options = {

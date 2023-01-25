@@ -56,11 +56,9 @@ Here's what a basic config file would look like:
     "include": ["index.html", "**/*"],
     "exclude": ["**/*.ts", "*.md"]
   },
-  "staggered": false,
   "tags": ["#plugin"],
   "author": "",
-  "repository": "",
-  "contentScript": ""
+  "repository": ""
 }
 ```
 
@@ -161,10 +159,3 @@ plugin.room.on('peerJoined', async (p) => {
   await plugin.room.sendChatMessage(message);
 });
 ```
-
-:::info tip
-
-Use `const plugin = DytePlugin.init({ready: false})` and `plugin.ready()` to
-manage when your Dyte Plugin is ready to be used.
-
-:::
