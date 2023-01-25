@@ -157,6 +157,8 @@ const config = {
     require.resolve('./src/client/define-ui-kit.js'),
   ],
 
+  scripts: ['/js/banner.js'],
+
   presets: [
     [
       'classic',
@@ -177,12 +179,7 @@ const config = {
     ],
   ],
 
-  plugins: [
-    tailwindPlugin,
-    webpackPlugin,
-    posthogPlugin,
-    ...SECTIONS,
-  ],
+  plugins: [tailwindPlugin, webpackPlugin, posthogPlugin, ...SECTIONS],
 
   themes: ['@docusaurus/theme-live-codeblock'],
 
@@ -197,6 +194,11 @@ const config = {
         sidebar: {
           hideable: true,
         },
+      },
+      announcementBar: {
+        id: 'ph-banner',
+        content: '<div id="ph-banner"/>',
+        isCloseable: false,
       },
       navbar: {
         // NOTE: hideOnScroll breaks on `/api`, enable when fixed

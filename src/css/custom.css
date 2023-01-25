@@ -39,6 +39,8 @@
     --docs-color-secondary-1000: 255 255 255;
 
     --docs-color-text-400: 71 71 71;
+
+    --docusaurus-announcement-bar-height: auto !important;
   }
 
   html[data-theme='dark'] {
@@ -979,7 +981,7 @@ img[src$='#terminal'] {
   border-left: 3px solid #ff000080;
 }
 
-.notesContainer h4{
+.notesContainer h4 {
   @apply mb-8;
 }
 
@@ -989,7 +991,7 @@ img[src$='#terminal'] {
 
 .notesContainer .type {
   width: 11rem;
-  border-right:2px solid;
+  border-right: 2px solid;
   color: #757275;
   @apply border-b-0 align-top font-bold;
 }
@@ -1029,7 +1031,34 @@ img[src$='#terminal'] {
 }
 
 .releaseSidebarHeading {
-  @apply !mt-2 pt-1 border-t-secondary-700;
+  @apply !mt-2 border-t-secondary-700 pt-1;
   border-top-style: solid;
   border-top-width: 1px;
+}
+
+div[class^='announcementBar'][role='banner'] {
+  height: 48px;
+}
+
+div[class^='announcementBar'][role='banner'] button.close {
+  color: white;
+  svg {
+    fill: white;
+  }
+}
+
+div[class^='announcementBarContent'] {
+  line-height: 48px;
+}
+
+@media only screen and (max-width: 768px) {
+  div[class^='announcementBar'][role='banner'] {
+    height: 96px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  div[class^='announcementBar'][role='banner'] {
+    height: 100px;
+  }
 }
