@@ -1,0 +1,34 @@
+---
+title: Media Permissions
+description: Local user media guide to manage media permissions.
+sidebar_position: 4
+tags: [mobile-core, local-user, self, self events]
+---
+
+# Media Permissions
+
+To get media permissions (audio/video) for localUser we can do as follows
+
+```kotlin
+val isCameraPermissionGranted
+  = meeting.localUser.isCameraPermissionGranted
+val isMicrophonePermissionGranted
+  = meeting.localUser.isMicrophonePermissionGranted
+```
+
+Similarely to listen to callbacks regarding media permissions once user joins
+the meeting
+
+```kotlin
+meeting.addSelfEventsListener(object : DyteSelfEventsListener {
+    override fun onMeetingRoomJoinedWithoutCameraPermission() {
+      super.onMeetingRoomJoinedWithoutCameraPermission()
+      // when meeting room is joined without camera permission
+    }
+
+    override fun onMeetingRoomJoinedWithoutMicPermission() {
+      super.onMeetingRoomJoinedWithoutMicPermission()
+      // when meeting room is joined without microphone permission
+    }
+});
+```

@@ -30,7 +30,6 @@ class AppComponent {
 
   async ngAfterViewInit() {
     const meeting = await DyteClient.init({
-      roomName: '<room-name>',
       authToken: '<auth-token>',
     });
     meeting.joinRoom();

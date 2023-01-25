@@ -14,8 +14,10 @@ in the [Integrate Dyte](/getting-started#integrate-dyte) section.
 
 :::
 
-First you would need to setup your project with the provided hooks and the
+First you will need to setup your project with the provided hooks and the
 `<DyteProvider />`.
+
+Read more about these hooks [here](./basics/using-hooks).
 
 ```jsx
 export default function App() {
@@ -23,7 +25,6 @@ export default function App() {
 
   useEffect(() => {
     initMeeting({
-      roomName: '<room-name>',
       authToken: '<auth-token>',
       defaults: {
         audio: false,
@@ -40,16 +41,14 @@ export default function App() {
 }
 ```
 
-Read more about these hooks [here](./basics/using-hooks).
-
-Then, your `<MyMeeting />` component would look like this.
-
 :::info
 
 The live editors you see in the docs use a _mock_ web-core `meeting` object with
 the help of `<DyteProvider />`
 
 :::
+
+Then, your `<MyMeeting />` component can look like this.
 
 ```jsx live
 function MyMeeting() {

@@ -1,12 +1,10 @@
 import {
   ReactIcon,
-  UIKitIcon,
   AngularIcon,
   AndroidIcon,
   AppleIcon,
   FlutterIcon,
   HTMLIcon,
-  VueIcon,
   JSIcon,
 } from './icons';
 
@@ -16,11 +14,6 @@ const SECTIONS = [
     id: 'default',
     section: false,
   },
-  {
-    id: 'guides',
-    section: false,
-  },
-
   {
     name: 'React SDK',
     id: 'react',
@@ -63,13 +56,6 @@ const SECTIONS = [
     icon: AngularIcon,
     section: 'ui-sdk',
   },
-  {
-    name: 'Vue UI Kit',
-    id: 'vue-ui-kit',
-    icon: VueIcon,
-    section: 'ui-sdk',
-    disabled: true,
-  },
 
   // - core-sdk
   {
@@ -84,6 +70,20 @@ const SECTIONS = [
     name: 'Android Core',
     id: 'android-core',
     icon: AndroidIcon,
+    section: 'mobile-core',
+  },
+  
+  {
+    name: 'iOS Core',
+    id: 'ios-core',
+    icon: AppleIcon,
+    section: 'mobile-core',
+  },
+
+  {
+    name: 'React Native Core',
+    id: 'rn-core',
+    icon: ReactIcon,
     section: 'mobile-core',
   },
   {
@@ -143,7 +143,7 @@ const MULTI_SECTIONS = [
       section: 'mobile-core',
       isNew: true,
       description: 'Build your own UI from scratch, use our low level APIs.',
-    },
+    }
   ],
   [
     {

@@ -2,7 +2,7 @@
 title: Manage Media Devices
 description: Local user media guide to manage media permissions.
 sidebar_position: 3
-tags: [web-core, local-user, self, self events]
+tags: [flutter-core, local-user, self, self events]
 ---
 
 # Manage Media Devices
@@ -11,19 +11,42 @@ Media devices represents the hardwar for the camera, microphone and speaker
 devices. To get the list of media devices that are currently being used, you can
 use the following methods:
 
+### For audio devices:
+
+To get audio devices, use `getAudioDevices()` method on `localUser` object. It
+returns `List<DyteAudioDevice>` object, where each object in the list refers to
+an audio device of the system.
+
 ```dart
 // Get all audio devices
-final audioDevices = await meeting.localUser.getAudioDevices();
-
-// Get all video devices
-final videoDevices = await meeting.localUser.getVideoDevices();
+final audioDevices = await dyteClient.localUser.getAudioDevices();
 ```
 
-## Set device
+### For video devices
 
-To set a device as an active device, you can call `setDevice` method. This takes
-a `MediaDeviceInfo` object, and replaces the same `kind` device.
+To get audio devices, use `getVideoDevices()` method on `localUser` object. It
+returns `List<DyteVideoDevice>` object, where each object in the list refers to
+an video device of the system.
 
 ```dart
-await meeting.localUser.setDevice(device);
+// Get all video devices
+final videoDevices = await dyteClient.localUser.getVideoDevices();
+```
+
+## Set Audio Device
+
+To set an active audio device, you can call `setAudioDevice()` method. This
+takes a `DyteAudioDevice` object that needs to be set active for audio.
+
+```dart
+await dyteClient.localUser.setAudioDevice(device);
+```
+
+## Set Video Device
+
+To set a active video device, you can call `setVideoDevice()` method. This takes
+a `DyteVideoDevice` object that needs to be set active for video.
+
+```dart
+await dyteClient.localUser.setVideoDevice(device);
 ```

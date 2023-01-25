@@ -1,0 +1,114 @@
+---
+title: Introduction
+description: Local user setup guide.
+sidebar_position: 1
+tags: [mobile-core, local-user, self]
+---
+
+# Introduction - Local User
+
+The local user has the methods and properties on the local user media controls.
+Accessible via `localUser` within the `meeting` object.
+
+## Properties
+
+Here is a list of properties that `meeting.localUser` user provides:
+
+- `id`: The ID of the participant pertaining to local user.
+- `name`: Contains Name of the local user.
+- `clientSpecificId`: Identifier provided by the developer while adding the
+  participant.
+- `permissions`: The permissions related to various capabilities within a
+  meeting context for the local user.
+- `audioTrack`: The audio track for the local user.
+- `videoTrack`: The video track for the local user.
+- `screenShareTrack`: The screen share video tracks for the local user.
+- `audioEnabled`: A boolean value indicating if the audio currently enabled.
+- `videoEnabled`: A boolean value indicating if the video currently enabled.
+- `isScreenShareParticipant`: A boolean value indicating if the participant is a
+  screen share participant in this meeting.
+
+## Change default audio / video settings
+
+By default as soon as you join the meeting the SDK will produce your video and
+audio streams. To change this behaviour use the `audioEnabled` & `videoEnabled`
+parameter
+
+```swift
+let meetingInfo = DyteMeetingInfo(
+            roomName = MEETING_ROOM_NAME,
+            authToken = AUTH_TOKEN,
+            audioEnabled = false,
+            videoEnabled = true)
+```
+
+## Get local user video view
+
+To show localUser preview inside a view. Use `getVideoView()` method on
+localUser. This method returns a View which can be added in any View.
+
+```swift
+meeting.localUser.getVideoView()
+```
+
+## Turn audio/video tracks after joining the room
+
+If audio and video tracks are disabled during the `DyteMobileClient`
+initialization process. You can setup the audio and video tracks by simply
+calling `enableAudio()` and `enableVideo()` like below:
+
+```swift
+meeting.localUser.enableAudio()
+meeting.localUser.enableVideo()
+```
+
+## Change the name of the local user
+
+Change the user's name by calling `setDisplayName` method. The changed name will
+reflect across all participants ONLY if the change happens before `joinRoom()`
+the meeting and after `init()`.
+
+```swift
+meeting.localUser.setDisplayName("New Name")
+```
+
+## Mute/Unmute microphone
+
+```kotlin
+// Mute Audio
+meeting.localUser.disableAudio()
+
+// Unmute Audio
+meeting.localUser.enableAudio()
+
+// Get current status
+meeting.localUser.audioEnabled
+```
+
+## Enable/Disable camera
+
+```kotlin
+// Disable Video
+meeting.localUser.disableVideo()
+
+// Enable Video
+meeting.localUser.enableVideo()
+
+// Get current status
+meeting.localUser.videoEnabled
+```
+
+## Switch camera between primary and secondary
+
+```swift
+// switch camera
+meeting.localUser.switchCamera()
+```
+
+OR
+
+If you want to set video device yourself:
+
+```swift
+meeting.localUser.setVideoDevice(videoDevice: DyteVideoDevice)
+```

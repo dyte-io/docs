@@ -1,0 +1,54 @@
+---
+title: Plugins
+description: Interact with plugins in a meeting.
+sidebar_position: 8
+tags: [mobile-core, plugins]
+---
+
+# Plugins
+
+The meetings plugins can be accessed using `meeting.plugins`. It provides two
+main objects, `all` which contains list of all Plugin objects in a
+`DyteMeeting`. And `active` list which contains plugins which are enabled and
+are currently being used in this meeting.
+
+## Playing with plugins
+
+Plugins are webviews which can be added in any view group in android. To be able
+to get webview from DytePlugin one needs to first acivate a plugin. To do that
+all we need to do is call `plugin.active()` which will trigger a callback in
+`onPluginActivated()`. Similarely to deactivate a plugin one can call
+`plugin.deactivate()` and that plugin will be deactivated in the meeting.
+
+```kotlin
+plugin.activate() // to activate a plugin
+plugin.deactivate()   // to deactivate a plugin
+```
+
+## Active plugin
+
+To check if a `plugin` is active or not in a meeting one can use
+
+```kotlin
+val isActive = plugin.isActive
+```
+
+## Listening to plugins in a meeting
+
+To be able to listen to plugin events you need to implement a methods from
+callback `DytePluginEventsListener`. You can subscribe to this events by calling
+`meeting.addPluginEventsListener(dytePluginEventsListener)`
+
+```kotlin
+    meeting.addMeetingRoomEventsListener(object :
+      DyteMeetingRoomEventsListener {
+      override fun onPluginActivated(plugin: DytePlugin) {
+      super.onPluginActivated(plugin)
+      // your code to handle plugin activation
+    }
+
+    override fun onPluginDeactivated(plugin: DytePlugin) {
+      super.onPluginDeactivated(plugin)
+      // your code to handle plugin de-activation
+    }
+```

@@ -1,0 +1,108 @@
+---
+title: Live Streaming Any Video (Custom Input)
+sidebar_position: 2
+---
+
+# Live Streaming Any Video (Custom Input)
+
+Dyte can livestream video from any application like
+[OBS](https://en.wikipedia.org/wiki/OBS_Studio),
+[ffmpeg](https://en.wikipedia.org/wiki/FFmpeg) that can stream via RTMP in a few
+simple steps.
+
+## Step 1: Generate credentials for live stream
+
+This step generates credentials and ingest URLs for the livestream.
+
+#### Request
+
+```bash
+curl --location --request POST 'https://api.cluster.dyte.in/v2/livestreams' \
+     --header 'Content-Type: application/json' \
+     --header 'Authorization: Basic ZGVtbzpwQDU1dzByZA==' \
+     --data-raw '{
+    "name": "test_livestream"
+}'
+```
+
+#### Response
+
+The response contains the `ingest_server`, livestream `id`, `stream_key`, and
+`playback_url`.
+
+```json
+{
+  "success": true,
+  "data": {
+    "status": "OFFLINE",
+    "name": "test_livestream",
+    "meeting_id": null,
+    "ingest_server": "rtmps://2bd803bb7b1.global-contribute.live-video.net:443/app/",
+    "id": "9fb22eea-3392-42ad-b884-1129a4f517d2",
+    "stream_key": "sk_ap-south-2_JKLBQlfOE_eb14jL5zj3lbj58xHSb",
+    "playback_url": "https://2bd803bb7b1.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.e1lAS0BHpDxP.m3u8"
+  }
+}
+```
+
+## Step 2: Specify RTMP ingestion URL for live streaming
+
+In your application, enter the ingestion URL you generated in
+[Step 1](#step-1-generate-credentials-for-live-stream).
+
+You must enter the ingest server URL and stream key separately in
+[OBS](https://en.wikipedia.org/wiki/OBS_Studio).
+
+![obs-example](/static/guides/obs-example.jpeg) _User is adding the input stream
+to OBS_
+
+However, for [ffmpeg](https://en.wikipedia.org/wiki/FFmpeg), you must specify
+both the ingest URL and the stream key together. For example,
+
+```bash
+ffmpeg -re -f lavfi -i "testsrc=size=1280x720 [out0]; sine=frequency=500 [out1]" \
+  -acodec aac -vcodec h264 -f flv \
+  rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/sk_ap-south-1_nDT9sbq3qZyf_SYSyPE7wnVGUQYNyejMe6Z3n
+```
+
+## Fetch details of active live streams
+
+Using the livestream ID that you generated in Step 1, you can fetch details of
+active livestreams.
+
+#### Request
+
+This request returns the `ingest_seconds`, `viewer_seconds`, `ingest_server`,
+`id`, `stream_key`, and `playback_url`.
+
+```bash
+curl --location \
+     --request GET 'https://api.cluster.dyte.in/v2/livestreams/9fb22eea-3392-42ad-b884-1129a4f517d2' \
+     --header 'Authorization: Basic ZGVtbzpwQDU1dzByZA=='
+```
+
+:::info note
+
+The ingest and viewer seconds details are returned after 20 seconds; until then,
+they default to zero.
+
+:::
+
+#### Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "status": "OFFLINE",
+    "name": "test_livestream",
+    "meeting_id": null,
+    "ingest_seconds": 0,
+    "viewer_seconds": 0,
+    "ingest_server": "rtmps://2bd803bb7b1.global-contribute.live-video.net:443/app/",
+    "id": "9fb22eea-3392-42ad-b884-1129a4f517d2",
+    "stream_key": "sk_ap-south-2_JKLBQlfOE_eb14jL5zj3lbj58xHSb",
+    "playback_url": "https://2bd803bb7b1.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.e1lAS0BHpDxP.m3u8"
+  }
+}
+```
