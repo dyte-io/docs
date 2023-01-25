@@ -37,9 +37,9 @@ const SECTIONS = [
   // Plugin SDKs
   // - web
   {
-    name: 'HTML Plugin SDK',
+    name: 'Javascript',
     id: 'plugin-sdk',
-    icon: HTMLIcon,
+    icon: JSIcon,
     section: 'plugin-sdk',
   },
 

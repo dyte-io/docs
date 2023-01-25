@@ -1,13 +1,12 @@
 ---
 title: Publish your Plugin
-sidebar_position: 3
+sidebar_position: 4
 ---
 
-Dyte also allows you to publish multiple versions of your Plugin SDK. The
-[Dyte CLI](https://docs.dyte.io/cli) can be used to update the versions. Once
-you've published a plugin, it's ready to use.
+Once you've created a plugin, you need to publish it in order to use it during
+the meeting. You can publish multiple versions of your plugin.
 
-Perform the following steps to publish the Plugins.
+### Steps to publish
 
 1. If you're using a JavaScript library or framework, you'll need to create a
    build first. If not you can skip this step.
@@ -16,26 +15,35 @@ Perform the following steps to publish the Plugins.
 npm run build
 ```
 
-2. If you want to publish a new version, update the version in
-   `dyte-config.json`. We recommend using semantic versioning.
+2. Copy `dyte-config.json` into the folder which contains `index.html`. If
+   you're using a Javascript library or framework, this would be your build
+   folder.
 
-3. Copy `dyte-config.json` into your build folder.
-
-4. Navigate to the build folder and run the publish command.
+3. Move to the build folder and run the publish command.
 
 ```shell
-cd build
-dyte plugins publish -l
+cd ./build
 ```
 
-:::note The `-l` or `--latest` option is required if you want your plugin's new
-version to be deployed. If the `-l` option is absent, the new version of the
-plugin will be saved in our storage bucket, but it will not be served. :::
+```shell
+dyte plugins publish
+```
 
-The plugin will be published under the organization used to authorize Dyte CLI.
+4.  you can use the `--no-deploy` flag if you wish to only publish the plugin
+    and not deploy it.
 
-You can now manage ACL settings for the plugin from the
-[Dyte Developer Portal](https://dev.dyte.io).
+```shell
+dyte plugins publish --no-deploy
+```
 
-:::info Read more about how you can manage plugins with Dyte CLI
-[here](https://docs.dyte.io/cli/plugins#publishing-a-plugin). :::
+:::info
+
+Read more about how you can manage plugins with Dyte CLI
+[here](https://docs.dyte.io/cli/plugins#publishing-a-plugin).
+
+:::
+
+### Next Step
+
+Now that your plugin is published and ready to be used, let's understand how you
+can manage it.
