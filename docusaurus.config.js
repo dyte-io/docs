@@ -5,7 +5,6 @@ const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/vsDark');
 
 const { webpackPlugin } = require('./plugins/webpack-plugin.cjs');
-const posthogPlugin = require('./plugins/posthog-plugin.cjs');
 const tailwindPlugin = require('./plugins/tailwind-plugin.cjs');
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -183,7 +182,7 @@ const config = {
     ],
   ],
 
-  plugins: [tailwindPlugin, webpackPlugin, posthogPlugin, ...SECTIONS],
+  plugins: [tailwindPlugin, webpackPlugin, ...SECTIONS],
 
   themes: ['@docusaurus/theme-live-codeblock'],
 
@@ -373,9 +372,6 @@ const config = {
         indexName: 'docs',
         contextualSearch: true,
         searchParameters: {},
-      },
-      posthog: {
-        apiKey: 'c1X6knGkGuxT4WFysAWi6chjtoMmTzILKO7inv7hIgs',
       },
     }),
 };
