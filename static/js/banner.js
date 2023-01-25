@@ -65,7 +65,7 @@ template.innerHTML = `
             align-items: center;
             justify-content: center;
             color: #fff;
-            font-size: 24px;
+            font-size: 14px;
         }
 
         .banner-text {
@@ -73,14 +73,14 @@ template.innerHTML = `
             align-items: center;
             justify-content: center;
             color: #fff;
-            font-size: 18px;
+            font-size: 14px;
             font-family: 'Inter', sans-serif;
             font-style: normal;
             font-weight: 500;
         }
 
         .banner-primary-text {
-            padding-left: 8px;
+            padding-left: 12px;
         }
 
         .banner-text span {
@@ -104,7 +104,7 @@ template.innerHTML = `
             border-radius: 4px;
             height: 24px;
             color: #F75B34;
-            font-size: 18px;
+            font-size: 14px;
             font-family: 'Inter', sans-serif;
             font-style: normal;
             font-weight: bold;
