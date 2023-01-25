@@ -8,6 +8,8 @@ const { webpackPlugin } = require('./plugins/webpack-plugin.cjs');
 const posthogPlugin = require('./plugins/posthog-plugin.cjs');
 const tailwindPlugin = require('./plugins/tailwind-plugin.cjs');
 
+const isDev = process.env.NODE_ENV === 'development';
+
 /** @type {import('@docusaurus/preset-classic').Options} */
 const defaultSettings = {
   remarkPlugins: [
@@ -52,7 +54,7 @@ const latestVersions = {
   'android-core': '1.x.x',
   'rn-core': '1.x.x',
   'flutter-core': '1.0.0',
-  'ios-core': '1.0.0'
+  'ios-core': '1.0.0',
 };
 
 const SECTIONS = [
@@ -136,6 +138,16 @@ const config = {
       href: 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800',
       rel: 'stylesheet',
     },
+  ],
+  scripts: [
+    ...(isDev
+      ? []
+      : [
+          {
+            src: 'https://cdn.dyte.in/manalytics.js',
+            defer: true,
+          },
+        ]),
   ],
 
   // GitHub pages deployment config.
