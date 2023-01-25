@@ -131,6 +131,7 @@ const config = {
   favicon: '/favicon.ico',
   trailingSlash: false,
   scripts: [
+    { src: '/js/banner.js', async: true },
     ...(isDev
       ? []
       : [
@@ -159,8 +160,6 @@ const config = {
     require.resolve('./src/css/api-reference.css'),
     require.resolve('./src/client/define-ui-kit.js'),
   ],
-
-  scripts: ['/js/banner.js'],
 
   presets: [
     [
@@ -200,7 +199,7 @@ const config = {
       },
       announcementBar: {
         id: 'ph-banner',
-        content: '<div id="ph-banner"/>',
+        content: '<ph-banner></ph-banner>',
         isCloseable: false,
       },
       navbar: {
