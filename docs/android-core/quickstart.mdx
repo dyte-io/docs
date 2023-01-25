@@ -16,7 +16,8 @@ This quickstart shows how to use Dyte's Android Core SDK to add live video and
 audio to your Android applications.
 
 For getting started quickly, you can use our sample code. You can clone and run
-a sample application from the [Android Core SDK GitHub repository](https://github.com/dyte-in/mobile-core-sample-android).
+a sample application from the
+[Android Core SDK GitHub repository](https://github.com/dyte-in/mobile-core-sample-android).
 
 ## Objective
 
@@ -51,7 +52,6 @@ You’ll learn how to:
 
 2. Add the following permissions to the AndroidManifest.xml file.
 
-
 ```python
 <uses-permission android:name="android.permission.RECORD_AUDIO" />
 <uses-permission android:name="android.permission.CAMERA" />
@@ -83,11 +83,11 @@ val dyteClient = DyteMobileClient();
 Set the properties in the `DyteMeetingInfo` class. You just need to provide the
 participant's `authToken`.
 
-| Name        | Description                                                                                                                                                                                                                                                                                                                                   |
-| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `authToken` | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
-| `enableAudio` | Default setup for audio when user joins in a meeting. |
-| `enableVideo` | Default setup for video when user joins in a meeting. |
+| Name          | Description                                                                                                                                                                                                                                                                                                                                   |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authToken`   | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
+| `enableAudio` | Default setup for audio when user joins in a meeting.                                                                                                                                                                                                                                                                                         |
+| `enableVideo` | Default setup for video when user joins in a meeting.                                                                                                                                                                                                                                                                                         |
 
 ```kotlin
 val meetingInfo = DyteMeetingInfo(
