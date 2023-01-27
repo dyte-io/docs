@@ -7,62 +7,22 @@ sidebar_position: 1
 Let's look at the structure of individual components and how to use them when
 building your own UI.
 
-## Default Props
+There are two important things to understand about dyte UI Components
 
-Most of the components accept a set of a **Default Props** for essential
-features such as meeting data, meeting APIs, UI Configuration,
-internationalisation & icons.
+## 1. They work with very tightly with our core SDK
 
-| Prop       | Description                                                                      |
-| :--------- | :------------------------------------------------------------------------------- |
-| `meeting`  | The web-core `DyteClient` object. Contains all the meeting specific data & APIs. |
-| `config`   | The [`UI Config`](../reference/interfaces/UIConfig) config                       |
-| `t`        | [i18n helper](../reference/#dytei18n) method                                     |
-| `iconPack` | [`IconPack`](../reference/#iconpack) object                                      |
-
-Here is a simple example of how you pass these props to components, here a
-`DyteGrid`:
-
-```jsx
-function Example() {
-  // load your data
-
-  return (
-    <DyteGrid meeting={meeting} config={config} t={t} iconPack={iconPack} />
-  );
-}
-```
-
-## Component Specific Props
-
-Each component also has a set of props specifically.
-
-Here are some examples:
-
-### Button variants
-
-```jsx live
-<div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-  <DyteButton>Primary button</DyteButton>
-  <DyteButton variant="secondary">Secondary button</DyteButton>
-  <DyteButton variant="danger">Danger button</DyteButton>
-  <DyteButton variant="ghost">Ghost button</DyteButton>
-</div>
-```
+Our UI component are tightly coupled with classes from our core SDK, they will automatically update when the underlying property changes
 
 ### Participant components
 
-These are components which depend on a single participant object or a
-participant list.
-
-`meeting.self` and participant objects from `meeting.participants` can be passed
+These are components which take a single participant object as prop
+ 
+`meeting.self` and participant objects from `meeting.participants` maps can be passed
 as a participant to this prop.
 
 ```jsx live
 function Example() {
   const { meeting } = useDyteMeeting();
-
-  if (!meeting) return null;
 
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
@@ -74,121 +34,57 @@ function Example() {
 }
 ```
 
-### Grid Components
+### Meeting components
 
-We have a set of grid components that help you to have any kind of grid you
-wish.
-
-There are two types of grid components, so that the grid can be easily extended
-and modularized.
-
-- Parent Grid component - `DyteGrid`
-- Normal Grid components - `DyteSimpleGrid`, `DyteMixedGrid`,
-  `DyteSpotlightGrid`
-
-#### Parent Grid Component
-
-The `DyteGrid` component is a monolith component which handles all grid related
-events and data on it's own and passes the following props to it's children.
-
-| Prop                        | Description                         |
-| :-------------------------- | :---------------------------------- |
-| `participants[]`            | Active Participants                 |
-| `pinnedParticipants[]`      | Pinned Participants                 |
-| `screenShareParticipants[]` | Participants who are screen sharing |
-| `plugins[]`                 | Active Plugins                      |
-
-These props are passed to it's children which it computes from the UI Config
-which is passed to it. By default it will use the default UI Config.
-
-:::tip
-
-Try editing the `aspectRatio` and `gap` props.
-
-:::
+Similar to participant components, there are components that take the entire meeting object
 
 ```jsx live
 function Example() {
   const { meeting } = useDyteMeeting();
 
   return (
-    <div style={{ width: '100%', height: '400px' }}>
-      <DyteGrid meeting={meeting} aspectRatio="16:9" gap="8" size="sm" />
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
+      <DyteChat meeting={meeting} />
     </div>
   );
 }
 ```
 
-#### Normal Grid Components
+The above code will render the Chat UI, updates when there is a new message and allow you to send a new message.
 
-These components just accept the props mentioned above and render the UI.
+## 2. State Management
 
-Read more about them in their Reference pages.
+While meeting state is stored in core SDK's classes, there are also some pure UI states that might change during a meeting.
+For example, when user clicks the leave meeting button, there is a confirmation popup on the screen, this state reflects only a UI state.
 
-##### DyteSimpleGrid
+To listen and manipulate these states some components will accept a `states` props and a `onDyteStateUpdate` callback prop when the state updates
 
-Accepts: `participants`, `pinnedParticipants`.
+```jsx
+<DyteDialogManager
+    states={{
+        activeLeaveConfirmation: true
+      }}
+    onDyteStateUpdate=((s) => {
+      // check activeLeaveConfirmation to see if the leave dialog has been closed
+    })
+  />
 
-This grid renders just the ParticipantTiles of the participants you pass to it.
-It also brings `pinnedParticipants` to the start of the grid.
+```
 
-##### DyteSimpleGrid
 
-Accepts: `participants`, `pinnedParticipants`.
+## 3. Component Specific Props
 
-This grid renders the ParticipantTiles of the participants and
-pinnedParticipants in separate grids.
+Each component can have their own set of props
 
-Pinned participants are in spotlight area, i.e; larger grid.
+Here are some examples on `DyteButton` component:
 
-##### DyteMixedGrid
-
-Accepts: `participants`, `pinnedParticipants`, `screenShareParticipants`,
-`plugins`.
-
-This grid renders screenshares as well as plugins in the main larger view and
-renders a smaller grid on the right side which is configurable via the UI
-Config. You can use SimleGrid or SpotlightGrid here.
-
-If you just want to render `self` twice in a SimpleGrid:
-
-##### Example for SimpleGrid
+### Button variants
 
 ```jsx live
-function Example() {
-  const { meeting } = useDyteMeeting();
-  const [count, setCount] = useState(2);
-
-  if (!meeting) return null;
-
-  const add = () => setCount((count) => count + 1);
-  const remove = () => count > 1 && setCount((count) => count - 1);
-
-  const participants = new Array(count).fill(meeting.self);
-
-  return (
-    <div>
-      <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          gap: '12px',
-        }}
-      >
-        <DyteButton onClick={add}>Add</DyteButton>
-        <DyteButton variant="danger" onClick={remove}>
-          Remove
-        </DyteButton>
-      </div>
-      <div style={{ width: '100%', height: '400px' }}>
-        <DyteSimpleGrid
-          aspectRatio="16:9"
-          gap="8"
-          participants={participants}
-        />
-      </div>
-    </div>
-  );
-}
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+  <DyteButton>Primary button</DyteButton>
+  <DyteButton variant="secondary">Secondary button</DyteButton>
+  <DyteButton variant="danger">Danger button</DyteButton>
+  <DyteButton variant="ghost">Ghost button</DyteButton>
+</div>
 ```
