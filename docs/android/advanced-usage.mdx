@@ -23,23 +23,22 @@ val dyteUIKit = DyteUIKitBuilder.build(config)
 ## Control the meeting, and take meeting & participant actions
 
 The `Meeting` instance (referenced as `meeting` below) helps you interact with
-the meeting. You can get access to meeting object as follows. 
+the meeting. You can get access to meeting object as follows.
 
 ```kotlin
 val meeting = dyteUIKit.meeting
 ```
 
-You can get the UI configuration of the meeting in progress using the `designTokens`
-property of `Meeting`.
+You can get the UI configuration of the meeting in progress using the
+`designTokens` property of `Meeting`.
 
 ```kotlin
 val designTokens = dyteUIKit.designTokens
 ```
 
-You can take actions on the meeting as well as the participants.
-You can also setup custom controls to that interact with the meeting in certain
-ways that help you send events and messages across to other participants in the
-meeting. 
+You can take actions on the meeting as well as the participants. You can also
+setup custom controls to that interact with the meeting in certain ways that
+help you send events and messages across to other participants in the meeting.
 
 ## Get info about the meeting's UI configuration
 
@@ -128,6 +127,7 @@ privileged permissions may want to control the video of other participants).
 This section defines all the possible properties and actions that can be taken.
 
 To get hold of participant you want to manage, do as follows
+
 ```kotlin
 val particiapnt = meeting.participants.joined.find { it.id = "my_participant_id" }
 ```
