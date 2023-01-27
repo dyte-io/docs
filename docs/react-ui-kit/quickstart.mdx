@@ -79,11 +79,10 @@ Here's a series of steps that you need to perform:
    dytesdk/web-core. This provides a meeting object to child components.
 2. Initialize the Dyte client. Use the `useDyteClient()` hook and `initMeeting`
    to initialize a client.
-3. Call the `init()` method and pass the following parameters:
+3. Call the `init()` method and pass the `authToken`:
 
 |             |                                                                                                                                                                                   |
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `meetingId` | Pass the [meetingId](/api/?v=v2#/operations/create_meeting)                                                                                                                       |
 | `authToken` | After you've created the meeting, add each participant to the meeting using the [Add Participant API](/api#/operations/add_participant). The API response contains the authToken. |
 
 4. Pass the meeting object to UI Kit, which will use it to retrieve meeting
@@ -101,7 +100,6 @@ export default function App() {
 
   useEffect(() => {
     initMeeting({
-      roomName: '<room-name>',
       authToken: '<auth-token>',
       defaults: {
         audio: false,

@@ -4,47 +4,70 @@ slug: /
 image: /static/ui-kit/1.x.x/ui-kit-cover.jpg
 ---
 
-# Introduction
+# Introduction to Web Components
 
-A set of UI components to truly customize your Meeting UIs, in React.
+Dyte's UI Kit is a prebuilt design library of UI components that makes it easy
+to integrate video and voice calls into any app or website within minutes.
 
-:::info
+To learn more about web components, see
+[Web Components Overview](https://www.webcomponents.org/introduction).
 
-The following packages are available for different frameworks:
+## The Anatomy of UI Kit
 
-- [React UI Kit](/react-ui-kit/).
-- [Angular UI Kit](/angular-ui-kit/)
+The UI Kit is a design library of prebuilt UI components built on top of the
+core SDKs. Core SDK handles all the low-level media and network handling parts
+of a meeting and exposes simpler APIs to use. You can create a meeting object
+using the web-core components and pass it to the UI Kit components.
 
-:::
+- Uses a layered design structure, allowing you to start with one prebuilt
+  component and slowly add further layers as the needs evolve.
+
+## How to Use UI Kit?
+
+Dyte's UI Kit offers a couple of ways to get started with your live video and
+voice calling applications.
+
+- **Use prebuilt components**: You can use prebuilt `dyte-meeting` component to
+  create your meeting quickly. With this component, you don't have to handle all
+  the states, dialogs, and other aspects of managing the application. This loads
+  your preset and renders the UI based on it. For more information, see
+  [UI Kit Quickstart](/ui-kit/quickstart).
+- **Build your own UI**: Dyte also offers the flexibility to build your own UI
+  using various individual components. This offers limitless customization
+  options, ranging from colors and font to spacing, participant tiles, screen
+  share views, logo, height, width and more, you can tailor the UI to fit your
+  exact needs. See [Integrate UI Kit components](/ui-kit/basics/integrate).
+
+## Supported Browser
+
+Here are the browser requirements:
+
+- Chrome (or Chromium based) 74+
+- Firefox 78+
+- Opera 64+
+- Safari 12+
+- Edge 79+
+- iOS (Safari) 12.1+
+- iOS (Non-Safari) 15+
+
+## SDK Size
+
+The entire UI has a small <500KB bundle size. If you use individual components,
+the size will be even smaller.
 
 ## Features
 
-<ul className="emoji-list">
-  <li>
-    <span>🌐</span> Built with Web Components.
-  </li>
-  <li>
-    <span>🚀</span> Blazingly fast. Uses browser provided ShadowDOM.
-  </li>
-  <li>
-    <span>🤏</span> Small bundle size (&lt;500KB) for the entire UI (less if you
-    use individual components).
-  </li>
-  <li>
-    <span>🏎</span> Transfers only the code you need over the network as
-    components are lazy loaded.
-  </li>
-  <li>
-    <span>✨</span> ShadowDOM provides style encapsulation, your CSS styles
-    wouldn't affect our styles and vice versa.
-  </li>
-</ul>
-
-Read this [blog post](https://dyte.io/blog/custom-ui-kit-sdk/) to know more
-about the UI Kit project.
-
-<img
-  src="/static/ui-kit/1.x.x/ui-kit-cover.jpg"
-  alt="UI Kit"
-  className="cover-image"
-/>
+- Dyte UI Kit is built using
+  [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
+  that make use of
+  [Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM).
+  This isolates the styling of each component, and the CSS on your page does not
+  interfere with component styling.
+- Each component uses design tokens in conjunction with CSS variables for
+  styling. This makes the customization super simple and easy. Other than the
+  design tokens, we've also attempted to improve the customization options, with
+  features like Internationalisation (i18n) and Icon Packs Support.
+- In addition, we've also focused on accessibility (a11y) so that users can
+  easily navigate through the UI without having to move their mouse across the
+  screen. For example, closing dialogues with the `Escape` key and navigating
+  through visual elements with the `Tab` key.

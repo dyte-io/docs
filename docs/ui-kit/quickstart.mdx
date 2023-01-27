@@ -2,20 +2,117 @@
 sidebar_position: 3
 ---
 
+import {
+  HTMLUIKitUtilsInstallation,
+  HTMLUIKitInstallation,
+} from '@site/src/components/LatestInstallation';
+
 # Quickstart
 
-Quickly get started with UI Kit, with just a few lines of code!
+This quickstart shows how to use Dyte's UI Kit prebuilt components to add live
+video and audio to your web applications with minimal coding and a variety of
+meeting UI customization options.
 
-:::info Before Getting Started
+Dyte also offers the flexibility to build your own UI using various individual
+components. This offers limitless customization options to tailor the UI to fit
+your requirements. For more information, see the Integrate UI Kit Components.
 
-Before you start integrating Dyte into your application, make sure you've read
-the [Getting Started with Dyte](/getting-started) topic and completed the steps
-in the [Integrate Dyte](/getting-started#integrate-dyte) section.
+For getting started quickly, you can use our
+[sample code](https://github.com/dyte-io/html-samples#samples). You can clone
+and run a sample application from the
+[HTML UI Kit GitHub repository](https://github.com/dyte-io/html-samples).
 
-:::
+## Objective
 
-First you would need to setup your project with the provided hooks and the
-`<DyteProvider />`.
+You'll learn how to:
+
+- Install the Dyte SDK
+- Initialize Dyte Client
+- Pass the meeting object to UI Kit
+- Go live!
+
+## Before Getting Started
+
+- Make sure you've read the [Getting Started with Dyte](/getting-started) topic
+  and completed the steps in the
+  [Integrate Dyte](/getting-started#integrate-dyte) section before you begin
+  integrating Dyte into your application. You must complete the following steps:
+  - Create a [Dyte Developer Account](https://dev.dyte.io/)
+  - Create [Presets](https://dev.dyte.io/roles-presets)
+  - Create a [Dyte Meeting](/api/?v=v2#/operations/create_meeting)
+  - [Add Participant](/api/?v=v2#/operations/add_participant) to the meeting
+- Read the [Introduction to Web Components UI Kit](/ui-kit/) to understand the
+  UI Kit and its relationship with web core SDKs.
+
+## Version
+
+|                   |                                                                                                                  |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------- |
+| @dytesdk/ui-kit   | [![npm version](https://badge.fury.io/js/@dytesdk%2Fui-kit.svg)](https://badge.fury.io/js/@dytesdk%2Fui-kit)     |
+| @dytesdk/web-core | [![npm version](https://badge.fury.io/js/@dytesdk%2Fweb-core.svg)](https://badge.fury.io/js/@dytesdk%2Fweb-core) |
+
+## Step 1: Install the SDK
+
+Since the UI Kit is built on top of the Core SDK, you must install the
+`web-core` package along with the `ui-kit`.
+
+There are two ways to use UI Kit in your project, according to your project
+setup.
+
+You can install the SDK using CDN, npm, or Yarn.
+
+<Tabs groupId="cdn-npm">
+  <TabItem value="cdn" label="CDN" default>
+
+To set up UI Kit components and web-core, add the following script tags inside
+the `<head />` tag.
+
+<HTMLUIKitInstallation />
+
+You can also import utilities or any other export from CDN:
+
+<HTMLUIKitUtilsInstallation />
+
+  </TabItem>
+  <TabItem value="npm" label="npm">
+
+```bash
+npm install @dytesdk/ui-kit @dytesdk/web-core
+```
+
+[![npm version](https://badge.fury.io/js/@dytesdk%2Fui-kit.svg)](https://badge.fury.io/js/@dytesdk%2Fui-kit)
+
+  </TabItem>
+
+  <TabItem value="yarn" label="yarn">
+
+```bash
+yarn add @dytesdk/ui-kit @dytesdk/web-core
+```
+
+[![npm version](https://badge.fury.io/js/@dytesdk%2Fui-kit.svg)](https://badge.fury.io/js/@dytesdk%2Fui-kit)
+
+  </TabItem>
+</Tabs>
+
+## Step 2: Get Started with Dyte Prebuilt Components
+
+Here's a series of steps that you need to perform:
+
+1. Load the Dyte component.
+2. Initialize the Dyte client.
+3. Call the `init()` method and pass the `authToken`:
+
+|             |                                                                                                                                                                                   |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authToken` | After you've created the meeting, add each participant to the meeting using the [Add Participant API](/api#/operations/add_participant). The API response contains the authToken. |
+
+4. Pass the meeting object to UI Kit, which will use it to retrieve meeting
+   information and display it on the user interface.
+
+   The meeting object serves as the link between web-core and UI Kit, allowing
+   them to communicate with one another. Once the UI Kit has the meeting object,
+   it can join and leave meetings, and so on.
 
 ```html
 <body>
@@ -39,14 +136,3 @@ First you would need to setup your project with the provided hooks and the
   </script>
 </body>
 ```
-
-:::tip
-
-Try adding `show-setup-screen="true"` prop on `<dyte-meeting />` to enable the
-Setup Screen.
-
-:::
-
-<head>
-  <title>Quickstart - UI Kit | Dyte</title>
-</head>

@@ -6,27 +6,39 @@ image: /static/ui-kit/1.x.x/ui-kit-cover.jpg
 
 # Introduction to React UI Kit
 
-Dyte's prebuilt design library of UI components makes it easy to integrate video
-and voice calls into any app or website within minutes. The UI Kit uses a
-layered design structure, allowing you to start with one prebuilt component and
-slowly add further layers as the needs evolve. Dyte's UI Kit also offers
-limitless customization options, ranging from colors and font to spacing,
-participant tiles, screen share views, logo, height, width and more, you can
-tailor the UI to fit your exact needs.
+Dyte's React UI Kit is a prebuilt design library of UI components that makes it
+easy to integrate video and voice calls into any app or website within minutes.
 
-It is important to understand that the UI Kit layer is built on top of the Core
-SDKs. Core SDK handles all the low-level media and network handling parts of a
-meeting and exposes simpler APIs to use. Use the `web-core` to create a meeting
-object, which you can pass along to the UI Kit components.
+## The Anatomy of React UI Kit
 
-![](/static/ui-kit/1.x.x/introduction.png)
+The UI Kit is a design library of prebuilt UI components built on top of the
+core SDKs. Core SDK handles all the low-level media and network handling parts
+of a meeting and exposes simpler APIs to use. You can create a meeting object
+using the web-core components and pass it to the UI Kit components.
 
-Dyte's UI Kit offers a couple of quick ways to get started with your live video
-and voice calling applications. You can,
+- Uses a layered design structure, allowing you to start with one prebuilt
+  component and slowly add further layers as the needs evolve.
+- Includes a number of [Hooks](https://beta.reactjs.org/reference/react). Hooks
+  enable you to use various React features from your components. For more
+  information, see
+  [Use Web Core Hooks](https://docs.dyte.io/react-ui-kit/basics/using-hooks).
 
-- Use prebuilt components:
-  [See React UI Kit Quickstart.](/react-ui-kit/quickstart)
-- Build your own UI: See Integrate UI Kit components.
+## How to Use React UI Kit?
+
+Dyte's UI Kit offers a couple of ways to get started with your live video and
+voice calling applications.
+
+- **Use prebuilt components**: You can use prebuilt `DyteMeeting` component to
+  create your meeting quickly. With this component, you don't have to handle all
+  the states, dialogs, and other aspects of managing the application. This loads
+  your preset and renders the UI based on it. For more information, see
+  [React UI Kit Quickstart](/react-ui-kit/quickstart).
+- **Build your own UI**: Dyte also offers the flexibility to build your own UI
+  using various individual components. This offers limitless customization
+  options, ranging from colors and font to spacing, participant tiles, screen
+  share views, logo, height, width and more, you can tailor the UI to fit your
+  exact needs. See
+  [Integrate UI Kit components](/react-ui-kit/basics/integrate).
 
 ## Supported Browser
 
