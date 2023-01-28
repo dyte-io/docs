@@ -4,394 +4,275 @@ sidebar_position: 6
 
 # Events
 
-To integrate well with modern workflows, Dyte SDK also emits a rich set of
-events on meeting events and state changes. Using these events on the client
-side, you can make your app event driven and respond to changes in the meeting
-in real-time. You can subscribe to the following events on the
-[`DyteMeetingViewDelegate`](./reference/dyte-meeting-events). To do this, you
-need to set the `delegate` for `DyteMeetingView` to an object (such as `self`)
-that implements the `DyteMeetingViewDelegate` protocol. The methods in this
-protocol correspond to events for the given meeting.
+## Local User - Events
 
-<Tabs
-  groupId="ios-language"
-  defaultValue="swift"
-  values={[
-    { label: "Swift", value: "swift" },
-    { label: "Obj-C", value: "obj-c" },
-  ]}
->
-<TabItem value="swift">
+You can subscribe to various events on the local user by implementing
+`DyteSelfEventsListener` and passing the object to
+`meeting.addSelfEventsListener(dyteSelfEventsListener)`.
+
+### Room joined
+
+Triggered when the room join event completes and now the meeting is ready to
+produce and consume media.
 
 ```swift
-dyteView.delegate = self
-```
-
-</TabItem>
-<TabItem value="obj-c">
-
-```objectivec
-dyteView.delegate = self;
-```
-
-</TabItem>
-</Tabs>
-
-While the delegate methods can now directly be implemented by the class that
-`self` refers to if you are using Objective-C, you will have to go a little
-roundabout way if you are using Swift. You would need to create an extension of
-the class that extends the class using the protocol, and then from the delegate
-method inside this extension you would need to call a private function of the
-base class.
-
-Remember the golden rule of thumb for iOS: all UI related operations need to be
-dispatched on the `mainQueue`. Since delegates are asynchronous and are not
-guaranteed to be called on the `mainQueue`, any delegates methods that deal with
-UI need to explicitly specify the thread for such operations.
-
-### Connected to the meeting
-
-This event is triggered when the participant has connected to the meeting but
-hasn't started producing or consuming content streams. Think of this as
-establishing a successful connection to the meeting and nothing else.
-
-<Tabs
-  groupId="ios-language"
-  defaultValue="swift"
-  values={[
-    { label: "Swift", value: "swift" },
-    { label: "Obj-C", value: "obj-c" },
-  ]}
->
-<TabItem value="swift">
-
-```swift
-extension ViewController: DyteMeetingViewDelegate {
-    func meetingConnected() {
+extension MeetingViewModel: DyteSelfEventsListener {
+    func onRoomJoined() {
+        //Room Joined
     }
 }
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+### Video update
 
-```objectivec
-- (void) meetingConnected {
-}
-```
+Triggered when the user starts / stops the video using `enableVideo` or
+`disableVideo`
 
-</TabItem>
-</Tabs>
-
-### Joined the meeting
-
-This event is triggered when the participant actually joins the meeting, and can
-start producing as well as consuming content streams.
-
-<Tabs
-  groupId="ios-language"
-  defaultValue="swift"
-  values={[
-    { label: "Swift", value: "swift" },
-    { label: "Obj-C", value: "obj-c" },
-  ]}
->
-<TabItem value="swift">
-
-```swift
-extension ViewController: DyteMeetingViewDelegate {
-    func meetingJoined() {
+```kotlin
+extension MeetingViewModel: DyteSelfEventsListener {
+    func onVideoUpdate(videoEnabled: Bool) {
+      if (videoEnabled) {
+        // video is enabled, and other participants in room can see local user
+      } else {
+        // video is disabled, and other participants in room can not see local user.
+      }
     }
 }
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+### Audio update
 
-```objectivec
-- (void) meetingJoined {
-}
-```
-
-</TabItem>
-</Tabs>
-
-### Disconnected from the meeting
-
-This event is triggered when the participant gets disconnected from the meeting
-for any reason. It could be a bad network connection, the meeting being exited
-by the participant manually, the meeting tab / browser / app being closed by the
-participant, or just any other reason.
-
-<Tabs
-  groupId="ios-language"
-  defaultValue="swift"
-  values={[
-    { label: "Swift", value: "swift" },
-    { label: "Obj-C", value: "obj-c" },
-  ]}
->
-<TabItem value="swift">
+Triggered when the user starts / stops the audio using `enableAudio` or
+`disableAudio`
 
 ```swift
-extension ViewController: DyteMeetingViewDelegate {
-    func meetingDisconnect() {
+
+extension MeetingViewModel: DyteSelfEventsListener {
+    func onAudioUpdate(audioEnabled: Bool) {
+      if (audioEnabled) {
+        // audio is enabled, and other participants in room can hear local user
+      } else {
+        // audio is disabled, and other participants in room can not hear local user.
+      }
     }
 }
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+### Room disconnected update
 
-```objectivec
-- (void) meetingDisconnect {
-}
-```
+Triggered when the user is disconnected due to media/network errors
 
-</TabItem>
-</Tabs>
-
-### Input media devices get connected to the meeting
-
-This event is triggered when the participant's local media input devices
-(camera, mic) are initialized and connected to the meeting for the first time.
-Since the media device states can be toggled only after the device is connected,
-you need to use this event to manage the starting state of participant's audio
-or video.
-
-<Tabs
-  groupId="ios-language"
-  defaultValue="swift"
-  values={[
-    { label: "Swift", value: "swift" },
-    { label: "Obj-C", value: "obj-c" },
-  ]}
->
-<TabItem value="swift">
-
-```swift
-extension ViewController: DyteMeetingViewDelegate {
-    func localMediaConnected() {
+```kotlin
+extension MeetingViewModel: DyteSelfEventsListener {
+    func onMeetingRoomDisconnected() {
+      //disconnected
     }
 }
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+### Proximity changed
 
-```objectivec
-- (void) localMediaConnected {
-}
-```
-
-</TabItem>
-</Tabs>
-
-### End of the meeting
-
-This event is triggered when the meeting is ended by the host or by the
-organization (as an admin function). In this case, all the participants are
-kicked out and you can take actions such as asking for feedback or redirecting
-to an exercise.
-
-<Tabs
-  groupId="ios-language"
-  defaultValue="swift"
-  values={[
-    { label: "Swift", value: "swift" },
-    { label: "Obj-C", value: "obj-c" },
-  ]}
->
-<TabItem value="swift">
+Triggered when there is any change in proximity. Meaning if device is near ear
+piece which triggers display on/off.
 
 ```swift
-extension ViewController: DyteMeetingViewDelegate {
-    func meetingEnded() {
+extension MeetingViewModel: DyteSelfEventsListener {
+    func onProximityChanged(isNear: Bool) {
+      // isNear
+      // if true, display should be turned off, as user might be speaking through earpience
+      // if false, display should be tunred on, as user might be looking at display and listening through speaker/earphones.
     }
 }
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+### Waitlist status
 
-```objectivec
-- (void) meetingEnded {
-}
-```
+For meetings whose waiting room is enabled:
 
-</TabItem>
-</Tabs>
-
-### Another participant joins the meeting
-
-This event is triggered when another participant joins the meeting. "Join" here
-as the same context as the `meetingJoined` event: so when that event triggers
-for the a participant, this event triggers for all other participants that have
-already joined the meeting.
-
-<Tabs
-  groupId="ios-language"
-  defaultValue="swift"
-  values={[
-    { label: "Swift", value: "swift" },
-    { label: "Obj-C", value: "obj-c" },
-  ]}
->
-<TabItem value="swift">
+To get status of localUser in waiting room we can use
 
 ```swift
-extension ViewController: DyteMeetingViewDelegate {
-    func participantJoin(participant) {
+let waitListStatus = meeting.localUser.waitListStatus
+```
+
+Developers can listen to those changes in `onWaitListStatusUpdate()` callbacks
+
+```swift
+extension MeetingViewModel: DyteSelfEventsListener {
+    func onWaitListStatusUpdate(waitListStatus: WaitListStatus) {
+
     }
 }
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+## Participants list events
 
-```objectivec
-- (void) participantJoin: (DyteParticipant *) participant {
-}
-```
+You can subscribe to events for all participants by implementing
+`DyteParticipantEventsListener` callback and then passing that object to
+`meeeting.addParticipantEventsListener(dyteParticipantEventsListener)` method.
+Here are the supported methods:
 
-</TabItem>
-</Tabs>
+### Participant joined
 
-### Another participant leaves the meeting
-
-This event is triggered when another participant disconnects from the meeting.
-"Disconnect" here as the same context as the `disconnect` event: so when that
-event triggers for the a participant, this event triggers for all other
-participants that have already joined the meeting.
-
-<Tabs
-  groupId="ios-language"
-  defaultValue="swift"
-  values={[
-    { label: "Swift", value: "swift" },
-    { label: "Obj-C", value: "obj-c" },
-  ]}
->
-<TabItem value="swift">
+Triggers an event when any participant joins the meeting.
 
 ```swift
-extension ViewController: DyteMeetingViewDelegate {
-    func participantLeave(participant) {
+    extension MeetingViewModel: DyteParticipantEventsListener {
+        func onParticipantJoin(participant: DyteMeetingParticipant) {
+            // your code here to handle new participant
+        }
     }
-}
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+### Participant left
 
-```objectivec
-- (void) participantLeave: (DyteParticipant *) participant {
-}
-```
-
-</TabItem>
-</Tabs>
-
-### Receiving a custom broadcast event
-
-This event is triggered when a custom message is broadcast to all participants
-in the meeting. A custom message may contain any serializable data.
-
-<Tabs
-  groupId="ios-language"
-  defaultValue="swift"
-  values={[
-    { label: "Swift", value: "swift" },
-    { label: "Obj-C", value: "obj-c" },
-  ]}
->
-<TabItem value="swift">
+Triggers an event when any participant leaves the meeting.
 
 ```swift
-extension ViewController: DyteMeetingViewDelegate {
-    func roomMessage(data) {
+    extension MeetingViewModel: DyteParticipantEventsListener {
+        func onParticipantLeave(participant: DyteMeetingParticipant) {
+            // your code here to handle participant left from meeting
+        }
     }
-}
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+### Screenshare updates
 
-```objectivec
-- (void) roomMessage: (NSObject *) data {
-}
-```
-
-</TabItem>
-</Tabs>
-
-### Receiving a custom targeted event
-
-This event is triggered when a custom message is targeted to a particular
-participant in the meeting and only the target participant receives this event.
-A custom message may contain any serializable data.
-
-<Tabs
-  groupId="ios-language"
-  defaultValue="swift"
-  values={[
-    { label: "Swift", value: "swift" },
-    { label: "Obj-C", value: "obj-c" },
-  ]}
->
-<TabItem value="swift">
+Triggers an event when there is any change in screenshares in a meeting.
 
 ```swift
-extension ViewController: DyteMeetingViewDelegate {
-    func message(data) {
+    extension MeetingViewModel: DyteParticipantEventsListener {
+        func onScreenSharesUpdated() {
+            // your code here to handle screenshares from meeting
+            // you can use `meeting.participants.screenshares` to get latest screenshare participants
+        }
     }
-}
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+### Grid change
 
-```objectivec
-- (void) message: (NSObject *) data {
-}
-```
-
-</TabItem>
-</Tabs>
-
-### Detecting change in active speaker
-
-This event is triggered when the active speaker in the meeting changes. Active
-speaker is the participant whose audio level has most recently been the highest
-(kind of like LRU with the selection factor being audio level). The
-`participant` is an instance of `Participant`, whose prototype is defined below
-in the reference section and can be directly used as a type if you prefer using
-TypeScript bindings.
-
-<Tabs
-  groupId="ios-language"
-  defaultValue="swift"
-  values={[
-    { label: "Swift", value: "swift" },
-    { label: "Obj-C", value: "obj-c" },
-  ]}
->
-<TabItem value="swift">
+Whenever there is any change in `GridInfo` for the room following method is
+called.
 
 ```swift
-extension ViewController: DyteMeetingViewDelegate {
-    func activeSpeaker(peerId) {
+    extension MeetingViewModel: DyteParticipantEventsListener {
+        func onGridUpdated(gridInfo: GridInfo) {
+            // your code here to handle grid changes.
+        }
     }
-}
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+### Video update
 
-```objectivec
-- (void) activeSpeaker: (NSString *) peerId {
-}
+Trigger an event when any participant starts / stops video.
+
+```swift
+    extension MeetingViewModel: DyteParticipantEventsListener {
+        func onVideoUpdate(videoEnabled: Bool, participant: DyteMeetingParticipant) {
+            // your code here to handle participant video toggle update
+        }
+    }
 ```
 
-</TabItem>
-</Tabs>
+### Audio update
+
+Trigger an event when any participant starts / stops audio.
+
+```swift
+    extension MeetingViewModel: DyteParticipantEventsListener {
+        func onAudioUpdate(audioEnabled: Bool, participant: DyteMeetingParticipant) {
+            // your code here to handle participant audio toggle update
+        }
+    }
+```
+
+### Active speaker
+
+Trigger an event when any is change in active speaker in the meeting.
+
+```swift
+    extension MeetingViewModel: DyteParticipantEventsListener {
+        func onActiveSpeakerChanged(participant: DyteMeetingParticipant) {
+            // your code here to handle active speaker
+        }
+
+        func onNoActiveSpeaker() {
+            // your code here to handle no active speaker
+        }
+    }
+```
+
+### Pinned participant
+
+Trigger an event when any is change in pinned participant in the meeting.
+
+```swift
+    extension MeetingViewModel: DyteParticipantEventsListener {
+        func onParticipantPinned(participant: DyteMeetingParticipant) {
+            // your code here to show pinned participant
+        }
+
+        func onParticipantUnpinned() {
+            // your code here to remove pinned participant
+        }
+    }
+```
+
+### Active participants list change
+
+Triggers an event when any change in active participants list in the meeting.
+
+```swift
+    extension MeetingViewModel: DyteParticipantEventsListener {
+        func onActiveParticipantsChanged(active: [DyteMeetingParticipant]) {
+            // your code here to refresh active participants
+        }
+    }
+```
+
+
+## Recording
+
+The `meeting.recording` object can be used start and stop recordings in a
+meeting. You can also get the current status of a recording using this API.
+
+The `meeting.recording` object has the following properties:
+
+- `recordingState`: Indicates the current recording state of the meeting.
+
+### Get active recording state
+
+The `meeting.recording.recordingState` property describes the current state of
+the recording. The valid states are `IDLE`, `STARTING`, `RECORDING`, and
+`STOPPING`.
+
+### Listen to recording state changes
+
+The changes to `meeting.recording.recordingState` can be listened by
+implementing `onMeetingRecordingStateUpdated` from
+`DyteMeetingRoomEventsListener`. You can attach this obserbver by calling
+`meeting.addMeetingRoomEventsListener(listener)`.
+
+```kotlin
+meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
+    override fun onMeetingRecordingStarted() {
+      super.onMeetingRecordingStarted()
+      // on recording started
+    }
+
+    override fun onMeetingRecordingEnded() {
+      super.onMeetingRecordingEnded()
+      // on recording ended
+    }
+
+    override fun onMeetingRecordingStateUpdated(state: DyteRecordingState) {
+      super.onMeetingRecordingStateUpdated(state)
+      // on recording state update
+    }
+
+    override fun onMeetingRecordingStopError(e: Exception) {
+      super.onMeetingRecordingStopError(e)
+      // when local user tried to end recording but it fails
+    }
+  })
+```

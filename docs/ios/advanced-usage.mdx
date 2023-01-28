@@ -4,723 +4,372 @@ sidebar_position: 5
 
 # Advanced usage
 
-## Turn on the setup / preview screen
+## Audio/Video config options while joining meeting.
 
-The audio / video setup screen that appears for the participant right before
-getting into the meeting is turned off by default. You can set `showSetupScreen`
-in `meetingConfig` to `true` to turn it on (default value is `false`).
+```kotlin {3,4}
+let meetingInfo = DyteMeetingInfoV2(
+  authToken: AUTH_TOKEN,
+  enableAudio: true,
+  enableVideo: true,
+)
 
-<Tabs
-groupId="ios-language"
-defaultValue="swift"
-values={[
-{ label: 'Swift', value: 'swift', },
-{ label: 'Obj-C', value: 'obj-c', },
-]
-}>
-<TabItem value="swift">
-
-```swift {6}
-import DyteSdk;
-
-let  config = DyteMeetingConfig();
-meetingConfig.roomName = "YOUR_ROOM_NAME"
-meetingConfig.authToken = "YOUR_AUTH_TOKEN"
-meetingConfig.showSetupScreen = true
+meeting.doInit(dyteMeetingInfo: meetingInfo)
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+## Local user usages
 
-```objectivec {6}
-@import DyteSdk;
-
-DyteMeetingConfig *meetingConfig = [[DyteMeetingConfig alloc] init];
-meetingConfig.roomName = @"YOUR_ROOM_NAME";
-meetingConfig.authToken = @"YOUR_AUTH_TOKEN";
-meetingConfig.showSetupScreen = YES;
-```
-
-</TabItem>
-</Tabs>
-
-## Dynamic codec switching
-
-Dyte uses VP9 codec by default, but switches to H264/VP8 depending on
-participants' video codec support. VP9 is a superior codec but not all browsers
-support it. If you set `autoTune` in `meetingConfig` to `false`, Dyte will use
-VP8 only for all participants (default value is `true`).
-
-<Tabs
-groupId="ios-language"
-defaultValue="swift"
-values={[
-{ label: 'Swift', value: 'swift', },
-{ label: 'Obj-C', value: 'obj-c', },
-]
-}>
-<TabItem value="swift">
-
-```swift {6}
-import DyteSdk;
-
-let  config = DyteMeetingConfig();
-meetingConfig.roomName = "YOUR_ROOM_NAME"
-meetingConfig.authToken = "YOUR_AUTH_TOKEN"
-meetingConfig.autoTune = true
-```
-
-</TabItem>
-<TabItem value="obj-c">
-
-```objectivec {6}
-@import DyteSdk;
-
-DyteMeetingConfig *meetingConfig = [[DyteMeetingConfig alloc] init];
-meetingConfig.roomName = @"YOUR_ROOM_NAME";
-meetingConfig.authToken = @"YOUR_AUTH_TOKEN";
-meetingConfig.autoTune = YES;
-```
-
-</TabItem>
-</Tabs>
-
-## Control the meeting, and take meeting & participant actions
-
-The `DyteMeetingView` instance (referenced as `dyteView`) helps you interact
-with the meeting. You can take actions on the meeting as well as the
-participants. You can also setup custom controls to that interact with the
-meeting in certain ways that help you send events and messages across to other
-participants in the meeting. You can find the complete reference to the
-`DyteMeetingView` type [here](./reference/dyte-meeting). Read on to understand
-how to use these individual controls.
-
-<!-- ## Get info about meeting's connection configuration
-
-You can get the connection configuration of the meeting in progress using the `config` property of `DyteMeeting`.
-
-<Tabs
-  groupId="ios-language"
-  defaultValue="swift"
-  values={[
-    { label: 'Swift', value: 'swift', },
-    { label: 'Obj-C', value: 'obj-c', },
-  ]
-}>
-<TabItem value="swift">
+To show localUser preview inside a view. Use `getVideoView()` method on
+localUser. This method returns a View which can be added in any View.
 
 ```swift
-let config = meeting.config
+meeting.localUser.getVideoView()
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+### Turn audio/video tracks after joining the room
 
-```objectivec
-DyteMeetingConfig *config = meeting.config;
-```
-
-</TabItem>
-</Tabs>
-
-sets the value of `config` to an instance of [`DyteMeetingConfig`](./reference/connection-config). -->
-
-## Replace the meeting control buttons with your own buttons
-
-Let's say you don't want to give many options to the participants in a meeting,
-other than the basic audio and video turning on, or you don't like our buttons
-and control bar design (you really should give us feedback too, in this case),
-or for any other reason - you just want to build your own buttons for basic
-meeting controls. This is possible with Dyte, with the minor caveat that you
-will need to put some validations at your end.
-
-First thing in such a scenario would be to do away with our control bar
-
-<Tabs
-groupId="ios-language"
-defaultValue="swift"
-values={[
-{ label: 'Swift', value: 'swift', },
-{ label: 'Obj-C', value: 'obj-c', },
-]
-}>
-<TabItem value="swift">
+If audio and video tracks are disabled during the `DyteMobileClient`
+initialization process. You can setup the audio and video tracks by simply
+calling `enableAudio()` and `enableVideo()` like below:
 
 ```swift
-dyteView.updateUIConfig(["controlBar": false])
+meeting.localUser.enableAudio()
+meeting.localUser.enableVideo()
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+### Change the name of the local user
 
-```objectivec
-[dyteView updateUIConfig:@{ @"controlBar": false }];
-```
-
-</TabItem>
-</Tabs>
-
-Now you can perform the basic functions of a meeting, like below. These
-functions can be used as the `IBAction` handlers of your own buttons.
-
-### Mic control
-
-To turn off the mic
-
-<Tabs
-groupId="ios-language"
-defaultValue="swift"
-values={[
-{ label: 'Swift', value: 'swift', },
-{ label: 'Obj-C', value: 'obj-c', },
-]
-}>
-<TabItem value="swift">
+Change the user's name by calling `setDisplayName` method. The changed name will
+reflect across all participants ONLY if the change happens before `joinRoom()`
+the meeting and after `init()`.
 
 ```swift
-DyteSelfParticipant.sharedInstance().disableAudio()
+meeting.localUser.setDisplayName("New Name")
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+### Mute/Unmute microphone
 
-```objectivec
-[[DyteSelfParticipant sharedInstance] disableAudio];
+```kotlin
+// Mute Audio
+meeting.localUser.disableAudio()
+
+// Unmute Audio
+meeting.localUser.enableAudio()
+
+// Get current status
+meeting.localUser.audioEnabled
 ```
 
-</TabItem>
-</Tabs>
+### Enable/Disable camera
 
-To turn on the mic
+```kotlin
+// Disable Video
+meeting.localUser.disableVideo()
 
-<Tabs
-groupId="ios-language"
-defaultValue="swift"
-values={[
-{ label: 'Swift', value: 'swift', },
-{ label: 'Obj-C', value: 'obj-c', },
-]
-}>
-<TabItem value="swift">
+// Enable Video
+meeting.localUser.enableVideo()
+
+// Get current status
+meeting.localUser.videoEnabled
+```
+
+### Switch camera between primary and secondary
 
 ```swift
-DyteSelfParticipant.sharedInstance().enableAudio()
+// switch camera
+meeting.localUser.switchCamera()
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+OR
 
-```objectivec
-[[DyteSelfParticipant sharedInstance] enableAudio];
-```
-
-</TabItem>
-</Tabs>
-
-### Camera control
-
-To turn off the camera
-
-<Tabs
-groupId="ios-language"
-defaultValue="swift"
-values={[
-{ label: 'Swift', value: 'swift', },
-{ label: 'Obj-C', value: 'obj-c', },
-]
-}>
-<TabItem value="swift">
+If you want to set video device yourself:
 
 ```swift
-DyteSelfParticipant.sharedInstance().disableVideo()
+meeting.localUser.setVideoDevice(videoDevice: DyteVideoDevice)
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+## Room participants object.
 
-```objectivec
-[[DyteSelfParticipant sharedInstance] disableVideo];
-```
+- `joined`: A list that contains all the participants who have joined the
+  meeting.
+- `waitlisted`: A list that contains all the participants waiting to join the
+  meeting.
+- `active`: A list that contains all the participants except the local user who
+  are supposed to be on the screen at the moment
+- `pinned`: A nullable participant object. If any participant is pinned is that
+  participant else it is null.
+- `screenshares`: A list that contains all the participants who have shared
+  screen in the meeting.
+- `gridInfo`: This object has all data related to pages in the room.
 
-</TabItem>
-</Tabs>
+Each participant in each of the `joined`, `waitlisted`, `active` and
+`screenshares` list is of type `DyteMeetingParticipant`.
 
-To turn on the camera
-
-<Tabs
-groupId="ios-language"
-defaultValue="swift"
-values={[
-{ label: 'Swift', value: 'swift', },
-{ label: 'Obj-C', value: 'obj-c', },
-]
-}>
-<TabItem value="swift">
+For example, to get all the participants who joined the meeting:
 
 ```swift
-DyteSelfParticipant.sharedInstance().enableVideo()
+// get all joined participants
+let joinedParticipants = meeting.participants.joined;
 ```
 
-</TabItem>
-<TabItem value="obj-c">
-
-```objectivec
-[[DyteSelfParticipant sharedInstance] enableVideo];
-```
-
-</TabItem>
-</Tabs>
-
-<!-- ### Screenshare control
-
-To turn screenshare on / off
-
-<Tabs
-  groupId="ios-language"
-  defaultValue="swift"
-  values={[
-    { label: 'Swift', value: 'swift', },
-    { label: 'Obj-C', value: 'obj-c', },
-  ]
-}>
-<TabItem value="swift">
+For example, to get all the active participants in the meeting:
 
 ```swift
-meeting.self.selfToggleScreenShare()
+// get all active participants
+let joinedParticipants = meeting.participants.active;
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+Therefore, if you were to make a grid of participants, you'd use the `active`
+list, but to display all participants in the meeting you'd use the `joined`
+list.
 
-```objectivec
-[meeting.self selfToggleScreenShare];
-```
+### Grid info for the room
 
-</TabItem>
-</Tabs> -->
-
-### Pinning
-
-To pin your video to the meeting grid
-
-<Tabs
-groupId="ios-language"
-defaultValue="swift"
-values={[
-{ label: 'Swift', value: 'swift', },
-{ label: 'Obj-C', value: 'obj-c', },
-]
-}>
-<TabItem value="swift">
+Following object can be retrieved from `meeting` object by using
+`meeting.participants.gridInfo`. This object will have necessary information
+regarding pageCount, next page, previos page, current page, etc.
 
 ```swift
-DyteSelfParticipant.sharedInstance().selfPin()
+  let pageCount: Int
+  let currentPageNumber: Int
+  let isNextPagePossible: Bool
+  let isPreviousPagePossible: Bool
+  let shouldShowPaginator: Bool
+  let maxVideoCountPerPage: Int
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+### Video update for all participants
 
-```objectivec
-[[DyteSelfParticipant sharedInstance] selfPin];
-```
-
-</TabItem>
-</Tabs>
-
-To unpin your video from the meeting grid
-
-<Tabs
-groupId="ios-language"
-defaultValue="swift"
-values={[
-{ label: 'Swift', value: 'swift', },
-{ label: 'Obj-C', value: 'obj-c', },
-]
-}>
-<TabItem value="swift">
+Triggered when the user starts / stops the video using `enableVideo` or
+`disableVideo`
 
 ```swift
-DyteSelfParticipant.sharedInstance().selfUnpin()
-```
-
-</TabItem>
-<TabItem value="obj-c">
-
-```objectivec
-[[DyteSelfParticipant sharedInstance] selfUnpin];
-```
-
-</TabItem>
-</Tabs>
-
-### Leave meeting
-
-To leave meeting
-
-<Tabs
-groupId="ios-language"
-defaultValue="swift"
-values={[
-{ label: 'Swift', value: 'swift', },
-{ label: 'Obj-C', value: 'obj-c', },
-]
-}>
-<TabItem value="swift">
-
-```swift
-DyteSelfParticipant.sharedInstance().leaveRoom()
-```
-
-</TabItem>
-<TabItem value="obj-c">
-
-```objectivec
-[[DyteSelfParticipant sharedInstance] leaveRoom];
-```
-
-</TabItem>
-</Tabs>
-
-## Get list of all participants in the meeting
-
-You can get a list of all participants in the meeting using the `participants`
-property of `DyteParticipants`.
-
-<Tabs
-groupId="ios-language"
-defaultValue="swift"
-values={[
-{ label: 'Swift', value: 'swift', },
-{ label: 'Obj-C', value: 'obj-c', },
-]
-}>
-<TabItem value="swift">
-
-```swift
-let participants = DyteParticipants.sharedInstance().participants
-```
-
-</TabItem>
-<TabItem value="obj-c">
-
-```objectivec
-NSArray *participants = [DyteParticipants sharedInstance].participants;
-```
-
-</TabItem>
-</Tabs>
-
-sets `participants` to an NSArray whose elements are instances of type
-`DyteParticipant`, whose prototype is defined in the reference section. There
-will be exactly one element of type `DyteSelfParticipant`, which refers to the
-current participant.
-
-## Controlling individual participants and actions
-
-Dyte client SDK provide methods and properties to help you control participant
-actions and certain UI elements. This could include actions that affect the
-participant themselves as well as other participants (like a host with
-privileged permissions may want to control the video of other participants).
-This section defines all the possible properties and actions that can be taken.
-
-:::info
-
-Remember that despite the functions being available to every participant via the
-client SDK, they will not take affect until coupled with the right permissions
-for the participant who intends to use these.
-
-:::
-
-### Get participant list
-
-To get a list of all participants, use
-`DyteParticipants.sharedInstance.participants`: it returns `NSArray` where all
-meeting participants are [`DyteParticipant`](./reference/participant) and the
-current participant is [`DyteSelfParticipant`](./reference/self-participant).
-
-### Participant info and actions
-
-Once you get the array of participants as mentioned above, you can iterate over
-that and get certain info about every participant.
-
-We will consider the following iterator for the next section.
-
-<Tabs
-groupId="ios-language"
-defaultValue="swift"
-values={[
-{ label: 'Swift', value: 'swift', },
-{ label: 'Obj-C', value: 'obj-c', },
-]
-}>
-<TabItem value="swift">
-
-```swift
-for p in DyteParticipants.sharedInstance().participants {
-    // participant specific code goes here
+extension MeetingViewModel: DyteParticipantEventsListener {
+     func videoUpdate(videoEnabled: Boolean, participant: DyteMeetingParticipant) {
+      if (videoEnabled) {
+        // video is enabled, and other participants in room can see local user
+      } else {
+        // video is disabled, and other participants in room can not see local user.
+      }
+    }
 }
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+### Audio update for all participants
 
-```objectivec
-for (DyteParticipant *p in [DyteParticipants sharedInstance].participants) {
-    // participant specific code goes here
+Triggered when the user starts / stops the audio using `enableAudio` or
+`disableAudio`
+
+```swift
+extension MeetingViewModel: DyteParticipantEventsListener {
+    func audioUpdate(audioEnabled: Boolean, participant: DyteMeetingParticipant) {
+      if (audioEnabled) {
+        // audio is enabled, and other participants in room can hear local user
+      } else {
+        // audio is disabled, and other participants in room can not hear local user.
+      }
+    }
 }
 ```
 
-</TabItem>
-</Tabs>
+### Move between pages in paginated mode
 
-#### Peer ID
-
-Get unique ID for every participant. This ID is generated by Dyte when a
-participant joins the meeting. This ID is used for referring to a participant
-within Dyte.
-
-:::info
-
-Even if the same participant, using the same auth token, rejoins the meeting,
-for example by refreshing the page / app or due to connection drop, the peer ID
-would be refreshed in that case.
-
-:::
-
-<Tabs
-groupId="ios-language"
-defaultValue="swift"
-values={[
-{ label: 'Swift', value: 'swift', },
-{ label: 'Obj-C', value: 'obj-c', },
-]
-}>
-<TabItem value="swift">
+The `setPage(pageNumber: Int)` method allows you to switch between pages of
+participants present in the meeting.
 
 ```swift
-let peerID: String = p.id
+// switch to 1st page
+meeting.participants.setPage(1)
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+### Host control methods
 
-```objectivec
-NSString *peerID = p.id;
-```
-
-</TabItem>
-</Tabs>
-
-sets the value of `peerID` to a UUID string.
-
-#### Client specific ID
-
-Get the client specific ID as you have specified in the add participant API
-call. You may want to decide exposing custom controls or build other business
-logic based on this identifier, which helps you find the participant info in
-your system.
-
-<Tabs
-groupId="ios-language"
-defaultValue="swift"
-values={[
-{ label: 'Swift', value: 'swift', },
-{ label: 'Obj-C', value: 'obj-c', },
-]
-}>
-<TabItem value="swift">
+The `meeting.participants` object has host control methods that allow you to
+disable the audio and video streams of other users in the meeting (given that
+the user preset has the right permissions).
 
 ```swift
-let clientSpecificID: String = p.clientSpecificId
+// mute all participants
+meeting.participants.disableAllAudio()
+
+// mute a single participant
+let participantToUpdate = meeting.participants.joined.first
+participantToUpdate.disableAudio()
+
+// disable video for all participants
+meeting.participants.disableAllVideo()
+
+// disable video for a single participant
+let participantToUpdate = meeting.participants.joined.first()
+participantToUpdate.disableVideo()
 ```
 
-</TabItem>
-<TabItem value="obj-c">
-
-```objectivec
-NSString *clientSpecificID = p.clientSpecificId;
-```
-
-</TabItem>
-</Tabs>
-
-#### Participant name
-
-Get the participant name as you have specified in the add participant API call.
-The participant may have changed this name, if enabled.
-
-<Tabs
-groupId="ios-language"
-defaultValue="swift"
-values={[
-{ label: 'Swift', value: 'swift', },
-{ label: 'Obj-C', value: 'obj-c', },
-]
-}>
-<TabItem value="swift">
+To remove all participants from a meeting, you can call the `kickAll()` method.
 
 ```swift
-let name: String = p.name
+// remove all participants from the meeting
+meeting.participants.kickAll()
+
+// remove a single participant
+let participantToRemove = meeting.participants.joined.first()
+participantToRemove.kick()
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+## Interacting with chat
 
-```objectivec
-NSString *name = p.name;
-```
+The meeting chat object is stored in `meeting.chat`, which has methods for
+sending and receiving messages. There are 3 types of messages that can be sent
+in chat - text messages, images, and files.
 
-</TabItem>
-</Tabs>
+The `meeting.chat.messages` array contains all the messages that have been sent
+in the chat. This is an array of objects, where each object is of type
+`DyteChatMessage`.
 
-#### Participant thumbnail photo / avatar
+We support three types of chat messages, they are as follows
 
-Get the participant photo as you have specified in the add participant API call.
+- Text Message
+- Image Message
+- File Message
 
-<Tabs
-groupId="ios-language"
-defaultValue="swift"
-values={[
-{ label: 'Swift', value: 'swift', },
-{ label: 'Obj-C', value: 'obj-c', },
-]
-}>
-<TabItem value="swift">
+All above objects are of type `DyteChatMessage` along with their own class
+variables.
+
+There are 3 types of chat messages - text messages, images, and files. 
+There is a method in `meeting.chat` to send a message of each type.
+
+### Send a text message
+
+To send a text message, the `meeting.chat.sendTextMessage()` method can be used.
+This accepts a string `message` and sends it to the room.
 
 ```swift
-let picture: String = p.picture
+let message = "Is this the real life?"
+meeting.chat.sendTextMessage(message: message)
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+### Send an image
 
-```objectivec
-NSString *picture = p.picture;
-```
-
-</TabItem>
-</Tabs>
-
-#### Check if participant's audio is on
-
-To check whether a participant's audio is on (mic is turned on), you can use
-
-<Tabs
-groupId="ios-language"
-defaultValue="swift"
-values={[
-{ label: 'Swift', value: 'swift', },
-{ label: 'Obj-C', value: 'obj-c', },
-]
-}>
-<TabItem value="swift">
+You can send an image with the help of `meeting.chat.sendImageMessage()` and
+sends it to the participants in the meeting.
 
 ```swift
-let audio: Boolean = p.audioEnabled
+let filePath = "file_path_of_image"
+let fileName = "file_name"
+meeting.chat.sendImageMessage(filePath: filePath, fileName: fileName)
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+### Send a file
 
-```objectivec
-BOOL audio = p.audioEnabled;
-```
-
-</TabItem>
-</Tabs>
-
-which sets the value of `audio` to a boolean specifying if the mic is on or not.
-
-#### Check if participant's video is on
-
-To check whether a participant's video is on (camera is turned on), you can use
-
-<Tabs
-groupId="ios-language"
-defaultValue="swift"
-values={[
-{ label: 'Swift', value: 'swift', },
-{ label: 'Obj-C', value: 'obj-c', },
-]
-}>
-<TabItem value="swift">
+Sending a file is quite similar to sending an image. The only difference is that
+when you send an image, a preview will be shown in the meeting chat, which is
+not the case for sending files. That being said, an image can be sent as a file
+too using `meeting.chat.sendFileMessage()`.
 
 ```swift
-let video: Boolean = p.videoEnabled
+let filePath = "file_path_of_image"
+let fileName = "file_name"
+meeting.chat.sendFileMessage(filePath: filePath, fileName: fileName)
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+### Receiving chat messages
 
-```objectivec
-BOOL video = p.videoEnabled;
-```
-
-</TabItem>
-</Tabs>
-
-which sets the value of `video` to a boolean specifying if the camera is on or
-not.
-
-#### Check if the participant is pinned to the grid
-
-To check whether a participant's video is pinned to the meeting grid; by the
-host, by the user, by the preset, or by any other mechanism; you can use
-
-<Tabs
-groupId="ios-language"
-defaultValue="swift"
-values={[
-{ label: 'Swift', value: 'swift', },
-{ label: 'Obj-C', value: 'obj-c', },
-]
-}>
-<TabItem value="swift">
+To be able to receive chat messages you need to implement a method
+`onChatUpdates()` method from callback `DyteMeetingRoomEventsListener`. You can
+subscribe to this events by calling
+`meeting.addMeetingEventsListener(dyteMeetingRoomEventsListener)`
 
 ```swift
-let pinned: Boolean = p.isPinned
+    extension MeetingViewModel: DyteMeetingRoomEventsListener {
+      func onChatUpdates(messages: [DyteChatMessage]) {
+        // any update in chat messages
+      }
+
+      func onNewChatMessage(message: DyteChatMessage) {
+        // updates for new chat messages only
+      }
+    }
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+Here, the `message` is of type `Message`, as defined in
+[introduction](./introduction). `messages` is a list of all chat messages in the
+meeting, which is the same as `meeting.chat.messages`.
 
-```objectivec
-BOOL pinned = p.isPinned;
-```
+When a chat message is received, the `meeting.chat.messages` list is also
+updated.
 
-</TabItem>
-</Tabs>
+## Get info about the plugins configured for the meeting
 
-which sets the value of `pinned` to a boolean specifying whether the video is
-pinned or not.
+The meetings plugins can be accessed using `meeting.plugins`. It provides two
+main objects, `all` which contains list of all Plugin objects in a
+`DyteMeeting`. And `active` list which contains plugins which are enabled and
+are currently being used in this meeting.
 
-#### Check if the participant is sharing screen
+### Playing with plugins
 
-To check whether a participant's screen is being shared, you can use
-
-<Tabs
-groupId="ios-language"
-defaultValue="swift"
-values={[
-{ label: 'Swift', value: 'swift', },
-{ label: 'Obj-C', value: 'obj-c', },
-]
-}>
-<TabItem value="swift">
+Plugins are webviews which can be added in any view. To be able to get webview
+from DytePlugin one needs to first acivate a plugin. To do that all we need to
+do is call `plugin.active()` which will trigger a callback in
+`onPluginActivated()`. Similarely to deactivate a plugin one can call
+`plugin.deactivate()` and that plugin will be deactivated in the meeting.
 
 ```swift
-let screensharing: Boolean = p.isScreensharing
+plugin.activate() // to activate a plugin
+plugin.deactivate()   // to deactivate a plugin
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+### Active plugin
 
-```objectivec
-BOOL screensharing = p.isScreensharing;
+To check if a `plugin` is active or not in a meeting one can use
+
+```swift
+let isActive = plugin.isActive
 ```
 
-</TabItem>
-</Tabs>
+### Listening to plugins in a meeting
 
-which sets the value of `screensharing` to a boolean specifying whether the
-participant's screen is being shared or not.
+To be able to listen to plugin events you need to implement a methods from
+callback `DytePluginEventsListener`. You can subscribe to this events by calling
+`meeting.addPluginEventsListener(dytePluginEventsListener: listener)`
+
+```swift
+    extension MeetingViewModel: DytePluginEventsListener {
+      func onPluginActivated(plugin: DytePlugin) {
+      // your code to handle plugin activation
+    }
+
+    func onPluginDeactivated(plugin: DytePlugin) {
+      // your code to handle plugin de-activation
+    }
+}
+```
+
+## Recording
+
+The `meeting.recording` object can be used start and stop recordings in a
+meeting. You can also get the current status of a recording using this API.
+
+The `meeting.recording` object has the following properties:
+
+- `recordingState`: Indicates the current recording state of the meeting.
+
+### Start a recording
+
+To start a recording, you can call the `start` method in the `meeting.recording`
+object. The valid states are `IDLE`, `STARTING`, `RECORDING`, and `STOPPING`.
+
+```swift
+meeting.recording.start()
+```
+
+### Stop a recording
+
+Call `meeting.recording.stop()` to stop the active recording.
+
+```swift
+meeting.recording.stop()
+```
+
+### Get active recording state
+
+The `meeting.recording.recordingState` property describes the current state of
+the recording. The valid states are `IDLE`, `STARTING`, `RECORDING`, and
+`STOPPING`.
