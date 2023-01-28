@@ -1,0 +1,25 @@
+---
+title: Introducing chat
+description: Send and receive chat messages in a meeting.
+sidebar_position: 1
+tags: [mobile-core, chat]
+---
+
+# Introducing chat
+
+The meeting chat object is stored in `meeting.chat`, which has methods for
+sending and receiving messages. There are 3 types of messages that can be sent
+in chat - text messages, images, and files.
+
+The `meeting.chat.messages` array contains all the messages that have been sent
+in the chat. This is an array of objects, where each object is of type
+`DyteChatMessage`.
+
+We support three types of chat messages, they are as follows
+
+- Text Message
+- Image Message
+- File Message
+
+All above objects are of type `DyteChatMessage` along with their own class
+variables.

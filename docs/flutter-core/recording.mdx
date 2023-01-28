@@ -2,11 +2,79 @@
 title: Recording
 description: Control recordings in a meeting.
 sidebar_position: 9
-tags: [mobile-core, recording]
+tags: [flutter-core, recording]
 ---
 
-:::caution
+# Recording
 
-Not added in flutter-core 0.0
+The `dyteClient.recording` object can be used start and stop recordings in a
+meeting.
 
-:::
+The `dyteClient.recording` object has the following properties:
+
+- recordingState: `Future<DyteRecordingType>`, Indicates the current recording
+  state of the meeting.
+
+To listen recording status updates, you need to listen for
+`onMeetingRecordingStateUpdated()` event. This returns `DyteRecordingState`
+object with it.
+
+There can be 4 states:
+
+- `idle`
+- `starting`
+- `recording`
+- `stopping`
+
+## Start a recording
+
+To start a recording, you need to call the `start()` method in the
+`dyteClient.recording` object, as shown below.
+
+```dart
+dyteClient.recording.start();
+```
+
+## Stop a recording
+
+To stop a recording, you need to call the `stop()` method in the
+`dyteClient.recording` object, as shown below.
+
+```dart
+dyteClient.recording.stop();
+```
+
+## Listen to recording state changes
+
+The changes to recording state can be listened by implementing
+`onMeetingRecordingStateUpdated` from `DyteMeetingRoomEventsListener`. You can
+attach this observer by calling
+`dyteClient.addMeetingRoomEventsListener(listener)`.
+
+```dart
+
+class RoomStateNotifier with DyteMeetingRoomEventsListener {
+
+  @override
+  void onMeetingRecordingStarted() {
+    /// Handle starting of recording
+  }
+
+  @override
+  void onMeetingRecordingStateUpdated(DyteRecordingState recordingState) {
+    /// Handle status update of recording
+  }
+
+   @override
+  void onMeetingRecordingEnded() {
+    /// Handle recording ended
+  }
+
+  @override
+  void onMeetingRecordingStopError() {
+    /// Handle recording error
+  }
+
+}
+
+```

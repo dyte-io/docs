@@ -14,7 +14,7 @@ title.
   - [.viewType](#module_DyteMeta+viewType)
   - [.meetingStartedTimestamp](#module_DyteMeta+meetingStartedTimestamp)
   - ~~[.joined](#module_DyteMeta+joined)~~
-  - [.roomName](#module_DyteMeta+roomName)
+  - ~~[.roomName](#module_DyteMeta+roomName)~~
   - [.meetingTitle](#module_DyteMeta+meetingTitle)
 
 <a name="module_DyteMeta+viewType"></a>
@@ -41,7 +41,9 @@ The timestamp of the time when the meeting started.
 **Kind**: instance property of [<code>DyteMeta</code>](#module_DyteMeta)  
 <a name="module_DyteMeta+roomName"></a>
 
-### meeting.meta.roomName
+### ~~meeting.meta.roomName~~
+
+**_Deprecated_**
 
 The room name of the meeting.
 

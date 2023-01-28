@@ -1,0 +1,76 @@
+---
+title: 'Live Streaming Overview'
+sidebar_position: 1
+---
+
+# Live Streaming Overview
+
+Live streaming is the broadcast of video and audio content over the internet,
+usually through a web viewer or an application. Live streaming sends RTMP
+streams, or real-time data such as video and audio from call participants, over
+the internet to viewers. This can be used to broadcast events such as webinars,
+hackathons, conferences, online classes, concerts, all-hands meetings, and even
+your own metaverse party.
+
+Dyte supports the following:
+
+- Live streaming from applications like
+  [OBS](https://en.wikipedia.org/wiki/OBS_Studio),
+  [ffmpeg](https://en.wikipedia.org/wiki/FFmpeg), and others. To put it simply,
+  you can live stream any RTMP input from any source using Dyte.
+- Allows you to broadcast a multi-participant video call in real time that
+  supports RTMP to your preferred streaming platform, such as YouTube, Twitch,
+  or LinkedIn.
+- Provides complete control over the streaming experience, from a simple
+  one-to-many stream to a highly interactive live event.
+- Allows you to integrate [HLS](https://dyte.io/blog/hls/) into your existing
+  video workflow without any additional servers or infrastructure. You’ll have
+  access to better quality streams with low latency and wide device support.
+- Forward livestreams of your meeting to any platform that supports RTMP, such
+  as YouTube, Twitch, LinkedIn, and more.
+
+The following figure shows how Dyte live streaming works. (TODO)
+
+## Common Dyte Live Streaming Use Cases
+
+The following are some of the most common live streaming use cases:
+
+- Live stream any video (custom input)
+- Live stream a Dyte meeting
+- Live stream Dyte meetings to other platforms
+
+### Live stream any video (custom input)
+
+Dyte supports live streaming from applications like
+[OBS](https://en.wikipedia.org/wiki/OBS_Studio),
+[ffmpeg](https://en.wikipedia.org/wiki/FFmpeg), and others. To put it simply,
+you can live stream any RTMP input from any source using Dyte.
+
+- Using an ingest server URL and a stream key you can create individual ingest
+  URLs for ingesting a livestream.
+- You can also freely distribute them via playback URLs for playing it in your
+  preferred player.
+
+For more information on how to live stream any video, see ABC.
+
+### Live stream a Dyte meeting via HLS
+
+Any meeting you [create](/api/?v=v2#/operations/create_meeting) with Dyte can be
+live streamed.
+
+- To begin live streaming the meeting as soon as it starts, specify the
+  `live_stream_on_start` parameter in the
+  [Create a meeting](/api/?v=v2#/operations/create_meeting) API.
+- Otherwise, use the
+  [Start livestreaming a meeting](/api/?v=v2#/paths/meetings-meeting_id--livestreams/post)
+  API to start live streaming the meeting as needed.
+
+For more information on how to live stream a Dyte meeting, see ABC.
+
+### Live stream Dyte meetings to other platforms
+
+You can live stream Dyte meetings to any platform that supports
+[RTMP](https://dyte.io/blog/rtmp/), such as YouTube, Twitch, LinkedIn, and more.
+
+For more information on how to live stream Dyte meetings to other platforms, see
+ABC.

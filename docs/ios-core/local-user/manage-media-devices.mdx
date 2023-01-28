@@ -1,0 +1,29 @@
+---
+title: Manage Media Devices
+description: Local user media guide to manage media permissions.
+sidebar_position: 3
+tags: [web-core, local-user, localUser, localUser events]
+---
+
+# Manage Media Devices
+
+Media devices represents the hardware for the camera, microphone and speaker
+devices. To get the list of media devices that are currently being used, you can
+use the following methods:
+
+```swift
+// Get all audio devices
+let audioDevices = meeting.localUser.getAudioDevices();
+
+// Get all video devices
+let videoDevices = meeting.localUser.getVideoDevices();
+```
+
+## Set device
+
+To set a device as an active device, you can call `setDevice` method. This takes
+a `MediaDeviceInfo` object, and replaces the same `kind` device.
+
+```swift
+meeting.localUser.setDevice(device);
+```

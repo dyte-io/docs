@@ -5,8 +5,9 @@ const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/vsDark');
 
 const { webpackPlugin } = require('./plugins/webpack-plugin.cjs');
-const posthogPlugin = require('./plugins/posthog-plugin.cjs');
 const tailwindPlugin = require('./plugins/tailwind-plugin.cjs');
+
+const isDev = process.env.NODE_ENV === 'development';
 
 /** @type {import('@docusaurus/preset-classic').Options} */
 const defaultSettings = {
@@ -52,10 +53,13 @@ const latestVersions = {
   'android-core': '1.x.x',
   'rn-core': '1.x.x',
   'flutter-core': '1.0.0',
+  'ios-core': '1.0.0',
 };
 
 const SECTIONS = [
-  defineSection('guides'),
+  defineSection('guides', {
+    label: 'v2',
+  }),
   defineSection('cli'),
 
   defineSection('react', { label: '0.x.x' }),
@@ -87,7 +91,12 @@ const SECTIONS = [
     label: latestVersions['flutter-core'],
   }),
 
-  // [web] rn-core
+  //mobile-core
+  defineSection('ios-core', {
+    label: latestVersions['ios-core'],
+  }),
+
+  // rn-core
   defineSection('rn-core', {
     label: latestVersions['rn-core'],
   }),
@@ -121,13 +130,16 @@ const config = {
   onBrokenMarkdownLinks: 'warn',
   favicon: '/favicon.ico',
   trailingSlash: false,
-  stylesheets: [
-    { href: 'https://fonts.googleapis.com', rel: 'preconnect' },
-    { href: 'https://fonts.gstatic.com', rel: 'preconnect', crossOrigin: true },
-    {
-      href: 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800',
-      rel: 'stylesheet',
-    },
+  scripts: [
+    { src: '/js/banner.js', async: true },
+    ...(isDev
+      ? []
+      : [
+          {
+            src: 'https://cdn.dyte.in/manalytics.js',
+            defer: true,
+          },
+        ]),
   ],
 
   // GitHub pages deployment config.
@@ -169,12 +181,7 @@ const config = {
     ],
   ],
 
-  plugins: [
-    tailwindPlugin,
-    webpackPlugin,
-    posthogPlugin,
-    ...SECTIONS,
-  ],
+  plugins: [tailwindPlugin, webpackPlugin, ...SECTIONS],
 
   themes: ['@docusaurus/theme-live-codeblock'],
 
@@ -189,6 +196,11 @@ const config = {
         sidebar: {
           hideable: true,
         },
+      },
+      announcementBar: {
+        id: 'ph-banner',
+        content: '<ph-banner></ph-banner>',
+        isCloseable: false,
       },
       navbar: {
         // NOTE: hideOnScroll breaks on `/api`, enable when fixed
@@ -216,7 +228,9 @@ const config = {
           },
           {
             label: 'Guides',
-            to: 'guides',
+            to: 'guides/quickstart',
+            position: 'left',
+            className: 'new-badge',
           },
           {
             label: 'API Reference',
@@ -336,6 +350,17 @@ const config = {
           'swift',
           'objectivec',
         ],
+        magicComments: [
+          {
+            className: 'theme-code-block-highlighted-line',
+            line: 'highlight-next-line',
+            block: { start: 'highlight-start', end: 'highlight-end' },
+          },
+          {
+            className: 'code-block-error-line',
+            line: 'highlight-next-line-error',
+          },
+        ],
       },
       liveCodeBlock: {
         playgroundPosition: 'bottom',
@@ -346,9 +371,6 @@ const config = {
         indexName: 'docs',
         contextualSearch: true,
         searchParameters: {},
-      },
-      posthog: {
-        apiKey: 'c1X6knGkGuxT4WFysAWi6chjtoMmTzILKO7inv7hIgs',
       },
     }),
 };

@@ -2,127 +2,74 @@
 title: Introduction
 description: Create, receive and interact with polls in a meeting.
 sidebar_position: 1
-tags: [mobile-core, polls]
+tags: [flutter-core, polls]
 ---
 
 # Introduction
 
-The meetings polls object can be accessed using `meeting.polls`. It provides
+The meetings polls object can be accessed using `dyteClient.polls`. It provides
 methods to create polls, vote, and more.
 
-`meeting.polls.polls` returns an array of all polls created in a meeting, where
-each element is an object of type `DytePollMessage`.
+`dyteClient.polls.polls` returns an array of all polls created in a meeting,
+where each element is an object of type `DytePollMessage`.
 
-The type `DytePollMessage` is defined in the following manner.
+The `DytePollMessage` class has the following properties:
+
+- `id`: Unique ID assigned to each poll.
+- `question`: Question of the poll.
+- `anonymous`: To hide the votes of each user even after completion. (false by
+  default)
+- `hideVotes`: Hide votes until the voting is complete. (enabled if anonymous is
+  enabled)
+- `createdBy`: Name of creator the poll.
+- `options`: Array of `DytePollOption` object, contains all the options to the
+  poll question.
+
+`DytePollOption` has the following properties:
+
+- `text` : Contains the option text.
+- `votes` : List of `DytePollVote` object, which contains info about voters of
+  this option.
+- `count` : Int of number of votes given to this option.
+
+`DytePollVote` has the following properties:
+
+- `id` : ID of the voter.
+- `name` : Name of the voter.
+
+## Listening to new polls in a meeting
+
+To be able to receive new poll messages you need to implement a method
+`onPollUpdates()` method from callback `DyteMeetingRoomEventsListener`:
+
+To get poll updates, listen to `onPollUpdates()` callback:
 
 ```dart
-import 'dart:convert';
 
-class DytePollMessage {
-  final String id;
-  final String question;
-  final bool anonymous;
-  final bool hideVotes;
-  final String createdBy;
-  final List<DytePollOption> options;
-  DytePollMessage({
-    required this.id,
-    required this.question,
-    required this.anonymous,
-    required this.hideVotes,
-    required this.createdBy,
-    required this.options,
-  });
+class MeetingRoomEventsListener with DyteMeetingRoomEventsListener {
 
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'id': id,
-      'question': question,
-      'anonymous': anonymous,
-      'hideVotes': hideVotes,
-      'createdBy': createdBy,
-      'options': options.map((x) => x.toMap()).toList(),
-    };
+  ...
+
+  @override
+  void onPollUpdates({
+    required bool newPoll,
+    required List<DytePollMessage> pollMessages,
+    DytePollMessage? updatedPollMessage,
+  }) {
+    /// code to handle polls
   }
 
-  factory DytePollMessage.fromMap(Map<String, dynamic> map) {
-    return DytePollMessage(
-      id: map['id'],
-      question: map['question'],
-      anonymous: map['anonymous'],
-      hideVotes: map['hideVotes'],
-      createdBy: map['createdBy'],
-      options: List<DytePollOption>.from(
-          map['options'].map((x) => DytePollOption.fromMap(x))),
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory DytePollMessage.fromJson(String source) =>
-      DytePollMessage.fromMap(json.decode(source));
+  ...
 }
 
-class DytePollOption {
-  final String text;
-  final List<DytePollVote> votes;
-  final int count;
-  DytePollOption({
-    required this.text,
-    required this.votes,
-    required this.count,
-  });
+```
 
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'text': text,
-      'votes': votes.map((x) => x.toMap()).toList(),
-      'count': count,
-    };
-  }
+You can subscribe to this events by `addMeetingEventsListener` method:
 
-  factory DytePollOption.fromMap(Map<String, dynamic> map) {
-    return DytePollOption(
-      text: map['text'],
-      votes: List<DytePollVote>.from(
-          map['votes'].map((x) => DytePollVote.fromMap(x))),
-      count: map['count']?.toInt(),
-    );
-  }
+```dart
 
-  String toJson() => json.encode(toMap());
-
-  factory DytePollOption.fromJson(String source) =>
-      DytePollOption.fromMap(json.decode(source));
-}
-
-class DytePollVote {
-  final String id;
-  final String name;
-
-  DytePollVote({
-    required this.id,
-    required this.name,
-  });
-
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'id': id,
-      'name': name,
-    };
-  }
-
-  factory DytePollVote.fromMap(Map<String, dynamic> map) {
-    return DytePollVote(
-      id: map['id'],
-      name: map['name'],
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory DytePollVote.fromJson(String source) =>
-      DytePollVote.fromMap(json.decode(source));
-}
+dyteClient.addMeetingEventsListener(
+  /// MeetingRoomEventsListener instance
+)
 
 ```

@@ -1,0 +1,31 @@
+---
+title: Configure Video Codecs
+sidebar_position: 3
+---
+
+You can modify the codec which is used for recording the videos. We currently
+support the following codecs:
+
+- **H264 (default)**: Records video using the H.264 codec with 1280px \* 720px
+  resolution, and 384 kbps AAC audio in MP4 container.
+- **VP8**: Records video using the the VP8 codec with 1280px \* 720px
+  resolution, and Vorbis codec audio in WebM container.
+
+You can change the codec by specifying the codec in the `video_config` field in
+the [Start Recording endpoint](/api/?v=v2#/operations/start_recording), for
+example:
+
+```json
+{
+  "video_config": {
+    "codec": "H264"
+  }
+}
+```
+
+:::info note
+
+Meetings recorded using the `record_on_start` parameter currently don’t support
+configuring video codecs, and will use the `H264` codec by default.
+
+:::

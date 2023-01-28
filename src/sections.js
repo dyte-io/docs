@@ -1,6 +1,5 @@
 import {
   ReactIcon,
-  UIKitIcon,
   AngularIcon,
   AndroidIcon,
   AppleIcon,
@@ -15,11 +14,6 @@ const SECTIONS = [
     id: 'default',
     section: false,
   },
-  {
-    id: 'guides',
-    section: false,
-  },
-
   {
     name: 'React SDK',
     id: 'react',
@@ -69,6 +63,14 @@ const SECTIONS = [
     icon: AndroidIcon,
     section: 'mobile-core',
   },
+  
+  {
+    name: 'iOS Core',
+    id: 'ios-core',
+    icon: AppleIcon,
+    section: 'mobile-core',
+  },
+
   {
     name: 'React Native Core',
     id: 'rn-core',
@@ -132,7 +134,7 @@ const MULTI_SECTIONS = [
       section: 'mobile-core',
       isNew: true,
       description: 'Build your own UI from scratch, use our low level APIs.',
-    },
+    }
   ],
 ];
 

@@ -2404,7 +2404,7 @@ components:
           format: uri
           description: URL to a picture of the participant.
           nullable: true
-        client_specific_id:
+        custom_participant_id:
           type: string
           description: ID used internally by the client.
         preset_name:
@@ -2420,7 +2420,7 @@ components:
           description: When this object was updated.
       required:
         - id
-        - client_specific_id
+        - custom_participant_id
         - preset_name
         - created_at
         - updated_at
@@ -2643,6 +2643,7 @@ components:
             - can_edit_display_name
             - can_spotlight
             - is_recorder
+            - recorder_type
             - disable_participant_audio
             - disable_participant_screensharing
             - disable_participant_video
@@ -2657,6 +2658,7 @@ components:
             - chat
             - hidden_participant
             - show_participant_list
+            - can_livestream
             - can_change_participant_permissions
           properties:
             accept_waiting_requests:
@@ -2672,6 +2674,14 @@ components:
               type: boolean
               default: false
               readOnly: true
+            recorder_type:
+              type: string
+              enum:
+                - RECORDER
+                - LIVESTREAMER
+                - NONE
+              default: NONE
+              description: Type of the recording peer
             disable_participant_audio:
               type: boolean
             disable_participant_screensharing:
@@ -2684,6 +2694,8 @@ components:
               type: boolean
             can_record:
               type: boolean
+            can_livestream:
+              type: boolean
             waiting_room_type:
               type: string
               enum:
@@ -2693,12 +2705,12 @@ components:
               description: Waiting room type
             plugins:
               type: object
+              description: Plugin permissions
               required:
                 - can_close
                 - can_start
                 - can_edit_config
                 - config
-              description: Plugin permissions
               properties:
                 can_close:
                   type: boolean
@@ -2737,11 +2749,11 @@ components:
                   type: boolean
             polls:
               type: object
+              description: Poll permissions
               required:
                 - can_create
                 - can_vote
                 - can_view
-              description: Poll permissions
               properties:
                 can_create:
                   type: boolean
@@ -2754,17 +2766,17 @@ components:
                   description: Can view polls
             media:
               type: object
+              description: Media permissions
               required:
                 - video
                 - audio
                 - screenshare
-              description: Media permissions
               properties:
                 video:
                   type: object
+                  description: Video permissions
                   required:
                     - can_produce
-                  description: Video permissions
                   properties:
                     can_produce:
                       type: string
@@ -2775,9 +2787,9 @@ components:
                       description: Can produce video
                 audio:
                   type: object
+                  description: Audio permissions
                   required:
                     - can_produce
-                  description: Audio permissions
                   properties:
                     can_produce:
                       type: string
@@ -2788,9 +2800,9 @@ components:
                       description: Can produce audio
                 screenshare:
                   type: object
+                  description: Screenshare permissions
                   required:
                     - can_produce
-                  description: Screenshare permissions
                   properties:
                     can_produce:
                       type: string
@@ -2801,10 +2813,10 @@ components:
                       description: Can produce screen share video
             chat:
               type: object
+              description: Chat permissions
               required:
                 - public
                 - private
-              description: Chat permissions
               properties:
                 public:
                   type: object
@@ -2849,6 +2861,41 @@ components:
         - name
         - config
         - permissions
+    VideoConfig:
+      title: VideoConfig
+      x-stoplight:
+        id: s67pizzbk2z0p
+      type: object
+      properties:
+        codec:
+          type: string
+          enum:
+            - H264
+            - VP8
+          description: Codec using which the recording will be encoded
+        width:
+          type: integer
+          description: Width of the recording video in pixels
+          minimum: 1
+          example: 1280
+          default: 1280
+        height:
+          type: integer
+          minimum: 1
+          description: Height of the recording video in pixels
+          example: 720
+          default: 720
+    LivestreamingConfig:
+      title: LivestreamingConfig
+      x-stoplight:
+        id: xtf0df61t74aj
+      type: object
+      properties:
+        rtmp_url:
+          type: string
+          format: uri
+          example: 'rtmp://a.rtmp.youtube.com/live2'
+          description: RTMP URL to stream to
   parameters:
     Content-Type:
       name: Content-Type
@@ -3093,12 +3140,12 @@ components:
               preset_name:
                 type: string
                 description: Name of the preset to apply to this participant.
-              client_specific_id:
+              custom_participant_id:
                 type: string
                 description: ID used internally by the client.
             required:
               - preset_name
-              - client_specific_id
+              - custom_participant_id
     EditParticipantBody:
       content:
         application/json:
@@ -3131,6 +3178,10 @@ components:
                 description: ID of the meeting to record.
               storage_config:
                 $ref: '#/components/schemas/StorageConfig'
+              video_config:
+                $ref: '#/components/schemas/VideoConfig'
+              live_streaming_config:
+                $ref: '#/components/schemas/LivestreamingConfig'
             required:
               - meeting_id
     CreatePresetBody:
@@ -3433,7 +3484,7 @@ components:
                   data:
                     type: object
                     properties:
-                      client_specific_id:
+                      custom_participant_id:
                         type: string
                       preset_id:
                         type: string
@@ -3448,7 +3499,7 @@ components:
                         format: date-time
                         description: Timestamp this object was updated at.
                     required:
-                      - client_specific_id
+                      - custom_participant_id
                       - preset_id
                       - created_at
                       - updated_at
@@ -3613,7 +3664,7 @@ components:
     Bearer:
       type: http
       scheme: bearer
-      description: Provide bearer token for a participant who has permissions for recording. Note that this is only useful for the recording routes
+      description: Provide bearer token for a participant who has permissions for recording. Note that this is only useful for the `/recordings` routes.
 tags:
   - name: Meetings
   - name: Presets
