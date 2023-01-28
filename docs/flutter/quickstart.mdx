@@ -1,18 +1,18 @@
 ---
 title: Quickstart
-description: Quickstart guide for iOS mobile core.
+description: Quickstart guide for Dyte's Flutter UI Kit.
 sidebar_position: 1
 slug: /
 ---
 
-# iOS Core SDK Quickstart
+# Quickstart
 
-This quickstart shows how to use Dyte's iOS Core SDK to add live video and audio
-to your iOS applications.
+This quickstart shows how to use Dyte's Flutter UI Kit SDK to add live video and
+audio to your Flutter applications.
 
-For getting started quickly, you can use our
-[sample code](https://github.com/dyte-in/mobile-core-sample-ios). You can clone
-and run a sample application from the iOS Core SDK GitHub repository.
+For getting started quickly, you can use our sample code. You can clone and run
+a sample application from the
+[Flutter UI Kit Sample App GitHub repository](https://github.com/dyte-in/sample-android-ui-kit).
 
 ## Objective
 
@@ -21,195 +21,116 @@ You’ll learn how to:
 - Install the Dyte SDK
 - Initialize the SDK
 - Configure a Dyte meeting
-- Initialize the Dyte meeting
-- And go live with your Dyte meeting
+- Launch the meeting UI
 
 ## Before Getting Started
 
-- Make sure you've read the
-  [Getting Started with Dyte](https://docs.dyte.io/getting-started) topic and
-  completed the steps in the
-  [Integrate Dyte](https://docs.dyte.io/getting-started#integrate-dyte) section.
-  You must complete the following steps:
-  - Create a [Dyte Developer Account](https://dev.dyte.io/)
-  - Create [Presets](https://dev.dyte.io/roles-presets)
-  - Create a
-    [Dyte Meeting](https://docs.dyte.io/api/?v=v2#/operations/create_meeting)
-  - [Add Participant](https://docs.dyte.io/api/?v=v2#/operations/add_participant)
-    to the meeting
-- Install
-  [Xcode](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwin55bqodH8AhUVQXwKHaR-DAsQFnoECA0QAQ&url=https%3A%2F%2Fapps.apple.com%2Fus%2Fapp%2Fxcode%2Fid497799835%3Fmt%3D12&usg=AOvVaw2fEvMbfRtGhB4SPHYB54NX)
-- Ensure that Rosetta is installed with Xcode on Mac computers with Apple
-  silicon.
-- Make sure your Mac computers are running macOS version 12.0 Monterey or
-  higher.
+Make sure you've read the
+[Getting Started with Dyte](https://docs.dyte.io/getting-started) topic and
+completed the steps in the
+[Integrate Dyte](https://docs.dyte.io/getting-started#integrate-dyte) section.
+You must complete the following steps:
+
+- Create a [Dyte Developer Account](https://dev.dyte.io/)
+- Create [Presets](https://dev.dyte.io/roles-presets)
+- Create a
+  [Dyte Meeting](https://docs.dyte.io/api/?v=v2#/operations/create_meeting)
+- [Add Participant](https://docs.dyte.io/api/?v=v2#/operations/add_participant)
+  to the meeting
 
 ## Step 1: Install the SDK
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+1. Install the SDK from [pub](https://pub.dev).
 
-:::tip iOS minimum version 12.0
+```shell
 
-We support minimum OS version `12.0` for our iOS SDK.
+flutter pub add dyte_uikit
+ 
+```
+
+:::tip Note
+
+Set `compileSdkVersion 33` & `minSdkVersion 21` inside `build.gradle` file of android.
 
 :::
 
-1. Add the following line to your `Podfile`
-
-```ruby
-pod 'DyteiOSCore'
-```
-
-2. Install the client SDK from pod
-
-```shell
-pod install
-```
-
-3. Add the fonts and permission entries in `info.plist` - the strings are
-   displayed in the permission pop-ups, feel free to customize them to suit your
-   audience
-
-```xml
-<key>NSBluetoothPeripheralUsageDescription</key>
-<string>We will use your Bluetooth to access your Bluetooth headphones.</string>
-<key>NSBluetoothAlwaysUsageDescription</key>
-<string>We will use your Bluetooth to access your Bluetooth headphones.</string>
-<key>NSCameraUsageDescription</key>
-<string>For people to see you during meetings, we need access to your camera.</string>
-<key>NSMicrophoneUsageDescription</key>
-<string>For people to hear you during meetings, we need access to your microphone.</string>
-<key>NSPhotoLibraryUsageDescription</key>
-<string>For people to share, we need access to your photos.</string>
-<false/>
-```
-
 ## Step 2: Initialize the SDK
 
-The `DyteMobileClient` is the main class of the SDK. It is the main entry point
-of the SDK. It is the only class that you need to instantiate in order to use
-the SDK. To instantiate DyteMobileClient, you should use
-`DyteiOSClientBuilder().build()`.
-
-```swift
-let meeting = DyteiOSClientBuilder().build()
-```
-
-Add listeners and implement callback stubs
-
-```swift
-meeting.addMeetingRoomEventsListener(meetingRoomEventsListener: self)
-meeting.addParticipantEventsListener(participantEventsListener: self)
-meeting.addSelfEventsListener(selfEventsListener: self)
-```
-
-Now you can use `meeting` to join in the room. First step is to establish a
-connection to the meeting server, you can do that with
-
-## Step 3: Set the meeting properties
-
-You can get the `roomName` and `authToken` using our backend APIs. Please refer
-[this for room name](https://docs.dyte.io/api#/operations/createMeeting) &
-[this for auth token](https://docs.dyte.io/api#/operations/addParticipant)
-
-For V1 APIs:
-
-```swift
-let meetingInfo = DyteMeetingInfo(authToken: authToken,
-                                          roomName: meetingText,
-                                          enableAudio: true,
-                                          enableVideo: true)
-
-```
-
-For V2 APIs: (Note: roomName is not required for v2 APIs)
-
-```swift
-let meetingInfo = DyteMeetingInfo(authToken: authToken,
-                                          enableAudio: true,
-                                          enableVideo: true)
-
-```
-
-## Step 4: Initialize
-
-For V1 APIs:
-
-```swift
-meeting.doInit(dyteMeetingInfo: meetingInfo)
-```
-
-For V2 APIs:
-
-```swift
-dyteMobileClient?.doInit(dyteMeetingInfo_: meetingInfo)
-```
-
-## Step 5: Connect to the meeting
-
-after `onMeetingInitCompleted()` Now to join in the room, use
-
-```swift
-meeting.joinRoom()
-```
-
-:::info Join room event listeners Once you call `joinRoom()`, you can listen to
-callbacks for this action on meeting object by registering observer. :::
-
-```swift
-extension MeetingViewModel: DyteSelfEventsListener {
-    func onMeetingRoomJoinStarted() {
-        // meeting join started
-    }
-
-    func onMeetingRoomJoined() {
-        // meeting room joined succesfully
-    }
-
-    func onMeetingRoomJoinFailed(exception: KotlinException) {
-        // error in joining meeting room.
-    }
-  }
-```
-
-And voila, you just joined a room with Dyte's mobile SDK.
-
-### Leave the room
-
-Once the meeting is over, you can leave the meeting room.
-
-To leave the meeting you can call `leaveRoom()` on `meeting` object.
-
-```swift
-meeting.leaveRoom()
-```
-
-:::info Leave room event listeners You can listen to `leaveRoom()` callbacks by
-registering obsever on meeting object as follows :::
-
-```swift
-extension MeetingViewModel: DyteSelfEventsListener {
-    func onMeetingRoomLeaveStarted() {
-        // meeting room leave started
-    }
-
-    func onMeetingRoomLeft() {
-        // meeting room leave completed
-    }
-}
-```
-
-### For iOS release builds
-
-Disable `BITCODE` in your Podfile.
+The `DyteUIKit` is the main class of the SDK. It is the entry point and
+the only class required to initialize Dyte SDK.
 
 ```dart
-post_install do |installer|
-   installer.pods_project.targets.each do |target|
-       target.build_configurations.each do |config|
-           config.build_settings['ENABLE_BITCODE'] = 'NO'
-       end
-   end
-end
+final meetingInfo = DyteMeetingInfo(authToken: '<auth_token>');
+
+// This is optional, it can be used to configure the color of the meeting.
+final configurations = Configurations(
+  baseBackground: Color(yourBaseColor),
+  basePrimary: Color(yourPrimaryColor),
+  textColor: Color(yourTextColor),
+);
+
+final DyteUIKit uiKit = DyteUIKit(
+  meetingInfo: DyteMeetingInfo(
+    roomName: meetingRoomName,
+    enableAudio: true,
+    enableVideo: true,
+    displayName: 'Flutter UI kit',
+    authToken: authToken,
+  ),
+);
+
+// dyteMeeting is the meeting widget and it can be used to render the uikit.
+final dyteMeeting = uiKit.loadUI();
+
 ```
+
+You need to create
+
+## Step 3: Configure a Dyte meeting
+
+Set the properties in the `DyteMeetingInfo` class. You just need to provide
+the participant's `authToken`.
+
+| Name        | Description                                                                                                                                                                                                                                                                                                                                   |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authToken` | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
+
+```dart
+final meetingInfo = DyteMeetingInfo(authToken: '<auth_token>');
+```
+
+## Step 4: Launch the meeting UI
+
+To launch the meeting UI all you need to do is add the `dyteMeeting` as a child.
+
+```dart
+
+import 'package:dyte_uikit/dyte_uikit.dart';
+import 'package:flutter/material.dart';
+
+class DyteMeetingPage extends StatelessWidget {
+  const DyteMeetingPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final DyteUIKit uiKit = DyteUIKit(
+      meetingInfo: DyteMeetingInfo(
+        roomName: meetingRoomName,
+        enableAudio: true,
+        enableVideo: true,
+        displayName: 'Flutter UI kit',
+        authToken: authToken,
+      ),
+    );
+    return uiKit.loadUI();
+  }
+}
+
+
+```
+
+Here is a pictorial representation of all the config options defined below.
+
+![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-setup.png)
+![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-meeting.png)
+![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-meeting-options.png)
