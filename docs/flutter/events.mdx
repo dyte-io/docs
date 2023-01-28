@@ -4,165 +4,274 @@ sidebar_position: 6
 
 # Events
 
-To integrate well with modern workflows, Dyte SDK also emits a rich set of
-events on meeting events and state changes. Using these events on the client
-side, you can make your app event driven and respond to changes in the meeting
-in real-time. You can subscribe to the following events on the `meeting` object,
-which is an instance of [`Meeting`](./reference/meeting).
+## Local User - Events
 
-### Connected to the meeting
+You can subscribe to various events on the local user by implementing
+`DyteSelfEventsListener` and passing the object to
+`meeting.addSelfEventsListener(dyteSelfEventsListener)`.
 
-This event is triggered when the participant has connected to the meeting but
-hasn't started producing or consuming content streams. Think of this as
-establishing a successful connection to the meeting and nothing else.
+### Room joined
 
-<!-- ```dart
-meeting.events.on('connect', this, (ev, cont) {
+Triggered when the room join event completes and now the meeting is ready to
+produce and consume media.
 
-});
-``` -->
-
-```dart
-meeting.events.on('meetingConnected', this, (ev, cont) {
-
-});
+```swift
+extension MeetingViewModel: DyteSelfEventsListener {
+    func onRoomJoined() {
+        //Room Joined
+    }
+}
 ```
 
-### Joined the meeting
+### Video update
 
-This event is triggered when the participant actually joins the meeting, and can
-start producing as well as consuming content streams.
+Triggered when the user starts / stops the video using `enableVideo` or
+`disableVideo`
 
-```dart
-meeting.events.on('meetingJoin', this, (ev, cont) {
-
-});
+```kotlin
+extension MeetingViewModel: DyteSelfEventsListener {
+    func onVideoUpdate(videoEnabled: Bool) {
+      if (videoEnabled) {
+        // video is enabled, and other participants in room can see local user
+      } else {
+        // video is disabled, and other participants in room can not see local user.
+      }
+    }
+}
 ```
 
-### Disconnected from the meeting
+### Audio update
 
-This event is triggered when the participant gets disconnected from the meeting
-for any reason. It could be a bad network connection, the meeting being exited
-by the participant manually, the meeting tab / browser / app being closed by the
-participant, or just any other reason.
+Triggered when the user starts / stops the audio using `enableAudio` or
+`disableAudio`
 
-```dart
-meeting.events.on('meetingDisconnected', this, (ev, cont) {
+```swift
 
-});
+extension MeetingViewModel: DyteSelfEventsListener {
+    func onAudioUpdate(audioEnabled: Bool) {
+      if (audioEnabled) {
+        // audio is enabled, and other participants in room can hear local user
+      } else {
+        // audio is disabled, and other participants in room can not hear local user.
+      }
+    }
+}
 ```
 
-### End of the meeting
+### Room disconnected update
 
-This event is triggered when the meeting is ended by the host or by the
-organization (as an admin function). In this case, all the participants are
-kicked out and you can take actions such as asking for feedback or redirecting
-to an exercise.
+Triggered when the user is disconnected due to media/network errors
 
-```dart
-meeting.events.on('meetingEnd', this, (ev, cont) {
-
-});
+```kotlin
+extension MeetingViewModel: DyteSelfEventsListener {
+    func onMeetingRoomDisconnected() {
+      //disconnected
+    }
+}
 ```
 
-### Input media devices get connected to the meeting
+### Proximity changed
 
-This event is triggered when the participant's local media input devices
-(camera, mic) are initialized and connected to the meeting for the first time.
-Since the media device states can be toggled only after the device is connected,
-you need to use this event to manage the starting state of participant's audio
-or video.
+Triggered when there is any change in proximity. Meaning if device is near ear
+piece which triggers display on/off.
 
-```dart
- meeting.events.on('localMediaConnected', null, (a, b) {
-
- });
+```swift
+extension MeetingViewModel: DyteSelfEventsListener {
+    func onProximityChanged(isNear: Bool) {
+      // isNear
+      // if true, display should be turned off, as user might be speaking through earpience
+      // if false, display should be tunred on, as user might be looking at display and listening through speaker/earphones.
+    }
+}
 ```
 
-### Another participant joins the meeting
+### Waitlist status
 
-This event is triggered when another participant joins the meeting. "Join" here
-as the same context as the `meetingJoined` event: so when that event triggers
-for the a participant, this event triggers for all other participants that have
-already joined the meeting.
+For meetings whose waiting room is enabled:
 
-```dart
-import 'package:dyte_client/dyteParticipant.dart';
-meeting.events.on('participantJoin', this, (ev, cont) {
-    DyteParticipant p = ev.eventData as DyteParticipant;
-});
+To get status of localUser in waiting room we can use
+
+```swift
+let waitListStatus = meeting.localUser.waitListStatus
 ```
 
-### Another participant leaves the meeting
+Developers can listen to those changes in `onWaitListStatusUpdate()` callbacks
 
-This event is triggered when another participant disconnects from the meeting.
-"Disconnect" here as the same context as the `disconnect` event: so when that
-event triggers for the a participant, this event triggers for all other
-participants that have already joined the meeting.
+```swift
+extension MeetingViewModel: DyteSelfEventsListener {
+    func onWaitListStatusUpdate(waitListStatus: WaitListStatus) {
 
-```dart
-import 'package:dyte_client/dyteParticipant.dart';
-meeting.events.on('participantLeave', this, (ev, cont) {
-    DyteParticipant p = ev.eventData as DyteParticipant;
-});
+    }
+}
 ```
 
-<!-- ### Receiving a chat message
+## Participants list events
 
-This event is triggered when the participant receives a chat message. The `chatMessage` is an instance of [`ChatMessage`](./reference/chat-message), whose prototype is defined in the reference section and can be directly used as a type if you prefer using TypeScript bindings.
+You can subscribe to events for all participants by implementing
+`DyteParticipantEventsListener` callback and then passing that object to
+`meeeting.addParticipantEventsListener(dyteParticipantEventsListener)` method.
+Here are the supported methods:
 
-```dart
-meeting.events.on('chatMessage', this, (ev, cont) {
+### Participant joined
 
-});
+Triggers an event when any participant joins the meeting.
+
+```swift
+    extension MeetingViewModel: DyteParticipantEventsListener {
+        func onParticipantJoin(participant: DyteMeetingParticipant) {
+            // your code here to handle new participant
+        }
+    }
 ```
 
-### Receiving a custom broadcast event
+### Participant left
 
-This event is triggered when a custom message is broadcast to all participants in the meeting. A custom message may contain any serializable data. You can read more on how to [send these messages here](./advanced-usage#send-a-custom-message-to-other-participants-in-the-meeting-p2p-message--data-exchange).
+Triggers an event when any participant leaves the meeting.
 
-```dart
-meeting.events.on('roomMessage', this, (ev, cont) {
-
-});
+```swift
+    extension MeetingViewModel: DyteParticipantEventsListener {
+        func onParticipantLeave(participant: DyteMeetingParticipant) {
+            // your code here to handle participant left from meeting
+        }
+    }
 ```
 
-### Receiving a custom targeted event
+### Screenshare updates
 
-This event is triggered when a custom message is targeted to a particular participant in the meeting and only the target participant receives this event. A custom message may contain any serializable data. You can read more on how to [send these messages here](./advanced-usage#send-a-custom-message-to-other-participants-in-the-meeting-p2p-message--data-exchange).
+Triggers an event when there is any change in screenshares in a meeting.
 
-```dart
-meeting.events.on('message', this, (ev, cont) {
-
-});
+```swift
+    extension MeetingViewModel: DyteParticipantEventsListener {
+        func onScreenSharesUpdated() {
+            // your code here to handle screenshares from meeting
+            // you can use `meeting.participants.screenshares` to get latest screenshare participants
+        }
+    }
 ```
 
-### Detecting change in active speaker
+### Grid change
 
-This event is triggered when the active speaker in the meeting changes. Active speaker is the participant whose audio level has most recently been the highest (kind of like LRU with the selection factor being audio level). The `participant` is an instance of `Participant`, whose prototype is defined below in the reference section and can be directly used as a type if you prefer using TypeScript bindings.
+Whenever there is any change in `GridInfo` for the room following method is
+called.
 
-```dart
-meeting.events.on('activeSpeaker'  this,((ev, cont) =
-> {
-});
+```swift
+    extension MeetingViewModel: DyteParticipantEventsListener {
+        func onGridUpdated(gridInfo: GridInfo) {
+            // your code here to handle grid changes.
+        }
+    }
 ```
 
-### Recording started (version > 0.3.11)
+### Video update
 
-This event is triggered when a recording of the meeting is started by the host or by the organization (as an admin function). You can use this event to show a popup or a warning to the participants about the meeting being recorded.
+Trigger an event when any participant starts / stops video.
 
-```dart
-meeting.events.on('recordingStarted', this, (ev, cont) {
-
-});
+```swift
+    extension MeetingViewModel: DyteParticipantEventsListener {
+        func onVideoUpdate(videoEnabled: Bool, participant: DyteMeetingParticipant) {
+            // your code here to handle participant video toggle update
+        }
+    }
 ```
 
-### Recording stopped (version > 0.3.11)
+### Audio update
 
-This event is triggered when a recording of the meeting is started by the host or by the organization (as an admin function). You can use this event to tell the participants about the recording being stopped.
+Trigger an event when any participant starts / stops audio.
 
-```dart
-meeting.events.on('recordingStopped', this, (ev, cont) {
+```swift
+    extension MeetingViewModel: DyteParticipantEventsListener {
+        func onAudioUpdate(audioEnabled: Bool, participant: DyteMeetingParticipant) {
+            // your code here to handle participant audio toggle update
+        }
+    }
+```
 
-});
-``` -->
+### Active speaker
+
+Trigger an event when any is change in active speaker in the meeting.
+
+```swift
+    extension MeetingViewModel: DyteParticipantEventsListener {
+        func onActiveSpeakerChanged(participant: DyteMeetingParticipant) {
+            // your code here to handle active speaker
+        }
+
+        func onNoActiveSpeaker() {
+            // your code here to handle no active speaker
+        }
+    }
+```
+
+### Pinned participant
+
+Trigger an event when any is change in pinned participant in the meeting.
+
+```swift
+    extension MeetingViewModel: DyteParticipantEventsListener {
+        func onParticipantPinned(participant: DyteMeetingParticipant) {
+            // your code here to show pinned participant
+        }
+
+        func onParticipantUnpinned() {
+            // your code here to remove pinned participant
+        }
+    }
+```
+
+### Active participants list change
+
+Triggers an event when any change in active participants list in the meeting.
+
+```swift
+    extension MeetingViewModel: DyteParticipantEventsListener {
+        func onActiveParticipantsChanged(active: [DyteMeetingParticipant]) {
+            // your code here to refresh active participants
+        }
+    }
+```
+
+## Recording
+
+The `meeting.recording` object can be used start and stop recordings in a
+meeting. You can also get the current status of a recording using this API.
+
+The `meeting.recording` object has the following properties:
+
+- `recordingState`: Indicates the current recording state of the meeting.
+
+### Get active recording state
+
+The `meeting.recording.recordingState` property describes the current state of
+the recording. The valid states are `IDLE`, `STARTING`, `RECORDING`, and
+`STOPPING`.
+
+### Listen to recording state changes
+
+The changes to `meeting.recording.recordingState` can be listened by
+implementing `onMeetingRecordingStateUpdated` from
+`DyteMeetingRoomEventsListener`. You can attach this obserbver by calling
+`meeting.addMeetingRoomEventsListener(listener)`.
+
+```kotlin
+meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
+    override fun onMeetingRecordingStarted() {
+      super.onMeetingRecordingStarted()
+      // on recording started
+    }
+
+    override fun onMeetingRecordingEnded() {
+      super.onMeetingRecordingEnded()
+      // on recording ended
+    }
+
+    override fun onMeetingRecordingStateUpdated(state: DyteRecordingState) {
+      super.onMeetingRecordingStateUpdated(state)
+      // on recording state update
+    }
+
+    override fun onMeetingRecordingStopError(e: Exception) {
+      super.onMeetingRecordingStopError(e)
+      // when local user tried to end recording but it fails
+    }
+  })
+```

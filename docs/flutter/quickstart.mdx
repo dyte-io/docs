@@ -1,94 +1,215 @@
 ---
+title: Quickstart
+description: Quickstart guide for iOS mobile core.
 sidebar_position: 1
 slug: /
 ---
 
-# Quickstart
+# iOS Core SDK Quickstart
 
-:::info Before Getting Started
+This quickstart shows how to use Dyte's iOS Core SDK to add live video and audio
+to your iOS applications.
 
-Before you start integrating Dyte into your application, make sure you've read
-the [Getting Started with Dyte](/getting-started) topic and completed the steps
-in the [Integrate Dyte](/getting-started#integrate-dyte) section.
+For getting started quickly, you can use our
+[sample code](https://github.com/dyte-in/mobile-core-sample-ios). You can clone
+and run a sample application from the iOS Core SDK GitHub repository.
+
+## Objective
+
+You’ll learn how to:
+
+- Install the Dyte SDK
+- Initialize the SDK
+- Configure a Dyte meeting
+- Initialize the Dyte meeting
+- And go live with your Dyte meeting
+
+## Before Getting Started
+
+- Make sure you've read the
+  [Getting Started with Dyte](https://docs.dyte.io/getting-started) topic and
+  completed the steps in the
+  [Integrate Dyte](https://docs.dyte.io/getting-started#integrate-dyte) section.
+  You must complete the following steps:
+  - Create a [Dyte Developer Account](https://dev.dyte.io/)
+  - Create [Presets](https://dev.dyte.io/roles-presets)
+  - Create a
+    [Dyte Meeting](https://docs.dyte.io/api/?v=v2#/operations/create_meeting)
+  - [Add Participant](https://docs.dyte.io/api/?v=v2#/operations/add_participant)
+    to the meeting
+- Install
+  [Xcode](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwin55bqodH8AhUVQXwKHaR-DAsQFnoECA0QAQ&url=https%3A%2F%2Fapps.apple.com%2Fus%2Fapp%2Fxcode%2Fid497799835%3Fmt%3D12&usg=AOvVaw2fEvMbfRtGhB4SPHYB54NX)
+- Ensure that Rosetta is installed with Xcode on Mac computers with Apple
+  silicon.
+- Make sure your Mac computers are running macOS version 12.0 Monterey or
+  higher.
+
+## Step 1: Install the SDK
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+:::tip iOS minimum version 12.0
+
+We support minimum OS version `12.0` for our iOS SDK.
 
 :::
 
-Get the `roomName` for the meeting and the participant's `authToken` from our
-backend APIs (read more about our server APIs [here](/api/)), and pass them to
-Dyte's `DyteMeeting` widget.
+1. Add the following line to your `Podfile`
 
-1. Import the package.
-
-```dart
-import 'package:dyte_client/dyte.dart';
-import 'package:dyte_client/dyteMeeting.dart';
+```ruby
+pod 'DyteiOSCore'
 ```
 
-2. Pass relevant information to `DyteMeeting` widget.
+2. Install the client SDK from pod
 
-```dart
-SizedBox(
-    width: <width>,
-    height: <height>,
-    child: DyteMeeting(
-        roomName: "<roomName>",
-        authToken: "<authToken>",
-        onInit: (DyteMeetingHandler meeting) async {
-          // your handler
-        },
-    )
-)
+```shell
+pod install
 ```
 
-You can use any constraining widget (not restricted to SizedBox), the parent
-widget just needs to have a `maxHeight` and `maxWidth`.
+3. Add the fonts and permission entries in `info.plist` - the strings are
+   displayed in the permission pop-ups, feel free to customize them to suit your
+   audience
 
-For example, for a full screen meeting you could use the following code.
+```xml
+<key>NSBluetoothPeripheralUsageDescription</key>
+<string>We will use your Bluetooth to access your Bluetooth headphones.</string>
+<key>NSBluetoothAlwaysUsageDescription</key>
+<string>We will use your Bluetooth to access your Bluetooth headphones.</string>
+<key>NSCameraUsageDescription</key>
+<string>For people to see you during meetings, we need access to your camera.</string>
+<key>NSMicrophoneUsageDescription</key>
+<string>For people to hear you during meetings, we need access to your microphone.</string>
+<key>NSPhotoLibraryUsageDescription</key>
+<string>For people to share, we need access to your photos.</string>
+<false/>
+```
+
+## Step 2: Initialize the SDK
+
+The `DyteMobileClient` is the main class of the SDK. It is the main entry point
+of the SDK. It is the only class that you need to instantiate in order to use
+the SDK. To instantiate DyteMobileClient, you should use
+`DyteiOSClientBuilder().build()`.
+
+```swift
+let meeting = DyteiOSClientBuilder().build()
+```
+
+Add listeners and implement callback stubs
+
+```swift
+meeting.addMeetingRoomEventsListener(meetingRoomEventsListener: self)
+meeting.addParticipantEventsListener(participantEventsListener: self)
+meeting.addSelfEventsListener(selfEventsListener: self)
+```
+
+Now you can use `meeting` to join in the room. First step is to establish a
+connection to the meeting server, you can do that with
+
+## Step 3: Set the meeting properties
+
+You can get the `roomName` and `authToken` using our backend APIs. Please refer
+[this for room name](https://docs.dyte.io/api#/operations/createMeeting) &
+[this for auth token](https://docs.dyte.io/api#/operations/addParticipant)
+
+For V1 APIs:
+
+```swift
+let meetingInfo = DyteMeetingInfo(authToken: authToken,
+                                          roomName: meetingText,
+                                          enableAudio: true,
+                                          enableVideo: true)
+
+```
+
+For V2 APIs: (Note: roomName is not required for v2 APIs)
+
+```swift
+let meetingInfo = DyteMeetingInfo(authToken: authToken,
+                                          enableAudio: true,
+                                          enableVideo: true)
+
+```
+
+## Step 4: Initialize
+
+For V1 APIs:
+
+```swift
+meeting.doInit(dyteMeetingInfo: meetingInfo)
+```
+
+For V2 APIs:
+
+```swift
+dyteMobileClient?.doInit(dyteMeetingInfo_: meetingInfo)
+```
+
+## Step 5: Connect to the meeting
+
+after `onMeetingInitCompleted()` Now to join in the room, use
+
+```swift
+meeting.joinRoom()
+```
+
+:::info Join room event listeners Once you call `joinRoom()`, you can listen to
+callbacks for this action on meeting object by registering observer. :::
+
+```swift
+extension MeetingViewModel: DyteSelfEventsListener {
+    func onMeetingRoomJoinStarted() {
+        // meeting join started
+    }
+
+    func onMeetingRoomJoined() {
+        // meeting room joined succesfully
+    }
+
+    func onMeetingRoomJoinFailed(exception: KotlinException) {
+        // error in joining meeting room.
+    }
+  }
+```
+
+And voila, you just joined a room with Dyte's mobile SDK.
+
+### Leave the room
+
+Once the meeting is over, you can leave the meeting room.
+
+To leave the meeting you can call `leaveRoom()` on `meeting` object.
+
+```swift
+meeting.leaveRoom()
+```
+
+:::info Leave room event listeners You can listen to `leaveRoom()` callbacks by
+registering obsever on meeting object as follows :::
+
+```swift
+extension MeetingViewModel: DyteSelfEventsListener {
+    func onMeetingRoomLeaveStarted() {
+        // meeting room leave started
+    }
+
+    func onMeetingRoomLeft() {
+        // meeting room leave completed
+    }
+}
+```
+
+### For iOS release builds
+
+Disable `BITCODE` in your Podfile.
 
 ```dart
-import 'package:flutter/material.dart';
-import 'package:dyte_client/dyte.dart';
-
-void main() {
-  runApp(MaterialApp(home:MyApp()));
-}
-
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-
-    // get the page height, width
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-
-    return Scaffold(
-        body: Row(
-          children: <Widget>[
-            SizedBox(
-              width: width,
-              height: height,
-              child: DyteMeeting(
-                roomName: "<roomName>",
-                authToken: "<authToken>",
-                onInit: (DyteMeetingHandler meeting) async {
-                     var self = await meeting.self;
-                },
-              )
-            )
-          ],
-        ),
-    );
-  }
-}
+post_install do |installer|
+   installer.pods_project.targets.each do |target|
+       target.build_configurations.each do |config|
+           config.build_settings['ENABLE_BITCODE'] = 'NO'
+       end
+   end
+end
 ```
