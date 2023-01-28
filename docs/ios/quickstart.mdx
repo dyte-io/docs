@@ -4,13 +4,15 @@ description: Quickstart guide for iOS mobile core.
 sidebar_position: 1
 slug: /
 ---
+
 # iOS Core SDK Quickstart
 
-This quickstart shows how to use Dyte's iOS Core SDK to add live video and
-audio to your iOS applications.
+This quickstart shows how to use Dyte's iOS Core SDK to add live video and audio
+to your iOS applications.
 
-For getting started quickly, you can use our [sample code](https://github.com/dyte-in/mobile-core-sample-ios). You can clone and run
-a sample application from the iOS Core SDK GitHub repository.
+For getting started quickly, you can use our
+[sample code](https://github.com/dyte-in/mobile-core-sample-ios). You can clone
+and run a sample application from the iOS Core SDK GitHub repository.
 
 ## Objective
 
@@ -35,7 +37,8 @@ You’ll learn how to:
     [Dyte Meeting](https://docs.dyte.io/api/?v=v2#/operations/create_meeting)
   - [Add Participant](https://docs.dyte.io/api/?v=v2#/operations/add_participant)
     to the meeting
-- Install [Xcode](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwin55bqodH8AhUVQXwKHaR-DAsQFnoECA0QAQ&url=https%3A%2F%2Fapps.apple.com%2Fus%2Fapp%2Fxcode%2Fid497799835%3Fmt%3D12&usg=AOvVaw2fEvMbfRtGhB4SPHYB54NX)
+- Install
+  [Xcode](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwin55bqodH8AhUVQXwKHaR-DAsQFnoECA0QAQ&url=https%3A%2F%2Fapps.apple.com%2Fus%2Fapp%2Fxcode%2Fid497799835%3Fmt%3D12&usg=AOvVaw2fEvMbfRtGhB4SPHYB54NX)
 - Ensure that Rosetta is installed with Xcode on Mac computers with Apple
   silicon.
 - Make sure your Mac computers are running macOS version 12.0 Monterey or
@@ -81,13 +84,18 @@ pod install
 <string>For people to share, we need access to your photos.</string>
 <false/>
 ```
+
 ## Step 2: Initialize the SDK
 
-The `DyteMobileClient` is the main class of the SDK. It is the main entry point of the SDK. It is the only class that you need to instantiate in order to use the SDK. To instantiate DyteMobileClient, you should use `DyteiOSClientBuilder().build()`.
+The `DyteMobileClient` is the main class of the SDK. It is the main entry point
+of the SDK. It is the only class that you need to instantiate in order to use
+the SDK. To instantiate DyteMobileClient, you should use
+`DyteiOSClientBuilder().build()`.
 
 ```swift
 let meeting = DyteiOSClientBuilder().build()
 ```
+
 Add listeners and implement callback stubs
 
 ```swift
@@ -96,15 +104,17 @@ meeting.addParticipantEventsListener(participantEventsListener: self)
 meeting.addSelfEventsListener(selfEventsListener: self)
 ```
 
-Now you can use `meeting` to join in the room.
-First step is to establish a connection to the meeting server, you can do that with 
-
+Now you can use `meeting` to join in the room. First step is to establish a
+connection to the meeting server, you can do that with
 
 ## Step 3: Set the meeting properties
 
-You can get the `roomName` and `authToken` using our backend APIs. Please refer [this for room name](https://docs.dyte.io/api#/operations/createMeeting) & [this for auth token](https://docs.dyte.io/api#/operations/addParticipant)
+You can get the `roomName` and `authToken` using our backend APIs. Please refer
+[this for room name](https://docs.dyte.io/api#/operations/createMeeting) &
+[this for auth token](https://docs.dyte.io/api#/operations/addParticipant)
 
 For V1 APIs:
+
 ```swift
 let meetingInfo = DyteMeetingInfo(authToken: authToken,
                                           roomName: meetingText,
@@ -113,8 +123,8 @@ let meetingInfo = DyteMeetingInfo(authToken: authToken,
 
 ```
 
-For V2 APIs:
-(Note: roomName is not required for v2 APIs)
+For V2 APIs: (Note: roomName is not required for v2 APIs)
+
 ```swift
 let meetingInfo = DyteMeetingInfo(authToken: authToken,
                                           enableAudio: true,
@@ -125,28 +135,27 @@ let meetingInfo = DyteMeetingInfo(authToken: authToken,
 ## Step 4: Initialize
 
 For V1 APIs:
+
 ```swift
 meeting.doInit(dyteMeetingInfo: meetingInfo)
 ```
 
 For V2 APIs:
+
 ```swift
 dyteMobileClient?.doInit(dyteMeetingInfo_: meetingInfo)
 ```
 
-
 ## Step 5: Connect to the meeting
 
-after `onMeetingInitCompleted()` Now to join in the room, use 
+after `onMeetingInitCompleted()` Now to join in the room, use
 
 ```swift
 meeting.joinRoom()
 ```
 
-:::info Join room event listeners 
-Once you call `joinRoom()`, you can listen to
-callbacks for this action on meeting object by registering observer.
-:::
+:::info Join room event listeners Once you call `joinRoom()`, you can listen to
+callbacks for this action on meeting object by registering observer. :::
 
 ```swift
 extension MeetingViewModel: DyteSelfEventsListener {
@@ -176,20 +185,18 @@ To leave the meeting you can call `leaveRoom()` on `meeting` object.
 meeting.leaveRoom()
 ```
 
-:::info Leave room event listeners 
-You can listen to `leaveRoom()` callbacks by
-registering obsever on meeting object as follows
-:::
+:::info Leave room event listeners You can listen to `leaveRoom()` callbacks by
+registering obsever on meeting object as follows :::
 
 ```swift
 extension MeetingViewModel: DyteSelfEventsListener {
     func onMeetingRoomLeaveStarted() {
-        // meeting room leave started    
+        // meeting room leave started
     }
-    
+
     func onMeetingRoomLeft() {
         // meeting room leave completed
-    }      
+    }
 }
 ```
 
