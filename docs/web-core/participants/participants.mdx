@@ -30,6 +30,8 @@ The `meeting.participants` object has the following properties.
 - `pageCount`: Number of pages available in paginated mode.
 - `maxActiveParticipantsCount`: The maximum number of participants that can be
   present in the active state.
+- `lastActiveSpeaker `: This stores the `participantId` of the last participant
+  who spoke in the meeting.
 
 Therefore, if you were to make a grid of participants, you'd use the `active`
 map, but to display all participants in the meeting you'd use the `joined` map.
@@ -97,11 +99,25 @@ await meeting.participants.disableAllAudio();
 
 // disable video for all participants
 await meeting.participants.disableAllVideo();
+
+// mute a participant
+const participantId = '...';
+await meeting.participants.disableAudio(participantId);
+
+// disable video for a participant
+const participantId = '...';
+await meeting.participants.disableVideo(participantId);
 ```
 
-To remove all participants from a meeting, you can call the `kickAll()` method.
+To remove participants from a meeting, you can call the `kick()` or `kickAll()`
+method. The `kick()` method accepts a parameter called `participantId` (type
+`string`). This is the ID of participant to be kicked.
 
 ```ts
 // remove all participants from the meeting
 await meeting.participants.kickAll();
+
+// remove a participant from the meeting
+const participantId = '...';
+await meeting.partcipants.kick(participantId);
 ```

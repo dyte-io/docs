@@ -74,6 +74,26 @@ meeting.participants.joined.on('participantLeft', (participant) => {
 });
 ```
 
+### Participant pinned
+
+Trigger an event when a participant is pinned.
+
+```ts
+meeting.participants.joined.on('pinned', (participant) => {
+  console.log(`Participant with id "${participant.id}" was pinned`);
+});
+```
+
+### Participant unpinned
+
+Trigger an event when a participant is unpinned.
+
+```ts
+meeting.participants.joined.on('unpinned', (participant) => {
+  console.log(`Participant with id "${participant.id}" was unpinned`);
+});
+```
+
 ### Video update
 
 Trigger an event when any participant starts / stops video.
