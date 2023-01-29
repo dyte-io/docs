@@ -1125,7 +1125,7 @@ paths:
         - Organizations
       operationId: getAllOrgs
       security:
-        - userAuth: []
+        - OrgBearer: []
       parameters:
         - in: query
           name: per_page
@@ -1165,7 +1165,7 @@ paths:
         - Organizations
       operationId: createOrg
       security:
-        - userAuth: []
+        - OrgBearer: []
       requestBody:
         required: true
         content:
@@ -1205,7 +1205,7 @@ paths:
         - Organizations
       operationId: getOrg
       security:
-        - userAuth: []
+        - OrgBearer: []
       responses:
         '200':
           description: Operation successful
@@ -1232,7 +1232,7 @@ paths:
         - Organizations
       operationId: editOrg
       security:
-        - userAuth: []
+        - OrgBearer: []
       requestBody:
         required: true
         content:
@@ -1642,6 +1642,7 @@ components:
             - meeting.ended
             - meeting.participantJoined
             - meeting.participantLeft
+            - meeting.chatSynced
             - recording.statusUpdate
             - livestreaming.statusUpdate
           description: Events this webhook will send updates for
@@ -1652,6 +1653,7 @@ components:
               - meeting.ended
               - meeting.participantJoined
               - meeting.participantLeft
+              - meeting.chatSynced
               - recording.statusUpdate
               - livestreaming.statusUpdate
         created_at:
@@ -2322,7 +2324,7 @@ components:
           nullable: true
         record_on_start:
           type: boolean
-          description: Whether the meeting will be recorded as soon as someone joinrs or not.
+          description: Whether the meeting will be recorded as soon as someone joins or not.
         created_at:
           type: string
           format: date-time
@@ -2333,6 +2335,9 @@ components:
           format: date-time
           description: Timestamp the object was updated at.
           readOnly: true
+        live_stream_on_start:
+          type: boolean
+          description: Whether the meeting will be livestreamed as soon as someone joins or not.
       required:
         - id
         - created_at
@@ -3665,6 +3670,10 @@ components:
       type: http
       scheme: bearer
       description: Provide bearer token for a participant who has permissions for recording. Note that this is only useful for the `/recordings` routes.
+    OrgBearer:
+      type: http
+      scheme: bearer
+      description: Provide auth token obtained from Dyte CLI
 tags:
   - name: Meetings
   - name: Presets
@@ -3680,3 +3689,4 @@ externalDocs:
   description: ''
 security:
   - Authorization: []
+
