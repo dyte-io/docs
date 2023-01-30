@@ -1,6 +1,6 @@
 ---
 sidebar_position: 7
-web_core_version: 0.42.0
+web_core_version: 1.2.0
 ---
 
 <!-- Auto Generated Below -->
@@ -14,7 +14,7 @@ title.
   - [.viewType](#module_DyteMeta+viewType)
   - [.meetingStartedTimestamp](#module_DyteMeta+meetingStartedTimestamp)
   - ~~[.joined](#module_DyteMeta+joined)~~
-  - ~~[.roomName](#module_DyteMeta+roomName)~~
+  - [.roomName](#module_DyteMeta+roomName)
   - [.meetingTitle](#module_DyteMeta+meetingTitle)
 
 <a name="module_DyteMeta+viewType"></a>
@@ -22,7 +22,7 @@ title.
 ### meeting.meta.viewType
 
 The `viewType` tells the type of the meeting possible values are WEBINAR,
-GROUPCALL
+GROUP_CALL
 
 **Kind**: instance property of [<code>DyteMeta</code>](#module_DyteMeta)  
 <a name="module_DyteMeta+meetingStartedTimestamp"></a>
@@ -41,9 +41,7 @@ The timestamp of the time when the meeting started.
 **Kind**: instance property of [<code>DyteMeta</code>](#module_DyteMeta)  
 <a name="module_DyteMeta+roomName"></a>
 
-### ~~meeting.meta.roomName~~
-
-**_Deprecated_**
+### meeting.meta.roomName
 
 The room name of the meeting.
 

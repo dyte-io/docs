@@ -26,7 +26,7 @@ function ResultWithHeader() {
           id="theme.Playground.result"
           description="The result label of the live codeblocks"
         >
-          Result
+          Preview
         </Translate>
       </Header>
       {/* https://github.com/facebook/docusaurus/issues/5747 */}
