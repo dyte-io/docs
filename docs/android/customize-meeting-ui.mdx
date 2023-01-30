@@ -1,0 +1,147 @@
+---
+sidebar_position: 4
+---
+
+# Customize the meeting UI
+
+Dyte offers a host of customizations for the UI of meetings, some of which also
+defines the interactions the participants can have within a meeting room. While
+the initial values for these options are by degault set to ease the process on
+integration. You can override them at the client end based on specific use cases
+or events.
+
+Pass the config options at the time of configuring a Dyte meeting.
+
+```kotlin
+val imarticusColors = ColorTokens(
+      brand = BrandColor(
+        shade300 = Color.parseColor("#ffea76"),
+        shade400 = Color.parseColor("#ffe865"),
+        shade500 = Color.parseColor("#ffe554"),
+        shade600 = Color.parseColor("#e6ce4c"),
+        shade700 = Color.parseColor("#ccb743"),
+      ),
+      background = BackgroundColor(
+        shade600 = Color.parseColor("#121212"),
+        shade700 = Color.parseColor("#454545"),
+        shade800 = Color.parseColor("#898989"),
+        shade900 = Color.parseColor("#b1b1b1"),
+        shade1000 = Color.parseColor("#e1e1e1")
+      ),
+      text = TextColor(
+        onBrand = TextColor.TextColorOnBrand(
+          shade1000 = Color.parseColor("#ff002b4c"),
+          shade900 = Color.parseColor("#e0002b4c"),
+          shade800 = Color.parseColor("#c2002b4c"),
+          shade700 = Color.parseColor("#a3002b4c"),
+          shade600 = Color.parseColor("#85002b4c")
+        ),
+        onBackground = TextColor.TextColorOnBackground(
+          shade1000 = Color.parseColor("#ff050505"),
+          shade900 = Color.parseColor("#e0050505"),
+          shade800 = Color.parseColor("#c2050505"),
+          shade700 = Color.parseColor("#a3050505"),
+          shade600 = Color.parseColor("#85050505")
+        )
+      )
+    )
+
+    val tokens = DyteUITokens(colors = imarticusColors,
+      borderRadius = BorderRadiusToken.Circular,
+      borderWidth = BorderWidthToken.Thin)
+```
+
+```kotlin {7}
+val meetingInfo = = DyteMeetingInfoV2(
+  authToken = state.authToken,
+)
+val config = DyteUIKitConfig(
+  activity = this,
+  dyteMeetingInfo = meetingInfo,
+  designTokens = tokens
+)
+val dyteClient = DyteUIKitBuilder.build(config)
+dyteClient.loadUi()
+```
+
+Here is a pictorial representation of all the config options defined below.
+
+![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-opt1-setup.png)
+![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-opt1-meeting.png)
+![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-opt1-meeting-options.png)
+
+## Change the color scheme to your brand / theme
+
+You can change the color scheme of the meeting to reflect your brand and theme.
+Dyte allows you to specify four sets of color values.
+
+- `brandColor`: Your primary brand color.
+
+```kotlin
+BrandColor(
+    shade300 = Color.parseColor("#ffea76"),
+    shade400 = Color.parseColor("#ffe865"),
+    shade500 = Color.parseColor("#ffe554"),
+    shade600 = Color.parseColor("#e6ce4c"),
+    shade700 = Color.parseColor("#ccb743"),
+)
+```
+
+- `backgroundColor`: Your primary background color.
+
+```kotlin
+BackgroundColor(
+    shade600 = Color.parseColor("#121212"),
+    shade700 = Color.parseColor("#454545"),
+    shade800 = Color.parseColor("#898989"),
+    shade900 = Color.parseColor("#b1b1b1"),
+    shade1000 = Color.parseColor("#e1e1e1")
+)
+```
+
+- `textColor`: Your primary text color on brand color and text color on
+  background.
+
+```kotlin
+text = TextColor(
+    onBrand = TextColor.TextColorOnBrand(
+        shade1000 = Color.parseColor("#ff002b4c"),
+        shade900 = Color.parseColor("#e0002b4c"),
+        shade800 = Color.parseColor("#c2002b4c"),
+        shade700 = Color.parseColor("#a3002b4c"),
+        shade600 = Color.parseColor("#85002b4c")
+    ),
+    onBackground = TextColor.TextColorOnBackground(
+        shade1000 = Color.parseColor("#ff050505"),
+        shade900 = Color.parseColor("#e0050505"),
+        shade800 = Color.parseColor("#c2050505"),
+        shade700 = Color.parseColor("#a3050505"),
+        shade600 = Color.parseColor("#85050505")
+    )
+)
+```
+
+## Customise border radius of elements in the meeting
+
+```kotlin
+val tokens = DyteUITokens(colors = dyteColors, borderRadius = BorderRadiusToken.Rounded)
+```
+
+Then use this tokens as follows
+
+```kotlin {10}
+val meetingInfo = DyteMeetingInfo(
+    // meeting info
+)
+val config = DyteUIKitConfig(
+    activity = this,
+    dyteMeetingInfo = meetingInfo,
+    designTokens = tokens
+)
+val dyteUIKit = DyteUIKitBuilder.build(config)
+dyteUIKit.loadUi()
+```
+
+![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-opt2-setup.png)
+![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-opt2-meeting.png)
+![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-opt2-meeting-options.png)

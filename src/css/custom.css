@@ -805,6 +805,10 @@ body[data-sdk-menu='mobile'] [data-dropdown-sdks='mobile'] {
   display: flex;
 }
 
+body[data-sdk-menu='plugin'] [data-dropdown-sdks='plugin'] {
+  display: flex;
+}
+
 [data-dropdown-sdks-menu] {
   @apply border-0 border-l-4 border-solid border-transparent pl-4;
 }
@@ -971,6 +975,29 @@ img[src$='#terminal'] {
   line-height: 1.5;
 }
 
+details {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--docs-color-text-100) !important;
+  background: var(--docs-color-background-100) !important;
+  border: solid 2px var(--docs-color-code-background) !important;
+}
+
+details code {
+  background-color: var(--docs-color-background);
+}
+
+details p {
+  font-weight: 300;
+}
+
+@media screen and (max-width: 1160px) {
+  /* Hide icons when header UI breaks */
+  .pseudo-icon {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .section-content {
     grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -980,6 +1007,15 @@ img[src$='#terminal'] {
   }
 }
 
+/* Overriding Docusaurus styles */
+.collapsibleContent_node_modules-\@docusaurus-theme-common-lib-components-Details-styles-module {
+  border-top: 1px solid var(--code-border-color) !important;
+}
+
+.details_node_modules-\@docusaurus-theme-common-lib-components-Details-styles-module
+  > summary::before {
+  border-color: transparent transparent transparent var(--docs-color-text-100) !important;
+}
 @media only screen and (min-width: 768px) {
   img[alt='PresetEditor'] {
     max-width: 600px;

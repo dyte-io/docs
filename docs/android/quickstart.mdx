@@ -1,83 +1,164 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
+slug: /
 ---
 
 # Quickstart
 
-:::info Before Getting Started
+This quickstart shows how to use Dyte's Android UI Kit SDK to add live video and
+audio to your Android applications.
 
-Before you start integrating Dyte into your application, make sure you've read
-the [Getting Started with Dyte](/getting-started) topic and completed the steps
-in the [Integrate Dyte](/getting-started#integrate-dyte) section.
+For getting started quickly, you can use our sample code. You can clone and run
+a sample application from the
+[Android UI Kit Sample App GitHub repository](https://github.com/dyte-io/mobile-samples/tree/main/android-ui-kit).
+
+## Objective
+
+You’ll learn how to:
+
+- Install the Dyte SDK
+- Initialize the SDK
+- Configure a Dyte meeting
+- Launch the meeting UI
+- Optional Release app on Play Store
+
+## Before Getting Started
+
+Make sure you've read the
+[Getting Started with Dyte](https://docs.dyte.io/getting-started) topic and
+completed the steps in the
+[Integrate Dyte](https://docs.dyte.io/getting-started#integrate-dyte) section.
+You must complete the following steps:
+
+- Create a [Dyte Developer Account](https://dev.dyte.io/)
+- Create [Presets](https://dev.dyte.io/roles-presets)
+- Create a
+  [Dyte Meeting](https://docs.dyte.io/api/?v=v2#/operations/create_meeting)
+- [Add Participant](https://docs.dyte.io/api/?v=v2#/operations/add_participant)
+  to the meeting
+- Install [Android Studio](https://developer.android.com/studio)
+
+## Step 1: Install the SDK
+
+1. Install the SDK using maven dependency.
+
+```python
+  // other dependencies here
+  implementation 'io.dyte:uikit:1.2.0'
+```
+
+2. Add the following permissions to the AndroidManifest.xml file.
+
+```python
+<uses-permission android:name="android.permission.RECORD_AUDIO" />
+<uses-permission android:name="android.permission.CAMERA" />
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.BLUETOOTH" />
+<uses-permission android:name="android.permission.WAKE_LOCK" />
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+```
+
+:::tip Note
+
+If you intend to publish your app to the Google Play, you'll need to perform a
+few additional steps. So if you’re working on release builds and not debug
+builds, refer to the [Release Builds](#release-builds) section.
 
 :::
 
-Get the `roomName` for the meeting and the participant's `authToken` from our
-backend APIs (read more about our server APIs [here](/api/)), and pass them to
-Dyte's client SDK. To launch the meeting in your app the setup is
-straightforward. This will launch a fullscreen view with your meeting.
+## Step 2: Initialize the SDK
 
-<Tabs
-groupId="android-language"
-defaultValue="kotlin"
-values={[
-{ label: 'Kotlin', value: 'kotlin', },
-{ label: 'Java', value: 'java', },
-]
-}>
-<TabItem value="kotlin">
+The `DyteUIKitBuilder` is the main class of the SDK. It is the entry point and
+the only class required to initialize Dyte SDK.
 
 ```kotlin
-import dyte.io.uikit.DyteUIKitBuilder
-import dyte.io.uikit.DyteUIKitConfig
-import io.dyte.core.models.DyteMeetingInfo
-
-// Configure meeting parameters
-val meetingInfo = DyteMeetingInfo(
-    orgId = "YOUR_ORG_ID_HERE",
-    roomName = "ROOM_NAME_HERE",
-    authToken = "AUTH_TOKEN_HERE"
+val meetingInfo = = DyteMeetingInfoV2(
+  authToken = state.authToken,
 )
-// pass in activity context for the SDK
 val config = DyteUIKitConfig(
-    activity = this,
-    dyteMeetingInfo = meetingInfo,
+  activity = this,
+  dyteMeetingInfo = meetingInfo
 )
-// initialise an instance
-val dyteUIKit = DyteUIKitBuilder.build(config)
-// launch the activity
-dyteUIKit.loadUi()
+val dyteClient = DyteUIKitBuilder.build(config)
 ```
 
-</TabItem>
-<TabItem value="java">
+You need to create
 
-```java
-import dyte.io.uikit.DyteUIKit;
-import dyte.io.uikit.DyteUIKitBuilder;
-import dyte.io.uikit.DyteUIKitConfig;
-import io.dyte.core.models.DyteMeetingInfo;
+## Step 3: Configure a Dyte meeting
 
-// Configure meeting parameters
-DyteMeetingInfo meetingInfo = new DyteMeetingInfo(
-    "YOUR_ORG_ID_HERE",
-    "ROOM_NAME_HERE",
-    "AUTH_TOKEN_HERE",
-    true, // enable audio
-    true, // enable video
-    "BASE_URL_HERE",
-    "this is name" // display name here
-);
-// pass in activity context for the SDK
-DyteUIKitConfig config = new DyteUIKitConfig(
-    this,
-    meetingInfo
-);
-// initialise an instance
-DyteUIKit dyteUIKit = DyteUIKitBuilder.INSTANCE.build(config);
-// launch the activity
-dyteUIKit.loadUi();
+Set the properties in the `DyteMeetingInfoV2` class. You just need to provide
+the participant's `authToken`.
+
+| Name        | Description                                                                                                                                                                                                                                                                                                                                   |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authToken` | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
+
+```kotlin
+val meetingInfo = DyteMeetingInfoV2(
+                    authToken = '<auth_token>',
+                  )
 ```
 
-</TabItem>
-</Tabs>
+## Step 4: Launch the meeting UI
+
+To lanuch the meeting UI all you need to do is call `loadUi()` which will take
+care of everything for you.
+
+```kotlin
+dyteClient.loadUi()
+```
+
+Here is a pictorial representation of all the config options defined below.
+
+![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-setup.png)
+![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-meeting.png)
+![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-meeting-options.png)
+
+## For Android release builds
+
+If you intend to publish your app to the Google Play, perform the following
+steps after installing the SDKs. So if you’re working on release builds and not
+debug builds, do the following:
+
+Perform the following steps, for Android release builds:
+
+1. Create `/android/app/proguard-rules.pro` file.
+
+```python
+# Keep `Companion` object fields of serializable classes.
+# This avoids serializer lookup through `getDeclaredClasses` as done for named companion objects.
+-if @kotlinx.serialization.Serializable class **
+-keepclassmembers class <1> {
+   static <1>$Companion Companion;
+}
+
+# Keep `serializer()` on companion objects (both default and named) of serializable classes.
+-if @kotlinx.serialization.Serializable class ** {
+   static **$* *;
+}
+-keepclassmembers class <2>$<3> {
+   kotlinx.serialization.KSerializer serializer(...);
+}
+
+# keep webrtc classes
+-keep class org.webrtc.** { *; }
+-dontwarn org.chromium.build.BuildHooksAndroid
+
+# keep ktor classes
+-keep class io.ktor.** { *; }
+
+```
+
+2. Add the following to your `android/app/build.gradle` to import the proguard
+   configuration.
+
+```python
+buildTypes {
+        release {
+            ...
+            ...
+            ...
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+```

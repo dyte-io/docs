@@ -1,7 +1,7 @@
 const template = document.createElement('template');
 
 const ctaLink =
-  'https://www.producthunt.com/products/live-video-calling-sdk-by-dyte';
+  'https://www.producthunt.com/posts/live-video-calling-sdk-by-dyte';
 
 template.innerHTML = `
     <style>
@@ -174,10 +174,9 @@ template.innerHTML = `
     <div role="banner" id="ph-banner" class="banner">
         <div class="banner-content">
             <div class="banner-image"><img src="/img/ph-banner/meow.svg" alt=""/> <img src="/img/ph-banner/cat.svg" alt=""/></div>
-            <div class="banner-text banner-primary-text">Dyte is launching soon on Product Hunt!</div>
+            <div class="banner-text banner-primary-text">We are live on Product Hunt 🎉!</div>
             <div class="banner-cta-container">
-                <a style="text-decoration: none; cursor: pointer; margin: 0 12px;" target="_blank" href="${ctaLink}"><div class="banner-cta">Get 100k Free Min</div></a>
-                <div class="banner-text"><span id="days-diff"></span>d :<span style="padding-left:4px" id="hours-diff"></span>h :<span style="padding-left:4px" id="minutes-diff"></span>m</div>
+                <a style="text-decoration: none; cursor: pointer; margin: 0 12px;" target="_blank" href="${ctaLink}"><div class="banner-cta">Unlock 100k Free mins</div></a>
             </div>
         </div>
         <a id="close-ph-banner" class="close-banner">
@@ -186,10 +185,7 @@ template.innerHTML = `
     </div>
 `;
 const DAY = 1000 * 60 * 60 * 24;
-const HOUR = 1000 * 60 * 60;
-const MINUTE = 1000 * 60;
 const COOKIE_NAME = 'ph-banner';
-const END_DATE = '2023-01-30T00:01:00.000Z';
 
 function setCookie(value) {
   const date = new Date();
@@ -246,32 +242,13 @@ function shouldShowBanner() {
 }
 
 class Banner extends HTMLElement {
-  time = new Date(END_DATE).getTime();
-
-  days = '00';
-
-  hours = '00';
-
-  minutes = '00';
-
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
-  getTime() {
-    // compute date, hours and minutes from time
-    const now = new Date().getTime();
-    const diff = this.time - now;
-    const days = Math.floor(diff / DAY);
-    const hours = Math.floor((diff % DAY) / HOUR);
-    const minutes = Math.floor((diff % HOUR) / MINUTE);
-
-    return { days, hours, minutes };
-  }
-
-  updateTime() {
+  connectedCallback() {
     const element = this.shadowRoot.getElementById(COOKIE_NAME);
     if (!shouldShowBanner()) {
       if (!showByCookie() || !showByLocalStore()) {
@@ -282,20 +259,6 @@ class Banner extends HTMLElement {
     }
 
     element.style.display = 'inline-block';
-    const { days, hours, minutes } = this.getTime();
-    this.days = days < 10 ? `0${days}` : days.toString();
-    this.hours = hours < 10 ? `0${hours}` : hours.toString();
-    this.minutes = minutes < 10 ? `0${minutes}` : minutes.toString();
-    this.shadowRoot.getElementById('days-diff').innerHTML = this.days;
-    this.shadowRoot.getElementById('hours-diff').innerHTML = this.hours;
-    this.shadowRoot.getElementById('minutes-diff').innerHTML = this.minutes;
-  }
-
-  connectedCallback() {
-    this.updateTime();
-    setInterval(() => {
-      this.updateTime();
-    }, 60000);
     this.shadowRoot
       .getElementById('close-ph-banner')
       .addEventListener('click', () => {

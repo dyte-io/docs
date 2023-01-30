@@ -26,7 +26,7 @@ function ResultWithHeader() {
           id="theme.Playground.result"
           description="The result label of the live codeblocks"
         >
-          Result
+          Preview
         </Translate>
       </Header>
       {/* https://github.com/facebook/docusaurus/issues/5747 */}
@@ -87,8 +87,8 @@ export default function Playground({ children, transformCode, ...props }) {
   // TODO: Uncomment following block of code after adding mock web-core package
   useEffect(() => {
     initClient({
-      roomName: '',
-      authToken: '',
+      roomName: 'qplrfc-uuujcj',
+      authToken: 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdkYzU0MGRjLWQ5MjUtNDVjMi1hZTFiLWM2NDc2YTUwNmM2NyIsImxvZ2dlZEluIjp0cnVlLCJpYXQiOjE2NjU2NDcxNjksImV4cCI6MTY3NDI4NzE2OX0.hJvo1PV1_jaxwiQbT8ft7Yi4lhIPgAsuEJHqohHYC_2XNef7kA4NhrYLvwrrxOo3AKh9_XTjnj_bsgzIDh35RRggawJniEjuE83ju2xhMXMVaa7TNDje2BsH5-VnFJ4y5hOwxGphrP5iHY_U4k_0qOQcEfVEJMymJvx0gq_Ueds',
       defaults: {
         audio: false,
         video: false,

@@ -1,0 +1,50 @@
+---
+title: Frequently Asked Questions
+sidebar_position: 7
+---
+
+Here are some frequently asked questions about the Plugin SDK.
+
+<details open>
+    <summary>
+        What is the difference between <code>DytePlugin.init()</code> and <code>DytePlugin.ready()</code>?
+    </summary>
+    <p>
+        <code>plugin.init()</code> is called to initialise the plugin and <code>plugin.ready()</code> is called when the plugin is ready to emit and receive events from the client app. <b>Usually these events occur one after the other and the user need not manually call <code>plugin.ready()</code></b>.  
+    </p>
+    <p>
+        <code>plugin.ready()</code> can be manually used to control when this communication starts.
+    </p>
+
+    import DytePlugin from "@dytesdk/plugin-sdk";
+    ...
+    const plugin = await DytePlugin.init({ready: false});
+
+    // .. do something
+
+    plugin.ready();
+
+</details>
+
+<details>
+    <summary>
+       When are participant related events fired?
+    </summary>
+    <p>
+        Peer events like <code>peerLeft</code> and <code>peerJoined</code> are only fired for when another participant leaves/joins the meeting, not for the current user. 
+    </p>
+    <p>These events can be called like so.</p>
+
+    import DytePlugin from "@dytesdk/plugin-sdk";
+    ...
+    const plugin = await DytePlugin.init();
+
+    plugin.on('peerJoined', (peer) => {
+        console.log(peer);
+    });
+
+    plugin.on('peerLeft', (peer) => {
+        console.log(peer);
+    });
+
+</details>

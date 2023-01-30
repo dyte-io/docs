@@ -5,157 +5,214 @@ slug: /
 
 # Quickstart
 
-:::info Before Getting Started
+This quickstart shows how to use Dyte's iOS UI Kit SDK to add live video and
+audio to your iOS applications.
 
-Before you start integrating Dyte into your application, make sure you've read
-the [Getting Started with Dyte](/getting-started) topic and completed the steps
-in the [Integrate Dyte](/getting-started#integrate-dyte) section.
+For getting started quickly, you can use our sample code. You can clone and run
+a sample application from the
+[iOS UI Kit Sample App GitHub repository](https://github.com/dyte-io/mobile-samples/tree/main/iOS-ui-kit).
 
-:::
+## Objective
 
-Get the `roomName` for the meeting and the participant's `authToken` from our
-backend APIs (read more about our server APIs [here](/api/)), and pass them to
-Dyte's client SDK.
+You’ll learn how to:
 
-There are 2 ways to manage a meeting view:
+- Install the Dyte SDK
+- Initialize the SDK
+- Configure a Dyte meeting
+- Launch the meeting UI
 
-1. Programatically
-2. Using Storyboard
+## Before Getting Started
 
-## Programatically
+Make sure you've read the
+[Getting Started with Dyte](https://docs.dyte.io/getting-started) topic and
+completed the steps in the
+[Integrate Dyte](https://docs.dyte.io/getting-started#integrate-dyte) section.
+You must complete the following steps:
 
-<Tabs
-groupId="ios-language"
-defaultValue="swift"
-values={[
-{ label: 'Swift', value: 'swift', },
-{ label: 'Obj-C', value: 'obj-c', },
-]
-}>
-<TabItem value="swift">
+- Create a [Dyte Developer Account](https://dev.dyte.io/)
+- Create [Presets](https://dev.dyte.io/roles-presets)
+- Create a
+  [Dyte Meeting](https://docs.dyte.io/api/?v=v2#/operations/create_meeting)
+- [Add Participant](https://docs.dyte.io/api/?v=v2#/operations/add_participant)
+  to the meeting and generate authentication token which is used to join Meeting
+  created above.
+
+## Step 1: Install the SDK
+
+1. Add the following line to your `Podfile`
+
+```ruby
+pod 'DyteUiKit'
+```
+
+2. Install the client SDK as CocoaPods dependency
+
+```shell
+pod install
+```
+
+3. Add the fonts and permission entries in `info.plist` - the strings are
+   displayed in the permission pop-ups, feel free to customize them to suit your
+   audience
+
+```xml
+<key>NSBluetoothPeripheralUsageDescription</key>
+<string>We will use your Bluetooth to access your Bluetooth headphones.</string>
+<key>NSBluetoothAlwaysUsageDescription</key>
+<string>We will use your Bluetooth to access your Bluetooth headphones.</string>
+<key>NSCameraUsageDescription</key>
+<string>For people to see you during meetings, we need access to your camera.</string>
+<key>NSMicrophoneUsageDescription</key>
+<string>For people to hear you during meetings, we need access to your microphone.</string>
+<key>NSPhotoLibraryUsageDescription</key>
+<string>For people to share, we need access to your photos.</string>
+<false/>
+```
+
+## Step 2: Initialize the SDK
+
+Initialization depends on three classes `DesignLibrary`, `AppTheme` and
+`SetupViewController`. `SetupViewController` is the only required class to get
+initialise by client of `DyteUikit` to launch GUI as well initialization of SDK
+with Authentication token.
+
+1. `DesignLibrary` is the singleton class which is depend on protocol
+   `DesignLibraryConfiguratorProtocol` responsible for initializing the
+   component from right parameters for eg. Border size, Radius, Background color
+   of inidividual and composite components.
+
+You can customise the `DesignLibrary` by setting any object which is confirm to
+'DesignLibraryConfiguratorProtocol'
 
 ```swift
-import UIKit
-import DyteSdk;
+// create an type which confirms to  DesignLibraryConfiguratorProtocol
+class DesignLibraryConfigurator: DesignLibraryConfiguratorProtocol {
 
-class ViewController: UIViewController {
-    @IBOutlet weak var videoButton: UIButton?
+    public let colorBackgroundBase: UIColor = UIColor(hex: "#050505")!
+    public let colorBrandBase: UIColor = UIColor(hex: "#0246FD")!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
+    public let textColorBackgroundBase: UIColor = UIColor(hex: "#FFFFFF")!
+    public let textColorBrandBase: UIColor = UIColor(hex: "#111111")!
 
-    @IBAction func joinMeeting(_ sender: Any) {
-        let  config = DyteMeetingConfig();
-        meetingConfig.roomName = "YOUR_ROOM_NAME";
-        meetingConfig.authToken = "YOUR_AUTH_TOKEN";
-        let dyteView = DyteMeetingView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height:self.view.bounds.size.height ))
-        self.view.addSubview(dyteView)
-        dyteView.join(config);
-    }
+    public let statusDangerColor: UIColor = UIColor(hex: "#FF2D2D")!
+    public let statusSuccessColor: UIColor = UIColor(hex: "#83D017")!
+    public let statusWarningColor: UIColor = UIColor(hex: "#FFCD07")!
+
+    public let cornerRadiusRoundFactor: CGFloat = 4.0
+    public let cornerRadiusExtraRoundFactor: CGFloat = 8.0
+    public let cornerRadiusCircularFactor: CGFloat = 8.0
+
+    public let borderSizeThinFactor: CGFloat =  1.0
+    public let borderSizeFatFactor: CGFloat = 2.0
+
 }
+
+//You can initialise DesignLibrary with below command
+DesignLibrary.shared.setConfigurator(configurator: DesignLibraryConfigurator())
+
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+DesignLibrary is having default value of all the above component which SDK
+initialize them internally.
 
-```objectivec
-#import "ViewController.h"
-@import DyteSdk;
+2. `AppTheme` is the singleton class which is depend on protocol
+   `AppThemeProtocol` responsible for for setting corner radius and border size
+   widht for various component used inside by DyteUiKit.
 
-@interface ViewController ()
-
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
-- (IBAction)joinMeeting:(UIButton *)sender {
-    DyteMeetingConfig *meetingConfig = [[DyteMeetingConfig alloc] init];
-    meetingConfig.roomName = @"YOUR_ROOM_NAME";
-    meetingConfig.authToken = @"YOUR_AUTH_TOKEN";
-    DyteMeetingView *dyteView = [[DyteMeetingView alloc] initWithFrame:CGRectMake(0.0, 0.0, meetingConfig.width, meetingConfig.height)];
-    [self.view addSubview:dyteView];
-    [dyteView join:meetingConfig];
-}
-
-@end
-```
-
-</TabItem>
-</Tabs>
-
-## Using Storyboard
-
-1. Add a View in Storyboard and set it's custom class to `DyteMeetingView`.
-   Similar to above example, if you want to use `tag`, you can set that too in
-   Storyboard.
-
-![xcode-screenshot-showing-storyboard-setup](/static/ios/ios-setup.png)
-
-2. Reference the view in your code and initiate the meeting.
-
-<Tabs
-groupId="ios-language"
-defaultValue="swift"
-values={[
-{ label: 'Swift', value: 'swift', },
-{ label: 'Obj-C', value: 'obj-c', },
-]
-}>
-<TabItem value="swift">
+You can customise the `DesigAppThemenLibrary` by setting any object which is
+confirm to 'AppThemeProtocol'.
 
 ```swift
-import UIKit
-import DyteSdk;
+class AppThemeConfigurator: AppThemeProtocol {
+    private let cornerRadiusType: CornerRadius.RadiusType? = .rounded
+    private let borderSizeWidthType: BorderSize.Width? = .thin
 
-class ViewController: UIViewController {
-    @IBOutlet weak var videoButton: UIButton?
+    var cornerRadiusTypeButton: CornerRadius.RadiusType? {
+        get {
+            return cornerRadiusType
+        }
+    }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    var cornerRadiusTypePaginationView: CornerRadius.RadiusType? {
+        get {
+            return cornerRadiusType
+        }
+    }
 
-        let  config = DyteMeetingConfig();
-        meetingConfig.roomName = "YOUR_ROOM_NAME";
-        meetingConfig.authToken = "YOUR_AUTH_TOKEN";
-        let dyteView = self.view as DyteMeetingView
-        dyteView.join(config)
+    var cornerRadiusTypePeerView: CornerRadius.RadiusType? {
+        get {
+            return cornerRadiusType
+        }
+    }
+
+    var cornerRadiusTypeDropDown: CornerRadius.RadiusType? {
+        get {
+            return cornerRadiusType
+        }
+    }
+
+    var cornerRadiusTypeNameTag: CornerRadius.RadiusType? {
+        get {
+            return cornerRadiusType
+        }
+    }
+
+    var cornerRadiusTypeNameTextField: CornerRadius.RadiusType? {
+        get {
+            return cornerRadiusType
+        }
+    }
+
+    var cornerRadiusTypeCreateView: CornerRadius.RadiusType? {
+        get {
+            return cornerRadiusType
+        }
+    }
+
+    var borderSizeWidthTypeTextField: BorderSize.Width? {
+        get {
+            return borderSizeWidthType
+        }
+    }
+
+    var borderSizeWidthTypeButton: BorderSize.Width? {
+        get {
+            return borderSizeWidthType
+        }
+    }
+
+    var borderSizeWidthTypeDropDown: BorderSize.Width? {
+        get {
+            return borderSizeWidthType
+        }
     }
 }
+
+//You can initialise AppTheme with below command
+  AppTheme.shared.setUp(theme: AppThemeConfigurator())
+
 ```
 
-</TabItem>
-<TabItem value="obj-c">
+## Step 3: Configure a Dyte meeting and Launch GUI
 
-```objectivec
-#import "ViewController.h"
-@import DyteSdk;
+Set the initialization properties in the `SetupViewController` class. You just
+need to provide the participant's `authToken`.
 
-@interface ViewController ()
+| Name        | Description                                                                                                                                                                                                                                                                                                                                   |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authToken` | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
 
-@end
-
-@implementation ViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-
-    DyteMeetingConfig *meetingConfig = [[DyteMeetingConfig alloc] init];
-    meetingConfig.roomName = @"YOUR_ROOM_NAME";
-    meetingConfig.authToken = @"YOUR_AUTH_TOKEN";
-    DyteMeetingView *dyteView = (DyteMeetingView *) self.view;
-    [dyteView join:meetingConfig];
-}
-
-@end
+```swift
+//BASE_URL = "https://api.cluster.dyte.in"
+let controller = SetupViewController(authToken: Constants.AUTH_TOKEN, enableAudio: true, enableVideo: true, baseUrl: Constants.BASE_URL, completion: { [unowned self] in
+            self.dismiss(animated: true)
+         })
+        controller.modalPresentationStyle = .fullScreen
+        self.present(controller, animated: true)
 ```
 
-</TabItem>
-</Tabs>
+Here is a pictorial representation of all the config options defined below.
+
+![meeting UI screenshot with labeled parts](/static/ios/meeting-setup.png)
+![meeting UI screenshot with labeled parts](/static/ios/meeting.png)
+![meeting UI screenshot with labeled parts](/static/ios/meeting-options.png)

@@ -1,0 +1,62 @@
+---
+title: Events
+sidebar_position: 2
+---
+
+### Emit events to the meeting
+
+The `emitEvent` method is used to emit custom events to the (client SDK)
+meeting. These can be listened for inside client SDK.
+
+| Param     | Type   | Description               | Default Value | Required |
+| --------- | ------ | ------------------------- | ------------- | -------- |
+| eventName | string | Name of the custom event. | -             | true     |
+| data      | any    | Event payload.            | -             | false    |
+
+```tsx
+plugin.room.emitEvent('myAwesomeEvent');
+```
+
+**Inside the Client SDK**
+
+```tsx
+const plugin = meeting.plugins.all.get('...');
+plugin.on('myAwesomeEvent', () => {
+  // do something ...
+});
+```
+
+### Listen for events from the meeting
+
+The `on` and `addListener` methods are used to listen for events (can also be
+user defined) coming from the client SDK.
+
+| Param     | Type       | Description                                                  | Default Value      | Required |
+| --------- | ---------- | ------------------------------------------------------------ | ------------------ | -------- | ---- |
+| eventName | RoomEvents | string                                                       | Name of the event. | -        | true |
+| callback  | Function   | The callback method that gets execute when the event occurs. | -                  | true     |
+
+| Event Name     | Description                                                                 |
+| -------------- | --------------------------------------------------------------------------- |
+| peerLeft       | Emitted when a participant leaves the meeting. (not emitted for self)       |
+| peerJoined     | Emitted when a new participant joins the meeting. (not emitted for self)    |
+| newChatMessage | Emitted when a chat message is sent to the room or the current user (self). |
+
+```tsx
+type RoomEvents = 'peerLeft' | 'peerJoined' | 'newChatMessage';
+```
+
+```tsx
+plugin.room.on('peerJoined', () => { ... });
+```
+
+_Alias:_
+
+````tsx
+plugin.room.addListener('peerJoined', () => { ... });
+    ```
+
+### Remove event listeners
+```tsx
+plugin.room.removeListeners('peerJoined');
+````

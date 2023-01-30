@@ -61,7 +61,7 @@ const SECTIONS = [
     label: 'v2',
   }),
   defineSection('cli'),
-
+  defineSection('plugin-sdk'),
   defineSection('react', { label: '0.x.x' }),
   defineSection('javascript', { label: '0.x.x' }),
 
