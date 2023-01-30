@@ -249,6 +249,16 @@ class Banner extends HTMLElement {
   }
 
   connectedCallback() {
+    const element = this.shadowRoot.getElementById(COOKIE_NAME);
+    if (!shouldShowBanner()) {
+      if (!showByCookie() || !showByLocalStore()) {
+        hideBanner();
+      }
+      element.style.display = 'none';
+      return;
+    }
+
+    element.style.display = 'inline-block';
     this.shadowRoot
       .getElementById('close-ph-banner')
       .addEventListener('click', () => {
