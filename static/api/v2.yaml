@@ -1743,6 +1743,7 @@ components:
             - meeting.ended
             - meeting.participantJoined
             - meeting.participantLeft
+            - meeting.chatSynced
             - recording.statusUpdate
             - livestreaming.statusUpdate
           description: Events that this webhook will get triggered by
@@ -1753,6 +1754,7 @@ components:
               - meeting.ended
               - meeting.participantJoined
               - meeting.participantLeft
+              - meeting.chatSynced
               - recording.statusUpdate
               - livestreaming.statusUpdate
       required:
@@ -2994,18 +2996,18 @@ components:
             - H264
             - VP8
           description: Codec using which the recording will be encoded
-        width:
-          type: integer
-          description: Width of the recording video in pixels
-          minimum: 1
-          example: 1280
-          default: 1280
-        height:
-          type: integer
-          minimum: 1
-          description: Height of the recording video in pixels
-          example: 720
-          default: 720
+        # width:
+        #   type: integer
+        #   description: Width of the recording video in pixels
+        #   minimum: 1
+        #   example: 1280
+        #   default: 1280
+        # height:
+        #   type: integer
+        #   minimum: 1
+        #   description: Height of the recording video in pixels
+        #   example: 720
+        #   default: 720
     LivestreamingConfig:
       title: LivestreamingConfig
       x-stoplight:
