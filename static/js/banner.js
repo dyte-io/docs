@@ -174,9 +174,9 @@ template.innerHTML = `
     <div role="banner" id="ph-banner" class="banner">
         <div class="banner-content">
             <div class="banner-image"><img src="/img/ph-banner/meow.svg" alt=""/> <img src="/img/ph-banner/cat.svg" alt=""/></div>
-            <div class="banner-text banner-primary-text">Dyte is launching soon on Product Hunt!</div>
+            <div class="banner-text banner-primary-text">We are live on Product Hunt 🎉!</div>
             <div class="banner-cta-container">
-                <a style="text-decoration: none; cursor: pointer; margin: 0 12px;" target="_blank" href="${ctaLink}"><div class="banner-cta">Get 100k Free Min</div></a>
+                <a style="text-decoration: none; cursor: pointer; margin: 0 12px;" target="_blank" href="${ctaLink}"><div class="banner-cta">Unlock 100k Free mins</div></a>
             </div>
         </div>
         <a id="close-ph-banner" class="close-banner">
@@ -249,6 +249,16 @@ class Banner extends HTMLElement {
   }
 
   connectedCallback() {
+    const element = this.shadowRoot.getElementById(COOKIE_NAME);
+    if (!shouldShowBanner()) {
+      if (!showByCookie() || !showByLocalStore()) {
+        hideBanner();
+      }
+      element.style.display = 'none';
+      return;
+    }
+
+    element.style.display = 'inline-block';
     this.shadowRoot
       .getElementById('close-ph-banner')
       .addEventListener('click', () => {

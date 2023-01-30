@@ -1,0 +1,81 @@
+---
+title: Methods
+sidebar_position: 1
+---
+
+### Get Room ID
+
+Returns the 12 digit unique ID of the room, eg: `afuxxx-rusxxx`.
+
+```tsx
+const id = await plugin.room.getID();
+```
+
+### Get ID of plugin Initiator
+
+Returns the id of the user that enabled the plugin.
+
+```tsx
+const host = await plugin.room.enabledBy();
+```
+
+### Get Room Name
+
+Returns the name (meeting title) of the room.
+
+```tsx
+const name = await plugin.room.getName();
+```
+
+### Get All Peers
+
+Returns a list of all the participants in the meeting (excluding self).
+
+```tsx
+const peers = await plugin.room.getPeers();
+```
+
+### Get Peer
+
+This method returns the participant object, It takes an optional `ID` param. A
+user can get his details by not passing an `ID`.
+
+```tsx
+const id = '..,';
+const participant = await plugin.room.getPeer(id);
+```
+
+```tsx
+const self = await plugin.room.getPeer();
+```
+
+:::info note
+
+The `getPeer` method returns `undefined` if the peer with given `ID` has left
+the meeting.
+
+:::
+
+### Send Chat Message
+
+Sends a text, image or file message to the meeting.
+
+| Param   | Type        | Description           | Default Value | Required |
+| ------- | ----------- | --------------------- | ------------- | -------- |
+| message | ChatMessage | Chat message payload. | -             | true     |
+
+```tsx
+type ChatMessage =
+  | { type: 'text'; message: string }
+  | { type: 'image'; image: File }
+  | { type: 'file'; file: File };
+```
+
+```tsx
+const message: ChatMessage = {
+  type: 'text',
+  message: 'Hello everyone',
+};
+
+await plugin.room.sendChatMessage(message);
+```

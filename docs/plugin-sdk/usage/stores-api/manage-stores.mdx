@@ -1,0 +1,100 @@
+---
+title: Operations on Store
+sidebar_position: 2
+---
+
+There are two kinds of stores global (realtime) and local (accessible only to
+the person who created them). You can perform CRUD operations on each store.
+
+```tsx
+const store = plugin.stores.create('myStore');
+```
+
+### Get store name
+
+```tsx
+const name = store.name;
+```
+
+### Check if store is local
+
+```tsx
+const isLocal = store.isLocal;
+```
+
+### Set a value
+
+| Param | Type   | Description                            | Default Value | Required |
+| ----- | ------ | -------------------------------------- | ------------- | -------- |
+| key   | string | Unique identifier used to store value. | -             | true     |
+| value | any    | Data to be set.                        | -             | true     |
+
+```tsx
+await store.set('key', { ... });
+```
+
+### Update a value
+
+Updates an already existing value in the store. If the stored value is
+`['a', 'b']`, the operation `store.update('key', ['c'])` will modify the value
+to `['a','b','c']`.
+
+| Param | Type   | Description                             | Default Value | Required |
+| ----- | ------ | --------------------------------------- | ------------- | -------- |
+| key   | string | Unique identifier used to update value. | -             | true     |
+| value | any    | Data to be updated.                     | -             | true     |
+
+```tsx
+await store.update('key', { ... });
+```
+
+### Get a value
+
+| Param | Type   | Description                            | Default Value | Required |
+| ----- | ------ | -------------------------------------- | ------------- | -------- |
+| key   | string | Unique identifier used to get a value. | -             | true     |
+
+```tsx
+store.get('key');
+```
+
+### Delete a value
+
+| Param | Type   | Description                               | Default Value | Required |
+| ----- | ------ | ----------------------------------------- | ------------- | -------- |
+| key   | string | Unique identifier used to delete a value. | -             | true     |
+
+```tsx
+await store.delete('key');
+```
+
+### Get all data
+
+```tsx
+store.getAll();
+```
+
+### Subscribe to data change
+
+Attaches an event listener on store key’s to listen for data change on a
+specific key. **Ideally called just after store is created.**
+
+| Param | Type   | Description        | Default Value | Required |
+| ----- | ------ | ------------------ | ------------- | -------- |
+| key   | string | Unique identifier. | -             | true     |
+
+```tsx
+store.subscribe('key', () => { ... });
+```
+
+### Unsubscribe to data change
+
+Removes all event listeners attached to a store key.
+
+| Param | Type   | Description        | Default Value | Required |
+| ----- | ------ | ------------------ | ------------- | -------- |
+| key   | string | Unique identifier. | -             | true     |
+
+```tsx
+store.unsubscribe('key');
+```

@@ -1,0 +1,98 @@
+---
+title: Introduction
+sidebar_position: 1
+---
+
+The `stores` module exposes methods for creating and managing plugin stores.
+
+Plugin store is a temporary realtime database provided with Plugin SDK that can
+help you manage your data better. Each entry in the store is a key-pair value.
+
+The value can assume the following types:
+
+| **Data Types** |
+| -------------- |
+| String         |
+| Number         |
+| Object         |
+| Array          |
+| Map            |
+| Set            |
+
+### Create a Store
+
+You can create a **global store** (Realtime store) or a **local store**
+(Available only to you, not other users).
+
+:::info note
+
+This method only creates a store for the current user (self), hence it must be
+executed for every user.
+
+:::
+
+| Param           | Type    | Description                      | Default Value    | Required |
+| --------------- | ------- | -------------------------------- | ---------------- | -------- |
+| key             | string  | Name of the store.               | -                | true     |
+| options         | Options | The options object               | { local: false } | false    |
+| `options.local` | boolean | Creates a local store when true. | false            | false    |
+
+```tsx
+type Options = {
+  local: boolean;
+};
+```
+
+```tsx
+// create a global store
+plugin.stores.create('myStore');
+
+// create a local store
+const options: Options = { local: true };
+plugin.stores.create('myLocalStore', options);
+```
+
+### Populate Stores
+
+The `populate` method populates the global plugin stores from the backend.
+**Ideally used right after initialisation**.
+
+```tsx
+await plugin.stores.populate('myStore');
+```
+
+### Delete a Store
+
+You can delete a store using the store name.
+
+| Param           | Type    | Description                      | Default Value    | Required |
+| --------------- | ------- | -------------------------------- | ---------------- | -------- |
+| key             | string  | Name of the store.               | -                | true     |
+| options         | Options | The options object               | { local: false } | false    |
+| `options.local` | boolean | Deletes a local store when true. | false            | false    |
+
+```tsx
+// delete a global store
+await plugin.stores.delete('myStore');
+
+// delete a local store
+plugin.stores.delete('myLocalStore', { local: true });
+```
+
+### Get a Store
+
+You can fetch a global store using the store name.
+
+| Param           | Type    | Description                   | Default Value    | Required |
+| --------------- | ------- | ----------------------------- | ---------------- | -------- |
+| key             | string  | Name of the store.            | -                | true     |
+| options         | Options | The options object            | { local: false } | false    |
+| `options.local` | boolean | Gets a local store when true. | false            | false    |
+
+```tsx
+// get a global store
+const store = plugin.stores.get('myStore');
+
+// get a local store
+const localStore = plugin.stores.get('myLocalStore', { local: true });
+```

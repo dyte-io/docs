@@ -1,0 +1,70 @@
+---
+title: Exchange data between plugin and meeting
+sidebar_position: 2
+---
+
+Plugin SDK allows you to exchange data between the dyte meeting and the plugin.
+This guide talks about how this can be done:
+
+## Client SDK
+
+### Send custom messages to plugin SDK
+
+The `ready` event is emitted once the plugin is ready to accept data from the
+client SDK. all custom events must be sent only after this event is emitted.
+
+The `sendData` method accepts an object with the following properties:
+
+| Property  | Description                              | Type   |
+| --------- | ---------------------------------------- | ------ |
+| eventName | Name of the event.                       | string |
+| data      | The data you wish to send to the plugin. | any    |
+
+```ts
+const id = '<your-plugin-id>';
+const plugin = meeting.plugins.all.get(id);
+
+plugin.on('ready', () => {
+  plugin.sendData({
+    eventName: 'customEventToPlugin',
+    data: '<your-custom-data>',
+  });
+});
+```
+
+### Listen for custom events from plugin SDK
+
+```ts
+const id = '<your-plugin-id>';
+const plugin = meeting.plugins.all.get(id);
+
+plugin.on('myAwesomeEvent', (data) => {
+  console.log(data);
+});
+```
+
+## Plugin SDK
+
+### Send custom events to the dyte meeting
+
+The emitEvent method is used to emit custom events to the (client SDK) room.
+
+```ts
+import DytePlugin from "@dytesdk/plugin-sdk";
+
+const plugin = DytePlugin.init();
+
+plugin.room.emitEvent('myAwesomeEvent', {...});
+```
+
+### Listen for custom messages from the dyte meeting
+
+```ts
+import DytePlugin from '@dytesdk/plugin-sdk';
+
+const plugin = DytePlugin.init();
+
+plugin.room.on('customEventToPlugin', (data) => {
+  console.log(data);
+});
+```
