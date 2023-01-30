@@ -11,14 +11,15 @@ There are two important things to understand about dyte UI Components
 
 ## 1. They work with very tightly with our core SDK
 
-Our UI component are tightly coupled with classes from our core SDK, they will automatically update when the underlying property changes
+Our UI component are tightly coupled with classes from our core SDK, they will
+automatically update when the underlying property changes
 
 ### Participant components
 
 These are components which take a single participant object as prop
- 
-`meeting.self` and participant objects from `meeting.participants` maps can be passed
-as a participant to this prop.
+
+`meeting.self` and participant objects from `meeting.participants` maps can be
+passed as a participant to this prop.
 
 ```jsx live
 function Example() {
@@ -36,7 +37,8 @@ function Example() {
 
 ### Meeting components
 
-Similar to participant components, there are components that take the entire meeting object
+Similar to participant components, there are components that take the entire
+meeting object
 
 ```jsx live
 function Example() {
@@ -50,14 +52,18 @@ function Example() {
 }
 ```
 
-The above code will render the Chat UI, updates when there is a new message and allow you to send a new message.
+The above code will render the Chat UI, updates when there is a new message and
+allow you to send a new message.
 
 ## 2. State Management
 
-While meeting state is stored in core SDK's classes, there are also some pure UI states that might change during a meeting.
-For example, when user clicks the leave meeting button, there is a confirmation popup on the screen, this state reflects only a UI state.
+While meeting state is stored in core SDK's classes, there are also some pure UI
+states that might change during a meeting. For example, when user clicks the
+leave meeting button, there is a confirmation popup on the screen, this state
+reflects only a UI state.
 
-To listen and manipulate these states some components will accept a `states` props and a `onDyteStateUpdate` callback prop when the state updates
+To listen and manipulate these states some components will accept a `states`
+props and a `onDyteStateUpdate` callback prop when the state updates
 
 ```jsx
 <DyteDialogManager
@@ -70,7 +76,6 @@ To listen and manipulate these states some components will accept a `states` pro
   />
 
 ```
-
 
 ## 3. Component Specific Props
 
