@@ -1,0 +1,64 @@
+---
+title: How to work with Plugin Stores
+sidebar_position: 1
+---
+
+The plugin SDK offers a realtime key-value database. This can be accessed under
+the `plugin.stores` modules
+
+There are a bunch of things you can do with plugin stores. Like
+creating/deleting stores and basic CRUD operation on every store.
+
+### Creating stores
+
+Stores can be global or local. Local stores are available only to the user that
+created them while global stores are available to everyone.
+
+:::danger important
+
+Store creation is a local event. It is recommended that it occurs for all
+clients.
+
+:::
+
+Here's how you can create a store:
+
+```ts
+    // create a global store
+    const videoStore = plugin.stores.create('youtube');
+
+    // create a local store
+    const my-playlist = plugin.stores.create('private-playlist', { local: true });
+```
+
+### Subscribing to stores changes
+
+Once a store is created the next step would be to subscribe to changes. It is
+recommended that you do this just after the store is created.
+
+You can subscribe to a particular key in the store like so. Please note that you
+do not need to define a key before subscribing to it.
+
+```ts
+    const videoStore = plugin.stores.create('youtube');
+    videoStore.subscribe('video', (data) => {
+        ...
+    });
+```
+
+### Updating the store
+
+Updating a key in the store is an asynchronous task. When a user updates the
+store, it will be updated for all users.
+
+All users subscribed to the store will receive a notification for it.
+
+```ts
+const button = document.getElementById('play-video');
+button.addEventListener('click', async () => {
+  await videoStore.set('video', {
+    url: 'https://www.youtube.com/watch?v=UGl4XZ_zr5w',
+  });
+  const vid = videoStore.get('video');
+});
+```

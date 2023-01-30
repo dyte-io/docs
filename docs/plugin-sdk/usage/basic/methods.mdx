@@ -1,0 +1,71 @@
+---
+title: Methods
+sidebar_position: 1
+---
+
+### Initialize
+
+This method initializes the SDK and returns a plugin object. The Client SDK
+(web/mobile) receives a `ready` event once the initialisation is complete.
+
+the `ready` event signifies that the plugin is now ready for event/data
+exchange.
+
+```tsx
+const plugin = await DytePlugin.init();
+```
+
+### Initialize without data exchange
+
+This method initializes the SDK without emitting a `ready` event to the client
+SDK. The user can choose to manually emit this later when the plugin is ready to
+start event/data exchange with client SDK.
+
+```tsx
+const plugin = await DytePlugin.init({ ready: false });
+// do something ...
+plugin.ready();
+```
+
+## Methods specific to staggered plugins
+
+:::info Before you start
+
+Staggered plugins are plugins that are enabled only for specific users. By
+default these are only enabled for the user that opens them.
+
+:::
+
+### Enable plugin for all users
+
+```tsx
+await plugin.enableForAll();
+```
+
+### Enable plugin for specific users
+
+| Param   | Type       | Description                                          | Default Value | Required |
+| ------- | ---------- | ---------------------------------------------------- | ------------- | -------- |
+| peerIds | `string[]` | List of peer IDs for which plugin has to be enabled. | -             | false    |
+
+```jsx
+const peerIds: string[] = ['...'];
+await plugin.enableForPeers(peerIds);
+```
+
+### Disable plugin for all users
+
+```tsx
+await plugin.disableForAll();
+```
+
+### Disable plugin for specific users
+
+| Param   | Type       | Description                                           | Default Value | Required |
+| ------- | ---------- | ----------------------------------------------------- | ------------- | -------- |
+| peerIds | `string[]` | List of peer IDs for which plugin has to be disabled. | -             | false    |
+
+```tsx
+const peerIds: string[] = ['...'];
+await plugin.disableForPeers(peerIds);
+```

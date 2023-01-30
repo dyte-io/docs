@@ -1,0 +1,76 @@
+---
+title: Manage your Plugin
+sidebar_position: 5
+---
+
+### Version specific deployments
+
+Dyte lets you publish multiple versions of your plugins. You can choose to
+deploy a specific version.
+
+List all available versions of your plugin
+
+```shell
+dyte plugins version list
+```
+
+You can now select the version you wish to deploy.
+
+```shell
+dyte plugins version change-latest -v <version>
+```
+
+### Unpublishing
+
+Unpublishing a plugin removes all versions of it from our database and your
+meetings.
+
+```shell
+dyte plugins unpublish
+```
+
+If you wish to delete a specific version of the plugin you can do that with
+
+```shell
+dyte plugins version delete -v <version>
+```
+
+### Plugin configuration
+
+You can update your `dyte-config` to update properties like name, description,
+build path and more. These changes will reflect once you publish or deploy the
+plugin.
+
+### Access control and visibility
+
+Each Dyte user is associated to a preset. This preset dictates the meeting
+expirence for that user. You can customize how this preset can interact with a
+plugin using the [Preset Editor](https://dev.dyte.io/roles-presets).
+
+In your preset editor you can select the plugins you want a preset to have
+access to.
+
+**Manage Plugin Interactions**
+
+We let you manage how your users interacts with a plugin. This setting can be
+configured differently for each plugin.
+
+| ** Control ** | ** Description **                                              |
+| ------------- | -------------------------------------------------------------- |
+| View Only     | The user can only view the plugin.                             |
+| Full Access   | The user can interact with the plugin and has control over it. |
+
+**Manage Access Control.**
+
+You can specify who has access to launch/close plugins.
+
+| ** Control ** | ** Description **                                                     |
+| ------------- | --------------------------------------------------------------------- |
+| Launch        | Preset can launch plugins                                             |
+| Close         | Preset can close plugins                                              |
+| Control       | Preset can give others the access to launch/close plugins temporarily |
+
+### Next Step
+
+Understand how you can use the modules and offerings provided by the Plugin SDK
+to build your plugin.

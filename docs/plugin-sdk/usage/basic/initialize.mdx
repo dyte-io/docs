@@ -1,0 +1,35 @@
+---
+title: Initialize Plugin
+sidebar_position: 1
+---
+
+The DytePlugin class is the root class of Plugin SDK. It is the main entry point
+of the SDK. It is the only class that you need to instantiate in order to use
+the SDK.
+
+A plugin object can be created using `DytePlugin.init()` method. The `init()`
+method can take an **_optional_** `config` object.
+
+:::tip tip
+
+Do checkout **_“Guides”_** for end to end examples on the usage of these
+modules.
+
+:::
+
+The following is the schema for the `config` object :
+
+| **Param** | **Type** | **Description**                                      | **Default Value**          | **Required** |
+| --------- | -------- | ---------------------------------------------------- | -------------------------- | ------------ |
+| authToken | string   | Authorisation token.                                 | auto-filled by client SDK. | false        |
+| baseURL   | string   | Server URL being used by the parent app.             | auto-filled by client SDK. | false        |
+| parentURL | string   | URL of the parent app the plugin is opened in.       | auto-filled by client SDK. | false        |
+| pluginId  | string   | ID generated using Dyte CLI.                         | auto-filled by client SDK. | false        |
+| ready     | boolean  | `true` when the plugin initialization has completed. | `true`                     | false        |
+
+```jsx
+import DytePlugin from "@dytesdk/plugin-sdk";
+...
+const plugin = DytePlugin.init();
+await plugin.stores.populate('storeName');
+```

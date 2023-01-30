@@ -1,0 +1,161 @@
+---
+title: Quickstart
+sidebar_position: 2
+tags: [plugin-sdk, quickstart, setup]
+---
+
+:::info before you start
+
+Before you start working with Dyte's Plugin SDK, make sure you've read the
+[Getting Started](/getting-started) with Dyte guide.
+
+:::
+
+Short on time? No problem. This document covers everything you need in order to
+quickly get started with building your own collaborative plugin.
+
+## Create a plugin
+
+You can use Dyte CLI to create your plugin.
+
+```bash
+cd <your-project-directory>
+```
+
+```bash
+dyte plugins create
+```
+
+This command asks you a bunch of questions and then generates a
+`dyte-config.json` for you. This file must always stay in the root of your
+folder.
+
+## Configure your plugin
+
+You can customise a bunch of properties for your plugin using this config file.
+It allows you to change the name, description, logo, build config and more.
+[Read More](/plugin-sdk/setup/customize)
+
+:::danger important
+
+Do not change the value of `pluginId` in your config file.
+
+:::
+
+Here's what a basic config file would look like:
+
+```json
+{
+  "name": "my-plugin",
+  "version": "1.x.x",
+  "description": "Add a short description for your plugin here",
+  "pluginId": "79936149-758e-4d8d-8366-23deaxxxxxxx",
+  "picture": "https://dyte-uploads.s3.ap-south-1.amazonaws.com/dyte.png",
+  "url": "https://79936149-758e-4d8d-8366-23deaxxxxxxx-latest.plugins.dyte.app",
+  "files": {
+    "include": ["index.html", "**/*"],
+    "exclude": ["**/*.ts", "*.md"]
+  },
+  "tags": ["#plugin"],
+  "author": "",
+  "repository": ""
+}
+```
+
+## Setup your development environment
+
+Now that your plugin is created, It's time to start building. Dyte's `devTools`
+module provides a live playground like experience to help you build your plugin
+locally.
+
+The code snippet below shows how you can use it:
+
+```js
+<body>
+ <dyte-meeting id="my-meeting"></dyte-meeting>
+
+  <script>
+    const init = async () => {
+      const meeting = await DyteClient.init({
+        authToken: '',
+        roomName: '',
+        defaults: {
+          audio: true,
+          video: true,
+        },
+        modules: {
+          devTools: {
+            plugin: [{
+              name: 'My Awesome Plugin',
+              port: '5000'
+            }],
+          }}});
+
+      document.getElementById('my-meeting').meeting = meeting;
+    };
+
+    init();
+  </script>
+</body>
+```
+
+Now run your plugin on the port specified, In this case `localhost:5000`. Et
+voila! Your live plugin is now available to be developed locally.
+
+## Start building
+
+### Installation
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  groupId="node-pm"
+  defaultValue="npm"
+  values={[
+    { label: "npm", value: "npm" },
+    { label: "yarn", value: "yarn" },
+    { label: "CDN", value: "CDN" },
+  ]}
+>
+  <TabItem value="npm">
+
+```shell
+npm install @dytesdk/plugin-sdk
+```
+
+  </TabItem>
+  <TabItem value="yarn">
+
+```shell
+yarn add @dytesdk/plugin-sdk
+```
+
+  </TabItem>
+  <TabItem value="CDN">
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@dytesdk/plugin-sdk" />
+```
+
+  </TabItem>
+</Tabs>
+
+### Usage
+
+This is a simple plugin that greets every new person who joins the meeting.
+
+```ts
+import DytePlugin from '@dytesdk/plugin-sdk';
+
+const plugin = DytePlugin.init();
+await plugin.stores.populate('storeName');
+
+plugin.room.on('peerJoined', async (p) => {
+  const message: ChatMessage = {
+    type: 'text',
+    message: `Welcome ${p.displayName}! We hope you bought pizza ;)`,
+  };
+  await plugin.room.sendChatMessage(message);
+});
+```
