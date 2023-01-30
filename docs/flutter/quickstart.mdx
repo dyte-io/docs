@@ -1,94 +1,137 @@
 ---
+title: Quickstart
+description: Quickstart guide for Dyte's Flutter UI Kit.
 sidebar_position: 1
 slug: /
 ---
 
 # Quickstart
 
-:::info Before Getting Started
+This quickstart shows how to use Dyte's Flutter UI Kit SDK to add live video and
+audio to your Flutter applications.
 
-Before you start integrating Dyte into your application, make sure you've read
-the [Getting Started with Dyte](/getting-started) topic and completed the steps
-in the [Integrate Dyte](/getting-started#integrate-dyte) section.
+For getting started quickly, you can use our sample code. You can clone and run
+a sample application from the
+[Flutter UI Kit Sample App GitHub repository](https://github.com/dyte-in/sample-android-ui-kit).
+
+## Objective
+
+You’ll learn how to:
+
+- Install the Dyte SDK
+- Initialize the SDK
+- Configure a Dyte meeting
+- Launch the meeting UI
+
+## Before Getting Started
+
+Make sure you've read the
+[Getting Started with Dyte](https://docs.dyte.io/getting-started) topic and
+completed the steps in the
+[Integrate Dyte](https://docs.dyte.io/getting-started#integrate-dyte) section.
+You must complete the following steps:
+
+- Create a [Dyte Developer Account](https://dev.dyte.io/)
+- Create [Presets](https://dev.dyte.io/roles-presets)
+- Create a
+  [Dyte Meeting](https://docs.dyte.io/api/?v=v2#/operations/create_meeting)
+- [Add Participant](https://docs.dyte.io/api/?v=v2#/operations/add_participant)
+  to the meeting
+
+## Step 1: Install the SDK
+
+1. Install the SDK from [pub](https://pub.dev).
+
+```shell
+
+flutter pub add dyte_uikit
+
+```
+
+:::tip Note
+
+Set `compileSdkVersion 33` & `minSdkVersion 21` inside `build.gradle` file of
+android.
 
 :::
 
-Get the `roomName` for the meeting and the participant's `authToken` from our
-backend APIs (read more about our server APIs [here](/api/)), and pass them to
-Dyte's `DyteMeeting` widget.
+## Step 2: Initialize the SDK
 
-1. Import the package.
+The `DyteUIKit` is the main class of the SDK. It is the entry point and the only
+class required to initialize Dyte SDK.
 
 ```dart
-import 'package:dyte_client/dyte.dart';
-import 'package:dyte_client/dyteMeeting.dart';
+final meetingInfo = DyteMeetingInfo(authToken: '<auth_token>');
+
+// This is optional, it can be used to configure the color of the meeting.
+final configurations = Configurations(
+  baseBackground: Color(yourBaseColor),
+  basePrimary: Color(yourPrimaryColor),
+  textColor: Color(yourTextColor),
+);
+
+final DyteUIKit uiKit = DyteUIKit(
+  meetingInfo: DyteMeetingInfo(
+    roomName: meetingRoomName,
+    enableAudio: true,
+    enableVideo: true,
+    displayName: 'Flutter UI kit',
+    authToken: authToken,
+  ),
+);
+
+// dyteMeeting is the meeting widget and it can be used to render the uikit.
+final dyteMeeting = uiKit.loadUI();
+
 ```
 
-2. Pass relevant information to `DyteMeeting` widget.
+You need to create
+
+## Step 3: Configure a Dyte meeting
+
+Set the properties in the `DyteMeetingInfo` class. You just need to provide the
+participant's `authToken`.
+
+| Name        | Description                                                                                                                                                                                                                                                                                                                                   |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authToken` | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
 
 ```dart
-SizedBox(
-    width: <width>,
-    height: <height>,
-    child: DyteMeeting(
-        roomName: "<roomName>",
-        authToken: "<authToken>",
-        onInit: (DyteMeetingHandler meeting) async {
-          // your handler
-        },
-    )
-)
+final meetingInfo = DyteMeetingInfo(authToken: '<auth_token>');
 ```
 
-You can use any constraining widget (not restricted to SizedBox), the parent
-widget just needs to have a `maxHeight` and `maxWidth`.
+## Step 4: Launch the meeting UI
 
-For example, for a full screen meeting you could use the following code.
+To launch the meeting UI all you need to do is add the `dyteMeeting` as a child.
 
 ```dart
+
+import 'package:dyte_uikit/dyte_uikit.dart';
 import 'package:flutter/material.dart';
-import 'package:dyte_client/dyte.dart';
 
-void main() {
-  runApp(MaterialApp(home:MyApp()));
-}
-
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-
-  @override
-  void initState() {
-    super.initState();
-  }
+class DyteMeetingPage extends StatelessWidget {
+  const DyteMeetingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-
-    // get the page height, width
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-
-    return Scaffold(
-        body: Row(
-          children: <Widget>[
-            SizedBox(
-              width: width,
-              height: height,
-              child: DyteMeeting(
-                roomName: "<roomName>",
-                authToken: "<authToken>",
-                onInit: (DyteMeetingHandler meeting) async {
-                     var self = await meeting.self;
-                },
-              )
-            )
-          ],
-        ),
+    final DyteUIKit uiKit = DyteUIKit(
+      meetingInfo: DyteMeetingInfo(
+        roomName: meetingRoomName,
+        enableAudio: true,
+        enableVideo: true,
+        displayName: 'Flutter UI kit',
+        authToken: authToken,
+      ),
     );
+    return uiKit.loadUI();
   }
 }
+
+
 ```
+
+Here is a pictorial representation of all the config options defined below.
+
+![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-setup.png)
+![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-meeting.png)
+![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-meeting-options.png)

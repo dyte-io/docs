@@ -9,8 +9,8 @@ tags: [web-core, room-metadata]
 
 All metadata pertaining to a meeting is stored in `meeting.meta`. This includes:
 
-- `meetingId`: Unique identifier for the meeting. Can also be accessed via
-  `meeting.id`.
+- `viewType`: Indicates the type of the meeting, possible values are `WEBINAR`,
+  `GROUP_CALL`.
 - `roomType`: Indicates the meeting is a group-call or a webinar.
 - `meetingTitle`: The title of the meeting.
 - `meetingStartedTimestamp`: The timestamp when the meeting started.
@@ -29,9 +29,9 @@ if (meeting.self.roomJoined) {
 }
 ```
 
-The `meta` object also emits for indicating the change in the connection state
-of the room. For example, you can listen for the `connected` event to know when
-the local user has successfully joined the room, and for the `disconnected`
+The `meta` object also emits events for indicating the change in the connection
+state of the room. For example, you can listen for the `connected` event to know
+when the local user has successfully joined the room, and for the `disconnected`
 event to find out if the local user's connection has dropped.
 
 ```ts
