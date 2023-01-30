@@ -9,8 +9,6 @@ info:
   version: v2
   title: Dyte REST APIs V2
   description: |-
-    Next generation APIs.
-
     ## Rate Limiting
 
     Rate limits specify the maximum number of requests (GET, POST, PUT, or DELETE) a user can make in a given time period. When you exceed a rate limit, the API request fails and returns the HTTP 429 status code. The HTTP 429 status code indicates that the user made too many requests in a given period of time ("rate limiting").
@@ -771,7 +769,13 @@ paths:
   '/sessions/{session_id}/chat':
     get:
       summary: Fetch all chat messages of a session
-      description: 'Returns a URL to download all chat messages of the session ID in CSV format. By default, this endpoint is disabled for your organization. Please contact us if you wish to enable it for your organization.'
+      description: |
+        Returns a URL to download all chat messages of the session ID in CSV format.
+        <!-- theme: warning -->
+        > #### NOTE
+        >
+        > This API is in beta and is disabled by default. [Contact us](https://dyte.io/contact) to enable it
+        > for your organization.                        
       operationId: GetSessionChat
       tags:
         - Sessions
@@ -1524,8 +1528,6 @@ paths:
         - Recordings
       responses:
         '200':
-          $ref: '#/components/responses/GetRecording'
-        '':
           $ref: '#/components/responses/GetRecording'
       operationId: get_one_recording
       description: Returns details of a recording for the given recording ID.
@@ -2862,10 +2864,124 @@ components:
               type: boolean
             can_change_participant_permissions:
               type: boolean
+        ui:
+          type: object
+          required:
+            - design_tokens
+            - config_diff
+          properties:
+            design_tokens:
+              type: object
+              required:
+                - border_radius
+                - border_width
+                - spacing_base
+                - theme
+                - colors
+                - logo
+              properties:
+                border_radius:
+                  type: string
+                  enum:
+                    - rounded
+                border_width:
+                  type: string
+                  enum:
+                    - thin
+                spacing_base:
+                  type: number
+                  default: 4
+                theme:
+                  type: string
+                  enum:
+                    - dark
+                colors:
+                  type: object
+                  required:
+                    - brand
+                    - background
+                    - danger
+                    - text
+                    - text_on_brand
+                    - success
+                    - video_bg
+                    - warning
+                  properties:
+                    brand:
+                      type: object
+                      required:
+                        - "300"
+                        - "400"
+                        - "500"
+                        - "600"
+                        - "700"
+                      properties:
+                        300:
+                          type: string
+                          default: "#844d1c"
+                        400:
+                          type: string
+                          default: "#9d5b22"
+                        500:
+                          type: string
+                          default: "#b56927"
+                        600:
+                          type: string
+                          default: "#d37c30"
+                        700:
+                          type: string
+                          default: "#d9904f"
+                    background:
+                      type: object
+                      required:
+                        - "600"
+                        - "700"
+                        - "800"
+                        - "900"
+                        - "1000"
+                      properties:
+                        600:
+                          type: string
+                          default: "#222222"
+                        700:
+                          type: string
+                          default: "#1f1f1f"
+                        800:
+                          type: string
+                          default: "#1b1b1b"
+                        900:
+                          type: string
+                          default: "#181818"
+                        1000:
+                          type: string
+                          default: "#141414"
+                    danger:
+                      type: string
+                      default: "#FF2D2D"
+                    text:
+                      type: string
+                      default: "#EEEEEE"
+                    text_on_brand:
+                      type: string
+                      default: "#EEEEEE"
+                    success:
+                      type: string
+                      default: "#62A504"
+                    video_bg:
+                      type: string
+                      default: "#191919"
+                    warning:
+                      type: string
+                      default: "#FFCD07"
+                logo:
+                  type: string
+            config_diff:
+              type: object                                                                                                                                                                   
       required:
         - name
         - config
         - permissions
+        - ui
     VideoConfig:
       title: VideoConfig
       x-stoplight:
@@ -3689,4 +3805,3 @@ externalDocs:
   description: ''
 security:
   - Authorization: []
-
