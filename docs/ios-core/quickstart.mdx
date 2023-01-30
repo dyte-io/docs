@@ -5,15 +5,13 @@ sidebar_position: 1
 tags: [mobile-core, quickstart]
 slug: /
 ---
-
 # iOS Core SDK Quickstart
 
-This quickstart shows how to use Dyte's iOS Core SDK to add live video and audio
-to your iOS applications.
+This quickstart shows how to use Dyte's iOS Core SDK to add live video and
+audio to your iOS applications.
 
-For getting started quickly, you can use our
-[sample code](https://github.com/dyte-io/mobile-samples/tree/main/iOS-core). You
-can clone and run a sample application from the iOS Core SDK GitHub repository.
+For getting started quickly, you can use our [sample code](https://github.com/dyte-in/mobile-core-sample-ios). You can clone and run
+a sample application from the [iOS Core SDK GitHub repository](https://github.com/dyte-in/mobile-core-sample-ios).
 
 ## Objective
 
@@ -38,8 +36,7 @@ You’ll learn how to:
     [Dyte Meeting](https://docs.dyte.io/api/?v=v2#/operations/create_meeting)
   - [Add Participant](https://docs.dyte.io/api/?v=v2#/operations/add_participant)
     to the meeting
-- Install
-  [Xcode](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwin55bqodH8AhUVQXwKHaR-DAsQFnoECA0QAQ&url=https%3A%2F%2Fapps.apple.com%2Fus%2Fapp%2Fxcode%2Fid497799835%3Fmt%3D12&usg=AOvVaw2fEvMbfRtGhB4SPHYB54NX)
+- Install [Xcode](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwin55bqodH8AhUVQXwKHaR-DAsQFnoECA0QAQ&url=https%3A%2F%2Fapps.apple.com%2Fus%2Fapp%2Fxcode%2Fid497799835%3Fmt%3D12&usg=AOvVaw2fEvMbfRtGhB4SPHYB54NX)
 - Ensure that Rosetta is installed with Xcode on Mac computers with Apple
   silicon.
 - Make sure your Mac computers are running macOS version 12.0 Monterey or
@@ -52,23 +49,24 @@ import TabItem from '@theme/TabItem';
 
 :::tip iOS minimum version 12.0
 
-We support minimum OS version `12.0` for our iOS SDK.
+Set your platform to iOS 12.0 or above in your Podfile.
+
 
 :::
 
-1. Add the following line to your `Podfile`
+1. Add 'DyteiOSCore' to your Podfile.
 
 ```ruby
 pod 'DyteiOSCore'
 ```
 
-2. Install the client SDK from pod
+2. Install the client SDK from pod.
 
 ```shell
 pod install
 ```
 
-3. Add the fonts and permission entries in `info.plist` - the strings are
+3. Add the following entries to the info.plist file. This gives permission to your app to access the camera and microphone, access photos, install the required fonts and icons. - the strings are
    displayed in the permission pop-ups, feel free to customize them to suit your
    audience
 
@@ -85,19 +83,22 @@ pod install
 <string>For people to share, we need access to your photos.</string>
 <false/>
 ```
+:::tip Note
+
+If you intend to publish your app to the App Store, you'll need
+to perform a few additional steps. So if you’re working on release build and
+not debug builds, refer to the [Release Builds](#for-ios-release-builds) section.
+
+:::
 
 ## Step 2: Initialize the SDK
 
-The `DyteMobileClient` is the main class of the SDK. It is the main entry point
-of the SDK. It is the only class that you need to instantiate in order to use
-the SDK. To instantiate DyteMobileClient, you should use
-`DyteiOSClientBuilder().build()`.
+1. The `DyteMobileClient` is the main class of the SDK. It is the main entry point of the SDK. It is the only class that you need to instantiate in order to use the SDK. To instantiate DyteMobileClient, you should use `DyteiOSClientBuilder().build()`.
 
 ```swift
 let meeting = DyteiOSClientBuilder().build()
 ```
-
-Add listeners and implement callback stubs
+2. Add listeners and implement callback stubs
 
 ```swift
 meeting.addMeetingRoomEventsListener(meetingRoomEventsListener: self)
@@ -105,17 +106,17 @@ meeting.addParticipantEventsListener(participantEventsListener: self)
 meeting.addSelfEventsListener(selfEventsListener: self)
 ```
 
-Now you can use `meeting` to join in the room. First step is to establish a
-connection to the meeting server, you can do that with
+## Step 3: Set the properties in the DyteMeetingInfo class.
 
-## Step 3: Set the meeting properties
+If you're using v1 APIs, then you need to pass the roonName and authToken. For v2, you just need to provide the participant's authToken.
 
-You can get the `roomName` and `authToken` using our backend APIs. Please refer
-[this for room name](https://docs.dyte.io/api#/operations/createMeeting) &
-[this for auth token](https://docs.dyte.io/api#/operations/addParticipant)
+You can get the `roomName` and `authToken` using our backend APIs. Please refer [this for room name](https://docs.dyte.io/api#/operations/createMeeting) & [this for auth token](https://docs.dyte.io/api#/operations/addParticipant)
+
+| Name        | Description                                                                                                                                                                                                                                                                                                                                   |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authToken` | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
 
 For V1 APIs:
-
 ```swift
 let meetingInfo = DyteMeetingInfo(authToken: authToken,
                                           roomName: meetingText,
@@ -124,8 +125,7 @@ let meetingInfo = DyteMeetingInfo(authToken: authToken,
 
 ```
 
-For V2 APIs: (Note: roomName is not required for v2 APIs)
-
+For V2 APIs:
 ```swift
 let meetingInfo = DyteMeetingInfo(authToken: authToken,
                                           enableAudio: true,
@@ -133,30 +133,38 @@ let meetingInfo = DyteMeetingInfo(authToken: authToken,
 
 ```
 
-## Step 4: Initialize
+## Step 4: Initialize the connection request.
+
+To initialize the connection request, call the `doInit()` method obtained on `meeting` with the `meetingInfo` argument. This will establish the connection with the Dyte meeting server.
+
+Now you can use `meeting` to join in the room.
+First step is to establish a connection to the meeting server, you can do that with `doInit`
 
 For V1 APIs:
-
 ```swift
 meeting.doInit(dyteMeetingInfo: meetingInfo)
 ```
 
 For V2 APIs:
-
 ```swift
 dyteMobileClient?.doInit(dyteMeetingInfo_: meetingInfo)
 ```
 
+
 ## Step 5: Connect to the meeting
 
-after `onMeetingInitCompleted()` Now to join in the room, use
+Now, you have established the connection with the Dyte meeting server successfully. 
+Once `onMeetingInitCompleted()` is triggered, next step is to join the room.
+ 
 
 ```swift
 meeting.joinRoom()
 ```
 
-:::info Join room event listeners Once you call `joinRoom()`, you can listen to
-callbacks for this action on meeting object by registering observer. :::
+:::info Join room event listeners 
+Once you call `joinRoom()`, you can listen to
+callbacks for this action on meeting object if you have done `meeting.addSelfEventsListener(selfEventsListener: self)`.
+:::
 
 ```swift
 extension MeetingViewModel: DyteSelfEventsListener {
@@ -186,22 +194,24 @@ To leave the meeting you can call `leaveRoom()` on `meeting` object.
 meeting.leaveRoom()
 ```
 
-:::info Leave room event listeners You can listen to `leaveRoom()` callbacks by
-registering obsever on meeting object as follows :::
+:::info Leave room event listeners 
+You can listen to `leaveRoom()` callbacks by
+registering obsever on meeting object as follows
+:::
 
 ```swift
 extension MeetingViewModel: DyteSelfEventsListener {
     func onMeetingRoomLeaveStarted() {
-        // meeting room leave started
+        // meeting room leave started    
     }
-
+    
     func onMeetingRoomLeft() {
         // meeting room leave completed
-    }
+    }      
 }
 ```
 
-### For iOS release builds
+## For iOS release builds
 
 Disable `BITCODE` in your Podfile.
 
