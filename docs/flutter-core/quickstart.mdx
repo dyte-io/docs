@@ -122,18 +122,15 @@ final dyteClient = DyteMobileClient();
 
 ## Step 3: Set the meeting properties
 
-Set the properties in the `DyteMeetingInfo` class. You need to provide the
-meeting's `roomName` and the participant's `authToken`. Optionally you can also
-add `baseUrl`.
+Set the properties in the `DyteMeetingInfo` class. You just need to provide the
+participant's `authToken`.
 
-| Name                      | Description                                                                                                                                                                                                                                                                                                                              |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `roomName` or `meetingID` | - for v1 APIs: pass the [roomName](https://docs.dyte.io/api/?v=v1#/operations/get_all_meetings)<br/> - for v2 APIs: pass the [meetingID](https://docs.dyte.io/api/?v=v2#/operations/create_meeting)                                                                                                                                      |
-| `authToken`               | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](https://docs.dyte.io/api#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
+| Name        | Description                                                                                                                                                                                                                                                                                                                                   |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authToken` | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
 
 ```dart
 final meetingInfo = DyteMeetingInfo(
-                    roomName: "<room_name>",
                     authToken: '<auth_token>',
                   );
 ```
