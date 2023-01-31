@@ -121,3 +121,28 @@ await meeting.participants.kickAll();
 const participantId = '...';
 await meeting.partcipants.kick(participantId);
 ```
+
+## Webinar methods
+
+The `acceptAllRequestToJoinStageRequests()` method lets the host accept all
+pending requests to join a webinar.
+
+```ts
+await meeting.partcipants.joined.acceptAllRequestToJoinStageRequests();
+```
+
+## Waiting room methods
+
+The `acceptWaitingRoomRequest()` method accepts requests from waitlisted
+participants if user has appropriate permissions.
+
+```ts
+await meeting.participants.joined.acceptWaitingRoomRequest(participantId);
+```
+
+The `rejectWaitingRoomRequest()` method requests from waitlisted participants if
+user has appropriate permissions.
+
+```ts
+await meeting.participants.joined.rejectWaitingRoomRequest(participantId);
+```

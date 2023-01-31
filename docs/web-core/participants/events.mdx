@@ -184,3 +184,16 @@ meeting.participants.joined.on(
 If you want to subscribe to above events but for a specific participant only,
 you can do so by binding event to `meeting.participants.joined.get(peerId).on()`
 method. where the `peerId` is the id of the participant that you want to watch.
+
+### Webinar events
+
+Here is a list of events that can are emitted for a participants in a `WEBINAR`
+setup.
+
+| **Event**                 | **Description**                                                        |
+| ------------------------- | ---------------------------------------------------------------------- |
+| `peerRequestToJoinStage`  | Emitted when a user has requested to join the webinar meeting.         |
+| `peerRejectedToJoinStage` | Emitted when the user's request to join the meeting has been rejected. |
+| `peerAcceptedToJoinStage` | Emitted when the user's request to join the meeting has been accepted  |
+| `peerStoppedPresenting`   | Emitted when a participant stops presenting in the webinar meeting.    |
+| `peerStartedPresenting`   | Emitted when a participant starts presenting in the webinar meeting.   |
