@@ -51,28 +51,29 @@ You’ll learn how to:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-:::tip iOS minimum version 12.0
-
-Set your platform to iOS 12.0 or above in your Podfile.
-
 :::
 
-1. Add 'DyteiOSCore' to your Podfile.
+1. Set your platform to iOS 12.0 or above in your Podfile.
+
+```ruby
+platform: 'ios, '12.0''
+```
+
+2. Add 'DyteiOSCore' to your Podfile.
 
 ```ruby
 pod 'DyteiOSCore'
 ```
 
-2. Install the client SDK from pod.
+3. Install the client SDK from pod.
 
 ```shell
 pod install
 ```
 
-3. Add the following entries to the info.plist file. This gives permission to
+4. Add the following entries to the info.plist file. This gives permission to
    your app to access the camera and microphone, access photos, install the
-   required fonts and icons. - the strings are displayed in the permission
-   pop-ups, feel free to customize them to suit your audience
+   required fonts and icons.
 
 ```xml
 <key>NSBluetoothPeripheralUsageDescription</key>
@@ -107,7 +108,7 @@ refer to the [Release Builds](#for-ios-release-builds) section.
 let meeting = DyteiOSClientBuilder().build()
 ```
 
-2. Add listeners and implement callback stubs
+2. Add listeners and implement callback stubs.
 
 ```swift
 meeting.addMeetingRoomEventsListener(meetingRoomEventsListener: self)
