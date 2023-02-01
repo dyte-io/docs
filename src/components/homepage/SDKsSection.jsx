@@ -157,7 +157,7 @@ export default function SDKsSection() {
               </li>
               <li>
                 <SDKLink
-                  href="react-ui-kit/basics/using-hooks"
+                  href="react-ui-kit/using-hooks"
                   Icon={ReactIcon}
                   label="React"
                 />
