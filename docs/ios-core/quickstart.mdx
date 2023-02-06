@@ -125,7 +125,7 @@ You can get the `roomName` and `authToken` using our backend APIs. Please refer
 
 | Name        | Description                                                                                                                                                                                                                                                                                                                                   |
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `roomName` | [Create a meeting API](https://docs.dyte.io/api/?v=v1#/operations/create_meeting) returns <br/> an unique identifier for your meeting <br/> `roomName`.|
+| `roomName`  | [Create a meeting API](https://docs.dyte.io/api/?v=v1#/operations/create_meeting) returns <br/> an unique identifier for your meeting <br/> `roomName`.                                                                                                                                                                                       |
 | `authToken` | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
 
 For v1 APIs:
@@ -153,8 +153,6 @@ To initialize the connection request, call the `doInit()` method obtained on
 `meeting` with the `meetingInfo` argument. This will establish the connection
 with the Dyte meeting server.
 
-
-
 For v1 APIs:
 
 ```swift
@@ -180,7 +178,9 @@ To join the meeting room, do the following:
 ```swift
 meeting.joinRoom()
 ```
-Joina room event listeners: Once you call `joinRoom()`, you can listen to callbacks for this action on meeting object if you have done
+
+Joina room event listeners: Once you call `joinRoom()`, you can listen to
+callbacks for this action on meeting object if you have done
 `meeting.addSelfEventsListener(selfEventsListener: self)`.
 
 ```swift
@@ -201,11 +201,13 @@ extension MeetingViewModel: DyteSelfEventsListener {
 
 ### Leave the room
 
-Once the meeting is over, you can leave the meeting room. To leave the meeting call `leaveRoom()` on `meeting` object.
+Once the meeting is over, you can leave the meeting room. To leave the meeting
+call `leaveRoom()` on `meeting` object.
 
 ```swift
 meeting.leaveRoom()
 ```
+
 Leave room event listeners: You can listen to `leaveRoom()` callbacks by
 registering obsever on meeting object as follows:
 
