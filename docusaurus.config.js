@@ -197,11 +197,6 @@ const config = {
           hideable: true,
         },
       },
-      announcementBar: {
-        id: 'ph-banner',
-        content: '<ph-banner></ph-banner>',
-        isCloseable: false,
-      },
       navbar: {
         // NOTE: hideOnScroll breaks on `/api`, enable when fixed
         // hideOnScroll: true,
