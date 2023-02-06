@@ -45,7 +45,7 @@ The response contains the `ingest_server`, livestream `id`, `stream_key`, and
 }
 ```
 
-## Step 2: Specify RTMP ingestion URL for live streaming
+## Step 2: Specify RTMP ingestion URL for livestreaming
 
 In your application, enter the ingestion URL you generated in
 [Step 1](#step-1-generate-credentials-for-live-stream).
@@ -53,7 +53,7 @@ In your application, enter the ingestion URL you generated in
 You must enter the ingest server URL and stream key separately in
 [OBS](https://en.wikipedia.org/wiki/OBS_Studio).
 
-![obs-example](/static/guides/obs-example.jpeg) _User is adding the input stream
+![obs-example](/static/guides/obs-example.jpeg) _Input stream added to the OBS
 to OBS_
 
 However, for [ffmpeg](https://en.wikipedia.org/wiki/FFmpeg), you must specify
@@ -65,7 +65,7 @@ ffmpeg -re -f lavfi -i "testsrc=size=1280x720 [out0]; sine=frequency=500 [out1]"
   rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/sk_ap-south-1_nDT9sbq3qZyf_SYSyPE7wnVGUQYNyejMe6Z3n
 ```
 
-## Fetch details of active live streams
+## Fetch details of active livestreams
 
 Using the livestream ID that you generated in Step 1, you can fetch details of
 active livestreams.
