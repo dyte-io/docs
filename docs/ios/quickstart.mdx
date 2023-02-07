@@ -195,18 +195,20 @@ class AppThemeConfigurator: AppThemeProtocol {
 
 ## Step 3: Configure a Dyte meeting and Launch GUI
 
-Set the initialization properties in the `SetupViewController` class. You just
-need to provide the participant's `authToken`.
+Set the initialization properties in the `DyteUiKitEngine` class. You just need
+to initialize DyteMeetingInfoV2 provide the participant's `authToken`.
 
 | Name        | Description                                                                                                                                                                                                                                                                                                                                   |
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `authToken` | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
 
 ```swift
-//BASE_URL = "https://api.cluster.dyte.in"
-let controller = SetupViewController(authToken: Constants.AUTH_TOKEN, enableAudio: true, enableVideo: true, baseUrl: Constants.BASE_URL, completion: { [unowned self] in
+       DyteUiKitEngine.setupV2(DyteMeetingInfoV2(authToken: authToken, enableAudio: true, enableVideo: true))
+       let controller = DyteUiKitEngine.shared.getInitialController {
+            [unowned self] in
             self.dismiss(animated: true)
-         })
+            self.view.hideActivityIndicator()
+        }
         controller.modalPresentationStyle = .fullScreen
         self.present(controller, animated: true)
 ```
