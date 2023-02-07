@@ -791,7 +791,7 @@ paths:
         description: ID of the session
   /analytics/overall:
     get:
-      summary: Fetch complete analytics stats
+      summary: Fetch complete analytics data
       description: Returns complete analytics such as sessions_count, sessions_minutes_consumed and recordings_minutes_consumed of an organization in a given time period. 
       operationId: GetOverallStats
       tags:
@@ -804,7 +804,7 @@ paths:
           $ref: '#/components/responses/GetOverallStats'
   /analytics/daywise:
     get:
-      summary: Fetch daywise analytics stats
+      summary: Fetch daywise analytics data
       description: Returns analytics such as sessions_count, sessions_minutes_consumed and recordings_minutes_consumed of an organization grouped by day in a given time period.
       operationId: GetDaywiseStats
       tags:
@@ -3524,7 +3524,7 @@ components:
                 type: object
                 $ref: '#/components/schemas/ChatMessage'
     GetOverallStats:
-      description: Returns complete stats of an organization
+      description: Returns complete analytics of an organization
       content:
         application/json:
           schema:
@@ -3538,7 +3538,7 @@ components:
             OverallStatsSuccess:
               $ref: '#/components/examples/OverallStatsSuccessResponse'
     GetDaywiseStats:
-      description: Returns daywise stats of an organization
+      description: Returns daywise analytics of an organization
       content:
         application/json:
           schema:
