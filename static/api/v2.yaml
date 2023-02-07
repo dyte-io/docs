@@ -791,8 +791,8 @@ paths:
         description: ID of the session
   /analytics/overall:
     get:
-      summary: Fetch overall analytics stats
-      description: Returns overall analytics such as sessions_count, sessions_minutes_consumed and recordings_minutes_consumed of an organization in a given time period. 
+      summary: Fetch complete analytics stats
+      description: Returns complete analytics such as sessions_count, sessions_minutes_consumed and recordings_minutes_consumed of an organization in a given time period. 
       operationId: GetOverallStats
       tags:
         - Analytics
@@ -3524,7 +3524,7 @@ components:
                 type: object
                 $ref: '#/components/schemas/ChatMessage'
     GetOverallStats:
-      description: Returns overall stats of an organization
+      description: Returns complete stats of an organization
       content:
         application/json:
           schema:
