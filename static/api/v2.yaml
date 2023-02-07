@@ -789,10 +789,10 @@ paths:
         in: path
         required: true
         description: ID of the session
-  /analytics/stats:
+  /analytics/overall:
     get:
-      summary: Fetch statistics of an organization
-      description: Returns complete statistics of an organization for the given time period.
+      summary: Fetch overall analytics stats
+      description: Returns overall analytics such as sessions_count, sessions_minutes_consumed and recordings_minutes_consumed of an organization in a given time period. 
       operationId: GetOverallStats
       tags:
         - Analytics
@@ -802,6 +802,19 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/GetOverallStats'
+  /analytics/daywise:
+    get:
+      summary: Fetch daywise analytics stats
+      description: Returns analytics such as sessions_count, sessions_minutes_consumed and recordings_minutes_consumed of an organization grouped by day in a given time period.
+      operationId: GetDaywiseStats
+      tags:
+        - Analytics
+      parameters:
+        - $ref: '#/components/parameters/startDate'
+        - $ref: '#/components/parameters/endDate'
+      responses:
+        '200':
+          $ref: '#/components/responses/GetDaywiseStats'
   /webhooks:
     summary: Represents webhooks for organization
     description: Represents webhooks for organization
@@ -2141,25 +2154,30 @@ components:
     OverallStats:
       type: object
       properties:
-        day_wise:
-          type: array
-          items:
-            type: object
-            properties:
-              date:
-                type: string
-              sessions_count:
-                type: number
-              sessions_minutes_consumed:
-                type: number
-              recordings_minutes_consumed:
-                type: number
-        total_sessions_count:
+        sessions_count:
           type: number
-        total_sessions_minutes_consumed:
+          description: Number of sessions_count happened in the given time period
+        sessions_minutes_consumed:
           type: number
-        total_recordings_minutes_consumed:
+          description: Total meetings minutes consumed across all sessions in the given time period.
+        recordings_minutes_consumed:
           type: number
+          description: Total recordings minutes consumed across all sessions in the given time period.
+    DaywiseStats:
+      type: object
+      properties:
+        date:
+          type: string
+          description: Date in YYYY-MM-DD format
+        sessions_count:
+          type: number
+          description: Number of sessions_count happened in the given time period
+        sessions_minutes_consumed:
+          type: number
+          description: Total meetings minutes consumed across all sessions in the given time period.
+        recordings_minutes_consumed:
+          type: number
+          description: Total recordings minutes consumed across all sessions in the given time period.
     OrganizationRequest:
       type: object
       required:
@@ -3160,13 +3178,14 @@ components:
       schema:
         type: string
       example: '2022-09-01'
-      description: Date to start from
+      description: start date in YYYY-MM-DD format
     endDate:
       name: end_date
       in: query
       schema:
         type: string
       example: '2022-09-22'
+      description: end date in YYYY-MM-DD format
   requestBodies:
     KickParticipantsBody:
       description: Request body for kicking participants from an active session. Only one of `participant_id` or `custom_participant_id` is required.
@@ -3505,7 +3524,7 @@ components:
                 type: object
                 $ref: '#/components/schemas/ChatMessage'
     GetOverallStats:
-      description: Returns overall and daywise stats of an organization
+      description: Returns overall stats of an organization
       content:
         application/json:
           schema:
@@ -3514,12 +3533,26 @@ components:
               success:
                 type: boolean
               data:
-                type: object
-                properties:
-                  stats:
-                    $ref: '#/components/schemas/OverallStats'
-          example:
-            $ref: '#'
+                $ref: '#/components/schemas/OverallStats'
+          examples:
+            OverallStatsSuccess:
+              $ref: '#/components/examples/OverallStatsSuccessResponse'
+    GetDaywiseStats:
+      description: Returns daywise stats of an organization
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              succes:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DaywiseStats'
+          examples:
+            DaywiseStatsSuccess:
+              $ref: '#/components/examples/DaywiseStatsSuccessResponse'
     GetMeeting:
       description: Success Response
       content:
@@ -3767,19 +3800,22 @@ components:
       value:
         success: true
         data:
-          stats:
-            dayWise:
-              - date: '2022-09-01'
-                sessions_count: 12
-                sessions_minutes_consumed: 756.12
-                recordings_minutes_consumed: 123.45
-              - date: '2022-09-02'
-                sessions_count: 14
-                sessions_minutes_consumed: 567.11
-                recordings_minutes_consumed: 345.4432
-            total_sessions_count: 26
-            total_sessions_minutes_consumed: 1323.23
-            total_recordings_minutes_consumed: 468.8932
+          sessions_count: 26
+          sessions_minutes_consumed: 1323.23
+          recordings_minutes_consumed: 468.8932
+    DaywiseStatsSuccessResponse:
+      summary: Daywise stats response
+      value:
+        success: true
+        data:
+          - date: '2022-03-01'
+            sessions_count: 10
+            sessions_minutes_consumed: 123.22
+            recordings_minutes_consumed: 129.14
+          - date: '2022-03-02'
+            sessions_count: 16
+            sessions_minutes_consumed: 1278.87
+            recordings_minutes_consumed: 338.12
   securitySchemes:
     Authorization:
       type: http
