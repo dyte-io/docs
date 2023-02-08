@@ -733,6 +733,11 @@ paths:
         - $ref: '#/components/parameters/perPage'
         - $ref: '#/components/parameters/sortOrder'
         - $ref: '#/components/parameters/participantsSortBy'
+        - name: include_peer_events
+          in: query
+          description: if true, response includes all the peer events of participants
+          schema:
+            type: boolean
       responses:
         '200':
           $ref: '#/components/responses/GetSessionParticipants'
@@ -789,10 +794,10 @@ paths:
         in: path
         required: true
         description: ID of the session
-  /analytics/stats:
+  /analytics/overall:
     get:
-      summary: Fetch statistics of an organization
-      description: Returns complete statistics of an organization for the given time period.
+      summary: Fetch complete analytics data
+      description: Returns complete analytics such as sessions_count, sessions_minutes_consumed and recordings_minutes_consumed of an organization in a given time period. 
       operationId: GetOverallStats
       tags:
         - Analytics
@@ -802,6 +807,19 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/GetOverallStats'
+  /analytics/daywise:
+    get:
+      summary: Fetch daywise analytics data
+      description: Returns analytics such as sessions_count, sessions_minutes_consumed and recordings_minutes_consumed of an organization grouped by day in a given time period.
+      operationId: GetDaywiseStats
+      tags:
+        - Analytics
+      parameters:
+        - $ref: '#/components/parameters/startDate'
+        - $ref: '#/components/parameters/endDate'
+      responses:
+        '200':
+          $ref: '#/components/responses/GetDaywiseStats'
   /webhooks:
     summary: Represents webhooks for organization
     description: Represents webhooks for organization
@@ -1992,6 +2010,24 @@ components:
         updated_at:
           type: string
           description: timestamp when this participant's data was last updated.
+    ParticipantPeerEvent:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of peer event
+        peer_id:
+          type: string
+          description: peer id of the peer.
+        event_name:
+          type: string
+          description: Event name like peer_joining or peer_leaving
+        created_at:
+          type: string
+          description: timestamp at which peer event was created
+        updated_at:
+          type: string
+          description: timestap at which peer event was last updated
     ParticipantPeerStats:
       type: object
       properties:
@@ -2141,25 +2177,30 @@ components:
     OverallStats:
       type: object
       properties:
-        day_wise:
-          type: array
-          items:
-            type: object
-            properties:
-              date:
-                type: string
-              sessions_count:
-                type: number
-              sessions_minutes_consumed:
-                type: number
-              recordings_minutes_consumed:
-                type: number
-        total_sessions_count:
+        sessions_count:
           type: number
-        total_sessions_minutes_consumed:
+          description: Number of sessions_count happened in the given time period
+        sessions_minutes_consumed:
           type: number
-        total_recordings_minutes_consumed:
+          description: Total meetings minutes consumed across all sessions in the given time period.
+        recordings_minutes_consumed:
           type: number
+          description: Total recordings minutes consumed across all sessions in the given time period.
+    DaywiseStats:
+      type: object
+      properties:
+        date:
+          type: string
+          description: Date in YYYY-MM-DD format
+        sessions_count:
+          type: number
+          description: Number of sessions_count happened in the given time period
+        sessions_minutes_consumed:
+          type: number
+          description: Total meetings minutes consumed across all sessions in the given time period.
+        recordings_minutes_consumed:
+          type: number
+          description: Total recordings minutes consumed across all sessions in the given time period.
     OrganizationRequest:
       type: object
       required:
@@ -3160,13 +3201,14 @@ components:
       schema:
         type: string
       example: '2022-09-01'
-      description: Date to start from
+      description: start date in YYYY-MM-DD format
     endDate:
       name: end_date
       in: query
       schema:
         type: string
       example: '2022-09-22'
+      description: end date in YYYY-MM-DD format
   requestBodies:
     KickParticipantsBody:
       description: Request body for kicking participants from an active session. Only one of `participant_id` or `custom_participant_id` is required.
@@ -3475,6 +3517,11 @@ components:
                     type: array
                     items:
                       $ref: '#/components/schemas/ParticipantsList'
+          examples:
+            ParticipantListSuccess:
+              $ref: '#/components/examples/ParticipantListSuccess'
+            ParticipantListWithPeerStatsSuccess:
+              $ref: '#/components/examples/ParticipantListWithPeerEventSucces'
     GetParticipantDetails:
       description: Returns details of a participant along with callstats data.
       content:
@@ -3505,7 +3552,7 @@ components:
                 type: object
                 $ref: '#/components/schemas/ChatMessage'
     GetOverallStats:
-      description: Returns overall and daywise stats of an organization
+      description: Returns complete analytics of an organization
       content:
         application/json:
           schema:
@@ -3514,12 +3561,26 @@ components:
               success:
                 type: boolean
               data:
-                type: object
-                properties:
-                  stats:
-                    $ref: '#/components/schemas/OverallStats'
-          example:
-            $ref: '#'
+                $ref: '#/components/schemas/OverallStats'
+          examples:
+            OverallStatsSuccess:
+              $ref: '#/components/examples/OverallStatsSuccessResponse'
+    GetDaywiseStats:
+      description: Returns daywise analytics of an organization
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              succes:
+                type: boolean
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DaywiseStats'
+          examples:
+            DaywiseStatsSuccess:
+              $ref: '#/components/examples/DaywiseStatsSuccessResponse'
     GetMeeting:
       description: Success Response
       content:
@@ -3755,6 +3816,88 @@ components:
         error:
           code: 404
           message: No active session found for meeting_id 6bf2b8be-04dd-4191-b602-1128921a306b
+    ParticipantListSuccess:
+      summary: success response for session's participants list
+      value:
+        success: true
+        data:
+          participants:
+            - id: "005f4e0c-4d08-4d4e-a391-a76be75cd296"
+              user_id: "0a08343d-a9dc-45f0-9feb-6a64afcc4f81"
+              custom_participant_id: 83qi0i
+              display_name: Mark
+              role: webinar_participant
+              joined_at: '2023-02-01T10:51:08.030Z'
+              left_at: '2023-02-01T10:56:56.612Z'
+              duration: 5.8097
+              created_at: '2023-02-01T10:51:08.039Z'
+              updated_at: '2023-02-01T10:56:56.618Z'
+            - id: "51fdf95f-d893-471a-922b-7db7adb14453"
+              user_id: "85e7f0fd-7c16-45e9-9d68-f17ef007c4eb"
+              custom_participant_id: 3uggr
+              display_name: Henry
+              role: webinar_participant
+              joined_at: '2023-02-01T10:50:36.846Z"'
+              left_at: '2023-02-01T10:57:32.424Z'
+              duration: 6.9263
+              created_at: '2023-02-01T10:50:36.853Z'
+              updated_at: '2023-02-01T10:57:32.431Z'
+          paging:
+            total_count: 123
+            start_offset: 1
+            end_offset: 2
+    ParticipantListWithPeerEventSucces:
+      summary: success response for sessions participants list with peer events
+      value:
+        success: true
+        data:
+          participants:
+            - id: "005f4e0c-4d08-4d4e-a391-a76be75cd296"
+              user_id: "0a08343d-a9dc-45f0-9feb-6a64afcc4f81"
+              custom_participant_id: 83qi0i
+              display_name: Mark
+              role: webinar_participant
+              joined_at: '2023-02-01T10:51:08.030Z'
+              left_at: '2023-02-01T10:56:56.612Z'
+              duration: 5.8097
+              created_at: '2023-02-01T10:51:08.039Z'
+              updated_at: '2023-02-01T10:56:56.618Z'
+              peer_events:
+                - id: '94af3bac-f30b-40b9-ab45-4b9e6eff191a'
+                  peer_id: '79d87ca5-7e47-452a-b3c1-b6842ad84bf5'
+                  event_name: 'PEER_JOINING'
+                  created_at: '2023-02-01T10:51:50.786Z'
+                  updated_at: '2023-02-01T10:51:50.792Z'
+                - id: '94af3bac-f30b-40b9-ab45-4b9e6eff191b'
+                  peer_id: '79d87ca5-7e47-452a-b3c1-b6842ad84bf5'
+                  event_name: 'PEER_LEAVING'
+                  created_at: '2023-02-01T10:56:50.786Z'
+                  updated_at: '2023-02-01T10:56:50.792Z'
+            - id: "51fdf95f-d893-471a-922b-7db7adb14453"
+              user_id: "85e7f0fd-7c16-45e9-9d68-f17ef007c4eb"
+              custom_participant_id: 3uggr
+              display_name: Henry
+              role: webinar_participant
+              joined_at: '2023-02-01T10:50:36.846Z"'
+              left_at: '2023-02-01T10:57:32.424Z'
+              duration: 6.9263
+              created_at: '2023-02-01T10:50:36.853Z'
+              updated_at: '2023-02-01T10:57:32.431Z'
+              peer_events:
+                - id: '94af3bac-f30b-40b9-ab45-4b9e6eff191a'
+                  peer_id: '51fdf95f-d893-471a-922b-7db7adb14453'
+                  event_name: 'PEER_JOINING'
+                  created_at: '2023-02-01T10:51:50.786Z'
+                  updated_at: '2023-02-01T10:51:50.792Z'
+                - id: '94af3bac-f30b-40b9-ab45-4b9e6eff191b'
+                  peer_id: '51fdf95f-d893-471a-922b-7db7adb14453'
+                  event_name: 'PEER_LEAVING'
+                  created_at: '2023-02-01T10:56:50.786Z'
+                  updated_at: '2023-02-01T10:56:50.792Z'
+          paging:
+            total_count: 123
+            start_offset: 1
+            end_offset: 2
     ParticipantNotFoundResponse:
       summary: Participant Not Found
       value:
@@ -3767,19 +3910,22 @@ components:
       value:
         success: true
         data:
-          stats:
-            dayWise:
-              - date: '2022-09-01'
-                sessions_count: 12
-                sessions_minutes_consumed: 756.12
-                recordings_minutes_consumed: 123.45
-              - date: '2022-09-02'
-                sessions_count: 14
-                sessions_minutes_consumed: 567.11
-                recordings_minutes_consumed: 345.4432
-            total_sessions_count: 26
-            total_sessions_minutes_consumed: 1323.23
-            total_recordings_minutes_consumed: 468.8932
+          sessions_count: 26
+          sessions_minutes_consumed: 1323.23
+          recordings_minutes_consumed: 468.8932
+    DaywiseStatsSuccessResponse:
+      summary: Daywise stats response
+      value:
+        success: true
+        data:
+          - date: '2022-03-01'
+            sessions_count: 10
+            sessions_minutes_consumed: 123.22
+            recordings_minutes_consumed: 129.14
+          - date: '2022-03-02'
+            sessions_count: 16
+            sessions_minutes_consumed: 1278.87
+            recordings_minutes_consumed: 338.12
   securitySchemes:
     Authorization:
       type: http
