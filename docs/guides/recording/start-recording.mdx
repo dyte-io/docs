@@ -13,6 +13,11 @@ There are two ways to start a recording a Dyte meeting:
 - Using the `record_on_start` flag when
   [creating a meeting](/api/?v=v2#/operations/create_meeting)
 - Using the [Start Recording API](/api/?v=v2#/operations/start_recording)
+:::info note
+
+Our system does not currently support recordings of brief durations that are less than five seconds. In such cases, it is possible that the recording APIs may experience occasional failures. Due to limitations in encoding recordings of short duration, these failures may result in an ERRORED state.
+
+
 
 ## Using the `record_on_start` parameter
 
