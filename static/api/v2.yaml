@@ -872,18 +872,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/WebhookRequest'
-            example:
-              type: object
-              value:
-                name: All events webhook
-                url: 'https://webhook.site/b23a5bbd-c7b0-4ced-a9e2-78ae7889897e'
-                events:
-                  - meeting.started
-                  - meeting.ended
-                  - meeting.participantJoined
-                  - meeting.participantLeft
-                  - recording.statusUpdate
-                  - livestreaming.statusUpdate
       responses:
         '201':
           description: Webhook registered successfully
@@ -1752,7 +1740,7 @@ components:
         url:
           type: string
           format: uri
-          example: 'https://webhook.site/#!/b23a5bbd-c7b0-4ced-a9e2-78ae7889897e'
+          example: 'https://webhook.site/b23a5bbd-c7b0-4ced-a9e2-78ae7889897e'
           description: URL this webhook will send events to
         events:
           type: array
