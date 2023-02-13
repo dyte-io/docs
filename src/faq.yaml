@@ -314,22 +314,33 @@
     We send `startedAt` and `endedAt` timestamps in a `meeting.ended` webhook
     that can be used to compute the session's running time.
 
-    - question:
-    I'm encountering audio and video problems while developing a live video solution for my app. I'm using Chrome to test the microphone and camera. What could be causing this?
+- question:
+    I'm encountering audio and video problems while developing a live video
+    solution for my app. I'm using Chrome to test the microphone and camera.
+    What could be causing this?
   tags: ['Technical']
-  answer:
-    The issue could be due to the security features implemented by the browser. 
-    Most of the standard browsers with best security practices restrict many features to HTTPS instead of HTTP. 
-    You can read about the details of the features that are restricted in Chrome [here](https://sites.google.com/a/chromium.org/dev/Home/chromium-security/deprecating-powerful-features-on-insecure-origins).
-    
-    To troubleshoot, we recommend trying the steps mentioned in this [document](https://web.dev/how-to-use-local-https/). If this does not resolve the issue, you can try using [ngrok](https://ngrok.com/) as an alternative solution.
-    
-    To use ngrok, download the software and run it with the local port specified. This generates an HTTPS URL that you can use for testing the microphone and camera.
+  answer: The issue could be due to the security features implemented by the
+    browser. Most of the standard browsers with best security practices restrict
+    many features to HTTPS instead of HTTP. You can read about the details of
+    the features that are restricted in Chrome
+    [here](https://sites.google.com/a/chromium.org/dev/Home/chromium-security/deprecating-powerful-features-on-insecure-origins).
 
-1. Download ngrok.
-2. Run the command 'ngrok http PUT_LOCAL_PORT_HERE'.
-3. Use the HTTPS URL to test your microphone and camera.
 
+    To troubleshoot, we recommend trying the steps mentioned in this
+    [document](https://web.dev/how-to-use-local-https/). If this does not
+    resolve the issue, you can try using [ngrok](https://ngrok.com/) as an
+    alternative solution.
+
+
+    To use ngrok, download the software and run it with the local port
+    specified. This generates an HTTPS URL that you can use for testing the
+    microphone and camera.
+
+    1. Download ngrok.
+
+    2. Run the command 'ngrok http PUT_LOCAL_PORT_HERE'.
+
+    3. Use the HTTPS URL to test your microphone and camera.
 
 #
 # Pricing FAQs
