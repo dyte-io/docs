@@ -2,6 +2,7 @@
 id: "reference"
 title: "Reference"
 custom_edit_url: null
+sidebar_class_name: hideReferenceSidebarLink
 ---
 
 ## Interfaces
