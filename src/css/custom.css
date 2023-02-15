@@ -1111,6 +1111,12 @@ div[class^='announcementBarContent'] {
   line-height: 48px;
 }
 
+ul > li.theme-doc-sidebar-item-category:has(a[href="/ui-kit/reference"]),
+ul > li.theme-doc-sidebar-item-category:has(a[href="/react-ui-kit/reference"]),
+ul > li.theme-doc-sidebar-item-category:has(a[href="/angular-ui-kit/reference"]) {
+  display: none
+}
+
 @media only screen and (max-width: 768px) {
   div[class^='announcementBar'][role='banner'] {
     height: 96px;

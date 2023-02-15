@@ -132,7 +132,6 @@ const config = {
   favicon: '/favicon.ico',
   trailingSlash: false,
   scripts: [
-    { src: '/js/banner.js', async: true },
     ...(isDev
       ? []
       : [
