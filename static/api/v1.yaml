@@ -1778,6 +1778,51 @@ components:
                 - `VP8`: [sample recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/vp8_sample.webm)
                 - `VP9`: [sample recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/vp9_sample.webm)
               default: H264
+            width:
+              type: integer
+              description: Width of the recording video in pixels
+              minimum: 1
+              maximum: 1920
+              example: 1280
+              default: 1280
+            height:
+              type: integer
+              description: Height of the recording video in pixels
+              maximum: 1920
+              minimum: 1
+              example: 720
+              default: 720
+            watermark:
+              type: object
+              description: Watermark to be added to the recording
+              properties:
+                url:
+                  type: string
+                  format: uri
+                  description: URL of the watermark image
+                size:
+                  type: object
+                  description: Size of the watermark
+                  properties:
+                    width:
+                      type: integer
+                      description: Width of the watermark in px
+                      minimum: 1
+                      default: 200
+                    height:
+                      type: integer
+                      description: Height of the watermark in px
+                      minimum: 1
+                      default: auto
+                position:
+                  type: string
+                  enum:
+                    - left top
+                    - right top
+                    - left bottom
+                    - right bottom
+                  description: Position of the watermark
+                  default: left top
         liveStreamingConfig:
           type: object
           description: Object containing configuration regarding livestreaming the meeting video to a platform that supports RTMP input.
