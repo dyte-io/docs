@@ -61,17 +61,15 @@
 - question: What are Core SDKs used for?
   tags: ['General']
   answer: |-
-    The core SDKs are required to begin integrating Dyte into your web and
-    mobile applications. Core SDKs allow you to create fully customizable
-    video and voice calls with real-time communication for your
-    applications. See [Dyte docs](/)
+    The Dyte Core SDKs are designed to provide developers with an easy way to incorporate real-time communication (RTC) solutions into their apps and websites. With full customization and branding options, you can build your own UI from the ground up without dealing with complicated media layers. 
+    
+    The Core SDK acts as a data-only layer, offering high-level primitives and abstracting away complex media and networking optimizations. It only provides simple APIs that are user-friendly and easy to work with.
+    See [Dyte docs](/).
 
 - question: What is the UI Kit?
   tags: ['General']
   answer: |-
-    Dyte provides a prebuilt design library of UI components that you can
-    use to build video and voice calls in minutes. This layer is used on top
-    of the Core SDKs. See [Dyte docs](/)
+    Dyte's React UI Kit is a prebuilt design library of UI components that makes it easy to integrate video and voice calls into any app or website within minutes. See [Dyte docs](https://docs.dyte.io/react-ui-kit).
 
 - question: What is the Plugin SDK?
   tags: ['General']
@@ -179,9 +177,11 @@
 - question: Where are the meeting recordings stored?
   tags: ['Technical']
   answer: |-
-    We store the recordings where you provide us storage access. For
-    example, your AWS S3 bucket, DigitalOcean Spaces, or Azure storage
-    account. See [Start recording a meeting for the given ID](/api#/operations/startRecording) and [Publishing a recording to your cloud provider](/guides/recording-your-meetings#publishing-a-recording-to-your-cloud-provider)
+    The meeting recordings are saved in your cloud storage that you set up. The supported cloud providers are AWS S3 bucket, DigitalOcean Spaces, and Azure Blob storage. 
+    
+    For more information on how to configure storage configs for Dyte Recordings, see [Set storage configuration](https://docs.dyte.io/guides/recording/custom-cloud-storage#set-storage-configuration). 
+    
+    If you haven't set up your storage configurations, Dyte will keep your recordings for 7 days, after which they will expire and become inaccessible.
 
 - question: Where is Dyte hosted?
   tags: ['Technical']
@@ -217,16 +217,9 @@
   answer: |-
     Webhook service enables you to subscribe to server events. These events
     allow to trigger specific server actions in response to Dyte meeting
-    events and state changes. We currently support notifications for the
-    following events via webhooks:
-
-    - meeting.started
-    - meeting.ended
-    - meeting.participantJoined
-    - meeting.participantLeft
-    - recording.statusUpdate
-
-    Learn more: [Integrating with Webhooks](/guides/integrating-with-webhooks)
+    events and state changes. 
+    
+    To access the current list of events that can be used with webhooks, see [Webhook Events List](https://docs.dyte.io/guides/webhooks/webhook-events).
 
 - question:
     How do I set up and transfer a recording to my storage configuration?
@@ -313,6 +306,34 @@
   answer:
     We send `startedAt` and `endedAt` timestamps in a `meeting.ended` webhook
     that can be used to compute the session's running time.
+
+- question:
+    I'm encountering audio and video problems while developing a live video
+    solution for my app. I'm using Chrome to test the microphone and camera.
+    What could be causing this?
+  tags: ['Technical']
+  answer: The issue could be due to the security features implemented by the
+    browser. Most of the standard browsers with best security practices restrict
+    many features to HTTPS instead of HTTP. You can read about the details of
+    the features that are restricted in Chrome
+    [here](https://sites.google.com/a/chromium.org/dev/Home/chromium-security/deprecating-powerful-features-on-insecure-origins).
+
+
+    To troubleshoot, we recommend trying the steps mentioned in this
+    [document](https://web.dev/how-to-use-local-https/). If this does not
+    resolve the issue, you can try using [ngrok](https://ngrok.com/) as an
+    alternative solution.
+
+
+    To use ngrok, download the software and run it with the local port
+    specified. This generates an HTTPS URL that you can use for testing the
+    microphone and camera.
+
+    1. Download ngrok.
+
+    2. Run the command 'ngrok http PUT_LOCAL_PORT_HERE'.
+
+    3. Use the HTTPS URL to test your microphone and camera.
 
 #
 # Pricing FAQs
