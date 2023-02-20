@@ -4,6 +4,7 @@ const fs = require('fs');
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/vsDark');
 
+const UIKitReferencePlugins = require('./plugins/ui-kit-reference-plugin.cjs');
 const { webpackPlugin } = require('./plugins/webpack-plugin.cjs');
 const tailwindPlugin = require('./plugins/tailwind-plugin.cjs');
 
@@ -131,7 +132,6 @@ const config = {
   favicon: '/favicon.ico',
   trailingSlash: false,
   scripts: [
-    { src: '/js/banner.js', async: true },
     ...(isDev
       ? []
       : [
@@ -181,7 +181,11 @@ const config = {
     ],
   ],
 
-  plugins: [tailwindPlugin, webpackPlugin, ...SECTIONS],
+  plugins: [
+    tailwindPlugin,
+    webpackPlugin,
+    ...SECTIONS,
+  ],
 
   themes: ['@docusaurus/theme-live-codeblock'],
 
