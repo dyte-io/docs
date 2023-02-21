@@ -34,7 +34,7 @@ export default function ReleaseNotesGenerator({ noteKey }) {
         fetch(`https://cdn.dyte.in/releasenotes/${noteKey}.json`)
             .then(response => response.json())
             .then(result => setReleaseNotes(result))
-            .catch((e) => { });
+            .catch(() => { });
     }, [noteKey]);
 
     return (
