@@ -1,6 +1,5 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-import Link from '@docusaurus/Link';
 
 import HeroSection from '../components/homepage/HeroSection';
 import SDKsSection from '../components/homepage/SDKsSection';
