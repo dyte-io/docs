@@ -241,17 +241,11 @@ export default function SDKsSection() {
               <li>
                 <SDKLink href="rn-core" Icon={ReactIcon} label="React Native" />
               </li>
+              <li>
+              <SDKLink href="ios-core" Icon={SwiftIcon} label="iOS" />
+              </li>
             </ul>
-            <div className="rounded-2xl bg-secondary-700 p-4 opacity-40 dark:bg-secondary-900">
-              <h5 className="text-center text-xs uppercase text-text-400">
-                Coming soon
-              </h5>
-              <ul className="mb-0 flex list-none flex-col gap-2 pl-0">
-                <li>
-                  <SDKLink disabled Icon={SwiftIcon} label="iOS" />
-                </li>
-              </ul>
-            </div>
+            
           </div>
         </div>
 

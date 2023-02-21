@@ -51,7 +51,7 @@ export default function ResourcesSection() {
         <div className="my-20 flex flex-wrap items-center justify-center gap-3 text-center">
           <span>View all</span>
           <div className="flex gap-2">
-            <Link className="underline underline-offset-8" href="/guides">
+            <Link className="underline underline-offset-8" href="https://docs.dyte.io/guides/quickstart">
               Guides
             </Link>
             <Link

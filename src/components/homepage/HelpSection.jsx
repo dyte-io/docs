@@ -23,7 +23,7 @@ export default function HelpSection({ className = '' }) {
               you.
             </p>
             <Link
-              href="https://dyte.io/contact"
+              href="https://dyte.io/schedule-demo"
               className="text-primary dark:text-primary-100"
             >
               Schedule a Call &rarr;

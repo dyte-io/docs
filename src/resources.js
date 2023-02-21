@@ -1,31 +1,31 @@
 const RESOURCES = [
   {
-    url: '/guides/controlling-an-active-session',
+    url: 'https://docs.dyte.io/guides/v2-migration-guide',
     type: 'Guide',
-    title: 'Controlling an Active Session',
+    title: 'Migrate to v2 REST API',
     description:
-      'An active session (ongoing meeting) can be controlled programatically using Active Session APIs.',
-    image: '/static/landing-page/resources/active-session.png',
+      'Excited to announce the release of our v2 REST APIs, which are faster, more idiomatic, and easier to use.',
+    image: 'https://dyte.io/blog/content/images/size/w1000/2023/02/Dyte-Blog---v2-APIs.jpg',
     duration: '3 min',
   },
   {
-    url: 'https://dyte.io/blog/reliability-testing/',
+    url: 'https://dyte.io/blog/schedule-send-meeting-invites-dyte/',
     type: 'Blog',
-    title: 'Consistent & Reliable Media Experience',
+    title: 'How to Schedule and Send Meeting Invites via Dyte?',
     description:
-      'Each browser has its own implementation of standards. Learn how Dyte tests the SDK to deliver a consistent & reliable media experience.',
+      'Scheduling and sending meeting invites from your own application made simpler with Dyte SDKs.',
     image:
-      'https://dyte.io/blog/content/images/size/w1750/2022/08/Consistent-and-Reliable-Media-Experience-Powered-by-Dyte.png',
+      'https://dyte.io/blog/content/images/size/w1000/2022/12/Dyte-Blog---Calendar-2.png',
     duration: '4 min',
   },
   {
-    url: 'https://www.youtube.com/watch?v=aRED9bsgyrQ',
+    url: 'https://www.youtube.com/watch?v=eVUqkNNHh1o',
     type: 'Video',
-    title: 'Integrating React Core SDK into ReactJS',
+    title: 'Integrating React UI Kit',
     description:
-      'In this episode of Dyte Bytes, join Tarush to learn about integrating Dyte Video SDK into ReactJS applications - from scratch.',
-    image: 'https://img.youtube.com/vi/aRED9bsgyrQ/hqdefault.jpg',
-    duration: '6 min',
+      'In this video learn how to use React UI Kit prebuilt components to add live video and audio to your React application.',
+    image: 'https://img.youtube.com/vi/eVUqkNNHh1o/hqdefault.jpg',
+    duration: '5 min',
   },
 ];
 
