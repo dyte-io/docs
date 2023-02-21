@@ -1,6 +1,6 @@
 const RESOURCES = [
   {
-    url: 'https://docs.dyte.io/guides/v2-migration-guide',
+    url: '/guides/v2-migration-guide',
     type: 'Guide',
     title: 'Migrate to v2 REST API',
     description:
