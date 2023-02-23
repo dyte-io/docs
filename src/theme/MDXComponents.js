@@ -10,10 +10,16 @@ import VideoPlayer from '../components/VideoPlayer';
 import InfoTooltip from '../components/InfoTooltip';
 import PropsTable from '../components/PropsTable';
 import ComponentsGrid from '../components/ComponentsGrid';
+import {
+  HomepageSection,
+  HomepageCard,
+} from '@site/src/components/HomepageComponents';
+import * as icons from '../icons';
 
 export default {
   // Re-use the default mapping
   ...MDXComponents,
+  ...icons,
 
   Tabs,
   TabItem,
@@ -24,4 +30,6 @@ export default {
   InfoTooltip,
   PropsTable,
   ComponentsGrid,
+  HomepageSection,
+  HomepageCard,
 };
