@@ -179,11 +179,7 @@ const config = {
     ],
   ],
 
-  plugins: [
-    tailwindPlugin,
-    webpackPlugin,
-    ...SECTIONS,
-  ],
+  plugins: [tailwindPlugin, webpackPlugin, ...SECTIONS],
 
   themes: ['@docusaurus/theme-live-codeblock'],
 
@@ -320,7 +316,7 @@ const config = {
             items: [
               {
                 label: 'Documentation',
-                href: 'https://docs.dyte.io',
+                href: '/',
               },
               {
                 label: 'Blog',
