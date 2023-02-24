@@ -10,10 +10,7 @@ import VideoPlayer from '../components/VideoPlayer';
 import InfoTooltip from '../components/InfoTooltip';
 import PropsTable from '../components/PropsTable';
 import ComponentsGrid from '../components/ComponentsGrid';
-import {
-  HomepageSection,
-  HomepageCard,
-} from '@site/src/components/HomepageComponents';
+import { CardSection, Card } from '../components/CardComponents';
 import * as icons from '../icons';
 
 export default {
@@ -30,6 +27,6 @@ export default {
   InfoTooltip,
   PropsTable,
   ComponentsGrid,
-  HomepageSection,
-  HomepageCard,
+  CardSection,
+  Card,
 };

@@ -1,10 +1,20 @@
 # Release Notes
 
-<HomepageSection id="web-releases" title="Web SDKs">
-  <HomepageCard title="UI Kit" to="/ui-kit/release-notes" icon={<HTMLIcon />} />
-  <HomepageCard
-    title="Web Core"
-    to="/web-core/release-notes"
-    icon={<JSIcon />}
-  />
-</HomepageSection>
+<CardSection id="web" title="Web SDKs" hasSubSections>
+  <CardSection id="web-ui-kit" title="UI Kit" HeadingTag="h4">
+    <Card title="UI Kit" to="/ui-kit/release-notes" icon={<HTMLIcon />} />
+    <Card
+      title="React UI Kit"
+      to="/react-ui-kit/release-notes"
+      icon={<ReactIcon />}
+    />
+    <Card
+      title="Angular UI Kit"
+      to="/angular-ui-kit/release-notes"
+      icon={<AngularIcon />}
+    />
+  </CardSection>
+  <CardSection id="web-core" title="Web Core" HeadingTag="h4">
+    <Card title="Web Core" to="/web-core/release-notes" icon={<JSIcon />} />
+  </CardSection>
+</CardSection>
