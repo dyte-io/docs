@@ -129,6 +129,7 @@ const config = {
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: '/favicon.ico',
+  trailingSlash: false,
   scripts: [
     ...(isDev
       ? []
@@ -161,7 +162,7 @@ const config = {
 
   presets: [
     [
-      'classic',
+      '@docusaurus/preset-classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
@@ -175,6 +176,9 @@ const config = {
           ...defaultSettings,
         },
         blog: false,
+        sitemap: {
+          ignorePatterns: ['/tags/**'],
+        },
       }),
     ],
   ],
