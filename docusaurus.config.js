@@ -129,6 +129,7 @@ const config = {
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: '/favicon.ico',
+  trailingSlash: false,
   scripts: [
     ...(isDev
       ? []
@@ -161,7 +162,7 @@ const config = {
 
   presets: [
     [
-      'classic',
+      '@docusaurus/preset-classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
@@ -175,15 +176,14 @@ const config = {
           ...defaultSettings,
         },
         blog: false,
+        sitemap: {
+          ignorePatterns: ['/tags/**'],
+        },
       }),
     ],
   ],
 
-  plugins: [
-    tailwindPlugin,
-    webpackPlugin,
-    ...SECTIONS,
-  ],
+  plugins: [tailwindPlugin, webpackPlugin, ...SECTIONS],
 
   themes: ['@docusaurus/theme-live-codeblock'],
 
@@ -320,7 +320,7 @@ const config = {
             items: [
               {
                 label: 'Documentation',
-                href: 'https://docs.dyte.io',
+                href: '/',
               },
               {
                 label: 'Blog',

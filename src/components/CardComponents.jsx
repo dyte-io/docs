@@ -3,7 +3,7 @@ import { paramCase } from 'param-case';
 import Link from '@docusaurus/Link';
 import clsx from 'clsx';
 
-export function HomepageSection({
+export function CardSection({
   id,
   title,
   children,
@@ -27,7 +27,7 @@ export function HomepageSection({
   );
 }
 
-export function HomepageCard({ id, icon, title, description, to }) {
+export function Card({ id, icon, title, description, to }) {
   return (
     <Link to={to} className="homepage-card">
       {icon && <div className="icon">{icon}</div>}
