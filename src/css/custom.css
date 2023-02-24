@@ -63,8 +63,6 @@
     --docs-color-secondary-1000: 255 255 255;
 
     --docs-color-text-400: 71 71 71;
-
-    --docusaurus-announcement-bar-height: auto !important;
   }
 
   html[data-theme='dark'] {
@@ -1096,33 +1094,6 @@ details p {
   border-top-width: 1px;
 }
 
-div[class^='announcementBar'][role='banner'] {
-  height: 48px;
-}
-
-div[class^='announcementBar'][role='banner'] button.close {
-  color: white;
-  svg {
-    fill: white;
-  }
-}
-
-div[class^='announcementBarContent'] {
-  line-height: 48px;
-}
-
 .hideReferenceSidebarLink {
   display: none;
-}
-
-@media only screen and (max-width: 768px) {
-  div[class^='announcementBar'][role='banner'] {
-    height: 96px;
-  }
-}
-
-@media only screen and (max-width: 375px) {
-  div[class^='announcementBar'][role='banner'] {
-    height: 100px;
-  }
 }

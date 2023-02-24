@@ -140,11 +140,23 @@ const config = {
           },
         ]),
   ],
-
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'dyte-in', // Usually your GitHub org/user name.
-  projectName: 'docs', // Usually your repo name.
+  webpack: {
+    jsLoader: (isServer) => ({
+      loader: require.resolve('swc-loader'),
+      options: {
+        jsc: {
+          parser: {
+            syntax: 'typescript',
+            tsx: true,
+          },
+          target: 'es2017',
+        },
+        module: {
+          type: isServer ? 'commonjs' : 'es6',
+        },
+      },
+    }),
+  },
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -154,11 +166,7 @@ const config = {
     locales: ['en'],
   },
 
-  clientModules: [
-    require.resolve('./src/css/custom.css'),
-    require.resolve('./src/css/api-reference.css'),
-    require.resolve('./src/client/define-ui-kit.js'),
-  ],
+  clientModules: [require.resolve('./src/client/define-ui-kit.js')],
 
   presets: [
     [
@@ -176,6 +184,12 @@ const config = {
           ...defaultSettings,
         },
         blog: false,
+        theme: {
+          customCss: [
+            require.resolve('./src/css/custom.css'),
+            require.resolve('./src/css/api-reference.css'),
+          ],
+        },
         sitemap: {
           ignorePatterns: ['/tags/**'],
         },
