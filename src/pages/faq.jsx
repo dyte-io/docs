@@ -3,11 +3,7 @@ import Layout from '@theme/Layout';
 import HomeFooter from '../components/homepage/HomeFooter';
 import clsx from 'clsx';
 import { useMemo } from 'react';
-import {
-  MagnifyingGlassIcon,
-  MinusIcon,
-  PlusIcon,
-} from '@radix-ui/react-icons';
+import { Minus, Plus, Search } from 'react-feather';
 import { paramCase } from 'param-case';
 import ReactMarkdown from 'react-markdown';
 
@@ -74,13 +70,13 @@ function Accordion({ title, children, open, onOpen, onClose }) {
           {title}
         </h3>
         <div className="text-zinc-300">
-          <MinusIcon
+          <Minus
             className={clsx(
               'h-4 w-4 text-zinc-500 dark:text-zinc-300',
               !open && 'hidden'
             )}
           />
-          <PlusIcon
+          <Plus
             className={clsx(
               'h-4 w-4 text-primary-100',
               open ? 'hidden' : 'block'
@@ -169,7 +165,7 @@ export default function FAQPage() {
             <div>We got you.</div>
           </div>
           <div className="relative flex w-full max-w-md items-center text-zinc-700 dark:text-white">
-            <MagnifyingGlassIcon className="z-10 h-5 w-5 translate-x-1.5" />
+            <Search className="z-10 h-5 w-5 translate-x-1.5" />
             <input
               type="text"
               className="-ml-5 h-10 flex-1 rounded-md border border-solid border-zinc-200 bg-white px-3 pl-8 text-sm text-zinc-700 dark:border-zinc-800 dark:bg-secondary-1000 dark:text-zinc-200"

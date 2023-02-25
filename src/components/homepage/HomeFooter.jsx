@@ -1,13 +1,10 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
 import { useColorMode } from '@docusaurus/theme-common';
-
-import {
-  DiscordLogoIcon,
-  LinkedInLogoIcon,
-  TwitterLogoIcon,
-} from '@radix-ui/react-icons';
 import clsx from 'clsx';
+
+import { Linkedin, Twitter } from 'react-feather';
+import { DiscordIcon } from '@site/src/icons';
 
 export default function HomeFooter({ className }) {
   const { colorMode } = useColorMode();
@@ -24,14 +21,17 @@ export default function HomeFooter({ className }) {
           <img src={`/logo/${colorMode}.svg`} alt="Logo" className="h-10" />
         </div>
         <div className="flex items-center gap-3">
-          <Link href="https://community.dyte.io">
-            <DiscordLogoIcon className="h-6 w-6 text-zinc-400 hover:text-primary" />
+          <Link href="https://community.dyte.io" aria-label="Discord community">
+            <DiscordIcon className="h-7 w-7 text-zinc-400 hover:text-primary" />
           </Link>
-          <Link href="https://twitter.com/dyte_io">
-            <TwitterLogoIcon className="h-6 w-6 text-zinc-400 hover:text-primary" />
+          <Link href="https://twitter.com/dyte_io" aria-label="Twitter">
+            <Twitter className="h-6 w-6 text-zinc-400 hover:text-primary" />
           </Link>
-          <Link href="https://linkedin.com/company/dyteio">
-            <LinkedInLogoIcon className="h-6 w-6 text-zinc-400 hover:text-primary" />
+          <Link
+            href="https://linkedin.com/company/dyteio"
+            aria-label="LinkedIn"
+          >
+            <Linkedin className="h-6 w-6 text-zinc-400 hover:text-primary" />
           </Link>
         </div>
         <div className="flex-1 text-zinc-400 lg:text-right">

@@ -3,22 +3,12 @@
     "browser": true,
     "es2021": true
   },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
-  },
-  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "overrides": [],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "prettier"],
-  "rules": {
-    "react/prop-types": "off",
-    "no-unused-vars": "warn"
-  }
+  "plugins": ["@typescript-eslint", "prettier"]
 }

@@ -16,8 +16,8 @@ export default function HelpSection({ className = '' }) {
         </h2>
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
           <div className="rounded-lg bg-zinc-100 p-6 dark:bg-zinc-900">
-            <img src="/static/landing-page/calendar.svg" alt="Book a demo" />
-            <h4 className="my-3">Book a Demo</h4>
+            <img src="/static/landing-page/calendar.svg" alt="Book a demo" width="48" height="48" />
+            <h3 className="my-3">Book a Demo</h3>
             <p className="text-zinc-600 dark:text-zinc-400">
               Contact us for a demo. We are looking forward to connecting with
               you.
@@ -31,8 +31,8 @@ export default function HelpSection({ className = '' }) {
           </div>
 
           <div className="rounded-lg bg-zinc-100 p-6 dark:bg-zinc-900">
-            <img src="/static/landing-page/customer.svg" alt="Book a demo" />
-            <h4 className="my-3">Support</h4>
+            <img src="/static/landing-page/customer.svg" alt="Support" width="48" height="48" />
+            <h3 className="my-3">Support</h3>
             <p className="text-zinc-600 dark:text-zinc-400">
               Dyte&apos;s expert support team is excited to help. Connect for
               dedicated 1:1 support!
@@ -46,8 +46,8 @@ export default function HelpSection({ className = '' }) {
           </div>
 
           <div className="rounded-lg bg-zinc-100 p-6 dark:bg-zinc-900">
-            <img src="/static/landing-page/chat.svg" alt="Book a demo" />
-            <h4 className="my-3">FAQs</h4>
+            <img src="/static/landing-page/chat.svg" alt="FAQs" width="48" height="48" />
+            <h3 className="my-3">FAQs</h3>
             <p className="text-zinc-600 dark:text-zinc-400">
               Browse through our FAQs to find answers to commonly asked
               questions.

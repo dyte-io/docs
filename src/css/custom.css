@@ -295,26 +295,37 @@ nav.menu {
   scrollbar-gutter: auto;
 }
 
-.new-badge::after {
-  align-items: baseline;
-  margin-left: 6px;
-  content: 'NEW';
-  padding: 2px 4px;
+.new-badge::after,
+.deprecated-badge::after {
   font-size: 11px;
-  color: theme('colors.primary.100');
-  border: 1px solid theme('colors.primary.100');
-  border-radius: 6px;
+  @apply inline-flex items-center justify-center rounded-sm;
+  @apply ml-1.5 px-1 py-0;
+}
+
+.new-badge::after {
+  content: 'NEW';
+  @apply bg-blue-100 text-blue-900;
+  @apply dark:bg-blue-900 dark:text-blue-100;
+}
+
+.sidebar-menu .new-badge::after {
+  @apply border border-solid border-blue-400 bg-blue-100 text-blue-900;
+}
+
+.deprecated-badge::after {
+  content: 'DEPRECATED';
+  @apply bg-red-100 text-red-900;
 }
 
 .footer__description {
-  color: var(--docs-color-text-100);
+  @apply text-text-400;
   font-size: 14px;
 }
 
 .footer__copyright {
   margin-top: 32px;
   font-size: 14px;
-  color: var(--docs-color-text-100);
+  @apply text-text-400;
 }
 
 .footer__row {
@@ -356,14 +367,12 @@ nav.menu {
 .footer__title {
   font-size: 14px;
   font-weight: normal;
-  color: var(--docs-color-text-100);
-  margin-bottom: 0.5rem;
+  @apply mb-2 text-text-400;
 }
 
 .footer__item {
   font-size: 14px;
   font-weight: normal;
-  color: var(--docs-color-text);
 }
 
 .footer__link-item:hover {
@@ -720,10 +729,6 @@ code[data-code='required'] {
   color: var(--ifm-color-danger);
 }
 
-::selection {
-  @apply bg-primary-200/80 text-white dark:bg-primary-100/60;
-}
-
 .dropdown > .navbar__link {
   display: flex;
   align-items: center;
@@ -1060,11 +1065,11 @@ details p {
   }
 }
 
-.notesContainer .depreciated .type {
+.notesContainer .deprecated .type {
   color: #de4e2b;
 }
 
-.notesContainer .depreciated .sublist {
+.notesContainer .deprecated .sublist {
   background-color: #e01e5a1a;
 }
 
@@ -1096,4 +1101,17 @@ details p {
 
 .hideReferenceSidebarLink {
   display: none;
+}
+
+.DocSearch-Button {
+  @apply lg:!rounded-md;
+}
+
+.DocSearch-Button-Key {
+  background: theme(colors.secondary.800) !important;
+  top: 0 !important;
+  padding: 0 !important;
+  @apply !border !border-solid !border-text-400/30;
+  @apply !shadow-none;
+  @apply flex items-center;
 }

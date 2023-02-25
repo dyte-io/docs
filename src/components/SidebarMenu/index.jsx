@@ -5,19 +5,25 @@ import VersionDropdown from '@theme/NavbarItem/DocsVersionDropdownNavbarItem';
 import useGlobalData from '@docusaurus/useGlobalData';
 
 import SectionsMenu from '../SectionsMenu';
-import useSectionMenu from '../../lib/useSectionMenu';
+import { useSectionMenu } from '../../lib/useSectionMenu';
 import styles from './styles.module.css';
+
+function getPrettyPath(path) {
+  return path.slice(-1) === '/' ? path.slice(0, -1) : path;
+}
 
 export default function SidebarMenu() {
   const router = useHistory();
-  const { id, sections, isMultiSection } = useSectionMenu();
+  const data = useSectionMenu();
+  const { docId, currentSection, sections, groups } = data;
+
   const globalData = useGlobalData();
   const allDocs = globalData['docusaurus-plugin-content-docs'];
 
-  if (!sections) return null;
+  if (!sections && !groups) return null;
 
   const handleSectionChange = (selectedSection) => {
-    if (selectedSection !== id) {
+    if (selectedSection !== docId) {
       const { pathname, hash } = router.location;
       const page =
         `/${selectedSection}/` + pathname.split('/').slice(2).join('/');
@@ -26,24 +32,25 @@ export default function SidebarMenu() {
 
       if (selectedSectionDocs.find((doc) => doc.path === page)) {
         const path = page + (hash && hash.length > 0 ? '#' + hash : '');
-        router.push(path);
+        router.push(getPrettyPath(path));
       } else {
-        router.push(selectedSectionDocs[0].path);
+        const path = selectedSectionDocs[0].path;
+        router.push(getPrettyPath(path));
       }
     }
   };
 
-  if (!isMultiSection) {
+  if (sections) {
     return (
       <div className={styles.container}>
         <SectionsMenu
-          defaultValue={id}
+          defaultValue={docId}
           values={sections}
           onValueChange={handleSectionChange}
           triggerClassName={styles.sectionsMenu}
         />
         <VersionDropdown
-          docsPluginId={id}
+          docsPluginId={docId}
           dropdownItemsBefore={[]}
           dropdownItemsAfter={[]}
         />
@@ -51,16 +58,14 @@ export default function SidebarMenu() {
     );
   }
 
-  const { currentSection, data } = sections;
-
   return (
-    <div className={styles.multiSectionContainer}>
-      {Object.keys(data).map((section) => {
-        const { name, items, description, isNew } = data[section];
+    <div className={clsx('sidebar-menu', styles.multiSectionContainer)}>
+      {groups.map((group) => {
+        const { name, docs, description, className } = group;
 
-        const isCurrentSection = currentSection === section;
+        const isCurrentSection = currentSection === group.section;
 
-        const navigateToFirstSection = () => handleSectionChange(items[0].id);
+        const navigateToFirstSection = () => handleSectionChange(docs[0].docId);
 
         return (
           <div
@@ -75,22 +80,20 @@ export default function SidebarMenu() {
               }
             }}
             tabIndex={0}
-            key={section}
+            key={group.name}
           >
-            <div className={styles.label + (isNew ? ' new-badge' : '')}>
-              {name}
-            </div>
+            <div className={clsx(styles.label, className)}>{name}</div>
             <div>
               {isCurrentSection ? (
                 <div className={styles.row}>
                   <SectionsMenu
-                    defaultValue={isCurrentSection ? id : items[0].id}
-                    values={items}
+                    defaultValue={isCurrentSection ? docId : docs[0].id}
+                    values={docs}
                     onValueChange={handleSectionChange}
                     triggerClassName={styles.sectionsMenu}
                   />
                   <VersionDropdown
-                    docsPluginId={id}
+                    docsPluginId={docId}
                     dropdownItemsBefore={[]}
                     dropdownItemsAfter={[]}
                   />
