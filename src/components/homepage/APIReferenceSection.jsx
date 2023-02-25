@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
 import { useColorMode } from '@docusaurus/theme-common';
-import { ArrowTopRightIcon } from '@radix-ui/react-icons';
+import { ArrowUpRight } from 'react-feather';
 import Head from '@docusaurus/Head';
 
 export default function APIReferenceSection() {
@@ -10,16 +10,25 @@ export default function APIReferenceSection() {
   return (
     <section className="relative mb-20 px-6">
       <Head>
-        <link rel="prefetch" href="/static/landing-page/api-ref-light.png" />
-        <link rel="prefetch" href="/static/landing-page/api-ref-dark.png" />
+        <link
+          rel="preload"
+          href="/static/landing-page/api-ref-light.png"
+          as="image"
+        />
+        <link
+          rel="preload"
+          href="/static/landing-page/api-ref-dark.png"
+          as="image"
+        />
       </Head>
       <div className="relative mx-auto flex w-full max-w-7xl flex-col items-center gap-10 rounded-2xl bg-gradient-to-r from-black to-zinc-800 px-6 py-20 text-center text-white dark:from-zinc-100 dark:to-white dark:text-black lg:flex-row lg:p-20 lg:text-left">
         <Link
           href="/api"
+          aria-label="API Reference"
           target="_blank"
           className="absolute top-8 right-8 flex h-16 w-16 items-center justify-center rounded-full bg-zinc-600/40 dark:bg-transparent"
         >
-          <ArrowTopRightIcon className="h-6 w-6 text-zinc-400 dark:text-black" />
+          <ArrowUpRight className="h-6 w-6 text-zinc-400 dark:text-black" />
         </Link>
         <div className="flex-1">
           <h2 className="text-4xl">API Reference</h2>
@@ -83,6 +92,7 @@ export default function APIReferenceSection() {
           <img
             src={`/static/landing-page/api-ref-${colorMode}.png`}
             alt="API Reference Preview"
+            loading="lazy"
           />
         </div>
       </div>

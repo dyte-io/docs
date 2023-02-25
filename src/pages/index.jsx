@@ -8,6 +8,7 @@ import CommunitySection from '../components/homepage/CommunitySection';
 import HomeFooter from '../components/homepage/HomeFooter';
 import ResourcesSection from '../components/homepage/ResourcesSection';
 import HelpSection from '../components/homepage/HelpSection';
+import Head from '@docusaurus/Head';
 
 export default function Homepage() {
   return (
@@ -16,6 +17,9 @@ export default function Homepage() {
       wrapperClassName="homepage flex flex-col"
       noFooter
     >
+      <Head>
+        <link rel="preload" href="/assets/css/elements.min.css" as="style" />
+      </Head>
       <HeroSection />
       <SDKsSection />
 

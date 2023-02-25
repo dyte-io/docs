@@ -1,11 +1,7 @@
 import React, { forwardRef } from 'react';
 import * as Select from '@radix-ui/react-select';
-import {
-  CheckIcon,
-  ChevronDownIcon,
-  ChevronUpIcon,
-} from '@radix-ui/react-icons';
 import clsx from 'clsx';
+import { Check, ChevronDown, ChevronUp } from 'react-feather';
 
 const SectionsMenu = forwardRef(
   ({ defaultValue = '', values = [], children, className, ...props }, ref) => {
@@ -17,21 +13,21 @@ const SectionsMenu = forwardRef(
         >
           <Select.Value />
           <Select.Icon>
-            <ChevronDownIcon className="sections-menu-scrollButton" />
+            <ChevronDown className="sections-menu-scrollButton" />
           </Select.Icon>
         </Select.Trigger>
 
         <Select.Content className={clsx('sections-menu-content', className)}>
           <Select.ScrollUpButton className="sections-menu-scrollButton">
-            <ChevronUpIcon />
+            <ChevronUp />
           </Select.ScrollUpButton>
 
           <Select.Viewport>
             <Select.Group>
-              {values.map(({ id, name, icon: Icon, disabled = false }) => (
+              {values.map(({ docId, name, icon: Icon, disabled = false }) => (
                 <Select.Item
-                  value={id}
-                  key={id}
+                  value={docId}
+                  key={docId}
                   className={clsx('sections-menu-item')}
                   disabled={disabled}
                 >
@@ -41,8 +37,8 @@ const SectionsMenu = forwardRef(
                       <span>{name}</span>
                     </div>
                   </Select.ItemText>
-                  <Select.ItemIndicator>
-                    <CheckIcon className="item-indicator" />
+                  <Select.ItemIndicator className="flex items-center">
+                    <Check className="item-indicator" />
                   </Select.ItemIndicator>
                 </Select.Item>
               ))}
@@ -51,14 +47,12 @@ const SectionsMenu = forwardRef(
           </Select.Viewport>
 
           <Select.ScrollDownButton className="sections-menu-scrollButton">
-            <ChevronDownIcon />
+            <ChevronDown />
           </Select.ScrollDownButton>
         </Select.Content>
       </Select.Root>
     );
   }
 );
-
-SectionsMenu.displayName = 'SectionsMenu';
 
 export default SectionsMenu;
