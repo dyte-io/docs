@@ -214,8 +214,6 @@ const config = {
         },
       },
       navbar: {
-        // NOTE: hideOnScroll breaks on `/api`, enable when fixed
-        // hideOnScroll: true,
         logo: {
           href: '/',
           src: '/logo/light.svg',
