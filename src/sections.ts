@@ -1,3 +1,4 @@
+import type { ComponentProps, ReactNode } from 'react';
 import {
   ReactIcon,
   AngularIcon,
@@ -8,127 +9,147 @@ import {
   JSIcon,
 } from './icons';
 
-const SECTIONS = [
-  // no sections for default section, i.e; home
+export type Section = { docId: string } & (
+  | {
+      section: false;
+    }
+  | {
+      section: string;
+      icon: (props: ComponentProps<'svg'>) => ReactNode;
+      name: string;
+    }
+);
+
+const SECTIONS: Section[] = [
   {
-    id: 'default',
-    section: false,
-  },
-  {
-    name: 'React SDK',
-    id: 'react',
+    name: 'React',
+    docId: 'react',
     icon: ReactIcon,
-    section: 'old-web-sdks',
+    section: 'web-prebuilt',
   },
   {
-    name: 'JavaScript SDK',
-    id: 'javascript',
+    name: 'JavaScript',
+    docId: 'javascript',
     icon: JSIcon,
-    section: 'old-web-sdks',
+    section: 'web-prebuilt',
   },
 
   // Plugin SDKs
   // - web
   {
     name: 'Javascript',
-    id: 'plugin-sdk',
+    docId: 'plugin-sdk',
     icon: JSIcon,
     section: 'plugin-sdk',
   },
 
   // Web SDKs
-  // - ui-sdk
+  // - web-ui-kit
   {
     name: 'Web Components',
-    id: 'ui-kit',
+    docId: 'ui-kit',
     icon: HTMLIcon,
-    section: 'ui-sdk',
+    section: 'web-ui-kit',
   },
   {
     name: 'React UI Kit',
-    id: 'react-ui-kit',
+    docId: 'react-ui-kit',
     icon: ReactIcon,
-    section: 'ui-sdk',
+    section: 'web-ui-kit',
   },
   {
     name: 'Angular UI Kit',
-    id: 'angular-ui-kit',
+    docId: 'angular-ui-kit',
     icon: AngularIcon,
-    section: 'ui-sdk',
+    section: 'web-ui-kit',
   },
 
-  // - core-sdk
+  // - web-core-sdk
   {
     name: 'JavaScript',
-    id: 'web-core',
+    docId: 'web-core',
     icon: JSIcon,
-    section: 'core-sdk',
+    section: 'web-core-sdk',
   },
 
   // Mobile SDKs
   {
     name: 'Android Core',
-    id: 'android-core',
+    docId: 'android-core',
     icon: AndroidIcon,
     section: 'mobile-core',
   },
-  
+
   {
     name: 'iOS Core',
-    id: 'ios-core',
+    docId: 'ios-core',
     icon: AppleIcon,
     section: 'mobile-core',
   },
 
   {
     name: 'React Native Core',
-    id: 'rn-core',
+    docId: 'rn-core',
     icon: ReactIcon,
     section: 'mobile-core',
   },
   {
     name: 'Flutter Core',
-    id: 'flutter-core',
+    docId: 'flutter-core',
     icon: FlutterIcon,
     section: 'mobile-core',
   },
   {
     name: 'React Native',
-    id: 'react-native',
+    docId: 'react-native',
     icon: ReactIcon,
     section: 'mobile-sdk',
   },
   {
     name: 'Android',
-    id: 'android',
+    docId: 'android',
     icon: AndroidIcon,
     section: 'mobile-sdk',
   },
   {
     name: 'iOS',
-    id: 'ios',
+    docId: 'ios',
     icon: AppleIcon,
     section: 'mobile-sdk',
   },
   {
     name: 'Flutter',
-    id: 'flutter',
+    docId: 'flutter',
     icon: FlutterIcon,
     section: 'mobile-sdk',
   },
 ];
 
-const MULTI_SECTIONS = [
+export type SectionsGroup = {
+  name: string;
+  section: string;
+  description?: string;
+  className?: string;
+};
+
+const SECTION_GROUPS: SectionsGroup[][] = [
+  [
+    {
+      name: 'Prebuilt SDK',
+      section: 'web-prebuilt',
+      className: 'deprecated-badge',
+    },
+  ],
   [
     {
       name: 'UI Kit',
-      section: 'ui-sdk',
+      section: 'web-ui-kit',
       description:
         'Use our pre-built UI components as a base to build on top of.',
     },
     {
       name: 'Core SDK',
-      section: 'core-sdk',
+      section: 'web-core-sdk',
       description: 'Build your own UI from scratch, use our low level APIs.',
     },
   ],
@@ -141,9 +162,9 @@ const MULTI_SECTIONS = [
     {
       name: 'Core SDK',
       section: 'mobile-core',
-      isNew: true,
+      className: 'new-badge',
       description: 'Build your own UI from scratch, use our low level APIs.',
-    }
+    },
   ],
   [
     {
@@ -154,4 +175,4 @@ const MULTI_SECTIONS = [
   ],
 ];
 
-export { SECTIONS, MULTI_SECTIONS };
+export { SECTIONS, SECTION_GROUPS };

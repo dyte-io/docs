@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from 'react';
 import Heading from '@docusaurus/theme-classic/lib/theme/Heading';
 import ReactMarkdown from 'react-markdown';
@@ -22,8 +21,8 @@ const changeTypes = [
   {
     name: 'dep_api',
     color: '#e01d5a',
-    label: 'Depreciated API',
-    className: 'depreciated',
+    label: 'Deprecated API',
+    className: 'deprecated',
   },
 ];
 

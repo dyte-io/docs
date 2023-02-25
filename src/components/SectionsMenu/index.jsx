@@ -24,10 +24,10 @@ const SectionsMenu = forwardRef(
 
           <Select.Viewport>
             <Select.Group>
-              {values.map(({ id, name, icon: Icon, disabled = false }) => (
+              {values.map(({ docId, name, icon: Icon, disabled = false }) => (
                 <Select.Item
-                  value={id}
-                  key={id}
+                  value={docId}
+                  key={docId}
                   className={clsx('sections-menu-item')}
                   disabled={disabled}
                 >
@@ -54,7 +54,5 @@ const SectionsMenu = forwardRef(
     );
   }
 );
-
-SectionsMenu.displayName = 'SectionsMenu';
 
 export default SectionsMenu;

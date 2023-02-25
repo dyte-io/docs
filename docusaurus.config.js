@@ -169,7 +169,7 @@ const docs = [
     routeBasePath: '/react',
     versions: {
       current: {
-        label: '0.25.x',
+        label: '0.37.0',
       },
     },
   },
@@ -179,7 +179,7 @@ const docs = [
     routeBasePath: '/javascript',
     versions: {
       current: {
-        label: '0.25.x',
+        label: '0.37.0',
       },
     },
   },

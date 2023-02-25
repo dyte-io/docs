@@ -36,7 +36,8 @@ export default function CommunitySection() {
               key={username}
               src={`https://github.com/${username}.png?size=60`}
               alt={`User ${username}`}
-              className="h-6 w-6 rounded-full border-2 border-solid border-white transition hover:scale-125 lg:h-12 lg:w-12"
+              loading="lazy"
+              className="h-6 w-6 rounded-full border-2 border-solid border-white transition hover:-translate-y-2 hover:scale-150 lg:h-12 lg:w-12"
             />
           ))}
         </div>

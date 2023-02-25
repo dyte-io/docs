@@ -81,8 +81,8 @@ export default function Home() {
           <SectionsMenu
             defaultValue={currentVersion}
             values={[
-              { name: 'v1', id: 'v1' },
-              { name: 'v2', id: 'v2' },
+              { name: 'v1', docId: 'v1' },
+              { name: 'v2', docId: 'v2' },
             ]}
             onValueChange={(version) => {
               router.push(`/api/?v=${version}`);
