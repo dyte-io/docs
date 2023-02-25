@@ -92,7 +92,10 @@ export default function Home() {
           />
         </div>
       </div>
-      <APIElement layout={size === 'sm' ? 'stacked' : 'sidebar'} />
+      <APIElement
+        layout={size === 'sm' ? 'stacked' : 'sidebar'}
+        currentVersion={currentVersion}
+      />
     </Layout>
   );
 }
