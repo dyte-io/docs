@@ -130,16 +130,14 @@ const config = {
   onBrokenMarkdownLinks: 'warn',
   favicon: '/favicon.ico',
   trailingSlash: false,
-  scripts: [
-    ...(isDev
-      ? []
-      : [
-          {
-            src: 'https://cdn.dyte.in/manalytics.js',
-            defer: true,
-          },
-        ]),
-  ],
+  scripts: !isDev
+    ? [
+        {
+          src: 'https://cdn.dyte.in/manalytics.js',
+          defer: true,
+        },
+      ]
+    : undefined,
   webpack: {
     jsLoader: (isServer) => ({
       loader: require.resolve('swc-loader'),
