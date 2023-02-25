@@ -59,11 +59,10 @@ const latestVersions = {
 };
 
 const SECTIONS = [
-  defineSection('guides', {
-    label: 'v2',
-  }),
   defineSection('cli'),
   defineSection('plugin-sdk'),
+
+  // Older SDKs
   defineSection('react', { label: '0.x.x' }),
   defineSection('javascript', { label: '0.x.x' }),
 
@@ -173,10 +172,12 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          path: 'docs/home',
-          routeBasePath: '/',
-          sidebarPath: require.resolve('./sidebars-home.js'),
+          path: 'docs/guides',
+          id: 'guides',
+          routeBasePath: '/guides',
+          sidebarPath: require.resolve('./sidebars-default.js'),
           breadcrumbs: false,
+          showLastUpdateTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl: 'https://github.com/dyte-in/docs/tree/main/',
