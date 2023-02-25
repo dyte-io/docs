@@ -67,17 +67,17 @@ export default function Home() {
         <link rel="stylesheet" href="/assets/css/elements.min.css" />
       </Head>
 
-      <div className="flex flex-col items-center justify-center gap-4 border-b py-12 lg:hidden">
+      <div className="flex flex-col items-center justify-center gap-4 border-b py-12 text-sm lg:hidden">
         <Monitor className="h-12 w-12" />
         This page is best viewed in a desktop browser.
       </div>
 
       <div className="header">
-        <h1 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: 0 }}>
+        <h1 className="mb-0 text-sm font-semibold lg:text-lg">
           Dyte REST API {currentVersion}
         </h1>
         <div className="aside">
-          <RunInPostmanButton />
+          {size === 'lg' && <RunInPostmanButton />}
           <SectionsMenu
             defaultValue={currentVersion}
             values={[
@@ -88,7 +88,6 @@ export default function Home() {
               router.push(`/api/?v=${version}`);
             }}
             className="compact"
-            slot="trigger"
           />
         </div>
       </div>
