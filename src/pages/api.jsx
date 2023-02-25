@@ -9,7 +9,7 @@ import clsx from 'clsx';
 import useBreakpoint from '../lib/useBreakpoint';
 import SectionsMenu from '../components/SectionsMenu';
 import RunInPostmanButton from '../components/RunInPostmanButton';
-import { DesktopIcon } from '@radix-ui/react-icons';
+import { Monitor } from 'react-feather';
 
 function APIElement({ layout = 'sidebar', currentVersion = 'v1' }) {
   return (
@@ -68,7 +68,7 @@ export default function Home() {
       </Head>
 
       <div className="flex flex-col items-center justify-center gap-4 border-b py-12 lg:hidden">
-        <DesktopIcon className="h-12 w-12" />
+        <Monitor className="h-12 w-12" />
         This page is best viewed in a desktop browser.
       </div>
 

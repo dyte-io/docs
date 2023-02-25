@@ -9,8 +9,8 @@ export default function HeroSection() {
   return (
     <section className="noise-bg no-underline-links px-4 pt-16 lg:py-0">
       <Head>
-        <link rel="prefetch" href="/static/landing-page/hero-light.png" />
-        <link rel="prefetch" href="/static/landing-page/hero-dark.png" />
+        <link rel="preload" href="/static/landing-page/hero-light.png" />
+        <link rel="preload" href="/static/landing-page/hero-dark.png" />
       </Head>
       <div className="mx-auto flex max-w-7xl flex-col items-center lg:h-[540px] lg:flex-row">
         <div className="flex-1 text-center lg:text-left">
@@ -38,10 +38,11 @@ export default function HeroSection() {
             </Link>
           </div>
         </div>
-        <div className="flex-1 xl:flex-none">
+        <div className="flex-1 xl:flex-none mt-6 lg:mt-0">
           <img
             src={`/static/landing-page/hero-${colorMode}.png`}
             alt="Preview of using Dyte SDKs"
+            className="max-w-[420px] lg:max-w-[560px]"
           />
         </div>
       </div>

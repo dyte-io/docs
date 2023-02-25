@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
 import { useColorMode } from '@docusaurus/theme-common';
-import { ArrowTopRightIcon } from '@radix-ui/react-icons';
+import { ArrowUpRight } from 'react-feather';
 import Head from '@docusaurus/Head';
 
 export default function APIReferenceSection() {
@@ -19,7 +19,7 @@ export default function APIReferenceSection() {
           target="_blank"
           className="absolute top-8 right-8 flex h-16 w-16 items-center justify-center rounded-full bg-zinc-600/40 dark:bg-transparent"
         >
-          <ArrowTopRightIcon className="h-6 w-6 text-zinc-400 dark:text-black" />
+          <ArrowUpRight className="h-6 w-6 text-zinc-400 dark:text-black" />
         </Link>
         <div className="flex-1">
           <h2 className="text-4xl">API Reference</h2>
