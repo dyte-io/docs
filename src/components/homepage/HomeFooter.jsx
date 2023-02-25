@@ -21,13 +21,16 @@ export default function HomeFooter({ className }) {
           <img src={`/logo/${colorMode}.svg`} alt="Logo" className="h-10" />
         </div>
         <div className="flex items-center gap-3">
-          <Link href="https://community.dyte.io">
+          <Link href="https://community.dyte.io" aria-label="Discord community">
             <DiscordIcon className="h-7 w-7 text-zinc-400 hover:text-primary" />
           </Link>
-          <Link href="https://twitter.com/dyte_io">
+          <Link href="https://twitter.com/dyte_io" aria-label="Twitter">
             <Twitter className="h-6 w-6 text-zinc-400 hover:text-primary" />
           </Link>
-          <Link href="https://linkedin.com/company/dyteio">
+          <Link
+            href="https://linkedin.com/company/dyteio"
+            aria-label="LinkedIn"
+          >
             <Linkedin className="h-6 w-6 text-zinc-400 hover:text-primary" />
           </Link>
         </div>

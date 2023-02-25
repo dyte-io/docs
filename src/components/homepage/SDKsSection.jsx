@@ -82,14 +82,22 @@ export default function SDKsSection() {
   return (
     <section className="bg-secondary-1000 py-20 px-4" id="start-building">
       <Head>
-        <link rel="preload" href="/static/landing-page/plugin-sdk-light.png" />
-        <link rel="preload" href="/static/landing-page/plugin-sdk-dark.png" />
+        <link
+          rel="preload"
+          href="/static/landing-page/plugin-sdk-light.png"
+          as="image"
+        />
+        <link
+          rel="preload"
+          href="/static/landing-page/plugin-sdk-dark.png"
+          as="image"
+        />
       </Head>
       <div className="mx-auto max-w-7xl">
         <div className="dyte-badge">SDKs</div>
 
         <div className="sticky top-14 z-20 -mt-4 flex flex-col items-center gap-6 bg-secondary-1000 py-6 lg:flex-row lg:justify-between lg:py-0">
-          <h2 className="my-0 font-jakarta lg:text-3xl">
+          <h2 className="my-0 text-center font-jakarta lg:text-3xl">
             We support your tech stack!
           </h2>
 
@@ -242,10 +250,9 @@ export default function SDKsSection() {
                 <SDKLink href="rn-core" Icon={ReactIcon} label="React Native" />
               </li>
               <li>
-              <SDKLink href="ios-core" Icon={SwiftIcon} label="iOS" />
+                <SDKLink href="ios-core" Icon={SwiftIcon} label="iOS" />
               </li>
             </ul>
-            
           </div>
         </div>
 

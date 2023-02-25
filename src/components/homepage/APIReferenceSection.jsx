@@ -10,12 +10,21 @@ export default function APIReferenceSection() {
   return (
     <section className="relative mb-20 px-6">
       <Head>
-        <link rel="preload" href="/static/landing-page/api-ref-light.png" />
-        <link rel="preload" href="/static/landing-page/api-ref-dark.png" />
+        <link
+          rel="preload"
+          href="/static/landing-page/api-ref-light.png"
+          as="image"
+        />
+        <link
+          rel="preload"
+          href="/static/landing-page/api-ref-dark.png"
+          as="image"
+        />
       </Head>
       <div className="relative mx-auto flex w-full max-w-7xl flex-col items-center gap-10 rounded-2xl bg-gradient-to-r from-black to-zinc-800 px-6 py-20 text-center text-white dark:from-zinc-100 dark:to-white dark:text-black lg:flex-row lg:p-20 lg:text-left">
         <Link
           href="/api"
+          aria-label="API Reference"
           target="_blank"
           className="absolute top-8 right-8 flex h-16 w-16 items-center justify-center rounded-full bg-zinc-600/40 dark:bg-transparent"
         >
