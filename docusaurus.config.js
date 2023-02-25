@@ -1,169 +1,239 @@
-/* eslint-disable */
-const fs = require('fs');
+const code_themes = {
+  light: require('prism-react-renderer/themes/github'),
+  dark: require('prism-react-renderer/themes/vsDark'),
+};
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/vsDark');
+/** @type {import('@docusaurus/types').Config} */
+const meta = {
+  title: 'Dyte Docs',
+  tagline: 'Real-time audio & video SDKs, ready to launch 🚀',
+  url: 'https://docs.dyte.io',
+  baseUrl: '/',
+  favicon: '/favicon.ico',
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en'],
+  },
+};
 
-const UIKitReferencePlugins = require('./plugins/ui-kit-reference-plugin.cjs');
-const { webpackPlugin } = require('./plugins/webpack-plugin.cjs');
-const tailwindPlugin = require('./plugins/tailwind-plugin.cjs');
+/** @type {import('@docusaurus/plugin-content-docs').Options[]} */
+const docs = [
+  {
+    id: 'cli',
+    path: 'docs/cli',
+    routeBasePath: '/cli',
+  },
+  {
+    id: 'plugin-sdk',
+    path: 'docs/plugin-sdk',
+    routeBasePath: '/plugin-sdk',
+    versions: {
+      current: {
+        label: '1.x.x',
+      },
+    },
+  },
 
-const isDev = process.env.NODE_ENV === 'development';
+  // Web UI Kits
+  {
+    id: 'ui-kit',
+    path: 'docs/ui-kit',
+    routeBasePath: '/ui-kit',
+    versions: {
+      current: {
+        label: '1.x.x',
+      },
+    },
+  },
+  {
+    id: 'react-ui-kit',
+    path: 'docs/react-ui-kit',
+    routeBasePath: '/react-ui-kit',
+    versions: {
+      current: {
+        label: '1.x.x',
+      },
+    },
+  },
+  {
+    id: 'angular-ui-kit',
+    path: 'docs/angular-ui-kit',
+    routeBasePath: '/angular-ui-kit',
+    versions: {
+      current: {
+        label: '1.x.x',
+      },
+    },
+  },
 
-/** @type {import('@docusaurus/preset-classic').Options} */
+  // Web Core
+  {
+    id: 'web-core',
+    path: 'docs/web-core',
+    routeBasePath: '/web-core',
+    versions: {
+      current: {
+        label: '1.x.x',
+      },
+    },
+  },
+
+  // Mobile Core
+  {
+    id: 'android-core',
+    path: 'docs/android-core',
+    routeBasePath: '/android-core',
+    versions: {
+      current: {
+        label: '1.x.x',
+      },
+    },
+  },
+  {
+    id: 'flutter-core',
+    path: 'docs/flutter-core',
+    routeBasePath: '/flutter-core',
+    versions: {
+      current: {
+        label: '1.x.x',
+      },
+    },
+  },
+  {
+    id: 'ios-core',
+    path: 'docs/ios-core',
+    routeBasePath: '/ios-core',
+    versions: {
+      current: {
+        label: '1.x.x',
+      },
+    },
+  },
+  {
+    id: 'rn-core',
+    path: 'docs/rn-core',
+    routeBasePath: '/rn-core',
+    versions: {
+      current: {
+        label: '1.x.x',
+      },
+    },
+  },
+
+  // Mobile Prebuilt SDKs
+  {
+    id: 'android',
+    path: 'docs/android',
+    routeBasePath: '/android',
+    versions: {
+      current: {
+        label: '0.14.x',
+      },
+    },
+  },
+  {
+    id: 'flutter',
+    path: 'docs/flutter',
+    routeBasePath: '/flutter',
+    versions: {
+      current: {
+        label: '0.7.x',
+      },
+    },
+  },
+  {
+    id: 'ios',
+    path: 'docs/ios',
+    routeBasePath: '/ios',
+    versions: {
+      current: {
+        label: '1.33.x',
+      },
+    },
+  },
+  {
+    id: 'react-native',
+    path: 'docs/react-native',
+    routeBasePath: '/react-native',
+    versions: {
+      current: {
+        label: '0.25.x',
+      },
+    },
+  },
+
+  // Web SDKs - Old
+  {
+    id: 'react',
+    path: 'docs/react',
+    routeBasePath: '/react',
+    versions: {
+      current: {
+        label: '0.25.x',
+      },
+    },
+  },
+  {
+    id: 'javascript',
+    path: 'docs/javascript',
+    routeBasePath: '/javascript',
+    versions: {
+      current: {
+        label: '0.25.x',
+      },
+    },
+  },
+];
+
+/** @type {import('@docusaurus/plugin-content-docs').Options} */
 const defaultSettings = {
+  breadcrumbs: false,
+  editUrl: 'https://github.com/dyte-in/docs/tree/main/',
+  showLastUpdateTime: true,
   remarkPlugins: [
     [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
   ],
+  sidebarPath: require.resolve('./sidebars-default.js'),
 };
 
 /**
- * Defines a section with overridable defaults
- * @param {string} section
+ * Create a section
  * @param {import('@docusaurus/plugin-content-docs').Options} options
  */
-function defineSection(section, version = {}, options = {}) {
+function create_doc_plugin({
+  sidebarPath = require.resolve('./sidebars-default.js'),
+  ...options
+}) {
   return [
     '@docusaurus/plugin-content-docs',
     /** @type {import('@docusaurus/plugin-content-docs').Options} */
     ({
-      path: `docs/${section}`,
-      routeBasePath: section,
-      id: section,
-      sidebarPath: require.resolve('./sidebars-default.js'),
-      breadcrumbs: false,
-      editUrl: 'https://github.com/dyte-in/docs/tree/main/',
-      showLastUpdateTime: true,
-      versions: version && {
-        current: {
-          label: version.label,
-        },
-      },
       ...defaultSettings,
+      sidebarPath,
       ...options,
     }),
   ];
 }
 
-const latestVersions = {
-  'ui-kit': '1.x.x',
-  'web-core': '1.x.x',
-  'react-native': '0.25.x',
-  android: '0.14.x',
-  ios: '1.33.x',
-  flutter: '0.7.x',
-  'android-core': '1.x.x',
-  'rn-core': '1.x.x',
-  'flutter-core': '1.0.0',
-  'ios-core': '1.0.0',
-};
+const isDev = process.env.NODE_ENV === 'development';
 
-const SECTIONS = [
-  defineSection('cli'),
-  defineSection('plugin-sdk'),
+const { webpackPlugin } = require('./plugins/webpack-plugin.cjs');
+const tailwindPlugin = require('./plugins/tailwind-plugin.cjs');
+const docs_plugins = docs.map((doc) => create_doc_plugin(doc));
 
-  // Older SDKs
-  defineSection('react', { label: '0.x.x' }),
-  defineSection('javascript', { label: '0.x.x' }),
+const plugins = [tailwindPlugin, ...docs_plugins, webpackPlugin];
 
-  // [web] ui-sdk
-  defineSection('ui-kit', {
-    label: latestVersions['ui-kit'],
-  }),
-  defineSection('react-ui-kit', {
-    label: latestVersions['ui-kit'],
-  }),
-  defineSection('angular-ui-kit', {
-    label: latestVersions['ui-kit'],
-  }),
-
-  // [web] core-sdk
-  defineSection('web-core', {
-    label: latestVersions['web-core'],
-  }),
-
-  // [web] android-core
-  defineSection('android-core', {
-    label: latestVersions['android-core'],
-  }),
-
-  // [web] flutter-core
-  defineSection('flutter-core', {
-    label: latestVersions['flutter-core'],
-  }),
-
-  //mobile-core
-  defineSection('ios-core', {
-    label: latestVersions['ios-core'],
-  }),
-
-  // rn-core
-  defineSection('rn-core', {
-    label: latestVersions['rn-core'],
-  }),
-
-  // [mobile]
-  defineSection('react-native', {
-    label: latestVersions['react-native'],
-  }),
-  defineSection('android', {
-    label: latestVersions['android'],
-  }),
-  defineSection('ios', {
-    label: latestVersions['ios'],
-  }),
-  defineSection('flutter', {
-    label: latestVersions['flutter'],
-  }),
-];
-
+const fs = require('fs');
 const sdksHTML = fs.readFileSync('./src/snippets/sdks.html', 'utf-8');
 const resourcesHTML = fs.readFileSync('./src/snippets/resources.html', 'utf-8');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Dyte Docs',
-  tagline: 'Real-time audio & video SDKs, ready to launch 🚀',
-  url: 'https://docs.dyte.io',
-  baseUrl: '/',
-  onBrokenLinks: 'warn',
-  onBrokenMarkdownLinks: 'warn',
-  favicon: '/favicon.ico',
+  ...meta,
+  plugins,
+
   trailingSlash: false,
-  scripts: !isDev
-    ? [
-        {
-          src: 'https://cdn.dyte.in/manalytics.js',
-          defer: true,
-        },
-      ]
-    : undefined,
-  webpack: {
-    jsLoader: (isServer) => ({
-      loader: require.resolve('swc-loader'),
-      options: {
-        jsc: {
-          parser: {
-            syntax: 'typescript',
-            tsx: true,
-          },
-          target: 'es2017',
-        },
-        module: {
-          type: isServer ? 'commonjs' : 'es6',
-        },
-      },
-    }),
-  },
-
-  // Even if you don't use internalization, you can use this field to set useful
-  // metadata like html lang. For example, if your site is Chinese, you may want
-  // to replace "en" with "zh-Hans".
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
-  },
-
+  themes: ['@docusaurus/theme-live-codeblock'],
   clientModules: [require.resolve('./src/client/define-ui-kit.js')],
 
   presets: [
@@ -175,12 +245,6 @@ const config = {
           path: 'docs/guides',
           id: 'guides',
           routeBasePath: '/guides',
-          sidebarPath: require.resolve('./sidebars-default.js'),
-          breadcrumbs: false,
-          showLastUpdateTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/dyte-in/docs/tree/main/',
           ...defaultSettings,
         },
         blog: false,
@@ -196,10 +260,6 @@ const config = {
       }),
     ],
   ],
-
-  plugins: [tailwindPlugin, webpackPlugin, ...SECTIONS],
-
-  themes: ['@docusaurus/theme-live-codeblock'],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -348,8 +408,8 @@ const config = {
         copyright: 'Copyright © Dyte since 2020. All rights reserved.',
       },
       prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
+        theme: code_themes.light,
+        darkTheme: code_themes.dark,
         additionalLanguages: [
           'dart',
           'ruby',
@@ -371,9 +431,6 @@ const config = {
           },
         ],
       },
-      liveCodeBlock: {
-        playgroundPosition: 'bottom',
-      },
       algolia: {
         appId: 'HL0HSV62RK',
         apiKey: '72ebf02146698733b7114c7b36da0945',
@@ -382,6 +439,32 @@ const config = {
         searchParameters: {},
       },
     }),
+
+  scripts: !isDev
+    ? [
+        {
+          src: 'https://cdn.dyte.in/manalytics.js',
+          defer: true,
+        },
+      ]
+    : undefined,
+  webpack: {
+    jsLoader: (isServer) => ({
+      loader: require.resolve('swc-loader'),
+      options: {
+        jsc: {
+          parser: {
+            syntax: 'typescript',
+            tsx: true,
+          },
+          target: 'es2017',
+        },
+        module: {
+          type: isServer ? 'commonjs' : 'es6',
+        },
+      },
+    }),
+  },
 };
 
 module.exports = config;
