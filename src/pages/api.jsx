@@ -21,7 +21,7 @@ function APIElement({ layout = 'sidebar', currentVersion = 'v1' }) {
       }
     >
       {() => {
-        // eslint-disable-next-line no-undef
+        // eslint-disable-next-line no-undef, @typescript-eslint/no-var-requires
         const { API } = require('@stoplight/elements');
 
         return (
