@@ -24,6 +24,8 @@ export default function ResourcesSection() {
                 <div className="mb-3 overflow-hidden rounded-lg">
                   <img
                     src={resource.image}
+                    alt={resource.title}
+                    loading="lazy"
                     className="aspect-square h-full w-full object-cover transition-transform group-hover:scale-110"
                   />
                 </div>
