@@ -33,6 +33,7 @@ function defineSection(section, version = {}, options = {}) {
       sidebarPath: require.resolve('./sidebars-default.js'),
       breadcrumbs: false,
       editUrl: 'https://github.com/dyte-in/docs/tree/main/',
+      showLastUpdateTime: true,
       versions: version && {
         current: {
           label: version.label,
