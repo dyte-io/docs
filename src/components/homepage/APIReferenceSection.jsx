@@ -10,16 +10,8 @@ export default function APIReferenceSection() {
   return (
     <section className="relative mb-20 px-6">
       <Head>
-        <link
-          rel="preload"
-          href="/static/landing-page/api-ref-light.png"
-          as="image"
-        />
-        <link
-          rel="preload"
-          href="/static/landing-page/api-ref-dark.png"
-          as="image"
-        />
+        <link rel="prefetch" href="/static/landing-page/api-ref-light.png" />
+        <link rel="prefetch" href="/static/landing-page/api-ref-dark.png" />
       </Head>
       <div className="relative mx-auto flex w-full max-w-7xl flex-col items-center gap-10 rounded-2xl bg-gradient-to-r from-black to-zinc-800 px-6 py-20 text-center text-white dark:from-zinc-100 dark:to-white dark:text-black lg:flex-row lg:p-20 lg:text-left">
         <Link

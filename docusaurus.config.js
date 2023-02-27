@@ -257,6 +257,9 @@ const config = {
         sitemap: {
           ignorePatterns: ['/tags/**'],
         },
+        googleTagManager: {
+          containerId: 'GTM-5FDFFSS',
+        },
       }),
     ],
   ],
@@ -440,14 +443,6 @@ const config = {
       },
     }),
 
-  scripts: !isDev
-    ? [
-        {
-          src: 'https://cdn.dyte.in/manalytics.js',
-          defer: true,
-        },
-      ]
-    : undefined,
   webpack: {
     jsLoader: (isServer) => ({
       loader: require.resolve('swc-loader'),
