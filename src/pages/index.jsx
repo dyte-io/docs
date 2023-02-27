@@ -18,7 +18,7 @@ export default function Homepage() {
       noFooter
     >
       <Head>
-        <link rel="preload" href="/assets/css/elements.min.css" as="style" />
+        <link rel="prefetch" href="/assets/css/elements.min.css" />
       </Head>
       <HeroSection />
       <SDKsSection />
