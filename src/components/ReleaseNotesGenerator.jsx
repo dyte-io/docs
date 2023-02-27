@@ -40,17 +40,21 @@ export default function ReleaseNotesGenerator({ noteKey }) {
       {releaseNotes.map((m) => {
         return (
           <>
-            <Heading as="h2" id={m.version}>
-              v{m.version}
-            </Heading>
-            <h4>
-              Released{' '}
-              {new Date(m.createdAt * 1000).toLocaleDateString('en-US', {
-                day: 'numeric',
-                year: 'numeric',
-                month: 'long',
-              })}
-            </h4>
+            {m.version && (
+              <Heading as="h2" id={m.version}>
+                v{m.version}
+              </Heading>
+            )}
+            <p className="text-sm">
+              Released on{' '}
+              <time>
+                {new Date(m.createdAt * 1000).toLocaleDateString('en-US', {
+                  day: 'numeric',
+                  year: 'numeric',
+                  month: 'long',
+                })}
+              </time>
+            </p>
             <table className="releaseNotes">
               {changeTypes.map((c) => {
                 return m[c.name]?.length > 0 ? (

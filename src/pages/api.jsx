@@ -10,6 +10,7 @@ import useBreakpoint from '../lib/useBreakpoint';
 import SectionsMenu from '../components/SectionsMenu';
 import RunInPostmanButton from '../components/RunInPostmanButton';
 import { Monitor } from 'react-feather';
+import Link from '@docusaurus/Link';
 
 function APIElement({ layout = 'sidebar', currentVersion = 'v1' }) {
   return (
@@ -77,6 +78,14 @@ export default function Home() {
           Dyte REST API {currentVersion}
         </h1>
         <div className="aside">
+          {currentVersion === 'v2' && (
+            <Link
+              href="/release-notes/rest-api"
+              className="no-underline-links new-badge text-xs"
+            >
+              Release Notes
+            </Link>
+          )}
           {size === 'lg' && <RunInPostmanButton />}
           <SectionsMenu
             defaultValue={currentVersion}
