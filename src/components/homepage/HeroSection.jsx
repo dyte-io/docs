@@ -9,16 +9,8 @@ export default function HeroSection() {
   return (
     <section className="noise-bg no-underline-links px-4 pt-16 lg:py-0">
       <Head>
-        <link
-          rel="preload"
-          href="/static/landing-page/hero-light.png"
-          as="image"
-        />
-        <link
-          rel="preload"
-          href="/static/landing-page/hero-dark.png"
-          as="image"
-        />
+        <link rel="prefetch" href="/static/landing-page/hero-light.png" />
+        <link rel="prefetch" href="/static/landing-page/hero-dark.png" />
       </Head>
       <div className="mx-auto flex max-w-7xl flex-col items-center lg:h-[540px] lg:flex-row">
         <div className="flex-1 text-center lg:text-left">
