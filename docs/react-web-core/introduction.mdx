@@ -1,0 +1,57 @@
+---
+title: Introduction
+sidebar_position: 1
+---
+
+# Introduction
+
+The Dyte Core SDK is designed to provide developers with an easy way to incorporate real-time communication (RTC) solutions into their apps and websites. With full customization and branding options, you can build your own user interface from the ground up without dealing with complicated media layers.
+
+The Core SDK acts as a data-only layer, offering high-level primitives and abstracting away complex media and networking optimizations. It only provides simple APIs that are user-friendly and easy to work with.
+
+## Why Core SDK?
+
+The Core SDK was developed with a user-friendly approach to eliminate the complexity of managing streams. Unlike traditional SDKs that require knowledge of WebRTC functioning, Dyte's Core SDK provides a simple API that abstracts out the complexity, making it easier for developers to use. For instance, enabling video with Dyte's Core SDK is as easy as calling `meeting.self.enableVideo();`.
+
+## Features of React Core SDKs
+
+- **Fully customizable**: Provides you the flexibility to build your own UI from scratch.
+- **Independent modules**: Each module is independent of each other. For example, a bug in the chat module does not hamper the video-calling experience.
+- **Minimum external dependencies**: The Core SDKs have minimal external dependencies, which helps to control the size of the SDK.
+- **Includes a number of Hooks**: [React Hooks](https://beta.reactjs.org/reference/react) are functions that allow developers to use effect and other React features in functional components. Hooks were introduced in React version 16.8 as a way to simplify the code. Dyte provides the following built-in hooks:
+
+  - useDyteClient()
+  - useDyteMeeting()
+  - useDyteSelector()
+
+  See [Hooks](https://docs.dyte.io/react-ui-kit/using-hooks) for more information.
+
+## Utility Modules
+
+The Core SDK includes various modules for in-call utilities like chat, polls, and recording that enable building a UI on top of it. The following are the core SDK modules:
+
+- **meeting.self**: This consists of properties and methods corresponding to the current (local) user, such as enabling or disabling their audio and video, getting a list of media devices or changing the device, or sharing your mobile screen.
+- **meeting.participants**: Use this module to get useful information about the other participants that are present in the meeting. A host can use this module for access control. For example, the host can mute or kick a participant.
+- **meeting.chat**: It provides the methods to integrate chat features such as sending/receiving, editing, and deleting text, images, and files.
+- **meeting.polls**: Meetings can have polls. This module lets you perform actions related to polls, that is create and manage a poll within a meeting.
+- **meeting.recording**: When a meeting needs to be recorded, this module can be used. It lets you start or stop a recording, and get the current status of an ongoing recording.
+- **meeting.meta**: This object consists of all the metadata related to the current meeting, such as the title, the timestamp of when it started, and more.
+
+## Supported Browser
+
+Here are the browser requirements:
+
+- Chrome (or Chromium based) 74+
+- Firefox 78+
+- Opera 64+
+- Safari 12+
+- Edge 79+
+- iOS (Safari) 12.1+
+- iOS (Non-Safari) 15+
+
+## Internet Requirements
+
+- Downlink (Minimum) 4 Mbps
+- Downlink (Optimal) 8 Mbps
+- Uplink (Minimum) 2 Mbps
+- Uplink (Optimal) 4 Mbps

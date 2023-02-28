@@ -156,11 +156,7 @@ export default function SDKsSection() {
                 <SDKLink href="web-core" Icon={JSIcon} label="JavaScript" />
               </li>
               <li>
-                <SDKLink
-                  href="react-ui-kit/using-hooks"
-                  Icon={ReactIcon}
-                  label="React"
-                />
+                <SDKLink href="react-web-core" Icon={ReactIcon} label="React" />
               </li>
             </ul>
           </div>
