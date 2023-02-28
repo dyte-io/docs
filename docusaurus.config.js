@@ -77,6 +77,17 @@ const docs = [
       },
     },
   },
+  // React Web Core
+  {
+    id: 'react-web-core',
+    path: 'docs/react-web-core',
+    routeBasePath: '/react-web-core',
+    versions: {
+      current: {
+        label: '1.x.x',
+      },
+    },
+  },
 
   // Mobile Core
   {
