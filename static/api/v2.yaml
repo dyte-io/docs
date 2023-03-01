@@ -735,7 +735,7 @@ paths:
         - $ref: '#/components/parameters/participantsSortBy'
         - name: include_peer_events
           in: query
-          description: if true, response includes all the peer events of participants
+          description: 'if true, response includes all the peer events of participants'
           schema:
             type: boolean
       responses:
@@ -758,6 +758,20 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/GetParticipantDetails'
+      parameters:
+        - schema:
+            type: string
+            example: 'device_info,ip_information,events'
+            enum:
+              - device_info
+              - ip_information
+              - precall_network_information
+              - events
+              - quality_stats
+          in: query
+          name: filters
+          description: Comma separated list of filters to apply. Note that there must be no spaces between the filters.
+          allowEmptyValue: true
     parameters:
       - schema:
           type: string
@@ -797,7 +811,7 @@ paths:
   /analytics/overall:
     get:
       summary: Fetch complete analytics data
-      description: Returns complete analytics such as sessions_count, sessions_minutes_consumed and recordings_minutes_consumed of an organization in a given time period. 
+      description: 'Returns complete analytics such as sessions_count, sessions_minutes_consumed and recordings_minutes_consumed of an organization in a given time period.'
       operationId: GetOverallStats
       tags:
         - Analytics
@@ -810,7 +824,7 @@ paths:
   /analytics/daywise:
     get:
       summary: Fetch daywise analytics data
-      description: Returns analytics such as sessions_count, sessions_minutes_consumed and recordings_minutes_consumed of an organization grouped by day in a given time period.
+      description: 'Returns analytics such as sessions_count, sessions_minutes_consumed and recordings_minutes_consumed of an organization grouped by day in a given time period.'
       operationId: GetDaywiseStats
       tags:
         - Analytics
@@ -2941,73 +2955,73 @@ components:
                     brand:
                       type: object
                       required:
-                        - "300"
-                        - "400"
-                        - "500"
-                        - "600"
-                        - "700"
+                        - '300'
+                        - '400'
+                        - '500'
+                        - '600'
+                        - '700'
                       properties:
-                        300:
+                        '300':
                           type: string
-                          default: "#844d1c"
-                        400:
+                          default: '#844d1c'
+                        '400':
                           type: string
-                          default: "#9d5b22"
-                        500:
+                          default: '#9d5b22'
+                        '500':
                           type: string
-                          default: "#b56927"
-                        600:
+                          default: '#b56927'
+                        '600':
                           type: string
-                          default: "#d37c30"
-                        700:
+                          default: '#d37c30'
+                        '700':
                           type: string
-                          default: "#d9904f"
+                          default: '#d9904f'
                     background:
                       type: object
                       required:
-                        - "600"
-                        - "700"
-                        - "800"
-                        - "900"
-                        - "1000"
+                        - '600'
+                        - '700'
+                        - '800'
+                        - '900'
+                        - '1000'
                       properties:
-                        600:
+                        '600':
                           type: string
-                          default: "#222222"
-                        700:
+                          default: '#222222'
+                        '700':
                           type: string
-                          default: "#1f1f1f"
-                        800:
+                          default: '#1f1f1f'
+                        '800':
                           type: string
-                          default: "#1b1b1b"
-                        900:
+                          default: '#1b1b1b'
+                        '900':
                           type: string
-                          default: "#181818"
-                        1000:
+                          default: '#181818'
+                        '1000':
                           type: string
-                          default: "#141414"
+                          default: '#141414'
                     danger:
                       type: string
-                      default: "#FF2D2D"
+                      default: '#FF2D2D'
                     text:
                       type: string
-                      default: "#EEEEEE"
+                      default: '#EEEEEE'
                     text_on_brand:
                       type: string
-                      default: "#EEEEEE"
+                      default: '#EEEEEE'
                     success:
                       type: string
-                      default: "#62A504"
+                      default: '#62A504'
                     video_bg:
                       type: string
-                      default: "#191919"
+                      default: '#191919'
                     warning:
                       type: string
-                      default: "#FFCD07"
+                      default: '#FFCD07'
                 logo:
                   type: string
             config_diff:
-              type: object                                                                                                                                                                   
+              type: object
       required:
         - name
         - config
@@ -3025,51 +3039,6 @@ components:
             - H264
             - VP8
           description: Codec using which the recording will be encoded
-        width:
-          type: integer
-          description: Width of the recording video in pixels
-          minimum: 1
-          maximum: 1920
-          example: 1280
-          default: 1280
-        height:
-          type: integer
-          description: Height of the recording video in pixels
-          minimum: 1
-          maximum: 1920
-          example: 720
-          default: 720
-        watermark:
-          type: object
-          description: Watermark to be added to the recording
-          properties:
-            url:
-              type: string
-              format: uri
-              description: URL of the watermark image
-            size:
-              type: object
-              description: Size of the watermark
-              properties: 
-                width:
-                  type: integer
-                  description: Width of the watermark in px
-                  minimum: 1
-                  default: 200
-                height:
-                  type: integer
-                  description: Height of the watermark in px
-                  minimum: 1
-                  default: auto
-            position:
-              type: string
-              enum:
-                - left top
-                - right top
-                - left bottom
-                - right bottom
-              description: Position of the watermark
-              default: left top
     LivestreamingConfig:
       title: LivestreamingConfig
       x-stoplight:
@@ -3843,8 +3812,8 @@ components:
         success: true
         data:
           participants:
-            - id: "005f4e0c-4d08-4d4e-a391-a76be75cd296"
-              user_id: "0a08343d-a9dc-45f0-9feb-6a64afcc4f81"
+            - id: 005f4e0c-4d08-4d4e-a391-a76be75cd296
+              user_id: 0a08343d-a9dc-45f0-9feb-6a64afcc4f81
               custom_participant_id: 83qi0i
               display_name: Mark
               role: webinar_participant
@@ -3853,8 +3822,8 @@ components:
               duration: 5.8097
               created_at: '2023-02-01T10:51:08.039Z'
               updated_at: '2023-02-01T10:56:56.618Z'
-            - id: "51fdf95f-d893-471a-922b-7db7adb14453"
-              user_id: "85e7f0fd-7c16-45e9-9d68-f17ef007c4eb"
+            - id: 51fdf95f-d893-471a-922b-7db7adb14453
+              user_id: 85e7f0fd-7c16-45e9-9d68-f17ef007c4eb
               custom_participant_id: 3uggr
               display_name: Henry
               role: webinar_participant
@@ -3873,8 +3842,8 @@ components:
         success: true
         data:
           participants:
-            - id: "005f4e0c-4d08-4d4e-a391-a76be75cd296"
-              user_id: "0a08343d-a9dc-45f0-9feb-6a64afcc4f81"
+            - id: 005f4e0c-4d08-4d4e-a391-a76be75cd296
+              user_id: 0a08343d-a9dc-45f0-9feb-6a64afcc4f81
               custom_participant_id: 83qi0i
               display_name: Mark
               role: webinar_participant
@@ -3884,18 +3853,18 @@ components:
               created_at: '2023-02-01T10:51:08.039Z'
               updated_at: '2023-02-01T10:56:56.618Z'
               peer_events:
-                - id: '94af3bac-f30b-40b9-ab45-4b9e6eff191a'
-                  peer_id: '79d87ca5-7e47-452a-b3c1-b6842ad84bf5'
-                  event_name: 'PEER_JOINING'
+                - id: 94af3bac-f30b-40b9-ab45-4b9e6eff191a
+                  peer_id: 79d87ca5-7e47-452a-b3c1-b6842ad84bf5
+                  event_name: PEER_JOINING
                   created_at: '2023-02-01T10:51:50.786Z'
                   updated_at: '2023-02-01T10:51:50.792Z'
-                - id: '94af3bac-f30b-40b9-ab45-4b9e6eff191b'
-                  peer_id: '79d87ca5-7e47-452a-b3c1-b6842ad84bf5'
-                  event_name: 'PEER_LEAVING'
+                - id: 94af3bac-f30b-40b9-ab45-4b9e6eff191b
+                  peer_id: 79d87ca5-7e47-452a-b3c1-b6842ad84bf5
+                  event_name: PEER_LEAVING
                   created_at: '2023-02-01T10:56:50.786Z'
                   updated_at: '2023-02-01T10:56:50.792Z'
-            - id: "51fdf95f-d893-471a-922b-7db7adb14453"
-              user_id: "85e7f0fd-7c16-45e9-9d68-f17ef007c4eb"
+            - id: 51fdf95f-d893-471a-922b-7db7adb14453
+              user_id: 85e7f0fd-7c16-45e9-9d68-f17ef007c4eb
               custom_participant_id: 3uggr
               display_name: Henry
               role: webinar_participant
@@ -3905,14 +3874,14 @@ components:
               created_at: '2023-02-01T10:50:36.853Z'
               updated_at: '2023-02-01T10:57:32.431Z'
               peer_events:
-                - id: '94af3bac-f30b-40b9-ab45-4b9e6eff191a'
-                  peer_id: '51fdf95f-d893-471a-922b-7db7adb14453'
-                  event_name: 'PEER_JOINING'
+                - id: 94af3bac-f30b-40b9-ab45-4b9e6eff191a
+                  peer_id: 51fdf95f-d893-471a-922b-7db7adb14453
+                  event_name: PEER_JOINING
                   created_at: '2023-02-01T10:51:50.786Z'
                   updated_at: '2023-02-01T10:51:50.792Z'
-                - id: '94af3bac-f30b-40b9-ab45-4b9e6eff191b'
-                  peer_id: '51fdf95f-d893-471a-922b-7db7adb14453'
-                  event_name: 'PEER_LEAVING'
+                - id: 94af3bac-f30b-40b9-ab45-4b9e6eff191b
+                  peer_id: 51fdf95f-d893-471a-922b-7db7adb14453
+                  event_name: PEER_LEAVING
                   created_at: '2023-02-01T10:56:50.786Z'
                   updated_at: '2023-02-01T10:56:50.792Z'
           paging:
