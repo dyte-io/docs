@@ -1,12 +1,10 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
-import { useColorMode } from '@docusaurus/theme-common';
 import { ArrowUpRight } from 'react-feather';
 import Head from '@docusaurus/Head';
+import ThemedImage from '@theme/ThemedImage';
 
 export default function APIReferenceSection() {
-  const { colorMode } = useColorMode();
-
   return (
     <section className="relative mb-20 px-6">
       <Head>
@@ -81,8 +79,11 @@ export default function APIReferenceSection() {
           </ul>
         </div>
         <div className="flex flex-1 justify-end">
-          <img
-            src={`/static/landing-page/api-ref-${colorMode}.png`}
+          <ThemedImage
+            sources={{
+              light: '/static/landing-page/api-ref-light.png',
+              dark: '/static/landing-page/api-ref-dark.png',
+            }}
             alt="API Reference Preview"
             loading="lazy"
           />
