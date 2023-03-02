@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
 import clsx from 'clsx';
-import { useColorMode } from '@docusaurus/theme-common';
+import ThemedImage from '@theme/ThemedImage';
 import {
   AngularIcon,
   // ElectronIcon,
@@ -31,7 +31,6 @@ function SDKLink({ href, Icon, label, disabled = false }) {
 }
 
 export default function SDKsSection() {
-  const { colorMode } = useColorMode();
   const [visibleSection, setVisibleSection] = useState('Web');
 
   React.useEffect(() => {
@@ -262,8 +261,11 @@ export default function SDKsSection() {
             </Link>
           </div>
           <div className="flex flex-[3] items-center justify-center rounded-3xl p-6 px-8 lg:justify-end">
-            <img
-              src={`/static/landing-page/plugin-sdk-${colorMode}.png`}
+            <ThemedImage
+              sources={{
+                light: '/static/landing-page/plugin-sdk-light.png',
+                dark: '/static/landing-page/plugin-sdk-dark.png',
+              }}
               alt="Plugin SDK Usage Preview"
               loading="lazy"
             />
