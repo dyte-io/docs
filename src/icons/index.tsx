@@ -61,6 +61,42 @@ export function AppleIcon(props: ComponentProps<'svg'>) {
   );
 }
 
+export function APIIcon(props: ComponentProps<'svg'>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 28 28"
+      fill="none"
+      {...props}
+    >
+      <rect width={28} height={28} fill="#2160FD" rx={4} />
+      <g stroke="#fff" clipPath="url(#api-svg-icon)">
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M14 15.875h1.25m2.5 0H19"
+        />
+        <path d="M9.625 16.188a.312.312 0 110-.625m0 .625a.312.312 0 100-.625m0 5.625a.312.312 0 110-.625m0 .625a.312.312 0 100-.625" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M14 20.875h1.25m2.5 0H19m2.5-5a2.5 2.5 0 01-2.5 2.5H9a2.5 2.5 0 110-5h10a2.5 2.5 0 012.5 2.5z"
+        />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M21.5 20.875a2.5 2.5 0 01-2.5 2.5H9a2.5 2.5 0 110-5h10a2.5 2.5 0 012.5 2.5zm1.767-6.855a4.065 4.065 0 00-3.952-4.995 4.03 4.03 0 00-2.301.72 6.245 6.245 0 10-11.855 3.652"
+        />
+      </g>
+      <defs>
+        <clipPath id="api-svg-icon">
+          <path fill="#fff" d="M4 4h20v20H4z" />
+        </clipPath>
+      </defs>
+    </svg>
+  );
+}
+
 export function DiscordIcon(props: ComponentProps<'svg'>) {
   return (
     <svg
