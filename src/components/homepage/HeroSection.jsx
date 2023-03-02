@@ -1,11 +1,9 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
-import { useColorMode } from '@docusaurus/theme-common';
 import Head from '@docusaurus/Head';
+import ThemedImage from '@theme/ThemedImage';
 
 export default function HeroSection() {
-  const { colorMode } = useColorMode();
-
   return (
     <section className="noise-bg no-underline-links px-4 pt-16 lg:py-0">
       <Head>
@@ -39,8 +37,11 @@ export default function HeroSection() {
           </div>
         </div>
         <div className="mt-6 flex-1 lg:mt-0 xl:flex-none">
-          <img
-            src={`/static/landing-page/hero-${colorMode}.png`}
+          <ThemedImage
+            sources={{
+              light: '/static/landing-page/hero-light.png',
+              dark: '/static/landing-page/hero-dark.png',
+            }}
             alt="Preview of using Dyte SDKs"
             className="max-w-[420px] lg:max-w-[560px]"
           />

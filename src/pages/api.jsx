@@ -11,6 +11,7 @@ import SectionsMenu from '../components/SectionsMenu';
 import RunInPostmanButton from '../components/RunInPostmanButton';
 import { Monitor } from 'react-feather';
 import Link from '@docusaurus/Link';
+import { APIIcon } from '../icons';
 
 function APIElement({ layout = 'sidebar', currentVersion = 'v1' }) {
   return (
@@ -74,8 +75,9 @@ export default function Home() {
       </div>
 
       <div className="header">
-        <h1 className="mb-0 text-sm font-semibold lg:text-lg">
-          Dyte REST API {currentVersion}
+        <h1 className="mb-0 flex items-center gap-2 text-sm font-semibold lg:text-lg">
+          <APIIcon className="hidden h-8 lg:block" />
+          REST API {currentVersion}
         </h1>
         <div className="aside">
           {currentVersion === 'v2' && (

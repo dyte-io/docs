@@ -1,14 +1,12 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
-import { useColorMode } from '@docusaurus/theme-common';
+import ThemedImage from '@theme/ThemedImage';
 import clsx from 'clsx';
 
 import { Linkedin, Twitter } from 'react-feather';
 import { DiscordIcon } from '@site/src/icons';
 
 export default function HomeFooter({ className }) {
-  const { colorMode } = useColorMode();
-
   return (
     <footer className="bg-secondary-900">
       <div
@@ -18,7 +16,11 @@ export default function HomeFooter({ className }) {
         )}
       >
         <div>
-          <img src={`/logo/${colorMode}.svg`} alt="Logo" className="h-10" />
+          <ThemedImage
+            sources={{ light: '/logo/light.svg', dark: '/logo/dark.svg' }}
+            alt="Logo"
+            className="h-10"
+          />
         </div>
         <div className="flex items-center gap-3">
           <Link href="https://community.dyte.io" aria-label="Discord community">
