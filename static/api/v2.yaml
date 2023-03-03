@@ -1512,7 +1512,7 @@ paths:
         $ref: '#/components/requestBodies/StartRecording'
       tags:
         - Recordings
-  '/recordings/active-recordings/{meeting_id}':
+  '/recordings/active-recording/{meeting_id}':
     parameters:
       - schema:
           type: string
@@ -2385,6 +2385,14 @@ components:
         live_stream_on_start:
           type: boolean
           description: Whether the meeting will be livestreamed as soon as someone joins or not.
+        status:
+          type: string
+          x-stoplight:
+            id: 7iltdkj13psqq
+          enum:
+            - ACTIVE
+            - INACTIVE
+          description: Whether the meeting is `ACTIVE` or `INACTIVE`. Users will not be able to join an `INACTIVE` meeting.
       required:
         - id
         - created_at
@@ -3064,7 +3072,7 @@ components:
             size:
               type: object
               description: Size of the watermark
-              properties: 
+              properties:
                 width:
                   type: integer
                   description: Width of the watermark in px
