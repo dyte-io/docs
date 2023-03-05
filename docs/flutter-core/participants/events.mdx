@@ -10,10 +10,10 @@ tags: [flutter-core, participants, self]
 ```dart
 @override
 void onParticipantsUpdated({
-    required DyteRoomParticipants participants,
-    required DyteGridPagesInfo gridPagesInfo,
+   required DyteRoomParticipants participants,
+   required DyteGridPagesInfo gridPagesInfo,
 }) {
-    // your code here to handle page updates.
+   // your code here to handle page updates.
 }
 ```
 
@@ -34,7 +34,7 @@ Trigger an event when any participant joins the meeting.
 ```dart
 @override
 void onParticipantUpdated(DyteMeetingParticipant participant) {
-          // your code here to handle new participant
+         // your code here to handle new participant
 }
 ```
 
@@ -45,7 +45,7 @@ Trigger an event when any participant update in meet.
 ```dart
 @override
 void onParticipantUpdated(DyteMeetingParticipant participant) {
-          // your code here to handle new participant
+         // your code here to handle new participant
 }
 ```
 
@@ -56,7 +56,7 @@ Trigger an event when any participant leaves the meeting.
 ```dart
 @override
 void onParticipantLeave(DyteMeetingParticipant participant) {
-          // your code here to handle participant left from meeting
+         // your code here to handle participant left from meeting
 }
 ```
 
@@ -67,11 +67,28 @@ Trigger an event when any participant starts / stops video.
 ```dart
 @override
 void videoUpdate({
-  required bool videoEnabled,
-  required DyteMeetingParticipant participant,
+ required bool videoEnabled,
+ required DyteMeetingParticipant participant,
 }) {
-          // your code here to handle participant video toggle update
+         // your code here to handle participant video toggle update
 }
+```
+
+## Video view
+
+To get video view of a participant, set the `view-type` as `DytePlatformVideoView`,
+
+```dart
+const viewType = ‘DytePlatformVideoView’;
+
+
+// pass the creation parameters:
+
+
+final Map<String, dynamic> creationParams = {
+‘id’:  meetingParticipant.id,  // [String] Participant ID
+‘isSelfParticipant’: isSelfParticipant // [bool] whether the participant whose view is requested is same as the mobileClient or not.
+};
 ```
 
 ## Audio update
@@ -81,10 +98,10 @@ Trigger an event when any participant starts / stops audio.
 ```dart
 @override
 void audioUpdate({
-  required bool audioEnabled,
-  required DyteMeetingParticipant participant,
+ required bool audioEnabled,
+ required DyteMeetingParticipant participant,
 }) {
-          // your code here to handle participant audio toggle update
+         // your code here to handle participant audio toggle update
 }
 ```
 
@@ -95,24 +112,48 @@ Trigger an event when any participant starts / stops screen share.
 ```dart
 @override
 void onScreenSharesUpdated() {
-    // all screenshare participants can be fetched via
-    // dyteClient.participants.screenshares
+   // all screenshare participants can be fetched via
+   // dyteClient.participants.screenshares
 }
 ```
+
+## Screen share participants list
+
+Obtain the list of the screenshare participants, using the `participants.screenshares` function which returns a `DyteRoomParticipants` object that maintains a record of participants who have joined, pinned, and screenshared. This object updates with each `onUpdate` call.
+
+## Screen share view
+
+To get the screenshare view, set the `view-type` as `DytePlatformScreenshareView`.
+
+```dart
+const viewType = ‘DytePlatformScreenshareView’
+```
+
+You can pass the `ID` in creation parameter as the following:
+
+```dart
+final Map<String, dynamic> creationParams = {
+      'peerId': screensharePeer.id,
+    };
+
+
+```
+
+The `screensharePeer` is an element of the `participants.screenshares` list.
 
 ## Participants updated
 
 Triggers an event when participants are updated, and therefore return the new
-DyteGridPagesInfo
+`DyteGridPagesInfo`.
 
 ```dart
 @override
 void onParticipantsUpdated({
-  required DyteRoomParticipants participants,
-  required DyteGridPagesInfo gridPagesInfo,
+ required DyteRoomParticipants participants,
+ required DyteGridPagesInfo gridPagesInfo,
 }){
-    // whenever participants are updated in the room
-    // it returns a updated `DyteRoomParticipants` and `DyteGridPagesInfo` with it.
+   // whenever participants are updated in the room
+   // it returns a updated `DyteRoomParticipants` and `DyteGridPagesInfo` with it.
 }
 ```
 
@@ -124,7 +165,7 @@ participant, this state gives you the participants of this current page.
 ```dart
 @override
 void onActiveParticipantsChanged({required List<DyteMeetingParticipant> activeParticipants}) {
-    /// these active participants return new page participants
+   /// these active participants return new page participants
 }
 ```
 
@@ -146,3 +187,21 @@ Other callbacks:
     onParticipantUnpinned()
   </span>
   : Trigerred when participant is unpinned.
+
+## Plugin view
+
+To get plugin view of a participant, set the `view-type` as `DytePlatformPluginView`,
+
+```dart
+const String viewType = 'DytePlatformPluginView';
+
+
+
+
+  final Map<String, dynamic> creationParams = {
+    'id': widget.plugin.id,
+    'name': widget.plugin.name,
+  };
+```
+
+`id` and `name` both are strings.
