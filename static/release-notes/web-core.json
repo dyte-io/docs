@@ -1,48 +1,83 @@
 [
   {
-      "version":"1.4.0",
-      "createdAt": 1676643893,
-      "fixes":[
-          "**🚨 Critical 🚨** Fixed a WebRTC video production bug that would impact *future* Chrome/Edge browser builds (version ≥ M111 - Scheduled to be released in the first week of March)",
-          "Fixed a regression introduced in `1.3.1` where defaults values passed during initialisation were not respected correctly under a certain edge case",
-          "Fixed an issue where a bluetooth device disconnection on Google Chrome did not automatically switch to an alternative device",
-          "Added workarounds for a [Safari Bug](https://bugs.webkit.org/show_bug.cgi?id=231787) where on disconnection of a bluetooth device, local video playback was paused",
-          "Fixed an issue with Safari screenshare, this improves the screenshare quality in Safari.",
-          "Minor improvement in the loading times of participant videos when joining a meeting with many participant on the Stage"
-      ],
-      "features":[
-          "Reduced the size impact of this library from from 1020KB to 880KB (from 228KB to 208KB GZipped). A 12% improvement from the previous release "
-      ]
+    "version": "1.5.3",
+    "createdAt": 1677781800,
+    "fixes": [
+      "Fixed a regression introduced in `1.5.1` where if the user leaves the waiting room without joining the meeting, an error was thrown"
+    ],
+    "features": []
   },
   {
-      "version":"1.3.1",
-      "createdAt": 1675261282,
-      "fixes":[
-          "Improve text legibility when screensharing on Chrome under poor network conditions"
-      ],
-      "features":[]
+    "version": "1.5.2",
+    "createdAt": 1677609000,
+    "fixes": [
+      "Performance optimization when fetching chat messages on room join"
+    ],
+    "features": []
   },
   {
-      "version":"1.2.0",
-      "createdAt": 1674714600,
-      "fixes":[
-          "Improved permissions check for audio/video/screenshare"
-      ],
-      "features":[
-          "When Tab Sync is enabled, now a `selfTabUpdate` event is fired on the local user when the user switches a plugin"
-      ],
-      "breaking-changes":[]
+    "version": "1.5.1",
+    "createdAt": 1677609000,
+    "fixes": [
+      "Fixed a regression introduced in `1.5.1` where if the user leaves the waiting room without joining the meeting, an error was thrown"
+    ],
+    "features": []
   },
   {
-      "version":"1.1.0",
-      "createdAt": 1674206130,
-      "fixes":[
-          "Improved handling of iphone Continuity on Mac OS",
-          "Fix issues in Websocket connection on Safari 12.x / 13.x / 14.x"
-      ],
-      "features":[
-          "**V2 REST API** - Supports `authToken` generated from V2 REST APIs"
-      ],
-      "breaking-changes":[]
+    "version": "1.5.0",
+    "createdAt": 1677609000,
+    "fixes": [
+      "Respect video / screenshare quality from preset",
+      "Sending file and images in private chat was failing due to a regression introduced in `1.4.0` ",
+      "Detect and handle few more virtual devices"
+    ],
+    "features": [
+      "Support for our upcoming Livestream",
+      "Added boolean flag `socketConnected` to `meeting.meta` that shows when the socket connection is established"
+    ]
+  },
+  {
+    "version": "1.4.0",
+    "createdAt": 1676643893,
+    "fixes": [
+      "**🚨 Critical 🚨** Fixed a WebRTC video production bug that would impact *future* Chrome/Edge browser builds (version ≥ M111 - Scheduled to be released in the first week of March)",
+      "Fixed a regression introduced in `1.3.1` where defaults values passed during initialisation were not respected correctly under a certain edge case",
+      "Fixed an issue where a bluetooth device disconnection on Google Chrome did not automatically switch to an alternative device",
+      "Added workarounds for a [Safari Bug](https://bugs.webkit.org/show_bug.cgi?id=231787) where on disconnection of a bluetooth device, local video playback was paused",
+      "Fixed an issue with Safari screenshare, this improves the screenshare quality in Safari.",
+      "Minor improvement in the loading times of participant videos when joining a meeting with many participant on the Stage"
+    ],
+    "features": [
+      "Reduced the size impact of this library from from 1020KB to 880KB (from 228KB to 208KB GZipped). A 12% improvement from the previous release "
+    ]
+  },
+  {
+    "version": "1.3.1",
+    "createdAt": 1675261282,
+    "fixes": [
+      "Improve text legibility when screensharing on Chrome under poor network conditions"
+    ],
+    "features": []
+  },
+  {
+    "version": "1.2.0",
+    "createdAt": 1674714600,
+    "fixes": ["Improved permissions check for audio/video/screenshare"],
+    "features": [
+      "When Tab Sync is enabled, now a `selfTabUpdate` event is fired on the local user when the user switches a plugin"
+    ],
+    "breaking-changes": []
+  },
+  {
+    "version": "1.1.0",
+    "createdAt": 1674206130,
+    "fixes": [
+      "Improved handling of iphone Continuity on Mac OS",
+      "Fix issues in Websocket connection on Safari 12.x / 13.x / 14.x"
+    ],
+    "features": [
+      "**V2 REST API** - Supports `authToken` generated from V2 REST APIs"
+    ],
+    "breaking-changes": []
   }
 ]
