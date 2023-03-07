@@ -1,0 +1,57 @@
+---
+title: Room Metadata
+description: All metadata pertaining to a meeting.
+sidebar_position: 4
+tags: [web-core, room-metadata]
+---
+
+# Room Metadata
+
+All metadata pertaining to a meeting is stored in `meeting.meta`. This includes:
+
+- `viewType`: Indicates the type of the meeting, possible values are `WEBINAR`,
+  `GROUP_CALL`.
+- `roomType`: Indicates the meeting is a group-call or a webinar.
+- `meetingTitle`: The title of the meeting.
+- `meetingStartedTimestamp`: The timestamp when the meeting started.
+- `socketConnected`: Boolean flag to show when the socket is connected.
+
+For example, if you want to get the title of the meeting the current participant
+is connected to, you can do so by doing:
+
+```ts
+// Destructuring the metadata to get meetingTitle and joined
+const { meetingTitle } = meeting.meta;
+
+if (meeting.self.roomJoined) {
+  console.log(
+    `The local user has joined a meeting with title ${meetingTitle}.`
+  );
+}
+```
+
+The `meta` object also emits events for indicating the change in the connection
+state of the room. For example, you can listen for the `connected` event to know
+when the local user has successfully joined the room, and for the `disconnected`
+event to find out if the local user's connection has dropped.
+
+```ts
+const meetingconnected = useDyteSelector(
+  (meeting) => meeting.meta.socketConnected
+);
+useEffect(() => {
+  console.log('I got meetingconnected as: ', meetingconnected);
+}, [meetingconnected]);
+
+const meetingTitle = useDyteSelector((meeting) => meeting.meta.meetingTitle);
+useEffect(() => {
+  console.log('I got meetingTitle as: ', meetingTitle);
+}, [meetingTitle]);
+
+const meetingStartedTimestamp = useDyteSelector(
+  (meeting) => meeting.meta.meetingStartedTimestamp
+);
+useEffect(() => {
+  console.log('I got meetingStartedTimestamp as: ', meetingStartedTimestamp);
+}, [meetingStartedTimestamp]);
+```

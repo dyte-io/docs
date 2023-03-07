@@ -1,0 +1,49 @@
+---
+title: Introducing chat
+description: Send and receive chat messages in a meeting.
+sidebar_position: 1
+tags: [web-core, chat]
+---
+
+# Introducing chat
+
+The meeting chat object is stored in `meeting.chat`, which has methods for
+sending and receiving messages. There are 3 types of messages that can be sent
+in chat - text messages, images, and files.
+
+The `meeting.chat.messages` array contains all the messages that have been sent
+in the chat. This is an array of objects, where each object is of type
+`Message`.
+
+The type `Message` is defined in the following manner.
+
+```ts
+interface BaseMessage<T extends MessageType> {
+  type: T;
+  userId: string;
+  displayName: string;
+  time: Date;
+  id: string;
+  isEdited?: boolean;
+  read?: boolean;
+  pluginId?: string;
+  pinned?: boolean;
+  targetUserIds?: string[];
+}
+
+interface TextMessage extends BaseMessage<MessageType.text> {
+  message: string;
+}
+
+interface ImageMessage extends BaseMessage<MessageType.image> {
+  link: string;
+}
+
+interface FileMessage extends BaseMessage<MessageType.file> {
+  name: string;
+  size: number;
+  link: string;
+}
+
+type Message = TextMessage | ImageMessage | FileMessage;
+```
