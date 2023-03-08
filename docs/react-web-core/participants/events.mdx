@@ -96,20 +96,12 @@ meeting.participants.joined.on('videoUpdate', (participant) => {
 
 ### Audio update
 
-Trigger an event when any participant starts / stops audio.
+Trigger an event when a participant starts / stops audio.
 
 ```ts
-meeting.participants.joined.on('audioUpdate', (participant) => {
-  console.log(
-    `A participant with id "${participant.id}" updated their audio track in the meeting`
-  );
-  // Use the audio track if it exists
-  if (participant.audioEnabled) {
-    // participant.audioTrack
-  } else {
-    // handle stop audio
-  }
-});
+const { audioEnabled, audioTrack } = useDyteSelector((m) =>
+  m.participants.joined.get(participantId)
+);
 ```
 
 ### Room joined
