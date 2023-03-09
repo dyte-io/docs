@@ -1,0 +1,148 @@
+---
+title: Participants
+description: Events, methods and data pertaining to meeting participants.
+sidebar_position: 1
+tags: [web-core, participants, participant]
+---
+
+# Participants
+
+The data regarding all meeting participants is stored under
+`meeting.participants`. This **does not** include the local user. Use the
+methods and events to consume the participants data. For example, to get all the
+participants who joined the meeting:
+
+```ts
+// get all joined participants
+const joinedParticipants = meeting.participants.joined;
+```
+
+The `meeting.participants` object has the following properties.
+
+- `joined`: A map that contains all the participants who have joined the meeting
+  except the local user
+- `waitlisted`: A map that contains all the participants waiting to join the
+  meeting.
+- `active`: A map that contains all the participants except the local user who
+  are supposed to be on the screen at the moment
+- `pinned`: A map that contains all the pinned participants of the meeting.
+- `count`: The number of participants who are joined in the meeting.
+- `pageCount`: Number of pages available in paginated mode.
+- `maxActiveParticipantsCount`: The maximum number of participants that can be
+  present in the active state.
+- `lastActiveSpeaker `: This stores the `participantId` of the last participant
+  who spoke in the meeting.
+
+Therefore, if you were to make a grid of participants, you'd use the `active`
+map, but to display all participants in the meeting you'd use the `joined` map.
+
+Each participant in each of the `joined`, `waitlisted`, `active`, and `pinned`
+maps is of type [`DyteParticipant`](../reference/DyteParticipant.md). Read more
+about each individual `participant` object
+[here](../participants/participant-object.mdx).
+
+Each of these maps are of type
+[`DyteParticipantMap`](../reference/DyteParticipantMap.md), and therefore emit a
+`participantJoined` event when a participant is added to the map, and a
+`participantLeft` event when a participant leaves the map. For instance, to
+listen for when a participant gets pinned in the meeting, you can use the
+following snippet:
+
+```ts
+meeting.participants.pinned.on('participantJoined', (participant) => {
+  console.log(`Participant ${participant.name} got pinned`);
+});
+```
+
+## Set participant view mode
+
+The view mode indicates whether the participants are populated in `ACTIVE_GRID`
+mode or `PAGINATED` mode. In `ACTIVE_GRID` mode, the partcipants are
+automatically replaced in `meeting.participants.active`, based on who is
+speaking or who has their video turned on.
+
+In `PAGINATED` mode, the participants in `meeting.participants.active` will be
+fixed. Only when you call the `meeting.participants.setPage(pageNumber)` method,
+it will replace the `active` participants with a different set of participants.
+
+You can change the participant view between `ACTIVE_GRID` and `PAGINATED` mode
+using the following method. This will trigger `viewModeChanged` event as a side
+affect.
+
+```ts
+// set the view mode to paginated
+await meeting.participants.setViewMode('PAGINATED');
+
+// set the view mode to active grid
+await meeting.participants.setViewMode('ACTIVE_GRID');
+```
+
+## Set page number in paginated mode
+
+The `setPage()` method allows you to switch between pages of participants
+present in the meeting.
+
+```ts
+// switch to second page
+await meeting.participants.setPage(2);
+```
+
+## Host control methods
+
+The `meeting.participants` object has host control methods that allow you to
+disable the audio and video streams of other users in the meeting (given that
+the user preset has the right permissions).
+
+```ts
+// mute all participants
+await meeting.participants.disableAllAudio();
+
+// disable video for all participants
+await meeting.participants.disableAllVideo();
+
+// mute a participant
+const participantId = '...';
+await meeting.participants.disableAudio(participantId);
+
+// disable video for a participant
+const participantId = '...';
+await meeting.participants.disableVideo(participantId);
+```
+
+To remove participants from a meeting, you can call the `kick()` or `kickAll()`
+method. The `kick()` method accepts a parameter called `participantId` (type
+`string`). This is the ID of participant to be kicked.
+
+```ts
+// remove all participants from the meeting
+await meeting.participants.kickAll();
+
+// remove a participant from the meeting
+const participantId = '...';
+await meeting.partcipants.kick(participantId);
+```
+
+## Webinar methods
+
+The `acceptAllRequestToJoinStageRequests()` method lets the host accept all
+pending requests to join a webinar.
+
+```ts
+await meeting.partcipants.joined.acceptAllRequestToJoinStageRequests();
+```
+
+## Waiting room methods
+
+The `acceptWaitingRoomRequest()` method accepts requests from waitlisted
+participants if user has appropriate permissions.
+
+```ts
+await meeting.participants.joined.acceptWaitingRoomRequest(participantId);
+```
+
+The `rejectWaitingRoomRequest()` method requests from waitlisted participants if
+user has appropriate permissions.
+
+```ts
+await meeting.participants.joined.rejectWaitingRoomRequest(participantId);
+```

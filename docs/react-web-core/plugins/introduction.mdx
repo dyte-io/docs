@@ -1,0 +1,78 @@
+---
+title: Introduction
+description: Manage plugins in a meeting.
+sidebar_position: 1
+tags: [web-core, plugins]
+---
+
+# Introduction
+
+Plugins are one-click add-ons that can make your meetings more immersive and
+collaborative. Dyte provides a bunch of inbuilt plugins to choose from, you can
+also build your own plugins using the Plugin SDK.
+
+The meeting plugins can be accessed from the `meeting.plugins` object, it
+exposes the following.
+
+| Property | Type | Description                            |
+| -------- | ---- | -------------------------------------- |
+| active   | Map  | All plugins that are currently in use. |
+| all      | Map  | All plugins the meeting has access to. |
+
+Each plugin in the map is of type `DytePlugin`.
+
+```ts
+interface DytePlugin {
+  baseURL: string;
+  createdAt: string;
+  description: string;
+  id: string;
+  name: string;
+  config: PluginConfig | undefined;
+  organizationId: string;
+  picture: string;
+  private: boolean;
+  published: boolean;
+  staggered: boolean;
+  tags: string[];
+  type: string;
+  updatedAt: string;
+}
+```
+
+Once a plugin is activated, `plugin.config` get's populated. It is of type
+`PluginConfig`.
+
+```ts
+interface PluginConfig {
+  name: string;
+  pluginId: string;
+  version: string;
+  description: string;
+  author?: string;
+  repository?: string;
+  tags?: string[];
+  picture?: string;
+  url?: string;
+  files: {
+    include: string[];
+    exclude?: string[];
+  };
+  views?: {
+    [viewId: string]: {
+      url: string;
+      suggestedPosition: string;
+    };
+  };
+  contentScript?: string;
+  permissions?: {
+    [key: string]: {
+      default: boolean;
+      description: string;
+    };
+  };
+  config?: {
+    [key: string]: string;
+  };
+}
+```
