@@ -1,0 +1,94 @@
+---
+title: Other chat functions
+description: Other functionality associated with chat.
+sidebar_position: 5
+tags: [web-core, chat]
+---
+
+# Other chat functions
+
+The `meeting.chat` object exposes certain other methods for convenience when
+working with chat.
+
+## Get messages by a user
+
+You can get messages by a particular user by passing the user's ID to the
+`meeting.chat.getMessagesByUser()` method.
+
+```ts
+// Find the userId of the user with name "Freddie".
+const { userId } = meeting.participants.joined
+  .toArray()
+  .find((p) => p.name === 'Freddie');
+
+const messages = meeting.chat.getMessagesByUser(userId);
+```
+
+## Get messages of a particular type
+
+You can also get messages of a particular type using the
+`meeting.chat.getMessagesByType()` method. For example, you can get all image
+messages present in the chat using the following snippet.
+
+```ts
+const imageMessages = meeting.chat.getMessagesByType('image');
+```
+
+## Pinning a chat message
+
+You can `pin` a number of messages to the chat. When you pin a message, the
+message object will have the attribute `pinned: true`, using which you can
+identify if a message is pinned.
+
+To pin a message, run the following snippet.
+
+```ts
+// Let's say we want to pin the first message in the chat (could be a text, image, or file).
+const { id } = meeting.chat.messages[0];
+
+await meeting.chat.pin(id);
+```
+
+Once you pin a message, it will be added to `meeting.chat.pinned`.
+
+```ts
+const { id } = meeting.chat.messages[0];
+
+await meeting.chat.pin(id);
+
+console.log(meeting.chat.pinned);
+console.log(meeting.chat.pinned.length > 0); // Should be true
+```
+
+You can also unpin a pinned message, by using the `meeting.chat.unpin()` method.
+
+```ts
+// Unpin the first pinned message.
+
+const { id } = meeting.chat.pinned[0];
+await meeting.chat.unpin(id);
+```
+
+You can listen for events to know when a message is pinned or unpinned.
+
+```ts
+meeting.chat.on('pinMessage', ({ message }) => {
+  console.log('A message was pinned', JSON.stringify(message));
+});
+```
+
+```ts
+meeting.chat.on('unpinMessage', ({ message }) => {
+  console.log('A message was unpinned', JSON.stringify(message));
+});
+```
+
+## Deleting a chat message
+
+The `meeting.chat` namespace exposes a method called `deleteMessage()`. It takes
+a parameter `meesageId` of type `string`.
+
+```ts
+const messageId = '...';
+await meeting.chat.deleteMessage(messageId);
+```
