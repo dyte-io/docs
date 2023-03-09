@@ -1,0 +1,23 @@
+# DyteSettingsToggle
+
+A button which toggles visibility of chat.
+
+When clicked it emits a `dyteStateUpdate` event with the data:
+
+```ts
+{
+  activeSettings: boolean;
+}
+```
+
+```jsx
+<Center>
+  <DyteSettingsToggle size="sm" />
+  <DyteSettingsToggle size="lg" />
+  <DyteSettingsToggle variant="horizontal" size="sm" />
+</Center>
+```
+
+## Props
+
+<PropsTable of="dyte-settings-toggle" />

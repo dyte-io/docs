@@ -94,27 +94,27 @@ const SECTIONS = [
   },
   {
     name: 'React Native',
-    id: 'react-native',
+    id: 'rn-ui-kit',
     icon: ReactIcon,
-    section: 'mobile-sdk',
+    section: 'mobile-ui-kit',
   },
   {
     name: 'Android',
     id: 'android',
     icon: AndroidIcon,
-    section: 'mobile-sdk',
+    section: 'mobile-ui-kit',
   },
   {
     name: 'iOS',
     id: 'ios',
     icon: AppleIcon,
-    section: 'mobile-sdk',
+    section: 'mobile-ui-kit',
   },
   {
     name: 'Flutter',
     id: 'flutter',
     icon: FlutterIcon,
-    section: 'mobile-sdk',
+    section: 'mobile-ui-kit',
   },
 ];
 
@@ -134,9 +134,9 @@ const MULTI_SECTIONS = [
   ],
   [
     {
-      name: 'Prebuilt SDK',
-      section: 'mobile-sdk',
-      description: 'Use our pre-built mobile SDK, ready to go',
+      name: 'UI Kit',
+      section: 'mobile-ui-kit',
+      description: 'Use our pre-built mobile UI Kit SDK, ready to go',
     },
     {
       name: 'Core SDK',

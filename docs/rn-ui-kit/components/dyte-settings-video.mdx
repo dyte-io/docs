@@ -1,0 +1,21 @@
+# DyteSettingsVideo
+
+A component which lets to manage your camera devices and your video preferences.
+
+Emits `dyteStateUpdate` event with data for toggling mirroring of self video:
+
+```ts
+{
+  prefs: {
+    mirrorVideo: boolean;
+  }
+}
+```
+
+```jsx
+<DyteSettingsVideo meeting={meeting} />
+```
+
+## Props
+
+<PropsTable of="dyte-settings-video" />

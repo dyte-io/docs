@@ -198,7 +198,7 @@ export default function SDKsSection() {
               </li>
               <li>
                 <SDKLink
-                  href="react-native"
+                  href="rn-ui-kit"
                   Icon={ReactIcon}
                   label="React Native"
                 />

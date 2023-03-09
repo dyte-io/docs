@@ -1,0 +1,23 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-spotlight-grid.svg
+---
+
+# DyteSpotlightGrid
+
+A grid component that renders two lists of participants: `pinnedParticipants`
+and `participants`.
+
+- Participants from `pinnedParticipants[]` are rendered inside a larger grid.
+- Participants from `participants[]` array are rendered in a smaller grid.
+
+```jsx
+<DyteSpotlightGrid
+  participants={[meeting.self]}
+  pinnedParticipants={[meeting.self]}
+  style={{ height: '360px', width: '100%' }}
+/>
+```
+
+## Props
+
+<PropsTable of="dyte-spotlight-grid" />

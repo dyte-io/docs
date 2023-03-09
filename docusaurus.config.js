@@ -55,6 +55,7 @@ const latestVersions = {
   'rn-core': '1.x.x',
   'flutter-core': '1.0.0',
   'ios-core': '1.0.0',
+  'rn-ui-kit': '1.x.0'
 };
 
 const SECTIONS = [
@@ -114,6 +115,11 @@ const SECTIONS = [
   }),
   defineSection('flutter', {
     label: latestVersions['flutter'],
+  }),
+
+  //mobile-ui-kit
+  defineSection('rn-ui-kit', {
+    label: latestVersions['rn-ui-kit'],
   }),
 ];
 

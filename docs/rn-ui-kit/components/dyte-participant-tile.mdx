@@ -1,0 +1,45 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-participant-tile.svg
+---
+
+# DyteParticipantTile
+
+A component which plays a participants video and allows for placement of
+components like `dyte-name-tag`, `dyte-audio-visualizer` or any other component.
+
+```jsx
+<DyteParticipantTile participant={meeting.self}>
+  <DyteNameTag participant={meeting.self}>
+    <DyteAudioVisualizer slot="start" />
+  </DyteNameTag>
+</DyteParticipantTile>
+```
+
+You can change the `name-tag-position` to any of the supported values and change
+the placement of audio-visualizer in name-tag as well.
+
+```jsx
+<DyteParticipantTile participant={meeting.self} nameTagPosition="bottom-center">
+  <DyteNameTag participant={meeting.self}>
+    <DyteAudioVisualizer slot="end" />
+  </DyteNameTag>
+</DyteParticipantTile>
+```
+
+It also has a few variants.
+
+```jsx
+<DyteParticipantTile
+  participant={meeting.self}
+  nameTagPosition="bottom-center"
+  variant="gradient"
+>
+  <DyteNameTag participant={meeting.self}>
+    <DyteAudioVisualizer slot="start" />
+  </DyteNameTag>
+</DyteParticipantTile>
+```
+
+## Props
+
+<PropsTable of="dyte-participant-tile" />
