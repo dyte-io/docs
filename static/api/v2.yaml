@@ -794,7 +794,7 @@ paths:
         > #### NOTE
         >
         > This API is in beta and is disabled by default. [Contact us](https://dyte.io/contact) to enable it
-        > for your organization.                        
+        > for your organization.
       operationId: GetSessionChat
       tags:
         - Sessions
@@ -1491,7 +1491,7 @@ paths:
           in: query
           name: expired
           required: false
-          description: 'If passed, only shows expired/non-expired recordings on Dyte''s bucket'
+          description: "If passed, only shows expired/non-expired recordings on Dyte's bucket"
         - $ref: '#/components/parameters/search'
         - $ref: '#/components/parameters/recordingSortBy'
         - $ref: '#/components/parameters/sortOrder'
@@ -3277,7 +3277,7 @@ components:
             properties:
               allow_unmute:
                 type: boolean
-                description: 'if false, participants won''t be able to unmute themselves after they are muted'
+                description: "if false, participants won't be able to unmute themselves after they are muted"
     CreatePollBody:
       description: Request body for creating a new poll
       content:
@@ -3390,6 +3390,11 @@ components:
                 $ref: '#/components/schemas/VideoConfig'
               live_streaming_config:
                 $ref: '#/components/schemas/LivestreamingConfig'
+              file_name_prefix:
+                type: string
+                x-stoplight:
+                  id: 7456eveh34y08
+                description: Update the recording file name.
             required:
               - meeting_id
     CreatePresetBody:
