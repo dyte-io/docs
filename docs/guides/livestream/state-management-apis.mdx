@@ -7,11 +7,11 @@ This topic talks about how you can use livestreaming state management APIs. Usin
 
 The foundation of Dyte's livestreaming is based on a stage, which can be accessed by hosts and viewers. While hosts can directly enter the stage, viewers can request to join it. The stage is broadcasted live to all viewers. Here's how you can interact with stage APIs:
 
-# Access the stage APIs
+## Access the stage APIs
 
-The stage module can be accessed under `meeting.stage` namespace.
+The stage module can be accessed under [`meeting.stage`](https://docs.dyte.io/react-web-core/reference/DyteStage) namespace.
 
-# Properties
+## Properties
 
 Dyte's livestreaming state management APIs provides useful properties to help you manage your stage effectively. One of these properties is the `status` attribute, which can take on various values based on the user's activity. The status can assume the following values:
 
@@ -22,7 +22,7 @@ Dyte's livestreaming state management APIs provides useful properties to help yo
 
 A user with permission to join livestream directly can only assume `ON_STAGE` and `ACCEPTED_TO_JOIN_STAGE` status values.
 
-# Host controls
+## Host controls
 
 Dyte’s stage management APIs allow hosts to receive and manage stage requests as well as leave and join the stage.
 
@@ -68,7 +68,7 @@ You can get the user IDs from the `stageAccessRequestUpdate` event.
 
 `await meeting.stage.kick(userIds);`
 
-# Participant controls
+## Participant controls
 
 Dyte’s stage management APIs allow participants to receive and manage stage requests as well as leave and join the stage.
 
@@ -86,7 +86,7 @@ You can call this method in order to cancel your stage request.
 
 `await meeting.stage.cancelRequestAccess();`
 
-# Events
+## Events
 
 Here is a list of events that the `meeting.stage` module emits:
 

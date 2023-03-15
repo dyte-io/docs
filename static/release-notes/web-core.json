@@ -4,19 +4,17 @@
     "createdAt": 1678333268,
     "fixes": [],
     "features": [
-      "**Interactive Livestream Release (LL-HLS)** \n 1. Broadcast a meeting to 100,000 viewers with Low latency (3-6 seconds)\n 2. Interactive Chat and Polls \n 3. Viewers can raise hands or the host can invite Viewers to join the stage"
+      "**Interactive Livestream Release (LL-HLS)** \n 1. Broadcast a meeting to up to 100,000 viewers with low latency of just 3 to 6 seconds.\n 2. Interactive chat and polls. \n 3. Viewers can raise hands to join the stage or the host can invite viewers to join the stage. \n For more information, see [ILS Overview](https://docs.dyte.io/guides/livestream/livestream-overview) and [Getting Started with ILS](https://docs.dyte.io/guides/livestream/getting-started-with-livestreaming)."
     ],
     "new_api": [
-      "New DyteStage module at [meeting.stage](./reference/DyteStage) to manage the Stage during Livestreaming",
-      "New DyteLiveStream module at [meeting.livestream](./Reference/DyteLivestream) to start / stop the Livestreaming"
+      "A new `DyteStage` module introduced at [meeting.stage](./reference/DyteStage) to manage the stage during livestreaming. \n For more information, see [Livestreaming State Management APIs](https://docs.dyte.io/guides/livestream/state-management-apis).",
+      "A new 'DyteLiveStream' module introduced at [meeting.livestream](./Reference/DyteLivestream) to start and stop the livestreaming. \n For more information, see [Livestreaming: Properties, Functions, and Events](https://docs.dyte.io/guides/livestream/livestream-apis)."
     ]
   },
   {
     "version": "1.5.x",
     "createdAt": 1677609000,
-    "fixes": [
-      "Handle WeWork Solistice Camera gracefully"
-    ],
+    "fixes": ["Handle WeWork Solistice Camera gracefully"],
     "features": [
       "Initial support for our upcoming Interactive Livestream product (LL-HLS)",
       "Webcam quality can now be controlled from the preset, allows customer to select a higher base quality in the preset editor (beta)"
