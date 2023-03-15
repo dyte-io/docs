@@ -15,8 +15,9 @@ const changeTypes = [
   },
   {
     name: 'new_api',
-    color: '#00e0a5',
+    color: '#1264a3',
     label: 'New API',
+    className: 'newAPI',
   },
   {
     name: 'dep_api',
@@ -71,9 +72,9 @@ export default function ReleaseNotesGenerator({ noteKey }) {
                       {m[c.name]?.map((f) => (
                         <tr>
                           <td>
-                            <ReactMarkdown className="changeline">
-                              {f}
-                            </ReactMarkdown>
+                              {f.split("\n").map((i,key) => {
+                                return <ReactMarkdown className="changeline" key={key}>{i}</ReactMarkdown>;
+                              })}
                           </td>
                         </tr>
                       ))}
