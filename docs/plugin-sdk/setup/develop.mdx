@@ -1,6 +1,6 @@
 ---
 title: Set Up Development Environment
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 Dyte's `devTools` module provides a live playground like experience to help you
@@ -10,6 +10,13 @@ For this you would need to have a dyte meeting setup first. Dyte meetings can be
 created using the [client SDKs](/ui-kit).
 
 The code snippet below shows how you can enable `devTools` for your dyte
+
+:::warning important
+
+Please ensure your plugin is published in order to use this.
+
+:::
+
 meeting.
 
 <Tabs
@@ -46,6 +53,7 @@ Install `@dytesdk/web-core@1.x.x` or higher to use dev tools.
           plugin:[{
             name: 'My Awesome Plugin',
             port: '5000',
+            id: '<your-plugin-id>',
           }]
         }});
 
@@ -86,6 +94,7 @@ export default function App() {
           {
             name: 'My Awesome Plugin',
             port: '5000',
+            id: '<your-plugin-id>',
           },
         ],
       },
@@ -132,6 +141,7 @@ class AppComponent {
           {
             name: 'My Awesome Plugin',
             port: '5000',
+            id: '<your-plugin-id>',
           },
         ],
       },
