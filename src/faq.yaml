@@ -62,7 +62,7 @@
   tags: ['General']
   answer: |-
     The Dyte Core SDKs are designed to provide developers with an easy way to incorporate real-time communication (RTC) solutions into their apps and websites. With full customization and branding options, you can build your own UI from the ground up without dealing with complicated media layers. 
-    
+
     The Core SDK acts as a data-only layer, offering high-level primitives and abstracting away complex media and networking optimizations. It only provides simple APIs that are user-friendly and easy to work with.
     See [Dyte docs](/).
 
@@ -81,8 +81,7 @@
   answer: |-
     Log onto [https://dev.dyte.io/apikeys](https://dev.dyte.io/apikeys) with the credentials you used to sign up for Dyte.
 
-- question:
-    How many people can join a Dyte meeting with audio & video turned ON?
+- question: How many people can join a Dyte meeting with audio & video turned ON?
   tags: ['General']
   answer: |-
     On Dyte, you can have up to 200 people on the same call with video and voice enabled.
@@ -178,9 +177,9 @@
   tags: ['Technical']
   answer: |-
     The meeting recordings are saved in your cloud storage that you set up. The supported cloud providers are AWS S3 bucket, DigitalOcean Spaces, and Azure Blob storage. 
-    
+
     For more information on how to configure storage configs for Dyte Recordings, see [Set storage configuration](https://docs.dyte.io/guides/recording/custom-cloud-storage#set-storage-configuration). 
-    
+
     If you haven't set up your storage configurations, Dyte will keep your recordings for 7 days, after which they will expire and become inaccessible.
 
 - question: Where is Dyte hosted?
@@ -193,11 +192,9 @@
 
 - question: Can I self-host Dyte on my own servers?
   tags: ['Technical']
-  answer: |-
-    No. Dyte is a Software as a Service (SaaS), fully managed and hosted by Dyte.
+  answer: No. Dyte is a Software as a Service (SaaS), fully managed and hosted by Dyte.
 
-- question:
-    What platforms, language, and technologies can I build on using Dyte?
+- question: What platforms, language, and technologies can I build on using Dyte?
   tags: ['Technical']
   answer: |-
     The following are the supported platforms:
@@ -218,13 +215,12 @@
     Webhook service enables you to subscribe to server events. These events
     allow to trigger specific server actions in response to Dyte meeting
     events and state changes. 
-    
+
     To access the current list of events that can be used with webhooks, see [Webhook Events List](https://docs.dyte.io/guides/webhooks/webhook-events).
 
-- question:
-    How do I set up and transfer a recording to my storage configuration?
+- question: How do I set up and transfer a recording to my storage configuration?
   tags: ['Technical']
-  answer:
+  answer: |-
     You can pass an optional object storageConfig in the start recording
     request, and we will publish the recording directly to your cloud provider
     once it stops. For more information, see [Publishing a recording to your
@@ -241,8 +237,7 @@
     Do we record the entire screen, or can we record specific streams or users
     regardless of who is on screen?
   tags: ['Technical']
-  answer: |-
-    Yes, we record the entire screen rather than individual streams or users.
+  answer: Yes, we record the entire screen rather than individual streams or users.
 
 - question: Can I send an attachment via chat in a live session?
   tags: ['Technical']
@@ -259,60 +254,89 @@
     For more information, see [Exporting Chat Dump of a Session](/guides/exporting-chat-dump) and [How to Fetch Chat History of a Dyte Session](https://dyte.io/blog/fetch-chat-history-of-a-dyte-session/)
     blog.
 
-- question:
+- question: |-
     How do I view session metadata such as start time, end time, number of
     participants, and so on?
   tags: ['Technical']
-  answer:
+  answer: |-
     You can use the [Session API](/api?v=v2#/operations/GetSessionDetails) to
     fetch the metadata for a given session.
 
 - question: Is there a way for me to write on the screen during the meeting?
   tags: ['Technical']
-  answer:
+  answer: |-
     Dyte provides multiple out-of-the-box plugins, for example, YouTube, Miro,
     WhiteBoard, and so on. You can use WhiteBoard for the collaboration.
 
 - question: Can I add participants when creating a meeting only?
   tags: ['Technical']
-  answer:
-    No, after creating a meeting, use the [Add Participants
+  answer: No, after creating a meeting, use the [Add Participants
     API](/api/?v=v2#/operations/add_participant) to add participants to the
     meeting.
 
-- question:
+- question: |-
     Can I pass recording parameters such as codec and storage configurations
     when creating a meeting or create a template that can be used for all the
     meetings?
   tags: ['Technical']
-  answer:
+  answer: |-
     Yes, codec and storage information can be passed through the recording API.
     Per recording, you can pass the parameters storageConfig and videoConfig.
     You can also send an email to [dev@dyte.io](mailto:dev.dyte.io) to set the
     orgs default configuration.
 
-- question:
+- question: |-
     What if our server fails to consume the webhook? When will they be fired
     again, and are they idempotent?
   tags: ['Technical']
-  answer:
+  answer: |-
     For timeouts and 5xx errors, we retry three times with a one-second delay
     between each retry.
 
-- question:
-    Is it possible to get the total running time of a session from the
-    meeting.ended webhook?
+- question: Is it possible to get the total running time of a session from the meeting.ended webhook?
   tags: ['Technical']
-  answer:
+  answer: |-
     We send `startedAt` and `endedAt` timestamps in a `meeting.ended` webhook
     that can be used to compute the session's running time.
 
-- question:
+- question: What is the expected delay in the livestream, and what happens if it exceeds the expected delay?
+  tags: ['Technical']
+  answer: Typically, there is a 3-5 second lag in all livestreams. If the delay exceeds 10 seconds, users can "Skip to Live," which involves dropping frames in order to synchronize the user's video with the live stream. Once the videos are synced, we stop dropping frames until the time exceeds 10 seconds again.
+
+- question: What is the maximum number of hosts and viewers allowed to participate in a livestream?
+  tags: ['Technical']
+  answer: Dyte's Interactive Livestreaming (ILS) can currently accommodate 10,000 viewers and 100 hosts on a single livestream.
+
+- question: What is the maximum number of users that the livestream can handle, and how does this impact its quality?
+  tags: ['Technical']
+  answer: Currently, our platform can support up to 10,000 viewers in a single livestream, and the quality of the stream is not affected by the number of viewers. However, an increase in the number of users may impact other features such as chats and polls.
+
+- question: How do I manage viewer permissions for a livestream?
+  tags: ['Technical']
+  answer: You can manage the permissions for a viewer using presets. For livestreaming, you must create two presets. One preset is for the livestreaming host, while the other is for the livestreaming viewer. For details, see Create [Presets](https://docs.dyte.io/guides/livestream/getting-started-with-livestreaming#step-2-create-presets).
+
+- question: What permissions does a host require to start a livestream?
+  tags: ['Technical']
+  answer: The host requires certain host controls such as the ability to Kick Participants, Mute Audio, Mute Video, and Pin Participant, as well as media permissions like Start Livestream and Admit or remove participants from the livestream. For details, see Create [Presets](https://docs.dyte.io/guides/livestream/getting-started-with-livestreaming#step-2-create-presets).
+
+- question: How much latency can be expected with Dyte's live streams?
+  tags: ['Technical']
+  answer: Dyte provides live streams with a low latency of only 3 to 6 seconds.
+
+- question: Is it necessary to generate new stream keys for each live event?
+  tags: ['Technical']
+  answer: |-
+    No, stream keys can be reused multiple times. However, it's important to keep the stream key private as it grants access to the live stream. Therefore, users should be informed to keep their stream key secure.
+
+    For more information, see [Livestreaming any Video via RTMP](https://docs.dyte.io/guides/livestream/livestream-any-rtmp).
+
+- question: |-
     I'm encountering audio and video problems while developing a live video
     solution for my app. I'm using Chrome to test the microphone and camera.
     What could be causing this?
   tags: ['Technical']
-  answer: The issue could be due to the security features implemented by the
+  answer: |-
+    The issue could be due to the security features implemented by the
     browser. Most of the standard browsers with best security practices restrict
     many features to HTTPS instead of HTTP. You can read about the details of
     the features that are restricted in Chrome
