@@ -2591,6 +2591,7 @@ components:
         - access_key
         - secret_key
         - bucket
+        - region
     PresetListItem:
       title: PresetListItem
       x-stoplight:
@@ -3395,6 +3396,12 @@ components:
                 x-stoplight:
                   id: 7456eveh34y08
                 description: Update the recording file name.
+              url:
+                type: string
+                x-stoplight:
+                  id: kctff4maz6g44
+                format: uri
+                description: Pass a custom url to record arbitary screen
             required:
               - meeting_id
     CreatePresetBody:
