@@ -192,8 +192,7 @@
 
 - question: Can I self-host Dyte on my own servers?
   tags: ['Technical']
-  answer: |-
-    No. Dyte is a Software as a Service (SaaS), fully managed and hosted by Dyte.
+  answer: No. Dyte is a Software as a Service (SaaS), fully managed and hosted by Dyte.
 
 - question: What platforms, language, and technologies can I build on using Dyte?
   tags: ['Technical']
@@ -221,7 +220,8 @@
 
 - question: How do I set up and transfer a recording to my storage configuration?
   tags: ['Technical']
-  answer: You can pass an optional object storageConfig in the start recording
+  answer: |-
+    You can pass an optional object storageConfig in the start recording
     request, and we will publish the recording directly to your cloud provider
     once it stops. For more information, see [Publishing a recording to your
     cloud
@@ -237,8 +237,7 @@
     Do we record the entire screen, or can we record specific streams or users
     regardless of who is on screen?
   tags: ['Technical']
-  answer: |-
-    Yes, we record the entire screen rather than individual streams or users.
+  answer: Yes, we record the entire screen rather than individual streams or users.
 
 - question: Can I send an attachment via chat in a live session?
   tags: ['Technical']
@@ -255,17 +254,17 @@
     For more information, see [Exporting Chat Dump of a Session](/guides/exporting-chat-dump) and [How to Fetch Chat History of a Dyte Session](https://dyte.io/blog/fetch-chat-history-of-a-dyte-session/)
     blog.
 
-- question:
+- question: |-
     How do I view session metadata such as start time, end time, number of
     participants, and so on?
   tags: ['Technical']
-  answer:
+  answer: |-
     You can use the [Session API](/api?v=v2#/operations/GetSessionDetails) to
     fetch the metadata for a given session.
 
 - question: Is there a way for me to write on the screen during the meeting?
   tags: ['Technical']
-  answer:
+  answer: |-
     Dyte provides multiple out-of-the-box plugins, for example, YouTube, Miro,
     WhiteBoard, and so on. You can use WhiteBoard for the collaboration.
 
@@ -275,29 +274,28 @@
     API](/api/?v=v2#/operations/add_participant) to add participants to the
     meeting.
 
-- question:
+- question: |-
     Can I pass recording parameters such as codec and storage configurations
     when creating a meeting or create a template that can be used for all the
     meetings?
   tags: ['Technical']
-  answer:
+  answer: |-
     Yes, codec and storage information can be passed through the recording API.
     Per recording, you can pass the parameters storageConfig and videoConfig.
     You can also send an email to [dev@dyte.io](mailto:dev.dyte.io) to set the
     orgs default configuration.
 
-- question:
+- question: |-
     What if our server fails to consume the webhook? When will they be fired
     again, and are they idempotent?
   tags: ['Technical']
-  answer:
+  answer: |-
     For timeouts and 5xx errors, we retry three times with a one-second delay
     between each retry.
 
-- question: Is it possible to get the total running time of a session from the
-    meeting.ended webhook?
+- question: Is it possible to get the total running time of a session from the meeting.ended webhook?
   tags: ['Technical']
-  answer:
+  answer: |-
     We send `startedAt` and `endedAt` timestamps in a `meeting.ended` webhook
     that can be used to compute the session's running time.
 
@@ -325,18 +323,20 @@
   tags: ['Technical']
   answer: Dyte provides live streams with a low latency of only 3 to 6 seconds.
 
- - question: Is it necessary to generate new stream keys for each live event?
+- question: Is it necessary to generate new stream keys for each live event?
   tags: ['Technical']
-  answer: No, stream keys can be reused multiple times. However, it's important to keep the stream key private as it grants access to the live stream. Therefore, users should be informed to keep their stream key secure.
+  answer: |-
+    No, stream keys can be reused multiple times. However, it's important to keep the stream key private as it grants access to the live stream. Therefore, users should be informed to keep their stream key secure.
 
-  For more information, see [Livestreaming any Video via RTMP](https://docs.dyte.io/guides/livestream/livestream-any-rtmp). 
+    For more information, see [Livestreaming any Video via RTMP](https://docs.dyte.io/guides/livestream/livestream-any-rtmp).
 
-- question:
+- question: |-
     I'm encountering audio and video problems while developing a live video
     solution for my app. I'm using Chrome to test the microphone and camera.
     What could be causing this?
   tags: ['Technical']
-  answer: The issue could be due to the security features implemented by the
+  answer: |-
+    The issue could be due to the security features implemented by the
     browser. Most of the standard browsers with best security practices restrict
     many features to HTTPS instead of HTTP. You can read about the details of
     the features that are restricted in Chrome
