@@ -1346,7 +1346,7 @@ paths:
           $ref: '#/components/responses/GenericError'
       description: Updates a meeting in an organization for the given meeting ID.
       requestBody:
-        $ref: '#/components/requestBodies/CreateMeetingBody'
+        $ref: '#/components/requestBodies/UpdateMeetingBody'
       tags:
         - Meetings
   '/meetings/{meeting_id}/participants':
@@ -2231,6 +2231,7 @@ components:
             - ap-south-1
             - ap-southeast-1
             - us-east-1
+            - eu-central-1
           default: ap-south-1
           example: us-east-1
     PatchOrganizationRequest:
@@ -2255,6 +2256,7 @@ components:
             - ap-south-1
             - ap-southeast-1
             - us-east-1
+            - eu-central-1
     OrganizationData:
       type: object
       properties:
@@ -2367,6 +2369,7 @@ components:
             - ap-south-1
             - ap-southeast-1
             - us-east-1
+            - eu-central-1
           description: Region this meeting will be created in.
           nullable: true
         record_on_start:
@@ -3316,6 +3319,7 @@ components:
                   - ap-south-1
                   - ap-southeast-1
                   - us-east-1
+                  - eu-central-1
                 description: Region that this meeting should be created in
                 nullable: true
               record_on_start:
@@ -3328,6 +3332,41 @@ components:
                 default: false
                 description: Whether to start livestreaming this meeting immediately on start
                 nullable: true
+      description: Create meeting body
+    UpdateMeetingBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                description: Title of the meeting
+              preferred_region:
+                type: string
+                enum:
+                  - ap-south-1
+                  - ap-southeast-1
+                  - us-east-1
+                  - eu-central-1
+                description: Region that this meeting should be created in
+              record_on_start:
+                type: boolean
+                default: false
+                description: Whether to start recording this meeting immediately on start
+              live_stream_on_start:
+                type: boolean
+                default: false
+                description: Whether to start livestreaming this meeting immediately on start
+              status:
+                type: string
+                x-stoplight:
+                  id: 5hu6kyh2s2c8y
+                enum:
+                  - ACTIVE
+                  - INACTIVE
+                example: INACTIVE
+                description: Whether the meeting is `ACTIVE` or `INACTIVE`. Users will not be able to join an `INACTIVE` meeting.
       description: Create meeting body
     AddParticipantBody:
       content:
