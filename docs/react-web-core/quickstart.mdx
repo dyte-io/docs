@@ -45,7 +45,7 @@ npm install @dytesdk/react-web-core
 
 ## Step 2: Initialize the SDK
 
-To start, we need to initialize the libraries and wrap the application in the `<DyteProvider />` component.
+To start, we need to initialize the libraries and wrap the application in the `<DyteProvider />` component. Import the `DyteProvider` from the `dytesdk/react-web-core`.
 
 The `<DyteProvider />` provides the necessary context for the various hooks to consume the `meeting` object as per their purpose. Dyte provides the following built-in hooks for your usage:
 
@@ -58,6 +58,7 @@ For more information on hooks, see [Use Web Core Hooks](/react-ui-kit/using-hook
 To initialize, call the `init()` method and pass the `authToken`. You can get the `authToken` using the [Add Participant API](/api#/operations/add_participant).
 
 ```jsx
+import { <DyteProvider /> } from '@dytesdk/react-web-core';
 import { useDyteClient } from '@dytesdk/react-web-core';
 import { useEffect } from 'react';
 
@@ -75,7 +76,7 @@ export default function App() {
   }, []);
 
   return (
-    <DyteProvider value={client}>
+    <DyteProvider value={meeting}>
       {/* Render your UI here. Subcomponents can now use the `useDyteMeeting` and `useDyteSelector` hooks */}
     </DyteProvider>
   );
