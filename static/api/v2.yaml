@@ -850,22 +850,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WebhooksListSuccessResponse'
-              example:
-                type: object
-                value: |
-                  {
-                    success: true,
-                    data: [
-                      {
-                        id: '901e9adf-ebd9-41f0-9098-28171bc04ddd',
-                        name: 'test',
-                        events: [ 'meeting.started' ],
-                        url: 'https://testURL.com',
-                        created_at: '2021-09-09T10:25:12.330Z',
-                        updated_at: '2021-09-09T10:25:12.330Z'
-                      }
-                    ]
-                  }
         '401':
           description: Invalid credentials
           content:
@@ -893,33 +877,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WebhookSuccessResponse'
-              example:
-                type: object
-                value: |
-                  {
-                    success: true,
-                    data: {
-                      id: '901e9adf-ebd9-41f0-9098-28171bc04ddd',
-                      name: 'test',
-                      events: [ 'meeting.started' ],
-                      url: 'https://testURL.com',
-                      created_at: '2021-09-09T10:25:12.330Z',
-                      updated_at: '2021-09-09T10:25:12.330Z'
-                    }
-                  }
         '400':
           description: Error - malformed request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-              example:
-                type: object
-                value: |
-                  {
-                    success: false,
-                    error: { code: 400, message: 'BAD_REQUEST: "name" is required' }
-                  }
+              example: |
+                {
+                  success: false,
+                  error: { code: 400, message: 'BAD_REQUEST: "name" is required' }
+                }
         '401':
           description: Invalid credentials
           content:
@@ -945,18 +913,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WebhookSuccessResponse'
-              example: |
-                {
-                  success: true,
-                  data: {
-                    id: '901e9adf-ebd9-41f0-9098-28171bc04ddd',
-                    name: 'test',
-                    events: [ 'meeting.started' ],
-                    url: 'https://testURL.com',
-                    created_at: '2021-09-09T10:25:12.330Z',
-                    updated_at: '2021-09-09T10:25:12.330Z'
-                  }
-                }
         '400':
           description: Error - malformed request
           content:
@@ -991,9 +947,9 @@ paths:
               $ref: '#/components/schemas/WebhookRequest'
             example: |
               {
-                name: 'test',
-                events: [ 'meeting.started' ],
-                url: 'https://testURL.com'
+                "name": "test",
+                "events": [ "meeting.started" ],
+                "url": "https://new-test-url.com"
               }
       responses:
         '200':
@@ -1004,14 +960,14 @@ paths:
                 $ref: '#/components/schemas/WebhookSuccessResponse'
               example: |
                 {
-                  success: true,
-                  data: {
-                    id: '901e9adf-ebd9-41f0-9098-28171bc04ddd',
-                    name: 'test',
-                    events: [ 'meeting.started' ],
-                    url: 'https://testURL.com',
-                    created_at: '2021-09-09T10:25:12.330Z',
-                    updated_at: '2021-09-09T10:25:12.376Z'
+                  "success": true,
+                  "data": {
+                    id: "901e9adf-ebd9-41f0-9098-28171bc04ddd",
+                    "name": "test",
+                    "events": [ "meeting.started" ],
+                    "url": "https://new-test-url.com",
+                    "created_at": "2021-09-09T10:25:12.330Z",
+                    "updated_at": "2021-09-09T10:25:12.376Z"
                   }
                 }
         '400':
@@ -1022,8 +978,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
               example: |
                 {
-                  success: false,
-                  error: { code: 400, message: 'BAD_REQUEST: "id" must be a valid GUID' }
+                  "success": false,
+                  "error": { "code": 400, "message": "BAD_REQUEST \"id\" must be a valid GUID" }
                 }
         '401':
           description: Invalid credentials
@@ -1048,9 +1004,9 @@ paths:
               $ref: '#/components/schemas/PatchWebhookRequest'
             example: |
               {
-                name: 'test2',
-                events: [ 'meeting.ended' ],
-                url: 'https://testURL2.com'
+                "name": "test",
+                "events": [ "meeting.started" ],
+                "url": "https://new-test-url.com"
               }
       responses:
         '200':
@@ -1061,14 +1017,14 @@ paths:
                 $ref: '#/components/schemas/WebhookSuccessResponse'
               example: |
                 {
-                  success: true,
-                  data: {
-                    id: '901e9adf-ebd9-41f0-9098-28171bc04ddd',
-                    name: 'test2',
-                    events: [ 'meeting.ended' ],
-                    url: 'https://testURL2.com',
-                    created_at: '2021-09-09T10:25:12.330Z',
-                    updated_at: '2021-09-09T10:25:12.367Z'
+                  "success": true,
+                  "data": {
+                    id: "901e9adf-ebd9-41f0-9098-28171bc04ddd",
+                    "name": "test",
+                    "events": [ "meeting.started" ],
+                    "url": "https://new-test-url.com",
+                    "created_at": "2021-09-09T10:25:12.330Z",
+                    "updated_at": "2021-09-09T10:25:12.376Z"
                   }
                 }
         '400':
@@ -1079,8 +1035,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
               example: |
                 {
-                  success: false,
-                  error: { code: 400, message: 'BAD_REQUEST: "id" must be a valid GUID' }
+                  "success": false,
+                  "error": { "code": 400, "message": "BAD_REQUEST \"id\" must be a valid GUID" }
                 }
         '401':
           description: Invalid credentials
@@ -1088,7 +1044,7 @@ paths:
             application/json:
               example: |
                 {
-                  message: "Unauthorized"
+                  "message": "Unauthorized"
                 }
     delete:
       summary: Delete a webhook
@@ -1103,18 +1059,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WebhookSuccessResponse'
-              example: |
-                {
-                  success: true,
-                  data: {
-                    id: '901e9adf-ebd9-41f0-9098-28171bc04ddd',
-                    name: 'test2',
-                    events: [ 'meeting.ended' ],
-                    url: 'https://testURL2.com',
-                    created_at: '2021-09-09T10:25:12.330Z',
-                    updated_at: '2021-09-09T10:25:12.367Z'
-                  }
-                }
         '400':
           description: Error - malformed request
           content:
@@ -1123,8 +1067,8 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
               example: |
                 {
-                  success: false,
-                  error: { code: 400, message: 'BAD_REQUEST: "id" must be a valid GUID' }
+                  "success": false,
+                  "error": { "code": 400, "message": "BAD_REQUEST \"id\" must be a valid GUID" }
                 }
         '401':
           description: Invalid credentials
@@ -1132,7 +1076,7 @@ paths:
             application/json:
               example: |
                 {
-                  message: "Unauthorized"
+                  "message": "Unauthorized"
                 }
     parameters:
       - schema:
