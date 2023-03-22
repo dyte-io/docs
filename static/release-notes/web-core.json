@@ -1,5 +1,31 @@
 [
   {
+    "version": "1.9.0",
+    "createdAt": 1679433268,
+    "fixes": [
+      "Build issue for customers using Webpack v5 aliasing `process` with `false`",
+      "Remove Poll Messages from [meeting.chat.messages](./reference/DyteChat#module_DyteChat+messages)",
+      "Optimise screenshare production for higher framerate",
+      "Improve correctness of [mediaScoreUpdate](./participants/events#network-quality-score) on participant"
+    ],
+    "new_api": [
+      "When calling init() the `defaults` param [now take recording configuration](./recording#recording-configuration) which is used when [Starting a Recording](./recording#start-a-recording) ",
+      "When calling init() the `defaults` param now take screensharing configration \nConfigure the preferred screensharing screen surface (Screen / Window / Browser Tab)"
+    ]
+  },
+  {
+    "version": "1.6.0",
+    "createdAt": 1678333268,
+    "fixes": [],
+    "features": [
+      "**Interactive Livestream Release (LL-HLS)** \n 1. Broadcast a meeting to up to 100,000 viewers with low latency of just 3 to 6 seconds.\n 2. Interactive chat and polls. \n 3. Viewers can raise hands to join the stage or the host can invite viewers to join the stage. \n For more information, see [ILS Overview](https://docs.dyte.io/guides/livestream/livestream-overview) and [Getting Started with ILS](https://docs.dyte.io/guides/livestream/getting-started-with-livestreaming)."
+    ],
+    "new_api": [
+      "A new `DyteStage` module introduced at [meeting.stage](./reference/DyteStage) to manage the stage during livestreaming. \n For more information, see [Livestreaming State Management APIs](https://docs.dyte.io/guides/livestream/state-management-apis).",
+      "A new 'DyteLiveStream' module introduced at [meeting.livestream](./Reference/DyteLivestream) to start and stop the livestreaming. \n For more information, see [Livestreaming: Properties, Functions, and Events](https://docs.dyte.io/guides/livestream/livestream-apis)."
+    ]
+  },
+  {
     "version": "1.6.0",
     "createdAt": 1678333268,
     "fixes": [],
