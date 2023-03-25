@@ -1,0 +1,127 @@
+---
+title: Introduction
+description: Local user setup guide.
+sidebar_position: 1
+tags: [web-core, local-user, self]
+---
+
+# Introduction - Local User
+
+The local user has the methods and properties on the local user media controls.
+Accessible via `self` key within the `meeting` object, the local user also
+contains the access control (permissions) and theming-related properties that
+will help to render the meeting state.
+
+## Properties
+
+Here is a list of properties that local user provides:
+
+- `id`: The ID of the participant pertaining to local user.
+- `userId`: The User ID of the participant pertaining to local user.
+- `organizationId`: The ID of the organization the meeting is created from.
+- `name`: Contains Name of the local user.
+- `isPinned`: A boolean value indicating if the local user is pinned or not.
+- `supportsRemoteControl`: A boolean value indicating if the meeting can
+  supports remote control.
+- `device`: Information like browser and OS details.
+- `picture`: Display picture URL for the local user.
+- `waitlistStatus`: Indicates if the local user has been waitlisted or not. It
+  can take the following values: `accepted` | `waiting` | `rejected` | `none`;
+- `clientSpecificId`: Identifier provided by the developer while adding the
+  participant.
+- `roomJoined`: A boolean value indicating if the local user has joined the
+  meeting.
+- `preview`: The local audio and video stream for the preview purpose (it will
+  be populated after calling `enablePreview`).
+- `permissions`: The permissions related to various capabilities within a
+  meeting context for the local user
+- `mediaPermissions`: The current audio and video permissions given by the local
+  user.
+- `audioTrack`: The audio track for the local user.
+- `rawAudioTrack`: The audio track for the local user without any middleware
+  applied on it.
+- `videoTrack`: The video track for the local user without any middleware
+  applied on it.
+- `rawVideoTrack`: The video track for the local user.
+- `screenShareTracks`: The screen share video and audio tracks for the local
+  user.
+- `audioEnabled`: A boolean value indicating if the audio currently enabled.
+- `videoEnabled`: A boolean value indicating if the video currently enabled.
+- `screenShareEnabled`: A boolean value indicating if the screen share is
+  currently enabled.
+- `config`: The suggested theme for building the user interface.
+- ~~`suggestedTheme`: The suggested theme for building the user interface.~~
+
+## Change default audio / video settings
+
+By default as soon as you join the meeting the SDK will produce your video and
+audio streams. To change this behaviour use the `default` parameter
+
+```ts {5}
+const meeting = await DyteClient.init({
+  authToken,
+  defaults: {
+    audio: false, // Disable user's audio by default
+    video: true, // Enable user's video by default
+  },
+});
+```
+
+## Setup tracks
+
+If audio and video tracks are disabled during the `DyteClient` initialization
+process. You can setup the audio and video tracks by simply calling setup tracks
+method like below:
+
+```ts
+meeting.self.setupTracks({ audio: true, video: true });
+```
+
+## Change the name of the local user
+
+Change the user's name by calling `setName` method. The changed name will
+reflect across all participants ONLY if the change happens before joining the
+meeting.
+
+```ts
+await meeting.self.setName('New Name');
+```
+
+## Mute/Unmute microphone
+
+```ts
+// Mute Audio
+await meeting.self.disableAudio();
+
+// Unmute Audio
+await meeting.self.enableAudio();
+
+// Get current status
+meeting.self.audioEnabled;
+```
+
+## Enable/Disable camera
+
+```ts
+// Disable Video
+await meeting.self.disableVideo();
+
+// Enable Video
+await meeting.self.enableVideo();
+
+// Get current status
+meeting.self.videoEnabled;
+```
+
+## Enable / Disable Screen share
+
+```ts
+// Enable Screenshare
+await meeting.self.enableScreenShare();
+
+// Disable Screenshare
+await meeting.self.disableScreenShare();
+
+// Get current status
+meeting.self.screenShareEnabled;
+```

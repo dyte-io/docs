@@ -58,7 +58,7 @@ const joinedParticipants = useDyteSelector(
 
 ### Participant pinned
 
-Trigger an event when a participant is pinned.
+Trigger an event when a participant is pinned / unpinned.
 
 ```ts
 const pinnedParticipants = useDyteSelector(
@@ -66,69 +66,44 @@ const pinnedParticipants = useDyteSelector(
 );
 ```
 
-### Remove participant
-
-Trigger an event when a participant is removed.
-
-```ts
-const kickParticipants = useDyteSelector(
-  (meeting) => meeting.participants.kick
-);
-```
-
 ### Video update
 
-Trigger an event when any participant starts / stops video.
+Trigger an event when the target participant starts / stops video.
 
 ```ts
-meeting.participants.joined.on('videoUpdate', (participant) => {
-  console.log(
-    `A participant with id "${participant.id}" updated their video track in the meeting`
-  );
-  // Use the video track if it exists
-  if (participant.videoEnabled) {
-    // participant.videoTrack
-  } else {
-    // handle stop video
-  }
-});
+const videoEnabled = useDyteSelector((m) =>
+  m.participants.joined.get(participantId).videoEnabled
+);
+```
 ```
 
 ### Audio update
 
-Trigger an event when a participant starts / stops audio.
+Trigger an event when the target participant starts / stops audio.
 
 ```ts
-const { audioEnabled, audioTrack } = useDyteSelector((m) =>
-  m.participants.joined.get(participantId)
+const audioEnabled = useDyteSelector((m) =>
+  m.participants.joined.get(participantId).audioEnabled
 );
 ```
 
-### Room joined
-
-Trigger an event when participant joins a room.
+### Screen share update
+Trigger an event when the target participant starts / stops screen share.
 
 ```ts
-const participants = useDyteSelector((meeting) => meeting.self.roomJoined);
+const screenShareEnabled = useDyteSelector((m) =>
+  m.participants.joined.get(participantId).screenShareEnabled
+);
 ```
-
-### Screen share update
 
 Trigger an event when any participant starts / stops screen share.
 
 ```ts
-meeting.participants.joined.on('screenShareUpdate', (participant) => {
-  console.log(
-    `A participant with id "${participant.id}" updated their screen share in the meeting`
-  );
-  // Use the screen share track if it exists
-  if (participant.screenShareEnabled) {
-    // participant.screenShareTrack
-  } else {
-    // handle stop screen share
-  }
-});
+const screensharingParticipant = useDyteSelector((m) =>
+  m.participants.joined.toArray().find((p) => p.screenShareEnabled)
+);
 ```
+
 
 ## Network quality score
 
