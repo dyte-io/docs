@@ -1,0 +1,134 @@
+---
+title: Events
+description: Local user events guide.
+sidebar_position: 2
+tags: [react-web-core, local-user, self, self events]
+---
+
+# Local User - Events
+
+## Room joined / leave
+
+Trigger an update when the local user joins / leave a room.
+
+```ts
+const roomJoined = useDyteSelector((meeting) => meeting.self.roomJoined);
+```
+
+
+## Video update
+
+Triggered when the user starts / stops the video using `enableVideo` or
+`disableVideo`
+
+```ts
+
+const videoEnabled = useDyteSelector((meeting) => meeting.self.videoEnabled);
+const videoTrack = useDyteSelector((meeting) => meeting.self.videoTrack);
+
+useEffect(() => {
+  const videoElem = document.getElementById('my-video');
+  if(videoEnabled && videoTrack) {
+    const stream = new MediaStream();
+    stream.addTrack(videoTrack);
+    videoElem.srcObject = stream;
+    videoElem.play();
+  }
+}, [videoEnabled, videoTrack]);
+
+```
+
+## Audio update
+
+Triggered when the user starts / stops the audio using `enableAudio` or
+`disableAudio`
+
+```ts
+
+const audioEnabled = useDyteSelector((meeting) => meeting.self.audioEnabled);
+const audioTrack = useDyteSelector((meeting) => meeting.self.audioTrack);
+
+useEffect(() => {
+  const audioElem = document.getElementById('my-audio');
+  if(audioEnabled && audioTrack) {
+    const stream = new MediaStream();
+    stream.addTrack(audioTrack);
+    audioElem.srcObject = stream;
+    audioElem.play();
+  } 
+}, [audioEnabled, audioTrack]);
+
+```
+
+## Screenshare update
+
+Triggered when the user starts / stops the screen share using
+`enableScreenShare()` or `disableScreenShare()`.
+
+```ts
+const screenShareEnabled = useDyteSelector((meeting) => meeting.self.screenShareEnabled);
+const screenShareTrack = useDyteSelector((meeting) => meeting.self.screenShareTrack);
+```
+
+## Device update
+
+Subscribe to the `deviceUpdate` event to handle the changing video, audio and
+speaker devices
+
+```ts
+meeting.self.on('deviceUpdate', ({ device }) => {
+  // handle microphone device change
+  if (device.kind === 'audioinput') {
+    console.log('mic change', device);
+  }
+  // handle camera device change
+  if (device.kind === 'videoinput') {
+    console.log('camera change', device);
+  }
+  // handle speaker device change
+  if (device.kind === 'audiooutput') {
+    console.log('speaker change', device);
+  }
+});
+```
+
+## Network quality score
+
+Subscribe to the `mediaScoreUpdate` event to monitor network
+
+```ts
+meeting.self.on('mediaScoreUpdate', ({ kind, isScreenshare, score }) => {
+  if (kind === 'video') {
+    console.log(
+      `Your ${isScreenshare ? 'screenshare' : 'video'} quality score is `,
+      score
+    );
+  }
+
+  if (kind === 'audio') {
+    console.log('Your audio quality score is ', score);
+  }
+
+  if (score < 5) {
+    console.log('Your media quality is poor');
+  }
+});
+```
+
+## Webinar Stage events
+
+In a `WEBINAR` setup, below events can be used to bring a user on to stage
+
+| **Event**                  | **Description**                                                                          |
+| -------------------------- | ---------------------------------------------------------------------------------------- |
+| `waitlisted`               | Emitted when the user has been added to the waitlist.                                    |
+| `joinStageRequestAccepted` | Emitted to all host users, when a host accepts a user's request to join webinar meeting. |
+| `joinStageRequestRejected` | Emitted to all host users, when a host rejects a user's request to join webinar meeting. |
+| `removedFromStage`         | Emitted when the user has been kicked from the webinar meeting.                          |
+| `stageJoined`              | Emitted when the user has joined the webinar meeting.                                    |
+| `stageLeft`                | Emitted when the user has left the webinar meeting.                                      |
+| `peerRequestToJoinStage`   | Emitted when a user has requested to join the webinar meeting.                           |
+| `peerRejectedToJoinStage`  | Emitted when the user's request to join the meeting has been rejected.                   |
+| `peerAcceptedToJoinStage`  | Emitted when the user's request to join the meeting has been accepted                    |
+| `peerStoppedPresenting`    | Emitted when a participant stops presenting in the webinar meeting.                      |
+| `peerStartedPresenting`    | Emitted when a participant starts presenting in the webinar meeting.                     |
