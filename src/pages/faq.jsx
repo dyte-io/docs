@@ -139,10 +139,10 @@ export default function FAQPage() {
     return (
       <button
         className={clsx(
-          'cursor-pointer rounded-md border-none bg-secondary-800 px-3.5 py-1.5 font-jakarta text-sm font-medium',
+          'cursor-pointer rounded-md border-none px-3.5 py-1.5 font-jakarta text-sm font-medium',
           activeTab === tag
             ? 'bg-primary text-white'
-            : 'text-black dark:text-white'
+            : 'bg-secondary-800 text-black dark:text-white'
         )}
         data-tag={tag}
         onClick={() => setActiveTab(tag)}
