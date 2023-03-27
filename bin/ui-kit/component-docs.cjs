@@ -79,6 +79,10 @@ function generateFile(component, framework = 'core') {
 for (const component of components) {
   const { tag } = component;
 
+  if (tag.startsWith('dyte-breakout')) {
+    continue;
+  }
+
   writeMDXFile(`${basePaths.core}/${tag}.mdx`, generateFile(component));
 
   writeMDXFile(
