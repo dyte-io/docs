@@ -250,9 +250,15 @@
 - question: Can I retrieve the chat history of a session?
   tags: ['Technical']
   answer: |-
-    You can programmatically retrieve all chat messages of a Dyte session using [Chat Replay API](/guides/exporting-chat-dump).
+    You can programmatically retrieve all chat messages of a Dyte session using [Chat Replay API](/guides/export-chat-dump).
     For more information, see [Exporting Chat Dump of a Session](/guides/exporting-chat-dump) and [How to Fetch Chat History of a Dyte Session](https://dyte.io/blog/fetch-chat-history-of-a-dyte-session/)
     blog.
+
+- question: What is the duration for which Dyte keeps chat records?
+  tags: ['Technical']
+  answer: |-
+    Dyte stores chat records for a period of 7 days. You can download the chat using the `chat_download_url` in CSV format from AWS S3.
+    However, it is important to note that this download link is only valid for 24 hours. In case the link has expired, you can request for a new `chat_download_url` by sending an HTTP GET request to the [Chat Replay API](/guides/export-chat-dump).
 
 - question: |-
     How do I view session metadata such as start time, end time, number of
@@ -300,31 +306,35 @@
     that can be used to compute the session's running time.
 
 - question: What is the expected delay in the livestream, and what happens if it exceeds the expected delay?
-  tags: ['Technical']
+  tags: ['Technical', 'Livestreaming']
   answer: Typically, there is a 3-5 second lag in all livestreams. If the delay exceeds 10 seconds, users can "Skip to Live," which involves dropping frames in order to synchronize the user's video with the live stream. Once the videos are synced, we stop dropping frames until the time exceeds 10 seconds again.
 
 - question: What is the maximum number of hosts and viewers allowed to participate in a livestream?
-  tags: ['Technical']
+  tags: ['Technical', 'Livestreaming']
   answer: Dyte's Interactive Livestreaming (ILS) can currently accommodate 10,000 viewers and 100 hosts on a single livestream.
 
 - question: What is the maximum number of users that the livestream can handle, and how does this impact its quality?
-  tags: ['Technical']
+  tags: ['Technical', 'Livestreaming']
   answer: Currently, our platform can support up to 10,000 viewers in a single livestream, and the quality of the stream is not affected by the number of viewers. However, an increase in the number of users may impact other features such as chats and polls.
 
 - question: How do I manage viewer permissions for a livestream?
-  tags: ['Technical']
+  tags: ['Technical', 'Livestreaming']
   answer: You can manage the permissions for a viewer using presets. For livestreaming, you must create two presets. One preset is for the livestreaming host, while the other is for the livestreaming viewer. For details, see Create [Presets](https://docs.dyte.io/guides/livestream/getting-started-with-livestreaming#step-2-create-presets).
 
+- question: Can I join the livestream as a host in the middle of the livestream?
+  tags: ['Technical', 'Livestreaming']
+  answer: Yes, you can. However, ensure that you've the required preset permissions. For details, see Create [Presets](https://docs.dyte.io/guides/livestream/getting-started-with-livestreaming#step-2-create-presets).
+
 - question: What permissions does a host require to start a livestream?
-  tags: ['Technical']
+  tags: ['Technical', 'Livestreaming']
   answer: The host requires certain host controls such as the ability to Kick Participants, Mute Audio, Mute Video, and Pin Participant, as well as media permissions like Start Livestream and Admit or remove participants from the livestream. For details, see Create [Presets](https://docs.dyte.io/guides/livestream/getting-started-with-livestreaming#step-2-create-presets).
 
 - question: How much latency can be expected with Dyte's live streams?
-  tags: ['Technical']
+  tags: ['Technical', 'Livestreaming']
   answer: Dyte provides live streams with a low latency of only 3 to 6 seconds.
 
 - question: Is it necessary to generate new stream keys for each live event?
-  tags: ['Technical']
+  tags: ['Technical', 'Livestreaming']
   answer: |-
     No, stream keys can be reused multiple times. However, it's important to keep the stream key private as it grants access to the live stream. Therefore, users should be informed to keep their stream key secure.
 
