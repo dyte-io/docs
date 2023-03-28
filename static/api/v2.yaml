@@ -2519,14 +2519,20 @@ components:
             - aws
             - azure
             - digitalocean
+            - gcs
           description: Type of storage media.
         access_key:
           type: string
-          description: 'Access key of the storage medium. Note that this field is not readable by clients, only writeable.'
+          description: |-
+            Access key of the storage medium. Access key is not required for the gcs storage media type.
+
+            Note that this field is not readable by clients, only writeable.
           writeOnly: true
-        secret_key:
+        secret:
           type: string
           description: 'Secret key of the storage medium. Similar to `access_key`, it is only writeable by clients, not readable.'
+          x-stoplight:
+            id: 35o598ur3dm2s
         bucket:
           type: string
           description: Name of the storage medium's bucket.
@@ -2540,7 +2546,7 @@ components:
       required:
         - type
         - access_key
-        - secret_key
+        - secret
         - bucket
         - region
     PresetListItem:
