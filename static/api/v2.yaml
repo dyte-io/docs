@@ -125,7 +125,7 @@ paths:
                       id: 78dd0b50-4147-4bb8-88d3-2ccc2e98bff0
                       stream_key: sk_ap-south-1_BSErwBSdrcWn_0eG01cFGCJcRcCsflOAX3Eu4B3RyRX
                       playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.Jk1l97eJF0ME.m3u8'
-      description: 'Creates an independent livestream for the given organization ID. You can generate credentials for livestreaming independently using an ingest server and a stream key, and then distribute them freely using a playback URL.'
+      description: 'Creates a livestream for the given organization ID and returns ingest server, stream key, and playback URL. Custom input can be passed to the ingest_server and stream_key and freely distributed using playback URL on any HLS/LHLS supported player.'
       tags:
         - Live streams
     get:
@@ -1242,7 +1242,7 @@ paths:
         '200':
           $ref: '#/components/responses/GetAllMeetings'
       operationId: get_all_meetings
-      description: Returns all meetings for an organization.
+      description: Returns all meetings for the given organization ID.
       parameters:
         - $ref: '#/components/parameters/pageNo'
         - $ref: '#/components/parameters/perPage'
@@ -1255,7 +1255,7 @@ paths:
       responses:
         '201':
           $ref: '#/components/responses/GetMeeting'
-      description: Create a meeting for an organization.
+      description: Create a meeting for the given organization ID.
       requestBody:
         $ref: '#/components/requestBodies/CreateMeetingBody'
       tags:
@@ -1280,6 +1280,10 @@ paths:
           $ref: '#/components/responses/GenericError'
       operationId: get_meeting
       description: Returns a meeting details in an organization for the given meeting ID.
+      parameters:
+        - schema:
+            type: string
+          in: query
     patch:
       summary: Update a meeting
       operationId: update_meeting
@@ -2314,11 +2318,11 @@ components:
             - ap-southeast-1
             - us-east-1
             - eu-central-1
-          description: Region this meeting will be created in.
+          description: The region in which this meeting should be created.
           nullable: true
         record_on_start:
           type: boolean
-          description: Whether the meeting will be recorded as soon as someone joins or not.
+          description: Specifies if the meeting should start getting recorded as soon as someone joins the meeting.
         created_at:
           type: string
           format: date-time
@@ -2331,7 +2335,7 @@ components:
           readOnly: true
         live_stream_on_start:
           type: boolean
-          description: Whether the meeting will be livestreamed as soon as someone joins or not.
+          description: Specifies if the meeting should start getting livestreamed on start.
         status:
           type: string
           x-stoplight:
@@ -2515,14 +2519,20 @@ components:
             - aws
             - azure
             - digitalocean
+            - gcs
           description: Type of storage media.
         access_key:
           type: string
-          description: 'Access key of the storage medium. Note that this field is not readable by clients, only writeable.'
+          description: |-
+            Access key of the storage medium. Access key is not required for the `gcs` storage media type.
+
+            Note that this field is not readable by clients, only writeable.
           writeOnly: true
-        secret_key:
+        secret:
           type: string
           description: 'Secret key of the storage medium. Similar to `access_key`, it is only writeable by clients, not readable.'
+          x-stoplight:
+            id: 35o598ur3dm2s
         bucket:
           type: string
           description: Name of the storage medium's bucket.
@@ -2536,7 +2546,7 @@ components:
       required:
         - type
         - access_key
-        - secret_key
+        - secret
         - bucket
         - region
     PresetListItem:
@@ -2658,6 +2668,7 @@ components:
             - kick_participant
             - pin_participant
             - can_record
+            - can_livestream
             - waiting_room_type
             - plugins
             - connected_meetings
@@ -2666,7 +2677,6 @@ components:
             - chat
             - hidden_participant
             - show_participant_list
-            - can_livestream
             - can_change_participant_permissions
           properties:
             accept_waiting_requests:
@@ -2681,7 +2691,6 @@ components:
             is_recorder:
               type: boolean
               default: false
-              readOnly: true
             recorder_type:
               type: string
               enum:
@@ -3096,7 +3105,7 @@ components:
       schema:
         type: number
         minimum: 0
-      description: Page number to start from
+      description: The page number from which you want your page search results to be displayed.
       allowEmptyValue: true
     perPage:
       name: per_page
@@ -3113,7 +3122,7 @@ components:
       required: false
       schema:
         type: string
-      description: String to search for
+      description: The search query string. You can search using the meeting ID or title.
     sortOrder:
       name: sort_order
       in: query
@@ -3130,7 +3139,7 @@ components:
       schema:
         type: string
         format: date-time
-      description: Timestamp to start from
+      description: The start time range for which you want to retrieve the meetings. The time must be specified in ISO format.
     endTime:
       name: end_time
       in: query
@@ -3138,7 +3147,7 @@ components:
       schema:
         type: string
         format: date-time
-      description: Time to end results at
+      description: The end time range for which you want to retrieve the meetings. The time must be specified in ISO format.
     participants:
       name: participants
       in: query
@@ -3264,17 +3273,17 @@ components:
                   - ap-southeast-1
                   - us-east-1
                   - eu-central-1
-                description: Region that this meeting should be created in
+                description: The region in which this meeting should be created.
                 nullable: true
               record_on_start:
                 type: boolean
                 default: false
-                description: Whether to start recording this meeting immediately on start
+                description: Specifies if the meeting should start getting recorded as soon as someone joins the meeting.
                 nullable: true
               live_stream_on_start:
                 type: boolean
                 default: false
-                description: Whether to start livestreaming this meeting immediately on start
+                description: Specifies if the meeting should start getting livestreamed on start.
                 nullable: true
       description: Create meeting body
     UpdateMeetingBody:

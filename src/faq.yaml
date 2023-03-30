@@ -251,13 +251,13 @@
   tags: ['Technical']
   answer: |-
     You can programmatically retrieve all chat messages of a Dyte session using [Chat Replay API](/guides/export-chat-dump).
-    For more information, see [Exporting Chat Dump of a Session](/guides/exporting-chat-dump) and [How to Fetch Chat History of a Dyte Session](https://dyte.io/blog/fetch-chat-history-of-a-dyte-session/)
+    For more information, see [How to Fetch Chat History of a Dyte Session](https://dyte.io/blog/fetch-chat-history-of-a-dyte-session/)
     blog.
 
 - question: What is the duration for which Dyte keeps chat records?
   tags: ['Technical']
   answer: |-
-    Dyte stores chat records for a period of 7 days. You can download the chat using the `chat_download_url` in CSV format from AWS S3.
+    Dyte stores chat records for a period of 7 days, only if you've enabled [Chat Replay API](/guides/export-chat-dump) for your organization. You can download the chat using the `chat_download_url` in CSV format from AWS S3.
     However, it is important to note that this download link is only valid for 24 hours. In case the link has expired, you can request for a new `chat_download_url` by sending an HTTP GET request to the [Chat Replay API](/guides/export-chat-dump).
 
 - question: |-

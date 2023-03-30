@@ -16,7 +16,7 @@ There are two ways to start a recording a Dyte meeting:
 
 Dyte stores recordings for a period of 7 days, after which they will expire and no longer be accessible. It is important to either download a copy of your recording or [set up storage](https://docs.dyte.io/guides/recording/custom-cloud-storage#set-storage-configuration) before the link expires.
 
-:::info Note
+:::info note
 
 1. Our system does not currently support recordings of brief durations that are less than five seconds. In such cases, it is possible that the recording APIs may experience occasional failures. Due to limitations in encoding recordings of short duration, these failures may result in an ERRORED state.
 2. Recording will stop if there are no participants in a meeting for 60 seconds.
@@ -26,13 +26,14 @@ Dyte stores recordings for a period of 7 days, after which they will expire and 
    24 hours have elapsed since the recording's start time. This option can be
    configured to any value up to 24 hours by passing the `max_seconds` parameter
    in the [start recording](/api/?v=v2#/operations/start_recording) API request.
-   :::
+
+:::
 
 ## Using the `record_on_start` parameter
 
 When [creating a meeting](/api/?v=v2#/operations/create_meeting), you can
-specify the `record_on_start` parameter to start the recording as soon as the
-meeting starts.
+specify the `record_on_start` parameter to start the recording as soon as someone joins the
+meeting.
 
 :::info Specify storage_config
 
