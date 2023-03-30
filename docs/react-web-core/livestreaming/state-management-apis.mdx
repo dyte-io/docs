@@ -26,17 +26,17 @@ A user with permission to join livestream directly can only assume `ON_STAGE` an
 
 Dyte’s stage management APIs allow hosts to receive and manage stage requests as well as leave and join the stage.
 
-### Leave stage
-
-By employing this method, the user will be disconnected from the media room and subsequently unable to communicate with their peers. Additionally, their audio and video will no longer be visible to others in the room.
-
-`await meeting.stage.leave();`
-
 ### Join stage
 
 This method connects the user to the media room, enabling them to interact with other peers in the meeting.
 
 `await meeting.stage.join();`
+
+### Leave stage
+
+By employing this method, the user will be disconnected from the media room and subsequently unable to communicate with their peers. Additionally, their audio and video will no longer be visible to others in the room.
+
+`await meeting.stage.leave();`
 
 ### Grant access
 
