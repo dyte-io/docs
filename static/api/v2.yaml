@@ -125,7 +125,7 @@ paths:
                       id: 78dd0b50-4147-4bb8-88d3-2ccc2e98bff0
                       stream_key: sk_ap-south-1_BSErwBSdrcWn_0eG01cFGCJcRcCsflOAX3Eu4B3RyRX
                       playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.Jk1l97eJF0ME.m3u8'
-      description: 'Creates an independent livestream for the given organization ID. You can generate credentials for livestreaming independently using an ingest server and a stream key, and then distribute them freely using a playback URL.'
+      description: 'Creates a livestream for the given organization ID and returns ingest server, stream key, and playback URL. Custom input can be passed to the ingest_server and stream_key and freely distributed using playback URL on any HLS/LHLS supported player.'
       tags:
         - Live streams
     get:
@@ -794,7 +794,7 @@ paths:
         > #### NOTE
         >
         > This API is in beta and is disabled by default. [Contact us](https://dyte.io/contact) to enable it
-        > for your organization.
+        > for your organization.                        
       operationId: GetSessionChat
       tags:
         - Sessions
@@ -1240,7 +1240,7 @@ paths:
         - Meetings
       responses:
         '200':
-          $ref: '#/components/responses/GetMeeting'
+          $ref: '#/components/responses/GetAllMeetings'
       operationId: get_all_meetings
       description: Returns all meetings for the given organization ID.
       parameters:
@@ -1439,7 +1439,7 @@ paths:
           in: query
           name: expired
           required: false
-          description: "If passed, only shows expired/non-expired recordings on Dyte's bucket"
+          description: 'If passed, only shows expired/non-expired recordings on Dyte''s bucket'
         - $ref: '#/components/parameters/search'
         - $ref: '#/components/parameters/recordingSortBy'
         - $ref: '#/components/parameters/sortOrder'
@@ -2524,7 +2524,7 @@ components:
         access_key:
           type: string
           description: |-
-            Access key of the storage medium. Access key is not required for the gcs storage media type.
+            Access key of the storage medium. Access key is not required for the `gcs` storage media type.
 
             Note that this field is not readable by clients, only writeable.
           writeOnly: true
@@ -3234,7 +3234,7 @@ components:
             properties:
               allow_unmute:
                 type: boolean
-                description: "if false, participants won't be able to unmute themselves after they are muted"
+                description: 'if false, participants won''t be able to unmute themselves after they are muted'
     CreatePollBody:
       description: Request body for creating a new poll
       content:
