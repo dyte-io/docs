@@ -125,6 +125,21 @@ the `storage_config` parameter:
   `SGP1`. For more information, see
   [Region Availability Matrix](https://docs.digitalocean.com/products/platform/availability-matrix/).
 
+### Google Cloud Storage (GCS)
+
+To transfer recordings to GCS, set the following fields in
+the `storage_config` parameter:
+
+- Type: Specify `gcs`.
+- Bucket: Enter the name of your Cloud Storage bucket.
+- (Optional) Path: Specify the path to a sub-folder where recordings should be
+  transferred. If this parameter is not passed, recordings will be transferred
+  to the root folder of the container.
+- Secret: Enter your service account credentials. For more information, see [service account credentials](https://developers.google.com/workspace/guides/create-credentials#service-account).
+- Region: Specify the region where your Cloud Storage bucket is hosted, for example,
+  `US multi-region`. For more information, see
+  [Bucket locations](https://cloud.google.com/storage/docs/locations).
+
 ## Update the Recording File Name
 
 You can change the name of the recording file using the `file_name_prefix` field. The default format for recorded file name is `roomname_timestamp`, but you can add an alphanumeric and underscore prefix to the default file name.
