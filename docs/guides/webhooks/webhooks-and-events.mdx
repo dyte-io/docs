@@ -84,7 +84,7 @@ these to ensure you don't process any retries.
 
 #### Return a `2xx` Response
 
-Your endpoint must quickly return a successful status code (`2xx`) prior to any
+Your endpoint must quickly (within 3 seconds) return a successful status code (`2xx`) prior to any
 complex logic that could cause a timeout.
 
 ```js
@@ -100,7 +100,7 @@ app.post('/webhook', express.json({ type: 'application/json' }), (req, res) => {
 #### Built-in Retries
 
 Dyte webhooks have built-in retry methods for `3xx`, `4xx` or `5xx` response
-status codes. If Dyte doesn't receive a `2xx` response status code for an event,
+status codes. If Dyte doesn't receive a `2xx` response status code for an event within 3 seconds,
 we mark the event as failed and retry up to 5 times.
 
 ### Step 4: Secure your webhooks (recommended)
