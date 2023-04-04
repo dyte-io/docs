@@ -71,12 +71,7 @@ paths:
                 value:
                   name: prdmmp-xhycsl
         description: ''
-      parameters:
-        - name: Authorization
-          in: header
-          schema:
-            type: string
-          example: Basic  MGVlYWE0ODAtZDEwMi00YmEyLTg5ZmEtZWI2YTg1ZGFiZTlkOjZiY2FhYzg1YzIzMzEyMGFhYjVh
+      parameters: []
       responses:
         '201':
           description: Successful response
@@ -93,6 +88,10 @@ paths:
                     properties:
                       status:
                         type: string
+                        enum:
+                          - LIVE
+                          - OFFLINE
+                          - ERRORED
                       name:
                         type: string
                         nullable: true
@@ -101,16 +100,22 @@ paths:
                         nullable: true
                       ingest_seconds:
                         type: number
+                        description: The time duration for which the input was given or the meeting was streamed.
                       viewer_seconds:
                         type: number
+                        description: The total view time for which the viewers watched the stream.
                       ingest_server:
                         type: string
+                        description: The server URL to which the RTMP encoder sends the video and audio data.
                       id:
                         type: string
+                        description: The livestream ID.
                       stream_key:
                         type: string
+                        description: Unique key for accessing each livestream.
                       playback_url:
                         type: string
+                        description: The web address that viewers can use to watch the livestream.
               examples:
                 example-1:
                   value:
@@ -125,32 +130,29 @@ paths:
                       id: 78dd0b50-4147-4bb8-88d3-2ccc2e98bff0
                       stream_key: sk_ap-south-1_BSErwBSdrcWn_0eG01cFGCJcRcCsflOAX3Eu4B3RyRX
                       playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.Jk1l97eJF0ME.m3u8'
-      description: 'Creates a livestream for the given organization ID and returns ingest server, stream key, and playback URL. Custom input can be passed to the ingest_server and stream_key and freely distributed using playback URL on any HLS/LHLS supported player.'
+      description: 'Creates a livestream for the given organization ID and returns ingest server, stream key, and playback URL. Custom input can be passed to the ingest server and stream key, and freely distributed using the playback URL on any HLS/LHLS supported player.'
       tags:
         - Live streams
     get:
       operationId: fetch_all_livestreams
       summary: Fetch all livestreams
       parameters:
-        - name: Authorization
-          in: header
-          schema:
-            type: string
-          example: Basic  NzBjNWQzOTEtNGJhYy00Y2YzLTk5MDctYmVjMjA1Nzk4YWRiOmQyNzBmYjJmOGNiNGUzZWY1MGI1
         - schema:
             type: boolean
             default: false
           in: query
           name: excludeMeetings
-          description: Exclude livestreams done for a meeting
+          description: Exclude the Dyte meetings that are livestreamed.
         - schema:
             type: integer
           in: query
           name: limit
+          description: 'Specifies the number of results to return on each page. The default value is 10. '
         - schema:
             type: integer
           in: query
           name: offset
+          description: Sets the first position to return from the results of the query. The default is 0.
       responses:
         '200':
           description: OK
@@ -170,14 +172,19 @@ paths:
                     properties:
                       limit:
                         type: integer
+                        description: The number of results returned on each page. The default value is 10.
                       total:
                         type: integer
+                        description: Total number of livestreams returned.
                       total_count:
                         type: integer
+                        description: Total number of livestreams returned.
                       page_count:
                         type: integer
+                        description: Total number of pages returned.
                       current_page:
                         type: integer
+                        description: The current page number that is returned.
                       livestreams:
                         type: array
                         items:
@@ -185,24 +192,35 @@ paths:
                           properties:
                             status:
                               type: string
+                              enum:
+                                - LIVE
+                                - OFFLINE
+                                - ERRORED
                             name:
                               type: string
+                              description: Name of the livestream.
                               nullable: true
                             meeting_id:
                               type: string
                               nullable: true
                             ingest_seconds:
                               type: number
+                              description: The time duration for which the input was given or the meeting was streamed.
                             viewer_seconds:
                               type: number
+                              description: The total view time for which the viewers watched the stream.
                             ingest_server:
                               type: string
+                              description: The server URL to which the RTMP encoder sends the video and audio data.
                             id:
                               type: string
+                              description: The livestream ID.
                             stream_key:
                               type: string
+                              description: Unique key for accessing each livestream.
                             playback_url:
                               type: string
+                              description: The web address that viewers can use to watch the livestream.
               examples:
                 example-0:
                   summary: Get All Live streams Of An Org Staging Success
@@ -225,9 +243,7 @@ paths:
                           id: 82e363e9-6ce2-462a-a9e5-37068a729548
                           stream_key: sk_ap-south-1_6z1GZy7HtfQh_9qCdXZVrLV8E2xDxrkPO0uzXSvB2Eg
                           playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.rHYG1VHblte6.m3u8'
-        '201':
-          description: Created
-      description: 'Returns details of all livestreams for the given organization ID. This includes both independent livestreams and the meetings that are livestreamed by that organization. To get the details of only independent livestreams that are not associated with a meeting, use the `excludeMeetings` query parameter.'
+      description: 'Returns details of all livestreams associated with the given organization ID. This includes the livestreams that you have created for your organization and also the Dyte meetings that are livestreamed by that organization. If you only want details of livestreams created by your organization and not Dyte meetings that are streamed, use the `excludeMeetings` query parameter.'
       tags:
         - Live streams
   '/meetings/{meeting_id}/livestreams':
@@ -250,12 +266,7 @@ paths:
               example-1:
                 value:
                   name: prdmmp-xhycsl
-      parameters:
-        - name: Authorization
-          in: header
-          schema:
-            type: string
-          example: Basic  NzBjNWQzOTEtNGJhYy00Y2YzLTk5MDctYmVjMjA1Nzk4YWRiOmQyNzBmYjJmOGNiNGUzZWY1MGI1
+      parameters: []
       responses:
         '201':
           description: Created
@@ -273,19 +284,28 @@ paths:
                     properties:
                       status:
                         type: string
+                        enum:
+                          - LIVE
+                          - OFFLINE
+                          - ERRORED
                       name:
                         type: string
+                        description: Name of the livestream.
                         nullable: true
                       meeting_id:
                         type: string
                       ingest_server:
                         type: string
+                        description: The server URL to which the RTMP encoder sends the video and audio data.
                       id:
                         type: string
+                        description: The livestream ID.
                       stream_key:
                         type: string
+                        description: Unique key for accessing each livestream.
                       playback_url:
                         type: string
+                        description: The web address that viewers can use to watch the livestream.
               examples:
                 example-1:
                   value:
@@ -308,19 +328,16 @@ paths:
     get:
       summary: Fetch all livestreams for a meeting
       parameters:
-        - name: Authorization
-          in: header
-          schema:
-            type: string
-          example: Basic  NzBjNWQzOTEtNGJhYy00Y2YzLTk5MDctYmVjMjA1Nzk4YWRiOmQyNzBmYjJmOGNiNGUzZWY1MGI1
         - schema:
             type: integer
           in: query
           name: limit
+          description: 'Specifies the number of results to return on each page. The default value is 10. '
         - schema:
             type: integer
           in: query
           name: offset
+          description: Sets the first position to return from the results of the query. The default is 0.
       responses:
         '200':
           description: OK
@@ -340,14 +357,19 @@ paths:
                     properties:
                       limit:
                         type: integer
+                        description: The number of results returned on each page. The default value is 10.
                       total:
                         type: integer
+                        description: Total number of livestreams returned.
                       total_count:
                         type: integer
+                        description: Total number of livestreams returned.
                       page_count:
                         type: integer
+                        description: Total number of pages returned.
                       current_page:
                         type: integer
+                        description: 'The current page number that is returned. '
                       livestreams:
                         type: array
                         items:
@@ -355,23 +377,34 @@ paths:
                           properties:
                             status:
                               type: string
+                              enum:
+                                - LIVE
+                                - OFFLINE
+                                - ERRORED
                             name:
                               type: string
+                              description: Name of the livestream.
                               nullable: true
                             meeting_id:
                               type: string
                             ingest_seconds:
                               type: number
+                              description: The time duration for which the input was given or the meeting was streamed.
                             viewer_seconds:
                               type: number
+                              description: The total view time for which the viewers watched the stream.
                             ingest_server:
                               type: string
+                              description: The server URL to which the RTMP encoder sends the video and audio data.
                             id:
                               type: string
+                              description: The livestream ID.
                             stream_key:
                               type: string
+                              description: Unique key for accessing each livestream.
                             playback_url:
                               type: string
+                              description: The web address that viewers can use to watch the livestream.
               examples:
                 example-0:
                   summary: Get LiveStream From StreamId Success
@@ -416,12 +449,7 @@ paths:
               type: object
               example:
                 name: prdmmp-xhycsl
-      parameters:
-        - name: Authorization
-          in: header
-          schema:
-            type: string
-          example: Basic  NzBjNWQzOTEtNGJhYy00Y2YzLTk5MDctYmVjMjA1Nzk4YWRiOmQyNzBmYjJmOGNiNGUzZWY1MGI1
+      parameters: []
       responses:
         '200':
           description: OK
@@ -459,12 +487,7 @@ paths:
   '/livestreams/{stream_id}':
     get:
       summary: Fetch livestream details using stream ID
-      parameters:
-        - name: Authorization
-          in: header
-          schema:
-            type: string
-          example: Basic  NzBjNWQzOTEtNGJhYy00Y2YzLTk5MDctYmVjMjA1Nzk4YWRiOmQyNzBmYjJmOGNiNGUzZWY1MGI1
+      parameters: []
       responses:
         '200':
           description: OK
@@ -482,23 +505,34 @@ paths:
                     properties:
                       status:
                         type: string
+                        enum:
+                          - LIVE
+                          - OFFLINE
+                          - ERRORED
                       name:
                         type: string
+                        description: Name of the livestream.
                         nullable: true
                       meeting_id:
                         type: string
                       ingest_seconds:
                         type: number
+                        description: The time duration for which the input was given or the meeting was streamed.
                       viewer_seconds:
                         type: number
+                        description: The total view time for which the viewers watched the stream.
                       ingest_server:
                         type: string
+                        description: The server URL to which the RTMP encoder sends the video and audio data.
                       id:
                         type: string
+                        description: The livestream ID.
                       stream_key:
                         type: string
+                        description: Unique key for accessing each livestream.
                       playback_url:
                         type: string
+                        description: The web address that viewers can use to watch the livestream.
               examples:
                 example-1:
                   value:
@@ -551,23 +585,34 @@ paths:
                     properties:
                       status:
                         type: string
+                        enum:
+                          - LIVE
+                          - OFFLINE
+                          - ERRORED
                       name:
                         type: string
+                        description: Name of the livestream.
                         nullable: true
                       meeting_id:
                         type: string
                       ingest_seconds:
                         type: integer
+                        description: The time duration for which the input was given or the meeting was streamed.
                       viewer_seconds:
                         type: integer
+                        description: The total view time for which the viewers watched the stream.
                       ingest_server:
                         type: string
+                        description: The server URL to which the RTMP encoder sends the video and audio data.
                       id:
                         type: string
+                        description: The livestream ID.
                       stream_key:
                         type: string
+                        description: Unique key for accessing each livestream.
                       playback_url:
                         type: string
+                        description: The web address that viewers can use to watch the livestream.
               examples:
                 example-1:
                   value:
@@ -586,11 +631,7 @@ paths:
       description: Returns details of all active livestreams for the given meeting ID.
       tags:
         - Live streams
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: Authorization
+      parameters: []
   '/meetings/{meeting_id}/active-session':
     get:
       summary: Fetch details of an active session
@@ -794,7 +835,7 @@ paths:
         > #### NOTE
         >
         > This API is in beta and is disabled by default. [Contact us](https://dyte.io/contact) to enable it
-        > for your organization.                        
+        > for your organization.
       operationId: GetSessionChat
       tags:
         - Sessions
@@ -1267,7 +1308,7 @@ paths:
           format: uuid
         name: meeting_id
         in: path
-        description: ID of the meeting
+        description: ID of the meeting. Fetch the meeting ID using the create a meeting API.
         required: true
     get:
       summary: Fetch a meeting for an organization
@@ -1304,7 +1345,7 @@ paths:
           format: uuid
         name: meeting_id
         in: path
-        description: ID of the meeting
+        description: ID of the meeting. Fetch the meeting ID using the create a meeting API.
         required: true
     get:
       summary: Fetch all participants of a meeting
@@ -1340,16 +1381,16 @@ paths:
           format: uuid
         name: meeting_id
         in: path
-        description: ID of the meeting
+        description: ID of the meeting. You can fetch the meeting ID using the create a meeting API.
         required: true
       - schema:
           type: string
         name: participant_id
         in: path
         required: true
-        description: ID of the participant
+        description: ID of the participant. You can fetch the participant ID using the add a participant API.
     get:
-      summary: Fetch a participant detail
+      summary: Fetch a participant's detail
       tags:
         - Meetings
       responses:
@@ -1358,7 +1399,7 @@ paths:
         '500':
           $ref: '#/components/responses/GenericError'
       operationId: get_meeting_participant
-      description: Returns a participant details for the given participant and meeting ID.
+      description: Returns a participant details for the given meeting and participant ID.
       parameters: []
     patch:
       summary: Edit a participant's detail
@@ -1368,7 +1409,7 @@ paths:
           $ref: '#/components/responses/AddParticipant'
         '500':
           $ref: '#/components/responses/GenericError'
-      description: Updates a participant's details for the given participant and meeting ID.
+      description: Updates a participant's details for the given meeting and participant ID.
       requestBody:
         $ref: '#/components/requestBodies/EditParticipantBody'
       tags:
@@ -1391,16 +1432,16 @@ paths:
           format: uuid
         name: meeting_id
         in: path
-        description: ID of the meeting
+        description: ID of the meeting. You can fetch the meeting ID using the create a meeting API.
         required: true
       - schema:
           type: string
         name: participant_id
         in: path
         required: true
-        description: ID of the participant
+        description: ID of the participant. You can fetch the participant ID using the add a  participant API.
     post:
-      summary: Refresh participant token
+      summary: Refresh participant's authentication token
       tags:
         - Meetings
       responses:
@@ -1409,7 +1450,7 @@ paths:
         '500':
           $ref: '#/components/responses/GenericError'
       operationId: regenerate_token
-      description: Regenerates authentication token for the given meeting and participant ID.
+      description: Regenerates participant's authentication token for the given meeting and participant ID.
       parameters: []
   /recordings:
     get:
@@ -1439,7 +1480,7 @@ paths:
           in: query
           name: expired
           required: false
-          description: 'If passed, only shows expired/non-expired recordings on Dyte''s bucket'
+          description: "If passed, only shows expired/non-expired recordings on Dyte's bucket"
         - $ref: '#/components/parameters/search'
         - $ref: '#/components/parameters/recordingSortBy'
         - $ref: '#/components/parameters/sortOrder'
@@ -1840,6 +1881,7 @@ components:
       required:
         - success
         - error
+      description: ''
     ChatMessage:
       type: object
       properties:
@@ -2320,18 +2362,18 @@ components:
             - eu-central-1
           description: The region in which this meeting should be created.
           nullable: true
-        record_on_start:
-          type: boolean
-          description: Specifies if the meeting should start getting recorded as soon as someone joins the meeting.
         created_at:
           type: string
           format: date-time
-          description: Timestamp the object was created at.
+          description: Timestamp the object was created at. The time is returned in ISO format.
           readOnly: true
+        record_on_start:
+          type: boolean
+          description: Specifies if the meeting should start getting recorded as soon as someone joins the meeting.
         updated_at:
           type: string
           format: date-time
-          description: Timestamp the object was updated at.
+          description: Timestamp the object was updated at. The time is returned in ISO format.
           readOnly: true
         live_stream_on_start:
           type: boolean
@@ -2370,6 +2412,7 @@ components:
             total_count:
               type: number
               example: 30
+              minimum: 0
             start_offset:
               type: number
               example: 1
@@ -2417,18 +2460,18 @@ components:
           nullable: true
         custom_participant_id:
           type: string
-          description: ID used internally by the client.
+          description: A unique participant ID generated by the client.
         preset_name:
           type: string
           description: Preset applied to the participant.
         created_at:
           type: string
           format: date-time
-          description: When this object was created.
+          description: When this object was created. The time is returned in ISO format.
         updated_at:
           type: string
           format: date-time
-          description: When this object was updated.
+          description: When this object was updated. The time is returned in ISO format.
       required:
         - id
         - custom_participant_id
@@ -3234,7 +3277,7 @@ components:
             properties:
               allow_unmute:
                 type: boolean
-                description: 'if false, participants won''t be able to unmute themselves after they are muted'
+                description: "if false, participants won't be able to unmute themselves after they are muted"
     CreatePollBody:
       description: Request body for creating a new poll
       content:
@@ -3302,15 +3345,15 @@ components:
                   - ap-southeast-1
                   - us-east-1
                   - eu-central-1
-                description: Region that this meeting should be created in
+                description: The region in which this meeting should be created.
               record_on_start:
                 type: boolean
                 default: false
-                description: Whether to start recording this meeting immediately on start
+                description: Specifies if the meeting should start getting recorded as soon as someone joins the meeting.
               live_stream_on_start:
                 type: boolean
                 default: false
-                description: Whether to start livestreaming this meeting immediately on start
+                description: Specifies if the meeting should start getting livestreamed on start.
               status:
                 type: string
                 x-stoplight:
@@ -3329,21 +3372,21 @@ components:
             properties:
               name:
                 type: string
-                description: Name of the participant. Optional.
+                description: '(Optional) Name of the participant. '
                 example: Mary Sue
                 nullable: true
               picture:
                 type: string
                 example: 'https://i.imgur.com/test.jpg'
                 format: uri
-                description: URL pointing to a picture to use for the participant. Optional.
+                description: '(Optional) A URL to a picture to be used for the participant. '
                 nullable: true
               preset_name:
                 type: string
                 description: Name of the preset to apply to this participant.
               custom_participant_id:
                 type: string
-                description: ID used internally by the client.
+                description: A unique participant ID generated by the client.
             required:
               - preset_name
               - custom_participant_id
@@ -3356,16 +3399,16 @@ components:
               name:
                 type: string
                 example: Jane Doe
-                description: Name of the participant. Optional.
+                description: (Optional) Name of the participant.
                 nullable: true
               picture:
                 type: string
                 format: uri
-                description: URL to a picture for the participant. Optional.
+                description: (Optional) A URL to a picture to be used for the participant.
                 nullable: true
               preset_name:
                 type: string
-                description: Name of the preset to apply to this participant. Optional.
+                description: (Optional) Name of the preset to apply to this participant.
                 nullable: true
     StartRecording:
       content:
@@ -3639,6 +3682,7 @@ components:
                 properties:
                   data:
                     $ref: '#/components/schemas/Meeting'
+      headers: {}
     GetAllMeetings:
       description: Success response
       content:
@@ -3658,6 +3702,10 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/GenericErrorResponse'
+        application/xml:
+          schema:
+            type: object
+            properties: {}
     GetAllParticipants:
       description: Success response
       content:
@@ -3687,7 +3735,7 @@ components:
                         properties:
                           token:
                             type: string
-                            description: Auth token that can be used for joining a meeting from the client side.
+                            description: The participant's auth token that can be used for joining a meeting from the client side.
                         required:
                           - token
     GetParticipant:
@@ -3717,6 +3765,7 @@ components:
                     properties:
                       custom_participant_id:
                         type: string
+                        description: A unique participant ID generated by the client.
                       preset_id:
                         type: string
                         format: uuid
@@ -3724,11 +3773,11 @@ components:
                       created_at:
                         type: string
                         format: date-time
-                        description: Timestamp this object was created at.
+                        description: Timestamp this object was created at. The time is returned in ISO format.
                       updated_at:
                         type: string
                         format: date-time
-                        description: Timestamp this object was updated at.
+                        description: Timestamp this object was updated at. The time is returned in ISO format.
                     required:
                       - custom_participant_id
                       - preset_id
@@ -3750,7 +3799,7 @@ components:
                     properties:
                       token:
                         type: string
-                        description: Regenerated auth token for this participant.
+                        description: Regenerated participant's authentication token.
                 required:
                   - data
     GetRecordings:
