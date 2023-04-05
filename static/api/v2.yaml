@@ -106,7 +106,7 @@ paths:
                         description: The total view time for which the viewers watched the stream.
                       ingest_server:
                         type: string
-                        description: The server URL to which the RTMP encoder sends the video and audio data.
+                        description: The server URL to which the RTMP encoder should send the video and audio data.
                       id:
                         type: string
                         description: The livestream ID.
@@ -1308,7 +1308,7 @@ paths:
           format: uuid
         name: meeting_id
         in: path
-        description: ID of the meeting
+        description: ID of the meeting. Fetch the meeting ID using the create a meeting API.
         required: true
     get:
       summary: Fetch a meeting for an organization
@@ -1345,7 +1345,7 @@ paths:
           format: uuid
         name: meeting_id
         in: path
-        description: ID of the meeting
+        description: ID of the meeting. Fetch the meeting ID using the create a meeting API.
         required: true
     get:
       summary: Fetch all participants of a meeting
@@ -1381,16 +1381,16 @@ paths:
           format: uuid
         name: meeting_id
         in: path
-        description: ID of the meeting
+        description: ID of the meeting. You can fetch the meeting ID using the create a meeting API.
         required: true
       - schema:
           type: string
         name: participant_id
         in: path
         required: true
-        description: ID of the participant
+        description: ID of the participant. You can fetch the participant ID using the add a participant API.
     get:
-      summary: Fetch a participant detail
+      summary: Fetch a participant's detail
       tags:
         - Meetings
       responses:
@@ -1399,7 +1399,7 @@ paths:
         '500':
           $ref: '#/components/responses/GenericError'
       operationId: get_meeting_participant
-      description: Returns a participant details for the given participant and meeting ID.
+      description: Returns a participant details for the given meeting and participant ID.
       parameters: []
     patch:
       summary: Edit a participant's detail
@@ -1409,7 +1409,7 @@ paths:
           $ref: '#/components/responses/AddParticipant'
         '500':
           $ref: '#/components/responses/GenericError'
-      description: Updates a participant's details for the given participant and meeting ID.
+      description: Updates a participant's details for the given meeting and participant ID.
       requestBody:
         $ref: '#/components/requestBodies/EditParticipantBody'
       tags:
@@ -1432,16 +1432,16 @@ paths:
           format: uuid
         name: meeting_id
         in: path
-        description: ID of the meeting
+        description: ID of the meeting. You can fetch the meeting ID using the create a meeting API.
         required: true
       - schema:
           type: string
         name: participant_id
         in: path
         required: true
-        description: ID of the participant
+        description: ID of the participant. You can fetch the participant ID using the add a  participant API.
     post:
-      summary: Refresh participant token
+      summary: Refresh participant's authentication token
       tags:
         - Meetings
       responses:
@@ -1450,7 +1450,7 @@ paths:
         '500':
           $ref: '#/components/responses/GenericError'
       operationId: regenerate_token
-      description: Regenerates authentication token for the given meeting and participant ID.
+      description: Regenerates participant's authentication token for the given meeting and participant ID.
       parameters: []
   /recordings:
     get:
@@ -1881,6 +1881,7 @@ components:
       required:
         - success
         - error
+      description: ''
     ChatMessage:
       type: object
       properties:
@@ -2361,18 +2362,18 @@ components:
             - eu-central-1
           description: The region in which this meeting should be created.
           nullable: true
-        record_on_start:
-          type: boolean
-          description: Specifies if the meeting should start getting recorded as soon as someone joins the meeting.
         created_at:
           type: string
           format: date-time
-          description: Timestamp the object was created at.
+          description: Timestamp the object was created at. The time is returned in ISO format.
           readOnly: true
+        record_on_start:
+          type: boolean
+          description: Specifies if the meeting should start getting recorded as soon as someone joins the meeting.
         updated_at:
           type: string
           format: date-time
-          description: Timestamp the object was updated at.
+          description: Timestamp the object was updated at. The time is returned in ISO format.
           readOnly: true
         live_stream_on_start:
           type: boolean
@@ -2411,6 +2412,7 @@ components:
             total_count:
               type: number
               example: 30
+              minimum: 0
             start_offset:
               type: number
               example: 1
@@ -2458,18 +2460,18 @@ components:
           nullable: true
         custom_participant_id:
           type: string
-          description: ID used internally by the client.
+          description: A unique participant ID generated by the client.
         preset_name:
           type: string
           description: Preset applied to the participant.
         created_at:
           type: string
           format: date-time
-          description: When this object was created.
+          description: When this object was created. The time is returned in ISO format.
         updated_at:
           type: string
           format: date-time
-          description: When this object was updated.
+          description: When this object was updated. The time is returned in ISO format.
       required:
         - id
         - custom_participant_id
@@ -3343,15 +3345,15 @@ components:
                   - ap-southeast-1
                   - us-east-1
                   - eu-central-1
-                description: Region that this meeting should be created in
+                description: The region in which this meeting should be created.
               record_on_start:
                 type: boolean
                 default: false
-                description: Whether to start recording this meeting immediately on start
+                description: Specifies if the meeting should start getting recorded as soon as someone joins the meeting.
               live_stream_on_start:
                 type: boolean
                 default: false
-                description: Whether to start livestreaming this meeting immediately on start
+                description: Specifies if the meeting should start getting livestreamed on start.
               status:
                 type: string
                 x-stoplight:
@@ -3370,21 +3372,21 @@ components:
             properties:
               name:
                 type: string
-                description: Name of the participant. Optional.
+                description: '(Optional) Name of the participant. '
                 example: Mary Sue
                 nullable: true
               picture:
                 type: string
                 example: 'https://i.imgur.com/test.jpg'
                 format: uri
-                description: URL pointing to a picture to use for the participant. Optional.
+                description: '(Optional) A URL to a picture to be used for the participant. '
                 nullable: true
               preset_name:
                 type: string
                 description: Name of the preset to apply to this participant.
               custom_participant_id:
                 type: string
-                description: ID used internally by the client.
+                description: A unique participant ID generated by the client.
             required:
               - preset_name
               - custom_participant_id
@@ -3397,16 +3399,16 @@ components:
               name:
                 type: string
                 example: Jane Doe
-                description: Name of the participant. Optional.
+                description: (Optional) Name of the participant.
                 nullable: true
               picture:
                 type: string
                 format: uri
-                description: URL to a picture for the participant. Optional.
+                description: (Optional) A URL to a picture to be used for the participant.
                 nullable: true
               preset_name:
                 type: string
-                description: Name of the preset to apply to this participant. Optional.
+                description: (Optional) Name of the preset to apply to this participant.
                 nullable: true
     StartRecording:
       content:
@@ -3680,6 +3682,7 @@ components:
                 properties:
                   data:
                     $ref: '#/components/schemas/Meeting'
+      headers: {}
     GetAllMeetings:
       description: Success response
       content:
@@ -3699,6 +3702,10 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/GenericErrorResponse'
+        application/xml:
+          schema:
+            type: object
+            properties: {}
     GetAllParticipants:
       description: Success response
       content:
@@ -3728,7 +3735,7 @@ components:
                         properties:
                           token:
                             type: string
-                            description: Auth token that can be used for joining a meeting from the client side.
+                            description: The participant's auth token that can be used for joining a meeting from the client side.
                         required:
                           - token
     GetParticipant:
@@ -3758,6 +3765,7 @@ components:
                     properties:
                       custom_participant_id:
                         type: string
+                        description: A unique participant ID generated by the client.
                       preset_id:
                         type: string
                         format: uuid
@@ -3765,11 +3773,11 @@ components:
                       created_at:
                         type: string
                         format: date-time
-                        description: Timestamp this object was created at.
+                        description: Timestamp this object was created at. The time is returned in ISO format.
                       updated_at:
                         type: string
                         format: date-time
-                        description: Timestamp this object was updated at.
+                        description: Timestamp this object was updated at. The time is returned in ISO format.
                     required:
                       - custom_participant_id
                       - preset_id
@@ -3791,7 +3799,7 @@ components:
                     properties:
                       token:
                         type: string
-                        description: Regenerated auth token for this participant.
+                        description: Regenerated participant's authentication token.
                 required:
                   - data
     GetRecordings:
