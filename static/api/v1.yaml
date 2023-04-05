@@ -1772,6 +1772,61 @@ components:
                 - `VP8`: [sample recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/vp8_sample.webm)
                 - `VP9`: [sample recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/vp9_sample.webm)
               default: H264
+            width:
+              type: integer
+              x-stoplight:
+                id: yg4y637oxbhgc
+              description: Width of the recording video in pixels
+              default: 1280
+              example: 1280
+              minimum: 1
+              maximum: 1920
+            height:
+              type: integer
+              x-stoplight:
+                id: ygse9wf27budq
+              description: Height of the recording video in pixels
+              default: 720
+              example: 720
+              minimum: 1
+              maximum: 1920
+            watermark:
+              type: object
+              x-stoplight:
+                id: gpacgpweeh9c6
+              description: Watermark to be added to the recording
+              properties:
+                url:
+                  type: string
+                  x-stoplight:
+                    id: nosyru4691ysd
+                  format: uri
+                  description: URL of the watermark image
+                size:
+                  type: object
+                  x-stoplight:
+                    id: np4kclnxbyxrb
+                  description: Size of the watermark
+                  properties:
+                    width:
+                      type: integer
+                      x-stoplight:
+                        id: vcq5dunwrh4js
+                      description: Width of the watermark in px
+                      default: 200
+                      minimum: 1
+                    height:
+                      type: integer
+                      x-stoplight:
+                        id: hkxm6iodqurvk
+                      default: auto
+                      minimum: 1
+                      description: Height of the watermark in px
+                position:
+                  type: string
+                  x-stoplight:
+                    id: jovchil9iyqvn
+                  description: Position of the watermark
         liveStreamingConfig:
           type: object
           description: Object containing configuration regarding livestreaming the meeting video to a platform that supports RTMP input.
@@ -1781,17 +1836,17 @@ components:
               format: uri
               description: The RTMP input URL to which the meeting video should be streamed.
               example: 'rtmp://your.rtmp.url/live/stream/your-stream-key'
+        file_name_prefix:
+          type: string
+          x-stoplight:
+            id: 2m1gc6qyppavj
+          description: Update the recording file name.
         url:
           type: string
           x-stoplight:
             id: irwwqkxyk31i7
           format: uri
           description: Pass a custom url to record arbitary screen.
-        file_name_prefix:
-          type: string
-          x-stoplight:
-            id: 2m1gc6qyppavj
-          description: Update the recording file name.
     UpdateRecordingRequestBody:
       type: object
       properties:
