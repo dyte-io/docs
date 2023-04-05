@@ -1827,6 +1827,12 @@ components:
                   x-stoplight:
                     id: jovchil9iyqvn
                   description: Position of the watermark
+                  enum:
+                    - left top
+                    - right top
+                    - left bottom
+                    - right bottom
+                  default: left top
         liveStreamingConfig:
           type: object
           description: Object containing configuration regarding livestreaming the meeting video to a platform that supports RTMP input.
