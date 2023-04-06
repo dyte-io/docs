@@ -1096,8 +1096,6 @@ components:
         - $ref: '#/components/schemas/RecordOnStart'
         - $ref: '#/components/schemas/LiveStreamOnStart'
     AddParticipantRequestBody:
-      title: ''
-      description: ''
       x-examples:
         example-1:
           clientSpecificId: my_user_1
@@ -1139,6 +1137,8 @@ components:
           description: Name of the preset this user should join with
         roleName:
           type: string
+          x-stoplight:
+            id: t25yjwh8692y3
           description: Name of the role this user should join with
       required:
         - clientSpecificId
@@ -1712,11 +1712,10 @@ components:
             codec: VP9
           liveStreamingConfig:
             rtmpUrl: 'rtmp://live.restream.io/live/your-stream-key'
-      description: ''
       properties:
         storageConfig:
           type: object
-          description: 'Object containing details of the cloud storage, where you want the recording to be uploaded. In case this is not provided, recording will be stored on Dyte''s servers for a period of 7 days from the day of recording and a link will be shared using which you can download the file in between that period.'
+          description: "Object containing details of the cloud storage, where you want the recording to be uploaded. In case this is not provided, recording will be stored on Dyte's servers for a period of 7 days from the day of recording and a link will be shared using which you can download the file in between that period."
           properties:
             type:
               type: string
@@ -1780,48 +1779,64 @@ components:
               default: H264
             width:
               type: integer
+              x-stoplight:
+                id: yg4y637oxbhgc
               description: Width of the recording video in pixels
+              default: 1280
+              example: 1280
               minimum: 1
               maximum: 1920
-              example: 1280
-              default: 1280
             height:
               type: integer
+              x-stoplight:
+                id: ygse9wf27budq
               description: Height of the recording video in pixels
-              maximum: 1920
-              minimum: 1
-              example: 720
               default: 720
+              example: 720
+              minimum: 1
+              maximum: 1920
             watermark:
               type: object
+              x-stoplight:
+                id: gpacgpweeh9c6
               description: Watermark to be added to the recording
               properties:
                 url:
                   type: string
+                  x-stoplight:
+                    id: nosyru4691ysd
                   format: uri
                   description: URL of the watermark image
                 size:
                   type: object
+                  x-stoplight:
+                    id: np4kclnxbyxrb
                   description: Size of the watermark
                   properties:
                     width:
                       type: integer
+                      x-stoplight:
+                        id: vcq5dunwrh4js
                       description: Width of the watermark in px
-                      minimum: 1
                       default: 200
+                      minimum: 1
                     height:
                       type: integer
-                      description: Height of the watermark in px
-                      minimum: 1
+                      x-stoplight:
+                        id: hkxm6iodqurvk
                       default: auto
+                      minimum: 1
+                      description: Height of the watermark in px
                 position:
                   type: string
+                  x-stoplight:
+                    id: jovchil9iyqvn
+                  description: Position of the watermark
                   enum:
                     - left top
                     - right top
                     - left bottom
                     - right bottom
-                  description: Position of the watermark
                   default: left top
         liveStreamingConfig:
           type: object
@@ -1832,6 +1847,17 @@ components:
               format: uri
               description: The RTMP input URL to which the meeting video should be streamed.
               example: 'rtmp://your.rtmp.url/live/stream/your-stream-key'
+        file_name_prefix:
+          type: string
+          x-stoplight:
+            id: 2m1gc6qyppavj
+          description: Add a prefix to the existing file name.
+        url:
+          type: string
+          x-stoplight:
+            id: irwwqkxyk31i7
+          format: uri
+          description: Pass a custom url to record arbitary screen.
     UpdateRecordingRequestBody:
       type: object
       properties:
@@ -3101,7 +3127,7 @@ components:
                 properties:
                   dyte-signature:
                     type: string
-                    description: 'Signature generated for the webhook request, using Dyte''s private keys. Refer webhooks guide <insert_link> for more details.'
+                    description: "Signature generated for the webhook request, using Dyte's private keys. Refer webhooks guide <insert_link> for more details."
                   dyte-uuid:
                     type: string
                     format: uuid
