@@ -1135,6 +1135,11 @@ components:
         presetName:
           type: string
           description: Name of the preset this user should join with
+        roleName:
+          type: string
+          x-stoplight:
+            id: t25yjwh8692y3
+          description: Name of the role this user should join with
       required:
         - clientSpecificId
     CreatePresetRoleRequestBody:
@@ -1846,7 +1851,7 @@ components:
           type: string
           x-stoplight:
             id: 2m1gc6qyppavj
-          description: Update the recording file name.
+          description: Add a prefix to the existing file name.
         url:
           type: string
           x-stoplight:
