@@ -17,13 +17,13 @@ info:
 
     ### Rate Limit by IP Address
 
-    The rate limit threshold is set at 500 calls per minute per IP address. After 500 calls, a 429 status code is sent, and access to any of our APIs is denied. 
+    The rate limit threshold is set at 2000 calls per minute per IP address. After 2000 calls, a 429 status code is sent, and access to any of our APIs is denied. 
 
     Note: Rate limit is applied at the domain level, which means that all APIs are included in the threshold.
 
     | Number of Requests | Resources | Time Window | Status Code Returned when Threshold Exceeds |
     |--|--|--|--|
-    | 500 | Per IP | Per minute | HTTP 429 |
+    | 2000 | Per IP | Per minute | HTTP 429 |
 
     ### Sample
 
