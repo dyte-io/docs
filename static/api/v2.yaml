@@ -3420,6 +3420,13 @@ components:
                 type: string
                 format: uuid
                 description: ID of the meeting to record.
+              max_seconds:
+                type: integer
+                x-stoplight:
+                  id: k7f6838dflqlz
+                description: 'Specifies the maximum duration for recording in seconds, ranging from a minimum of 60 seconds to a maximum of 24 hours.'
+                minimum: 60
+                maximum: 86400
               storage_config:
                 $ref: '#/components/schemas/StorageConfig'
               video_config:

@@ -1712,7 +1712,15 @@ components:
             codec: VP9
           liveStreamingConfig:
             rtmpUrl: 'rtmp://live.restream.io/live/your-stream-key'
+      description: Set the maximum recording time in seconds to any value up to 24 hours.
       properties:
+        maxSeconds:
+          type: integer
+          x-stoplight:
+            id: itcmf4c4byyrv
+          description: 'Specifies the maximum duration for recording in seconds, ranging from a minimum of 60 seconds to a maximum of 24 hours.'
+          minimum: 60
+          maximum: 86400
         storageConfig:
           type: object
           description: "Object containing details of the cloud storage, where you want the recording to be uploaded. In case this is not provided, recording will be stored on Dyte's servers for a period of 7 days from the day of recording and a link will be shared using which you can download the file in between that period."
