@@ -17,13 +17,13 @@ info:
 
     ### Rate Limit by IP Address
 
-    The rate limit threshold is set at 500 calls per minute per IP address. After 500 calls, a 429 status code is sent, and access to any of our APIs is denied. 
+    The rate limit threshold is set at 2000 calls per minute per IP address. After 2000 calls, a 429 status code is sent, and access to any of our APIs is denied. 
 
     Note: Rate limit is applied at the domain level, which means that all APIs are included in the threshold.
 
     | Number of Requests | Resources | Time Window | Status Code Returned when Threshold Exceeds |
     |--|--|--|--|
-    | 500 | Per IP | Per minute | HTTP 429 |
+    | 2000 | Per IP | Per minute | HTTP 429 |
 
     ### Sample
 
@@ -2501,6 +2501,14 @@ components:
           description: Timestamp when the download URL expires.
           nullable: true
           readOnly: true
+        download_audio_url:
+          type: string
+          format: uri
+          x-stoplight:
+            id: h5tzcaeuye8fk
+          description: 'If the audio_config is passed, the URL for downloading the audio recording is returned.'
+          nullable: true
+          readOnly: true
         file_size:
           type: number
           description: 'File size of the recording, in bytes.'
@@ -2542,6 +2550,7 @@ components:
         - id
         - download_url
         - download_url_expiry
+        - download_audio_url
         - file_size
         - session_id
         - output_file_name
@@ -3046,7 +3055,8 @@ components:
           enum:
             - H264
             - VP8
-          description: Codec using which the recording will be encoded
+          default: H264
+          description: 'Codec using which the recording will be encoded. If VP8 is selected for video_config, changing audio_config is not allowed. In this case, the codec in the audio_config is automatically set to vorbis.'
         width:
           type: integer
           description: Width of the recording video in pixels
@@ -3103,6 +3113,31 @@ components:
           format: uri
           example: 'rtmp://a.rtmp.youtube.com/live2'
           description: RTMP URL to stream to
+    AudioConfig:
+      title: AudioConfig
+      x-stoplight:
+        id: lokrgru2gznbx
+      type: object
+      description: Object containing configuration regarding the audio that is being recorded.
+      properties:
+        codec:
+          type: string
+          x-stoplight:
+            id: 8cvrd9bmm81ne
+          description: Codec using which the recording will be encoded.
+          enum:
+            - MP3
+            - AAC
+          default: AAC
+        channel:
+          type: string
+          x-stoplight:
+            id: p92vx222riq0s
+          description: Audio signal pathway within an audio file that carries a specific sound source.
+          enum:
+            - mono
+            - stereo
+          default: stereo
   parameters:
     Content-Type:
       name: Content-Type
@@ -3431,6 +3466,10 @@ components:
                 $ref: '#/components/schemas/StorageConfig'
               video_config:
                 $ref: '#/components/schemas/VideoConfig'
+              audio_config:
+                $ref: '#/components/schemas/AudioConfig'
+                x-stoplight:
+                  id: 01lrvdoaz73p8
               live_streaming_config:
                 $ref: '#/components/schemas/LivestreamingConfig'
               file_name_prefix:
