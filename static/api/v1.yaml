@@ -1779,12 +1779,14 @@ components:
                 - H264
                 - VP8
                 - VP9
+              default: H264
               description: |-
                 Codec used to record the meeting video.
                 - `H264`: [sample recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/h264_sample.webm)
                 - `VP8`: [sample recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/vp8_sample.webm)
                 - `VP9`: [sample recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/vp9_sample.webm)
-              default: H264
+
+                If VP8 is selected for videoConfig, changing audioConfig is not allowed. In this case, the codec in the audioConfig is automatically set to vorbis.
             width:
               type: integer
               x-stoplight:
@@ -1846,6 +1848,10 @@ components:
                     - left bottom
                     - right bottom
                   default: left top
+        audioConfig:
+          $ref: '#/components/schemas/AudioConfig'
+          x-stoplight:
+            id: b1a0pj2ka8krz
         liveStreamingConfig:
           type: object
           description: Object containing configuration regarding livestreaming the meeting video to a platform that supports RTMP input.
@@ -2883,7 +2889,6 @@ components:
           createdAt: '2021-10-13T17:01:12.747Z'
           updatedAt: '2021-10-13T17:01:12.747Z'
     Recording:
-      description: ''
       type: object
       x-examples:
         example-1:
@@ -2931,6 +2936,13 @@ components:
           format: uri
           description: Publicly accessible URL to download the recording.
           nullable: true
+        download_audio_url:
+          type: string
+          format: uri
+          x-stoplight:
+            id: om05cddf2dyes
+          description: 'If the audioConfig is passed, the URL for downloading the audio recording is returned.'
+          nullable: true
         errMessage:
           type: string
           description: 'Error message during recording, if any.'
@@ -2961,10 +2973,12 @@ components:
         - downloadUrlExpiry
         - roomUUID
         - downloadUrl
+        - download_audio_url
         - errMessage
         - startedTime
         - stoppedTime
         - id
+      title: ''
     CreateRecordingResponse:
       title: CreateRecordingResponse
       allOf:
@@ -3334,6 +3348,31 @@ components:
           enum:
             - LIVE
             - CLOSED
+    AudioConfig:
+      title: AudioConfig
+      x-stoplight:
+        id: kwzy4f0bh315u
+      type: object
+      properties:
+        codec:
+          type: string
+          x-stoplight:
+            id: 24cz4x33j3n27
+          description: Codec using which the recording will be encoded.
+          enum:
+            - MP3
+            - AAC
+          default: AAC
+        channel:
+          type: string
+          x-stoplight:
+            id: b75j5yf8ybka2
+          description: Audio signal pathway within an audio file that carries a specific sound source.
+          enum:
+            - mono
+            - stereo
+          default: stereo
+      description: Object containing configuration regarding the audio that is being recorded.
   securitySchemes:
     APIKEY:
       type: apiKey
