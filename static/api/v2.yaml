@@ -3055,8 +3055,8 @@ components:
           enum:
             - H264
             - VP8
-          description: 'Codec using which the recording will be encoded. If VP8 is selected for videoConfig.codec, changing audioConfig.codec is not allowed. In this situation, the audioCodec is automatically set to vorbis.'
           default: H264
+          description: 'Codec using which the recording will be encoded. If VP8 is selected for video_config, changing audio_config is not allowed. In this case, the codec in the audio_config is automatically set to vorbis.'
         width:
           type: integer
           description: Width of the recording video in pixels
@@ -3102,7 +3102,6 @@ components:
                 - right bottom
               description: Position of the watermark
               default: left top
-      description: ''
     LivestreamingConfig:
       title: LivestreamingConfig
       x-stoplight:
@@ -3119,6 +3118,7 @@ components:
       x-stoplight:
         id: lokrgru2gznbx
       type: object
+      description: Object containing configuration regarding the audio that is being recorded.
       properties:
         codec:
           type: string
@@ -3128,6 +3128,7 @@ components:
           enum:
             - MP3
             - AAC
+          default: AAC
         channel:
           type: string
           x-stoplight:
@@ -3136,7 +3137,7 @@ components:
           enum:
             - mono
             - stereo
-      description: Object containing configuration regarding the audio that is being recorded.
+          default: stereo
   parameters:
     Content-Type:
       name: Content-Type

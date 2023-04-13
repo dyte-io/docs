@@ -16,16 +16,18 @@ Codec determines the audio encoding format for recording, with MP3 and AAC being
 
 :::info note
 
-If [VP8](/guides/recording/configure-codecs) is selected for `videoConfig.codec`, changing `audioConfig.codec` is not allowed. In this case, the `audioCodec` is automatically set to `vorbis`.
+If [VP8](/guides/recording/configure-codecs) is selected for `video_config`, changing `audio_config` is not allowed. In this case, the codec in the `audio_config` is automatically set to `vorbis`.
 
 :::
 
 ## Channel
 
+Audio signal pathway within an audio file that carries a specific sound source. The following channels are supported:
+
 - stereo (default)
 - mono
 
-You can modify the configs by specifying it in the audio_config field in the [Start Recording API](/api#/operations/start_recording), for example:
+You can modify the configs by specifying it in the `audio_config` field in the [Start Recording API](/api#/operations/start_recording), for example:
 
 ```json
 {
