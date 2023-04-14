@@ -1,0 +1,27 @@
+---
+title: Configure Uploads to Dyte's Bucket
+sidebar_position: 8
+---
+
+By default, dyte will upload all recordings to dyte's own S3 bucket located in the
+`ap-south-1` AWS region, and also generate a presigned URL with an expiry of 7 days.
+This URL is available in the `downloadUrl` field linked to each recording.
+
+If you wish to disable uploads to dyte's bucket, you can pass the `dyte_bucket_config`
+parameter in the [Start Recording endpoint](/api/?v=v2#/operations/start_recording), for
+example:
+```json
+{
+  "dyte_bucket_config": {
+    "enabled": false
+  }
+}
+```
+
+:::info note
+
+Recordings which don't have an external storage config, and also disable
+uploads to dyte's bucket, will not be uploaded to any location, and will be treated as 
+invalid!
+
+:::
