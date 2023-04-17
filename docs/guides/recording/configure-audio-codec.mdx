@@ -1,6 +1,6 @@
 ---
 title: Set Audio Configurations
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 Recording audio requires configuring the **codec** and **channel** parameters to guarantee optimal quality and compatibility with your application's demands.
@@ -37,3 +37,9 @@ You can modify the configs by specifying it in the `audio_config` field in the [
   }
 }
 ```
+
+## Download Audio Files
+
+The audio file for your recording is generated only if you passed the `audio_config` parameters in the [Start Recording API](/api/?v=v2#/operations/start_recording).
+
+When the recording is completed, you can use the `audioDownloadUrl` provided in the response body of the [Start Recording endpoint](/api/?v=v2#/operations/start_recording) to download and export the audio file.

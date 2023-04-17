@@ -1,7 +1,11 @@
 ---
-title: Configure Video Codecs
+title: Configure Video Settings
 sidebar_position: 3
 ---
+
+Video codecs are software programs that compress and decompress digital video data for transmission, storage, or playback. Configuring the appropriate video codec can help reduce file size, enhance video quality, and ensure compatibility with different playback devices.
+
+## Configure Codecs
 
 You can modify the codec which is used for recording the videos. We currently
 support the following codecs:
@@ -29,3 +33,9 @@ Meetings recorded using the `record_on_start` parameter currently don’t suppor
 configuring video codecs, and will use the `H264` codec by default.
 
 :::
+
+## Download Video Files
+
+The video file for your recording is generated only if you passed the `video_config` parameters in the [Start Recording API](/api/?v=v2#/operations/start_recording).
+
+When the recording is completed, you can use the `downloadUrl` provided in the response body of the [Start Recording endpoint](/api/?v=v2#/operations/start_recording) to download and export the video file.
