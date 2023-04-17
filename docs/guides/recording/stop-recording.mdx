@@ -1,6 +1,6 @@
 ---
-title: 'Stop Recording'
-sidebar_position: 6
+title: 'Stop Recording a Meeting'
+sidebar_position: 7
 ---
 
 Dyte recordings can be stopped in any of the following ways:
@@ -18,6 +18,4 @@ Dyte recordings can be stopped in any of the following ways:
    recording ID to our [Stop Recording](/api/?v=v2#/operations/stop_recording)
    APIs.
 
-As soon as a recording is stopped, it transitions to the `UPLOADING` state, and
-will shortly transition to the `UPLOADED` state after the recording has been
-transferred to Dyte’s bucket, and external buckets as well (if configured).
+When a recording is stopped, it transitions to the `UPLOADING` state and then to the `UPLOADED` state after it has been transferred to Dyte's storage and any external storage that has been set up.
