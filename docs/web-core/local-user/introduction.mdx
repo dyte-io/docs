@@ -126,31 +126,20 @@ await meeting.self.disableScreenShare();
 meeting.self.screenShareEnabled;
 ```
 
-## Preview media
+### Screen share configuration
 
-Preview methods can be used to test the video / audio stream before sharing them
-with the meeting.
-
-### Enable / Disable Audio and Video Preview
-
-Enable a preview for audio and video. This will populate the `preview` property
-for the local user. You can check if the streams are enabled in the preview
-using `meeting.self.preview.audioEnabled` and
-`meeting.self.preview.videoEnabled`.
+You can set the defaults for screen share during initialization
 
 ```ts
-// Enable preview
-await meeting.self.enablePreview();
-
-// Disable preview
-/**
- * @deprecated
- */
-await meeting.self.disablePreview();
-
-// Enable only audio preview
-await meeting.self.enablePreview({ video: false });
-
-// Enable only video preview
-await meeting.self.enablePreview({ audio: false });
+const meeting = await DyteClient.init({
+  authToken,
+  defaults: {
+    screenShare: {
+      displaySurface: 'window',
+    },
+  },
+});
 ```
+
+[displaySurface](https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints#displaysurface): Specifies the types of display surface that may be selected by the user.
+Allowed values: `window`, `monitor`, `browser`
