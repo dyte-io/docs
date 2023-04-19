@@ -48,5 +48,13 @@ callback `DytePluginEventsListener`. You can subscribe to this events by calling
     func onPluginDeactivated(plugin: DytePlugin) {
       // your code to handle plugin de-activation
     }
+
+    func onPluginFileRequest(plugin: DytePlugin) {
+      // your code to handle plugin file request
+    }
+
+    func onPluginMessage(message: [String : Kotlinx_serialization_jsonJsonElement]) {
+      // your code to handle plugin message
+    }
 }
 ```
