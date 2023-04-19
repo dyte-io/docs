@@ -120,3 +120,15 @@ extension MeetingViewModel: DyteSelfEventsListener {
     }
 }
 ```
+
+## LocalUser removed
+
+Whenever local user is removed from the meeting, `onRemovedFromMeeting()` callback is triggered.
+
+```swift
+extension MeetingViewModel: DyteSelfEventsListener {
+    func onRemovedFromMeeting() {
+        // show alert to user that he is no longer in the meeting
+    }
+}
+```
