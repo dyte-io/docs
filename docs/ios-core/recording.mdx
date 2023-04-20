@@ -42,22 +42,22 @@ the recording. The valid states are `IDLE`, `STARTING`, `RECORDING`, and
 To be able to listen to recording events you need to implement methods from `DyteRecordingEventsListener`. You can subscribe to this events by calling `meeting.addRecordingEventsListener(dyteRecordingEventsListener: listener)`
 
 ```swift
-    extension MeetingViewModel: DyteRecordingEventsListener {
+extension MeetingViewModel: DyteRecordingEventsListener {
 
-      func onMeetingRecordingEnded() {
-        // your code to handle recording end
-      }
+  func onMeetingRecordingEnded() {
+    // your code to handle recording end
+  }
 
-      func onMeetingRecordingStarted() {
-        // your code to handle recording start
-      }
+  func onMeetingRecordingStarted() {
+    // your code to handle recording start
+  }
 
-      func onMeetingRecordingStateUpdated(state: DyteRecordingState) {
-        // your code to handle recording state update
-      }
+  func onMeetingRecordingStateUpdated(state: DyteRecordingState) {
+    // your code to handle recording state update
+  }
 
-      func onMeetingRecordingStopError(e: KotlinException) {
-        // your code to handle recording stop error
-      }
-    }
+  func onMeetingRecordingStopError(e: KotlinException) {
+    // your code to handle recording stop error
+  }
+}
 ```

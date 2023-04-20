@@ -1,0 +1,38 @@
+---
+title: Waitlist Events
+description: Waitlist Events Listener
+sidebar_position: 10
+tags: [mobile-core, waitlist]
+---
+
+### Waitlist Events Listener
+
+When you need to listen to waitlisting events, implement this with `DyteWaitlistEventsListener` on `meeting` object.
+
+```swift
+meeting.addWaitlistEventListener(waitlistEventListener: self)
+```
+
+When registered, callbacks can be obsevered as follows:
+
+```swift
+
+extension MeetingViewModel: DyteWaitlistEventsListener {
+
+    func onWaitListParticipantJoined(participant: DyteMeetingParticipant) {
+        // triggered when waitList peer is joined
+    }
+
+    func onWaitListParticipantAccepted(participant: DyteMeetingParticipant) {
+        // triggered when waitListed peer is accepted by host
+    }
+
+    func onWaitListParticipantRejected(participant: DyteMeetingParticipant) {
+        // triggered when entry of waitListed peer declined by host
+    }
+
+    func onWaitListParticipantClosed(participant: DyteMeetingParticipant) {
+        // triggered when waitListed peer get's disconnected
+    }
+}
+```

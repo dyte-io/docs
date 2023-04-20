@@ -24,7 +24,7 @@ You’ll learn how to:
 - Initialize the SDK
 - Configure a Dyte meeting
 - Initialize the Dyte meeting
-- And go live with your Dyte meeting
+- Go live with your Dyte meeting!
 
 ## Before Getting Started
 
@@ -84,7 +84,6 @@ pod install
 <string>For people to hear you during meetings, we need access to your microphone.</string>
 <key>NSPhotoLibraryUsageDescription</key>
 <string>For people to share, we need access to your photos.</string>
-<false/>
 ```
 
 :::tip Note
@@ -112,11 +111,11 @@ let meeting = DyteiOSClientBuilder().build()
 meeting.addMeetingRoomEventsListener(meetingRoomEventsListener: self)
 meeting.addParticipantEventsListener(participantEventsListener: self)
 meeting.addSelfEventsListener(selfEventsListener: self)
-meeting.addParticipantEventsListener(selfEventsListener: self)
-meeting.addChatEventsListener(selfEventsListener: self)
-meeting.addPollEventsListener(selfEventsListener: self)
-meeting.addRecordingEventsListener(selfEventsListener: self)
-meeting.addWaitlistEventListener(selfEventsListener: self)
+meeting.addParticipantEventsListener(participantEventsListener: self)
+meeting.addChatEventsListener(chatEventsListener: self)
+meeting.addPollEventsListener(pollEventsListener: self)
+meeting.addRecordingEventsListener(recordingEventsListener: self)
+meeting.addWaitlistEventListener(waitlistEventListener: self)
 ```
 
 ## Step 3: Set the properties in the DyteMeetingInfo class
@@ -137,19 +136,18 @@ For v1 APIs:
 
 ```swift
 let meetingInfo = DyteMeetingInfo(authToken: authToken,
-                                          roomName: meetingText,
-                                          enableAudio: true,
-                                          enableVideo: true)
-
+                                   roomName: meetingText,
+                                   enableAudio: true,
+                                   enableVideo: true)
 ```
 
 For v2 APIs:
 
 ```swift
-let meetingInfo = DyteMeetingInfoV2(
-            authToken: authToken, enableAudio: true,
-            enableVideo: true, baseUrl: Constants.BASE_URL)
-
+let meetingInfo = DyteMeetingInfoV2(authToken: authToken,
+                                  enableAudio: true,
+                                  enableVideo: true,
+                                  baseUrl: Constants.BASE_URL)
 ```
 
 ## Step 4: Initialize the connection request
@@ -167,7 +165,7 @@ meeting.doInit(dyteMeetingInfo: meetingInfo)
 For v2 APIs:
 
 ```swift
-dyteMobileClient?.doInit(dyteMeetingInfo_: meetingInfo)
+meeting.doInit(dyteMeetingInfo_: meetingInfo)
 ```
 
 ## Step 5: Connect to the meeting
@@ -190,18 +188,18 @@ callbacks for this action on meeting object if you have done
 
 ```swift
 extension MeetingViewModel: DyteSelfEventsListener {
-    func onMeetingRoomJoinStarted() {
-        // meeting join started
-    }
-
-    func onMeetingRoomJoined() {
-        // meeting room joined succesfully
-    }
-
-    func onMeetingRoomJoinFailed(exception: KotlinException) {
-        // error in joining meeting room.
-    }
+  func onMeetingRoomJoinStarted() {
+    // meeting join started
   }
+
+  func onMeetingRoomJoined() {
+    // meeting room joined succesfully
+  }
+
+  func onMeetingRoomJoinFailed(exception: KotlinException) {
+    // error in joining meeting room.
+  }
+}
 ```
 
 ### Leave the room
@@ -218,13 +216,13 @@ registering obsever on meeting object as follows:
 
 ```swift
 extension MeetingViewModel: DyteSelfEventsListener {
-    func onMeetingRoomLeaveStarted() {
-        // meeting room leave started
-    }
+  func onMeetingRoomLeaveStarted() {
+    // meeting room leave started
+  }
 
-    func onMeetingRoomLeft() {
-        // meeting room leave completed
-    }
+  func onMeetingRoomLeft() {
+    // meeting room leave completed
+  }
 }
 ```
 
