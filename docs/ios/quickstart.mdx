@@ -45,6 +45,12 @@ You must complete the following steps:
 pod 'DyteUiKit'
 ```
 
+OR for specific version:
+
+```ruby
+pod 'DyteUiKit', '0.1.1'
+```
+
 2. Install the client SDK as CocoaPods dependency
 
 ```shell
@@ -66,10 +72,9 @@ pod install
 <string>For people to hear you during meetings, we need access to your microphone.</string>
 <key>NSPhotoLibraryUsageDescription</key>
 <string>For people to share, we need access to your photos.</string>
-<false/>
 ```
 
-## Step 2: Initialize the SDK
+## Step 2 (Optional): Initialize the SDK
 
 Initialization depends on three classes `DesignLibrary`, `AppTheme` and
 `SetupViewController`. `SetupViewController` is the only required class to get
@@ -193,24 +198,43 @@ class AppThemeConfigurator: AppThemeProtocol {
 
 ```
 
-## Step 3: Configure a Dyte meeting and Launch GUI
+## Step 3: Configure a Dyte meeting and Launch UI
 
 Set the initialization properties in the `DyteUiKitEngine` class. You just need
 to initialize DyteMeetingInfoV2 provide the participant's `authToken`.
+
+Try this in `viewDidAppear()`
 
 | Name        | Description                                                                                                                                                                                                                                                                                                                                   |
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `authToken` | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
 
 ```swift
-       DyteUiKitEngine.setupV2(DyteMeetingInfoV2(authToken: authToken, enableAudio: true, enableVideo: true))
-       let controller = DyteUiKitEngine.shared.getInitialController {
-            [unowned self] in
+import DyteUiKit
+import DyteiOSCore
+
+class ViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        DyteUiKitEngine.setupV2(DyteMeetingInfoV2(authToken: authToken,
+                                                enableAudio: true,
+                                                enableVideo: true,
+                                                baseUrl: baseUrl))
+
+        let controller = DyteUiKitEngine.shared.getInitialController { [weak self] in
+            guard let self = self else {return}
             self.dismiss(animated: true)
-            self.view.hideActivityIndicator()
         }
+
         controller.modalPresentationStyle = .fullScreen
         self.present(controller, animated: true)
+    }
+}
 ```
 
 Here is a pictorial representation of all the config options defined below.
