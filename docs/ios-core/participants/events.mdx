@@ -44,18 +44,12 @@ Triggers an event when there is any change in screenshares in a meeting.
             // your code here to handle screenshares from meeting
             // you can use `meeting.participants.screenshares` to get latest screenshare participants
         }
-    }
-```
+        func onScreenShareEnded(participant: DyteMeetingParticipant) {
+            // your code here to handle screenshare ended
+        }
 
-## Grid change
-
-Whenever there is any change in `GridInfo` for the room following method is
-called.
-
-```swift
-    extension MeetingViewModel: DyteParticipantEventsListener {
-        func onGridUpdated(gridInfo: GridInfo) {
-            // your code here to handle grid changes.
+        func onScreenShareStarted(participant: DyteMeetingParticipant) {
+            //  your code here to handle screenshare started
         }
     }
 ```
@@ -110,7 +104,7 @@ Trigger an event when any is change in pinned participant in the meeting.
             // your code here to show pinned participant
         }
 
-        func onParticipantUnpinned() {
+        func onParticipantUnpinned(participant: DyteMeetingParticipant) {
             // your code here to remove pinned participant
         }
     }
