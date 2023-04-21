@@ -40,13 +40,22 @@ callback `DytePluginEventsListener`. You can subscribe to this events by calling
 `meeting.addPluginEventsListener(dytePluginEventsListener: listener)`
 
 ```swift
-    extension MeetingViewModel: DytePluginEventsListener {
-      func onPluginActivated(plugin: DytePlugin) {
-      // your code to handle plugin activation
-    }
+extension MeetingViewModel: DytePluginEventsListener {
 
-    func onPluginDeactivated(plugin: DytePlugin) {
-      // your code to handle plugin de-activation
-    }
+  func onPluginActivated(plugin: DytePlugin) {
+    // your code to handle plugin activation
+  }
+
+  func onPluginDeactivated(plugin: DytePlugin) {
+    // your code to handle plugin de-activation
+  }
+
+  func onPluginFileRequest(plugin: DytePlugin) {
+    // your code to handle plugin file request
+  }
+
+  func onPluginMessage(message: [String : Kotlinx_serialization_jsonJsonElement]) {
+    // your code to handle plugin message
+  }
 }
 ```
