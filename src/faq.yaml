@@ -169,12 +169,14 @@
     calls for your applications.
 
 - question: Can I record a meeting?
-  tags: ['Technical']
+  tags: ['Technical', 'Recording']
   answer: |-
-    Yes. See [recording a meeting](/cli/recording).
+    Yes, you can record a meeting. See [Start recording a meeting](/guides/recording/start-recording).
+
+    However, it's important to note that if there are no participants in the meeting for a duration of 1 minute after you've started the recording, the recording automatically stops and the recording is not saved.
 
 - question: Where are the meeting recordings stored?
-  tags: ['Technical']
+  tags: ['Technical', 'Recording']
   answer: |-
     The meeting recordings are saved in your cloud storage that you set up. The supported cloud providers are AWS S3 bucket, DigitalOcean Spaces, Azure Blob storage, and Google Cloud Storage (GCS) buckets. 
 
@@ -216,16 +218,25 @@
     allow to trigger specific server actions in response to Dyte meeting
     events and state changes. 
 
-    To access the current list of events that can be used with webhooks, see [Webhook Events List](https://docs.dyte.io/guides/webhooks/webhook-events).
+    To access the current list of events that can be used with webhooks, see [Webhook Events List](/guides/webhooks/webhook-events).
 
 - question: How do I set up and transfer a recording to my storage configuration?
-  tags: ['Technical']
+  tags: ['Technical', 'Recording']
   answer: |-
     You can pass an optional object storageConfig in the start recording
     request, and we will publish the recording directly to your cloud provider
     once it stops. For more information, see [Publishing a recording to your
-    cloud
-    provider](/guides/recording-your-meetings#publishing-a-recording-to-your-cloud-provider).
+    cloud provider](/guides/recording/custom-cloud-storage).
+
+- question: I'm unable to locate my recorded meeting through the Developer Portal or downloadUrl. Was my meeting successfully recorded?
+  tags: ['Technical', 'Recording']
+  answer: |-
+    There are two possible reasons:
+
+    1. Dyte's recording feature will automatically stop recording if no participants are present in the meeting for 1 minute or longer. Please verify whether there were any participants present during the time the recording was initiated. 
+
+    2. In case you haven't set up an external storage configuration and have also disabled uploads to Dyte's bucket, the recording will not be saved in any location and will be considered invalid. For more information, see [Publishing a recording to your
+    cloud provider](/guides/recording/custom-cloud-storage).
 
 - question: How do I create a region-specific room?
   tags: ['Technical']
@@ -233,11 +244,9 @@
     To create a meeting in your preferred region, pass preferredRegion in
     the body of the createMeeting endpoint. For more information, see [Create a meeting](/api#/operations/createMeeting).
 
-- question:
-    Do we record the entire screen, or can we record specific streams or users
-    regardless of who is on screen?
-  tags: ['Technical']
-  answer: Yes, we record the entire screen rather than individual streams or users.
+- question: Is it possible to record specific streams or users during a meeting, regardless of who is on the screen?
+  tags: ['Technical', 'Recording']
+  answer: No, it is not possible to selectively record specific streams or users. Instead, our recording feature captures the entire screen and not individual streams or users.
 
 - question: Can I send an attachment via chat in a live session?
   tags: ['Technical']
@@ -284,7 +293,7 @@
     Can I pass recording parameters such as codec and storage configurations
     when creating a meeting or create a template that can be used for all the
     meetings?
-  tags: ['Technical']
+  tags: ['Technical', 'Recording']
   answer: |-
     Yes, codec and storage information can be passed through the recording API.
     Per recording, you can pass the parameters storageConfig and videoConfig.
