@@ -1120,7 +1120,7 @@ components:
       properties:
         clientSpecificId:
           type: string
-          description: 'An ID that you can use to identify a meeting participant in your system. We do not perform any validations on this, and return this value for all participants in a meeting in the client SDK.'
+          description: 'A unique participant ID. You must specify a unique ID for the participant, for example, UUID, email address, and so on.'
         userDetails:
           type: object
           description: Optional object to add details of the participant
@@ -1723,7 +1723,7 @@ components:
           maximum: 86400
         storageConfig:
           type: object
-          description: 'Object containing details of the cloud storage, where you want the recording to be uploaded. In case this is not provided, recording will be stored on Dyte''s servers for a period of 7 days from the day of recording and a link will be shared using which you can download the file in between that period.'
+          description: "Object containing details of the cloud storage, where you want the recording to be uploaded. In case this is not provided, recording will be stored on Dyte's servers for a period of 7 days from the day of recording and a link will be shared using which you can download the file in between that period."
           properties:
             type:
               type: string
@@ -3150,7 +3150,7 @@ components:
                 properties:
                   dyte-signature:
                     type: string
-                    description: 'Signature generated for the webhook request, using Dyte''s private keys. Refer webhooks guide <insert_link> for more details.'
+                    description: "Signature generated for the webhook request, using Dyte's private keys. Refer webhooks guide <insert_link> for more details."
                   dyte-uuid:
                     type: string
                     format: uuid
@@ -3385,7 +3385,7 @@ components:
           x-stoplight:
             id: w9xwpvf528y94
           default: true
-          description: 'Controls whether recordings are uploaded to dyte''s bucket. If set to false, `download_url`, `audio_download_url`, `download_url_expiry` won''t be generated for a recording.'
+          description: "Controls whether recordings are uploaded to dyte's bucket. If set to false, `download_url`, `audio_download_url`, `download_url_expiry` won't be generated for a recording."
   securitySchemes:
     APIKEY:
       type: apiKey
