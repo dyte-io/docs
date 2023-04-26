@@ -39,7 +39,8 @@ the recording. The valid states are `IDLE`, `STARTING`, `RECORDING`, and
 
 ## Listening to recording events in a meeting
 
-To be able to listen to recording events you need to implement methods from `DyteRecordingEventsListener`. You can subscribe to this events by calling `meeting.addRecordingEventsListener(dyteRecordingEventsListener: listener)`
+To receive recording events, you must implement methods from `DyteRecordingEventsListener`.
+You can subscribe to these events by using the `meeting.addRecordingEventsListener(dyteRecordingEventsListener: listener)` method.
 
 ```swift
 extension MeetingViewModel: DyteRecordingEventsListener {

@@ -108,15 +108,15 @@ extension MeetingViewModel: DyteSelfEventsListener {
 
 ## Webinar Request
 
-Whenever local user recieves the request to join the webinar, `onWebinarPresentRequestReceived()` callback is triggered and `onStoppedPresenting()` callback is triggered when the local user stops presenting.
+The `onWebinarPresentRequestReceived()` callback is triggered when the local user receives a request to join the webinar, while the `onStoppedPresenting()` callback is triggered when the local user ends their presentation.
 
 ```swift
 extension MeetingViewModel: DyteSelfEventsListener {
     func onWebinarPresentRequestReceived() {
-        // show alert to user to accept or reject the request
+        // Display an alert to the user here, allowing them to accept or reject the request.
     }
     func onStoppedPresenting() {
-        // show alert to user that he is no longer presenting
+        //Display an alert to the user indicating that they are no longer presenting.
     }
 }
 ```
@@ -128,7 +128,7 @@ Whenever local user is removed from the meeting, `onRemovedFromMeeting()` callba
 ```swift
 extension MeetingViewModel: DyteSelfEventsListener {
     func onRemovedFromMeeting() {
-        // show alert to user that he is no longer in the meeting
+      // Display an alert here that user no longer in the meeting.
     }
 }
 ```
