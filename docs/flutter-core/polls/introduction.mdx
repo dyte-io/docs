@@ -46,17 +46,18 @@ To get poll updates, listen to `onPollUpdates()` callback:
 
 ```dart
 
-class MeetingRoomEventsListener with DyteMeetingRoomEventsListener {
+class MeetingRoomEventsListener with DytePollEventsListener {
 
   ...
 
   @override
-  void onPollUpdates({
-    required bool newPoll,
-    required List<DytePollMessage> pollMessages,
-    DytePollMessage? updatedPollMessage,
-  }) {
+  void onPollUpdates(List<DytePollMessage> polls) {
     /// code to handle polls
+  }
+
+  @override
+  void onNewPoll(DytePollMessage poll) {
+    /// code to handle new poll
   }
 
   ...

@@ -36,21 +36,6 @@ dyteClient.addSelfEventsListener(
 );
 ```
 
-### Room joined
-
-Triggered when the room join event completes and now the meeting is ready to
-produce and consume media. At this stage, you can move to meeting room. While
-implementing `DyteSelfEventsListener` we have :
-
-```dart
-@override
-void onMeetingRoomJoined() {
-  // When the local user joins the meeting room, this callback is triggered
-  // We can handle the state here.
-}
-
-```
-
 ### Video update
 
 Triggered when the user starts / stops the video using `enableVideo` or
@@ -87,36 +72,72 @@ void onAudioUpdate(bool audioEnabled) {
 }
 ```
 
-There are several other callbacks, that you can implement according to the
-needs, here's a list of them:
+### Room disconnected update
 
-- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
-    onMeetingRoomJoinStarted()
-  </span>
-  : callback when meet room join has started.
-  <br />
-- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
-    onMeetingRoomDisconnected()
-  </span>
-  : callback when meet room join is disconnected.
-  <br />
-- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
-    onMeetingRoomJoinFailed()
-  </span>
-  : callback when meet room join failed.
-  <br />
-- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>onUpdate()</span>:
-  callback when any update occurs in the meet room (example any other
-  participant joins the meet).
-  <br />
-- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
-    onProximityChanged()
-  </span>
-  : callback when proximity of your device changes from body (as when phone sleeps
-  when near your ears when on a phone call).
-  <br />
-- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
-    onAudioDevicesUpdated()
-  </span>
-  : callback when the audio devices are updated.
-  <br />
+Triggered when the user is disconnected due to media/network errors
+
+```dart
+
+@override
+void onMeetingRoomDisconnected() {
+  // show alert to user that he is disconnected from the meeting
+}
+```
+
+### Proximity changed
+
+Triggered when there is any change in proximity. Meaning if device is near ear
+piece which triggers display on/off.
+
+```dart
+
+@override
+void onProximityChanged(bool isNear) {
+  // isNear
+  // if true, display should be turned off, as user might be speaking through earpience
+  // if false, display should be tunred on, as user might be looking at display and listening through speaker/earphones.
+}
+
+```
+
+### Waitlist status
+
+For meetings whose waiting room is enabled:
+Developers can listen to those changes in `onWaitListStatusUpdate()` callbacks
+
+```dart
+@override
+void onWaitListStatusUpdate(WaitListStatus waitListStatus) {
+  // waitListStatus
+  // if true, user is in waitlist
+  // if false, user is not in waitlist
+}
+```
+
+## Webinar Request
+
+Whenever local user recieves the request to join the webinar, `onWebinarPresentRequestReceived()` callback is triggered and `onStoppedPresenting()` callback is triggered when the local user stops presenting.
+
+```dart
+@override
+void onWebinarPresentRequestReceived() {
+  // show alert to user to accept or reject the request
+}
+
+@override
+void onStoppedPresenting() {
+  // show alert to user that he is no longer presenting
+}
+```
+
+## LocalUser removed
+
+Whenever local user is removed from the meeting, `onRemovedFromMeeting()` callback is triggered.
+
+```dart
+
+@override
+void onRemovedFromMeeting() {
+  // show alert to user that he is no longer in the meeting
+}
+```
