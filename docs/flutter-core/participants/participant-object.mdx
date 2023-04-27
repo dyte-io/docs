@@ -36,7 +36,7 @@ You can subscribe to various participants events. For subscribing:
 class ParticipantEventListener with DyteParticipantEventsListener {
 
   @override
-  void audioUpdate({
+  void onAudioUpdate({
     required bool audioEnabled,
     required DyteMeetingParticipant participant,
   }) {
@@ -54,61 +54,34 @@ class ParticipantEventListener with DyteParticipantEventsListener {
   }
 
   @override
-  void onParticipantJoin(DyteMeetingParticipant participant) {
-    /// handle joining of `DyteMeetingParticipant` participant
-  }
-
-  @override
-  void onParticipantLeave(DyteMeetingParticipant participant) {
-    /// handle leaving of `DyteMeetingParticipant` participant
-  }
-
-  @override
   void onParticipantPinned(DyteMeetingParticipant participant) {
     /// handle pinning of `DyteMeetingParticipant` participant
   }
 
-  @override
-  void onActiveParticipantsChanged(
-      {required List<DyteMeetingParticipant> active}) {
-    /// handle changed active participants of the page
-  }
 
   @override
-  void onParticipantUnpinned() {
+  void onParticipantUnpinned(DyteMeetingParticipant participant) {
     /// handle unpinning the pinned participant
   }
 
   @override
-  void onParticipantUpdated(DyteMeetingParticipant participant) {
-    /// handle onParticipantUpdated on `DyteMeetingParticipant` participant
+  void onScreenShareStarted(DyteMeetingParticipant participant) {
+    /// handle screen share started of `DyteMeetingParticipant` participant
   }
 
   @override
-  void onParticipantsUpdated({
-    required DyteRoomParticipants participants,
-    required GridPagesInfo gridPagesInfo,
-  }) {
-    /// handle participants updation in the grid
+  void onScreenShareEnded(DyteMeetingParticipant participant) {
+    /// handle screen share ended of `DyteMeetingParticipant` participant
   }
 
   @override
-  void onScreenSharesUpdated() {
-    /// handle screen share
-  }
-
-  @override
-  void videoUpdate({
+  void onVideoUpdate({
     required bool videoEnabled,
     required DyteMeetingParticipant participant,
   }) {
     /// handle videoUpdate of `DyteMeetingParticipant` participant
   }
 
-  @override
-  void onUpdate(DyteRoomParticipants participants) {
-    /// handle update on DyteRoomParticipants
-  }
 }
 ```
 
@@ -127,7 +100,7 @@ dyteClient.addParticipantEventsListener(
 ```dart
 
 @override
-void videoUpdate(bool videoEnabled) {
+void onVideoUpdate(bool videoEnabled) {
   if (videoEnabled) {
       // video is enabled, and other participants in room can see local user
     } else {
@@ -136,7 +109,7 @@ void videoUpdate(bool videoEnabled) {
 }
 
 @override
-void audioUpdate({
+void onAudioUpdate({
   required bool audioEnabled,
   required DyteMeetingParticipant participant,
 }) {
