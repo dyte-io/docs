@@ -74,27 +74,28 @@ void onAudioUpdate(bool audioEnabled) {
 
 ### Room disconnected update
 
-Triggered when the user is disconnected due to media/network errors
+Triggered when the user is disconnected due to media or network errors
 
 ```dart
 
 @override
 void onMeetingRoomDisconnected() {
-  // show alert to user that he is disconnected from the meeting
+  // Display a notification to the user indicating that they have been disconnected from the meeting.
+
+
 }
 ```
 
 ### Proximity changed
 
-Triggered when there is any change in proximity. Meaning if device is near ear
-piece which triggers display on/off.
+Triggered by any change in proximity, such as when the device is brought near or moved away from an earpiece, which triggers the display to turn on or off.
 
 ```dart
 
 @override
 void onProximityChanged(bool isNear) {
   // isNear
-  // if true, display should be turned off, as user might be speaking through earpience
+  // if true, display should be turned off, as user might be speaking through ear piece
   // if false, display should be tunred on, as user might be looking at display and listening through speaker/earphones.
 }
 
@@ -102,42 +103,45 @@ void onProximityChanged(bool isNear) {
 
 ### Waitlist status
 
-For meetings whose waiting room is enabled:
-Developers can listen to those changes in `onWaitListStatusUpdate()` callbacks
+When the waiting room feature is enabled for a meeting, you can use the `onWaitListStatusUpdate()` callback function to receive updates on waiting room status changes.
 
 ```dart
 @override
 void onWaitListStatusUpdate(WaitListStatus waitListStatus) {
   // waitListStatus
-  // if true, user is in waitlist
+  // if true, user is on the waitlist
   // if false, user is not in waitlist
 }
 ```
 
-## Webinar Request
+## Webinar request
 
-Whenever local user recieves the request to join the webinar, `onWebinarPresentRequestReceived()` callback is triggered and `onStoppedPresenting()` callback is triggered when the local user stops presenting.
+When the local user receives a request to join the webinar, the `onWebinarPresentRequestReceived()` callback function is triggered. Similarly, when the local user stops presenting during the webinar, the `onStoppedPresenting()` callback function is triggered.
 
 ```dart
 @override
 void onWebinarPresentRequestReceived() {
-  // show alert to user to accept or reject the request
+  // Display an alert to the user, allowing them to accept or reject the request.
+
+
 }
 
 @override
 void onStoppedPresenting() {
-  // show alert to user that he is no longer presenting
+  // Display an alert to the user indicating that they are no longer presenting.
 }
 ```
 
-## LocalUser removed
+## Local user removed
 
-Whenever local user is removed from the meeting, `onRemovedFromMeeting()` callback is triggered.
+When the local user is removed from the meeting, the `onRemovedFromMeeting()` callback is triggered.
 
 ```dart
 
 @override
 void onRemovedFromMeeting() {
-  // show alert to user that he is no longer in the meeting
+  // Display an alert to the user indicating that they are no longer in the meeting.
+
+
 }
 ```
