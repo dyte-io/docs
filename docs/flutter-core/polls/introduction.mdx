@@ -46,7 +46,7 @@ To get poll updates, listen to `onPollUpdates()` callback:
 
 ```dart
 
-class MeetingRoomEventsListener with DytePollEventsListener {
+class PollEventsListeners extends DytePollEventsListener {
 
   ...
 
@@ -65,12 +65,12 @@ class MeetingRoomEventsListener with DytePollEventsListener {
 
 ```
 
-You can subscribe to this events by `addMeetingEventsListener` method:
+You can subscribe to this events by `addPollEventsListener` method:
 
 ```dart
 
-dyteClient.addMeetingEventsListener(
-  /// MeetingRoomEventsListener instance
+dyteClient.addPollEventsListener(
+  /// DytePollEventsListener instance
 )
 
 ```

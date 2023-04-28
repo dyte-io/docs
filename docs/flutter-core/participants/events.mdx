@@ -18,7 +18,7 @@ void onParticipantJoin(DyteMeetingParticipant participant) {
 
 ## Participant updated
 
-Trigger an event when any participant update in meeting.
+Trigger an event when any participant update in meeting. For example, when a participant changes their name.
 
 ```dart
 @override
@@ -40,7 +40,7 @@ void onParticipantLeave(DyteMeetingParticipant participant) {
 
 ## Video update
 
-Trigger an event when any participant starts / stops video.
+Trigger an event when any participant starts or stops the video.
 
 ```dart
 @override
@@ -54,22 +54,18 @@ void onVideoUpdate({
 
 ## Video view
 
-To get the videoview we have to create the object of `VideoView`
+To access the video view of a participant, create an object of the `VideoView` class.
 
 ```dart
-
-// This widget can be used to show video of a participant
+// To show the video of a participant
 final videoView = VideoView(meetingParticipant: participant);
-
-// To get video view for local user we can do
+// To get video view for a local user
 final selfVideoView = VideoView(isSelfTrue: true);
-
-
 ```
 
 ## Audio update
 
-Trigger an event when any participant starts / stops audio.
+Triggers an event when a participant starts or stops the audio.
 
 ```dart
 @override
@@ -83,7 +79,7 @@ void onAudioUpdate({
 
 ## Screen share update
 
-Trigger an event when any participant starts / stops screen share.
+Triggers an event when a participant starts or stops screen share.
 
 ```dart
 @override
@@ -103,28 +99,22 @@ Obtain the list of the screenshare participants, using the `participants.screens
 
 ## Screen share view
 
-To get the screenshare widget we have to create the object of `ScreenshareView`
+To get the screenshare widget, create an object of the `ScreenshareView` class.
 
 ```dart
-
-// This widget can be used to show video of a participant
+// To show screenshare of a participant
 final screenshareView = ScreenShareView(meetingParticipant);
-
-
 ```
 
 ## Active Participants changed
 
-Trigger when active participant changes, for ex. when you move to next page of
-participant, this state gives you the participants of this current page.
+This event is triggered when the active participant changes, for example, when the user moves to the next page of participants. It provides the list of participants on the current page.
 
 ```dart
 @override
 void onActiveParticipantsChanged(List<DyteMeetingParticipant> active) {
   /// handle active participants changed
 }
-
-
 ```
 
 Other callbacks:

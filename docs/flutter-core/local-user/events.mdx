@@ -14,7 +14,7 @@ You can subscribe to various local user events. For subscribing:
   can be user to manage your state in the application.
 
 ```dart
-class LocalUserListener with DyteSelfEventsListener {
+class LocalUserListener extends DyteSelfEventsListener {
 
   ...
 
@@ -81,7 +81,6 @@ Triggered when the user is disconnected due to media or network errors
 @override
 void onMeetingRoomDisconnected() {
   // Display a notification to the user indicating that they have been disconnected from the meeting.
-
 
 }
 ```
