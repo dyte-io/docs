@@ -28,9 +28,7 @@ class ChatEventsListener with DyteChatEventsListener {
 ```
 
 ```dart
-dyteClient.addChatEventsListener(
-  // ChatEventsListener instance
-)
+dyteClient.addChatEventsListener(ChatEventsListener());
 ```
 
 In this context, `messages` refers to a list of all the chat messages in the meeting. The type of message used is `DyteChatMessage`, which was introduced earlier in the [introduction](./introduction.mdx) to Chat topic.

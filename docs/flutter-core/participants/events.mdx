@@ -10,9 +10,13 @@ tags: [flutter-core, participants, self]
 Trigger an event when any participant joins the meeting.
 
 ```dart
-@override
-void onParticipantJoin(DyteMeetingParticipant participant) {
-         // your code here to handle new participant
+class ParticipantsEventListener extends DytePartcipantEventsListener {
+  ...
+  @override
+  void onParticipantJoin(DyteMeetingParticipant participant) {
+    // your code here to handle new participant
+  }
+  ...
 }
 ```
 
@@ -21,10 +25,14 @@ void onParticipantJoin(DyteMeetingParticipant participant) {
 Trigger an event when any participant update in meeting. For example, when a participant changes their name.
 
 ```dart
+...
+
 @override
 void onParticipantUpdated(DyteMeetingParticipant participant) {
          // your code here to handle new participant
 }
+
+...
 ```
 
 ## Participant left
@@ -32,10 +40,14 @@ void onParticipantUpdated(DyteMeetingParticipant participant) {
 Trigger an event when any participant leaves the meeting.
 
 ```dart
+...
+
 @override
 void onParticipantLeave(DyteMeetingParticipant participant) {
          // your code here to handle participant left from meeting
 }
+
+...
 ```
 
 ## Video update
@@ -43,6 +55,8 @@ void onParticipantLeave(DyteMeetingParticipant participant) {
 Trigger an event when any participant starts or stops the video.
 
 ```dart
+...
+
 @override
 void onVideoUpdate({
  required bool videoEnabled,
@@ -50,6 +64,8 @@ void onVideoUpdate({
 }) {
          // your code here to handle participant video toggle update
 }
+
+...
 ```
 
 ## Video view
@@ -68,6 +84,8 @@ final selfVideoView = VideoView(isSelfTrue: true);
 Triggers an event when a participant starts or stops the audio.
 
 ```dart
+...
+
 @override
 void onAudioUpdate({
  required bool audioEnabled,
@@ -75,6 +93,8 @@ void onAudioUpdate({
 }) {
     // your code here to handle participant audio toggle update
 }
+
+...
 ```
 
 ## Screen share update
@@ -82,6 +102,8 @@ void onAudioUpdate({
 Triggers an event when a participant starts or stops screen share.
 
 ```dart
+...
+
 @override
 void onScreenShareStarted(DyteMeetingParticipant participant) {
   /// handle screen share started of `DyteMeetingParticipant` participant
@@ -91,6 +113,8 @@ void onScreenShareStarted(DyteMeetingParticipant participant) {
 void onScreenShareEnded(DyteMeetingParticipant participant) {
   /// handle screen share ended of `DyteMeetingParticipant` participant
 }
+
+...
 ```
 
 ## Screen share participants list
@@ -111,10 +135,14 @@ final screenshareView = ScreenShareView(meetingParticipant);
 This event is triggered when the active participant changes, for example, when the user moves to the next page of participants. It provides the list of participants on the current page.
 
 ```dart
+...
+
 @override
 void onActiveParticipantsChanged(List<DyteMeetingParticipant> active) {
   /// handle active participants changed
 }
+
+...
 ```
 
 Other callbacks:

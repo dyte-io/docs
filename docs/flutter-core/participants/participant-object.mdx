@@ -90,14 +90,14 @@ class ParticipantEventListener extends DyteParticipantEventsListener {
   instance as follows:
 
 ```dart {2}
-dyteClient.addParticipantEventsListener(
-  //  class ParticipantEventListener instance
-);
+dyteClient.addParticipantEventsListener(ParticipantEventListener());
 ```
 
 ## Audio/Video updates for participant
 
 ```dart
+
+...
 
 @override
 void onVideoUpdate(bool videoEnabled) {
@@ -119,4 +119,7 @@ void onAudioUpdate({
       // audio is disabled, and other participants in room can not hear local user.
     }
 }
+
+...
+
 ```

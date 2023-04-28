@@ -12,7 +12,7 @@ meeting.
 
 The `dyteClient.recording` object has the following properties:
 
-- recordingState: `Future<DyteRecordingType>`, Indicates the current recording
+- recordingState: `DyteRecordingState`, Indicates the current recording
   state of the meeting.
 
 To listen recording status updates, you need to listen for
@@ -47,13 +47,11 @@ dyteClient.recording.stop();
 ## Listen to recording state changes
 
 The changes to recording state can be listened by implementing
-`onMeetingRecordingStateUpdated` from `DyteMeetingRoomEventsListener`. You can
-attach this observer by calling
-`dyteClient.addMeetingRoomEventsListener(listener)`.
+`onMeetingRecordingStateUpdated` from `DyteMeetingRoomEventsListener`.
 
 ```dart
 
-class RoomStateNotifier with DyteRecordingEventsListener {
+class RecordingListener with DyteRecordingEventsListener {
 
   @override
   void onMeetingRecordingStarted() {
@@ -77,4 +75,10 @@ class RoomStateNotifier with DyteRecordingEventsListener {
 
 }
 
+```
+
+You can subscribe to this events by `addRecordingListener` method:
+
+```dart
+dyteClient.addRecordingListener(RecordingListener());
 ```
