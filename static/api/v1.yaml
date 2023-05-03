@@ -1846,10 +1846,14 @@ components:
                     - left bottom
                     - right bottom
                   default: left top
+            segmentLength:
+              type: integer
+              x-stoplight:
+                id: 73019zqsagxcn
+              description: The duration of each segment or fragment of a video file.
+              default: 10 seconds
         audioConfig:
           $ref: '#/components/schemas/AudioConfig'
-          x-stoplight:
-            id: b1a0pj2ka8krz
         liveStreamingConfig:
           type: object
           description: Object containing configuration regarding livestreaming the meeting video to a platform that supports RTMP input.
@@ -1872,8 +1876,12 @@ components:
           description: Pass a custom url to record arbitary screen.
         dyteBucketConfig:
           $ref: '#/components/schemas/DyteBucketConfig'
-          x-stoplight:
-            id: ftndsk2n9aaq7
+        startReason:
+          $ref: '#/components/schemas/startReason'
+        stopReason:
+          $ref: '#/components/schemas/stopReason'
+        interactiveConfig:
+          $ref: '#/components/schemas/InteractiveConfig'
     UpdateRecordingRequestBody:
       type: object
       properties:
@@ -2969,6 +2977,19 @@ components:
           type: string
           format: uuid
           description: Unique ID of the recording.
+        recordingDuration:
+          type: integer
+          x-stoplight:
+            id: b485kq4l3j3n9
+          description: Total recording time in seconds.
+        startReason:
+          $ref: '#/components/schemas/startReason'
+        stopReason:
+          $ref: '#/components/schemas/stopReason'
+        storageConfig:
+          type: string
+          x-stoplight:
+            id: uf2s6vfcacg8h
       required:
         - status
         - outputFileName
@@ -3386,6 +3407,114 @@ components:
             id: w9xwpvf528y94
           default: true
           description: "Controls whether recordings are uploaded to dyte's bucket. If set to false, `download_url`, `audio_download_url`, `download_url_expiry` won't be generated for a recording."
+    startReason:
+      title: startReason
+      x-stoplight:
+        id: q70d95c7k9ojh
+      type: object
+      properties:
+        reason:
+          type: string
+          x-stoplight:
+            id: 69wxk5agqfzl2
+          description: |-
+            Specifies if the recording was started using the "Start a Recording"API or using the parameter RECORD_ON_START in the "Create a meeting" API. 
+
+            If the recording is initiated using the "RECORD_ON_START" parameter, the user details will not be populated.
+          enum:
+            - API_CALL
+            - RECORD_ON_START
+        caller:
+          type: object
+          x-stoplight:
+            id: 9kpsc8onmictu
+          properties:
+            type:
+              type: string
+              x-stoplight:
+                id: 96q8dbw2jhnut
+              enum:
+                - ORGANIZATION
+                - USER
+              description: 'The type can be an organization or a user. If the type is `user`, then only the `userId`, `participantId`, and `name` are returned.'
+            userId:
+              type: string
+              x-stoplight:
+                id: 9eqiagdcpyqbr
+              format: uuid
+              description: The user ID of the person who started the recording.
+            participantId:
+              type: string
+              x-stoplight:
+                id: ldalaep6148d9
+              format: uuid
+              description: The participant ID of the user who started the recording.
+              example: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+            name:
+              type: string
+              x-stoplight:
+                id: 7pviwmxvouj3r
+              description: Name of the user who started the recording.
+    stopReason:
+      title: stopReason
+      x-stoplight:
+        id: 7gaiyxxhfqwwz
+      type: object
+      properties:
+        reason:
+          type: string
+          x-stoplight:
+            id: vjsh6ot0shuid
+          description: Specifies the reason why the recording stopped.
+          enum:
+            - API_CALL
+            - INTERNAL_ERROR
+            - ALL_PEERS_LEFT
+        caller:
+          type: object
+          x-stoplight:
+            id: 95olrspc6tufb
+          properties:
+            type:
+              type: string
+              x-stoplight:
+                id: iq5a2h8yuv9kq
+              enum:
+                - ORGANIZATION
+                - USER
+              description: 'The type can be an organization or a user. If the type is `user`, then only the `userId`, `participantId`, and `name` are returned.'
+            userId:
+              type: string
+              x-stoplight:
+                id: 9vxch67m5lss7
+              format: uuid
+              description: The user ID of the person who stopped the recording.
+            participantId:
+              type: string
+              x-stoplight:
+                id: uojake4bksqbn
+              format: uuid
+              description: The participant ID of the user who stopped the recording.
+              example: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+            name:
+              type: string
+              x-stoplight:
+                id: mulqjewe4r6fd
+              description: Name of the user who stopped the recording.
+    InteractiveConfig:
+      title: InteractiveConfig
+      x-stoplight:
+        id: w3xeeve1lhfqp
+      type: object
+      description: 'Allows you to add timed metadata to your recordings, which are digital markers inserted into a video file to provide contextual information at specific points in the content range. The ID3 tags containing this information are available to clients on the playback timeline in HLS format. The output files are generated in a compressed .tar format.'
+      properties:
+        type:
+          type: string
+          x-stoplight:
+            id: dx9cbwgwbl7m8
+          description: The metadata is presented in the form of ID3 tags.
+          enum:
+            - ID3
   securitySchemes:
     APIKEY:
       type: apiKey
