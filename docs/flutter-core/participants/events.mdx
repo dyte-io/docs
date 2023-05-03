@@ -5,48 +5,34 @@ sidebar_position: 3
 tags: [flutter-core, participants, self]
 ---
 
-## Page change
-
-```dart
-@override
-void onParticipantsUpdated({
-   required DyteRoomParticipants participants,
-   required DyteGridPagesInfo gridPagesInfo,
-}) {
-   // your code here to handle page updates.
-}
-```
-
-`DyteGridPagesInfo` can be used for pagination purposes and contains following
-info:
-
-- `pageCount`: Total page that will contain all the participants.
-- `currentPageNumber`: Current page number that was returned (indexed from 0)
-- `shouldShowPaginator`: Should it show paginator or not. (dots at the bottom of
-  the Video Views)
-- `isNextPagePossible`: Bool whether the next page is available or not.
-- `isPreviousPagePossible`: Bool whether the previous page is available or not.
-
 ## Participant joined
 
 Trigger an event when any participant joins the meeting.
 
 ```dart
-@override
-void onParticipantUpdated(DyteMeetingParticipant participant) {
-         // your code here to handle new participant
+class ParticipantsEventListener extends DytePartcipantEventsListener {
+  ...
+  @override
+  void onParticipantJoin(DyteMeetingParticipant participant) {
+    // your code here to handle new participant
+  }
+  ...
 }
 ```
 
 ## Participant updated
 
-Trigger an event when any participant update in meet.
+Trigger an event when any participant update in meeting. For example, when a participant changes their name.
 
 ```dart
+...
+
 @override
 void onParticipantUpdated(DyteMeetingParticipant participant) {
          // your code here to handle new participant
 }
+
+...
 ```
 
 ## Participant left
@@ -54,67 +40,81 @@ void onParticipantUpdated(DyteMeetingParticipant participant) {
 Trigger an event when any participant leaves the meeting.
 
 ```dart
+...
+
 @override
 void onParticipantLeave(DyteMeetingParticipant participant) {
          // your code here to handle participant left from meeting
 }
+
+...
 ```
 
 ## Video update
 
-Trigger an event when any participant starts / stops video.
+Trigger an event when any participant starts or stops the video.
 
 ```dart
+...
+
 @override
-void videoUpdate({
+void onVideoUpdate({
  required bool videoEnabled,
  required DyteMeetingParticipant participant,
 }) {
          // your code here to handle participant video toggle update
 }
+
+...
 ```
 
 ## Video view
 
-To get video view of a participant, set the `view-type` as `DytePlatformVideoView`,
+To access the video view of a participant, create an object of the `VideoView` class.
 
 ```dart
-const viewType = ‘DytePlatformVideoView’;
-
-
-// pass the creation parameters:
-
-
-final Map<String, dynamic> creationParams = {
-‘id’:  meetingParticipant.id,  // [String] Participant ID
-‘isSelfParticipant’: isSelfParticipant // [bool] whether the participant whose view is requested is same as the mobileClient or not.
-};
+// To show the video of a participant
+final videoView = VideoView(meetingParticipant: participant);
+// To get video view for a local user
+final selfVideoView = VideoView(isSelfTrue: true);
 ```
 
 ## Audio update
 
-Trigger an event when any participant starts / stops audio.
+Triggers an event when a participant starts or stops the audio.
 
 ```dart
+...
+
 @override
-void audioUpdate({
+void onAudioUpdate({
  required bool audioEnabled,
  required DyteMeetingParticipant participant,
 }) {
-         // your code here to handle participant audio toggle update
+    // your code here to handle participant audio toggle update
 }
+
+...
 ```
 
 ## Screen share update
 
-Trigger an event when any participant starts / stops screen share.
+Triggers an event when a participant starts or stops screen share.
 
 ```dart
+...
+
 @override
-void onScreenSharesUpdated() {
-   // all screenshare participants can be fetched via
-   // dyteClient.participants.screenshares
+void onScreenShareStarted(DyteMeetingParticipant participant) {
+  /// handle screen share started of `DyteMeetingParticipant` participant
 }
+
+@override
+void onScreenShareEnded(DyteMeetingParticipant participant) {
+  /// handle screen share ended of `DyteMeetingParticipant` participant
+}
+
+...
 ```
 
 ## Screen share participants list
@@ -123,50 +123,26 @@ Obtain the list of the screenshare participants, using the `participants.screens
 
 ## Screen share view
 
-To get the screenshare view, set the `view-type` as `DytePlatformScreenshareView`.
+To get the screenshare widget, create an object of the `ScreenshareView` class.
 
 ```dart
-const viewType = ‘DytePlatformScreenshareView’
-```
-
-You can pass the `ID` in creation parameter as the following:
-
-```dart
-final Map<String, dynamic> creationParams = {
-      'peerId': screensharePeer.id,
-    };
-
-
-```
-
-The `screensharePeer` is an element of the `participants.screenshares` list.
-
-## Participants updated
-
-Triggers an event when participants are updated, and therefore return the new
-`DyteGridPagesInfo`.
-
-```dart
-@override
-void onParticipantsUpdated({
- required DyteRoomParticipants participants,
- required DyteGridPagesInfo gridPagesInfo,
-}){
-   // whenever participants are updated in the room
-   // it returns a updated `DyteRoomParticipants` and `DyteGridPagesInfo` with it.
-}
+// To show screenshare of a participant
+final screenshareView = ScreenShareView(meetingParticipant);
 ```
 
 ## Active Participants changed
 
-Trigger when active participant changes, for ex. when you move to next page of
-participant, this state gives you the participants of this current page.
+This event is triggered when the active participant changes, for example, when the user moves to the next page of participants. It provides the list of participants on the current page.
 
 ```dart
+...
+
 @override
-void onActiveParticipantsChanged({required List<DyteMeetingParticipant> activeParticipants}) {
-   /// these active participants return new page participants
+void onActiveParticipantsChanged(List<DyteMeetingParticipant> active) {
+  /// handle active participants changed
 }
+
+...
 ```
 
 Other callbacks:
@@ -184,24 +160,6 @@ Other callbacks:
   </span>
   : Triggered when the <code>participant</code> is pinned.
 - <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
-    onParticipantUnpinned()
+    onParticipantUnpinned(DyteMeetingParticipant participant)
   </span>
   : Trigerred when participant is unpinned.
-
-## Plugin view
-
-To get plugin view of a participant, set the `view-type` as `DytePlatformPluginView`,
-
-```dart
-const String viewType = 'DytePlatformPluginView';
-
-
-
-
-  final Map<String, dynamic> creationParams = {
-    'id': widget.plugin.id,
-    'name': widget.plugin.name,
-  };
-```
-
-`id` and `name` both are strings.
