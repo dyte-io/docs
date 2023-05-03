@@ -2986,6 +2986,10 @@ components:
           $ref: '#/components/schemas/startReason'
         stopReason:
           $ref: '#/components/schemas/stopReason'
+        storageConfig:
+          type: string
+          x-stoplight:
+            id: uf2s6vfcacg8h
       required:
         - status
         - outputFileName
@@ -3429,10 +3433,10 @@ components:
               type: string
               x-stoplight:
                 id: 96q8dbw2jhnut
-              description: 'The type can be an organization or a user. If the type is `user`, then only the `user_Id` and `name` are returned.'
               enum:
                 - ORGANIZATION
                 - USER
+              description: 'The type can be an organization or a user. If the type is `user`, then only the `userId`, `participantId`, and `name` are returned.'
             userId:
               type: string
               x-stoplight:
@@ -3475,10 +3479,10 @@ components:
               type: string
               x-stoplight:
                 id: iq5a2h8yuv9kq
-              description: 'The type can be an organization or a user. If the type is `user`, then only the `user_Id` and `name` are returned.'
               enum:
                 - ORGANIZATION
                 - USER
+              description: 'The type can be an organization or a user. If the type is `user`, then only the `userId`, `participantId`, and `name` are returned.'
             userId:
               type: string
               x-stoplight:
