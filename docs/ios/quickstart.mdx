@@ -200,8 +200,7 @@ class AppThemeConfigurator: AppThemeProtocol {
 
 ## Step 3: Configure a Dyte meeting and Launch UI
 
-Set the initialization properties in the `DyteUiKitEngine` class. You just need
-to initialize DyteMeetingInfoV2 provide the participant's `authToken`.
+To set the initialization properties in the `DyteUiKitEngine` class, simply initialize `DyteMeetingInfoV2` and provide the participant's `authToken`.
 
 Try this in `viewDidAppear()`
 
@@ -234,7 +233,7 @@ class ViewController: UIViewController {
         controller.modalPresentationStyle = .fullScreen
         self.present(controller, animated: true)
     }
-}
+r}
 ```
 
 Here is a pictorial representation of all the config options defined below.

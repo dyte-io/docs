@@ -23,10 +23,9 @@ One can easily create, vote and view polls by listening to callbacks on
 
 ## Listening to new polls in a meeting
 
-To be able to receive new poll messages you need to implement a method
-`onPollUpdates()` method from callback `DytePollEventsListener`. You can
-subscribe to this events by calling
-`meeting.addMeetingEventsListener(dytePollEventsListener)`
+To receive new poll messages, you must implement the `onPollUpdates()` method from
+the callback DytePollEventsListener. You can subscribe to this event by
+using the `meeting.addMeetingEventsListener(dytePollEventsListener)` method.
 
 ```swift
     extension MeetingViewModel: DytePollEventsListener {
