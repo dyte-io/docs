@@ -120,7 +120,7 @@ To join the meeting room, call `joinRoom()` method on the `dyteClient` instance
 as shown below.
 
 ```kotlin
-meeting.joinRoom({
+dyteClient.joinRoom({
   // meeting room joined
 }, {
   // error in joining the meeting
@@ -135,7 +135,7 @@ To leave the meeting room, call `leaveRoom()` method on the `dyteClient` as
 shown below.
 
 ```kotlin
-meeting.leaveRoom({
+dyteClient.leaveRoom({
   // leave completed
 }, {
   // leave failed
