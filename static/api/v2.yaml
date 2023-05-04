@@ -2546,6 +2546,11 @@ components:
           format: date-time
           description: Timestamp when this recording was stopped. Optional; is present only when the recording has actually been stopped.
           nullable: true
+        recording_duration:
+          type: integer
+          x-stoplight:
+            id: prsgxotoknc3l
+          description: Total recording time in seconds.
       required:
         - id
         - download_url
@@ -3102,6 +3107,12 @@ components:
                 - right bottom
               description: Position of the watermark
               default: left top
+        segment_length:
+          type: integer
+          x-stoplight:
+            id: nvz2itrdjphlb
+          default: 10 seconds
+          description: The duration of each segment or fragment of a video file.
     LivestreamingConfig:
       title: LivestreamingConfig
       x-stoplight:
@@ -3152,6 +3163,104 @@ components:
           default: true
       required:
         - enabled
+    startReason:
+      title: startReason
+      x-stoplight:
+        id: uk66wrtnrqcnr
+      type: object
+      properties:
+        reason:
+          type: string
+          x-stoplight:
+            id: dn2j1jzggz3tg
+          enum:
+            - API_CALL
+            - RECORD_ON_START
+          description: |-
+            Specifies if the recording was started using the "Start a Recording"API or using the parameter RECORD_ON_START in the "Create a meeting" API. 
+
+            If the recording is initiated using the "RECORD_ON_START" parameter, the user details will not be populated.
+        caller:
+          type: object
+          x-stoplight:
+            id: ap08qalkux1vp
+          properties:
+            type:
+              type: string
+              x-stoplight:
+                id: fxgon7ps3760x
+              enum:
+                - ORGANIZATION
+                - USER
+              description: 'The type can be an organization or a user. If the type is `user`, then only the `user_Id` and `name` are returned.'
+            user_Id:
+              type: string
+              x-stoplight:
+                id: ofr7xxueb7d7b
+              format: uuid
+              description: The user ID of the person who started the recording.
+              example: d61f6956-e68f-4375-bf10-c38a704d1bec
+            name:
+              type: string
+              x-stoplight:
+                id: 2q0sigi7zuva4
+              description: Name of the user who started the recording.
+              example: Dyte_test
+    stopReason:
+      title: stopReason
+      x-stoplight:
+        id: 8g2hjugvbfd1i
+      type: object
+      properties:
+        reason:
+          type: string
+          x-stoplight:
+            id: tjp04tusymaft
+          enum:
+            - API_CALL
+            - INTERNAL_ERROR
+            - ALL_PEERS_LEFT
+          description: Specifies the reason why the recording stopped.
+        caller:
+          type: object
+          x-stoplight:
+            id: 8pji3iqxzke6z
+          properties:
+            type:
+              type: string
+              x-stoplight:
+                id: n54oq8jwz6hbv
+              enum:
+                - ORGANIZATION
+                - USER
+              description: 'The type can be an organization or a user. If the type is `user`, then only the `user_Id` and `name` are returned.'
+            user_Id:
+              type: string
+              x-stoplight:
+                id: nhq76tz89qbnd
+              description: The user ID of the person who stopped the recording.
+              format: uuid
+              example: d61f6956-e68f-4375-bf10-c38a704d1bec
+            name:
+              type: string
+              x-stoplight:
+                id: fylgc8uhbqf1v
+              description: Name of the user who stopped the recording.
+              example: Dyte_test
+    InteractiveConfig:
+      title: InteractiveConfig
+      x-stoplight:
+        id: k4wu4coh0k0wj
+      type: object
+      description: 'Allows you to add timed metadata to your recordings, which are digital markers inserted into a video file to provide contextual information at specific points in the content range. The ID3 tags containing this information are available to clients on the playback timeline in HLS format. The output files are generated in a compressed .tar format.'
+      properties:
+        type:
+          type: string
+          x-stoplight:
+            id: 8jh42ug6apgau
+          enum:
+            - ID3
+          description: The metadata is presented in the form of ID3 tags.
   parameters:
     Content-Type:
       name: Content-Type
@@ -3482,8 +3591,6 @@ components:
                 $ref: '#/components/schemas/VideoConfig'
               audio_config:
                 $ref: '#/components/schemas/AudioConfig'
-                x-stoplight:
-                  id: 01lrvdoaz73p8
               live_streaming_config:
                 $ref: '#/components/schemas/LivestreamingConfig'
               file_name_prefix:
@@ -3499,8 +3606,12 @@ components:
                 description: Pass a custom url to record arbitary screen
               dyte_bucket_config:
                 $ref: '#/components/schemas/DyteBucketConfig'
-                x-stoplight:
-                  id: eas331i3nsgx4
+              start_reason:
+                $ref: '#/components/schemas/startReason'
+              stop_reason:
+                $ref: '#/components/schemas/stopReason'
+              interactive_config:
+                $ref: '#/components/schemas/InteractiveConfig'
             required:
               - meeting_id
     CreatePresetBody:
@@ -3904,6 +4015,10 @@ components:
                         properties:
                           storage_config:
                             $ref: '#/components/schemas/StorageConfig'
+                          start_reason:
+                            $ref: '#/components/schemas/startReason'
+                          stop_reason:
+                            $ref: '#/components/schemas/stopReason'
     GetActiveRecording:
       description: Success response
       content:

@@ -131,7 +131,7 @@ participant's `authToken`.
 | `authToken` | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
 
 ```dart
-final meetingInfo = DyteMeetingInfo(
+final meetingInfo = DyteMeetingInfoV2(
                     authToken: '<auth_token>',
                   );
 ```
@@ -143,7 +143,7 @@ To initialize the connection request, call the `init()` method obtained on
 with the Dyte meeting server.
 
 ```dart
-dyteClient.init(meetingInfo)
+dyteClient.init(meetingInfo);
 ```
 
 By registering state observers, you receive callbacks for this action on the
@@ -151,7 +151,7 @@ meeting object.
 
 ```dart
 
-class RoomStateNotifier with DyteMeetingRoomEventsListener {
+class RoomStateNotifier extends DyteMeetingRoomEventsListener {
 
   ...
 
@@ -193,26 +193,23 @@ By registering state observers, you receive callbacks for this action on the
 meeting object.
 
 ```dart
-class LocalUserStatesNotifier with DyteSelfEventsListener {
-
-  ...
+class LocalUserStatesNotifier extends DyteSelfEventsListener {
 
   @override
-  onMeetingRoomJoinStarted() {
+  void onMeetingRoomJoinStarted() {
     /// Handle join start state
   }
 
   @override
-  onMeetingRoomJoined: () {
+  void onMeetingRoomJoined () {
     /// Handle joining completion, ex: move to room screen
-  },
+  }
 
   @override
-  onMeetingRoomJoinFailed: (exception){
+  void onMeetingRoomJoinFailed(exception){
     /// Handle failure
-  },
+  }
 
-  ...
 }
 ```
 
@@ -231,7 +228,7 @@ By registering state observers, you receive callbacks for this action on the
 meeting object.
 
 ```dart
-class RoomStateNotifier with DyteMeetingRoomEventsListener {
+class RoomStateNotifier extends DyteMeetingRoomEventsListener {
 
   ...
 
