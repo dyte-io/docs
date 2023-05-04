@@ -37,6 +37,7 @@ The payload for this event is like the following:
     "id": "50c8940e-1b97-402a-97d6-2708b7feca41",
     "sessionId": "05e57591-d89e-45c9-ae44-08dc1eaad0e0",
     "title": "Meeting title",
+    "roomName": "lcfvaa-absxch",
     "status": "LIVE",
     "createdAt": "2022-12-13T06:57:09.736Z",
     "startedAt": "2022-12-13T06:57:09.736Z",
@@ -47,6 +48,12 @@ The payload for this event is like the following:
   }
 }
 ```
+
+:::info NOTE
+
+`roomName` is sent only if you've created your meeting using [v1 APIs](/api/?v=v1#/operations/create_meeting).
+
+:::
 
 ### `meeting.ended`
 
