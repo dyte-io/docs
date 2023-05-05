@@ -186,7 +186,7 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }) {
         searchContainer.current &&
         createPortal(
           <div
-            className="fixed inset-0 z-[300] flex flex-col overflow-y-auto bg-black/50 dark:bg-black/10"
+            className="fixed inset-0 z-[300] flex flex-col overflow-y-auto bg-black/50"
             onClick={(e) => {
               if (e.target === e.currentTarget) {
                 onClose();
