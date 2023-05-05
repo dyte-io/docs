@@ -147,11 +147,16 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }) {
   });
 
   const [selectedIndex, setSelectedIndex] = useState(() => {
-    return localStorage.getItem('search') === 'docsearch' ? 1 : 0;
+    return typeof localStorage !== 'undefined' &&
+      localStorage.getItem('search') === 'docsearch'
+      ? 1
+      : 0;
   });
 
   useEffect(() => {
-    localStorage.setItem('search', selectedIndex === 0 ? 'ai' : 'docsearch');
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('search', selectedIndex === 0 ? 'ai' : 'docsearch');
+    }
   }, [selectedIndex]);
 
   return (
