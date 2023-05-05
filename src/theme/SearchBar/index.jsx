@@ -26,6 +26,7 @@ import clsx from 'clsx';
 import { ChatBot } from '@dytesdk/docs-ai-react';
 
 import { Search } from 'react-feather';
+import { DyteAISearchIcon } from '@site/src/icons';
 
 let DocSearchModal = null;
 function Hit({ hit, children }) {
@@ -172,14 +173,34 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }) {
         />
       </Head>
 
-      <DocSearchButton
-        onTouchStart={importDocSearchModalIfNeeded}
-        onFocus={importDocSearchModalIfNeeded}
-        onMouseOver={importDocSearchModalIfNeeded}
-        onClick={onOpen}
-        ref={searchButtonRef}
-        translations={translations.button}
-      />
+      <div className="relative flex items-center gap-2">
+        <div
+          className="group flex h-9 cursor-pointer items-center gap-2 rounded-lg border-2 border-transparent bg-[var(--docsearch-searchbox-background)] px-3 transition-colors hover:border-primary hover:dark:border-primary-100"
+          title="Dyte AI Chatbot"
+          onClick={() => {
+            setSelectedIndex(0);
+            onOpen();
+          }}
+        >
+          <DyteAISearchIcon className="h-6 w-6" />
+          <span className="sr-only pointer-events-none text-xs font-medium text-[var(--docsearch-muted-color)] transition-all group-hover:not-sr-only">
+            Dyte AI
+          </span>
+        </div>
+
+        <DocSearchButton
+          onTouchStart={importDocSearchModalIfNeeded}
+          onFocus={importDocSearchModalIfNeeded}
+          onMouseOver={importDocSearchModalIfNeeded}
+          onClick={() => {
+            setSelectedIndex(1);
+            onOpen();
+          }}
+          ref={searchButtonRef}
+          translations={translations.button}
+          id="search-bar"
+        />
+      </div>
 
       {isOpen &&
         DocSearchModal &&
@@ -211,6 +232,7 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }) {
                     )
                   }
                 >
+                  <DyteAISearchIcon className="h-5 w-5" />
                   AI
                   <span className="text-[9px] uppercase text-primary-100">
                     Beta
@@ -228,7 +250,7 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }) {
                     )
                   }
                 >
-                  <Search className="h-5 w-5" />
+                  <Search className="h-4 w-4" />
                   Search
                 </Tab>
               </Tab.List>
