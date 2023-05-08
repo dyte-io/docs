@@ -1,0 +1,73 @@
+---
+title: 'Concepts: Media'
+sidebar_position: 2
+---
+
+
+# Media
+
+## Publishing
+
+In Twilio
+
+```ts
+connect('$TOKEN', {
+  audio: true,
+  name: 'my-room-name',
+  video: { width: 640 }
+})
+```
+
+with Dyte
+
+```ts
+DyteClient.init({
+  authToken: '$TOKEN',
+  defaults: {
+    audio:true,
+    video:true
+  }
+})
+```
+
+### Muting
+
+In Twilio
+
+```ts
+room.localParticipant.audioTracks.forEach(publication => {
+  publication.track.stop();
+  publication.unpublish();
+});
+
+room.localParticipant.videoTracks.forEach(publication => {
+  publication.track.stop();
+  publication.unpublish();
+});
+```
+
+with Dyte
+
+```ts
+meeting.self.disableAudio();
+meeting.self.disableVideo();
+```
+
+### Limits
+
+
+|   | Twilio | Dyte |
+| - | ------ | ---- |
+| Max Participants	| 50 | 200 |
+| Max Audio Publications | 60 | 200 |
+| Max Video Publications | 60 | 200 |
+
+In dyte you have higer participant and publisher limits so you can remove any code to manage around the limits
+
+
+## Subscriptions
+
+In twilio with `clientTrackSwitchOffControl: 'auto'` which is the default configuration, the client SDK will automatically switch on or off a RemoteVideoTrack depending on the visibility of the view/document, video attachment or application lifecycle. This automatic switch on/off of the RemoteVideoTrack is managed by the SDK. This is the default setting.
+
+Dyte comes with active speaker mode by default which has a similar behaviour
+

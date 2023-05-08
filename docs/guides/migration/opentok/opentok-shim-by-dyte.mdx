@@ -41,7 +41,7 @@ To create a connection to an OpenTok session, you can use the `OT.initSession()`
 
 You can obtain Dyte authentication token `<DYTE-AUTH-TOKEN>` using the [Add a Participant API](/api#/operations/add_participant).
 
-```bash
+```ts
 const token = "<DYTE-AUTH-TOKEN>";
 const sessionId = "";
 const session = OT.initSession(token, sessionId);
@@ -51,7 +51,7 @@ const session = OT.initSession(token, sessionId);
 
 This establishes an OpenTok session and listens for events such as `streamCreated`, `connectionCreated`, and `connectionDestroyed`.
 
-```bash
+```ts
 session.on("streamCreated", function streamCreated(event) {
   console.log("[streamCreated] index.ts: ", event.stream);
   session.subscribe(

@@ -1,6 +1,6 @@
 ---
 title: 'Migrate from Twilio to Dyte with Shim'
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 The Twilio [Shim](<https://en.wikipedia.org/wiki/Shim_(computing)>) by Dyte is a package that allows you to migrate your video calling applications from [Twilio](https://sdk.twilio.com/js/video/releases/2.27.0/docs/index.html) to Dyte infrastructure.
@@ -22,13 +22,13 @@ npm install @dytesdk/twilio-shim
 
 The `@dytesdk/twilio-shim` shares the same API as the Twilio video SDK. You can use most of the methods that are supported by it.
 
-Here are some sample cases, and if you want to see a complete list of compatible features, see the [Twilio Shim: Supported Features](/guides/shim-by-dyte/twilio/compatibility-shim-twilio) page.
+Here are some sample cases, and if you want to see a complete list of compatible features, see the [Twilio Shim: Supported Features](/guides/migration/twilio/compatibility-shim-twilio) page.
 
 ### Connect to a room
 
 You can obtain Dyte authentication token `<DYTE-AUTH-TOKEN>` using the [Add a Participant API](/api#/operations/add_participant).
 
-```bash
+```ts
 const { connect } = require('@dytesdk/twilio-shim');
 
 const authToken = '<AUTH_TOKEN_FROM_DYTE_API>';
@@ -42,7 +42,7 @@ console.log(`A remote Participant connected: ${participant}`);
 
 ### Add a participant
 
-```bash
+```ts
 const { connect } = require('@dytesdk/twilio-shim');
 
 const authToken = '<AUTH_TOKEN_FROM_DYTE_API>';
@@ -68,7 +68,7 @@ room.on('participantConnected', participant => {
 
 ### Enable audio and video
 
-```bash
+```ts
 const { connect } = require('@dytesdk/twilio-shim');
 
 const authToken = '<AUTH_TOKEN_FROM_DYTE_API>';
