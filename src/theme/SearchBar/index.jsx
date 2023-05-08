@@ -213,14 +213,17 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }) {
                 'bg-gradient-to-br from-blue-600/50 to-red-500/70'
             )}
             onClick={(e) => {
-              if (e.target === e.currentTarget) {
+              if (
+                e.target === e.currentTarget ||
+                e.target.classList.contains('overlay')
+              ) {
                 onClose();
               }
             }}
           >
             <div
               className={clsx(
-                'absolute inset-0 z-0 bg-black/50 backdrop-blur',
+                'overlay absolute inset-0 z-0 bg-black/50 backdrop-blur',
                 selectedIndex === 0 ? 'block' : 'hidden'
               )}
             />
@@ -244,7 +247,7 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }) {
                   }
                 >
                   <DyteAISearchIcon className="h-5 w-5" />
-                  AI
+                  Dyte AI
                   <span className="text-[9px] uppercase text-primary-100">
                     Beta
                   </span>
