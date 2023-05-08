@@ -210,7 +210,7 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }) {
             className={clsx(
               'fixed inset-0 z-[300] flex flex-col overflow-y-auto',
               selectedIndex === 0 &&
-                'bg-gradient-to-br from-blue-600/50 to-red-500/70'
+                'bg-gradient-to-br from-blue-600/40 to-red-600/40'
             )}
             onClick={(e) => {
               if (
@@ -223,7 +223,7 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }) {
           >
             <div
               className={clsx(
-                'overlay absolute inset-0 z-0 bg-black/50 backdrop-blur',
+                'overlay absolute inset-0 z-0 bg-black/40 backdrop-blur-sm',
                 selectedIndex === 0 ? 'block' : 'hidden'
               )}
             />
