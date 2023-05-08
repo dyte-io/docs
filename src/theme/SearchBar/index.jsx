@@ -183,7 +183,7 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }) {
           }}
         >
           <DyteAISearchIcon className="h-6 w-6" />
-          <span className="sr-only pointer-events-none text-xs font-medium text-[var(--docsearch-muted-color)] transition-all group-hover:not-sr-only">
+          <span className="sr-only pointer-events-none text-xs font-medium text-[var(--docsearch-muted-color)] transition-all group-hover:xl:not-sr-only">
             Dyte AI
           </span>
         </div>
@@ -207,13 +207,27 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }) {
         searchContainer.current &&
         createPortal(
           <div
-            className="fixed inset-0 z-[300] flex flex-col overflow-y-auto bg-black/50"
+            className={clsx(
+              'fixed inset-0 z-[300] flex flex-col overflow-y-auto',
+              selectedIndex === 0 &&
+                'bg-gradient-to-br from-blue-600/50 to-red-500/70'
+            )}
             onClick={(e) => {
-              if (e.target === e.currentTarget) {
+              if (
+                e.target === e.currentTarget ||
+                e.target.classList.contains('overlay')
+              ) {
                 onClose();
               }
             }}
           >
+            <div
+              className={clsx(
+                'overlay absolute inset-0 z-0 bg-black/50 backdrop-blur',
+                selectedIndex === 0 ? 'block' : 'hidden'
+              )}
+            />
+
             <Tab.Group
               selectedIndex={selectedIndex}
               onChange={(index) => {
@@ -233,7 +247,7 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }) {
                   }
                 >
                   <DyteAISearchIcon className="h-5 w-5" />
-                  AI
+                  Dyte AI
                   <span className="text-[9px] uppercase text-primary-100">
                     Beta
                   </span>
