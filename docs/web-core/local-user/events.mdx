@@ -28,10 +28,22 @@ meeting.self.on('roomJoined', () => {
 Triggered when the local user leaves the meeting.
 
 ```js
-meeting.self.on('roomLeft', () => {
-  console.log('User has left the meeting');
+meeting.self.on('roomLeft', ({ state }) => {
+  // state is a string whose values are explained below
+  if (state === 'left') {
+    console.log('User has left the meeting');
+  }
 });
 ```
+
+Here are all the possible values of the `state` variable.
+
+| Event      | Description                                                                         |
+| ---------- | ----------------------------------------------------------------------------------- |
+| `left`     | Participant has left the room.                                                      |
+| `kicked`   | Participant is removed from the meeting.                                            |
+| `ended`    | Everyone is removed from the meeting, and the session has ended.                    |
+| `rejected` | Participant's request to join the room is rejected (when you're in a waiting room). |
 
 ## Video update
 
