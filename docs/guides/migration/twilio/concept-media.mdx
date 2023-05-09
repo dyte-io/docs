@@ -1,0 +1,71 @@
+---
+title: 'Concepts: Media'
+sidebar_position: 2
+---
+
+# Media
+
+This topic compares how Twilio and Dyte handle media publishing and subscription behavior.
+
+## Publishing
+
+Twilio
+
+```ts
+connect('$TOKEN', {
+  audio: true,
+  name: 'my-room-name',
+  video: { width: 640 },
+});
+```
+
+Dyte
+
+```ts
+DyteClient.init({
+  authToken: '$TOKEN',
+  defaults: {
+    audio: true,
+    video: true,
+  },
+});
+```
+
+## Muting
+
+Twilio
+
+```ts
+room.localParticipant.audioTracks.forEach((publication) => {
+  publication.track.stop();
+  publication.unpublish();
+});
+
+room.localParticipant.videoTracks.forEach((publication) => {
+  publication.track.stop();
+  publication.unpublish();
+});
+```
+
+Dyte
+
+```ts
+meeting.self.disableAudio();
+meeting.self.disableVideo();
+```
+
+## Limits
+
+Dyte offers higher participant and publisher limits, so you can remove any code to manage around the limits.
+
+|                        | **Twilio** | **Dyte** |
+| ---------------------- | ---------- | -------- |
+| Max Participants       | 50         | 200      |
+| Max Audio Publications | 60         | 200      |
+| Max Video Publications | 60         | 200      |
+
+## Subscriptions
+
+The Twilio SDK has a default setting called `clientTrackSwitchOffControl: 'auto'`, which automatically turns a `RemoteVideoTrack` on or off based on the visibility of the view, document, video attachment, or application lifecycle.
+
+On the other hand, Dyte's default mode is active speaker mode, which has a similar behavior.

@@ -1,39 +1,74 @@
 ---
-title: 'Understand Dyte Shim for OpenTok'
+title: 'Concepts: Basic'
 sidebar_position: 1
 ---
 
-The OpenTok [Shim](<https://en.wikipedia.org/wiki/Shim_(computing)>) by Dyte is a package that allows you to migrate your video calling applications from [OpenTok](https://tokbox.com/developer/) to Dyte infrastructure.
+This topic guides you through the standard practices utilized in OpenTok Video API and illustrates how they correspond with Dyte's API. The main purpose of this tutorial is to support you in migrating an existing application from OpenTok to Dyte's video and audio APIs.
 
-Dyte provides a set of shim libraries that serve as seamless replacements for the Vonage video APIs (previously known as Tokbox OpenTok). These shims serve as a fundamental building block for migrating your application from OpenTok to Dyte infrastructure.
+## Overview
 
-For more information on how to migrate, see [Migrate from OpenTok to Dyte with Shim](/guides/migration/opentok/opentok-shim-by-dyte).
+Here's a brief overview of the architecture used by OpenTok and Dyte.
 
-## Why should you migrate to Dyte from OpenTok?
+<Tabs>
+  <TabItem value="OpenTok" label="OpenTok Basic Flow">
+    
+    <img src="/static/guides/opentok-arch.png" class="arch-mig-guide"/>
+    
+  </TabItem>
+   <TabItem value="Dyte" label="Dyte Basic Flow">
+    
+    <img src="/static/guides/dyte-arch.png" class="arch-mig-guide" />
 
-### Dyte
+  </TabItem>
+</Tabs>
 
-- Provides RESTful APIs
-- Pre-built customizable SDK
+For more information on how to get started with Dyte, see [Integrate Dyte](/getting-started#integrate-dyte).
 
-### OpenTok
+## Credentials
 
-- Provides JavaScript API
--
+To access OpenTok's API, you need an session ID and auth Token. You generate a token for each user connecting to an OpenTok session. For more information, [Token Creation Overview](https://tokbox.com/developer/guides/create-token/).
 
-Here are a few quick comparison points:
+Dyte uses Organization ID and API Key that you can get from the [Developer Portal](dev.dyte.io).
 
-| **Features**                   | **OpenTok**                         | **Dyte**                                               |
-| ------------------------------ | ----------------------------------- | ------------------------------------------------------ |
-| Ease of Development            | Requires high coding effort         | Easy integration with open APIs                        |
-| UI Support                     | No UI Support                       | Highly customizable UI kit                             |
-| Roles/Permissions              | Limited to host & participant roles | Create custom roles that are specific to your use-case |
-| Plugin                         | Not available                       | In-built or create your own                            |
-| Polls                          | Not available                       | In-built                                               |
-| Breakout Rooms                 | Manual configuration needed         | In-built                                               |
-| SDK Footprint Size             | ~500 KB                             | ~200 KB                                                |
-| Media Player                   | Not available                       | In-built                                               |
-| Composite Recording            | Available at extra cost             | Available at no extra cost                             |
-| AI/ML Middleware               | Not available                       | Single line integration                                |
-| Audio Room                     | Not available                       | In-built                                               |
-| Support for Multiple Audio I/O | Not available                       | In-built                                               |
+| **OpenTok** | **Dyte**        |
+| ----------- | --------------- |
+| Session ID  | Organization ID |
+| Auth token  | API Key         |
+
+## Session / Meeting
+
+OpenTok utilizes Sessions to establish connections between participants, whereas Dyte uses [Meetings](/api#/operations/create_meeting) for the same purpose.
+
+| **OpenTok** | **Dyte**   |
+| ----------- | ---------- |
+| Session     | Meeting    |
+| Session ID  | Meeting ID |
+
+## Participant Authentication
+
+In OpenTok, hashing function and secret are used to generate a participant access token. Foe example, for Java:
+
+```js
+import com.opentok.OpenTok;
+import com.opentok.exception.OpenTokException;
+
+class Test {
+    public static void main(String argv[]) throws OpenTokException {
+        // Set the following constants to your OpenTok API key and API secret.
+        // See https://tokbox.com/account/.
+        OpenTok opentok = new OpenTok(API_KEY, API_SECRET);
+
+        //Generate a basic session. Or you could use an existing session ID.
+        String sessionId = opentok.createSession().getSessionId();
+
+        String token = opentok.generateToken(sessionId);
+        System.out.println(token);
+    }
+}
+```
+
+In Dyte, you make a REST API call to [Add Participant API](/api/#/operations/add_participant) which returns `authToken`.
+
+| **Twilio**   | **Dyte**  |
+| ------------ | --------- |
+| Access Token | Authtoken |
