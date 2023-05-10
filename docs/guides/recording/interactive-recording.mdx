@@ -1,0 +1,91 @@
+---
+title: Interactive Recording
+sidebar_position: 11
+---
+
+Dyte's interactive recording feature allows you to add timed metadata to your video stream. Timed metadata serves as cue points for clients to display information and trigger time-aligned actions. The metadata is available to clients in the form of [ID3](https://en.wikipedia.org/wiki/ID3) tags on the playback timeline.
+
+## What is interactive recording?
+
+Ever wondered how Netflix displays small images on the seek bar or how additional content is shown while watching a cricket match on Hotstar? It's all metadata inserted at a specific time inside the video feed itself, which is called timed metadata.
+
+Timed metadata is metadata with timestamps. It refers to digital markers added to a video file to provide additional context and information at specific points in the content range. These data points can be inserted into a stream programmatically, using the `interactive_config` in the [Start recording a meeting API](/api#/operations/start_recording).
+
+Once Dyte processes the stream, the timed metadata gets synchronized with the audio and video frames. This metadata is available to all viewers during playback at the same time relative to the stream. The timecode acts as a cue point and can trigger specific actions based on the data. For example:
+
+- Update player statistics in a sports stream
+- Send price details during a live shopping stream
+- Send quizzes for a live quiz stream
+- Add poll for an online class stream
+- Display scratch cards, spin the wheel, and slot machine for an online promotion stream
+
+These features are made possible through the use of ID3 tags that are embedded in the video segments, making them available in the recorded video.
+
+## Benefits of interactive recording
+
+Interactive recording offers several benefits, including:
+
+- Enabling developers to create engaging user experiences without interrupting video playback.
+- Allowing viewers to interact with the content without disrupting the flow of the video, resulting in a seamless and engaging experience.
+  Taking traditional video recordings to the next level by adding interactivity to keep viewers engaged. While linear video recordings only allow for basic interactions like playing, pausing, and replaying, interactive recordings can include multiple interactive elements.
+
+## Add interactivity to your Dyte recordings
+
+To add interactivity to your Dyte recording, simply do the following:
+
+1. In the [Start recording a meeting API](/api#/operations/start_recording), pass the `interactive_config` parameter.
+
+This parameter enables you to add timed metadata to your recordings, which is made available to clients in HLS format via ID3 tags. The output files are packaged as a tar file.
+
+2. In [DyteClient](/web-core/reference/DyteClient), call the `broadcastMessage` method with the parameters, `ID3` (as a string) and `yourData` (the data you want to send as timed metadata) on the [participants](/web-core/reference/DyteClient#module_DyteClient+participants) object.
+
+```ts
+client.participants.broadcastMessage(“ID3”, yourData);
+```
+
+3. To stop sending the data, do the following:
+
+```ts
+client.participants.broadcastMessage(“ID3”,”CLOSE_TRANSPORT”)
+```
+
+If you do not pass this parameter, transport will automatically be closed when the recording is stopped.
+
+4. After the recording is finished, you can download the tar file, which contains the video segments and a playlist file. It's important to note that the length of each segment depends on the frames of the video, so they may not be equally distributed. It would be almost equal to the segment length passes while starting the recording but defaults to 10 seconds.
+
+5. You can play the stream using the `hls.js`.
+
+```js
+const handleTimeUpdateListener = (_) => {
+  const textTrackListCount = videoEl.textTracks.length;
+  let metaTextTrack;
+  for (let trackIndex = 0; trackIndex < textTrackListCount; trackIndex++) {
+    const textTrack = videoEl.textTracks[trackIndex];
+    if (textTrack.kind !== 'metadata') {
+      continue;
+    }
+    textTrack.mode = 'showing';
+    metaTextTrack = textTrack;
+    break;
+  }
+  if (!metaTextTrack) {
+    return;
+  }
+  const cuesLength = metaTextTrack.cues.length;
+  let cueIndex = 0;
+  while (cueIndex < cuesLength) {
+    const cue = metaTextTrack.cues[cueIndex];
+    if (cue.fired) {
+      cueIndex++;
+      continue;
+    }
+    const metaData = cue.value.data;
+
+    cue.fired = true;
+    cueIndex++;
+  }
+};
+
+// You can add this listener to the videoEl timeupdate event.
+videoEl.addEventListener('timeupdate', handleTimeUpdateListener);
+```
