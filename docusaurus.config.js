@@ -173,6 +173,17 @@ const docs = [
     },
   },
 
+  {
+    id: 'rn-ui-kit',
+    path: 'docs/rn-ui-kit',
+    routeBasePath: '/rn-ui-kit',
+    versions: {
+      current: {
+        label: '1.x.x',
+      },
+    },
+  },
+
   // Web SDKs - Old
   {
     id: 'react',

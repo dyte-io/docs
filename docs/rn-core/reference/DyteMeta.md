@@ -1,6 +1,6 @@
 ---
 sidebar_position: 7
-web_core_version: 0.42.0
+web_core_version: 1.2.0
 ---
 
 <!-- Auto Generated Below -->
@@ -22,7 +22,7 @@ title.
 ### meeting.meta.viewType
 
 The `viewType` tells the type of the meeting possible values are WEBINAR,
-GROUPCALL
+GROUP_CALL
 
 **Kind**: instance property of [<code>DyteMeta</code>](#module_DyteMeta)  
 <a name="module_DyteMeta+meetingStartedTimestamp"></a>

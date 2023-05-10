@@ -24,9 +24,11 @@ interface BaseMessage<T extends MessageType> {
   displayName: string;
   time: Date;
   id: string;
+  isEdited?: boolean;
   read?: boolean;
   pluginId?: string;
   pinned?: boolean;
+  targetUserIds?: string[];
 }
 
 interface TextMessage extends BaseMessage<MessageType.text> {

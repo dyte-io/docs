@@ -1,6 +1,6 @@
 ---
 sidebar_position: 6
-web_core_version: 0.42.0
+web_core_version: 1.2.0
 ---
 
 <!-- Auto Generated Below -->
@@ -36,9 +36,11 @@ current participant
   - [.chatPrivate](#module_DytePermissionsPreset+chatPrivate)
   - [.hiddenParticipant](#module_DytePermissionsPreset+hiddenParticipant)
   - [.showParticipantList](#module_DytePermissionsPreset+showParticipantList)
-  - [.canChangeParticipantRole](#module_DytePermissionsPreset+canChangeParticipantRole)
+  - ~~[.canChangeParticipantRole](#module_DytePermissionsPreset+canChangeParticipantRole)~~
+  - [.canChangeParticipantPermissions](#module_DytePermissionsPreset+canChangeParticipantPermissions)
   - ~~[.canChangeTheme](#module_DytePermissionsPreset+canChangeTheme)~~
   - ~~[.canPresent](#module_DytePermissionsPreset+canPresent)~~
+  - ~~[.maxScreenShareCount](#module_DytePermissionsPreset+maxScreenShareCount)~~
 
 <a name="module_DytePermissionsPreset+acceptWaitingRequests"></a>
 
@@ -265,10 +267,18 @@ be shown to the participant.
 [<code>DytePermissionsPreset</code>](#module_DytePermissionsPreset)  
 <a name="module_DytePermissionsPreset+canChangeParticipantRole"></a>
 
-### meeting.self.permissions.canChangeParticipantRole
+### ~~meeting.self.permissions.canChangeParticipantRole~~
 
-The `canChangeParticipantRole` returns boolean value. If `true`, allow changing
-the participants' role.
+**_Deprecated_**
+
+**Kind**: instance property of
+[<code>DytePermissionsPreset</code>](#module_DytePermissionsPreset)  
+<a name="module_DytePermissionsPreset+canChangeParticipantPermissions"></a>
+
+### meeting.self.permissions.canChangeParticipantPermissions
+
+The `canChangeParticipantPermissions` returns boolean value. If `true`, allow
+changing the participants' permissions.
 
 **Kind**: instance property of
 [<code>DytePermissionsPreset</code>](#module_DytePermissionsPreset)  
@@ -283,6 +293,14 @@ the participants' role.
 <a name="module_DytePermissionsPreset+canPresent"></a>
 
 ### ~~meeting.self.permissions.canPresent~~
+
+**_Deprecated_**
+
+**Kind**: instance property of
+[<code>DytePermissionsPreset</code>](#module_DytePermissionsPreset)  
+<a name="module_DytePermissionsPreset+maxScreenShareCount"></a>
+
+### ~~meeting.self.permissions.maxScreenShareCount~~
 
 **_Deprecated_**
 

@@ -21,9 +21,13 @@ SDK. It is the only class that you need to instantiate in order to use the SDK.
 To instantiate DyteClient, you can run the following command:
 
 ```js
-const meeting = await DyteClient.init({
-  roomName,
-  authToken,
+import { useDyteClient } from '@dytesdk/react-native-core';
+
+const [client, initClient] = useDyteClient();
+
+const meeting = await initClient({
+  roomName: 'YourRoomName',
+  authToken: 'YourAuthToken',
 });
 await meeting.joinRoom();
 ```

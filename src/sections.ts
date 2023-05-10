@@ -91,13 +91,6 @@ const SECTIONS: Section[] = [
     icon: AppleIcon,
     section: 'mobile-core',
   },
-
-  {
-    name: 'React Native Core',
-    docId: 'rn-core',
-    icon: ReactIcon,
-    section: 'mobile-core',
-  },
   {
     name: 'Flutter Core',
     docId: 'flutter-core',
@@ -105,10 +98,10 @@ const SECTIONS: Section[] = [
     section: 'mobile-core',
   },
   {
-    name: 'React Native',
-    docId: 'react-native',
+    name: 'React Native Core',
+    docId: 'rn-core',
     icon: ReactIcon,
-    section: 'mobile-ui-kit',
+    section: 'mobile-core',
   },
   {
     name: 'Android',
@@ -126,6 +119,12 @@ const SECTIONS: Section[] = [
     name: 'Flutter',
     docId: 'flutter',
     icon: FlutterIcon,
+    section: 'mobile-ui-kit',
+  },
+  {
+    name: 'React Native',
+    docId: 'rn-ui-kit',
+    icon: ReactIcon,
     section: 'mobile-ui-kit',
   },
 ];

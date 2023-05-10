@@ -17,7 +17,16 @@ will help to render the meeting state.
 Here is a list of properties that local user provides:
 
 - `id`: The ID of the participant pertaining to local user.
+- `userId`: The User ID of the participant pertaining to local user.
+- `organizationId`: The ID of the organization the meeting is created from.
 - `name`: Contains Name of the local user.
+- `isPinned`: A boolean value indicating if the local user is pinned or not.
+- `supportsRemoteControl`: A boolean value indicating if the meeting can
+  supports remote control.
+- `device`: Information like browser and OS details.
+- `picture`: Display picture URL for the local user.
+- `waitlistStatus`: Indicates if the local user has been waitlisted or not. It
+  can take the following values: `accepted` | `waiting` | `rejected` | `none`;
 - `clientSpecificId`: Identifier provided by the developer while adding the
   participant.
 - `roomJoined`: A boolean value indicating if the local user has joined the
@@ -29,14 +38,19 @@ Here is a list of properties that local user provides:
 - `mediaPermissions`: The current audio and video permissions given by the local
   user.
 - `audioTrack`: The audio track for the local user.
-- `videoTrack`: The video track for the local user.
+- `rawAudioTrack`: The audio track for the local user without any middleware
+  applied on it.
+- `videoTrack`: The video track for the local user without any middleware
+  applied on it.
+- `rawVideoTrack`: The video track for the local user.
 - `screenShareTracks`: The screen share video and audio tracks for the local
   user.
 - `audioEnabled`: A boolean value indicating if the audio currently enabled.
 - `videoEnabled`: A boolean value indicating if the video currently enabled.
 - `screenShareEnabled`: A boolean value indicating if the screen share is
   currently enabled.
-- `suggestedTheme`: The suggested theme for building the user interface.
+- `config`: The suggested theme for building the user interface.
+- ~~`suggestedTheme`: The suggested theme for building the user interface.~~
 
 ## Change default audio / video settings
 
@@ -44,8 +58,11 @@ By default as soon as you join the meeting the SDK will produce your video and
 audio streams. To change this behaviour use the `default` parameter
 
 ```ts {5}
-const meeting = await DyteClient.init({
-  roomName,
+import { useDyteClient } from '@dytesdk/react-native-core';
+
+const [client, initClient] = useDyteClient();
+
+const meeting = await initClient({
   authToken,
   defaults: {
     audio: false, // Disable user's audio by default
@@ -100,28 +117,33 @@ await meeting.self.enableVideo();
 meeting.self.videoEnabled;
 ```
 
-## Preview media
-
-Preview methods can be used to test the video / audio stream before sharing them
-with the meeting.
-
-### Enable / Disable Audio and Video Preview
-
-Enable a preview for audio and video. This will populate the `preview` property
-for the local user. You can check if the streams are enabled in the preview
-using `meeting.self.preview.audioEnabled` and
-`meeting.self.preview.videoEnabled`.
+## Enable / Disable Screen share
 
 ```ts
-// Enable preview
-await meeting.self.enablePreview();
+// Enable Screenshare
+await meeting.self.enableScreenShare();
 
-// Disable preview
-await meeting.self.disablePreview();
+// Disable Screenshare
+await meeting.self.disableScreenShare();
 
-// Enable only audio preview
-await meeting.self.enablePreview({ video: false });
-
-// Enable only video preview
-await meeting.self.enablePreview({ audio: false });
+// Get current status
+meeting.self.screenShareEnabled;
 ```
+
+### Screen share configuration
+
+You can set the defaults for screen share during initialization
+
+```ts
+const meeting = await DyteClient.init({
+  authToken,
+  defaults: {
+    screenShare: {
+      displaySurface: 'window',
+    },
+  },
+});
+```
+
+[displaySurface](https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints#displaysurface): Specifies the types of display surface that may be selected by the user.
+Allowed values: `window`, `monitor`, `browser`
