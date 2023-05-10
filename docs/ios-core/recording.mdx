@@ -36,3 +36,29 @@ meeting.recording.stop()
 The `meeting.recording.recordingState` property describes the current state of
 the recording. The valid states are `IDLE`, `STARTING`, `RECORDING`, and
 `STOPPING`.
+
+## Listening to recording events in a meeting
+
+To receive recording events, you must implement methods from `DyteRecordingEventsListener`.
+You can subscribe to these events by using the `meeting.addRecordingEventsListener(dyteRecordingEventsListener: listener)` method.
+
+```swift
+extension MeetingViewModel: DyteRecordingEventsListener {
+
+  func onMeetingRecordingEnded() {
+    // your code to handle recording end
+  }
+
+  func onMeetingRecordingStarted() {
+    // your code to handle recording start
+  }
+
+  func onMeetingRecordingStateUpdated(state: DyteRecordingState) {
+    // your code to handle recording state update
+  }
+
+  func onMeetingRecordingStopError(e: KotlinException) {
+    // your code to handle recording stop error
+  }
+}
+```

@@ -76,7 +76,7 @@ The `DyteMobileClient` is the main class of the SDK. It is the entry point and
 the only class required to initialize Dyte SDK.
 
 ```kotlin
-val dyteClient = DyteMobileClient();
+val dyteClient = DyteAndroidClientBuilder.build(activity)
 ```
 
 ## Step 3: Set the meeting properties
@@ -86,12 +86,10 @@ participant's `authToken`.
 
 | Name          | Description                                                                                                                                                                                                                                                                                                                                   |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `authToken`   | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
-| `enableAudio` | Default setup for audio when user joins in a meeting.                                                                                                                                                                                                                                                                                         |
-| `enableVideo` | Default setup for video when user joins in a meeting.                                                                                                                                                                                                                                                                                         |
+| `authToken`   | After you've created the meeting, add each participant to the meeting using the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant) (The presetName created earlier must be passed in the body of the Add Participant API request) The API response contains the `authToken`. |                                                                                                                                                                                                                                                                                        |
 
 ```kotlin
-val meetingInfo = DyteMeetingInfo(
+val meetingInfo = DyteMeetingInfoV2(
                     authToken = '<auth_token>',
                   )
 ```
@@ -103,28 +101,12 @@ To initialize the connection request, call the `init()` method obtained on
 with the Dyte meeting server.
 
 ```kotlin
-dyteClient.init(meetingInfo)
-```
-
-By registering state observers, you receive callbacks for this action on the
-`dyteClient` object.
-
-```kotlin
-private val meetingEventListener = object : DyteMeetingRoomEventsListener {
-  override fun onMeetingInitStarted() {
-    super.onMeetingInitStarted()
+dyteClient.init(meetingInfo, {
+    // init complete
+  }, {
+    // init failed
   }
-
-  override fun onMeetingInitCompleted() {
-    super.onMeetingInitCompleted()
-  }
-
-  override fun onMeetingInitFailed(exception: Exception) {
-    super.onMeetingInitFailed(exception)
-  }
-}
-
-dyteClient.addMeetingRoomEventsListener(meetingEventListener)
+)
 ```
 
 ## Step 5: Connect to the meeting
@@ -138,28 +120,11 @@ To join the meeting room, call `joinRoom()` method on the `dyteClient` instance
 as shown below.
 
 ```kotlin
-dyteClient.joinRoom();
-```
-
-By registering state observers, you receive callbacks for this action on the
-meeting object.
-
-```kotlin
-private var selfEventListener: DyteSelfEventsListener? = object : DyteSelfEventsListener {
-  override fun onMeetingRoomJoinStarted() {
-    super.onMeetingRoomJoinStarted()
-  }
-
-  override fun onMeetingRoomJoined() {
-    super.onMeetingRoomJoined()
-  }
-
-  override fun onMeetingRoomJoinFailed(exception: Exception) {
-    super.onMeetingRoomJoinFailed(exception)
-  }
-}
-
-dyteClient.addSelfEventsListener(selfEventListener)
+dyteClient.joinRoom({
+  // meeting room joined
+}, {
+  // error in joining the meeting
+})
 ```
 
 ### Leave the room
@@ -170,24 +135,11 @@ To leave the meeting room, call `leaveRoom()` method on the `dyteClient` as
 shown below.
 
 ```kotlin
-dyteClient.leaveRoom();
-```
-
-By registering state observers, you receive callbacks for this action on the
-meeting object.
-
-```dart
-private var selfEventListener: DyteSelfEventsListener? = object : DyteSelfEventsListener {
-  override fun onMeetingRoomLeaveStarted() {
-    super.onMeetingRoomLeaveStarted()
-  }
-
-  override fun onMeetingRoomLeft() {
-    super.onMeetingRoomLeft()
-  }
-}
-
-dyteClient.addSelfEventsListener(selfEventListener)
+dyteClient.leaveRoom({
+  // leave completed
+}, {
+  // leave failed
+})
 ```
 
 ## Release Builds

@@ -1,11 +1,8 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
 
-import {
-  DiscordLogoIcon,
-  LinkedInLogoIcon,
-  TwitterLogoIcon,
-} from '@radix-ui/react-icons';
+import { Linkedin, Twitter } from 'react-feather';
+import { DiscordIcon } from '@site/src/icons';
 
 const githubUsernames = [
   'vaibhavshn',
@@ -39,7 +36,8 @@ export default function CommunitySection() {
               key={username}
               src={`https://github.com/${username}.png?size=60`}
               alt={`User ${username}`}
-              className="h-6 w-6 rounded-full border-2 border-solid border-white transition hover:scale-125 lg:h-12 lg:w-12"
+              loading="lazy"
+              className="h-6 w-6 rounded-full border-2 border-solid border-white transition hover:-translate-y-2 hover:scale-150 lg:h-12 lg:w-12"
             />
           ))}
         </div>
@@ -48,19 +46,19 @@ export default function CommunitySection() {
             className="flex w-full items-center justify-center gap-2 rounded-sm border border-solid border-primary-100 bg-primary-100/10 px-2 py-2 text-primary-100 lg:w-auto"
             href="https://community.dyte.io"
           >
-            <DiscordLogoIcon /> Discord &rarr;
+            <DiscordIcon className="h-6 w-6" /> Discord &rarr;
           </Link>
           <Link
             className="flex w-full items-center justify-center gap-2 rounded-sm border border-solid border-primary-100 bg-primary-100/10 px-2 py-2 text-primary-100 lg:w-auto"
             href="https://twitter.com/dyte_io"
           >
-            <TwitterLogoIcon /> Twitter &rarr;
+            <Twitter className="h-5 w-5" /> Twitter &rarr;
           </Link>
           <Link
             className="flex w-full items-center justify-center gap-2 rounded-sm border border-solid border-primary-100 bg-primary-100/10 px-2 py-2 text-primary-100 lg:w-auto"
             href="https://www.linkedin.com/company/dyteio"
           >
-            <LinkedInLogoIcon /> LinkedIn &rarr;
+            <Linkedin className="h-5 w-5" /> LinkedIn &rarr;
           </Link>
         </div>
       </div>

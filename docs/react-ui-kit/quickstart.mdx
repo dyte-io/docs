@@ -97,7 +97,9 @@ Here's a series of steps that you need to perform:
    it can join and leave meetings, and so on.
 
 ```jsx
+import { useEffect } from 'react';
 import { useDyteClient } from '@dytesdk/react-web-core';
+import { DyteMeeting } from '@dytesdk/react-ui-kit';
 
 export default function App() {
   const [meeting, initMeeting] = useDyteClient();

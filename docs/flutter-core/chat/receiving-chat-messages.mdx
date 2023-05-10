@@ -5,40 +5,32 @@ sidebar_position: 3
 tags: [flutter-core, chat]
 ---
 
-# Receiving chat messages
+# Receive a Chat Message
 
-To listen for chat messages you need to implement `onChatUpdates()` method from
-callback `DyteMeetingRoomEventsListener`. You can subscribe to this events by
-calling
+To receive chat messages, implement the `onChatUpdates(...)` method from callback `DyteChatEventsListener`. You can subscribe to these events by calling the following:
 
 ```dart
 
-class MeetingRoomEventsListener with DyteMeetingRoomEventsListener {
+class ChatEventsListener with DyteChatEventsListener {
 
   ...
 
   @override
-  void onChatUpdates(
-        newMessage: Boolean,
-        message: DyteChatMessage?,
-        messages: List<DyteChatMessage>
-      ) {
+  void onChatUpdates(List<DyteChatMessage> messages) {
         // your code to handle new chat message
-      }
+  }
 
+  void onNewChatMessage(DyteChatMessage message) {
+      // your code to handle new chat message
+  }
   ...
 }
 ```
 
 ```dart
-dyteClient.addMeetingEventsListener(
-  /// DyteMeetingRoomEventsListener instance
-)
+dyteClient.addChatEventsListener(ChatEventsListener());
 ```
 
-Here, the `message` is of type `DyteChatMessage`, as defined in
-[introduction](./introduction). `messages` is a list of all chat messages in the
-meeting, which is the same as `dyteClient.chat.messages`.
+In this context, `messages` refers to a list of all the chat messages in the meeting. The type of message used is `DyteChatMessage`, which was introduced earlier in the [introduction](./introduction.mdx) to Chat topic.
 
-When a chat message is received, the `dyteClient.chat.messages` list is also
-updated.
+Whenever a chat message is received, the `dyteClient.chat.messages` list is automatically updated.

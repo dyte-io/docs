@@ -1,0 +1,84 @@
+[
+  {
+    "version": "1.25.0",
+    "createdAt": 1679433268,
+    "fixes": [
+      "Build issue for customers using Webpack v5 aliasing `process` with `false` is resolved.",
+      "Removed `Poll Messages` from [meeting.chat.messages](./reference/DyteChat#module_DyteChat+messages). Poll messages were wrongly included in the chat messages.",
+      "Optimized screenshare production for higher frame rate.",
+      "Improved correctness of [mediaScoreUpdate](./participants/events#network-quality-score) on participant."
+    ],
+    "new_api": [
+      "The `defaults` parameter in the init() function [now take recording configuration](./recording#recording-configuration), which is utilized when [starting a recording](./recording#start-a-recording). ",
+      "When calling init() the `defaults` param now take screen sharing configuration. \nConfigure the preferred screen sharing screen surface (Screen / Window / Browser Tab)."
+    ]
+  },
+  {
+    "version": "1.22.0",
+    "createdAt": 1678333268,
+    "fixes": [],
+    "features": [
+      "**Interactive Livestream Release (LL-HLS)** \n 1. Broadcast a meeting to 100,000 viewers with Low latency (3-6 seconds)\n 2. Interactive Chat and Polls \n 3. Viewers can raise hands or the host can invite Viewers to join the stage"
+    ],
+    "new_api": [
+      "A new `DyteStage` module introduced at [meeting.stage](./reference/DyteStage) to manage the stage during livestreaming. \n For more information, see [Livestreaming State Management APIs](https://docs.dyte.io/guides/livestream/state-management-apis).",
+      "A new 'DyteLiveStream' module introduced at [meeting.livestream](./Reference/DyteLivestream) to start and stop the livestreaming. \n For more information, see [Livestreaming: Properties, Functions, and Events](https://docs.dyte.io/guides/livestream/livestream-apis)."
+    ]
+  },
+  {
+    "version": "1.21.x",
+    "createdAt": 1677609000,
+    "fixes": ["Handle WeWork Solistice Camera gracefully"],
+    "features": [
+      "Initial support for our upcoming Interactive Livestream product (LL-HLS)",
+      "Webcam quality can now be controlled from the preset, allows customer to select a higher base quality in the preset editor (beta)"
+    ],
+    "new_api": [
+      "Added boolean flag `socketConnected` to `meeting.meta` that shows when the socket connection is established"
+    ]
+  },
+  {
+    "version": "1.20.0",
+    "createdAt": 1676643893,
+    "fixes": [
+      "**🚨 Critical 🚨** Fixed a WebRTC video production bug that would impact *future* Chrome/Edge browser builds (version ≥ M111 - Scheduled to be released in the first week of March)",
+      "Fixed a regression introduced in `1.3.1` where defaults values passed during initialisation were not respected correctly under a certain edge case",
+      "Fixed an issue where a bluetooth device disconnection on Google Chrome did not automatically switch to an alternative device",
+      "Added workarounds for a [Safari Bug](https://bugs.webkit.org/show_bug.cgi?id=231787) where on disconnection of a bluetooth device, local video playback was paused",
+      "Fixed an issue with Safari screenshare, this improves the screenshare quality in Safari.",
+      "Minor improvement in the loading times of participant videos when joining a meeting with many participant on the Stage"
+    ],
+    "features": [
+      "Reduced the size impact of this library from from 1020KB to 880KB (from 228KB to 208KB GZipped). A 12% improvement from the previous release "
+    ]
+  },
+  {
+    "version": "1.19.1",
+    "createdAt": 1675261282,
+    "fixes": [
+      "Improve text legibility when screensharing on Chrome under poor network conditions"
+    ],
+    "features": []
+  },
+  {
+    "version": "1.19.0",
+    "createdAt": 1674714600,
+    "fixes": ["Improved permissions check for audio/video/screenshare"],
+    "features": [
+      "When Tab Sync is enabled, now a `selfTabUpdate` event is fired on the local user when the user switches a plugin"
+    ],
+    "breaking-changes": []
+  },
+  {
+    "version": "1.18.0",
+    "createdAt": 1674206130,
+    "fixes": [
+      "Improved handling of iphone Continuity on Mac OS",
+      "Fix issues in Websocket connection on Safari 12.x / 13.x / 14.x"
+    ],
+    "features": [
+      "**V2 REST API** - Supports `authToken` generated from V2 REST APIs"
+    ],
+    "breaking-changes": []
+  }
+]

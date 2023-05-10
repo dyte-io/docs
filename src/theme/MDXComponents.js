@@ -10,10 +10,13 @@ import VideoPlayer from '../components/VideoPlayer';
 import InfoTooltip from '../components/InfoTooltip';
 import PropsTable from '../components/PropsTable';
 import ComponentsGrid from '../components/ComponentsGrid';
+import { CardSection, Card } from '../components/CardComponents';
+import * as icons from '../icons';
 
 export default {
   // Re-use the default mapping
   ...MDXComponents,
+  ...icons,
 
   Tabs,
   TabItem,
@@ -24,4 +27,6 @@ export default {
   InfoTooltip,
   PropsTable,
   ComponentsGrid,
+  CardSection,
+  Card,
 };

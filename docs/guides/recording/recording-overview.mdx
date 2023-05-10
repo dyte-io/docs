@@ -79,7 +79,7 @@ A typical workflow for recording a meeting involves the following steps:
    [GET endpoint](/api/?v=v2#/operations/get_one_recording) or from the
    Developer Portal.
 
-## Different recording states
+## Recording states
 
 The recording of a meeting can have the following states:
 
@@ -91,10 +91,8 @@ The recording of a meeting can have the following states:
 | UPLOADED  | The recording file upload is complete and the status webhook is also triggered.                                                                                                                                                                     |
 | ERRORED   | There was an irrecoverable error while recording the meeting and the file will not be available.                                                                                                                                                    |
 
-Receive notifications of recording status in any of the following ways:
+You can receive notifications of recording status in any of the following ways:
 
-- Use
-  [`recording.statusUpdate`](/guides/webhooks/webhook-events#recordingstatusupdate)
-  webhook
-- Use [Fetch active recording API](/api?v=v2#/operations/get_active_recording)
-- From the [Developer Portal](https://dev.dyte.io/)
+- **Webhook**: Utilize the [`recording.statusUpdate`](/guides/webhooks/webhook-events#recordingstatusupdate) webhook to receive real-time updates about the status of your recordings.
+- **API**: Use the [Fetch active recording API](/api?v=v2#/operations/get_active_recording) to retrieve the status of your recordings programmatically.
+- **Developer Portal**: Access the [Developer Portal](https://dev.dyte.io/) to view the status of your recordings.

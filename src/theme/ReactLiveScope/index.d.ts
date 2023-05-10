@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 declare const ReactLiveScope: {
   createFactory<T extends HTMLElement>(

@@ -1,0 +1,63 @@
+[
+  {
+    "version": "1.46.0",
+    "createdAt": 1679409000,
+    "fixes": [
+      "The **stop screenshare** feature was not working when multiple users were sharing their screens simultaneously."
+    ],
+    "features": [
+      "Chat in a livestreaming meeting is now paginated to handle hundreds of thousands of messages."
+    ]
+  },
+  {
+    "version": "1.45.0",
+    "createdAt": 1678209000,
+    "features": [
+      "**Interactive Livestream Release (LL-HLS)** \n 1. Broadcast a meeting to up to 100,000 viewers with low latency of just 3 to 6 seconds.\n 2. Interactive chat and polls. \n 3. Viewers can raise hands to join the stage or the host can invite viewers to join the stage. \n For more information, see [ILS Overview](https://docs.dyte.io/guides/livestream/livestream-overview) and [Getting Started with ILS](https://docs.dyte.io/guides/livestream/getting-started-with-livestreaming)."
+    ],
+    "new_api": [
+      "New `<dyte-livestream-player />`, `<dyte-livestream-toggle />` and `<dyte-livestream-indicator />` components."
+    ]
+  },
+  {
+    "version": "1.44.2",
+    "createdAt": 1677609000,
+    "fixes": [
+      "Fixed an edge case in file name and size detection in chat.",
+      "Clap file names in chat to single line. Now long files names are truncated with ellipsis.",
+      "Optimized icons to have consistent colors."
+    ],
+    "features": []
+  },
+  {
+    "version": "1.44.0",
+    "createdAt": 1677004200,
+    "fixes": [
+      "Performance improvement for `<dyte-chat-messages-ui />` when the window is in background.",
+      "Fixed an issue with `<dyte-chat-selector-ui />` in Safari, where the component was overlapping with `<dyte-messages-ui />`."
+    ],
+    "features": [
+      "`<dyte-chat-composer-ui />` now supports `disableEmojiPicker` property to disable emoji picker."
+    ]
+  },
+  {
+    "version": "1.43.1",
+    "createdAt": 1677473766,
+    "fixes": [
+      "Issue with disabled state in the `dyte-control` bar-button has been resolved.",
+      "`dyte-avatar` now handles multibyte characters better and removes special characters from the name.",
+      "The dimensions of avatars in polls have been fixed.",
+      "The alignment of tab bar names has been fixed for cases where the plugin name is short."
+    ],
+    "features": ["`dyte-grid` now supports background color."]
+  },
+  {
+    "version": "1.41.1",
+    "createdAt": 1674206130,
+    "fixes": [
+      "Double render of dyte-header and dyte-controlbar elements",
+      "Missing export for a few Angular UI Kit Components"
+    ],
+    "breaking-changes": []
+  }
+]

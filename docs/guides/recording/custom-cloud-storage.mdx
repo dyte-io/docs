@@ -1,6 +1,6 @@
 ---
 title: Publish Recorded File to Your Cloud Provider
-sidebar_position: 5
+sidebar_position: 10
 ---
 
 import RecordingStorage from '../../../static/static/guides/recording-storage.png';
@@ -53,7 +53,7 @@ You can also specify storage configuration details using Developer Portal.
 1. In the Developer Portal, go to Recordings.
 2. Click **Setup Storage**.
 3. Specify the details for your cloud provider. We support transferring
-   recordings to AWS, Azure, and DigitalOcean storage buckets.
+   recordings to AWS, Azure, DigitalOcean, and Google Cloud Storage (GCS) buckets.
 
 <img
   src={RecordingStorage}
@@ -124,3 +124,26 @@ the `storage_config` parameter:
 - Region: Specify the region where your Spaces bucket is hosted, for example,
   `SGP1`. For more information, see
   [Region Availability Matrix](https://docs.digitalocean.com/products/platform/availability-matrix/).
+
+### Google Cloud Storage (GCS)
+
+To transfer recordings to GCS, set the following fields in
+the `storage_config` parameter:
+
+- Type: Specify `gcs`.
+- Bucket: Enter the name of your Cloud Storage bucket.
+- (Optional) Path: Specify the path to a sub-folder where recordings should be
+  transferred. If this parameter is not passed, recordings will be transferred
+  to the root folder of the container.
+- Secret: Enter your service account credentials. For more information, see [service account credentials](https://developers.google.com/workspace/guides/create-credentials#service-account).
+- Region: Specify the region where your Cloud Storage bucket is hosted, for example,
+  `US multi-region`. For more information, see
+  [Bucket locations](https://cloud.google.com/storage/docs/locations).
+
+## Update the Recording File Name
+
+You can change the name of the recording file using the `file_name_prefix` field. The default format for recorded file name is `roomname_timestamp`, but you can add an alphanumeric and underscore prefix to the default file name.
+
+It's important to note that you can only add a prefix to the default format; you can't change the entire file name. For example, if you teach an online physics class at 9 a.m. using Dyte, you could add `Physics_9am` to the file name. `Physics_9am_roomname_timestamp` would be the new file name.
+
+For more information, see [start recording a meeting](https://docs.dyte.io/api#/operations/start_recording).

@@ -1,0 +1,129 @@
+---
+slug: /
+sidebar_position: 2
+---
+
+# Quickstart
+
+This quickstart shows how to incorporate live video and audio into your React application using Dyte's Core SDKs. Core SDKs offer comprehensive customization and branding capabilities, enabling you to create your own user interface (UI) from scratch, without having to deal with complex media layers.
+
+## Objective
+
+You'll learn how to:
+
+- Install the Dyte SDK
+- Initialize Dyte Client
+- Connect to the meeting
+- Go live!
+
+## Before Getting Started
+
+Make sure you've read the [Getting Started with Dyte](/getting-started) topic
+and completed the following steps:
+
+- Create a [Dyte Developer Account](https://dev.dyte.io/)
+- Create [Presets](https://dev.dyte.io/roles-presets). Dyte also includes the
+  following pre-configured presets for group call and webinar. You can simply
+  use the default preset if you don't wish to create one.
+  - webinar_viewer
+  - webinar_presenter
+  - group_call_host
+  - group_call_participant
+- Create a [Dyte Meeting](/api/?v=v2#/operations/create_meeting)
+- [Add Participant](/api/?v=v2#/operations/add_participant) to the meeting
+- Install [React 16.8](https://reactjs.org/blog/2019/02/06/react-v16.8.0.html) or higher on your device
+
+## Step 1: Install the SDK
+
+You can install the package npm or Yarn.
+
+```shell npm2yarn
+npm install @dytesdk/react-web-core
+```
+
+[![npm version](https://badge.fury.io/js/@dytesdk%2Freact-web-core.svg)](https://badge.fury.io/js/@dytesdk%2Freact-web-core)
+
+## Step 2: Initialize the SDK
+
+To start, we need to initialize the libraries and wrap the application in the `<DyteProvider />` component. Import the `DyteProvider` from the `dytesdk/react-web-core`.
+
+The `<DyteProvider />` provides the necessary context for the various hooks to consume the `meeting` object as per their purpose. Dyte provides the following built-in hooks for your usage:
+
+- `useDyteClient()`
+- `useDyteMeeting()`
+- `useDyteSelector()`
+
+For more information on hooks, see [Use Web Core Hooks](/react-ui-kit/using-hooks).
+
+To initialize, call the `init()` method and pass the `authToken`. You can get the `authToken` using the [Add Participant API](/api#/operations/add_participant).
+
+```jsx
+import { DyteProvider, useDyteClient } from '@dytesdk/react-web-core';
+import { useEffect } from 'react';
+
+export default function App() {
+  const [meeting, initMeeting] = useDyteClient();
+
+  useEffect(() => {
+    initMeeting({
+      authToken: '<auth-token>',
+      defaults: {
+        audio: false,
+        video: false,
+      },
+    });
+  }, []);
+
+  return (
+    <DyteProvider value={meeting}>
+      {/* Render your UI here. Subcomponents can now use the `useDyteMeeting` and `useDyteSelector` hooks */}
+    </DyteProvider>
+  );
+}
+```
+
+You can now use the `useDyteMeeting` and `useDyteSelector` hooks as required.
+
+## Step 3: Connect to the Meeting
+
+Now, you have established the connection with the Dyte meeting server successfully. Next step is to join the room and leave the room once the meeting is over.
+
+```jsx
+import { useDyteMeeting, useDyteSelector } from '@dytesdk/react-web-core';
+import { useEffect } from 'react';
+import Room from './Room';
+
+export default function AudioRoom() {
+  const { meeting } = useDyteMeeting();
+  const roomJoined = useDyteSelector((meeting) => meeting.self.roomJoined);
+
+  useEffect(() => {
+    meeting.self.on('roomLeft', () => {
+      // handle navigation to other screen here after the user has left the room.
+      alert("You've left the room");
+    });
+  }, [meeting]);
+
+  return <Room />;
+}
+```
+
+## Example
+
+```jsx
+import { useDyteMeeting, useDyteSelector } from '@dytesdk/react-web-core';
+
+const Meeting = () => {
+  // in case you want to use the whole meeting object
+  const { meeting } = useDyteMeeting();
+
+  // in case you just want to use a `slice` of a meeting object
+  // these are optimized so that re-renders only occur when the selected slice changes
+  const messages = useDyteSelector((meeting) => meeting.chat.messages);
+  const activeParticipants = useDyteSelector(
+    (meeting) => meeting.participants.active
+  );
+
+  return <div>{/* render your UI */}</div>;
+};
+```

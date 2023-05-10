@@ -24,7 +24,9 @@ export default function ResourcesSection() {
                 <div className="mb-3 overflow-hidden rounded-lg">
                   <img
                     src={resource.image}
-                    className="aspect-square h-full w-full object-cover transition-transform group-hover:scale-110"
+                    alt={resource.title}
+                    loading="lazy"
+                    className="aspect-video lg:aspect-square h-full w-full object-cover transition-transform group-hover:scale-110"
                   />
                 </div>
                 <h3 className="font-semibold text-black group-hover:text-primary dark:text-white dark:group-hover:text-primary-100 lg:text-xl">
@@ -35,10 +37,10 @@ export default function ResourcesSection() {
                 </p>
               </div>
               <div className="mt-4 flex items-center justify-between">
-                <div className="rounded-sm bg-primary/20 px-3 py-1 text-sm text-primary">
+                <div className="rounded-sm bg-primary-100/10 px-3 py-1 text-sm text-primary-100">
                   {resource.type}
                 </div>
-                <div className="text-text-400/60">
+                <div className="text-text-400 text-sm">
                   {`${resource.duration} ${
                     resource.type === 'Video' ? 'watch' : 'read'
                   }`}

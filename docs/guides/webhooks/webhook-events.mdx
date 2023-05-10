@@ -37,6 +37,7 @@ The payload for this event is like the following:
     "id": "50c8940e-1b97-402a-97d6-2708b7feca41",
     "sessionId": "05e57591-d89e-45c9-ae44-08dc1eaad0e0",
     "title": "Meeting title",
+    "roomName": "lcfvaa-absxch",
     "status": "LIVE",
     "createdAt": "2022-12-13T06:57:09.736Z",
     "startedAt": "2022-12-13T06:57:09.736Z",
@@ -47,6 +48,12 @@ The payload for this event is like the following:
   }
 }
 ```
+
+:::info NOTE
+
+`roomName` is sent only if you've created your meeting using [v1 APIs](/api/?v=v1#/operations/create_meeting).
+
+:::
 
 ### `meeting.ended`
 
@@ -166,6 +173,13 @@ instead.
 This event is received when the chat messages dump of a meeting becomes
 available after the meeting ends.
 
+:::info Note
+
+By default, this event is not enabled for your organization.
+[Contact us](https://dyte.io/contact) to enable the `meeting.chatSynced` event for your
+organization.
+
+:::
 The payload for this event is like the following:
 
 ```json
@@ -266,32 +280,34 @@ values={[
 ```json
 {
   "event": "recording.statusUpdate",
-  "recording": {
-    "id": "6c81b7c4-4465-4e16-a36f-21b501d619bc",
-    "recordingId": "6c81b7c4-4465-4e16-a36f-21b501d619bc",
-    "status": "UPLOADED",
-    "roomUUID": "70f41786-7e59-4e70-92ff-ae0504327ba7",
-    "downloadUrl": "https://dyte-recordings.s3.ap-south-1.amazonaws.com/70c5d391-4bac-4cf3-9907-bec205798adb/50c8940e-1b97-402a-97d6-2408b7feca41_1670915317403.mp4",
-    "downloadUrlExpiry": "2022-12-20 07:09:46.020343Z",
-    "startedTime": "2022-12-13 07:08:39.051621Z",
-    "stoppedTime": "2022-12-13 07:09:45.865627Z",
-    "fileSize": 216787,
-    "outputFileName": "50c8940e-1b97-402a-97d6-2408b7feca41_1670915317403.mp4",
-    "meetingId": "50c8940e-1b97-402a-97d6-2408b7feca41",
-    "organizationId": "70c5d391-4bac-4cf3-9907-bec205798adb"
-  },
   "meeting": {
-    "id": "50c8940e-1b97-402a-97d6-2408b7feca41",
-    "title": "Meeting Title",
-    "createdAt": "2022-12-12T06:26:07.310Z",
+    "id": "f489904b-c6d7-4a90-a9b1-cf941cb31f01",
+    "title": "Meeting from Postman v1.0",
     "status": "LIVE",
-    "createdAt": "2023-01-25T04:51:22.116Z",
-    "startedAt": "2023-01-26T03:36:23.224Z",
     "endedAt": null,
+    "roomName": "missxh-vxtest",
+    "createdAt": "2023-04-14T04:45:37.637Z",
+    "sessionId": "5a0c5abd-97a3-4dac-b2d2-19ed3d7bb3c2",
+    "startedAt": "2023-04-14T04:45:37.637Z",
     "organizedBy": {
-      "id": "70c5d391-4bac-4cf3-9907-bec205798adb",
-      "name": "Dyte"
+      "id": "c94c437b-592a-4a39-b9e2-47ef1451e43c",
+      "name": "test"
     }
+  },
+  "recording": {
+    "id": "ab920f84-2d19-4013-99c7-5b80291d0188",
+    "status": "UPLOADED",
+    "fileSize": 2044680,
+    "roomUUID": "5a0c5abd-97a3-4dac-b2d2-19ed3d7bb3c4",
+    "meetingId": "f489904b-c6d7-4a90-a9b1-cf941cb31f05",
+    "downloadUrl": "https://dyte-recordings-test.s3.ap-south-1.amazonaws.com/c94c437b-592a-4a39-b9e2-47ef1451e43b/test.mp4",
+    "recordingId": "ab920f84-2d19-4013-99c7-5b80291d0188",
+    "startedTime": "2023-04-14 04:46:08.306221Z",
+    "stoppedTime": "2023-04-14 04:46:55.420986Z",
+    "organizationId": "c94c437b-592a-4a39-b9e2-47ef1451e43b",
+    "outputFileName": "missxh-vxtest_1681447566346.mp4",
+    "audioDownloadUrl": "https://dyte-recordings-test.s3.ap-south-1.amazonaws.com/c94c437b-592a-4a39-b9e2-47ef1451e43b/test.mp3",
+    "downloadUrlExpiry": "2023-04-21 04:46:55.608944Z"
   }
 }
 ```

@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import BrowserOnly from '@docusaurus/BrowserOnly';
-import { DyteSpinner, DyteTooltip } from '@dytesdk/react-ui-kit';
+import { DyteSpinner } from '@dytesdk/react-ui-kit';
 import { useHistory } from '@docusaurus/router';
 import clsx from 'clsx';
 
 import useBreakpoint from '../lib/useBreakpoint';
 import SectionsMenu from '../components/SectionsMenu';
 import RunInPostmanButton from '../components/RunInPostmanButton';
-import { DesktopIcon } from '@radix-ui/react-icons';
-
-const API_TOOLTIP_KEY = 'dyte-api-v2-tooltip-shown';
+import { Monitor } from 'react-feather';
+import Link from '@docusaurus/Link';
+import { APIIcon } from '../icons';
 
 function APIElement({ layout = 'sidebar', currentVersion = 'v1' }) {
   return (
@@ -23,7 +23,7 @@ function APIElement({ layout = 'sidebar', currentVersion = 'v1' }) {
       }
     >
       {() => {
-        // eslint-disable-next-line no-undef
+        // eslint-disable-next-line no-undef, @typescript-eslint/no-var-requires
         const { API } = require('@stoplight/elements');
 
         return (
@@ -47,7 +47,6 @@ function APIElement({ layout = 'sidebar', currentVersion = 'v1' }) {
 export default function Home() {
   const router = useHistory();
   const size = useBreakpoint();
-  const [showV2Tooltip, setShowV2Tooltip] = useState(false);
 
   const location = router.location;
 
@@ -56,13 +55,6 @@ export default function Home() {
   );
 
   const currentVersion = url.searchParams.get('v') || 'v2';
-
-  useEffect(() => {
-    // show V2 tooltip only if user hasn't seen it yet
-    if (localStorage.getItem(API_TOOLTIP_KEY) !== 'true') {
-      setShowV2Tooltip(true);
-    }
-  }, []);
 
   return (
     <Layout
@@ -77,46 +69,37 @@ export default function Home() {
         <link rel="stylesheet" href="/assets/css/elements.min.css" />
       </Head>
 
-      <div className="flex flex-col items-center justify-center gap-4 border-b py-12 lg:hidden">
-        <DesktopIcon className="h-12 w-12" />
+      <div className="flex flex-col items-center justify-center gap-4 border-b py-12 text-sm lg:hidden">
+        <Monitor className="h-12 w-12" />
         This page is best viewed in a desktop browser.
       </div>
 
       <div className="header">
-        <h1 style={{ fontSize: '1rem', fontWeight: '600', marginBottom: 0 }}>
-          Dyte REST API {currentVersion}
+        <h1 className="mb-0 flex items-center gap-2 text-sm font-semibold lg:text-lg">
+          <APIIcon className="hidden h-8 lg:block" />
+          REST API {currentVersion}
         </h1>
         <div className="aside">
-          <RunInPostmanButton />
-          <DyteTooltip
-            placement="bottom"
-            variant="primary"
-            label="We have rolled out a new V2 version for our REST APIs, you can still check out the old V1 APIs from here"
-            open={showV2Tooltip}
-            onDyteOpenChange={(open) => {
-              if (!open) {
-                localStorage.setItem(API_TOOLTIP_KEY, 'true');
-              }
+          {currentVersion === 'v2' && (
+            <Link
+              href="/release-notes/rest-api"
+              className="no-underline-links new-badge text-xs"
+            >
+              Release Notes
+            </Link>
+          )}
+          {size === 'lg' && <RunInPostmanButton />}
+          <SectionsMenu
+            defaultValue={currentVersion}
+            values={[
+              { name: 'v1', docId: 'v1' },
+              { name: 'v2', docId: 'v2' },
+            ]}
+            onValueChange={(version) => {
+              router.push(`/api/?v=${version}`);
             }}
-            disabled={!showV2Tooltip}
-          >
-            <SectionsMenu
-              defaultValue={currentVersion}
-              values={[
-                { name: 'v1', id: 'v1' },
-                { name: 'v2', id: 'v2' },
-              ]}
-              onValueChange={(version) => {
-                if (showV2Tooltip) {
-                  setShowV2Tooltip(false);
-                  localStorage.setItem(API_TOOLTIP_KEY, 'true');
-                }
-                router.push(`/api/?v=${version}`);
-              }}
-              className="compact"
-              slot="trigger"
-            />
-          </DyteTooltip>
+            className="compact"
+          />
         </div>
       </div>
       <APIElement

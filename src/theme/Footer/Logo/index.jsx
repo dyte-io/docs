@@ -12,7 +12,7 @@ function LogoImage({ logo }) {
   };
   return (
     <ThemedImage
-      className="footer__logo"
+      className="footer__logo h-9"
       alt={logo.alt}
       sources={sources}
       width={logo.width}

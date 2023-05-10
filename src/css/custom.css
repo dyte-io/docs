@@ -63,8 +63,6 @@
     --docs-color-secondary-1000: 255 255 255;
 
     --docs-color-text-400: 71 71 71;
-
-    --docusaurus-announcement-bar-height: auto !important;
   }
 
   html[data-theme='dark'] {
@@ -297,26 +295,37 @@ nav.menu {
   scrollbar-gutter: auto;
 }
 
-.new-badge::after {
-  align-items: baseline;
-  margin-left: 6px;
-  content: 'NEW';
-  padding: 2px 4px;
+.new-badge::after,
+.deprecated-badge::after {
   font-size: 11px;
-  color: theme('colors.primary.100');
-  border: 1px solid theme('colors.primary.100');
-  border-radius: 6px;
+  @apply inline-flex items-center justify-center rounded-sm;
+  @apply ml-1.5 px-1 py-0;
+}
+
+.new-badge::after {
+  content: 'NEW';
+  @apply bg-blue-100 text-blue-900;
+  @apply dark:bg-blue-900 dark:text-blue-100;
+}
+
+.sidebar-menu .new-badge::after {
+  @apply border border-solid border-blue-400 bg-blue-100 text-blue-900;
+}
+
+.deprecated-badge::after {
+  content: 'DEPRECATED';
+  @apply bg-red-100 text-red-900;
 }
 
 .footer__description {
-  color: var(--docs-color-text-100);
+  @apply text-text-400;
   font-size: 14px;
 }
 
 .footer__copyright {
   margin-top: 32px;
   font-size: 14px;
-  color: var(--docs-color-text-100);
+  @apply text-text-400;
 }
 
 .footer__row {
@@ -358,14 +367,12 @@ nav.menu {
 .footer__title {
   font-size: 14px;
   font-weight: normal;
-  color: var(--docs-color-text-100);
-  margin-bottom: 0.5rem;
+  @apply mb-2 text-text-400;
 }
 
 .footer__item {
   font-size: 14px;
   font-weight: normal;
-  color: var(--docs-color-text);
 }
 
 .footer__link-item:hover {
@@ -722,10 +729,6 @@ code[data-code='required'] {
   color: var(--ifm-color-danger);
 }
 
-::selection {
-  @apply bg-primary-200/80 text-white dark:bg-primary-100/60;
-}
-
 .dropdown > .navbar__link {
   display: flex;
   align-items: center;
@@ -884,7 +887,7 @@ img[src$='#terminal'] {
 
 .section-content {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -1052,8 +1055,7 @@ details p {
 .notesContainer .type {
   width: 11rem;
   border-right: 2px solid;
-  color: #757275;
-  @apply border-b-0 align-top font-bold;
+  @apply border-b-0 align-top font-semibold text-text-400;
 }
 
 @media screen and (max-width: 768px) {
@@ -1062,12 +1064,20 @@ details p {
   }
 }
 
-.notesContainer .depreciated .type {
+.notesContainer .deprecated .type {
   color: #de4e2b;
 }
 
-.notesContainer .depreciated .sublist {
+.notesContainer .deprecated .sublist {
   background-color: #e01e5a1a;
+}
+
+.notesContainer .newAPI .type {
+  color: #1264a3;
+}
+
+.notesContainer .newAPI .sublist {
+  background-color: #1264a31a;
 }
 
 .sublist {
@@ -1096,33 +1106,36 @@ details p {
   border-top-width: 1px;
 }
 
-div[class^='announcementBar'][role='banner'] {
-  height: 48px;
-}
-
-div[class^='announcementBar'][role='banner'] button.close {
-  color: white;
-  svg {
-    fill: white;
-  }
-}
-
-div[class^='announcementBarContent'] {
-  line-height: 48px;
-}
-
 .hideReferenceSidebarLink {
-  display: none
+  display: none;
 }
 
-@media only screen and (max-width: 768px) {
-  div[class^='announcementBar'][role='banner'] {
-    height: 96px;
-  }
+.DocSearch-Button {
+  @apply lg:!rounded-md;
 }
 
-@media only screen and (max-width: 375px) {
-  div[class^='announcementBar'][role='banner'] {
-    height: 100px;
-  }
+.DocSearch-Button-Key {
+  background: theme(colors.secondary.800) !important;
+  top: 0 !important;
+  padding: 0 !important;
+  @apply !border !border-solid !border-text-400/30;
+  @apply !shadow-none;
+  @apply flex items-center;
+}
+
+.DocSearch-Modal {
+  /* after introducting ai chat bot */
+  margin-top: 80px !important;
+}
+
+.DocSearch-Button-Placeholder {
+  @apply !text-xs;
+}
+
+.container ol {
+  list-style-type: decimal !important;
+}
+
+.container ul {
+  list-style-type: disc;
 }

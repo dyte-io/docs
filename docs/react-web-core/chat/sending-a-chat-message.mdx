@@ -1,0 +1,84 @@
+---
+title: Sending a chat message
+description: Send a chat message in a meeting.
+sidebar_position: 2
+tags: [web-core, chat]
+---
+
+# Sending a chat message
+
+As mentioned in [introduction](./introduction), there are 3 types of chat
+messages - text messages, images, and files. There is a method in `meeting.chat`
+to send a message of each type.
+
+## Send a text message
+
+To send a text message, the `meeting.chat.sendTextMessage()` method can be used.
+This accepts a string `message` and sends it to the room.
+
+```ts
+const message = 'Is this the real life?';
+await meeting.chat.sendTextMessage(message);
+```
+
+## Send an image
+
+You can send an image with the help of `meeting.chat.sendImageMessage()`. This
+accepts an image of type `File`, and sends it to the participants in the
+meeting.
+
+```html
+<label for="img">Select image:</label>
+<input type="file" id="img" name="img" accept="image/*" />
+<button onclick="onSendImage()">Send Image</button>
+```
+
+```ts
+async function onSendImage() {
+  const image = document.getElementById('img');
+  await meeting.chat.sendImageMessage(image.files[0]);
+}
+```
+
+## Send a file
+
+Sending a file is quite similar to sending an image. The only difference is that
+when you send an image, a preview will be shown in the meeting chat, which is
+not the case for sending files. That being said, an image can be sent as a file
+too using `meeting.chat.sendFileMessage()`.
+
+```html
+<label for="file">Select file:</label>
+<input type="file" id="file" name="file" />
+<button onclick="onSendFile()">Send File</button>
+```
+
+```ts
+async function onSendFile() {
+  const file = document.getElementById('file');
+  await meeting.chat.sendFileMessage(file.files[0]);
+}
+```
+
+## Extra
+
+There is also a common method called `meeting.chat.sendMessage()` that can be
+used to send any of the 3 types of messages displayed above. It essentially
+calls one of the methods from above depending upon the type of payload you send
+to the method. The `sendMessage()` method accepts a parameter `message` of the
+following type:
+
+```ts
+async function sendMessage(
+    message: { type: 'text', message: string }
+        | { type: 'image', image: File }
+        | { type: 'file', file: File },
+) {...}
+```
+
+Here's how you would use the `sendMessage()` method to send a text message.
+
+```ts
+const message = 'Is this just fantasy?';
+await meeting.chat.sendMessage({ type: 'text', message });
+```

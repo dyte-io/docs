@@ -1,0 +1,80 @@
+---
+title: Recording
+description: Control recordings in a meeting.
+sidebar_position: 9
+tags: [web-core, recording]
+---
+
+# Recording
+
+The `meeting.recording` object can be used start and stop recordings in a
+meeting. You can also get the current status of a recording using this API.
+
+The `meeting.recording` object has the following properties:
+
+- `recordingState`: Indicates the current recording state of the meeting.
+
+## Start a recording
+
+To start a recording, you can call the `start` method in the `meeting.recording`
+object. The valid states are `IDLE`, `STARTING`, `RECORDING`, and `STOPPING`.
+
+```ts
+await meeting.recording.start();
+```
+
+## Stop a recording
+
+Call `meeting.recording.stop()` to stop the active recording.
+
+```ts
+await meeting.recording.stop();
+```
+
+## Recording Configuration
+
+You can set the defaults for recording during initialization
+
+```js
+const meeting = await DyteClient.init({
+  authToken,
+  defaults: {
+    recording: recordingConfig
+  }
+});
+```
+In recording config you can specify height, width and codec of the recording output
+
+```ts
+interface RecordingConfig {
+    videoConfig?: {
+        height?: number;
+        width?: number;
+        codec?: 'H264' | 'VP8';
+    }
+}
+```
+
+1. **codec** - Codec using which the recording will be encoded. `H264` will use a `mp4` container, `VP8` will use a `webm` container
+
+   Allowed values: `H264` | `VP8`
+
+   Default: `H264`
+
+2. **width** - Width of the recording video in pixels
+   Allowed values: 1 >= width <= 1920
+
+   Default: `1280`
+
+3. **height** - Height of the recording video in pixels
+   Allowed values: 1 >= height <= 1920
+
+   Default: `720`
+
+
+
+## Check active recording state
+
+The `meeting.recording.recordingState` property describes the current state of
+the recording. The valid states are `IDLE`, `STARTING`, `RECORDING`, and
+`STOPPING`.

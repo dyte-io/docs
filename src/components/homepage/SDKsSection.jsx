@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
 import clsx from 'clsx';
-import { useColorMode } from '@docusaurus/theme-common';
+import ThemedImage from '@theme/ThemedImage';
 import {
   AngularIcon,
   // ElectronIcon,
@@ -31,7 +31,6 @@ function SDKLink({ href, Icon, label, disabled = false }) {
 }
 
 export default function SDKsSection() {
-  const { colorMode } = useColorMode();
   const [visibleSection, setVisibleSection] = useState('Web');
 
   React.useEffect(() => {
@@ -89,7 +88,7 @@ export default function SDKsSection() {
         <div className="dyte-badge">SDKs</div>
 
         <div className="sticky top-14 z-20 -mt-4 flex flex-col items-center gap-6 bg-secondary-1000 py-6 lg:flex-row lg:justify-between lg:py-0">
-          <h2 className="my-0 font-jakarta lg:text-3xl">
+          <h2 className="my-0 text-center font-jakarta lg:text-3xl">
             We support your tech stack!
           </h2>
 
@@ -156,11 +155,7 @@ export default function SDKsSection() {
                 <SDKLink href="web-core" Icon={JSIcon} label="JavaScript" />
               </li>
               <li>
-                <SDKLink
-                  href="react-ui-kit/using-hooks"
-                  Icon={ReactIcon}
-                  label="React"
-                />
+                <SDKLink href="react-web-core" Icon={ReactIcon} label="React" />
               </li>
             </ul>
           </div>
@@ -242,10 +237,9 @@ export default function SDKsSection() {
                 <SDKLink href="rn-core" Icon={ReactIcon} label="React Native" />
               </li>
               <li>
-              <SDKLink href="ios-core" Icon={SwiftIcon} label="iOS" />
+                <SDKLink href="ios-core" Icon={SwiftIcon} label="iOS" />
               </li>
             </ul>
-            
           </div>
         </div>
 
@@ -267,9 +261,13 @@ export default function SDKsSection() {
             </Link>
           </div>
           <div className="flex flex-[3] items-center justify-center rounded-3xl p-6 px-8 lg:justify-end">
-            <img
-              src={`/static/landing-page/plugin-sdk-${colorMode}.png`}
+            <ThemedImage
+              sources={{
+                light: '/static/landing-page/plugin-sdk-light.png',
+                dark: '/static/landing-page/plugin-sdk-dark.png',
+              }}
               alt="Plugin SDK Usage Preview"
+              loading="lazy"
             />
           </div>
         </div>

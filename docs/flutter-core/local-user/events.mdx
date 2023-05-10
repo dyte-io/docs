@@ -14,7 +14,7 @@ You can subscribe to various local user events. For subscribing:
   can be user to manage your state in the application.
 
 ```dart
-class LocalUserListener with DyteSelfEventsListener {
+class LocalUserListener extends DyteSelfEventsListener {
 
   ...
 
@@ -31,24 +31,7 @@ class LocalUserListener with DyteSelfEventsListener {
   to `addSelfEventsListener()` method of `dyteClient` instance as follows:
 
 ```dart {2}
-dyteClient.addSelfEventsListener(
-  // LocalUserListener class instance
-);
-```
-
-### Room joined
-
-Triggered when the room join event completes and now the meeting is ready to
-produce and consume media. At this stage, you can move to meeting room. While
-implementing `DyteSelfEventsListener` we have :
-
-```dart
-@override
-void onMeetingRoomJoined() {
-  // When the local user joins the meeting room, this callback is triggered
-  // We can handle the state here.
-}
-
+dyteClient.addSelfEventsListener(LocalUserListener());
 ```
 
 ### Video update
@@ -87,36 +70,75 @@ void onAudioUpdate(bool audioEnabled) {
 }
 ```
 
-There are several other callbacks, that you can implement according to the
-needs, here's a list of them:
+### Room disconnected update
 
-- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
-    onMeetingRoomJoinStarted()
-  </span>
-  : callback when meet room join has started.
-  <br />
-- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
-    onMeetingRoomDisconnected()
-  </span>
-  : callback when meet room join is disconnected.
-  <br />
-- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
-    onMeetingRoomJoinFailed()
-  </span>
-  : callback when meet room join failed.
-  <br />
-- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>onUpdate()</span>:
-  callback when any update occurs in the meet room (example any other
-  participant joins the meet).
-  <br />
-- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
-    onProximityChanged()
-  </span>
-  : callback when proximity of your device changes from body (as when phone sleeps
-  when near your ears when on a phone call).
-  <br />
-- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
-    onAudioDevicesUpdated()
-  </span>
-  : callback when the audio devices are updated.
-  <br />
+Triggered when the user is disconnected due to media or network errors
+
+```dart
+
+@override
+void onMeetingRoomDisconnected() {
+  // Display a notification to the user indicating that they have been disconnected from the meeting.
+
+}
+```
+
+### Proximity changed
+
+Triggered by any change in proximity, such as when the device is brought near or moved away from an earpiece, which triggers the display to turn on or off.
+
+```dart
+
+@override
+void onProximityChanged(bool isNear) {
+  // isNear
+  // if true, display should be turned off, as user might be speaking through ear piece
+  // if false, display should be tunred on, as user might be looking at display and listening through speaker/earphones.
+}
+
+```
+
+### Waitlist status
+
+When the waiting room feature is enabled for a meeting, you can use the `onWaitListStatusUpdate()` callback function to receive updates on waiting room status changes.
+
+```dart
+@override
+void onWaitListStatusUpdate(WaitListStatus waitListStatus) {
+  // waitListStatus
+  // if true, user is on the waitlist
+  // if false, user is not on waitlist
+}
+```
+
+## Webinar request
+
+When the local user receives a request to join the webinar, the `onWebinarPresentRequestReceived()` callback function is triggered. Similarly, when the local user stops presenting during the webinar, the `onStoppedPresenting()` callback function is triggered.
+
+```dart
+@override
+void onWebinarPresentRequestReceived() {
+  // Display an alert to the user, allowing them to accept or reject the request.
+
+
+}
+
+@override
+void onStoppedPresenting() {
+  // Display an alert to the user indicating that they are no longer presenting.
+}
+```
+
+## Local user removed
+
+When the local user is removed from the meeting, the `onRemovedFromMeeting()` callback is triggered.
+
+```dart
+
+@override
+void onRemovedFromMeeting() {
+  // Display an alert to the user indicating that they are no longer in the meeting.
+
+
+}
+```

@@ -1,5 +1,5 @@
 const DEFAULT_CONFIG = {
-  entryPoints: ['node_modules/@dytesdk/ui-kit/dist/types/exports.d.ts'],
+  entryPoints: [require.resolve('@dytesdk/ui-kit/dist/types/exports.d.ts')],
   tsconfig: 'tsconfig.ui-kit.json',
   out: 'ui-kit/reference',
 };

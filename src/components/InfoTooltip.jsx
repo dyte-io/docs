@@ -1,12 +1,12 @@
 import React from 'react';
 import { DyteTooltip } from '@dytesdk/react-ui-kit';
-import { InfoCircledIcon } from '@radix-ui/react-icons';
+import { Info } from 'react-feather';
 
 export default function InfoTooltip({ label }) {
   return (
     <span style={{ verticalAlign: 'middle' }}>
       <DyteTooltip variant="primary" label={label} kind="inline">
-        <InfoCircledIcon />
+        <Info />
       </DyteTooltip>
     </span>
   );

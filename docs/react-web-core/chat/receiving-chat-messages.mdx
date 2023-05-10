@@ -1,0 +1,30 @@
+---
+title: Receiving chat messages
+description: Receive chat messages that have been sent in a meeting.
+sidebar_position: 3
+tags: [web-core, chat]
+---
+
+# Receiving chat messages
+
+The `meeting.chat` object emits events when new chat messages are received. You
+can listen for the `chatUpdate` event to log when a new chat message is
+received.
+
+```ts
+const messages = useDyteSelector((m) => m.chat.messages));
+```
+
+Here, the `message` is of type `Message`, as defined in
+[introduction](./introduction). `messages` is a list of all chat messages in the
+meeting, which is the same as `meeting.chat.messages`.
+
+When a chat message is received, the `meeting.chat.messages` list is also
+updated.
+
+```ts
+console.log(JSON.stringify(meeting.chat.messages));
+meeting.chat.on('chatUpdate', () => {
+  console.log(JSON.stringify(meeting.chat.messages));
+});
+```

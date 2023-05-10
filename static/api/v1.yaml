@@ -13,13 +13,13 @@ info:
 
     ### Rate Limit by IP Address
 
-    The rate limit threshold is set at 500 calls per minute per IP address. After 500 calls, a 429 status code is sent, and access to any of our APIs is denied. 
+    The rate limit threshold is set at 2000 calls per minute per IP address. After 2000 calls, a 429 status code is sent, and access to any of our APIs is denied. 
 
     Note: Rate limit is applied at the domain level, which means that all APIs are included in the threshold.
 
     | Number of Requests | Resources | Time Window | Status Code Returned when Threshold Exceeds |
     |--|--|--|--|
-    | 500 | Per IP | Per minute | HTTP 429 |
+    | 2000 | Per IP | Per minute | HTTP 429 |
 
     ### Sample
 
@@ -1096,8 +1096,6 @@ components:
         - $ref: '#/components/schemas/RecordOnStart'
         - $ref: '#/components/schemas/LiveStreamOnStart'
     AddParticipantRequestBody:
-      title: ''
-      description: ''
       x-examples:
         example-1:
           clientSpecificId: my_user_1
@@ -1122,7 +1120,7 @@ components:
       properties:
         clientSpecificId:
           type: string
-          description: 'An ID that you can use to identify a meeting participant in your system. We do not perform any validations on this, and return this value for all participants in a meeting in the client SDK.'
+          description: 'A unique participant ID. You must specify a unique ID for the participant, for example, UUID, email address, and so on.'
         userDetails:
           type: object
           description: Optional object to add details of the participant
@@ -1139,6 +1137,8 @@ components:
           description: Name of the preset this user should join with
         roleName:
           type: string
+          x-stoplight:
+            id: t25yjwh8692y3
           description: Name of the role this user should join with
       required:
         - clientSpecificId
@@ -1712,11 +1712,18 @@ components:
             codec: VP9
           liveStreamingConfig:
             rtmpUrl: 'rtmp://live.restream.io/live/your-stream-key'
-      description: ''
+      description: Set the maximum recording time in seconds to any value up to 24 hours.
       properties:
+        maxSeconds:
+          type: integer
+          x-stoplight:
+            id: itcmf4c4byyrv
+          description: 'Specifies the maximum duration for recording in seconds, ranging from a minimum of 60 seconds to a maximum of 24 hours.'
+          minimum: 60
+          maximum: 86400
         storageConfig:
           type: object
-          description: 'Object containing details of the cloud storage, where you want the recording to be uploaded. In case this is not provided, recording will be stored on Dyte''s servers for a period of 7 days from the day of recording and a link will be shared using which you can download the file in between that period.'
+          description: "Object containing details of the cloud storage, where you want the recording to be uploaded. In case this is not provided, recording will be stored on Dyte's servers for a period of 7 days from the day of recording and a link will be shared using which you can download the file in between that period."
           properties:
             type:
               type: string
@@ -1772,57 +1779,81 @@ components:
                 - H264
                 - VP8
                 - VP9
-              description: |-
+              default: H264
+              description: |
                 Codec used to record the meeting video.
                 - `H264`: [sample recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/h264_sample.webm)
                 - `VP8`: [sample recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/vp8_sample.webm)
                 - `VP9`: [sample recording](https://dyte-uploads.s3.ap-south-1.amazonaws.com/test/vp9_sample.webm)
-              default: H264
             width:
               type: integer
+              x-stoplight:
+                id: yg4y637oxbhgc
               description: Width of the recording video in pixels
+              default: 1280
+              example: 1280
               minimum: 1
               maximum: 1920
-              example: 1280
-              default: 1280
             height:
               type: integer
+              x-stoplight:
+                id: ygse9wf27budq
               description: Height of the recording video in pixels
-              maximum: 1920
-              minimum: 1
-              example: 720
               default: 720
+              example: 720
+              minimum: 1
+              maximum: 1920
             watermark:
               type: object
+              x-stoplight:
+                id: gpacgpweeh9c6
               description: Watermark to be added to the recording
               properties:
                 url:
                   type: string
+                  x-stoplight:
+                    id: nosyru4691ysd
                   format: uri
                   description: URL of the watermark image
                 size:
                   type: object
+                  x-stoplight:
+                    id: np4kclnxbyxrb
                   description: Size of the watermark
                   properties:
                     width:
                       type: integer
+                      x-stoplight:
+                        id: vcq5dunwrh4js
                       description: Width of the watermark in px
-                      minimum: 1
                       default: 200
+                      minimum: 1
                     height:
                       type: integer
-                      description: Height of the watermark in px
-                      minimum: 1
+                      x-stoplight:
+                        id: hkxm6iodqurvk
                       default: auto
+                      minimum: 1
+                      description: Height of the watermark in px
                 position:
                   type: string
+                  x-stoplight:
+                    id: jovchil9iyqvn
+                  description: Position of the watermark
                   enum:
                     - left top
                     - right top
                     - left bottom
                     - right bottom
-                  description: Position of the watermark
                   default: left top
+            segmentLength:
+              type: integer
+              x-stoplight:
+                id: 73019zqsagxcn
+              description: The duration of each segment or fragment of a video file.
+              default: 10 seconds
+        audioConfig:
+          $ref: '#/components/schemas/AudioConfig'
         liveStreamingConfig:
           type: object
           description: Object containing configuration regarding livestreaming the meeting video to a platform that supports RTMP input.
@@ -1832,6 +1863,25 @@ components:
               format: uri
               description: The RTMP input URL to which the meeting video should be streamed.
               example: 'rtmp://your.rtmp.url/live/stream/your-stream-key'
+        file_name_prefix:
+          type: string
+          x-stoplight:
+            id: 2m1gc6qyppavj
+          description: Add a prefix to the existing file name.
+        url:
+          type: string
+          x-stoplight:
+            id: irwwqkxyk31i7
+          format: uri
+          description: Pass a custom url to record arbitary screen.
+        dyteBucketConfig:
+          $ref: '#/components/schemas/DyteBucketConfig'
+        startReason:
+          $ref: '#/components/schemas/startReason'
+        stopReason:
+          $ref: '#/components/schemas/stopReason'
+        interactiveConfig:
+          $ref: '#/components/schemas/InteractiveConfig'
     UpdateRecordingRequestBody:
       type: object
       properties:
@@ -2849,7 +2899,6 @@ components:
           createdAt: '2021-10-13T17:01:12.747Z'
           updatedAt: '2021-10-13T17:01:12.747Z'
     Recording:
-      description: ''
       type: object
       x-examples:
         example-1:
@@ -2897,6 +2946,13 @@ components:
           format: uri
           description: Publicly accessible URL to download the recording.
           nullable: true
+        audioDownloadUrl:
+          type: string
+          format: uri
+          x-stoplight:
+            id: om05cddf2dyes
+          description: 'If the audioConfig is passed, the URL for downloading the audio recording is returned.'
+          nullable: true
         errMessage:
           type: string
           description: 'Error message during recording, if any.'
@@ -2921,12 +2977,26 @@ components:
           type: string
           format: uuid
           description: Unique ID of the recording.
+        recordingDuration:
+          type: integer
+          x-stoplight:
+            id: b485kq4l3j3n9
+          description: Total recording time in seconds.
+        startReason:
+          $ref: '#/components/schemas/startReason'
+        stopReason:
+          $ref: '#/components/schemas/stopReason'
+        storageConfig:
+          type: string
+          x-stoplight:
+            id: uf2s6vfcacg8h
       required:
         - status
         - outputFileName
         - downloadUrlExpiry
         - roomUUID
         - downloadUrl
+        - audioDownloadUrl
         - errMessage
         - startedTime
         - stoppedTime
@@ -3101,7 +3171,7 @@ components:
                 properties:
                   dyte-signature:
                     type: string
-                    description: 'Signature generated for the webhook request, using Dyte''s private keys. Refer webhooks guide <insert_link> for more details.'
+                    description: "Signature generated for the webhook request, using Dyte's private keys. Refer webhooks guide <insert_link> for more details."
                   dyte-uuid:
                     type: string
                     format: uuid
@@ -3300,6 +3370,151 @@ components:
           enum:
             - LIVE
             - CLOSED
+    AudioConfig:
+      title: AudioConfig
+      x-stoplight:
+        id: kwzy4f0bh315u
+      type: object
+      description: Object containing configuration regarding the audio that is being recorded.
+      properties:
+        codec:
+          type: string
+          x-stoplight:
+            id: 24cz4x33j3n27
+          description: 'Codec using which the recording will be encoded. If VP8/VP9 is selected for videoConfig, changing audioConfig is not allowed. In this case, the codec in the audioConfig is automatically set to vorbis.'
+          enum:
+            - MP3
+            - AAC
+          default: AAC
+        channel:
+          type: string
+          x-stoplight:
+            id: b75j5yf8ybka2
+          description: Audio signal pathway within an audio file that carries a specific sound source.
+          enum:
+            - mono
+            - stereo
+          default: stereo
+    DyteBucketConfig:
+      title: DyteBucketConfig
+      x-stoplight:
+        id: 7fwpkwr887126
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          x-stoplight:
+            id: w9xwpvf528y94
+          default: true
+          description: "Controls whether recordings are uploaded to dyte's bucket. If set to false, `download_url`, `audio_download_url`, `download_url_expiry` won't be generated for a recording."
+    startReason:
+      title: startReason
+      x-stoplight:
+        id: q70d95c7k9ojh
+      type: object
+      properties:
+        reason:
+          type: string
+          x-stoplight:
+            id: 69wxk5agqfzl2
+          description: |-
+            Specifies if the recording was started using the "Start a Recording"API or using the parameter RECORD_ON_START in the "Create a meeting" API. 
+
+            If the recording is initiated using the "RECORD_ON_START" parameter, the user details will not be populated.
+          enum:
+            - API_CALL
+            - RECORD_ON_START
+        caller:
+          type: object
+          x-stoplight:
+            id: 9kpsc8onmictu
+          properties:
+            type:
+              type: string
+              x-stoplight:
+                id: 96q8dbw2jhnut
+              enum:
+                - ORGANIZATION
+                - USER
+              description: 'The type can be an organization or a user. If the type is `user`, then only the `userId`, `participantId`, and `name` are returned.'
+            userId:
+              type: string
+              x-stoplight:
+                id: 9eqiagdcpyqbr
+              format: uuid
+              description: The user ID of the person who started the recording.
+            participantId:
+              type: string
+              x-stoplight:
+                id: ldalaep6148d9
+              format: uuid
+              description: The participant ID of the user who started the recording.
+              example: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+            name:
+              type: string
+              x-stoplight:
+                id: 7pviwmxvouj3r
+              description: Name of the user who started the recording.
+    stopReason:
+      title: stopReason
+      x-stoplight:
+        id: 7gaiyxxhfqwwz
+      type: object
+      properties:
+        reason:
+          type: string
+          x-stoplight:
+            id: vjsh6ot0shuid
+          description: Specifies the reason why the recording stopped.
+          enum:
+            - API_CALL
+            - INTERNAL_ERROR
+            - ALL_PEERS_LEFT
+        caller:
+          type: object
+          x-stoplight:
+            id: 95olrspc6tufb
+          properties:
+            type:
+              type: string
+              x-stoplight:
+                id: iq5a2h8yuv9kq
+              enum:
+                - ORGANIZATION
+                - USER
+              description: 'The type can be an organization or a user. If the type is `user`, then only the `userId`, `participantId`, and `name` are returned.'
+            userId:
+              type: string
+              x-stoplight:
+                id: 9vxch67m5lss7
+              format: uuid
+              description: The user ID of the person who stopped the recording.
+            participantId:
+              type: string
+              x-stoplight:
+                id: uojake4bksqbn
+              format: uuid
+              description: The participant ID of the user who stopped the recording.
+              example: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+            name:
+              type: string
+              x-stoplight:
+                id: mulqjewe4r6fd
+              description: Name of the user who stopped the recording.
+    InteractiveConfig:
+      title: InteractiveConfig
+      x-stoplight:
+        id: w3xeeve1lhfqp
+      type: object
+      description: 'Allows you to add timed metadata to your recordings, which are digital markers inserted into a video file to provide contextual information at specific points in the content range. The ID3 tags containing this information are available to clients on the playback timeline in HLS format. The output files are generated in a compressed .tar format.'
+      properties:
+        type:
+          type: string
+          x-stoplight:
+            id: dx9cbwgwbl7m8
+          description: The metadata is presented in the form of ID3 tags.
+          enum:
+            - ID3
   securitySchemes:
     APIKEY:
       type: apiKey

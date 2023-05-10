@@ -1,0 +1,207 @@
+---
+title: 'Getting Started with Interactive Livestreaming'
+sidebar_position: 2
+---
+
+:::info Beta
+The new Interactive Live Streaming (ILS) feature is currently in beta, which means it is still being tested and evaluated, and may undergo some change. Please [contact us](https://dyte.io/contact) if you encounter any problems or have suggestions for improvements to the feature.
+:::
+
+This topic takes you through the steps to set up your first Dyte interactive livestream (ILS).
+
+## Step 1: Create a Dyte Developer Account
+
+Login to the [Developer Portal](https://dev.dyte.io/) and create an account.
+
+## Step 2: Create Presets
+
+A preset is a set of permissions and UI configurations that are applied to hosts and participants. They determine the look, feel, and behavior of the livestream, with options to set varied permissions, such as the ability to create polls or chat, control access for plugins, and more.
+
+:::info Note
+You need to create two presets for livestreaming. One preset is used for the livestreaming host and the other preset is used for the livestreaming viewer.
+
+The host requires certain host controls such as the ability to Kick Participants, Mute Audio, Mute Video, and Pin Participant, as well as media permissions like Start Livestream and Admit or remove participants from the livestream. Ensure that you’ve selected those permissions for the host.
+:::
+
+1. In the [Developer Portal](https://dev.dyte.io/), click **Presets**, and click **Create New**.
+   <img
+     src="/static/livestreaming/createpreset.png"
+     width="600"
+     height="300"
+     alt="livestream-create-preset"
+     className="livestrem-create-preset"
+   />
+2. In the **Select Meeting Type**, select **Livestream**.
+3. Set permissions and UI configurations for your livestream.
+
+### Configuration
+
+You can define the following permissions and UI configurations:
+
+**Max number of people on screen**: Set the maximum number of participants who can appear on the screen at any given time. We recommend setting this number between 6 and 9 for the best possible experience.
+
+**Max number of people screensharing**: Set the maximum number of participants who can share the screen at any given time. We recommend setting this number between 3 to 4 for the best experience.
+
+#### Host Controls
+
+Host controls allow you as the host to control various aspects of a Dyte livestream, such as managing the participants.
+
+| **Permissions and Configurations** | **Description**                                                                                                                                                                                                                                             |
+| ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Kick Participants                  | Adds permissions to remove participants from your meeting. If you’re creating a preset for the host, ensure that this is selected.                                                                                                                          |
+| Mute Audio                         | Host can mute/unmute individual participants or all of them at once. If you’re creating a preset for the host, ensure that this is selected.                                                                                                                |
+| Disable Video                      | Hosts can hide video of individual participants or all of them at once. If you’re creating a preset for the host, ensure that this is selected.                                                                                                             |
+| Pin Participant                    | Allows to pin a participant's view displayed on the screen. When a participant is pinned, their video feed remains visible even if someone else speaks or the video layout changes. If you’re creating a preset for the host, ensure that this is selected. |
+| Manage Recordings                  | Hosts can start and stop recording of their meeting.                                                                                                                                                                                                        |
+| Update Participant Preset          | Update participant permissions / meeting type.                                                                                                                                                                                                              |
+
+#### Media
+
+You can manage permissions for your livestreams in Media, such as who can start the livestream and who can join the livestream with what kind of permissions.
+
+| **Permissions and Configurations**               | **Description**                                                                                                                     |
+| ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Start Livestream                                 | Adds permissions to start livestreaming your meeting. If you’re creating a preset for the host, ensure that this is selected.       |
+| Admit or remove participants from the livestream | Allows to admit or remove participants from the livestream. If you’re creating a preset for the host, ensure that this is selected. |
+| Join Livestream                                  | Participants can join the livestream directly with a link.                                                                          |
+| Request to Join                                  | Participants can request to join a livestream. Host can accept or reject the request.                                               |
+| View Only                                        | Participants can only view the livestream.                                                                                          |
+
+#### Chat
+
+| **Permissions and Configurations**      | **Description**                                                                                      |
+| --------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Public (can send text, can send files)  | Permissions to be able to send text and/or files to everyone during the livestream.                  |
+| Private (can send text, can send files) | Permissions to be able to send text and/or files to the specific participants during the livestream. |
+
+#### Polls
+
+| **Permissions and Configurations** | **Description**                                               |
+| ---------------------------------- | ------------------------------------------------------------- |
+| Can create polls                   | Permissions to be able to create polls during the livestream. |
+
+#### Plugins
+
+Manage permissions for your plugins.
+
+| **Permissions and Configurations** | **Description**                                                                                                             |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Launch Plugins                     | Permissions to be able to launch plugins during a livestream, for example, witeboard, excalidraw,remote browser, and so on. |
+| Close Plugins                      | Permissions to be able to close plugins, during a livestream, for example, witeboard, excalidraw,remote browser, and so on. |
+| Control Access                     | Allows you to manage plugins for other participants.                                                                        |
+
+#### Miscellaneous
+
+Manage permissions for your plugins.
+
+| **Permissions and Configurations** | **Description**                                                |
+| ---------------------------------- | -------------------------------------------------------------- |
+| Hidden Participants                | Allows participants to be hidden from all other participants.  |
+| Edit Name                          | Participants can edit their name while joining the livestream. |
+| Hide Participant List              | Hide the list of participants in the livestream.               |
+
+### Colors
+
+You can specify brand color, background color, text color, text color on brand, and video background color.
+
+<img
+  src="/static/livestreaming/colors.png"
+  width="600"
+  height="300"
+  alt="livestream-colors"
+  className="livestrem-colors-preset"
+/>
+
+### Theme
+
+Specify the URL of the logo.
+
+### Plugins
+
+1. Select the plugin that you want to use for the collaboration within your meeting. Multiple plugins such as Excalidraw, Remote browser, Google apps, Quiz, Chess, and so on are supported.
+
+   You can select multiple plugins for your meeting.
+
+2. Click **Configure**.
+3. Select permissions for the selected preset. You can provide **Full Access** or **View Only**.
+   <img
+     src="/static/livestreaming/pluginlivestream.png"
+     width="600"
+     height="300"
+     alt="livestream-plugin"
+     className="livestrem-plugin-preset"
+   />
+4. Select **Show only active plugins** to view the plugins that you’ve configured for your meeting.
+
+## Step 3: Save the Preset Changes
+
+1. Once you’ve made all the changes that you need to add to your preset, click **Save** at the right-corner.
+   <img
+     src="/static/livestreaming/savepreset.png"
+     width="600"
+     height="300"
+     alt="livestream-save"
+     className="livestream-save-preset"
+   />
+2. Enter the name for your preset and click **Save**.
+   <img
+     src="/static/livestreaming/savepresetils.png"
+     width="500"
+     height="300"
+     alt="livestream-saveils"
+     className="livestream-save-ils"
+   />
+3. Your preset is listed. Click **Edit** to make any changes to the preset.
+   <img
+     src="/static/livestreaming/ilslist.png"
+     width="600"
+     height="300"
+     alt="livestream-ilslist"
+     className="livestream-save-ilslist"
+   />
+
+## Step 4: Create a Meeting
+
+Create a Dyte meeting using the [Create Meeting API](https://docs.dyte.io/api#/operations/create_meeting). This API returns a unique identifier for your meeting.
+
+If you wish to start livestreaming the meeting as soon as it starts, set the `live_stream_on_start` parameter `true`.
+
+## Step 5: Add Participants
+
+After you've created the meeting, add each participant to the meeting using the [Add Participant API](https://docs.dyte.io/api#/operations/add_participant).
+
+The `presetName` created earlier must be passed in the body of the Add Participant API request.
+
+## Step 6: Start Livestreaming
+
+Use the [Start livestreaming a meeting](https://docs.dyte.io/api#/paths/meetings-meeting_id--livestreams/post) API or click on the **Go live** button on the control bar to start livestreaming a meeting.
+
+If you’re a host you’ll see the option to **Go live** and **End live** streaming.
+
+**Start live streaming**
+
+<img
+  src="/static/livestreaming/golive.png"
+  width="600"
+  height="500"
+  alt="livestream-golive"
+  className="livestream-go-live"
+/>
+
+**End live streaming**
+
+<img
+  src="/static/livestreaming/endlive.png"
+  width="600"
+  height="500"
+  alt="livestream-endlive"
+  className="livestream-end-live"
+/>
+
+## Use Cases
+
+The following are some of the most common Dyte livestreaming use cases:
+
+- [Livestream a Dyte meeting via HLS](https://docs.dyte.io/guides/livestream/livestream-dyte-meeting)
+- [Livestream Dyte meetings to other platforms](https://docs.dyte.io/guides/livestream/livestreaming-other-platforms)
+- [Livestream any video via RTMP (custom input)](https://docs.dyte.io/guides/livestream/livestream-any-rtmp)
