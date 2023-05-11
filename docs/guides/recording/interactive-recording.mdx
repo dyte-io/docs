@@ -31,7 +31,7 @@ Interactive recording offers several benefits, including:
 
 ## Add interactivity to your Dyte recordings
 
-To add interactivity to your Dyte recording, simply do the following:
+To add interactivity to your Dyte recording, perform the following steps:
 
 1. In the [Start recording a meeting API](/api#/operations/start_recording), pass the `interactive_config` parameter.
 
@@ -43,49 +43,74 @@ This parameter enables you to add timed metadata to your recordings, which is ma
 client.participants.broadcastMessage(“ID3”, yourData);
 ```
 
-3. To stop sending the data, do the following:
+:::info note
+
+This action should only be performed after the recording has been initiated and the system is in the `RECORDING` state. If performed earlier, any associated ID3 tags may be lost.
+
+The recommended time to perform this action is after the recording indicator has been displayed for 3 to 4 seconds.
+
+:::
+
+3. To stop sending the data, call the following method. Once you make this call, you will no longer be able to send additional ID3 data.
 
 ```ts
 client.participants.broadcastMessage(“ID3”,”CLOSE_TRANSPORT”)
 ```
 
-If you do not pass this parameter, transport will automatically be closed when the recording is stopped.
+If you do not pass this parameter, the ID3 metadata stream will automatically be closed when the recording is stopped.
 
-4. After the recording is finished, you can download the tar file, which contains the video segments and a playlist file. It's important to note that the length of each segment depends on the frames of the video, so they may not be equally distributed. It would be almost equal to the segment length passes while starting the recording but defaults to 10 seconds.
+4. Once the recording is completed, you can retrieve the tar file that contains video segments and a playlist file. The `download_url` provides the link to the tar file. Below is an example screenshot of a tar file:
 
-5. You can play the stream using the `hls.js`.
+<img
+  src="/static/guides/tar-format.png"
+  width="400"
+  height="300"
+  alt="interactive-record-tar"
+  className="interactive-record-tar-file"
+/>
+
+It's also important to note that the length of each segment depends on the frames of the video. Therefore, each segment may not have the same length, although it is typically close to the specified segment length when the recording was started. By default, the segment length is set to 10 seconds.
+
+5. You can play the stream using the [`hls.js`](https://github.com/video-dev/hls.js/).
 
 ```js
-const handleTimeUpdateListener = (_) => {
-  const textTrackListCount = videoEl.textTracks.length;
-  let metaTextTrack;
-  for (let trackIndex = 0; trackIndex < textTrackListCount; trackIndex++) {
-    const textTrack = videoEl.textTracks[trackIndex];
-    if (textTrack.kind !== 'metadata') {
-      continue;
-    }
-    textTrack.mode = 'showing';
-    metaTextTrack = textTrack;
-    break;
-  }
-  if (!metaTextTrack) {
-    return;
-  }
-  const cuesLength = metaTextTrack.cues.length;
-  let cueIndex = 0;
-  while (cueIndex < cuesLength) {
-    const cue = metaTextTrack.cues[cueIndex];
-    if (cue.fired) {
-      cueIndex++;
-      continue;
-    }
-    const metaData = cue.value.data;
+const handleTimeUpdateListener = _ => {
+// We first try to find the right metadata track.
+data stream.
+// https://developer.mozilla.org/en-US/docs/Web/API/TextTrack
+      const textTrackListCount = videoEl.textTracks.length;
+      let metaTextTrack;
+      for (let trackIndex = 0; trackIndex < textTrackListCount; trackIndex++) {
+        const textTrack = videoEl.textTracks[trackIndex];
+        if (textTrack.kind !== "metadata") {
+          continue;
+        }
+        textTrack.mode = "showing";
+        metaTextTrack = textTrack;
+        break;
+      }
+      if (!metaTextTrack) {
+        return;
+      }
+      const cuesLength = metaTextTrack.cues.length;
+      let cueIndex = 0;
+      while (cueIndex < cuesLength) {
+ // Filter out the pending cues, which are not fired yet.
+        const cue = metaTextTrack.cues[cueIndex];
+        if (cue.fired) {
+          cueIndex++;
+          continue;
+        }
+ // Extract the data that was present at that time.
 
-    cue.fired = true;
-    cueIndex++;
-  }
-};
+        const metaData = cue.value.data;
+        cue.fired = true;
+        cueIndex++;
+      }
+    };
 
-// You can add this listener to the videoEl timeupdate event.
-videoEl.addEventListener('timeupdate', handleTimeUpdateListener);
+// You can add this listener to the video element’s timeupdate event.
+// https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/timeupdate_event
+videoEl.addEventListener("timeupdate", handleTimeUpdateListener);
+
 ```
