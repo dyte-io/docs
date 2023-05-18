@@ -5,12 +5,6 @@ sidebar_position: 2
 
 This topic describes web core system error codes 0-16.
 
-## Error code: 0000
-
-- **Error message**: Internal exception
-- **Possible reason**: Indicates a problem with the DyteClient.
-- **Possible solution**: Since the exact reason is unkonwn, please [contact us](https://dyte.io/contact) for the help.
-
 ## Error code: 0001
 
 - **Error message**: Failed to initialize
@@ -51,36 +45,6 @@ If you're using Android, try calling:
 dyteClient.leaveRoom();
 ```
 
-## Error code: 0100
-
-- **Error message**: Internal exception
-- **Possible reason**: Indicates a problem with the controller.
-- **Possible solution**: Please [contact us](https://dyte.io/contact) for the help.
-
-## Error code: 0200
-
-- **Error message**: Internal exception
-- **Possible reason**: Indicates a problem with the RoomNodeClient.
-- **Possible solution**: Verify if you have entered the correct values for [`roomNodeClient`](/react-web-core/reference/DyteParticipants#new-moduleexportsroomnodeclient-self) in the `DyteParticipant` object. RoomNodeClient constructs a new DyteParticipant object and maintains the maps of active/joined/waitlisted/pinned/selectedPeers maps.
-
-## Error code: 0300
-
-- **Error message**: Internal exception
-- **Possible reason**: Indicates a problem with the HiveNodeClient.
-- **Possible solution**: Please [contact us](https://dyte.io/contact) for the help.
-
-## Error code: 0400
-
-- **Error message**: Internal exception
-- **Possible reason**: Indicates a problem with the SocketService.
-- **Possible solution**: Please [contact us](https://dyte.io/contact) for the help.
-
-## Error code: 0500
-
-- **Error message**: Internal exception
-- **Possible reason**: Indicates a problem with chat.
-- **Possible solution**: Please [contact us](https://dyte.io/contact) for the help.
-
 ## Error code: 0501
 
 - **Error message**: Permission denied
@@ -100,78 +64,6 @@ dyteClient.leaveRoom();
 - **Error message**: Invalid message body
 - **Possible reason**: Indicates a problem with chat.
 - **Possible solution**: The type `Message` is not defined correctly. See [Chat](/web-core/chat/introduction).
-
-## Error code: 0600
-
-- **Error message**: Internal exception
-- **Possible reason**: Indicates a problem with Plugins.
-- **Possible solution**: See [Plugins](/plugin-sdk). If you continue to experience issue, please [contact us](https://dyte.io/contact) for the help.
-
-## Error code: 0700
-
-- **Error message**: Internal exception
-- **Possible reason**: Indicates a problem with Polls.
-- **Possible solution**: If you're using web core, see [Polls](/react-web-core). For mobile, see [Polls](/rn-core/polls/introduction).
-
-  If you continue to experience issue, please [contact us](https://dyte.io/contact) for the help.
-
-## Error code: 0800
-
-- **Error message**: Internal exception
-- **Possible reason**: Indicates a problem with the room metadata.
-- **Possible solution**: Check [room metadata](/web-core/room-metadata). For any further assistance, please [contact us](https://dyte.io/contact).
-
-## Error code: 0900
-
-- **Error message**: Internal exception
-- **Possible reason**: Indicates a problem with the permissions for your [preset](https://dev.dyte.io/).
-- **Possible solution**: Check if you've added required permissions for all your features correctly. Please [contact us](https://dyte.io/contact) for the help.
-
-## Error code: 1000
-
-- **Error message**: Internal exception
-- **Possible reason**: Indicates a problem with the recording.
-- **Possible solution**: Check [recording](/guides/recording/recording-overview). For any further assistance, please [contact us](https://dyte.io/contact).
-
-## Error code: 1100
-
-- **Error message**: Internal exception
-- **Possible reason**: Indicates a problem with self (or local media handling).
-- **Possible solution**: Please [contact us](https://dyte.io/contact) for the help.
-
-## Error code: 1200
-
-- **Error message**: Internal exception
-- **Possible reason**: Indicates a problem with the participant.
-- **Possible solution**: If you're using web, check [participants](/web-core/participants/participant-object). For mobile, see the [participants](/rn-core/participants/participant-object) topic.
-
-  If you need further assistance, please [contact us](https://dyte.io/contact).
-
-## Error code: 1300
-
-- **Error message**: Internal exception
-- **Possible reason**: Indicates a problem with the spotlight.
-- **Possible solution**: Please [contact us](https://dyte.io/contact) for the help.
-
-## Error code: 1400
-
-- **Error message**: Internal exception
-- **Possible reason**: Indicates a problem with the remote request.
-- **Possible solution**: Please [contact us](https://dyte.io/contact) for the help.
-
-## Error code: 1500
-
-- **Error message**: Internal exception
-- **Possible reason**: Indicates a problem with the webinar.
-- **Possible solution**: Please [contact us](https://dyte.io/contact) for the help.
-
-## Error code: 1600
-
-- **Error message**: Internal exception
-- **Possible reason**: Indicates a problem with the device.
-- **Possible solution**: Verify if you've subscribed to the `deviceUpdate` event. Check your video, audio and speaker devices. For more information, see [Device update](/web-core/local-user/events#device-update).
-
-  If the problem persists, please [contact us](https://dyte.io/contact) for the help.
 
 ## Error code: 1601
 
@@ -202,3 +94,115 @@ dyteClient.leaveRoom();
 - **Error message**: Failed to change device
 - **Possible reason**: Indicates a problem with the device.
 - **Possible solution**: Please [contact us](https://dyte.io/contact) for the help.
+
+## Error code: 100xx
+
+All the internal exception errors are categorized under 100xx.
+
+### Error code: 0000
+
+- **Error message**: Internal exception
+- **Possible reason**: Indicates a problem with the DyteClient.
+- **Possible solution**: Since the exact reason is unkonwn, please [contact us](https://dyte.io/contact) for the help.
+
+### Error code: 0100
+
+- **Error message**: Internal exception
+- **Possible reason**: Indicates a problem with the controller.
+- **Possible solution**: Please [contact us](https://dyte.io/contact) for the help.
+
+### Error code: 0200
+
+- **Error message**: Internal exception
+- **Possible reason**: Indicates a problem with the RoomNodeClient.
+- **Possible solution**: Verify if you have entered the correct values for [`roomNodeClient`](/react-web-core/reference/DyteParticipants#new-moduleexportsroomnodeclient-self) in the `DyteParticipant` object. RoomNodeClient constructs a new DyteParticipant object and maintains the maps of active/joined/waitlisted/pinned/selectedPeers maps.
+
+### Error code: 0300
+
+- **Error message**: Internal exception
+- **Possible reason**: Indicates a problem with the HiveNodeClient.
+- **Possible solution**: Please [contact us](https://dyte.io/contact) for the help.
+
+### Error code: 0400
+
+- **Error message**: Internal exception
+- **Possible reason**: Indicates a problem with the SocketService.
+- **Possible solution**: Please [contact us](https://dyte.io/contact) for the help.
+
+### Error code: 0500
+
+- **Error message**: Internal exception
+- **Possible reason**: Indicates a problem with chat.
+- **Possible solution**: Please [contact us](https://dyte.io/contact) for the help.
+
+### Error code: 0600
+
+- **Error message**: Internal exception
+- **Possible reason**: Indicates a problem with Plugins.
+- **Possible solution**: See [Plugins](/plugin-sdk). If you continue to experience issue, please [contact us](https://dyte.io/contact) for the help.
+
+### Error code: 0700
+
+- **Error message**: Internal exception
+- **Possible reason**: Indicates a problem with Polls.
+- **Possible solution**: If you're using web core, see [Polls](/react-web-core). For mobile, see [Polls](/rn-core/polls/introduction).
+
+  If you continue to experience issue, please [contact us](https://dyte.io/contact) for the help.
+
+### Error code: 0800
+
+- **Error message**: Internal exception
+- **Possible reason**: Indicates a problem with the room metadata.
+- **Possible solution**: Check [room metadata](/web-core/room-metadata). For any further assistance, please [contact us](https://dyte.io/contact).
+
+### Error code: 0900
+
+- **Error message**: Internal exception
+- **Possible reason**: Indicates a problem with the permissions for your [preset](https://dev.dyte.io/).
+- **Possible solution**: Check if you've added required permissions for all your features correctly. Please [contact us](https://dyte.io/contact) for the help.
+
+### Error code: 1000
+
+- **Error message**: Internal exception
+- **Possible reason**: Indicates a problem with the recording.
+- **Possible solution**: Check [recording](/guides/recording/recording-overview). For any further assistance, please [contact us](https://dyte.io/contact).
+
+### Error code: 1100
+
+- **Error message**: Internal exception
+- **Possible reason**: Indicates a problem with self (or local media handling).
+- **Possible solution**: Please [contact us](https://dyte.io/contact) for the help.
+
+### Error code: 1200
+
+- **Error message**: Internal exception
+- **Possible reason**: Indicates a problem with the participant.
+- **Possible solution**: If you're using web, check [participants](/web-core/participants/participant-object). For mobile, see the [participants](/rn-core/participants/participant-object) topic.
+
+  If you need further assistance, please [contact us](https://dyte.io/contact).
+
+### Error code: 1300
+
+- **Error message**: Internal exception
+- **Possible reason**: Indicates a problem with the spotlight.
+- **Possible solution**: Please [contact us](https://dyte.io/contact) for the help.
+
+### Error code: 1400
+
+- **Error message**: Internal exception
+- **Possible reason**: Indicates a problem with the remote request.
+- **Possible solution**: Please [contact us](https://dyte.io/contact) for the help.
+
+### Error code: 1500
+
+- **Error message**: Internal exception
+- **Possible reason**: Indicates a problem with the webinar.
+- **Possible solution**: Please [contact us](https://dyte.io/contact) for the help.
+
+### Error code: 1600
+
+- **Error message**: Internal exception
+- **Possible reason**: Indicates a problem with the device.
+- **Possible solution**: Verify if you've subscribed to the `deviceUpdate` event. Check your video, audio and speaker devices. For more information, see [Device update](/web-core/local-user/events#device-update).
+
+  If the problem persists, please [contact us](https://dyte.io/contact) for the help.
