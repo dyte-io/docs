@@ -31,8 +31,8 @@ Here is a list of properties that local user provides:
   participant.
 - `roomJoined`: A boolean value indicating if the local user has joined the
   meeting.
-- `preview`: The local audio and video stream for the preview purpose (it will
-  be populated after calling `enablePreview`).
+- `roomState`: Indicates the state of the user in the meeting. It
+  can take the following values: `init` | `joined` | `waitlisted` | `rejected` | `kicked` | `left` | `ended`;
 - `permissions`: The permissions related to various capabilities within a
   meeting context for the local user
 - `mediaPermissions`: The current audio and video permissions given by the local
@@ -51,6 +51,7 @@ Here is a list of properties that local user provides:
   currently enabled.
 - `config`: The suggested theme for building the user interface.
 - ~~`suggestedTheme`: The suggested theme for building the user interface.~~
+- ~~`preview`: The local audio and video stream for the preview purpose (it will be populated after calling `enablePreview`).~~
 
 ## Change default audio / video settings
 
