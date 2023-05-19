@@ -1,0 +1,42 @@
+---
+title: 'Debug System Error Codes'
+sidebar_position: 1
+---
+
+:::info Note
+
+This information is intended for developers debugging or troubleshooting Dyte's web core system errors.
+
+:::
+
+Error codes are a standardized method for developers to convey application errors and issues to users or other developers in a structured manner. Error codes typically consist of a numerical or alphanumeric code and a description that provides more information about the error.
+
+This document lists Dyte's web core error codes that you may encounter in various scenarios. System error codes can arise in different parts of the system, and their descriptions may not always provide exact details. To address these codes effectively, you must first understand the programmatic and runtime contexts in which these errors occurred.
+
+## Error codes and format
+
+Error codes consist of four-digit numbers that are categorized by the type of error. The first two digits denote the module in which the error occurred, and the remaining digits specify the type of error.
+
+## Error codes prefixes
+
+Here is a list of error code prefixes corresponding to each Dyte modules:
+
+| **Module**                     | **Error Code Prefix** |
+| ------------------------------ | --------------------- |
+| DyteClient                     | 00xx                  |
+| Controller                     | 01xx                  |
+| RoomNodeClient                 | 02xx                  |
+| HiveNodeClient                 | 03xx                  |
+| SocketService                  | 04xx                  |
+| Chat                           | 05xx                  |
+| Plugins                        | 06xx                  |
+| Polls                          | 07xx                  |
+| Meta                           | 08xx                  |
+| Permissions/Presets            | 09xx                  |
+| Recording                      | 10xx                  |
+| Self (or local media handling) | 11xx                  |
+| Participant                    | 12xx                  |
+| Spotlight                      | 13xx                  |
+| Remote Request                 | 14xx                  |
+| Webinar                        | 15xx                  |
+| Device                         | 16xx                  |
