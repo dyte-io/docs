@@ -14,6 +14,11 @@ const changeTypes = [
     label: 'Fixed Issues',
   },
   {
+    name: 'perf',
+    color: '#5555aa',
+    label: 'Performance Improvements',
+  },
+  {
     name: 'new_api',
     color: '#1264a3',
     label: 'New API',
@@ -72,9 +77,13 @@ export default function ReleaseNotesGenerator({ noteKey }) {
                       {m[c.name]?.map((f) => (
                         <tr>
                           <td>
-                              {f.split("\n").map((i,key) => {
-                                return <ReactMarkdown className="changeline" key={key}>{i}</ReactMarkdown>;
-                              })}
+                            {f.split('\n').map((i, key) => {
+                              return (
+                                <ReactMarkdown className="changeline" key={key}>
+                                  {i}
+                                </ReactMarkdown>
+                              );
+                            })}
                           </td>
                         </tr>
                       ))}
