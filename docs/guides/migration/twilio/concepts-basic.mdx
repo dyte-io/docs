@@ -1,0 +1,63 @@
+---
+title: 'Concepts: Basics'
+sidebar_position: 1
+---
+
+This topic guides you through the standard practices utilized in [Twilio Video API](https://www.twilio.com/docs/video) and illustrates how they correspond with Dyte's API. The main purpose of this tutorial is to support you in migrating an existing application from Twilio to Dyte's video and audio APIs.
+
+## Overview
+
+Here's a brief overview of the architecture used by Twilio and Dyte.
+
+<Tabs>
+  <TabItem value="Twilio" label="Twilio Basic Flow">
+    
+    <img src="/static/guides/twilio-arch.png" class="arch-mig-guide"/>
+    
+  </TabItem>
+   <TabItem value="Dyte" label="Dyte Basic Flow">
+    
+    <img src="/static/guides/dyte-arch.png" class="arch-mig-guide" />
+
+  </TabItem>
+</Tabs>
+
+For more information on how to get started with Dyte, see [Integrate Dyte](/getting-started#integrate-dyte).
+
+## Credentials
+
+To access Twilio's API, you need an Account SID and Auth Token which can be obtained from `console.twilio.com`. Dyte uses Organization ID and API Key that you can get from the [Developer Portal](https://dev.dyte.io).
+
+It's important to note that the credentials for both Twilio and Dyte are intended to be used only on the server-side.
+
+| **Twilio**  | **Dyte**        |
+| ----------- | --------------- |
+| Account SID | Organization ID |
+| API Secret  | API Key         |
+
+## Rooms / Meeting
+
+Twilio utilizes Rooms to establish connections between participants, whereas Dyte uses [Meetings](/api#/operations/create_meeting) for the same purpose.
+
+| **Twilio** | **Dyte**   |
+| ---------- | ---------- |
+| Room       | Meeting    |
+| Room SID   | Meeting ID |
+
+## Participant Authentication
+
+In Twilio, helper libraries are used to generate a participant access token.
+
+```ts
+const token = new AccessToken(twilioAccountSid, twilioApiKey, twilioApiSecret, {
+  identity: identity,
+});
+token.addGrant(videoGrant);
+console.log(token.toJwt());
+```
+
+In Dyte, you make a REST API call to [Add Participant API](/api/#/operations/add_participant) which returns `authToken`.
+
+| **Twilio**   | **Dyte**  |
+| ------------ | --------- |
+| Access Token | Authtoken |

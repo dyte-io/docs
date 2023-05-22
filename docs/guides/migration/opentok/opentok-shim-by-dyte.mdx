@@ -1,0 +1,97 @@
+---
+title: 'Migrate from OpenTok to Dyte with Shim'
+sidebar_position: 2
+---
+
+The OpenTok [Shim](<https://en.wikipedia.org/wiki/Shim_(computing)>) by Dyte is a package that allows you to migrate your video calling applications from [OpenTok](https://tokbox.com/developer/) to Dyte infrastructure.
+
+- Dyte provides a set of shim libraries that serve as seamless replacements for the Vonage video APIs (previously known as Tokbox OpenTok). These shims serve as a fundamental building block for migrating your application from OpenTok to Dyte infrastructure.
+- The `@dytesdk/opentok-shim` package serves as a wrapper over the Dyte SDK with an external API that is fully compatible with Opentok JS. As a drop-in replacement for Opentok JS, it can handle most of the methods and events that are present in the original library.
+
+Please [contact us](https://dyte.io/contact) for any help or support with the migration.
+
+## Start migrating from OpenTok to Dyte with Shim
+
+To get started with the Dyte Shim for OpenTok, do the following:
+
+1. Install the shim from the NPM registry using the following command:
+
+```bash npm
+npm install @dytesdk/opentok-shim
+```
+
+2. Once you have installed the package, you can use it in your project by importing it using the following statement:
+
+```bash
+import * as OT from "@dytesdk/opentok-shim";
+```
+
+## Usage
+
+The `@dytesdk/opentok-shim` shares the same API as the OpenTok video SDK. You can use most of the methods that are supported by it.
+
+Here are a few examples.
+
+### Connection
+
+To create a connection to an OpenTok session, you can use the `OT.initSession()` method. This method takes the following arguments:
+
+- Token
+- Session ID
+
+You can obtain Dyte authentication token `<DYTE-AUTH-TOKEN>` using the [Add a Participant API](/api#/operations/add_participant).
+
+```ts
+const token = "<DYTE-AUTH-TOKEN>";
+const sessionId = "";
+const session = OT.initSession(token, sessionId);
+```
+
+### Listen for the events
+
+This establishes an OpenTok session and listens for events such as `streamCreated`, `connectionCreated`, and `connectionDestroyed`.
+
+```ts
+session.on("streamCreated", function streamCreated(event) {
+  console.log("[streamCreated] index.ts: ", event.stream);
+  session.subscribe(
+    event.stream,
+    "subscriber",
+    {
+      insertMode: "append",
+      width: "100%",
+      height: "100%",
+    },
+    handleError
+  );
+  // }
+});
+
+let connections: OT.Connection[] = [];
+session.on("connectionCreated", (connectionCreatedEvent) => {
+  console.log("session connectionCreatedEvent: ", connectionCreatedEvent);
+  connections.push(connectionCreatedEvent.connection);
+
+  if (
+    connections.find(
+      (connection) =>
+        connection.connectionId ===
+        connectionCreatedEvent.connection.connectionId
+    )
+  ) {
+    console.log("connection already exists");
+    return;
+  }
+  connections.push(connectionCreatedEvent.connection);
+});
+
+session.on("connectionDestroyed", (connectionDestroyedEvent) => {
+  console.log("session connectionDestroyedEvent: ", connectionDestroyedEvent);
+  connections = connections.filter(
+    (connection) =>
+      connection.connectionId !==
+      connectionDestroyedEvent.connection.connectionId
+  );
+});
+
+```
