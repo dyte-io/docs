@@ -61,20 +61,20 @@ Performs cleanup tasks after leaving the meeting, such as clearing added listene
 
 Step 1: Create the `DyteRecording` object.
 
-```json
+```js
 const recordingSdk = new DyteRecording(options);
 ```
 
 Step 2: Call `init` after creating the meeting object.
 
-```json
+```js
 // Call this after you have called initMeeting
 await recordingSdk(client);
 ```
 
 (Optional) Step 3: To manually stop the recording, use `stopRecording`.
 
-```json
+```js
 // This throws an exception if manuallyStopRecording is set to false.
-await recordingSdk.stopRecording()
+await recordingSdk.stopRecording();
 ```
