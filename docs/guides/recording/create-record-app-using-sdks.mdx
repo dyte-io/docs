@@ -1,0 +1,80 @@
+---
+title: 'Create Custom Recording App Using Recording SDKs'
+sidebar_position: 12
+---
+
+When you join a Dyte meeting, the meeting layout is automatically designed to optimize your experience. This includes focusing on shared content and highlighting active speakers, while participants are shown in small thumbnail views. When you start recording the meeting, it is recorded with the same layout.
+
+If you wish to have a customized layout for your recording application, Dyte's custom recording SDKs provide the flexibility to tailor the appearance of your recordings according to your preferences. You can choose from options like:
+
+- Show only active speaker view
+- Shared screen with thumbnail gallery view
+- Shared screen with large active speaker thumbnail
+- Shared screen without active speaker or gallery view
+- Customized background for your recording
+- Portrait layout, and so on and so forth
+
+Let’s dive in to understand the steps involved in creating a custom appearance for your Dyte recording app.
+
+The custom recording SDKs are used on top of the [UI kit](/react-ui-kit). The `DyteRecording` class is used for managing the recording functionality within the SDK.
+
+## Constructor
+
+`constructor(options)`
+
+Creates an instance of the `DyteRecording` class.
+
+### Parameters
+
+`options (object)`: The options object.
+
+| **options (object)**                      | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `options.waitTimeMs (number)`             | The time (in milliseconds) to wait after all peers have left before leaving the meeting. This option is ignored if manuallyStopRecording is set to true.                                                                                                                                                                                                                                                                                                                        |
+| `options.manuallyStopRecording (boolean)` | Set to true if you want to disable automatic peer leave and manually call the `stopRecording` function.                                                                                                                                                                                                                                                                                                                                                                         |
+| `options.scanInterval (number)`           | The interval (in milliseconds) between scans for automatic peer leave.                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `options.websocketUrl (string)`           | The URL of the WebSocket server to connect to. This defaults to `localhost:8080/ws`. It is recommended not to change this URL.                                                                                                                                                                                                                                                                                                                                                  |
+| `options.devMode (boolean)`               | Set to true to enable development mode, which enables logs and disables certain functionality.                                                                                                                                                                                                                                                                                                                                                                                  |
+| `recordOnInit`                            | By default, the `recordOnInit` parameter is set to `true`. If you wish to delay the start of the recording, you can set the value of this parameter to `false`. In that case, you can manually call the `startRecording()` function later. Note that there is a timeout of 2 minutes associated with the `startRecording()` method. If this method is not called within 2 minutes of the WebSocket connection being established, the recording process will encounter an error. |
+
+### Methods
+
+```json
+init(client: DyteClient)
+```
+
+Initiates the SDK by providing a `DyteClient` object. Call this after creating the meeting object and before calling `meeting.joinRoom()`.
+
+```json
+stopRecording()
+```
+
+Manually stops the recording. Ensure that `manuallyStopRecording` is passed as true in the constructor options.
+
+```json
+cleanup()
+```
+
+Performs cleanup tasks after leaving the meeting, such as clearing added listeners and closing WebSocket connections.
+
+## Usage Example
+
+Step 1: Create the `DyteRecording` object.
+
+```json
+const recordingSdk = new DyteRecording(options);
+```
+
+Step 2: Call `init` after creating the meeting object.
+
+```json
+// Call this after you have called initMeeting
+await recordingSdk(client);
+```
+
+(Optional) Step 3: To manually stop the recording, use `stopRecording`.
+
+```json
+// This throws an exception if manuallyStopRecording is set to false.
+await recordingSdk.stopRecording()
+```
