@@ -1,0 +1,37 @@
+---
+title: 'Concepts: Media'
+sidebar_position: 2
+---
+
+# Media
+
+This topic compares how OpenTok and Dyte handle media publishing and subscription behavior.
+
+## Publishing
+
+OpenTok
+
+```ts
+publisher = OT.initPublisher('replacementElementId');
+session.publish(publisher, function (error) {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Publishing a stream.');
+  }
+});
+```
+
+For more information, see [Publishing a stream](https://tokbox.com/developer/guides/publish-stream/js/).
+
+Dyte
+
+```ts
+DyteClient.init({
+  authToken: '$TOKEN',
+  defaults: {
+    audio: true,
+    video: true,
+  },
+});
+```
