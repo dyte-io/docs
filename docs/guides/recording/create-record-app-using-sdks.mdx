@@ -45,14 +45,14 @@ init(client: DyteClient)
 
 Initiates the SDK by providing a `DyteClient` object. Call this after creating the meeting object and before calling `meeting.joinRoom()`.
 
-```json
-stopRecording()
+```js
+stopRecording();
 ```
 
 Manually stops the recording. Ensure that `manuallyStopRecording` is passed as true in the constructor options.
 
-```json
-cleanup()
+```js
+cleanup();
 ```
 
 Performs cleanup tasks after leaving the meeting, such as clearing added listeners and closing WebSocket connections.
