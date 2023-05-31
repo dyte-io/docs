@@ -1,5 +1,55 @@
 [
   {
+    "version": "1.51.0",
+    "createdAt": 1685491200,
+    "fixes": [
+      "`<dyte-permission-message />` component now can be loaded outside of the <dyte-dialog-manager />.",
+      "`<dyte-chat-composer-ui />` now stores the draft message in local storage and restores it on page refresh.",
+      "Fixed an edge case when the pinned participant's state was not updated when they leave the meeting."
+    ],
+    "features": [
+      "✨ Added support for our upcoming AI features. Keep an eye out for more updates!"
+    ]
+  },
+  {
+    "version": "1.50.0",
+    "createdAt": 1685491200,
+    "fixes": [
+      "Removed the extra space that was being taken by `<dyte-tab-bar />` when there is only one tab.",
+      "Fixed an edge case where the `<dyte-clock />` component was mysteriously disappearing.",
+      "Fixed autoplay issues with `<dyte-livestream-player />`"
+    ],
+    "features": [
+      "Added observability and quality metrics collection for `<dyte-livestream-player />`"
+    ]
+  },
+  {
+    "version": "1.49.0",
+    "createdAt": 1682985600,
+    "fixes": [
+      "Optimized the performance of `<dyte-participants-audio />`",
+      "Fixed a style issue with `<participant-tile />` on Safari browser.",
+      "Optimized a few more components for [Breakout rooms](/guides/breakoutroom/introduction-breakout-rooms)."
+    ],
+    "features": [
+      "A new `dialogClose` not gets fired when you close the dialog.",
+      "Now you can pass the i18n prop `t` to `<dyte-meeting />`"
+    ]
+  },
+  {
+    "version": "1.48.0",
+    "createdAt": 1682035200,
+    "fixes": [
+      "Fixed an issue with angular builds.",
+      "Fixed an edge case where the host controls were not visible for a combination of `canDisableParticipantAudio` and `canDisableParticipantVideo` permissions.",
+      "Fixed an issue with text `line-height` in `<dyte-chat-messages />` when the body/html font size is defined in percentage.",
+      "Improved the spacing around sidebar heading and `<dyte-participants />` component."
+    ],
+    "features": [
+      "Added support for our upcoming layout configurations. Keep an eye out for more updates!"
+    ]
+  },
+  {
     "version": "1.46.0",
     "createdAt": 1679409000,
     "fixes": [
