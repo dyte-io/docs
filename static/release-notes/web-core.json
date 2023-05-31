@@ -1,5 +1,18 @@
 [
   {
+    "version": "1.13.0",
+    "createdAt": 1685491200,
+    "fixes": [
+      "Optimized `mediaPermissionUpdate` event to be emitted when the user grants media permission for the first time.",
+      "Improved the correctness of `meeting.self.getCurrentDevices()` to return the recent device list when the user grants the permission for the first time.",
+      "Fixed an edge case where the `screenshareUpdate` event would be emitted twice upon stopping the screenshare.",
+      "Improved the reliability of clearing the `pinned` state from participant after they leave meeting."
+    ],
+    "new_api": [
+      "Added a new `CANCELLED` state to [meeting.self.mediaPermission](./local-user/introduction#properties) when the user cancels the screenshare selection dialog in Chromium browsers."
+    ]
+  },
+  {
     "version": "1.12.x",
     "createdAt": 1682985600,
     "perf": [
