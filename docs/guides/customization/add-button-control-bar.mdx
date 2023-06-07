@@ -1,11 +1,11 @@
 ---
-title: 'Add a Button to the Control Bar'
+title: 'Add a Custom Button to the Control Bar'
 sidebar_position: 1
 ---
 
 Dyte's UI kit provides a convenient solution for customizing the UI of your Dyte meetings including control bar. The control bar is an essential component of any meeting platform, allowing users to access various meeting controls such as audio and video settings, screen sharing, recording, and more. Using Dyte's UI kit you can customize the control bar, for example, add a hand-raise button, rename a button, and so on.
 
-This topic will guide you through the process of adding a hand-raise button to the control bar of your meeting.
+This guide will take you through the process of adding a hand-raise button to the control bar of your meeting.
 
 ## Prerequisites
 
@@ -14,13 +14,17 @@ This topic will guide you through the process of adding a hand-raise button to t
 - Integrate [DyteParticipantsAudio](/react-ui-kit/basics/integrate#dyteparticipantsaudio)
 - Integrate [DyteNotifications](/react-ui-kit/basics/integrate#dytenotifications)
 
-## Step 1: Import the `DyteControlbarButton` and create a state to manage the UI
+## Step 1: Create a meeting interface
+
+Follow the steps in the [React quickstart](/react-ui-kit/quickstart) to create your meeting interface.
+
+## Step 2: Add a custom button (raise hand) in the control bar
+
+Once you've created your Dyte meeting, import the `DyteControlbarButton` and create a state to manage the UI.
 
 ```js
 const [handRaised, setHandRaised] = useState(false);
 ```
-
-## Step 2: Add a custom control bar and raise hand button
 
 ```js
 <DyteControlbarButton
@@ -33,7 +37,9 @@ const [handRaised, setHandRaised] = useState(false);
 
 ## Step 3: Implement the `raiseHand` function
 
-To broadcast a message to all peers in the meeting when a user clicks the control bar button, use the broadcast API exposed by web-core. The `broadcastMessage` method takes in two parameters, a type, and a payload. Pass the peer’s ID and display name in the payload.
+When a user clicks the control bar button, you can use the broadcast API exposed by web core to send a message to all peers in the meeting. This can be achieved by calling the `broadcastMessage` method, which requires two parameters: a `type` and a `payload`.
+
+In the payload, include the peer's ID and display name.
 
 ```js
 const raiseHand = async () => {
@@ -47,7 +53,7 @@ const raiseHand = async () => {
 
 ## Step 4: Listen for the broadcasted message
 
-When the event is fired a notification is sent to the user using the `sendNotification` method exposed by @dytesdk/react-ui-kit.
+When the event is fired a notification is sent to the user using the `sendNotification` method exposed by `@dytesdk/react-ui-kit`.
 
 ```js
 useEffect(() => {
