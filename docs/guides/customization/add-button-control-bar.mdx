@@ -16,7 +16,111 @@ This guide will take you through the process of adding a hand-raise button to th
 
 ## Step 1: Create a meeting interface
 
-Follow the steps in the [React quickstart](/react-ui-kit/quickstart) to create your meeting interface.
+Meeting setup consists of two files `App.jsx` and `App.css`.
+
+### App.jsx
+
+To create `App.jsx`, you need to:
+
+- Import the necessary dependencies and styles
+- Set up the meeting using the `useEffect` hook
+- Render the meeting components
+
+```js
+import React, { useEffect, useState } from 'react';
+import { useDyteClient, DyteProvider } from '@dytesdk/react-web-core';
+import {
+  DyteParticipantsAudio,
+  DyteNotifications,
+  DyteGrid,
+  DyteMicToggle,
+  DyteCameraToggle,
+  DyteSettingsToggle,
+  DyteHeader,
+} from '@dytesdk/react-ui-kit'
+import './App.css';
+
+useEffect(() => {
+    initClient({
+      authToken: '<auth-token>',
+      defaults: {
+        audio: false,
+        video: true,
+      },
+    });
+ }, []);
+
+if (!client) return (<div>Loading Dyte Meeting...</div>);
+
+return (
+  <div className="dyte-meeting">
+  <DyteProvider value={client}>
+      <DyteParticipantsAudio meeting={client} />
+      <DyteNotifications
+        meeting={client}
+        config={{
+          config: {
+            notifications: ['chat', 'participant_joined', 'participant_left'],
+            notification_sounds: ['chat', 'participant_joined', 'participant_left'],
+            participant_joined_sound_notification_limit: 10,
+            participant_chat_message_sound_notification_limit: 10,
+          },
+        }}
+      />
+      <DyteHeader meeting={client} />
+      <div className="grid-container">
+        <DyteGrid meeting={client} style={{ height: '100%' }} />
+      </div>
+      <div class="controlbar">
+        <DyteMicToggle meeting={client} />
+        <DyteCameraToggle meeting={client} />
+        <DyteSettingsToggle meeting={client} />
+      </div>
+  </DyteProvider>
+  </div>
+);
+}
+
+export default App;
+```
+
+### App.css
+
+Here is an example of how your App.css file could be structured:
+
+```js
+html {
+ height: 100vh;
+ width: 100vw;
+ margin: 0;
+}
+
+.grid-container {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+
+.controlbar {
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.dyte-meeting {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background: black;
+  flex-direction: column;
+}
+
+.active-button {
+  color: red;
+}
+```
 
 ## Step 2: Add a custom button (raise hand) in the control bar
 
