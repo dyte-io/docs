@@ -1,0 +1,178 @@
+---
+title: 'Add a Custom Button to the Control Bar'
+sidebar_position: 1
+---
+
+Dyte's UI kit provides a convenient solution for customizing the UI of your Dyte meetings including control bar. The control bar is an essential component of any meeting platform, allowing users to access various meeting controls such as audio and video settings, screen sharing, recording, and more. Using Dyte's UI kit you can customize the control bar, for example, add a hand-raise button, rename a button, and so on.
+
+This guide will take you through the process of adding a hand-raise button to the control bar of your meeting.
+
+## Prerequisites
+
+- Review [Components of DyteMeeting](/react-ui-kit#components-of-dytemeeting)
+- Review the [Get Started with Dyte Prebuilt Components](/react-ui-kit/quickstart#step-2-get-started-with-dyte-prebuilt-components) and [Example](/react-ui-kit/quickstart#example-using-prebuilt-dytemeeting-component) sections in the React UI kit quickstart
+- Integrate [DyteParticipantsAudio](/react-ui-kit/basics/integrate#dyteparticipantsaudio)
+- Integrate [DyteNotifications](/react-ui-kit/basics/integrate#dytenotifications)
+
+## Step 1: Create a meeting interface
+
+Meeting setup consists of two files `App.jsx` and `App.css`.
+
+### App.jsx
+
+To create `App.jsx`, you need to:
+
+- Import the necessary dependencies and styles
+- Set up the meeting using the `useEffect` hook
+- Render the meeting components
+
+```js
+import React, { useEffect, useState } from 'react';
+import { useDyteClient, DyteProvider } from '@dytesdk/react-web-core';
+import {
+  DyteParticipantsAudio,
+  DyteNotifications,
+  DyteGrid,
+  DyteMicToggle,
+  DyteCameraToggle,
+  DyteSettingsToggle,
+  DyteHeader,
+} from '@dytesdk/react-ui-kit'
+import './App.css';
+
+useEffect(() => {
+    initClient({
+      authToken: '<auth-token>',
+      defaults: {
+        audio: false,
+        video: true,
+      },
+    });
+ }, []);
+
+if (!client) return (<div>Loading Dyte Meeting...</div>);
+
+return (
+  <div className="dyte-meeting">
+  <DyteProvider value={client}>
+      <DyteParticipantsAudio meeting={client} />
+      <DyteNotifications
+        meeting={client}
+        config={{
+          config: {
+            notifications: ['chat', 'participant_joined', 'participant_left'],
+            notification_sounds: ['chat', 'participant_joined', 'participant_left'],
+            participant_joined_sound_notification_limit: 10,
+            participant_chat_message_sound_notification_limit: 10,
+          },
+        }}
+      />
+      <DyteHeader meeting={client} />
+      <div className="grid-container">
+        <DyteGrid meeting={client} style={{ height: '100%' }} />
+      </div>
+      <div class="controlbar">
+        <DyteMicToggle meeting={client} />
+        <DyteCameraToggle meeting={client} />
+        <DyteSettingsToggle meeting={client} />
+      </div>
+  </DyteProvider>
+  </div>
+);
+}
+
+export default App;
+```
+
+### App.css
+
+Here is an example of how your App.css file could be structured:
+
+```js
+html {
+ height: 100vh;
+ width: 100vw;
+ margin: 0;
+}
+
+.grid-container {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+
+.controlbar {
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.dyte-meeting {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background: black;
+  flex-direction: column;
+}
+
+.active-button {
+  color: red;
+}
+```
+
+## Step 2: Add a custom button (raise hand) in the control bar
+
+Once you've created your Dyte meeting, import the `DyteControlbarButton` and create a state to manage the UI.
+
+```js
+const [handRaised, setHandRaised] = useState(false);
+```
+
+```js
+<DyteControlbarButton
+  label="Raise Hand"
+  icon={handSvg}
+  onClick={raiseHand}
+  className={handRaised ? 'active-button' : ''}
+/>
+```
+
+## Step 3: Implement the `raiseHand` function
+
+When a user clicks the control bar button, you can use the broadcast API exposed by web core to send a message to all peers in the meeting. This can be achieved by calling the `broadcastMessage` method, which requires two parameters: a `type` and a `payload`.
+
+In the payload, include the peer's ID and display name.
+
+```js
+const raiseHand = async () => {
+  await client.participants.broadcastMessage('hand-raise', {
+    id: client.self.id,
+    name: client.self.name,
+  });
+  setHandRaised(!handRaised);
+};
+```
+
+## Step 4: Listen for the broadcasted message
+
+When the event is fired a notification is sent to the user using the `sendNotification` method exposed by `@dytesdk/react-ui-kit`.
+
+```js
+useEffect(() => {
+  if (!client) return;
+  client.participants.on('broadcastedMessage', ({ payload }) => {
+    const notificationObj = {
+      id: new Date().getTime().toString(),
+      message: `Hand Raised by ${payload.name}`,
+      duration: 3000,
+    };
+    sendNotification(notificationObj, 'message');
+  });
+
+  return () => {
+    client.participants.removeAllListeners('broadcastedMessage');
+  };
+}, [client]);
+```
