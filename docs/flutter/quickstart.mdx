@@ -1,8 +1,7 @@
 ---
 title: Quickstart
 description: Quickstart guide for Dyte's Flutter UI Kit.
-sidebar_position: 1
-slug: /
+sidebar_position: 2
 ---
 
 # Quickstart
@@ -61,7 +60,7 @@ The `DyteUIKit` is the main class of the SDK. It is the entry point and the only
 class required to initialize Dyte SDK.
 
 ```dart
-final meetingInfo = DyteMeetingInfo(authToken: '<auth_token>');
+final meetingInfo = DyteMeetingInfoV2(authToken: '<auth_token>');
 
 // This is optional, it can be used to configure the color of the meeting.
 final configurations = Configurations(
@@ -71,12 +70,9 @@ final configurations = Configurations(
 );
 
 final DyteUIKit uiKit = DyteUIKit(
-  meetingInfo: DyteMeetingInfo(
-    roomName: meetingRoomName,
-    enableAudio: true,
-    enableVideo: true,
-    displayName: 'Flutter UI kit',
+  meetingInfo: DyteMeetingInfoV2(
     authToken: authToken,
+    clientContext: context
   ),
 );
 
@@ -84,8 +80,6 @@ final DyteUIKit uiKit = DyteUIKit(
 final dyteMeeting = uiKit.loadUI();
 
 ```
-
-You need to create
 
 ## Step 3: Configure a Dyte meeting
 
@@ -132,6 +126,8 @@ class DyteMeetingPage extends StatelessWidget {
 
 Here is a pictorial representation of all the config options defined below.
 
-![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-setup.png)
-![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-meeting.png)
-![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-meeting-options.png)
+![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/flutter-setup-page.png)
+![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/flutter-video-call.png)
+![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/flutter-participant-list.png)
+![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/flutter-advanced-features.png)
+![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/flutter-chat.png)
