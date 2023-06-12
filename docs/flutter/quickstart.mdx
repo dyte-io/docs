@@ -18,6 +18,7 @@ a sample application from the
 You’ll learn how to:
 
 - Install the Dyte SDK
+- Configuring Android & iOS permissions
 - Initialize the SDK
 - Configure a Dyte meeting
 - Launch the meeting UI
@@ -39,7 +40,7 @@ You must complete the following steps:
 
 ## Step 1: Install the SDK
 
-1. Install the SDK from [pub](https://pub.dev).
+1. Install the SDK from [pub.dev](https://pub.dev).
 
 ```shell
 
@@ -47,59 +48,85 @@ flutter pub add dyte_uikit
 
 ```
 
-:::tip Note
+## Step 2: Configuring Android & iOS permissions
 
-Set `compileSdkVersion 33` & `minSdkVersion 21` inside `build.gradle` file of
-android.
+- ### **Android**
 
-:::
+  Set `compileSdkVersion 33` & `minSdkVersion 21` inside `build.gradle` file at `<project root>/android/app/build.gradle` file.
 
-## Step 2: Initialize the SDK
+  ```kotlin
+    defaultConfig {
+          ...
 
-The `DyteUIKit` is the main class of the SDK. It is the entry point and the only
-class required to initialize Dyte SDK.
+          compileSdkVersion 33
+          minSdkVersion 21
+
+          ...
+      }
+  ```
+
+- ### **iOS**
+
+  1. Set minimum deployment target for your Flutter app to 13.0 or higher.
+
+  ```<Swift>
+  platform :ios, '13.0'
+  ```
+
+  2. Add the following keys to your `Info.plist` file, located in `<project root>/ios/Runner/Info.plist` :
+
+  ```<Swift>
+  /* Attach the permission to use camera & microphone. */
+
+  <key>NSCameraUsageDescription</key>
+  <string>For people to see you during meetings, we need access to your camera.</string>
+
+  <key>NSMicrophoneUsageDescription</key>
+  <string>For people to hear you during meetings, we need access to your microphone.</string>
+  ```
+
+## Step 3: Configure a Dyte meeting
+
+To initiate Dyte v2 Meeting for any participant you just need to pass `authToken` as an argument. All the details such as `roomName` will already be melded in the created `authToken`, hence you don't need to take care of it. You can get the `authToken` via the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant).
+
+| Name        | Description                                                                                                                                                                                                                                                                                                                                   |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authToken` | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
+
+After getting the `authToken`, you need to create the `DyteMeetingInfoV2` object as follows:
 
 ```dart
-final meetingInfo = DyteMeetingInfoV2(authToken: '<auth_token>');
+final meetingInfoV2 = DyteMeetingInfoV2(authToken: '<auth_token>');
+```
 
-// This is optional, it can be used to configure the color of the meeting.
+## Step 4: Initialize the SDK
+
+The `DyteUIKit` is the main class of the SDK. It is the entry point and the only
+class required to initialize Dyte UI Kit SDK.
+
+```dart
+/* Passing `configuration` is optional, it is used to setup the theme of Dyte UI Kit. */
 final configurations = Configurations(
   baseBackground: Color(yourBaseColor),
   basePrimary: Color(yourPrimaryColor),
   textColor: Color(yourTextColor),
 );
 
+/* Passing the DyteMeetingInfoV2 object `meetingInfoV2` you created in the Step 3,
+   and your context in `clientContext` parameter. */
+
 final DyteUIKit uiKit = DyteUIKit(
-  meetingInfo: DyteMeetingInfoV2(
-    authToken: authToken,
-    clientContext: context
-  ),
+  meetingInfo: meetingInfoV2,
+  clientContext: context,
+  configurations: configurations, //optional
 );
-
-// dyteMeeting is the meeting widget and it can be used to render the uikit.
-final dyteMeeting = uiKit.loadUI();
-
 ```
 
-## Step 3: Configure a Dyte meeting
+## Step 5: Launch the meeting UI
 
-Set the properties in the `DyteMeetingInfo` class. You just need to provide the
-participant's `authToken`.
-
-| Name        | Description                                                                                                                                                                                                                                                                                                                                   |
-| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `authToken` | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
+To launch the meeting UI all you need to do is call the `loadUI()` method of the `DyteUIKit` object which will return a `Widget`. You can push this widget as a page to start the flow of prebuilt Flutter UI Kit.
 
 ```dart
-final meetingInfo = DyteMeetingInfo(authToken: '<auth_token>');
-```
-
-## Step 4: Launch the meeting UI
-
-To launch the meeting UI all you need to do is add the `dyteMeeting` as a child.
-
-```dart
-
 import 'package:dyte_uikit/dyte_uikit.dart';
 import 'package:flutter/material.dart';
 
@@ -108,19 +135,15 @@ class DyteMeetingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final DyteUIKit uiKit = DyteUIKit(
-      meetingInfo: DyteMeetingInfoV2(
-        authToken: authToken,
-      ),
-    );
+    ...
+    // Push this widget as page in your app
     return uiKit.loadUI();
   }
 }
 
-
 ```
 
-Here is a pictorial representation of all the config options defined below.
+Voila! You're all done. Here is the pictorial representation of all the configuration options passed.
 
 <div
   id="one"
@@ -149,3 +172,4 @@ Here is a pictorial representation of all the config options defined below.
     />
   ))}
 </div>
+````
