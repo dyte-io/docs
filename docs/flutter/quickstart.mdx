@@ -109,11 +109,7 @@ class DyteMeetingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final DyteUIKit uiKit = DyteUIKit(
-      meetingInfo: DyteMeetingInfo(
-        roomName: meetingRoomName,
-        enableAudio: true,
-        enableVideo: true,
-        displayName: 'Flutter UI kit',
+      meetingInfo: DyteMeetingInfoV2(
         authToken: authToken,
       ),
     );
@@ -126,8 +122,25 @@ class DyteMeetingPage extends StatelessWidget {
 
 Here is a pictorial representation of all the config options defined below.
 
-![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/flutter-setup-page.png)
-![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/flutter-video-call.png)
-![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/flutter-participant-list.png)
-![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/flutter-advanced-features.png)
-![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/flutter-chat.png)
+<div
+  id="one"
+  style={{
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    flex: '1 1 0',
+    margin: '40 10',
+    padding: '10 10',
+    justifyContent: 'center',
+  }}
+>
+  {[
+    '/static/mobile/0.x.x/flutter-setup-page.png',
+    '/static/mobile/0.x.x/flutter-video-call.png',
+    '/static/mobile/0.x.x/flutter-participant-list.png',
+    '/static/mobile/0.x.x/flutter-advanced-features.png',
+    '/static/mobile/0.x.x/flutter-chat.png',
+  ].map((i) => (
+    <img src={i} alt="Image 1" width="220" padding="10" margin="10 3" />
+  ))}
+</div>
