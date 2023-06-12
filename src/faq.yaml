@@ -309,6 +309,20 @@
     If you wish to disable uploads to Dyte's bucket, you can set the `dyte_bucket_config` parameter to false in the [Start Recording](/api?v=v2#/operations/start_recording) endpoint. For more information, see [Manage Dyte's Default Recording Upload Settings](/guides/recording/configure-dyte-bucket-config).
 
 - question: |-
+    What is the average file size of a Dyte recording?
+  tags: ['Technical', 'Recording']
+  answer: |-
+    Based on historical data, here are estimations for recording sizes with different components:
+
+    - Format: H264 video codec
+    - Resolution: 720p
+    - Duration: 1 hour
+    - Estimated size: On average, around 230MB
+    - Range: Typically falls between 200-250MB, with potential outliers for static or rapidly changing content.
+
+    Please note that these estimations are based on historical data and apply to recordings with a resolution of 720p. Actual sizes may vary depending on factors such as content, codec settings, and resolution.
+
+- question: |-
     What if our server fails to consume the webhook? When will they be fired
     again, and are they idempotent?
   tags: ['Technical']
