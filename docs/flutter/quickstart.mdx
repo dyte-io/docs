@@ -129,8 +129,6 @@ Here is a pictorial representation of all the config options defined below.
     flexDirection: 'row',
     flexWrap: 'wrap',
     flex: '1 1 0',
-    margin: '40 10',
-    padding: '10 10',
     justifyContent: 'center',
   }}
 >
@@ -141,6 +139,13 @@ Here is a pictorial representation of all the config options defined below.
     '/static/mobile/0.x.x/flutter-advanced-features.png',
     '/static/mobile/0.x.x/flutter-chat.png',
   ].map((i) => (
-    <img src={i} alt="Image 1" width="220" padding="10" margin="10 3" />
+    <img
+      src={i}
+      alt="Image 1"
+      width="220"
+      padding="10"
+      margin="10 3"
+      style={{ margin: '10px', borderRadius: '8px' }}
+    />
   ))}
 </div>
