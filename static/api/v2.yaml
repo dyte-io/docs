@@ -262,6 +262,21 @@ paths:
                   type: string
                   pattern: '^[a-zA-Z0-9-_]*$'
                   nullable: true
+                video_config:
+                  type: object
+                  x-stoplight:
+                    id: r08nyyq3aukpd
+                  properties:
+                    height:
+                      type: integer
+                      x-stoplight:
+                        id: avfldug1v6vza
+                      description: Height of the livestreaming video in pixels
+                    width:
+                      type: integer
+                      x-stoplight:
+                        id: bm1i98doqrnw1
+                      description: Width of the livestreaming video in pixels
             examples:
               example-1:
                 value:
@@ -430,6 +445,12 @@ paths:
       description: Returns details of all livestreams for the given meeting ID.
       tags:
         - Live streams
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
     parameters:
       - schema:
           type: string
@@ -449,6 +470,10 @@ paths:
               type: object
               example:
                 name: prdmmp-xhycsl
+          application/xml:
+            schema:
+              type: object
+              properties: {}
       parameters: []
       responses:
         '200':
@@ -716,6 +741,8 @@ paths:
       responses:
         '201':
           $ref: '#/components/responses/CreatePoll'
+        '400':
+          description: Bad Request
   /sessions:
     get:
       summary: Fetch all sessions of an organization
@@ -1460,6 +1487,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/GetRecordings'
+        '201':
+          description: Created
       operationId: get_all_recordings
       description: 'Returns all recordings for an organization. If the `meeting_id` parameter is passed, returns all recordings for the given meeting ID.'
       security:
@@ -2353,6 +2382,11 @@ components:
           format: uuid
           description: ID of the meeting.
           readOnly: true
+        title:
+          type: string
+          x-stoplight:
+            id: ehrqyjfdcvmjy
+          description: Title of the meeting.
         preferred_region:
           type: string
           enum:
@@ -2639,11 +2673,6 @@ components:
           description: Name of the preset
         config:
           type: object
-          required:
-            - view_type
-            - max_video_streams
-            - max_screenshare_count
-            - media
           properties:
             view_type:
               type: string
@@ -2655,9 +2684,6 @@ components:
             max_video_streams:
               type: object
               description: Maximum number of streams that are visible on a device
-              required:
-                - mobile
-                - desktop
               properties:
                 mobile:
                   type: integer
@@ -2671,16 +2697,10 @@ components:
             media:
               type: object
               description: 'Media configuration options. eg: Video quality'
-              required:
-                - video
-                - screenshare
               properties:
                 video:
                   type: object
                   description: Configuration options for participant videos
-                  required:
-                    - quality
-                    - frame_rate
                   properties:
                     quality:
                       type: string
@@ -2696,9 +2716,6 @@ components:
                 screenshare:
                   type: object
                   description: Configuration options for participant screen shares
-                  required:
-                    - quality
-                    - frame_rate
                   properties:
                     quality:
                       type: string
@@ -2712,29 +2729,6 @@ components:
                       description: Frame rate of screen share
         permissions:
           type: object
-          required:
-            - accept_waiting_requests
-            - can_accept_production_requests
-            - can_edit_display_name
-            - can_spotlight
-            - is_recorder
-            - recorder_type
-            - disable_participant_audio
-            - disable_participant_screensharing
-            - disable_participant_video
-            - kick_participant
-            - pin_participant
-            - can_record
-            - can_livestream
-            - waiting_room_type
-            - plugins
-            - connected_meetings
-            - polls
-            - media
-            - chat
-            - hidden_participant
-            - show_participant_list
-            - can_change_participant_permissions
           properties:
             accept_waiting_requests:
               type: boolean
@@ -2780,11 +2774,6 @@ components:
             plugins:
               type: object
               description: Plugin permissions
-              required:
-                - can_close
-                - can_start
-                - can_edit_config
-                - config
               properties:
                 can_close:
                   type: boolean
@@ -2810,10 +2799,6 @@ components:
                           type: boolean
             connected_meetings:
               type: object
-              required:
-                - can_alter_connected_meetings
-                - can_switch_connected_meetings
-                - can_switch_to_parent_meeting
               properties:
                 can_alter_connected_meetings:
                   type: boolean
@@ -2824,10 +2809,6 @@ components:
             polls:
               type: object
               description: Poll permissions
-              required:
-                - can_create
-                - can_vote
-                - can_view
               properties:
                 can_create:
                   type: boolean
@@ -2841,16 +2822,10 @@ components:
             media:
               type: object
               description: Media permissions
-              required:
-                - video
-                - audio
-                - screenshare
               properties:
                 video:
                   type: object
                   description: Video permissions
-                  required:
-                    - can_produce
                   properties:
                     can_produce:
                       type: string
@@ -2862,8 +2837,6 @@ components:
                 audio:
                   type: object
                   description: Audio permissions
-                  required:
-                    - can_produce
                   properties:
                     can_produce:
                       type: string
@@ -2875,8 +2848,6 @@ components:
                 screenshare:
                   type: object
                   description: Screenshare permissions
-                  required:
-                    - can_produce
                   properties:
                     can_produce:
                       type: string
@@ -2888,16 +2859,9 @@ components:
             chat:
               type: object
               description: Chat permissions
-              required:
-                - public
-                - private
               properties:
                 public:
                   type: object
-                  required:
-                    - can_send
-                    - text
-                    - files
                   properties:
                     can_send:
                       type: boolean
@@ -2910,11 +2874,6 @@ components:
                       description: Can send file messages
                 private:
                   type: object
-                  required:
-                    - can_send
-                    - can_receive
-                    - text
-                    - files
                   properties:
                     can_send:
                       type: boolean
@@ -2933,19 +2892,9 @@ components:
               type: boolean
         ui:
           type: object
-          required:
-            - design_tokens
-            - config_diff
           properties:
             design_tokens:
               type: object
-              required:
-                - border_radius
-                - border_width
-                - spacing_base
-                - theme
-                - colors
-                - logo
               properties:
                 border_radius:
                   type: string
@@ -2964,24 +2913,9 @@ components:
                     - dark
                 colors:
                   type: object
-                  required:
-                    - brand
-                    - background
-                    - danger
-                    - text
-                    - text_on_brand
-                    - success
-                    - video_bg
-                    - warning
                   properties:
                     brand:
                       type: object
-                      required:
-                        - '300'
-                        - '400'
-                        - '500'
-                        - '600'
-                        - '700'
                       properties:
                         '300':
                           type: string
@@ -3000,12 +2934,6 @@ components:
                           default: '#d9904f'
                     background:
                       type: object
-                      required:
-                        - '600'
-                        - '700'
-                        - '800'
-                        - '900'
-                        - '1000'
                       properties:
                         '600':
                           type: string
@@ -3044,11 +2972,6 @@ components:
                   type: string
             config_diff:
               type: object
-      required:
-        - name
-        - config
-        - permissions
-        - ui
     VideoConfig:
       title: VideoConfig
       x-stoplight:
@@ -4230,3 +4153,4 @@ externalDocs:
   description: ''
 security:
   - Authorization: []
+x-internal: false
