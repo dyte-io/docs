@@ -38,9 +38,10 @@ Make sure you've read the Getting Started with Dyte topic and completed the foll
 - Create a [Dyte Meeting](https://docs.dyte.io/api/?v=v2#/operations/create_meeting)
 - [Add Participant](https://docs.dyte.io/api/?v=v2#/operations/add_participant)
   to the meeting
-  Once you’ve integrated Dyte into your website or application successfully, perform the following steps to incorporate a virtual background feature into your Dyte meetings.
 
-## Step 1: Install the Background Transformer Package
+Once you’ve integrated Dyte into your website or application successfully, perform the following steps to incorporate a virtual background feature into your Dyte meetings.
+
+## Step 1: Install the background transformer package
 
 To enable the virtual background feature in your application, first you need to install the "Background Transformer" package. The installation process varies depending on the framework or library you are using. Follow the instructions below based on your chosen technology:
 
@@ -64,7 +65,7 @@ If you prefer using a specific version of the package, you can modify the source
 
 Whenever a new release of the package is available, you can simply update the version number in the source URL to upgrade to the latest version.
 
-## Step 2: Import the Dyte Background Transformer
+## Step 2: Import the Dyte background transformer
 
 To utilize the functionalities of the Dyte Background Transformer package, you need to import it into your codebase. The import process differs based on the programming language or module system you are using. Choose the appropriate import method from the following options:
 
@@ -82,7 +83,7 @@ import DyteVideoBackgroundTransformer from '@dytesdk/video-background-transforme
 
 If you installed the package using a script tag, the `DyteVideoBackgroundTransformer` will be automatically available for use once the installation process is complete.
 
-## Step 3: Initialize the Dyte Background Transformer
+## Step 3: Initialize the Dyte background transformer
 
 To begin using the Dyte Background Transformer, you need to initialize it by calling the `init` method. Follow the steps below to initialize the transformer:
 
@@ -92,7 +93,7 @@ const videoBackgroundTransformer = await DyteVideoBackgroundTransformer.init();
 
 Make sure to use the `await` keyword before the `init` method call to ensure the initialization process is completed before proceeding further. Once the initialization is successful, the `videoBackgroundTransformer` object will be ready for use in your application.
 
-## Step 4: Update the Video Middleware
+## Step 4: Update the video middleware
 
 You can add any image as a background or simply blur your current setting.
 
