@@ -1,0 +1,75 @@
+---
+title: Introduction
+description: Beginner's guide to Dyte's Flutter UI Kit.
+sidebar_position: 1
+slug: /
+---
+
+# Introduction
+
+Dyte's Flutter UI Kit is a prebuilt design library of UI components that makes it easy to integrate video and voice calls into any Flutter app within minutes.
+
+## The Anatomy of Flutter UI Kit
+
+The UI Kit is a design library of prebuilt UI components built on top of the [Flutter Core SDK](/flutter-core). Core SDK handles all the low-level complexities such as media and network handling parts of a meeting and exposes easy-to-use developer friendly APIs. The idea is to make pass a flutter meeting client to a component that you want to change as per your design.
+
+<img
+  src="/static/ui-kit/1.x.x/atomic-design.svg"
+  width="800"
+  height="600"
+  alt="grid-uikit"
+  className="comps-uikit"
+/>
+
+Uses a layered design structure, allowing you to start with one prebuilt component and slowly add further layers as the needs evolve. For example, you can create a full fledged meeting experience using just one UI component, `DyteUIKit`. The `DyteUIKit` component contains all the necessary features and subcomponents to create a default meeting UI.
+
+## How to use Flutter UI Kit?
+
+Dyte's UI Kit offers a couple of ways to get started with your live video and voice calling applications.
+
+- **Use prebuilt components**: You can use prebuilt `DyteUIKit` component to create your meeting quickly. With this component, you don't have to handle all the states, dialogs, and other aspects of managing the application. The UI Kit also respect your permissions and theming configuration from the preset.
+
+For more information, see [Flutter UI Kit Quickstart](/flutter/quickstart)
+
+**Build UI as per your theme**: Dyte also offers the flexibility to implement your in-house themes to Dyte UI Kit. This offers a customization option to improve user experience on your app.
+
+## Components of `DyteUIKit`:
+
+DyteUIKit can be broken down into 3 components:
+
+### DyteMeetingInfo
+
+This contains all the info you pass onto DyteUIKit to get all the permissions and layout as per your presets. To know how to do this, head over to [Initialize the SDK](https://docs.dyte.io/flutter-core#step-2-initialize-the-sdk)
+
+### Design Token/Configurations
+
+This gives you an option to set theme of DyteUIKit as per your convenience. This contains majorly 3 subcomponents:
+
+- #### baseBackground
+- #### basePrimary
+- #### textColor
+
+### clientContext
+
+This is required to setup the context and handle the navigation routes for your app.
+
+## Supported Versions
+
+Here are the version requirements:
+
+- Android SDK version: 21+
+- iOS deployment version: 13.0+
+
+## SDK Size
+
+The entire UI has a <5 MB bundle size. Once you'll be able to export individual components the size can be minimized exponentially.
+
+## Features
+
+Dyte UI Kit is built with a strong pyramid-like architecture of [components/widgets](https://docs.flutter.dev/ui/widgets-intro) in a bottom-up fashion, with all the base widgets at it's bottom and building specific widgets as we move towards the top using the base classes, giving room for peak customization.
+Dyte UI Kit gives you the following advantages:
+
+- **Minimizing SDK Size**: Dyte SDK adds mere 4-5 MBs to your app which will give you smooth audio/video calling experience along with chats, polls, plugins, host controls, recording and a lot more.
+- **Fast**: The architectural decisions ploughed our SDK in a great way. Building extremely usable and custom components at every step of UI rendering with maximum flexibility, be it a just a Text widget or a whole Control Bar, which in-turn made our SDK lightening fast.
+- **Third-party dependencies**: There are almost no third-party dependencies and most of our features are developed in-house to give you the room for maximum flexibility and include no unnecessary functions to burden your application on bandwidth or size.
+- **Customizable design token**: Customization with design tokens has been made super easy just for you to tone UI Kit as per your theme and give an enriching experience to your costumers.
