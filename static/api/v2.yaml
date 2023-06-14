@@ -2673,6 +2673,11 @@ components:
           description: Name of the preset
         config:
           type: object
+          required:
+            - view_type
+            - max_video_streams
+            - max_screenshare_count
+            - media
           properties:
             view_type:
               type: string
@@ -2684,6 +2689,9 @@ components:
             max_video_streams:
               type: object
               description: Maximum number of streams that are visible on a device
+              required:
+                - mobile
+                - desktop
               properties:
                 mobile:
                   type: integer
@@ -2697,10 +2705,16 @@ components:
             media:
               type: object
               description: 'Media configuration options. eg: Video quality'
+              required:
+                - video
+                - screenshare
               properties:
                 video:
                   type: object
                   description: Configuration options for participant videos
+                  required:
+                    - quality
+                    - frame_rate
                   properties:
                     quality:
                       type: string
@@ -2716,6 +2730,9 @@ components:
                 screenshare:
                   type: object
                   description: Configuration options for participant screen shares
+                  required:
+                    - quality
+                    - frame_rate
                   properties:
                     quality:
                       type: string
@@ -2727,8 +2744,6 @@ components:
                     frame_rate:
                       type: integer
                       description: Frame rate of screen share
-          required:
-            - view_type
         permissions:
           type: object
           properties:
@@ -2776,6 +2791,11 @@ components:
             plugins:
               type: object
               description: Plugin permissions
+              required:
+                - can_close
+                - can_start
+                - can_edit_config
+                - config
               properties:
                 can_close:
                   type: boolean
@@ -2799,8 +2819,15 @@ components:
                             - VIEW_ONLY
                         handles_view_only:
                           type: boolean
+                      required:
+                        - access_control
+                        - handles_view_only
             connected_meetings:
               type: object
+              required:
+                - can_alter_connected_meetings
+                - can_switch_connected_meetings
+                - can_switch_to_parent_meeting
               properties:
                 can_alter_connected_meetings:
                   type: boolean
@@ -2811,6 +2838,10 @@ components:
             polls:
               type: object
               description: Poll permissions
+              required:
+                - can_create
+                - can_vote
+                - can_view
               properties:
                 can_create:
                   type: boolean
@@ -2824,10 +2855,16 @@ components:
             media:
               type: object
               description: Media permissions
+              required:
+                - video
+                - audio
+                - screenshare
               properties:
                 video:
                   type: object
                   description: Video permissions
+                  required:
+                    - can_produce
                   properties:
                     can_produce:
                       type: string
@@ -2839,6 +2876,8 @@ components:
                 audio:
                   type: object
                   description: Audio permissions
+                  required:
+                    - can_produce
                   properties:
                     can_produce:
                       type: string
@@ -2850,6 +2889,8 @@ components:
                 screenshare:
                   type: object
                   description: Screenshare permissions
+                  required:
+                    - can_produce
                   properties:
                     can_produce:
                       type: string
@@ -2861,9 +2902,16 @@ components:
             chat:
               type: object
               description: Chat permissions
+              required:
+                - public
+                - private
               properties:
                 public:
                   type: object
+                  required:
+                    - can_send
+                    - text
+                    - files
                   properties:
                     can_send:
                       type: boolean
@@ -2876,6 +2924,11 @@ components:
                       description: Can send file messages
                 private:
                   type: object
+                  required:
+                    - can_send
+                    - can_receive
+                    - text
+                    - files
                   properties:
                     can_send:
                       type: boolean
@@ -2892,11 +2945,42 @@ components:
               type: boolean
             can_change_participant_permissions:
               type: boolean
+          required:
+            - accept_waiting_requests
+            - can_accept_production_requests
+            - can_edit_display_name
+            - can_spotlight
+            - recorder_type
+            - disable_participant_audio
+            - disable_participant_screensharing
+            - disable_participant_video
+            - kick_participant
+            - pin_participant
+            - can_record
+            - can_livestream
+            - waiting_room_type
+            - plugins
+            - connected_meetings
+            - polls
+            - media
+            - chat
+            - hidden_participant
+            - show_participant_list
+            - can_change_participant_permissions
         ui:
           type: object
+          required:
+            - design_tokens
           properties:
             design_tokens:
               type: object
+              required:
+                - border_radius
+                - border_width
+                - spacing_base
+                - theme
+                - colors
+                - logo
               properties:
                 border_radius:
                   type: string
@@ -2915,9 +2999,24 @@ components:
                     - dark
                 colors:
                   type: object
+                  required:
+                    - brand
+                    - background
+                    - danger
+                    - text
+                    - text_on_brand
+                    - success
+                    - video_bg
+                    - warning
                   properties:
                     brand:
                       type: object
+                      required:
+                        - '300'
+                        - '400'
+                        - '500'
+                        - '600'
+                        - '700'
                       properties:
                         '300':
                           type: string
@@ -2936,6 +3035,12 @@ components:
                           default: '#d9904f'
                     background:
                       type: object
+                      required:
+                        - '600'
+                        - '700'
+                        - '800'
+                        - '900'
+                        - '1000'
                       properties:
                         '600':
                           type: string
@@ -2974,6 +3079,10 @@ components:
                   type: string
             config_diff:
               type: object
+      required:
+        - name
+        - config
+        - ui
     UpdatePreset:
       title: UpdatePreset
       x-stoplight:
