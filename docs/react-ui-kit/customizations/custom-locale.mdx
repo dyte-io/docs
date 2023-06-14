@@ -4,9 +4,9 @@ sidebar_position: 6
 
 # Customize Meeting Locale
 
-Dyte's UI Kit allows you to quickly modify all text visible in the video call.
+Dyte's UI Kit allows you to customize all the text within the video call interface. You can personalize the text to align with your specific locale needs.
 
-Customizing the meeting locale involve the following steps:
+Customizing the locale involve the following steps:
 
 1. Integrate Dyte’s web SDK into your web application
 2. Customize the default language pack
@@ -78,13 +78,13 @@ const useLanguage = (lang) => {
  <DyteMeeting meeting={meeting!} t={useLanguage(myLanguagePack)} />;
 ```
 
-The `useLanguage` function takes in your custom locale object as an argument. It returns a function that returns the value corresponding to the key passed to it.
+The `useLanguage` function takes in your custom locale object as an argument and generates a function that retrieves the value associated with the provided key.
 
-## Dyte's Default Locale Pack
+## Dyte's Default Language Reference
 
-Here is what Dyte's default locale pack looks like:
+Here is the default language pack offered by Dyte:
 
-| Key                                                            | Value                                                                                                                                                          |
+| **Key**                                                            | **Value**                                                                                                                                                          |
 | :------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | about_call                                                     | About Call                                                                                                                                                     |
 | screen                                                         | Screen                                                                                                                                                         |
