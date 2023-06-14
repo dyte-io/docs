@@ -2,15 +2,11 @@
 sidebar_position: 4
 ---
 
-# Customize the meeting UI
+# Customize your Meeting UI
 
-Dyte offers a host of customizations for the UI of meetings, some of which also
-defines the interactions the participants can have within a meeting room. While
-the initial values for these options are by degault set to ease the process on
-integration. You can override them at the client end based on specific use cases
-or events.
+Dyte provides a range of UI customizations for meetings, including defining participant interactions within a meeting room. The default values for these options are set to facilitate integration. However, you have the flexibility to override them at the client end to suit specific use cases or events.
 
-Pass the config options at the time of configuring a Dyte meeting.
+When configuring a Dyte meeting, you can pass the following configuration options.
 
 ```kotlin
 val imarticusColors = ColorTokens(
@@ -64,18 +60,23 @@ val dyteClient = DyteUIKitBuilder.build(config)
 dyteClient.loadUi()
 ```
 
-Here is a pictorial representation of all the config options defined below.
+Here is a visual representation showcasing all the defined configuration options.
 
 ![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-opt1-setup.png)
 ![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-opt1-meeting.png)
 ![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-opt1-meeting-options.png)
 
-## Change the color scheme to your brand / theme
+Dyte provides customization options for adjusting the color, border radius, and border width of your UI. Let's explore these customization options in more detail.
 
-You can change the color scheme of the meeting to reflect your brand and theme.
-Dyte allows you to specify four sets of color values.
+## Customize color scheme to match your brand
 
-- `brandColor`: Your primary brand color.
+Customize the meeting's color scheme to match your brand and theme with Dyte. You can specify four sets of color values:
+
+- brandColor: Primary brand color.
+- backgroundColor: Primary background color.
+- textColor: The primary text color for both the brand color and background.
+
+### `brandColor`
 
 ```kotlin
 BrandColor(
@@ -87,7 +88,7 @@ BrandColor(
 )
 ```
 
-- `backgroundColor`: Your primary background color.
+### `backgroundColor`
 
 ```kotlin
 BackgroundColor(
@@ -99,8 +100,7 @@ BackgroundColor(
 )
 ```
 
-- `textColor`: Your primary text color on brand color and text color on
-  background.
+### `textColor`
 
 ```kotlin
 text = TextColor(
@@ -121,13 +121,20 @@ text = TextColor(
 )
 ```
 
-## Customise border radius of elements in the meeting
+## Customize border radius of elements in the meeting
+
+To customize the border radius of elements in your Dyte meeting, follow these steps:
+
+1. Create the `DyteUITokens` object:
 
 ```kotlin
 val tokens = DyteUITokens(colors = dyteColors, borderRadius = BorderRadiusToken.Rounded)
 ```
 
-Then use this tokens as follows
+- `dyteColors`: Represents the color scheme for your meeting.
+- `borderRadius`: Defines the desired border radius. By specifying the desired border radius value in the borderRadius token, you can customize the border radius of elements in your Dyte meeting.
+
+2. Configure `DyteUIKit` then build and load the Dyte UI.
 
 ```kotlin {10}
 val meetingInfo = DyteMeetingInfo(
