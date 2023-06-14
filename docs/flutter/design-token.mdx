@@ -1,0 +1,89 @@
+---
+title: Design System
+description: Design guide for Flutter UI Kit.
+sidebar_position: 3
+tags: [Flutter UI Kit, Design System]
+---
+
+# Design System
+
+A design system ins a collection of customizable methods, guided by clear standards, that can be used to build any number of application with your own personalization touch.
+
+Dyte's UI Kit uses Atomic design as a principle to bring logic and structure to individual screens. Read this blog pos to get a complete overview of how we're using design tokens and atomic design principles to create a multi-branch, multi-device design system.
+
+Let's look at how you can customize your UI with Dyte's Flutter UI Kit.
+
+Dyte provides a `Configurations` parameter in `DyteUIKit` object. These configuration are responsible for customizing all the theme colors in Flutter UI Kit. You can set the theme for Dyte UI Kit app as per your convenience.
+
+## Customizing with Design Tokens - Changing themes
+
+You ca change the color scheme if the meeting to reflect your branch and theme . Dyte's Flutter UI Kit allows you to specify 3 color values:
+
+- `baseBackground` - The background color of the app.
+- `basePrimary` - The color of primary components of your app like participant name box, Vote button.
+- `textColor` - The color of texts in the UI Kit.
+
+Here is a pictorial representation of all the configurable options in Flutter UI Kit:
+
+<div
+  id="one"
+  style={{
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    flex: '1 1 0',
+    justifyContent: 'center',
+  }}
+>
+  {
+    <img
+      src="/static/mobile/0.x.x/flutter-uikit-config.png"
+      alt="Image 1"
+      height="300"
+      padding="10"
+      margin="10 3"
+      style={{ margin: '10px' }}
+    />
+  }
+</div>
+````
+
+A demo of how you can pass the configurations in Flutter UI Kit is shown below:
+
+```dart
+final uiKit = DyteUIKit(
+      meetingInfo: meetingInfoV2,
+      configurations: Configurations(
+        baseBackground: Colors.black,
+        textColor: Colors.white,
+        basePrimary: Colors.magenta.shade200,
+      ),
+      clientContext: context,
+    );
+return uiKit.loadUI();
+```
+
+<div
+  style={{
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    flex: '1 1 0',
+    justifyContent: 'center',
+  }}
+>
+  {[
+    '/static/mobile/0.x.x/flutter-setup-ct.png',
+    '/static/mobile/0.x.x/flutter-vc-ct.png',
+    '/static/mobile/0.x.x/flutter-host-actions-ct.png',
+    '/static/mobile/0.x.x/flutter-poll-ct.png',
+    '/static/mobile/0.x.x/flutter-participants-list-ct.png',
+  ].map((i) => (
+    <img
+      src={i}
+      alt="Image 1"
+      width="220"
+      style={{ margin: '10px', borderRadius: '8px' }}
+    />
+  ))}
+</div>
