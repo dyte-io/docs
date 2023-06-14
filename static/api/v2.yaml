@@ -1652,7 +1652,7 @@ paths:
           $ref: '#/components/responses/GetPresetBody'
       description: Update a preset by the provided preset ID
       requestBody:
-        $ref: '#/components/requestBodies/CreatePresetBody'
+        $ref: '#/components/requestBodies/UpdatePresetBody'
       tags:
         - Presets
 components:
@@ -2727,6 +2727,318 @@ components:
                     frame_rate:
                       type: integer
                       description: Frame rate of screen share
+          required:
+            - view_type
+        permissions:
+          type: object
+          properties:
+            accept_waiting_requests:
+              type: boolean
+              description: Whether this participant can accept waiting requests
+            can_accept_production_requests:
+              type: boolean
+            can_edit_display_name:
+              type: boolean
+            can_spotlight:
+              type: boolean
+            is_recorder:
+              type: boolean
+              default: false
+            recorder_type:
+              type: string
+              enum:
+                - RECORDER
+                - LIVESTREAMER
+                - NONE
+              default: NONE
+              description: Type of the recording peer
+            disable_participant_audio:
+              type: boolean
+            disable_participant_screensharing:
+              type: boolean
+            disable_participant_video:
+              type: boolean
+            kick_participant:
+              type: boolean
+            pin_participant:
+              type: boolean
+            can_record:
+              type: boolean
+            can_livestream:
+              type: boolean
+            waiting_room_type:
+              type: string
+              enum:
+                - SKIP
+                - ON_PRIVILEGED_USER_ENTRY
+                - SKIP_ON_ACCEPT
+              description: Waiting room type
+            plugins:
+              type: object
+              description: Plugin permissions
+              properties:
+                can_close:
+                  type: boolean
+                  description: Can close plugins that are already open
+                can_start:
+                  type: boolean
+                  description: Can start plugins
+                can_edit_config:
+                  type: boolean
+                  description: Can edit plugin config
+                config:
+                  oneOf:
+                    - type: string
+                      format: uuid
+                    - type: object
+                      properties:
+                        access_control:
+                          type: string
+                          enum:
+                            - FULL_ACCESS
+                            - VIEW_ONLY
+                        handles_view_only:
+                          type: boolean
+            connected_meetings:
+              type: object
+              properties:
+                can_alter_connected_meetings:
+                  type: boolean
+                can_switch_connected_meetings:
+                  type: boolean
+                can_switch_to_parent_meeting:
+                  type: boolean
+            polls:
+              type: object
+              description: Poll permissions
+              properties:
+                can_create:
+                  type: boolean
+                  description: Can create polls
+                can_vote:
+                  type: boolean
+                  description: Can vote on polls
+                can_view:
+                  type: boolean
+                  description: Can view polls
+            media:
+              type: object
+              description: Media permissions
+              properties:
+                video:
+                  type: object
+                  description: Video permissions
+                  properties:
+                    can_produce:
+                      type: string
+                      enum:
+                        - ALLOWED
+                        - NOT_ALLOWED
+                        - CAN_REQUEST
+                      description: Can produce video
+                audio:
+                  type: object
+                  description: Audio permissions
+                  properties:
+                    can_produce:
+                      type: string
+                      enum:
+                        - ALLOWED
+                        - NOT_ALLOWED
+                        - CAN_REQUEST
+                      description: Can produce audio
+                screenshare:
+                  type: object
+                  description: Screenshare permissions
+                  properties:
+                    can_produce:
+                      type: string
+                      enum:
+                        - ALLOWED
+                        - NOT_ALLOWED
+                        - CAN_REQUEST
+                      description: Can produce screen share video
+            chat:
+              type: object
+              description: Chat permissions
+              properties:
+                public:
+                  type: object
+                  properties:
+                    can_send:
+                      type: boolean
+                      description: Can send messages in general
+                    text:
+                      type: boolean
+                      description: Can send text messages
+                    files:
+                      type: boolean
+                      description: Can send file messages
+                private:
+                  type: object
+                  properties:
+                    can_send:
+                      type: boolean
+                    can_receive:
+                      type: boolean
+                    text:
+                      type: boolean
+                    files:
+                      type: boolean
+            hidden_participant:
+              type: boolean
+              description: Whether this participant is visible to others or not
+            show_participant_list:
+              type: boolean
+            can_change_participant_permissions:
+              type: boolean
+        ui:
+          type: object
+          properties:
+            design_tokens:
+              type: object
+              properties:
+                border_radius:
+                  type: string
+                  enum:
+                    - rounded
+                border_width:
+                  type: string
+                  enum:
+                    - thin
+                spacing_base:
+                  type: number
+                  default: 4
+                theme:
+                  type: string
+                  enum:
+                    - dark
+                colors:
+                  type: object
+                  properties:
+                    brand:
+                      type: object
+                      properties:
+                        '300':
+                          type: string
+                          default: '#844d1c'
+                        '400':
+                          type: string
+                          default: '#9d5b22'
+                        '500':
+                          type: string
+                          default: '#b56927'
+                        '600':
+                          type: string
+                          default: '#d37c30'
+                        '700':
+                          type: string
+                          default: '#d9904f'
+                    background:
+                      type: object
+                      properties:
+                        '600':
+                          type: string
+                          default: '#222222'
+                        '700':
+                          type: string
+                          default: '#1f1f1f'
+                        '800':
+                          type: string
+                          default: '#1b1b1b'
+                        '900':
+                          type: string
+                          default: '#181818'
+                        '1000':
+                          type: string
+                          default: '#141414'
+                    danger:
+                      type: string
+                      default: '#FF2D2D'
+                    text:
+                      type: string
+                      default: '#EEEEEE'
+                    text_on_brand:
+                      type: string
+                      default: '#EEEEEE'
+                    success:
+                      type: string
+                      default: '#62A504'
+                    video_bg:
+                      type: string
+                      default: '#191919'
+                    warning:
+                      type: string
+                      default: '#FFCD07'
+                logo:
+                  type: string
+            config_diff:
+              type: object
+    UpdatePreset:
+      title: UpdatePreset
+      x-stoplight:
+        id: ou6jhovc20ofp
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the preset
+        config:
+          type: object
+          properties:
+            view_type:
+              type: string
+              enum:
+                - GROUP_CALL
+                - WEBINAR
+                - AUDIO_ROOM
+              description: Type of the meeting
+            max_video_streams:
+              type: object
+              description: Maximum number of streams that are visible on a device
+              properties:
+                mobile:
+                  type: integer
+                  description: Maximum number of streams visible on mobile devices
+                desktop:
+                  type: integer
+                  description: Maximum number of video streams visible on desktop devices
+            max_screenshare_count:
+              type: integer
+              description: Maximum number of screen shares that can be active at a given time
+            media:
+              type: object
+              description: 'Media configuration options. eg: Video quality'
+              properties:
+                video:
+                  type: object
+                  description: Configuration options for participant videos
+                  properties:
+                    quality:
+                      type: string
+                      enum:
+                        - hd
+                        - vga
+                        - qvga
+                      description: Video quality of participants
+                    frame_rate:
+                      type: integer
+                      maximum: 30
+                      description: Frame rate of participants' video
+                screenshare:
+                  type: object
+                  description: Configuration options for participant screen shares
+                  properties:
+                    quality:
+                      type: string
+                      enum:
+                        - hd
+                        - vga
+                        - qvga
+                      description: 'Quality of screen share '
+                    frame_rate:
+                      type: integer
+                      description: Frame rate of screen share
         permissions:
           type: object
           properties:
@@ -3544,6 +3856,11 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Preset'
+    UpdatePresetBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdatePreset'
   responses:
     GetActiveSession:
       description: Active Session Success response
