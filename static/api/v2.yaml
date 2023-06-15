@@ -333,10 +333,6 @@ paths:
                       id: 7088bba8-f522-49a8-b59b-3cd0e946bbb0
                       stream_key: sk_ap-south-1_AfnVpeYZjidO_fBpWKody7sDUOEfy9Zc6XAZegkR0Va
                       playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.rVKA2KM5Lunt.m3u8'
-            application/xml:
-              schema:
-                type: object
-                properties: {}
       description: Starts livestreaming a meeting for the given meeting ID.
       tags:
         - Live streams
@@ -470,10 +466,6 @@ paths:
               type: object
               example:
                 name: prdmmp-xhycsl
-          application/xml:
-            schema:
-              type: object
-              properties: {}
       parameters: []
       responses:
         '200':
@@ -4228,10 +4220,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/GenericErrorResponse'
-        application/xml:
-          schema:
-            type: object
-            properties: {}
     GetAllParticipants:
       description: Success response
       content:
