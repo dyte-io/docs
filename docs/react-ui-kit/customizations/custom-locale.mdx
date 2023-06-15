@@ -13,9 +13,11 @@ Customizing the locale involve the following steps:
 
 ## Step 1: Integrate Dyte’s web SDK into your web application
 
-To get started with customizing the icons for your meetings, you need to first integrate Dyte's Web SDK into your web application.
-
-1. Install the package using npm or Yarn.
+<details open>
+    <summary>
+        To get started with customizing the icons for your meetings, you need to first integrate Dyte's Web SDK into your web application.
+    </summary>
+    1. Install the package using npm or Yarn.
 
 ```bash npm2yarn
 npm install @dytesdk/react-ui-kit @dytesdk/react-web-core
@@ -49,6 +51,8 @@ function App() {
   return <DyteMeeting meeting={client} />;
 }
 ```
+
+</details>
 
 ## Step 2: Customize the default language pack
 
@@ -84,7 +88,7 @@ The `useLanguage` function takes in your custom locale object as an argument and
 
 Here is the default language pack offered by Dyte:
 
-| **Key**                                                            | **Value**                                                                                                                                                          |
+| **Key**                                                        | **Value**                                                                                                                                                      |
 | :------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | about_call                                                     | About Call                                                                                                                                                     |
 | screen                                                         | Screen                                                                                                                                                         |
