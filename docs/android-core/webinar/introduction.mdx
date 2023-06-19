@@ -1,27 +1,29 @@
 ---
-title: Introducing webinar
+title: Join and Leave Stage using Dyte's Webinar Platform
 description: Conduct webinar meetings with fine level of access controls.
 sidebar_position: 1
 tags: [mobile-core, webinar]
 ---
 
-# Introducing webinar
+# Join and Leave Stage using Dyte's Webinar Platform
 
-The webinar object is stored in `meeting.webinar`, which has methods for
-stage management and participant management. There are methods to join stage, leave stage and do access control for particiapants.
+This topic provides a comprehensive guide on performing stage management and participant control within Dyte's webinar platform.
 
-The `meeting.webinar.viewers` array contains all the viewers that have joined the webinar.
-The `meeting.webinar.requestedParticipants` array contains all the present requests from participants who wants to join the stage.
+In Dyte, the webinar object, is accessible through the `meeting.webinar` property. This provides a range of methods to efficiently manage the stage and participants during webinar sessions, such as joining and leaving the stage, as well as access control for participants. Additionally, you can also retrieve the list of viewers who have joined the webinar from the `meeting.webinar.viewers` array, and monitor participant requests to join the stage through the `meeting.webinar.requestedParticipants` array.
 
 ## Join stage
 
-User with permission to join stage can start presting in a webinar.
-There are two flows here. For participants with media preset set to ALLOWED can join without host accepting their request.
-For participants with media preset set to Need to Request, will have to wait for the host to accept their request and once host accepts they can start producing media.
+To join the stage in a webinar, specific permissions are required, which are managed through [Presets](/guides/presets/add-presets). To determine if you have the necessary permissions, use the following command:
 
-:::tip Note
-To check if given user has permission to joinStage or not one can use `meeting.webinar.canJoinStage()`
-:::
+```kotlin
+meeting.webinar.canJoinStage()
+```
+
+Once you have the permissions to join the stage, you can start presenting in the webinar. There are two distinct flows for this process.
+
+Participants with the media preset set to "Allowed" can join the stage directly without needing the host to accept their request. However, participants with the media preset set to "Need to Request" must wait for the host to approve their request. Once the host grants permission, these participants can start producing media.
+
+To join the stage, use the following function:
 
 ```kotlin
 meeting.webinar.joinStage()
@@ -29,21 +31,8 @@ meeting.webinar.joinStage()
 
 ## Leave stage
 
-User can leave stage as follows.
+To leave the stage, use the following function:
 
 ```kotlin
-meeting.webinar.joinStage()
-```
-
-## Host requests a participant to join stage.
-
-When host requests a participant to join stage, the user will get a callback in `DyteWebinarEventsListener#onPresentRequestReceived()` and then user has to accept the request by calling
-
-```kotlin
-meeting.webinar.acceptRequestToPresent()
-```
-
-or can decline the request by calling 
-```kotlin
-meeting.webinar.rejectRequestToPresent()
+meeting.webinar.leaveStage()
 ```
