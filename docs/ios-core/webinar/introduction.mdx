@@ -1,0 +1,49 @@
+---
+title: Introducing webinar
+description: Conduct webinar meetings with fine level of access controls.
+sidebar_position: 1
+tags: [mobile-core, webinar]
+---
+
+# Introducing webinar
+
+The webinar object is stored in `meeting.webinar`, which has methods for
+stage management and participant management. There are methods to join stage, leave stage and do access control for particiapants.
+
+The `meeting.webinar.viewers` array contains all the viewers that have joined the webinar.
+The `meeting.webinar.requestedParticipants` array contains all the present requests from participants who wants to join the stage.
+
+## Join stage
+
+User with permission to join stage can start presting in a webinar.
+There are two flows here. For participants with media preset set to ALLOWED can join without host accepting their request.
+For participants with media preset set to Need to Request, will have to wait for the host to accept their request and once host accepts they can start producing media.
+
+:::tip Note
+To check if given user has permission to joinStage or not one can use `meeting.webinar.canJoinStage()`
+:::
+
+```kotlin
+meeting.webinar.joinStage()
+```
+
+## Leave stage
+
+User can leave stage as follows.
+
+```kotlin
+meeting.webinar.joinStage()
+```
+
+## Host requests a participant to join stage.
+
+When host requests a participant to join stage, the user will get a callback in `DyteWebinarEventsListener#onPresentRequestReceived()` and then user has to accept the request by calling
+
+```kotlin
+meeting.webinar.acceptRequestToPresent()
+```
+
+or can decline the request by calling 
+```kotlin
+meeting.webinar.rejectRequestToPresent()
+```
