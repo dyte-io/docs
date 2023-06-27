@@ -5,6 +5,8 @@ sidebar_position: 2
 
 This topic will guide you through the steps of getting started with interactive live streaming for your Dyte meetings, enabling you to broadcast and engage with your viewers in real time.
 
+We recommend reviewing the [Introduction to Dyte's Interactive Livestreaming](/guides/livestream/livestream-overview) topic before diving into the livestreaming process.
+
 ## Step 1: Create a Dyte Developer Account
 
 Login to the [Developer Portal](https://dev.dyte.io/) and create an account. Copy the [API Keys](https://dev.dyte.io/apikeys) for your organization from the Developer portal. These API Keys are unique to your organization and are required to use Dyte REST APIs such as when instantiating a meeting.
@@ -227,39 +229,42 @@ After you've created the meeting, add participants to the meeting using the [Add
 
 The preset created in the [step 2](/guides/livestream/interactive-livestream/getting-started-with-livestreaming#step-2-create-presets) must be passed in the body of the Add Participant API request. Specify the name of the preset in the `preset_name` parameter.
 
-## Step 6: Start Livestreaming
+## Step 6: Start Livestreaming a Dyte Meeting
 
-There are two ways to start livestreaming a Dyte meeting:
+There are two ways to start livestreaming a meeting:
 
-- Using the [Start livestreaming a meeting](/api#/paths/meetings-meeting_id--livestreams/post) API
-- Start the livestream directly from the meeting user interface (UI)
-  - Click on the **Go live** button on the control bar to start livestreaming a meeting.
-  - If you’re a host you’ll see the option to **Go live** and **End live** streaming.
+1. Using the API
+2. From the meeting UI
+
+### Using API
+
+To start livestreaming a meeting, simply specify the meeting ID in the [Start livestreaming a meeting](/api#/paths/meetings-meeting_id--livestreams/post) API. You can also specify the video configurations for your stream, for example, height and width of the video.
+If you wish to stop the streaming, use the [Stop livestreaming a meeting](/api#/operations/stop_livestreaming) API.
+
+### From the Meeting UI
+
+If you’ve the host permissions, you will see the option to **Go live** and **End live** streaming.
 
 **Start live streaming**
 
+To start livestreaming a meeting, click on the **Go live** button in the control bar of your meeting.
+
 <img
   src="/static/livestreaming/golive.png"
-  width="600"
-  height="500"
+  width="700"
+  height="600"
   alt="livestream-golive"
   className="livestream-go-live"
 />
 
 **End live streaming**
 
+To stop livestreaming, click on the **End live** button in the control bar.
+
 <img
   src="/static/livestreaming/endlive.png"
-  width="600"
-  height="500"
+  width="700"
+  height="600"
   alt="livestream-endlive"
   className="livestream-end-live"
 />
-
-## Use Cases
-
-The following are some of the most common Dyte livestreaming use cases:
-
-- [Livestream a Dyte meeting via HLS](/guides/livestream/interactive-livestream/livestream-dyte-meeting)
-- [Livestream Dyte meetings to other platforms](/guides/livestream/interactive-livestream/livestreaming-other-platforms)
-- [Livestream any video via RTMP (custom input)](/guides/livestream/livestream-rtmp-input/livestream-any-rtmp)

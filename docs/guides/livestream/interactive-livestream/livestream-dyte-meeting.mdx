@@ -1,26 +1,45 @@
 ---
-title: Live Stream a Dyte Meeting via HLS
+title: Live Stream a Dyte Meeting
 sidebar_position: 3
 ---
 
-In this guide you will learn how to start and stop livestreaming a Dyte meeting.
+This guide will provide you with step-by-step instructions on starting and stopping livestreaming for your Dyte meetings using simple API calls. These API calls provide you with all the necessary components to start broadcasting a live stream and ensure high-quality playback for your audience.
 
-Before getting started with this guide, we recommend that you read
-[Getting Started with Dyte](/getting-started) to familiarize yourself with Dyte.
+## Prerequisites
+
+Before getting started with this guide, we recommend that you review the following topics:
+
+- [Getting Started with Dyte](/getting-started) to familiarize yourself with Dyte
+- [Introduction to Dyte's Interactive Livestreaming](/guides/livestream/livestream-overview)
 
 ## Start a livestream
 
 To start livestreaming a meeting, do the following:
 
-### Request
+### Step 1: Get authentication token
 
-Specify the `meeting ID` of the meeting that you want to live stream in the
-following request.
+Get authentication token for your organization using Developer Portal. For more information, see [Create a Dyte Developer Account](/guides/livestream/interactive-livestream/getting-started-with-livestreaming#step-1-create-a-dyte-developer-account).
 
-Use the [Fetch all meetings](/api/?v=v2#/operations/get_all_meetings) for an
-organization or [Create a meeting](/api/?v=v2#/operations/create_meeting) API to
-get the **meeting ID**. The API returns a parameter called `id`, which is your
-`meeting ID`.
+### Step 2: Create a live stream
+
+You simply need to specify the `meeting ID` of the meeting that you want to live stream. To fetch the meeting ID, you can do the following:
+
+- If you've already created the meeting, use the [Fetch all meetings](/api/?v=v2#/operations/get_all_meetings) API to view all the meetings for your organization.
+- If you've not created a meeting yet, use the [Create a meeting](/api/?v=v2#/operations/create_meeting) API to create the meeting that you want to live stream.
+
+These API returns a parameter called `id`, which is your `meeting ID`.
+
+:::info note
+
+With Dyte, you can also specify to begin live streaming the meeting as soon as it starts. To do so, specify
+`live_stream_on_start` parameter in the
+[Create a meeting API](/api/?v=v2#/operations/create_meeting) when creating a meeting.
+
+:::
+
+#### Request
+
+In the [Start livestreaming a meeting](/api#/paths/meetings-meeting_id--livestreams/post) specify the `meeting ID` of the meeting that you want to live stream as the following:
 
 ```
 curl --request POST \
@@ -29,7 +48,7 @@ curl --request POST \
   --header 'Content-Type: application/json'
 ```
 
-### Response
+#### Response
 
 ```json
 {
@@ -46,25 +65,17 @@ curl --request POST \
 }
 ```
 
-:::info note
+Alternatively, you also have the option to start the livestream directly [from the UI](/guides/livestream/interactive-livestream/getting-started-with-livestreaming#from-the-meeting-ui). However, ensure that you've added all the viewers using the Add participnat API with the required [presets](/guides/livestream/interactive-livestream/getting-started-with-livestreaming#step-2-create-presets).
 
-Note: To begin live streaming the meeting as soon as it starts, simply specify
-`live_stream_on_start` parameter in the
-[Create a meeting API](/api/?v=v2#/operations/create_meeting).
-
-:::
-
-## Fetch active livestream
+## Fetch details of an active livestream
 
 Fetching details of an active livestream is also an HTTP request away.
 
 ### Request
 
-Specify the `meeting_id` of the meeting that you want to fetch the active
-livestream for.
+Specify the `meeting_id` of the meeting for which you want to fetch the active livestream.
 
-Use the [Fetch all meetings](/api/?v=v2#/operations/get_all_meetings) for an
-organization or [Create a meeting](/api/?v=v2#/operations/create_meeting) API to
+Use the [Fetch all meetings](/api/?v=v2#/operations/get_all_meetings) or [Create a meeting](/api/?v=v2#/operations/create_meeting) API to
 get the **meeting ID**. The API returns a parameter called `id`, which is your
 `meeting ID`.
 
@@ -94,19 +105,17 @@ curl --request GET \
 }
 ```
 
+You can also use the [Fetch all livestreams for a meeting](/api#/paths/meetings-meeting_id--livestreams/get) API or [Fetch all livestreams](/api#/operations/fetch_all_livestreams) to get livestream details.
+
 ## Stop a livestream
 
-You need the `meeting_id` of the meeting that you want to stop live streaming.
+To stop live streaming of a meeting, provide the `meeting_id` of that meeting in the following request.
 
-### Request
-
-Specify the `meeting_id` of the meeting that you want to fetch the active
-livestream for.
-
-Use the [Fetch all meetings](/api/?v=v2#/operations/get_all_meetings) for an
-organization or [Create a meeting](/api/?v=v2#/operations/create_meeting) API to
+Use the [Fetch all meetings](/api/?v=v2#/operations/get_all_meetings) or [Create a meeting](/api/?v=v2#/operations/create_meeting) API to
 get the **meeting ID**. The API returns a parameter called `id`, which is your
 `meeting ID`.
+
+### Request
 
 ```bash
 curl --request POST \
