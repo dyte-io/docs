@@ -88,12 +88,19 @@ export default function Playground({ children, transformCode, ...props }) {
   useEffect(() => {
     initClient({
       roomName: 'qplrfc-uuujcj',
-      authToken: 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdkYzU0MGRjLWQ5MjUtNDVjMi1hZTFiLWM2NDc2YTUwNmM2NyIsImxvZ2dlZEluIjp0cnVlLCJpYXQiOjE2NjU2NDcxNjksImV4cCI6MTY3NDI4NzE2OX0.hJvo1PV1_jaxwiQbT8ft7Yi4lhIPgAsuEJHqohHYC_2XNef7kA4NhrYLvwrrxOo3AKh9_XTjnj_bsgzIDh35RRggawJniEjuE83ju2xhMXMVaa7TNDje2BsH5-VnFJ4y5hOwxGphrP5iHY_U4k_0qOQcEfVEJMymJvx0gq_Ueds',
+      authToken:
+        'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdkYzU0MGRjLWQ5MjUtNDVjMi1hZTFiLWM2NDc2YTUwNmM2NyIsImxvZ2dlZEluIjp0cnVlLCJpYXQiOjE2NjU2NDcxNjksImV4cCI6MTY3NDI4NzE2OX0.hJvo1PV1_jaxwiQbT8ft7Yi4lhIPgAsuEJHqohHYC_2XNef7kA4NhrYLvwrrxOo3AKh9_XTjnj_bsgzIDh35RRggawJniEjuE83ju2xhMXMVaa7TNDje2BsH5-VnFJ4y5hOwxGphrP5iHY_U4k_0qOQcEfVEJMymJvx0gq_Ueds',
       defaults: {
         audio: false,
         video: false,
       },
     }).then((meeting) => {
+      Object.defineProperty(meeting.self.permissions, 'produceAudio', {
+        value: 'ALLOWED',
+      });
+      Object.defineProperty(meeting.self.permissions.produceVideo, 'allow', {
+        value: 'ALLOWED',
+      });
       meeting.meta.meetingStartedTimestamp = new Date();
       meeting.participants.mockAddParticipants(5, 5);
       meeting.recording.recordingState = 'RECORDING';
