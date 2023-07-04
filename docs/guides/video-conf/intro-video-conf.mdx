@@ -1,0 +1,46 @@
+---
+title: 'Introduction to Live Video'
+sidebar_position: 1
+---
+
+Dyte's live video platform allows you to build real-time communication functionality into your web, and mobile applications. It is built on top of [WebRTC](https://dyte.io/blog/webrtc/). Using Dyte's REST APIs and client-side SDKs, you can acquire, transmit and play media, and manage network connections in your applications.
+
+## Components of a Dyte live video application
+
+Dyte requires both frontend and a backend component. In addition to backend APIs and frontend SDKs, it is also necessary to have access to Dyte's developer portal.
+
+### Backend HTTP REST APIs
+
+Your backend utilizes Dyte REST APIs to perform actions such as:
+
+- [Create meetings](/api#/operations/create_meeting)
+- [Add participants to a meeting](/api#/operations/add_participant)
+- [Start recording a meeting](/api#/operations/start_recording) and so on
+
+### Frontend SDKs
+
+Your applications bundle Dyte Core SDKs (and UI Kits) to acquire, transmit and play media, and manage network connections.
+
+- **Core SDK**: The Dyte Core SDK is designed to provide developers with an easy way to incorporate real-time communication (RTC) solutions into their apps and websites. With full customization and branding options, you can build your own user interface from the ground up without dealing with complicated media layers.
+
+  The Core SDK acts as a data-only layer, offering high-level primitives and abstracting away complex media and networking optimizations. It only provides simple APIs that are user-friendly and easy to work with.
+
+  For more information, see [Introduction to Core SDK](/web-core/Introduction).
+
+- **UI Kit**: Dyte's React UI Kit is a prebuilt design library of UI components that makes it easy to integrate video and voice calls into any app or website within minutes.
+
+  The UI Kit is a design library of prebuilt UI components built on top of the core SDKs. Core SDK handles all the low-level media and network handling parts of a meeting and exposes simpler APIs to use. You can create a meeting object using the web-core components and pass it to the UI Kit components.
+
+  For more information, see [UI Kit](/react-ui-kit).
+
+### Developer portal
+
+The [Developer Portal](https://dev.dyte.io/dashboard) serves as a comprehensive platform, offering access to meeting logs, API key management, billing operations, and various other functionalities in one place.
+
+## How Dyte's live video work?
+
+You can use Core SDKs or Core SDK along with UI Kit to build your application.
+
+- The Core SDK is developed with a user-friendly approach to eliminate the complexity of managing streams. Unlike traditional SDKs that require knowledge of WebRTC functioning, Dyte's Core SDK provides a simple API that abstracts out the complexity, making it easier for developers to use. For instance, enabling video with Dyte's Core SDK is as easy as calling meeting.self.enableVideo();.
+
+- The UI Kit is a design library of prebuilt UI components built on top of the core SDKs.
