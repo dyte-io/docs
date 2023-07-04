@@ -33,20 +33,20 @@ const samples = [
   {
     title: 'Slack Clone App',
     platform: 'React Native',
-    source: 'hello',
-    demo: 'hello',
+    source: '#',
+    demo: '#',
   },
   {
     title: 'Slack Clone App',
     platform: 'Flutter',
-    blog: 'hello',
-    demo: 'hello',
+    blog: '#',
+    demo: '#',
   },
   {
     title: 'Slack Clone App',
     platform: 'Swift',
-    blog: 'hello',
-    source: 'hello',
+    blog: '#',
+    source: '#',
   },
 ];
 
