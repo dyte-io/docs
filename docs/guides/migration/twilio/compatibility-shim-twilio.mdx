@@ -1,0 +1,117 @@
+---
+title: 'Supported Features: Dyte Shim for Twilio'
+sidebar_position: 4
+---
+
+The Twilio Shim is a library that allows you to migrate your Twilio real-time communication apps to Dyte platform.
+
+Here's a compatibility specification that describes the methods from `twilio-video` that are supported by `@dytesdk/twilio-shim` package.
+
+## [Room](https://sdk.twilio.com/js/video/releases/2.27.0/docs/Room.html)
+
+### Events
+
+- [`Room#event:disconnected`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/Room.html#event:disconnected)
+- [`Room#event:participantConnected`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/Room.html#event:participantConnected)
+- [`Room#event:participantDisconnected`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/Room.html#event:participantDisconnected)
+- [`Room#event:recordingStarted`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/Room.html#event:recordingStarted)
+- [`Room#event:recordingStopped`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/Room.html#event:recordingStopped)
+- [`Room#event:trackDisabled`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/Room.html#event:trackDisabled)
+- [`Room#event:trackEnabled`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/Room.html#event:trackEnabled)
+- [`Room#event:trackPublished`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/Room.html#event:trackPublished)
+- [`Room#event:trackStarted`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/Room.html#event:trackStarted)
+- [`Room#event:trackSubscribed`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/Room.html#event:trackSubscribed)
+- [`Room#event:trackSwitchedOff`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/Room.html#event:trackSwitchedOff)
+- [`Room#event:trackSwitchedOn`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/Room.html#event:trackSwitchedOn)
+- [`Room#event:trackUnpublished`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/Room.html#event:trackUnpublished)
+- [`Room#event:trackUnsubscribed`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/Room.html#event:trackUnsubscribed)
+
+### Properties
+
+- name
+- participants
+- localParticipant
+- recordingStarted
+
+### Methods
+
+- disconnect()
+
+## [LocalParticipant](https://sdk.twilio.com/js/video/releases/2.27.0/docs/LocalParticipant.html)
+
+### Events
+
+All `LocalParticipant` events are re-emitted by `Room`.
+
+- [`LocalParticipant#event:trackDisabled`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/LocalParticipant.html#event:trackDisabled)
+- [`LocalParticipant#event:trackEnabled`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/LocalParticipant.html#event:trackEnabled)
+- [`LocalParticipant#event:trackPublicationFailed`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/LocalParticipant.html#event:trackPublicationFailed)
+- [`LocalParticipant#event:trackPublished`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/LocalParticipant.html#event:trackPublished)
+- [`LocalParticipant#event:trackStarted`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/LocalParticipant.html#event:trackStarted)
+- [`LocalParticipant#event:trackStopped`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/LocalParticipant.html#event:trackStopped)
+
+### Methods
+
+- publishTrack(localTrack)
+- publishTrack(mediaStreamTrack)
+- publishTracks(mediaStreamTracks)
+
+### Properties
+
+- audioTracks
+- videoTracks
+- tracks
+
+## [RemoteParticipant](https://sdk.twilio.com/js/video/releases/2.27.0/docs/RemoteParticipant.html)
+
+### Events
+
+- [`RemoteParticipant#event:trackDisabled`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/RemoteParticipant.html#event:trackDisabled)
+- [`RemoteParticipant#event:trackEnabled`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/RemoteParticipant.html#event:trackEnabled)
+- [`RemoteParticipant#event:trackPublished`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/RemoteParticipant.html#event:trackPublished)
+- [`RemoteParticipant#event:trackStarted`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/RemoteParticipant.html#event:trackStarted)
+- [`RemoteParticipant#event:trackSubscribed`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/RemoteParticipant.html#event:trackSubscribed)
+- [`RemoteParticipant#event:trackSubscriptionFailed`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/RemoteParticipant.html#event:trackSubscriptionFailed)
+- [`RemoteParticipant#event:trackSwitchedOff`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/RemoteParticipant.html#event:trackSwitchedOff)
+- [`RemoteParticipant#event:trackSwitchedOn`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/RemoteParticipant.html#event:trackSwitchedOn)
+- [`RemoteParticipant#event:trackUnsubscribed`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/RemoteParticipant.html#event:trackUnsubscribed)
+
+### Properties
+
+- audioTracks
+- videoTracks
+- tracks
+
+## [LocalTrackPublication](https://sdk.twilio.com/js/video/releases/2.27.0/docs/LocalTrackPublication.html)
+
+### Methods
+
+- publish
+- unpublish
+
+### Properties
+
+- isTrackEnabled
+- kind
+- priority
+- track
+
+## [RemoteTrackPublication](https://sdk.twilio.com/js/video/releases/2.27.0/docs/RemoteTrackPublication.html)
+
+### Events
+
+- [`RemoteTrackPublication#event:subscribed`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/RemoteTrackPublication.html#event:subscribed)
+- [`RemoteTrackPublication#event:subscriptionFailed`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/RemoteTrackPublication.html#event:subscriptionFailed)
+- [`RemoteTrackPublication#event:trackDisabled`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/RemoteTrackPublication.html#event:trackDisabled)
+- [`RemoteTrackPublication#event:trackEnabled`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/RemoteTrackPublication.html#event:trackEnabled)
+- [`RemoteTrackPublication#event:trackSwitchedOff`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/RemoteTrackPublication.html#event:trackSwitchedOff)
+- [`RemoteTrackPublication#event:trackSwitchedOn`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/RemoteTrackPublication.html#event:trackSwitchedOn)
+- [`RemoteTrackPublication#event:unsubscribed`](https://sdk.twilio.com/js/video/releases/2.27.0/docs/RemoteTrackPublication.html#event:unsubscribed)
+
+### Properties
+
+- isSubscribed
+- isTrackEnabled
+- kind
+- publishPriority
+- track

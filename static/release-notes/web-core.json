@@ -1,5 +1,68 @@
 [
   {
+    "version": "1.14.0",
+    "createdAt": 1686303420,
+    "fixes": [
+      "Added execution locks around `DyteClient.init` method to prevent accidental double initialisation method calls",
+      "Handle multiple edge cases around media capture and its retention"    
+    ],
+    "features":[
+      "Added self-troubleshooting features, allow users to run tests to discover issues in their calls. More details on this in the next release"
+    ]
+  },
+  {
+    "version": "1.13.0",
+    "createdAt": 1685491200,
+    "fixes": [
+      "Optimized `mediaPermissionUpdate` event to be emitted when the user grants media permission for the first time.",
+      "Improved the correctness of `meeting.self.getCurrentDevices()` to return the recent device list when the user grants the permission for the first time.",
+      "Fixed an edge case where the `screenshareUpdate` event would be emitted twice upon stopping the screenshare.",
+      "Improved the reliability of clearing the `pinned` state from participant after they leave meeting."
+    ],
+    "new_api": [
+      "Added a new `CANCELLED` state to [meeting.self.mediaPermission](./local-user/introduction#properties) when the user cancels the screenshare selection dialog in Chromium browsers."
+    ]
+  },
+  {
+    "version": "1.12.x",
+    "createdAt": 1682985600,
+    "perf": [
+      "⚡ Optimized the performance of an API to save ~400ms on meeting join time.",
+      "⚡ Optimized the SDK to reduce the bundle size by 3%."
+    ],
+    "fixes": [
+      "**🚨 Critical 🚨** Fixed an issue with Safari 16.4 that was breaking video calls.",
+      "Emit `peerRequestToJoinStage` and `stageLeft` for _self_ participant when the user joins or leaves the stage."
+    ],
+    "features": [
+      "Added support for request retry with alternative network path when the primary network path fails. This improves the reliability of the meeting experience in case of network issues."
+    ]
+  },
+  {
+    "version": "1.11.x",
+    "createdAt": 1682035200,
+    "perf": [
+      "⚡ Optimized the performance to get 2x faster meeting join time."
+    ],
+    "fixes": [
+      "Emit `peerRequestToJoinStage` and `stageLeft` for _self_ participant when the user joins or leaves the stage."
+    ],
+    "new_api": [
+      "[meeting.self.roomState](./local-user/introduction#properties) now contains the current room state of the participant."
+    ]
+  },
+  {
+    "version": "1.10.x",
+    "createdAt": 1680048000,
+    "fixes": [
+      "Improved the reliability of `mediaPermissionUpdate` events.",
+      "Observability improvements to help us debug issues faster."
+    ],
+    "features": [
+      "Emit `mediaPermissionUpdate` events when media permission goes from errored to granted."
+    ]
+  },
+  {
     "version": "1.9.0",
     "createdAt": 1679433268,
     "fixes": [
@@ -11,18 +74,6 @@
     "new_api": [
       "The `defaults` parameter in the init() function [now take recording configuration](./recording#recording-configuration), which is utilized when [starting a recording](./recording#start-a-recording). ",
       "When calling init() the `defaults` param now take screen sharing configuration. \nConfigure the preferred screen sharing screen surface (Screen / Window / Browser Tab)."
-    ]
-  },
-  {
-    "version": "1.6.0",
-    "createdAt": 1678333268,
-    "fixes": [],
-    "features": [
-      "**Interactive Livestream Release (LL-HLS)** \n 1. Broadcast a meeting to up to 100,000 viewers with low latency of just 3 to 6 seconds.\n 2. Interactive chat and polls. \n 3. Viewers can raise hands to join the stage or the host can invite viewers to join the stage. \n For more information, see [ILS Overview](https://docs.dyte.io/guides/livestream/livestream-overview) and [Getting Started with ILS](https://docs.dyte.io/guides/livestream/getting-started-with-livestreaming)."
-    ],
-    "new_api": [
-      "A new `DyteStage` module introduced at [meeting.stage](./reference/DyteStage) to manage the stage during livestreaming. \n For more information, see [Livestreaming State Management APIs](https://docs.dyte.io/guides/livestream/state-management-apis).",
-      "A new 'DyteLiveStream' module introduced at [meeting.livestream](./Reference/DyteLivestream) to start and stop the livestreaming. \n For more information, see [Livestreaming: Properties, Functions, and Events](https://docs.dyte.io/guides/livestream/livestream-apis)."
     ]
   },
   {

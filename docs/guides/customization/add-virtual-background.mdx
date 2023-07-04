@@ -1,0 +1,162 @@
+---
+title: 'Add Virtual Background to Dyte Meetings'
+sidebar_position: 2
+---
+
+The virtual background feature allows you to enhance your video experience in various settings such as online meetings and conferences, virtual classrooms, live streaming sessions, and more. With a virtual background, you gain the flexibility to modify your background by blurring it, applying solid colors, or incorporating custom images. This capability allows for personalization and customization of your video environment, enabling you to create a more tailored visual experience.
+
+In this guide, we will walk you through the process of adding a custom virtual background to your Dyte meetings. You can add background to any of our supported web applications, [React](/react-ui-kit), [Angular](/angular-ui-kit), [JavaScript](/ui-kit), and so on including UI Kit and core SDKs.
+
+## Understand Dyte's virtual background processing workflow
+
+<img
+  src="/static/guides/virtual-background.png"
+  width="800"
+  height="500"
+  alt="virtual-background"
+  className="add-virtual-background"
+/>
+
+The following steps outline the process flow for adding virtual background to the video stream of Dyte meetings:
+
+1. **Ask permission for media**: Begin by requesting permission to access the user's media devices, such as their camera and microphone.
+2. **Capture (Real stream)**: Capture the real-time video stream from the user's camera using the media capture capabilities of the browser.
+3. **Middleware 1- Apply background removal**: Utilize the first middleware in the process to perform background removal on each frame of the captured video stream. This middleware applies the necessary logic to identify and remove the background from each frame.
+4. **Middleware 2 - Add specifications**: Proceed to the second middleware, which adds specifications or modifications to the processed frames. This step allows for additional enhancements or alterations to the video stream based on the desired requirements.
+5. **Modified stream**: After passing through the middleware, the video stream is modified to incorporate the background removal and added specifications.
+6. **Send over WebRTC**: Transmit the modified video stream over the WebRTC (Web Real-Time Communication) protocol. This enables the stream to be sent to other participants or viewers in real-time.
+7. **End user playback**: Finally, the end user plays the received video stream as is, experiencing the effects of the background removal and added specifications.
+
+Throughout the process, the middleware components operate on a per-frame basis, executing the necessary logic to process each frame individually before forwarding it to the next stage of the workflow.
+
+## Prerequisites
+
+Make sure you've read the Getting Started with Dyte topic and completed the following steps:
+
+- Create a [Dyte Developer Account](https://dev.dyte.io/)
+- Create [Presets](https://dev.dyte.io/roles-presets)
+- Create a [Dyte Meeting](https://docs.dyte.io/api/?v=v2#/operations/create_meeting)
+- [Add Participant](https://docs.dyte.io/api/?v=v2#/operations/add_participant)
+  to the meeting
+
+Once you’ve integrated Dyte into your website or application successfully, perform the following steps to incorporate a virtual background feature into your Dyte meetings.
+
+## Step 1: Install the background transformer package
+
+To enable the virtual background feature in your application, first you need to install the "Background Transformer" package. The installation process varies depending on the framework or library you are using. Follow the instructions below based on your chosen technology:
+
+For React, Angular, and JavaScript frameworks or libraries, use the following command:
+
+```bash npm2yarn
+npm i @dytesdk/video-background-transformer
+```
+
+If you are using the web-core CDN script bundle, you can add the package by including a script tag in the head section of your HTML file:
+
+```js
+<script src="https://cdn.jsdelivr.net/npm/@dytesdk/video-background-transformer/dist/index.iife.js"></script>
+```
+
+If you prefer using a specific version of the package, you can modify the source URL by appending the desired version number:
+
+```js
+<script src="https://cdn.jsdelivr.net/npm/@dytesdk/video-background-transformer@1.1.3/dist/index.iife.js"></script>
+```
+
+Whenever a new release of the package is available, you can simply update the version number in the source URL to upgrade to the latest version.
+
+## Step 2: Import the Dyte background transformer
+
+To utilize the functionalities of the Dyte Background Transformer package, you need to import it into your codebase. The import process differs based on the programming language or module system you are using. Choose the appropriate import method from the following options:
+
+For JavaScript environments or CommonJS module system, use the following syntax:
+
+```js
+var DyteVideoBackgroundTransformer = require('@dytesdk/video-background-transformer');
+```
+
+If you are working with modern JavaScript or ECMAScript modules, use the import statement:
+
+```js
+import DyteVideoBackgroundTransformer from '@dytesdk/video-background-transformer';
+```
+
+If you installed the package using a script tag, the `DyteVideoBackgroundTransformer` will be automatically available for use once the installation process is complete.
+
+## Step 3: Initialize the Dyte background transformer
+
+To begin using the Dyte Background Transformer, you need to initialize it by calling the `init` method. Follow the steps below to initialize the transformer:
+
+```js
+const videoBackgroundTransformer = await DyteVideoBackgroundTransformer.init();
+```
+
+Make sure to use the `await` keyword before the `init` method call to ensure the initialization process is completed before proceeding further. Once the initialization is successful, the `videoBackgroundTransformer` object will be ready for use in your application.
+
+## Step 4: Update the video middleware
+
+You can add any image as a background or simply blur your current setting.
+
+### Add an image as a background
+
+To incorporate an image as a background, follow these steps:
+
+1. Create a static background video middleware using the `createStaticBackgroundVideoMiddleware` method provided by the `videoBackgroundTransformer` object.
+2. Replace `IMAGE_LINK_OF_YOUR_LIKING` with the URL of the image you wish to use.
+
+```js
+const videoMiddleware =
+  await videoBackgroundTransformer.createStaticBackgroundVideoMiddleware(
+    `IMAGE_LINK_OF_YOUR_LIKING`
+  );
+```
+
+For example:
+
+```js
+const videoMiddleware =
+  await videoBackgroundTransformer.createStaticBackgroundVideoMiddleware(
+    `https://assets.dyte.io/backgrounds/bg-dyte-office.jpg`
+  );
+```
+
+:::info note
+
+Ensure that the URL of the image allows Cross-Origin Resource Sharing (CORS) to avoid canvas tainting issues. If the CORS policy is not allowed for the image, it may result in the video feed getting stuck on a frame or appearing blank.
+
+:::
+
+### Blur the background
+
+To apply a blur effect to your background, follow these steps:
+
+Create a background blur video middleware using the `createBackgroundBlurVideoMiddleware` method provided by the `videoBackgroundTransformer` object.
+
+```js
+const videoMiddleware =
+  await videoBackgroundTransformer.createBackgroundBlurVideoMiddleware(10);
+```
+
+Adjust the intensity of the blur effect by changing the value within the parentheses. For example, using `10` will result in a moderate blur effect. You can increase or decrease the value to achieve the desired level of blurring.
+
+##
+
+## Step 5: Integrate the video middleware into your Dyte meeting
+
+To incorporate the configured video middleware into your Dyte meeting, add the middleware to your Dyte meeting.
+
+```js
+meeting.self.addVideoMiddleware(videoMiddleware);
+```
+
+- If your video feed was already active, the specified background image or effect will immediately be applied as the background in your video feed.
+
+- In case the video feed was not active, once you turn it on, the configured background will be automatically applied to your feed.
+
+## Remove the background
+
+To remove the middleware, simply run the following command:
+
+```js
+meeting.self.removeVideoMiddleware(videoMiddleware);
+```

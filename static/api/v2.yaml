@@ -262,6 +262,21 @@ paths:
                   type: string
                   pattern: '^[a-zA-Z0-9-_]*$'
                   nullable: true
+                video_config:
+                  type: object
+                  x-stoplight:
+                    id: r08nyyq3aukpd
+                  properties:
+                    height:
+                      type: integer
+                      x-stoplight:
+                        id: avfldug1v6vza
+                      description: Height of the livestreaming video in pixels
+                    width:
+                      type: integer
+                      x-stoplight:
+                        id: bm1i98doqrnw1
+                      description: Width of the livestreaming video in pixels
             examples:
               example-1:
                 value:
@@ -318,10 +333,6 @@ paths:
                       id: 7088bba8-f522-49a8-b59b-3cd0e946bbb0
                       stream_key: sk_ap-south-1_AfnVpeYZjidO_fBpWKody7sDUOEfy9Zc6XAZegkR0Va
                       playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.rVKA2KM5Lunt.m3u8'
-            application/xml:
-              schema:
-                type: object
-                properties: {}
       description: Starts livestreaming a meeting for the given meeting ID.
       tags:
         - Live streams
@@ -430,6 +441,12 @@ paths:
       description: Returns details of all livestreams for the given meeting ID.
       tags:
         - Live streams
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
     parameters:
       - schema:
           type: string
@@ -716,6 +733,8 @@ paths:
       responses:
         '201':
           $ref: '#/components/responses/CreatePoll'
+        '400':
+          description: Bad Request
   /sessions:
     get:
       summary: Fetch all sessions of an organization
@@ -1460,6 +1479,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/GetRecordings'
+        '201':
+          description: Created
       operationId: get_all_recordings
       description: 'Returns all recordings for an organization. If the `meeting_id` parameter is passed, returns all recordings for the given meeting ID.'
       security:
@@ -1623,7 +1644,7 @@ paths:
           $ref: '#/components/responses/GetPresetBody'
       description: Update a preset by the provided preset ID
       requestBody:
-        $ref: '#/components/requestBodies/CreatePresetBody'
+        $ref: '#/components/requestBodies/UpdatePresetBody'
       tags:
         - Presets
 components:
@@ -2353,6 +2374,11 @@ components:
           format: uuid
           description: ID of the meeting.
           readOnly: true
+        title:
+          type: string
+          x-stoplight:
+            id: ehrqyjfdcvmjy
+          description: Title of the meeting.
         preferred_region:
           type: string
           enum:
@@ -2712,29 +2738,6 @@ components:
                       description: Frame rate of screen share
         permissions:
           type: object
-          required:
-            - accept_waiting_requests
-            - can_accept_production_requests
-            - can_edit_display_name
-            - can_spotlight
-            - is_recorder
-            - recorder_type
-            - disable_participant_audio
-            - disable_participant_screensharing
-            - disable_participant_video
-            - kick_participant
-            - pin_participant
-            - can_record
-            - can_livestream
-            - waiting_room_type
-            - plugins
-            - connected_meetings
-            - polls
-            - media
-            - chat
-            - hidden_participant
-            - show_participant_list
-            - can_change_participant_permissions
           properties:
             accept_waiting_requests:
               type: boolean
@@ -2808,6 +2811,9 @@ components:
                             - VIEW_ONLY
                         handles_view_only:
                           type: boolean
+                      required:
+                        - access_control
+                        - handles_view_only
             connected_meetings:
               type: object
               required:
@@ -2931,11 +2937,32 @@ components:
               type: boolean
             can_change_participant_permissions:
               type: boolean
+          required:
+            - accept_waiting_requests
+            - can_accept_production_requests
+            - can_edit_display_name
+            - can_spotlight
+            - recorder_type
+            - disable_participant_audio
+            - disable_participant_screensharing
+            - disable_participant_video
+            - kick_participant
+            - pin_participant
+            - can_record
+            - can_livestream
+            - waiting_room_type
+            - plugins
+            - connected_meetings
+            - polls
+            - media
+            - chat
+            - hidden_participant
+            - show_participant_list
+            - can_change_participant_permissions
         ui:
           type: object
           required:
             - design_tokens
-            - config_diff
           properties:
             design_tokens:
               type: object
@@ -3047,8 +3074,317 @@ components:
       required:
         - name
         - config
-        - permissions
         - ui
+    UpdatePreset:
+      title: UpdatePreset
+      x-stoplight:
+        id: ou6jhovc20ofp
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the preset
+        config:
+          type: object
+          properties:
+            view_type:
+              type: string
+              enum:
+                - GROUP_CALL
+                - WEBINAR
+                - AUDIO_ROOM
+              description: Type of the meeting
+            max_video_streams:
+              type: object
+              description: Maximum number of streams that are visible on a device
+              properties:
+                mobile:
+                  type: integer
+                  description: Maximum number of streams visible on mobile devices
+                desktop:
+                  type: integer
+                  description: Maximum number of video streams visible on desktop devices
+            max_screenshare_count:
+              type: integer
+              description: Maximum number of screen shares that can be active at a given time
+            media:
+              type: object
+              description: 'Media configuration options. eg: Video quality'
+              properties:
+                video:
+                  type: object
+                  description: Configuration options for participant videos
+                  properties:
+                    quality:
+                      type: string
+                      enum:
+                        - hd
+                        - vga
+                        - qvga
+                      description: Video quality of participants
+                    frame_rate:
+                      type: integer
+                      maximum: 30
+                      description: Frame rate of participants' video
+                screenshare:
+                  type: object
+                  description: Configuration options for participant screen shares
+                  properties:
+                    quality:
+                      type: string
+                      enum:
+                        - hd
+                        - vga
+                        - qvga
+                      description: 'Quality of screen share '
+                    frame_rate:
+                      type: integer
+                      description: Frame rate of screen share
+        permissions:
+          type: object
+          properties:
+            accept_waiting_requests:
+              type: boolean
+              description: Whether this participant can accept waiting requests
+            can_accept_production_requests:
+              type: boolean
+            can_edit_display_name:
+              type: boolean
+            can_spotlight:
+              type: boolean
+            is_recorder:
+              type: boolean
+              default: false
+            recorder_type:
+              type: string
+              enum:
+                - RECORDER
+                - LIVESTREAMER
+                - NONE
+              default: NONE
+              description: Type of the recording peer
+            disable_participant_audio:
+              type: boolean
+            disable_participant_screensharing:
+              type: boolean
+            disable_participant_video:
+              type: boolean
+            kick_participant:
+              type: boolean
+            pin_participant:
+              type: boolean
+            can_record:
+              type: boolean
+            can_livestream:
+              type: boolean
+            waiting_room_type:
+              type: string
+              enum:
+                - SKIP
+                - ON_PRIVILEGED_USER_ENTRY
+                - SKIP_ON_ACCEPT
+              description: Waiting room type
+            plugins:
+              type: object
+              description: Plugin permissions
+              properties:
+                can_close:
+                  type: boolean
+                  description: Can close plugins that are already open
+                can_start:
+                  type: boolean
+                  description: Can start plugins
+                can_edit_config:
+                  type: boolean
+                  description: Can edit plugin config
+                config:
+                  oneOf:
+                    - type: string
+                      format: uuid
+                    - type: object
+                      properties:
+                        access_control:
+                          type: string
+                          enum:
+                            - FULL_ACCESS
+                            - VIEW_ONLY
+                        handles_view_only:
+                          type: boolean
+            connected_meetings:
+              type: object
+              properties:
+                can_alter_connected_meetings:
+                  type: boolean
+                can_switch_connected_meetings:
+                  type: boolean
+                can_switch_to_parent_meeting:
+                  type: boolean
+            polls:
+              type: object
+              description: Poll permissions
+              properties:
+                can_create:
+                  type: boolean
+                  description: Can create polls
+                can_vote:
+                  type: boolean
+                  description: Can vote on polls
+                can_view:
+                  type: boolean
+                  description: Can view polls
+            media:
+              type: object
+              description: Media permissions
+              properties:
+                video:
+                  type: object
+                  description: Video permissions
+                  properties:
+                    can_produce:
+                      type: string
+                      enum:
+                        - ALLOWED
+                        - NOT_ALLOWED
+                        - CAN_REQUEST
+                      description: Can produce video
+                audio:
+                  type: object
+                  description: Audio permissions
+                  properties:
+                    can_produce:
+                      type: string
+                      enum:
+                        - ALLOWED
+                        - NOT_ALLOWED
+                        - CAN_REQUEST
+                      description: Can produce audio
+                screenshare:
+                  type: object
+                  description: Screenshare permissions
+                  properties:
+                    can_produce:
+                      type: string
+                      enum:
+                        - ALLOWED
+                        - NOT_ALLOWED
+                        - CAN_REQUEST
+                      description: Can produce screen share video
+            chat:
+              type: object
+              description: Chat permissions
+              properties:
+                public:
+                  type: object
+                  properties:
+                    can_send:
+                      type: boolean
+                      description: Can send messages in general
+                    text:
+                      type: boolean
+                      description: Can send text messages
+                    files:
+                      type: boolean
+                      description: Can send file messages
+                private:
+                  type: object
+                  properties:
+                    can_send:
+                      type: boolean
+                    can_receive:
+                      type: boolean
+                    text:
+                      type: boolean
+                    files:
+                      type: boolean
+            hidden_participant:
+              type: boolean
+              description: Whether this participant is visible to others or not
+            show_participant_list:
+              type: boolean
+            can_change_participant_permissions:
+              type: boolean
+        ui:
+          type: object
+          properties:
+            design_tokens:
+              type: object
+              properties:
+                border_radius:
+                  type: string
+                  enum:
+                    - rounded
+                border_width:
+                  type: string
+                  enum:
+                    - thin
+                spacing_base:
+                  type: number
+                  default: 4
+                theme:
+                  type: string
+                  enum:
+                    - dark
+                colors:
+                  type: object
+                  properties:
+                    brand:
+                      type: object
+                      properties:
+                        '300':
+                          type: string
+                          default: '#844d1c'
+                        '400':
+                          type: string
+                          default: '#9d5b22'
+                        '500':
+                          type: string
+                          default: '#b56927'
+                        '600':
+                          type: string
+                          default: '#d37c30'
+                        '700':
+                          type: string
+                          default: '#d9904f'
+                    background:
+                      type: object
+                      properties:
+                        '600':
+                          type: string
+                          default: '#222222'
+                        '700':
+                          type: string
+                          default: '#1f1f1f'
+                        '800':
+                          type: string
+                          default: '#1b1b1b'
+                        '900':
+                          type: string
+                          default: '#181818'
+                        '1000':
+                          type: string
+                          default: '#141414'
+                    danger:
+                      type: string
+                      default: '#FF2D2D'
+                    text:
+                      type: string
+                      default: '#EEEEEE'
+                    text_on_brand:
+                      type: string
+                      default: '#EEEEEE'
+                    success:
+                      type: string
+                      default: '#62A504'
+                    video_bg:
+                      type: string
+                      default: '#191919'
+                    warning:
+                      type: string
+                      default: '#FFCD07'
+                logo:
+                  type: string
+            config_diff:
+              type: object
     VideoConfig:
       title: VideoConfig
       x-stoplight:
@@ -3606,12 +3942,14 @@ components:
                 description: Pass a custom url to record arbitary screen
               dyte_bucket_config:
                 $ref: '#/components/schemas/DyteBucketConfig'
-              start_reason:
-                $ref: '#/components/schemas/startReason'
-              stop_reason:
-                $ref: '#/components/schemas/stopReason'
               interactive_config:
                 $ref: '#/components/schemas/InteractiveConfig'
+              allow_multiple_recordings:
+                type: boolean
+                x-stoplight:
+                  id: uvipu7wzh6eet
+                default: false
+                description: 'By default, a meeting allows only one recording to run at a time. Enabling the `allow_multiple_recordings` parameter to true allows you to initiate multiple recordings concurrently in the same meeting. This allows you to record separate videos of the same meeting with different configurations, such as portrait mode or landscape mode.'
             required:
               - meeting_id
     CreatePresetBody:
@@ -3619,6 +3957,11 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Preset'
+    UpdatePresetBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdatePreset'
   responses:
     GetActiveSession:
       description: Active Session Success response
@@ -3877,10 +4220,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/GenericErrorResponse'
-        application/xml:
-          schema:
-            type: object
-            properties: {}
     GetAllParticipants:
       description: Success response
       content:
@@ -4228,3 +4567,4 @@ externalDocs:
   description: ''
 security:
   - Authorization: []
+x-internal: false
