@@ -6,6 +6,7 @@ import {
   MicRegular,
   VideoRegular,
 } from '@fluentui/react-icons';
+import clsx from 'clsx';
 
 const PRODUCTS = [
   {
@@ -50,10 +51,13 @@ function HeroProduct({
   return (
     <Link
       to={link}
-      className="group relative cursor-pointer overflow-clip rounded-3xl border-2 from-primary/30 via-transparent to-transparent text-black transition-all hover:border-primary hover:bg-gradient-to-tr hover:text-primary hover:no-underline dark:text-white"
+      className={clsx(
+        'group relative cursor-pointer overflow-clip rounded-3xl from-primary/30 via-transparent to-transparent text-black transition-all hover:bg-gradient-to-tr hover:text-primary hover:no-underline dark:text-white',
+        'border-2 border-secondary-700 hover:border-primary'
+      )}
     >
       <div className="p-6 !pb-0">
-        <h3 className="mb-1.5 flex items-center gap-3 font-jakarta">
+        <h3 className="mb-1.5 flex items-center gap-3 font-jakarta group-hover:text-primary">
           <Icon className="h-7 w-7" />
           <div>
             {title}

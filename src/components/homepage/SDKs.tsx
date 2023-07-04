@@ -1,18 +1,9 @@
 import React from 'react';
-import { Card, CardSection } from '../CardComponents';
 import Link from '@docusaurus/Link';
-
-const ui_kit = [
-  {
-    title: 'React',
-    icon: '',
-    link: '',
-  },
-];
 
 function SDK({ icon, name }: { icon: string; name: string }) {
   return (
-    <Link className="flex cursor-pointer items-center rounded-lg border p-2.5 text-inherit hover:border-primary hover:text-primary">
+    <Link className="flex cursor-pointer items-center rounded-lg border border-secondary-700 p-2.5 text-inherit hover:border-primary hover:text-primary">
       <img src={icon} className="mr-2 h-7 w-7" />
       <span className="font-medium">{name}</span>
     </Link>
