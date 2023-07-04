@@ -7,22 +7,24 @@ export const AndroidCoreLatestInstallation = () => {
 
   useEffect(() => {
     const raw = JSON.stringify({
-      "androidCore": true
+      androidCore: true,
     });
-    
+
     const requestOptions = {
       method: 'POST',
       body: raw,
     };
-    
-    fetch("https://b72qj023g7.execute-api.ap-south-1.amazonaws.com/default/android-core-latest", requestOptions)
-      .then(response => response.json())
-      .then(result => setVersion(result.latestVersion ?? '+'))
+
+    fetch(
+      'https://b72qj023g7.execute-api.ap-south-1.amazonaws.com/default/android-core-latest',
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => setVersion(result.latestVersion ?? '+'));
   }, []);
   return (
     <div>
-      <CodeBlock
-        language="groovy">
+      <CodeBlock language="groovy">
         {`dependencies {
     // (other dependencies)
     implementation 'io.dyte:core:${version}'
@@ -30,11 +32,10 @@ export const AndroidCoreLatestInstallation = () => {
       </CodeBlock>
     </div>
   );
-}
-
+};
 
 export const WebCoreCDNInstallation = () => {
-  const [version,setVersion] = useState('');
+  const [version, setVersion] = useState('');
   useEffect(() => {
     async function load() {
       const version = await latestNPMVersion({ pkg: 'web-core' });
@@ -44,15 +45,15 @@ export const WebCoreCDNInstallation = () => {
   }, []);
 
   return (
-  <CodeBlock
-        language="html">
-        {`<script src="https://cdn.dyte.in/core/dyte${version}.js" />`}
-  </CodeBlock>);
+    <CodeBlock language="html">
+      {`<script src="https://cdn.dyte.in/core/dyte${version}.js" />`}
+    </CodeBlock>
+  );
 };
 
 export const HTMLUIKitInstallation = () => {
-  const [webCoreVersion,setWebCoreVersion] = useState('');
-  const [uikitVersion,setUIKitVersion] = useState('');
+  const [webCoreVersion, setWebCoreVersion] = useState('');
+  const [uikitVersion, setUIKitVersion] = useState('');
 
   useEffect(() => {
     async function load() {
@@ -65,9 +66,8 @@ export const HTMLUIKitInstallation = () => {
   }, []);
 
   return (
-  <CodeBlock
-        language="html">
-        {`<head>
+    <CodeBlock language="html">
+      {`<head>
   <script type="module">
       import { defineCustomElements } from 'https://cdn.jsdelivr.net/npm/@dytesdk/ui-kit${uikitVersion}/loader/index.es2017.js';
       defineCustomElements();
@@ -75,11 +75,12 @@ export const HTMLUIKitInstallation = () => {
   <!-- Import Web Core via CDN too -->
   <script src="https://cdn.dyte.in/core/dyte${webCoreVersion}.js"></script>
 </head>`}
-  </CodeBlock>);
+    </CodeBlock>
+  );
 };
 
 export const HTMLUIKitUtilsInstallation = () => {
-  const [uikitVersion,setUIKitVersion] = useState('');
+  const [uikitVersion, setUIKitVersion] = useState('');
 
   useEffect(() => {
     async function load() {
@@ -90,9 +91,8 @@ export const HTMLUIKitUtilsInstallation = () => {
   }, []);
 
   return (
-  <CodeBlock
-        language="html">
-        {`<head>
+    <CodeBlock language="html">
+      {`<head>
   <script type="module">
     import {
       provideDyteDesignSystem,
@@ -100,5 +100,6 @@ export const HTMLUIKitUtilsInstallation = () => {
     } from 'https://cdn.jsdelivr.net/npm/@dytesdk/ui-kit${uikitVersion}/dist/esm/index.js';
   </script>
 </head>`}
-  </CodeBlock>);
+    </CodeBlock>
+  );
 };

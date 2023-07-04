@@ -100,19 +100,6 @@
   }
 }
 
-/* .faq-page details summary::-webkit-details-marker,
-.faq-page details summary::marker {
-  display: none;
-  width: 0;
-  height: 0;
-  list-style: none;
-  margin: 0;
-}
-
-.faq-page details > summary {
-  list-style: none;
-} */
-
 .accordion-content *:last-child {
   @apply mb-0;
 }
@@ -123,39 +110,12 @@
 
 @layer components {
   .noise-bg {
-    background-image: url('/static/landing-page/grid-light.svg'),
-      url('/static/landing-page/noise-light.png'),
-      linear-gradient(
-        to bottom,
-        transparent 40%,
-        rgb(var(--docs-color-secondary-700))
-      );
-    background-size: 48px 48px, 100% 100%, 100%;
+    background-image: url('/static/landing-page/grid-light.svg');
   }
 
   html[data-theme='dark'] .noise-bg {
-    background-image: url('/static/landing-page/grid-dark.svg'),
-      url('/static/landing-page/noise-dark.png'),
-      linear-gradient(
-        to bottom,
-        transparent 40%,
-        rgb(var(--docs-color-secondary-900))
-      );
+    background-image: url('/static/landing-page/grid-dark.svg');
   }
-
-  /* .sdk-section {
-    min-height: 320px;
-    transition-duration: 1.3s;
-    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
-    transition-property: transform opacity;
-    opacity: 0;
-    transform: translateX(-400px);
-  }
-
-  .intersected {
-    opacity: 1;
-    transform: translateX(0px);
-  } */
 
   .dyte-badge {
     @apply mb-4 inline-block rounded-sm bg-zinc-200 py-1 px-2 text-text-400 dark:bg-zinc-800;
@@ -942,6 +902,10 @@ img[src$='#terminal'] {
 
   border: 1px solid var(--docs-color-border);
   border-radius: 8px;
+}
+
+.homepage-card.row {
+  flex-direction: row;
 }
 
 .homepage-card:hover {
