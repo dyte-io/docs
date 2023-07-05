@@ -58,38 +58,23 @@ A component which handles all dialog elements in a component. This component is 
 
 This components depends on the values from `states` object.
 
-```html
-<dyte-button onclick="showSettings()">Show Settings</dyte-button>
-<dyte-button onclick="showLeaveConfirmation()">Show Settings</dyte-button>
+```jsx
+function Example() {
+  const [states, setStates] = useState({});
 
-<dyte-dialog-manager id="dyte-el"></dyte-dialog-manager>
+  const setState = (s) => setStates((states) => ({ ...states, ...s }));
 
-<script>
-  const dialog = document.getElementById('dyte-el');
-  dialog.meeting = meeting;
-  let states = {};
-
-  function updateStates() {
-    dialog.states = states;
-  }
-
-  function stateUpdate(s) {
-    states = { ...states, ...s };
-    updateStates();
-  }
-
-  function showSettings() {
-    stateUpdate({ activeSettings: true });
-  }
-
-  function showLeaveConfirmation() {
-    stateUpdate({ activeLeaveConfirmation: true });
-  }
-
-  dialog.addEventListener('dyteStateUpdate', (e) => {
-    stateUpdate(e.detail);
-  });
-
-  updateStates();
-</script>
+  return (
+    <Row>
+      <DyteButton onClick={() => setState({ activeLeaveConfirmation: true })}>
+        Show Leave Confirmation
+      </DyteButton>
+      <DyteDialogManager
+        meeting={meeting}
+        states={states}
+        onDyteStateUpdate={(e) => setState(e.detail)}
+      />
+    </Row>
+  );
+}
 ```
