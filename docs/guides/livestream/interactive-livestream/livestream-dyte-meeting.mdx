@@ -36,11 +36,14 @@ With Dyte, you can also specify to begin live streaming the meeting as soon as i
 `live_stream_on_start` parameter in the
 [Create a meeting API](/api/?v=v2#/operations/create_meeting) when creating a meeting.
 
+You can also start livestreaming as soon as the meeting starts, by passing `live_stream_on_start: true` in the
+[Create a meeting API](/api/?v=v2#/operations/create_meeting) API.
+
 :::
 
 #### Request
 
-In the [Start livestreaming a meeting](/api#/paths/meetings-meeting_id--livestreams/post) specify the `meeting ID` of the meeting that you want to live stream as the following:
+In the [Start livestreaming a meeting](/api#/paths/meetings-meeting_id--livestreams/post) specify the `ID` of the meeting that you want to live stream as the following:
 
 ```
 curl --request POST \
@@ -66,7 +69,7 @@ curl --request POST \
 }
 ```
 
-Alternatively, you also have the option to start the livestream directly [from the UI](/guides/livestream/interactive-livestream/getting-started-with-livestreaming#from-the-meeting-ui). However, ensure that you've added all the viewers using the Add participnat API with the required [presets](/guides/livestream/interactive-livestream/getting-started-with-livestreaming#step-2-create-presets).
+Alternatively, you also have the option to start the livestream directly [from the UI](/guides/livestream/interactive-livestream/getting-started-with-livestreaming#from-the-meeting-ui). However, ensure that you've added all the viewers using the Add participant API with the required [presets](/guides/livestream/interactive-livestream/getting-started-with-livestreaming#step-2-create-presets).
 
 ## Fetch details of an active livestream
 
@@ -110,7 +113,7 @@ You can also use the [Fetch all livestreams for a meeting](/api#/paths/meetings-
 
 ## Stop a livestream
 
-To stop live streaming of a meeting, provide the `meeting_id` of that meeting in the following request.
+To stop live streaming of a meeting, provide the `id` of that meeting in the following request.
 
 Use the [Fetch all meetings](/api/?v=v2#/operations/get_all_meetings) or [Create a meeting](/api/?v=v2#/operations/create_meeting) API to
 get the **meeting ID**. The API returns a parameter called `id`, which is your
