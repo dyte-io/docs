@@ -2,7 +2,7 @@ openapi: 3.0.0
 x-stoplight:
   id: f49d2395cc273
 servers:
-  - url: 'https://api.cluster.dyte.in/v2'
+  - url: 'https://api.dyte.io/v2'
     description: ''
     variables: {}
 info:
@@ -1358,6 +1358,15 @@ paths:
         $ref: '#/components/requestBodies/UpdateMeetingBody'
       tags:
         - Meetings
+    put:
+      summary: Replace a meeting
+      operationId: replace_meeting
+      responses:
+        '200':
+          $ref: '#/components/responses/GetMeeting'
+      description: Replaces all the details for the given meeting ID.
+      requestBody:
+        $ref: '#/components/requestBodies/CreateMeetingBody'
   '/meetings/{meeting_id}/participants':
     parameters:
       - schema:
