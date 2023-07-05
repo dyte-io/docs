@@ -78,7 +78,7 @@ meeting ID is required for subsequent operations like adding participants.
 
 ```bash
 curl --request POST \
-  --url https://api.cluster.dyte.in/v2/meetings \
+  --url https://api.dyte.io/v2/meetings \
   --header 'Authorization: Basic ZGV2QGR5dGUuaW46MTIzNDU2Nzg5YXNkaGZnaGo=' \
   --header 'Content-Type: application/json' \
   --data '{
@@ -120,7 +120,7 @@ The preset name created earlier must be passed in the request.
 
 ```bash
 curl --request POST \
-  --url https://api.cluster.dyte.in/v2/meetings/<meetingId>/participants \
+  --url https://api.dyte.io/v2/meetings/<meetingId>/participants \
   --header 'Authorization: Basic ZGV2QGR5dGUuaW46MTIzNDU2Nzg5YXNkaGZnaGo=' \
   --header 'Content-Type: application/json' \
   --data '{
@@ -165,7 +165,7 @@ configuration, the recording will be stored in your S3 bucket as well.
 
 ```bash
 curl --request POST \
-  --url https://api.cluster.dyte.in/v2/recordings \
+  --url https://api.dyte.io/v2/recordings \
   --header 'Authorization: Basic MzkwYmYyNzQtNDEzMy00MjZkLTg0OTEtZWE3YTFhMTkwNDhiOjdmYTQzNjAwZjk3ZTVkZGI5NmIw' \
   --header 'Content-Type: application/json' \
   --data '{
@@ -283,7 +283,7 @@ send the event.
 
 ```bash
 curl --request POST \
-  --url https://api.cluster.dyte.in/v2/webhooks \
+  --url https://api.dyte.io/v2/webhooks \
   --header 'Authorization: Basic NzBjNWQzOTEtNGJhYy00Y2YzLTk5MDctYmVjMjA1Nzk4YWRiOmQyNzBmYjJmOGNiNGUzZWY1MGI1' \
   --header 'Content-Type: application/json' \
   --data '{

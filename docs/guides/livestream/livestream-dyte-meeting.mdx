@@ -24,7 +24,7 @@ get the **meeting ID**. The API returns a parameter called `id`, which is your
 
 ```
 curl --request POST \
-  --url https://api.cluster.dyte.in/v2/meetings/{meetingId}/livestreams \
+  --url https://api.dyte.io/v2/meetings/{meetingId}/livestreams \
   --header 'Authorization: Basic <token>' \
   --header 'Content-Type: application/json'
 ```
@@ -70,7 +70,7 @@ get the **meeting ID**. The API returns a parameter called `id`, which is your
 
 ```bash
 curl --request GET \
-  --url https://api.cluster.dyte.in/v2/meetings/{meetingId}/active-livestream \
+  --url https://api.dyte.io/v2/meetings/{meetingId}/active-livestream \
   --header 'Authorization: Basic <token>' \
   --header 'Content-Type: application/json'
 ```
@@ -110,7 +110,7 @@ get the **meeting ID**. The API returns a parameter called `id`, which is your
 
 ```bash
 curl --request POST \
-  --url https://api.cluster.dyte.in/v2/meetings/meetingId/active-livestream/stop \
+  --url https://api.dyte.io/v2/meetings/meetingId/active-livestream/stop \
   --header 'Authorization: Basic <token>' \
   --header 'Content-Type: application/json'
 ```
