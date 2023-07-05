@@ -1367,6 +1367,8 @@ paths:
       description: Replaces all the details for the given meeting ID.
       requestBody:
         $ref: '#/components/requestBodies/CreateMeetingBody'
+      tags:
+        - Meetings
   '/meetings/{meeting_id}/participants':
     parameters:
       - schema:
