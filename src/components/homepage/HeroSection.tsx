@@ -97,7 +97,7 @@ export default function HeroSection() {
 
       <section className="mx-auto grid w-full max-w-5xl grid-cols-1 grid-rows-2 gap-6 px-4 md:grid-cols-2">
         {PRODUCTS.map((product) => (
-          <HeroProduct {...product} />
+          <HeroProduct {...product} key={product.title} />
         ))}
       </section>
     </>

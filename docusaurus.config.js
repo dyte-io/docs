@@ -280,7 +280,7 @@ const config = {
     ({
       image: '/img/dyte-docs-card.png',
       colorMode: {
-        defaultMode: 'dark',
+        defaultMode: 'light',
       },
       docs: {
         sidebar: {

@@ -11,7 +11,13 @@ import {
 import clsx from 'clsx';
 import { ChevronRight, GitHub } from 'react-feather';
 
-const guides = [
+interface Guide {
+  title: string;
+  icon: any;
+  text: string;
+}
+
+const guides: Guide[] = [
   {
     title: 'Start Recording a Meeting',
     icon: RecordRegular,
@@ -29,24 +35,35 @@ const guides = [
   },
 ];
 
-const samples = [
+interface Sample {
+  title: string;
+  platform?: string;
+  source?: string;
+  blog?: string;
+  demo?: string;
+}
+
+const samples: Sample[] = [
   {
-    title: 'Slack Clone App',
-    platform: 'React Native',
-    source: '#',
-    demo: '#',
+    title: 'Code Sharing Platform',
+    platform: 'React',
+    source: 'https://github.com/dyte-io/blog-live-code-sharing',
+    blog: 'https://dyte.io/blog/live-code-sharing-platform/',
+    demo: 'https://dyte-code-editor.herokuapp.com/room/bbbf8c1f-5eee-4548-90e6-54c1301711cb',
   },
   {
-    title: 'Slack Clone App',
-    platform: 'Flutter',
-    blog: '#',
-    demo: '#',
+    title: 'Async Interview Platform',
+    platform: 'React',
+    blog: 'https://dyte.io/blog/async-interview-platform/',
+    source: 'https://github.com/dyte-io/async-interview',
+    demo: 'https://dyte-async-interview.vercel.app',
   },
   {
-    title: 'Slack Clone App',
-    platform: 'Swift',
-    blog: '#',
-    source: '#',
+    title: 'Live Proctoring System',
+    platform: 'React',
+    blog: 'https://dyte.io/blog/live-proctoring-system/',
+    source: 'https://github.com/dyte-io/proctored-live-interviews',
+    demo: 'https://dyte-multi-faces.netlify.app/',
   },
 ];
 
@@ -65,7 +82,7 @@ function Guide({ title, text, icon: Icon }: (typeof guides)[0]) {
   );
 }
 
-function Sample({ title, platform, blog, source, demo }: (typeof samples)[0]) {
+function Sample({ title, platform, blog, source, demo }: Sample) {
   return (
     <div className="group flex cursor-pointer items-center justify-between rounded-lg border-2 border-transparent p-3 text-text-400/60 transition-colors hover:border-primary hover:text-primary">
       <div className="flex flex-col">
@@ -104,7 +121,7 @@ function Sample({ title, platform, blog, source, demo }: (typeof samples)[0]) {
 
 export default function GuidesAndSamples() {
   return (
-    <section className="mx-auto my-32 flex w-full max-w-5xl flex-col gap-10 p-4 py-0 md:flex-row md:gap-0">
+    <section className="my-40 mx-auto flex w-full max-w-5xl flex-col gap-10 p-4 py-0 md:flex-row md:gap-0">
       <div className="flex-1">
         <div className="mb-8 flex items-center justify-between">
           <h3 className="m-0">Popular how to guides</h3>
@@ -128,7 +145,7 @@ export default function GuidesAndSamples() {
         )}
       />
 
-      <div className="w-full max-w-sm">
+      <div className="w-full md:max-w-sm">
         <div className="mb-8 flex items-center justify-between">
           <h3 className="m-0">Popular sample apps</h3>
 
