@@ -2,6 +2,12 @@
 sidebar_position: 6
 ---
 
+import {
+  HTMLUIKitUtilsInstallation,
+  HTMLUIKitInstallation,
+  HTMLUIKitVersion,
+} from '@site/src/components/LatestInstallation';
+
 # Customize Meeting Locale
 
 Dyte's UI Kit allows you to customize all the text within the video call interface. You can personalize the text to align with your specific locale needs.
@@ -18,38 +24,67 @@ Customizing the locale involve the following steps:
         To get started with customizing the icons for your meetings, you need to first integrate Dyte's Web SDK into your web application.
     </summary>
     1. Install the package using npm or Yarn.
+<Tabs groupId="cdn-npm">
+  <TabItem value="cdn" label="CDN" default>
 
-```bash npm2yarn
-npm install @dytesdk/react-ui-kit @dytesdk/react-web-core
+To set up UI Kit components and web-core, add the following script tags inside
+the `<head />` tag.
+
+<HTMLUIKitInstallation />
+
+You can also import utilities or any other export from CDN:
+
+<HTMLUIKitUtilsInstallation />
+
+  </TabItem>
+  <TabItem value="npm" label="npm">
+
+```bash
+npm install @dytesdk/ui-kit @dytesdk/web-core
 ```
 
-2. Initialize the Dyte client using the `useDyteClient()` hook. It returns an array with two values, the meeting object and a function to initialize the meeting.
-3. Create a meeting room using the [Create Meeting API](/api#/operations/create_meeting).
-4. Generate an `authToken` using the [Add Participant API](/api#/operations/add_participant). An `authToken` is a unique token that is used to identify a user in the meeting.
-5. Initialize the meeting using the `initClient()` method exposed by `useDyteClient`.
-6. Pass the meeting object to the UI Kit.
+[![npm version](https://badge.fury.io/js/@dytesdk%2Fui-kit.svg)](https://badge.fury.io/js/@dytesdk%2Fui-kit)
 
-The `DyteMeeting` component generates the default UI experience. Read more about how to customize the UI [here](/react-ui-kit/basics/components-basics).
+  </TabItem>
 
-```jsx
-import { useDyteClient } from '@dytesdk/react-web-core';
-import { DyteMeeting } from '@dytesdk/react-ui-kit';
+  <TabItem value="yarn" label="yarn">
 
-function App() {
-  const [client, initClient] = useDyteClient();
+```bash
+yarn add @dytesdk/ui-kit @dytesdk/web-core
+```
 
-  useEffect(() => {
-    initClient({
-      authToken: '<auth-token>',
-      defaults: {
-        audio: false,
-        video: true,
-      },
-    });
-  }, []);
+[![npm version](https://badge.fury.io/js/@dytesdk%2Fui-kit.svg)](https://badge.fury.io/js/@dytesdk%2Fui-kit)
 
-  return <DyteMeeting meeting={client} />;
-}
+  </TabItem>
+</Tabs>
+
+2.  Create a meeting room using the [Create Meeting API](/api#/operations/create_meeting).
+3.  Generate an `authToken` using the [Add Participant API](/api#/operations/add_participant). An `authToken` is a unique token that is used to identify a user in the meeting.
+4.  Initialize the Dyte client using the `DyteClient.init({ authToken })`. It returns the meeting object.
+5.  Pass the meeting object to the UI Kit.
+
+The `dyte-meeting` component generates the default UI experience. Read more about how to customize the UI [here](/ui-kit/basics/components-basics).
+
+```html
+<body>
+  <dyte-meeting id="my-meeting"></dyte-meeting>
+
+  <script>
+    const init = async () => {
+      const meeting = await DyteClient.init({
+        authToken: '',
+        defaults: {
+          audio: true,
+          video: true,
+        },
+      });
+      const meetingEl = document.getElementById('my-meeting');
+      meetingEl.meeting = meeting;
+    };
+
+    init();
+  </script>
+</body>
 ```
 
 </details>
@@ -60,21 +95,41 @@ Now that you've integrated Dyte SDK into your application successfully, let's qu
 
 Dyte's default language pack can be imported like so.
 
-```jsx
-import { defaultLanguage, useLanguage } from '@dytesdk/react-ui-kit';
-```
+<HTMLUIKitVersion modules={['useLanguage', 'defaultLanguage']} />
 
 In order to replace Dyte's default locale set with your own, you can pass your own locale to the `t` prop exposed by the UI components.
 
-```jsx
-// Customise Dyte's default locale object
-const myLanguagePack = useLanguage({
-  ...defaultLanguage,
-  'mute_all': 'Mute All Users',
-});
+```html
+<body>
+  <dyte-meeting id="my-meeting"></dyte-meeting>
 
-<DyteMeeting meeting={meeting!} t={myLanguagePack} />;
+  <script type="module">
+    const myLanguagePack = useLanguage({
+      ...defaultLanguage,
+      mute_all: 'Mute All Users',
+    });
+
+    const init = async () => {
+      const meeting = await DyteClient.init({
+        authToken: '',
+        defaults: {
+          audio: true,
+          video: true,
+        },
+      });
+      const meetingEl = document.getElementById('my-meeting');
+      meetingEl.meeting = meeting;
+
+      // Pass custom language pack that you created above
+      meetingEl.t = myLanguagePack;
+    };
+
+    init();
+  </script>
+</body>
 ```
+
+The `useLanguage` function takes in your custom locale object as an argument and generates a function that retrieves the value associated with the provided key.
 
 ## Dyte's Default Language Reference
 

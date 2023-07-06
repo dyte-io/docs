@@ -38,6 +38,30 @@ voice calling applications.
   share views, logo, height, width and more, you can tailor the UI to fit your
   exact needs. See Build you own UI section.
 
+## Components of `dyte-meeting`
+
+The DyteMeeting component can be broken down into 3 major subcomponents:
+
+<img
+  src="/static/ui-kit/1.x.x/grid-comps.png"
+  width="500"
+  height="400"
+  alt="grid-uikit"
+  className="comps-uikit"
+/>
+
+### Dyte Header
+
+Displays information about the meeting, such as the meeting title and the participant count.
+
+### Dyte Grid
+
+The grid displays the video feeds of meeting participants. The grid component in Dyte's UI Kit adjusts the layout of video feeds based on the meeting's participant count, ensuring a smooth meeting experience. It provides a variety of layouts and variants.
+
+### Dyte Control Bar
+
+The control bar displays various controls for the meetings. It can easily be customized to match the look and feel of your web application. Customizing the control bar gives you the flexibility to show or hide controls, add or remove buttons, and make other adjustments to enhance the meeting experience for your users.
+
 ## Supported Browser
 
 Here are the browser requirements:
@@ -58,11 +82,11 @@ the size will be even smaller.
 ## Features
 
 - Dyte UI Kit is built using
-  [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components)
-  that make use of
-  [Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM).
-  This isolates the styling of each component, and the CSS on your page does not
-  interfere with component styling.
+  [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components). Web Components are a built-in browser specification that enables you to develop reusable custom elements without relying on any third-party frameworks. Web components provides the following advantages:
+  - **Encapsulation**: Web components utilize [Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM), which provides DOM and style encapsulation, isolating the styling of each component. This ensures that the CSS on your page does not interfere with Dyte's component styling and vice versa.
+  - **Fast**: DOM updates are very heavy, that is why React offers [Virtual DOM](https://reactjs.org/docs/faq-internals.html) to offer iterative updates. We also use our own Virtual DOM, but combing with Shadow DOM is even faster because styles are scoped. The browser can make assumptions about new changes to affect only one component and therefore it only needs to repaint that component.
+  - **Third-party dependencies**: There are almost no third-party dependencies, giving you complete code ownership.
+  - **Small bundle size**: The UI kit adds only 300KB (without gzipping) to your bundle size and includes everything from the meeting UI, chat, polls, emojis, plugins, host controls, and so on.
 - Each component uses design tokens in conjunction with CSS variables for
   styling. This makes the customization super simple and easy. Other than the
   design tokens, we've also attempted to improve the customization options, with
