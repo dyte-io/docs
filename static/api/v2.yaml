@@ -1358,6 +1358,17 @@ paths:
         $ref: '#/components/requestBodies/UpdateMeetingBody'
       tags:
         - Meetings
+    put:
+      summary: Replace a meeting
+      operationId: replace_meeting
+      responses:
+        '200':
+          $ref: '#/components/responses/GetMeeting'
+      description: Replaces all the details for the given meeting ID.
+      requestBody:
+        $ref: '#/components/requestBodies/CreateMeetingBody'
+      tags:
+        - Meetings
   '/meetings/{meeting_id}/participants':
     parameters:
       - schema:
