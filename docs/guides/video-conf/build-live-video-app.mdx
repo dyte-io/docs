@@ -1,6 +1,6 @@
 ---
-title: 'Start Building Live Video Applications Using Dyte'
-sidebar_position: 2
+title: 'Start Building'
+sidebar_position: 3
 ---
 
 This topic gives a quick walkthrough of the steps involved in integrating high-quality real-time
@@ -40,13 +40,13 @@ You may want to persist the meeting ID in your database.
    created earlier must be passed in the body of the Add Participant API
    request.
 
-   The API response contains the user authentication token `authToken`.
+   The API response contains the user authentication `token`.
 
-6. Use the `authToken` to initialize any of the frontend SDKs.
+6. Use the authentication `token` to initialize any of the frontend SDKs.
 
    Each SDK’s Quickstart Guide has code samples for how to perform the following steps for that specific SDK.
 
 Dyte meetings do not have a date or time associated with them, so you can create
 them in advance or just when users need to join the meeting. The idea is that
-your backend controls when to distribute `authToken` and thus you can share the
+your backend controls when to distribute authentication `token` and thus you can share the
 tokens with the users at the scheduled time.
