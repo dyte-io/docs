@@ -9,7 +9,7 @@ slug: /
 # Flutter Core SDK Quickstart
 
 This quickstart shows how to use Dyte's Flutter Core SDK to add live video and
-audio to your Flutter applications.
+audio call to your Flutter applications.
 
 For getting started quickly, you can use our sample code. You can clone and run
 a sample application from the
@@ -77,17 +77,18 @@ Add the following permissions to the AndroidManifest.xml file.
 <uses-permission android:name="android.permission.BLUETOOTH" />
 <uses-permission android:name="android.permission.WAKE_LOCK" />
 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 ```
 
 ### For iOS
 
-1. Set your platform to iOS 12.0 or above in your Podfile.
+1. Set your platform to iOS 13.0 or above in your Podfile.
 
 ```dart
-platform :ios, '12.0'
+platform :ios, '13.0'
 ```
 
-2. Add the following entries to the `info.plist` file. This gives permission to
+2. Add the following entries to the `Info.plist` file. This gives permission to
    your app to access the camera and microphone, access photos, install the
    required fonts and icons.
 
@@ -151,7 +152,7 @@ meeting object.
 
 ```dart
 
-class RoomStateNotifier extends DyteMeetingRoomEventsListener {
+class RoomStateNotifier implements DyteMeetingRoomEventsListener {
 
   ...
 
@@ -189,11 +190,13 @@ as shown below.
 dyteClient.joinRoom();
 ```
 
-By registering state observers, you receive callbacks for this action on the
+By registering state observers, you receive callbacks for join related actions on the
 meeting object.
 
 ```dart
-class LocalUserStatesNotifier extends DyteSelfEventsListener {
+class RoomStateNotifier implements DyteMeetingRoomEventsListener {
+
+  ...
 
   @override
   void onMeetingRoomJoinStarted() {
@@ -210,6 +213,7 @@ class LocalUserStatesNotifier extends DyteSelfEventsListener {
     /// Handle failure
   }
 
+  ...
 }
 ```
 
@@ -228,7 +232,7 @@ By registering state observers, you receive callbacks for this action on the
 meeting object.
 
 ```dart
-class RoomStateNotifier extends DyteMeetingRoomEventsListener {
+class RoomStateNotifier implements DyteMeetingRoomEventsListener {
 
   ...
 
@@ -238,7 +242,7 @@ class RoomStateNotifier extends DyteMeetingRoomEventsListener {
   }
 
   @override
-  void onMeetingRoomLeft() {
+  void onMeetingRoomLeaveCompleted() {
     /// on meeting room left
   }
 
