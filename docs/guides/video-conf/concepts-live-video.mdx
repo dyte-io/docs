@@ -22,6 +22,10 @@ A communication channel created on Dyte is termed as a `meeting`. Dyte offers fl
 - Choose your preferred region while creating a meeting by specifying the desired region in the [Create a meeting API](/api#/operations/create_meeting).
 - Optionally, you can indicate whether the meeting should be recorded and live streamed upon starting. Use the parameter `record_on_start` and `live_stream_on_start` with a value of true in the [Create a meeting API](/api#/operations/create_meeting).
 
+## Session
+
+In Dyte, a meeting is a communication channel, and each instance of that channel is called a session. A session represents an ongoing meeting within that communication channel.
+
 ## Preset
 
 A preset is a set of permissions and UI configurations that are applied to participants for different meeting types such as Group Call, Webinar, and Livestream. The presets define how a meeting will appear visually and functional aspects of the meeting. They allow customization options like setting maximum number of participants on-screen, permissions to share screen, enabling poll creation, disabling video and audio, adjusting text color, configuring plugins, etc.
@@ -65,3 +69,5 @@ Dyte offers comprehensive meeting analytics, including metrics such as meeting d
 The meeting ID is a unique identifier assigned to your meeting, obtained through the [Create a Meeting](/api#/operations/create_meeting) API. This ID is used for various actions, including adding or deleting participants, initiating or stopping meeting recording, starting or ending live streaming, and more.
 
 ## Session ID
+
+Session ID is a unique identifier assigned to your meeting, obtained through the [Fetch all sessions of an organization](/api#/operations/GetSessions). This API returns the the session ID along with the associated meeting ID.
