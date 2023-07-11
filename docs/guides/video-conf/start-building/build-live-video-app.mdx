@@ -1,10 +1,13 @@
 ---
-title: 'Start Building'
-sidebar_position: 3
+title: 'Integrate Dyte'
+sidebar_position: 1
 ---
 
-This topic gives a quick walkthrough of the steps involved in integrating high-quality real-time
-communication features into your app using Dyte's Live Video.
+This topic provides a simple guide to integrating Dyte's Live Video into your app, enabling you to add high-quality real-time communication features.
+
+The following diagram illustrates the steps involved and demonstrates the interaction between Dyte's backend and frontend during the integration process.
+
+![Diagram explaining how Dyte works](/static/home/how-dyte-works-v2.png)
 
 ## Step 1: Register in the Developer Portal
 
@@ -66,8 +69,6 @@ You may want to persist the meeting ID in your database.
 
 :::
 
-![Diagram explaining how Dyte works](/static/home/how-dyte-works-v2.png)
-
 ## Step 5: Add Participants
 
 After you've created the meeting, add participants to the meeting using the [Add Participant API](/api#/operations/add_participant).
@@ -76,40 +77,11 @@ The preset created in the previous step must be passed in the body of the Add Pa
 
 This API returns the authentication `token` that is required to initialize your frontend SDKs.
 
-## Step 6: Initialize the Frontend
-
-This step includes first installing the SDK and then initializing the frontend SDKs using the authentication `token`.
-
-Refer to the web and mobile quickstart guides to view the code samples and get started with your preferred SDK.
-
-### Web
-
-| **UI Kit**                            | **Core SDK**             |
-| ------------------------------------- | ------------------------ |
-| [React](/react-ui-kit/quickstart)     | [React](/react-web-core) |
-| [Angular](/angular-ui-kit/quickstart) | [JavaScript](/web-core)  |
-| [Vanilla JS](/ui-kit/quickstart)      |                          |
-
-### Mobile
-
-| **Prebuilt SDKs**              | **Core SDK**             |
-| ------------------------------ | ------------------------ |
-| [React Native](/react-native)  | [React Native](/rn-core) |
-| [Android](/android)            | [Android](/android-core) |
-| [iOS](ios)                     | [iOS](/ios-core)         |
-| [Flutter](/flutter/quickstart) | [Flutter](/flutter-core) |
-
 Dyte meetings do not have a date or time associated with them, so you can create
 them in advance or just when users need to join the meeting. The idea is that
 your backend controls when to distribute authentication `token` and thus you can share the
 tokens with the users at the scheduled time.
 
-Your fully functional meeting will look something like this:
+## Next Step
 
-<img
-  src="/static/guides/create-live-video-apps1.png"
-  width="900"
-  height="600"
-  alt="create-live-video-apps"
-  className="create-live-video-applications"
-/>
+[Initialize Your Frontend](/guides/video-conf/start-building/initialize-frontend-sdks)

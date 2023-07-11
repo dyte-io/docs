@@ -5,9 +5,23 @@ sidebar_position: 2
 
 This topic covers essential concepts related to Dyte Live Video applications.
 
+## Developer portal
+
+The [Developer Portal](https://dev.dyte.io/dashboard) serves as a comprehensive platform, offering access to meeting logs, API key management, billing operations, and various other functionalities in one place.
+
+You can also use Developer Portal to create meetings, presets, setup storage for recordings, add webhooks, and much more.
+
+<img
+  src="/static/guides/dev-portal.png"
+  width="600"
+  height="300"
+  alt="dev-portal"
+  className="dev-portal-preview"
+/>
+
 ## Organization
 
-In Dyte, the organization serves as the top-level entity where all participants of your group are added.
+In Dyte, the organization serves as the top-level entity where all participants of your group are added. You can create an organization using the [API](/api#/operations/createOrg) or through the Developer Portal.
 
 - Meetings are created within the organization.
 - The API keys are generated for your organization. These API Keys are unique to your organization and are required to use Dyte REST APIs such as when instantiating a meeting.
@@ -15,16 +29,31 @@ In Dyte, the organization serves as the top-level entity where all participants 
 
 ## Meeting
 
-A communication channel created on Dyte is termed as a `meeting`. Dyte offers flexibility in creating meetings based on your requirements:
+A communication channel created on Dyte is termed as a `meeting`. Meetings can be created using the [Create a meeting API](/api#/operations/create_meeting) or through the Developer Portal. Similarly, you can get the details of your meeting using the [API](/api#/operations/get_all_meetings) or developer portal.
 
-- You can create a meeting easily with our [UI Kit](/react-ui-kit), leveraging its prebuilt design library of UI components. For further customization to align with your branding, utilize design tokens within the UI kit. This allows adjustments to logos, colors, fonts, borders, spacing, and more.
-- For fully customized video calls in your applications, leverage [Core SDKs](/web-core/Introduction).
-- Choose your preferred region while creating a meeting by specifying the desired region in the [Create a meeting API](/api#/operations/create_meeting).
-- Optionally, you can indicate whether the meeting should be recorded and live streamed upon starting. Use the parameter `record_on_start` and `live_stream_on_start` with a value of true in the [Create a meeting API](/api#/operations/create_meeting).
+An example from the Developer Portal displaying meeting details.
+
+<img
+  src="/static/guides/concept-meeting.png"
+  width="800"
+  height="500"
+  alt="chat-sdk"
+  className="concept-meeting-live-video"
+/>
 
 ## Session
 
-In Dyte, a meeting is a communication channel, and each instance of that channel is called a session. A session represents an ongoing meeting within that communication channel.
+In Dyte, a meeting is a communication channel, and each instance of that channel is called a session. A session represents an ongoing meeting within that communication channel. Like meetings, you can get fetch the details of a session via Developer Portal or using the [APIs](/api#/operations/GetSessions).
+
+An example from the Developer Portal displaying session details.
+
+<img
+  src="/static/guides/session-details.png"
+  width="800"
+  height="500"
+  alt="chat-sdk"
+  className="session-details-live-video"
+/>
 
 ## Preset
 
@@ -36,38 +65,10 @@ For more information, see [Add Presets](/guides/presets/add-presets).
 
 Anyone who joins the `meeting`, including actual users and machine users. You can add participants using the [Add Participant API](/api#/operations/add_participant). Participants will have permissions for the meeting depending on the selected preset. The `presetName` must be passed in the body of the Add Participant API request.
 
-## Recording
-
-Dyte records the audio and video of multiple users in a meeting, as well as interactions with Dyte plugins, in a single file using composite recording mode. Dyte recordings are powered by anonymous virtual bot users who join your meeting, record it, and then upload it to Dyte's AWS S3 bucket. For video files,
-we currently support the
-[H.264](https://en.wikipedia.org/wiki/Advanced_Video_Coding) and
-[VP8](https://en.wikipedia.org/wiki/VP8) codecs. When the recording is finished, recording is stored in Dyte's AWS S3 bucket.
-
-For more information, see [Recording](/guides/recording).
-
-## Live stream
-
-You can livestream the `meeting` to other streaming platforms that support RTMP,
-like YouTube, Twitch, etc. Dyte's interactive live streaming (ILS) is an engaging online broadcasting method where host and viewers can actively participate by interacting through comments, chat, polls, and other interactive features.
-
-For more information, see [Start livestreaming with Dyte](/guides/livestream).
-
-## Analytics
-
-Dyte offers comprehensive meeting analytics, including metrics such as meeting duration, number of sessions, recorded minutes, participant count, total bill, and more. You can access this information via the Dashboard in the [Developer Portal](https://dev.dyte.io/dashboard).
-
-<img
-  src="/static/guides/analytics.png"
-  width="900"
-  height="600"
-  alt="analytics-dev-portal"
-  className="analytics-dev-portal-preview"
-/>
-
 ## Meeting ID
 
-The meeting ID is a unique identifier assigned to your meeting, obtained through the [Create a Meeting](/api#/operations/create_meeting) API. This ID is used for various actions, including adding or deleting participants, initiating or stopping meeting recording, starting or ending live streaming, and more.
+The meeting ID is a unique identifier assigned to your meeting, obtained through the [Create a Meeting](/api#/operations/create_meeting) API or from the Developer Portal. This ID is used for various actions, including adding or deleting participants, initiating or stopping meeting recording, starting or ending live streaming, and more.
 
 ## Session ID
 
-Session ID is a unique identifier assigned to your meeting, obtained through the [Fetch all sessions of an organization](/api#/operations/GetSessions). This API returns the the session ID along with the associated meeting ID.
+Session ID is a unique identifier assigned to your meeting, obtained through the [Fetch all sessions of an organization](/api#/operations/GetSessions). This API returns the the session ID along with the associated meeting ID. You can also get the Session IDs and its detail from the Developer Portal.

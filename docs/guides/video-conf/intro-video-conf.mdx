@@ -3,13 +3,37 @@ title: 'Overview'
 sidebar_position: 1
 ---
 
-Dyte's live video platform allows you to build real-time communication functionality into your web, and mobile applications. It is built on top of [WebRTC](https://dyte.io/blog/webrtc/). Using Dyte's REST APIs and client-side SDKs, you can acquire, transmit and play media, and manage network connections in your applications.
+Dyte's live video platform, built on top of [WebRTC](https://dyte.io/blog/webrtc/), enables you to build real-time communication functionality into your web, and mobile applications. Using Dyte's REST APIs and client-side SDKs, you can acquire, transmit and play media, and manage network connections in your applications.
 
-Dyte provides a range of features including group calls, webinars, interactive live streaming, breakout rooms, plugins, auto bandwidth switching, detailed call analytics, and more.
+## Usecases
 
-## Components
+Live video applications offer a wide range of applications and use cases, including:
 
-Dyte requires both frontend and a backend component. In addition to backend APIs and frontend SDKs, it is also requires access to Dyte's [developer portal](https://dev.dyte.io/dashboard).
+- **Virtual Interviews**: Conduct remote job interviews, connecting employers with candidates from anywhere, streamlining the hiring process.
+- **Remote Collaboration**: Facilitate real-time collaboration among remote teams, enabling seamless communication, file sharing, and screen sharing.
+- **Telemedicine**: Provide remote healthcare consultations, allowing patients to connect with doctors for virtual appointments, diagnosis, and medical advice.
+- **Social Networking**: Enhance social connections with features like live video chats, group video calls, and live streaming for engaging interactions.
+- **Gaming**: Integrate live video applications with gaming platforms, enabling real-time streaming of gameplay and interaction with a broader audience.
+- **Virtual Events and Webinars**: Host virtual events, webinars, and online workshops, delivering live presentations and engaging with attendees remotely.
+
+## Key features
+
+Dyte provides a range of features including group calls, webinars, breakout rooms, plugins, auto bandwidth switching, detailed call analytics, and more.
+
+- **Chat**: Allows participants to chat with each in real-time.
+- **Poll**: You can create polls.
+- **Breakout rooms**: Breakout rooms allow participants of a meeting to split into smaller groups for targeted discussions and collaboration. For more information, see [Create a Breakout Room](/guides/breakoutroom/create-breakout-rooms).
+- **Virtual background**: You can add custom virtual background to Dyte video calls. You can add background to any of our supported web applications, React, Angular, JavaScript, and so on including UI Kit and core SDKs. For more information, see [Add Custom Virtual Background to Dyte meetings](/guides/customization/add-virtual-background).
+- ** Multi screenshare**: Allow participants in the call to share screen with others in real-time.
+- **Transcription**: You can integrate Google Speech-to-Text (STT) into Dyte meetings to add audio transcriptions. This third-party service accurately transcribes participants' spoken audio in real-time. By leveraging Google Translate, the transcriptions can be easily translated into individual participants' desired languages. For more information, see [Add Audio Transcriptions to Video Meetings](https://dyte.io/blog/audio-transcriptions-video-meeting/).
+- **Custom filters**: Dyte SDKs provide flexibility not just in terms of the UI but in terms of media as well. You can build your own audio/video filters, similar to Snapchat or Talking Tom filters, to add fun effects like retro styles, birthday themes, funny hats, or even a Darth Vader voice, creating engaging and unique experiences for participants. For more information, see [Add Exciting Custom Filters to Video Calls with Dyte](https://dyte.io/blog/streams-blog/).
+- **Analytics**: Dyte offers comprehensive meeting analytics, including metrics such as meeting duration, number of sessions, recorded minutes, participant count, total bill, and more. You can access this information via the Dashboard in the [Developer Portal](https://dev.dyte.io/dashboard).
+- **Recording**: Dyte records the audio and video of multiple users in a meeting, as well as interactions with Dyte plugins, in a single file using composite recording mode. For more information, see [Recording](/guides/recording).
+- ** Noise cancellation**: Dyte offers AI-powered noise and echo cancellation (powered by Krisp).
+
+## Components of Dyte
+
+To integrate Dyte, you need both frontend and backend components:
 
 ### Backend HTTP REST APIs
 
@@ -23,88 +47,14 @@ Your backend utilizes Dyte REST APIs to perform actions such as:
 
 Your applications bundle Dyte Core SDKs (and UI Kits) to acquire, transmit and play media, and manage network connections.
 
-#### Core SDK
+- **Core SDK**: The Dyte Core SDK is designed to provide developers with an easy way to incorporate real-time communication (RTC) solutions into their apps and websites. With full customization and branding options, you can build your own user interface from the ground up without dealing with complicated media layers. For more information, see [Introduction to Core SDK](/web-core/Introduction).
 
-The Dyte Core SDK is designed to provide developers with an easy way to incorporate real-time communication (RTC) solutions into their apps and websites. With full customization and branding options, you can build your own user interface from the ground up without dealing with complicated media layers.
+- **UI Kit**: Dyte's UI Kit is a prebuilt design library of UI components designed to simplify the integration of video and voice calls into your app or website. It is build on top of the core SDKs, which handle all the low-level media and network handling parts of a meeting and exposes simpler APIs to use. For more information, see [UI Kit](/react-ui-kit).
 
-The Core SDK acts as a data-only layer, offering high-level primitives and abstracting away complex media and networking optimizations. It only provides simple APIs that are user-friendly and easy to work with. For more information, see [Introduction to Core SDK](/web-core/Introduction).
-
-#### UI Kit
-
-Dyte's UI Kit is a prebuilt design library of UI components designed to simplify the integration of video and voice calls into your app or website. It is build on top of the core SDKs, which handle all the low-level media and network handling parts of a meeting and exposes simpler APIs to use. By using the web-core components and passing them to the UI Kit, you can easily create and customize meeting experiences. For more information, see [UI Kit](/react-ui-kit).
-
-### Developer portal
-
-The [Developer Portal](https://dev.dyte.io/dashboard) serves as a comprehensive platform, offering access to meeting logs, API key management, billing operations, and various other functionalities in one place.
-
-<img
-  src="/static/guides/dev-portal.png"
-  width="600"
-  height="300"
-  alt="dev-portal"
-  className="dev-portal-preview"
-/>
-
-## Advanced features
-
-Dyte's live video application also provides the following advanced features:
-
-### Virtual background
-
-You can add custom virtual background to Dyte video calls. You can add background to any of our supported web applications, React, Angular, JavaScript, and so on including UI Kit and core SDKs. For more information, see [Add Custom Virtual Background to Dyte meetings](/guides/customization/add-virtual-background).
-
-### Transcription
-
-You can integrate Google Speech-to-Text (STT) into Dyte meetings to add audio transcriptions. This third-party service accurately transcribes participants' spoken audio in real-time. By leveraging Google Translate, the transcriptions can be easily translated into individual participants' desired languages. For more information, see [Add Audio Transcriptions to Video Meetings](https://dyte.io/blog/audio-transcriptions-video-meeting/).
-
-### Custom filters
-
-Dyte SDKs provide flexibility not just in terms of the UI but in terms of media as well. You can build your own audio/video filters, similar to Snapchat or Talking Tom filters, to add fun effects like retro styles, birthday themes, funny hats, or even a Darth Vader voice, creating engaging and unique experiences for participants. For more information, see [Add Exciting Custom Filters to Video Calls with Dyte](https://dyte.io/blog/streams-blog/).
-
-### Customize participant feeds to display your branding
-
-In scenarios like multi-company conferences and developer conferences, the standard branding at the top left of the meeting UI may not be relevant. To indicate the company each participant represents, you may prefer to display branding per participant. Dyte offers simple media add-ons to support this use case effectively.
-
-### Include countdown timer
-
-For time-sensitive appointments like doctor-patient consultations, one-on-one horoscope readings, and paid sessions that are billed per minute or hour, it is beneficial for participants to see the remaining time to make the most of their meetings. Dyte provides a middleware that allows you to seamlessly add a timer directly to the video feed.
-
-## Supported Platforms
+## Supported platforms
 
 Dyte currently supports the following platforms:
 
 - **Mobile**: Flutter, Android (Java/Kotlin), iOS (Objective-C/Swift), React Native
 - **Web**: Javascript Core SDK + UI Kit for React JS, Angular, and Web Components for other frameworks.
 - **Desktop**: Electron
-
-## Browser and internet requirements
-
-Here are the browser and internet requirements to ensure optimal performance when using the Dyte platform.
-
-### Browser requirements
-
-- Chrome (or Chromium based) 74+
-- Firefox 78+
-- Opera 64+
-- Safari 12+
-- Edge 79+
-- iOS (Safari) 12.1+
-- iOS (Non-Safari) 15+
-
-### Internet requirements
-
-- Downlink (Minimum) 4 Mbps
-- Downlink (Optimal) 8 Mbps
-- Uplink (Minimum) 2 Mbps
-- Uplink (Optimal) 4 Mbps
-
-## Usecases
-
-Live video applications offer a wide range of applications and use cases, including:
-
-- **Virtual Interviews**: Conduct remote job interviews, connecting employers with candidates from anywhere, streamlining the hiring process.
-- **Remote Collaboration**: Facilitate real-time collaboration among remote teams, enabling seamless communication, file sharing, and screen sharing.
-- **Telemedicine**: Provide remote healthcare consultations, allowing patients to connect with doctors for virtual appointments, diagnosis, and medical advice.
-- **Social Networking**: Enhance social connections with features like live video chats, group video calls, and live streaming for engaging interactions.
-- **Gaming**: Integrate live video applications with gaming platforms, enabling real-time streaming of gameplay and interaction with a broader audience.
-- **Virtual Events and Webinars**: Host virtual events, webinars, and online workshops, delivering live presentations and engaging with attendees remotely.
