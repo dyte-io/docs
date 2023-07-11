@@ -2,7 +2,7 @@ openapi: 3.0.0
 x-stoplight:
   id: f49d2395cc273
 servers:
-  - url: 'https://api.cluster.dyte.in/v2'
+  - url: 'https://api.dyte.io/v2'
     description: ''
     variables: {}
 info:
@@ -745,6 +745,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/pageNo'
         - $ref: '#/components/parameters/perPage'
+        - $ref: '#/components/parameters/sortBy'
         - $ref: '#/components/parameters/sortOrder'
         - $ref: '#/components/parameters/startTime'
         - $ref: '#/components/parameters/endTime'
@@ -1355,6 +1356,17 @@ paths:
       description: Updates a meeting in an organization for the given meeting ID.
       requestBody:
         $ref: '#/components/requestBodies/UpdateMeetingBody'
+      tags:
+        - Meetings
+    put:
+      summary: Replace a meeting
+      operationId: replace_meeting
+      responses:
+        '200':
+          $ref: '#/components/responses/GetMeeting'
+      description: Replaces all the details for the given meeting ID.
+      requestBody:
+        $ref: '#/components/requestBodies/CreateMeetingBody'
       tags:
         - Meetings
   '/meetings/{meeting_id}/participants':
@@ -3660,6 +3672,15 @@ components:
       schema:
         type: string
       description: The search query string. You can search using the meeting ID or title.
+    sortBy:
+      name: sort_by
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - minutesConsumed
+          - createdAt
     sortOrder:
       name: sort_order
       in: query

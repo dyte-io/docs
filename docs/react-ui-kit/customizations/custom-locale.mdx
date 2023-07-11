@@ -61,28 +61,20 @@ Now that you've integrated Dyte SDK into your application successfully, let's qu
 Dyte's default language pack can be imported like so.
 
 ```jsx
-import { defaultLanguage } from '@dytesdk/react-ui-kit';
+import { defaultLanguage, useLanguage } from '@dytesdk/react-ui-kit';
 ```
 
 In order to replace Dyte's default locale set with your own, you can pass your own locale to the `t` prop exposed by the UI components.
 
 ```jsx
 // Customise Dyte's default locale object
-const myLanguagePack = {
+const myLanguagePack = useLanguage({
   ...defaultLanguage,
   'mute_all': 'Mute All Users',
-}
+});
 
-const useLanguage = (lang) => {
-  return (key) => {
-    return lang[key] ?? key;
-  };
-}
-
- <DyteMeeting meeting={meeting!} t={useLanguage(myLanguagePack)} />;
+<DyteMeeting meeting={meeting!} t={myLanguagePack} />;
 ```
-
-The `useLanguage` function takes in your custom locale object as an argument and generates a function that retrieves the value associated with the provided key.
 
 ## Dyte's Default Language Reference
 
