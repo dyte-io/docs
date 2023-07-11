@@ -44,7 +44,7 @@ export default function HelpSection({ className = '' }) {
             />
             <h3 className="my-3">Support</h3>
             <p className="text-zinc-600 dark:text-zinc-400">
-              Dyte&apos;s expert support team is excited to help. Connect for
+              Dyte&apos;s expert support team is always available to help. Connect for
               dedicated 1:1 support!
             </p>
             <Link

@@ -20,7 +20,7 @@ const ALL_RESOURCES: Resource[] = [
   {
     url: '/guides/v2-migration-guide',
     type: 'blog',
-    title: 'Migrate to v2 REST API x',
+    title: 'Migrate to v2 REST API',
     description:
       'Excited to announce the release of our v2 REST APIs, which are faster, more idiomatic, and easier to use.',
     image:
@@ -30,7 +30,7 @@ const ALL_RESOURCES: Resource[] = [
   {
     url: 'https://dyte.io/blog/schedule-send-meeting-invites-dyte/',
     type: 'blog',
-    title: 'How to Schedule and Send Meeting Invites via Dyte y?',
+    title: 'How to Schedule and Send Meeting Invites via Dyte?',
     description:
       'Scheduling and sending meeting invites from your own application made simpler with Dyte SDKs.',
     image:
@@ -40,7 +40,7 @@ const ALL_RESOURCES: Resource[] = [
   {
     url: 'https://www.youtube.com/watch?v=eVUqkNNHh1o',
     type: 'video',
-    title: 'Integrating React UI Kit 1 u',
+    title: 'Integrating React UI Kit',
     description:
       'In this video learn how to use React UI Kit prebuilt components to add live video and audio to your React application.',
     image: 'https://img.youtube.com/vi/eVUqkNNHh1o/hqdefault.jpg',

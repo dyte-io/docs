@@ -25,10 +25,10 @@ export default function SDKs() {
       </h3>
 
       <div className="mb-10">
-        <h4 className="mb-2 text-2xl">UI Kit + Core</h4>
+        <h4 className="mb-2 text-2xl">UI Kit</h4>
 
         <p className="mb-6 text-text-400">
-          Build faster with a prebuilt design library of UI components.
+          Build faster with a prebuilt library of UI components for <span className='font-semibold'>all</span> frameworks.
         </p>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
@@ -41,11 +41,6 @@ export default function SDKs() {
             name="Angular"
             to="/angular-ui-kit"
             icon="/static/landing-page/sdk-icons/angular.png"
-          />
-          <SDK
-            name="Vue"
-            to="/ui-kit"
-            icon="/static/landing-page/sdk-icons/vue.png"
           />
           <SDK
             name="HTML"
@@ -77,12 +72,11 @@ export default function SDKs() {
 
       <div>
         <h4 className="mb-2 text-2xl">
-          Core{' '}
-          <span className="text-sm font-normal text-text-400">(advanced)</span>
+          Core{' '}SDK
         </h4>
 
         <p className="mb-6 text-text-400">
-          Build faster with a prebuilt design library of UI components.
+          Our easy to use Audio + Video + Livestreaming + Chat, <span className='font-semibold'>all in one</span> SDK
         </p>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">

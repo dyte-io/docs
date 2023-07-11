@@ -14,29 +14,29 @@ const PRODUCTS = [
     link: '#',
     icon: VideoRegular,
     image: '/static/landing-page/hero/video-graphic.png',
-    text: 'Lorem ipsum dolor sit amet consectetur. Faucibus risus nunc adipiscing rhoncus nisi diam egestas bibendum velit. Turpis mauris volutpat dignissim sit ac pellentesque eu dictumst.',
+    text: 'Enable live video communication within your application. Perfect for education, telemedicine, social networks and gaming',
   },
   {
     title: 'Voice',
     link: '#',
     icon: MicRegular,
     image: '/static/landing-page/hero/voice-graphic.png',
-    text: 'Lorem ipsum dolor sit amet consectetur. Faucibus risus nunc adipiscing rhoncus nisi diam egestas bibendum velit. Turpis mauris volutpat dignissim sit ac pellentesque eu dictumst.',
+    text: 'Incorporate high-quality real-time audio into your application. Build voice calls, audio conferences, voice chats in games and more',
   },
   {
     title: 'Interactive Live Streaming',
     link: '#',
     icon: LiveRegular,
     image: '/static/landing-page/hero/livestream-graphic.png',
-    text: 'Lorem ipsum dolor sit amet consectetur. Faucibus risus nunc adipiscing rhoncus nisi diam egestas bibendum velit. Turpis mauris volutpat dignissim sit ac pellentesque eu dictumst.',
+    text: 'Integrate highly scalable live video broadcasting capabilities into your app, ideal for apps that involve streaming webinars, sports or events',
   },
   {
     title: 'Chat',
-    comingSoon: true,
+    beta: true,
     link: '#',
     icon: ChatMultipleRegular,
     image: '/static/landing-page/hero/chat-graphic.png',
-    text: 'Lorem ipsum dolor sit amet consectetur. Faucibus risus nunc adipiscing rhoncus nisi diam egestas bibendum velit. Turpis mauris volutpat dignissim sit ac pellentesque eu dictumst.',
+    text: 'Add real-time chat functionalities to your application. Be it ustomer support, social networks or any other colloboration use case, we got you covered',
   },
 ];
 
@@ -46,7 +46,7 @@ function HeroProduct({
   icon: Icon,
   text,
   image,
-  comingSoon,
+  beta,
 }: (typeof PRODUCTS)[0]) {
   return (
     <Link
@@ -61,8 +61,8 @@ function HeroProduct({
           <Icon className="h-7 w-7" />
           <div>
             {title}
-            {comingSoon && (
-              <span className="font-normal text-text-400"> (coming soon)</span>
+            {beta && (
+              <span className="font-normal text-text-400"> (Beta)</span>
             )}
           </div>
         </h3>
@@ -86,9 +86,9 @@ export default function HeroSection() {
           <h2 className="mb-4 font-jakarta text-5xl font-bold">
             Build with Dyte
           </h2>
-          <p className="max-w-xl text-text-400">
+          <p className="max-w-xl text-text-400 text-center">
             At Dyte, we're building the future of real-time communication.
-            Integrate high-quality, programmable, and customizable live video
+            Integrate programmable, and easily customizable live video
             and voice into your web, mobile, and desktop applications with just
             a few lines of code.
           </p>
