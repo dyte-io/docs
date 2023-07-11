@@ -6,6 +6,7 @@ import {
   MicRegular,
   VideoRegular,
 } from '@fluentui/react-icons';
+import ThemedImage from '@theme/ThemedImage';
 import clsx from 'clsx';
 
 const PRODUCTS = [
@@ -13,30 +14,34 @@ const PRODUCTS = [
     title: 'Live Video',
     link: '#',
     icon: VideoRegular,
-    image: '/static/landing-page/hero/video-graphic.png',
+    lightImage: '/static/landing-page/hero/video-graphic.png',
+    darkImage: '/static/landing-page/hero/video-graphic-dark.png',
     text: 'Enable live video communication within your application. Perfect for education, telemedicine, social networks and gaming',
   },
   {
     title: 'Voice',
     link: '#',
     icon: MicRegular,
-    image: '/static/landing-page/hero/voice-graphic.png',
+    lightImage: '/static/landing-page/hero/voice-graphic.png',
+    darkImage: '/static/landing-page/hero/voice-graphic-dark.png',
     text: 'Incorporate high-quality real-time audio into your application. Build voice calls, audio conferences, voice chats in games and more',
   },
   {
     title: 'Interactive Live Streaming',
     link: '#',
     icon: LiveRegular,
-    image: '/static/landing-page/hero/livestream-graphic.png',
-    text: 'Integrate highly scalable live video broadcasting capabilities into your app, ideal for apps that involve streaming webinars, sports or events',
+    lightImage: '/static/landing-page/hero/livestream-graphic.png',
+    darkImage: '/static/landing-page/hero/livestream-graphic-dark.png',
+    text: 'Integrate highly scalable live video broadcasting capabilities into your app, ideal for apps that involve streaming webinars, sports or live events',
   },
   {
     title: 'Chat',
     beta: true,
     link: '#',
     icon: ChatMultipleRegular,
-    image: '/static/landing-page/hero/chat-graphic.png',
-    text: 'Add real-time chat functionalities to your application. Be it ustomer support, social networks or any other colloboration use case, we got you covered',
+    lightImage: '/static/landing-page/hero/chat-graphic.png',
+    darkImage: '/static/landing-page/hero/chat-graphic-dark.png',
+    text: 'Add real-time chat functionalities to your application. Be it customer support, social networks or any other colloboration use case, we got you covered',
   },
 ];
 
@@ -45,15 +50,19 @@ function HeroProduct({
   title,
   icon: Icon,
   text,
-  image,
+  lightImage,
+  darkImage,
   beta,
 }: (typeof PRODUCTS)[0]) {
   return (
     <Link
       to={link}
+      style={{
+        borderWidth: '1px'
+      }}
       className={clsx(
         'group relative cursor-pointer overflow-clip rounded-3xl from-primary/30 via-transparent to-transparent text-black transition-all hover:bg-gradient-to-tr hover:text-primary hover:no-underline dark:text-white',
-        'border-2 border-secondary-700 hover:border-primary'
+        'border-secondary-700 dark:border-secondary-800 bg-secondary-900 hover:!border-primary'
       )}
     >
       <div className="p-6 !pb-0">
@@ -68,9 +77,11 @@ function HeroProduct({
         </h3>
         <p className="mb-0 text-sm text-zinc-400">{text}</p>
       </div>
-
-      <img
-        src={image}
+      <ThemedImage
+            sources={{
+              light: lightImage,
+              dark: darkImage,
+            }}
         alt={title}
         className="mt-1 w-full transition-transform group-hover:scale-110"
       />
