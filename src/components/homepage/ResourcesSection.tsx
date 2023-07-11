@@ -47,59 +47,23 @@ const ALL_RESOURCES: Resource[] = [
     duration: '5 min',
   },
   {
-    url: 'https://www.youtube.com/watch?v=eVUqkNNHh1o',
+    url: 'https://www.youtube.com/watch?v=ZkrZc8Neh6A',
     type: 'video',
-    title: 'Integrating React UI Kit 2',
+    title: 'Video KYC App using React UI Kit',
     description:
-      'In this video learn how to use React UI Kit prebuilt components to add live video and audio to your React application.',
-    image: 'https://img.youtube.com/vi/eVUqkNNHh1o/hqdefault.jpg',
+      'In this episode of Dyte Byte we show how to build Video KYC App using React UI Kit.',
+    image: 'https://img.youtube.com/vi/ZkrZc8Neh6A/hqdefault.jpg',
     duration: '5 min',
   },
   {
-    url: 'https://www.youtube.com/watch?v=eVUqkNNHh1o',
+    url: 'https://www.youtube.com/watch?v=UHuzWDxrvLk',
     type: 'video',
-    title: 'Integrating React UI Kit 3',
+    title: 'Calling Dyte REST APIs',
     description:
-      'In this video learn how to use React UI Kit prebuilt components to add live video and audio to your React application.',
-    image: 'https://img.youtube.com/vi/eVUqkNNHh1o/hqdefault.jpg',
-    duration: '5 min',
-  },
-  {
-    url: 'https://www.youtube.com/watch?v=eVUqkNNHh1o',
-    type: 'video',
-    title: 'Integrating React UI Kit 4',
-    description:
-      'In this video learn how to use React UI Kit prebuilt components to add live video and audio to your React application.',
-    image: 'https://img.youtube.com/vi/eVUqkNNHh1o/hqdefault.jpg',
-    duration: '5 min',
-  },
-  {
-    url: 'https://www.youtube.com/watch?v=eVUqkNNHh1o',
-    type: 'video',
-    title: 'Integrating React UI Kit 6',
-    description:
-      'In this video learn how to use React UI Kit prebuilt components to add live video and audio to your React application.',
-    image: 'https://img.youtube.com/vi/eVUqkNNHh1o/hqdefault.jpg',
-    duration: '5 min',
-  },
-  {
-    url: 'https://www.youtube.com/watch?v=eVUqkNNHh1o',
-    type: 'video',
-    title: 'Integrating React UI Kit 6',
-    description:
-      'In this video learn how to use React UI Kit prebuilt components to add live video and audio to your React application.',
-    image: 'https://img.youtube.com/vi/eVUqkNNHh1o/hqdefault.jpg',
-    duration: '5 min',
-  },
-  {
-    url: 'https://www.youtube.com/watch?v=eVUqkNNHh1o',
-    type: 'video',
-    title: 'Integrating React UI Kit 7',
-    description:
-      'In this video learn how to use React UI Kit prebuilt components to add live video and audio to your React application.',
-    image: 'https://img.youtube.com/vi/eVUqkNNHh1o/hqdefault.jpg',
-    duration: '5 min',
-  },
+      'Understand our HTTP REST APIs',
+    image: 'https://img.youtube.com/vi/UHuzWDxrvLk/hqdefault.jpg',
+    duration: '7 min',
+  }
 ];
 
 function Resource({
