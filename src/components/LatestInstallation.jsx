@@ -79,7 +79,8 @@ export const HTMLUIKitInstallation = () => {
   );
 };
 
-export const HTMLUIKitUtilsInstallation = () => {
+export const HTMLUIKitUtilsInstallation = ({ modules = ['provideDyteDesignSystem',
+'extendConfig,']}) => {
   const [uikitVersion, setUIKitVersion] = useState('');
 
   useEffect(() => {
@@ -95,33 +96,10 @@ export const HTMLUIKitUtilsInstallation = () => {
       {`<head>
   <script type="module">
     import {
-      provideDyteDesignSystem,
-      extendConfig,
+      ${modules.join(',\n    ')}
     } from 'https://cdn.jsdelivr.net/npm/@dytesdk/ui-kit${uikitVersion}/dist/esm/index.js';
   </script>
 </head>`}
-    </CodeBlock>
-  );
-};
-
-export const HTMLUIKitVersion = ({ modules }) => {
-  const [uikitVersion, setUIKitVersion] = useState('');
-
-  useEffect(() => {
-    async function load() {
-      const versionUI = await latestNPMVersion({ pkg: 'ui-kit' });
-      setUIKitVersion(`@${versionUI}`);
-    }
-    load();
-  }, []);
-
-  return (
-    <CodeBlock language="html">
-      {`<script type="module">
-  import {
-    ${modules.join(',\n    ')}
-  } from 'https://cdn.jsdelivr.net/npm/@dytesdk/ui-kit${uikitVersion}/dist/esm/index.js';
-</script>`}
     </CodeBlock>
   );
 };

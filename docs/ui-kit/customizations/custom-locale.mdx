@@ -5,7 +5,6 @@ sidebar_position: 6
 import {
   HTMLUIKitUtilsInstallation,
   HTMLUIKitInstallation,
-  HTMLUIKitVersion,
 } from '@site/src/components/LatestInstallation';
 
 # Customize Meeting Locale
@@ -95,7 +94,7 @@ Now that you've integrated Dyte SDK into your application successfully, let's qu
 
 Dyte's default language pack can be imported like so.
 
-<HTMLUIKitVersion modules={['useLanguage', 'defaultLanguage']} />
+<HTMLUIKitUtilsInstallation modules={['useLanguage', 'defaultLanguage']} />
 
 In order to replace Dyte's default locale set with your own, you can pass your own locale to the `t` prop exposed by the UI components.
 
