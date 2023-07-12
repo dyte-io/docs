@@ -1,81 +1,63 @@
 ---
-title: 'Interactive Livestreaming Overview'
+title: 'Introduction to Interactive Livestreaming'
 sidebar_position: 1
 ---
 
-# Interactive Livestreaming Overview
+# Introduction to Dyte's Interactive Livestreaming
 
-:::info Beta
-The new Interactive Live Streaming (ILS) feature is currently in beta, which means it is still being tested and evaluated, and may undergo some change. Please [contact us](https://dyte.io/contact) if you encounter any issues or have suggestions for improvements to the feature.
-:::
+Livestreaming is the live broadcasting and transmission of video or audio content over the internet. It enables the real-time capture and streaming of events, activities, or performances, allowing viewers to watch and interact with the content as it happens. It is commonly used for one-to-many communication, where a single source streams the content to multiple viewers or participants.
 
-Interactive livestreaming (ILS) is the broadcast of video and audio content over the internet,
-usually through a web viewer or an application. Live streaming sends RTMP
-streams, or real-time data such as video and audio from call participants, over
-the internet to viewers. This can be used to broadcast events such as webinars,
-hackathons, conferences, online classes, concerts, all-hands meetings, and even
-your own metaverse party.
+Interactive live streaming (ILS) is an engaging online broadcasting method where host and viewers can actively participate by interacting through comments, chat, polls, and other interactive features.
+
+Dyte's Interactive Live Streaming (ILS) feature revolves around a virtual **stage** where hosts have direct access and viewers can request to join.
+
+- Hosts: They have full control of the stage and can actively participate, share video and audio, conduct presentations, and more.
+- Viewers: They can request to join the stage using interactive features like chat or raised hand. Once approved by the host, viewers can contribute by sharing their video and audio or participating in discussions.
+- The stage is where all the action happens. It's broadcasted live to all viewers, creating a real-time and engaging experience for everyone.
 
 <img
   src="/static/livestreaming/livestream.png"
-  width="600"
-  height="300"
+  width="700"
+  height="400"
   alt="livestream-overview"
   className="livestrem-hls-rtmp"
 />
 
-Dyte supports the following:
-
-- Livestreaming from applications like
-  [OBS](https://en.wikipedia.org/wiki/OBS_Studio),
-  [ffmpeg](https://en.wikipedia.org/wiki/FFmpeg), and others. To put it simply,
-  you can livestream any RTMP input from any source using Dyte.
-- Allows you to broadcast a multi-participant video call in real time that
-  supports RTMP to your preferred streaming platform, such as YouTube, Twitch,
-  or LinkedIn.
-- Provides complete control over the streaming experience, from a simple
-  one-to-many stream to a highly interactive live event.
-- Allows you to integrate [HLS](https://dyte.io/blog/hls/) into your existing
-  video workflow without any additional servers or infrastructure. You’ll have
-  access to better quality streams with low latency and wide device support.
-- Forward livestreams of your meeting to any platform that supports RTMP, such
-  as YouTube, Twitch, LinkedIn, and more.
-
-## Dyte's ILS Features
-
-Dyte's Interactive Live Streaming (ILS) feature is designed around the concept of a **stage** that is accessible to both hosts and viewers. Hosts have direct access to the stage, while viewers can request to join it. The stage is broadcasted live to all viewers.
+## Key Features of Dyte's ILS Platform
 
 With Dyte's ILS, you can:
 
-- Broadcast a meeting to up to 100,000 viewers with low latency of just 3 to 6 seconds.
-- Chat with participants during the live stream.
-- Create and share polls with participants.
-- Allow viewers to raise their hand, and the host can invite them to join the stage.
-- Host can directly invite viewers to join the stage.
+- **Reach a large audience**: Broadcast your meeting to up to 100,000 viewers with just 3 to 6 seconds of delay.
+- **Engage with participants**: Chat with your audience during the live stream, fostering real-time interaction.
+- **Create interactive polls**: Share polls with participants, allowing them to actively contribute and provide feedback.
+- **Invite viewers to join the stage**: Viewers can raise their hand, and host can invite them to the stage to participate directly.
+- **Multi-participant video calls**: Conduct real-time video calls with multiple participants and stream them to platforms like YouTube, Twitch, or LinkedIn.
+- **Seamless integration**: Easily integrate with your existing video workflow by incorporating HLS without additional servers or infrastructure.
+- **Restream to multiple platforms**: Forward your livestream to any platform that supports RTMP, such as YouTube, Twitch, LinkedIn, and more.
+- **Livestream any custom video input**: Go live from applications like [OBS](https://en.wikipedia.org/wiki/OBS_Studio), [ffmpeg](https://en.wikipedia.org/wiki/FFmpeg), and others, allowing you to stream any RTMP input from any source.
+- **Customize your streaming experience**: Have complete control over your streaming, from a simple one-to-many stream to a highly interactive live event.
+
+## Supported Platforms
+
+Dyte's ILS is supported on the following platforms:
+
+- Web
+- Mobile
+  - iOS
+  - Android
+  - Flutter
 
 ## Common Dyte Livestreaming Use Cases
 
 The following are some of the most common livestreaming use cases:
 
-- Livestream any video via RTMP (custom input)
-- Livestream a Dyte meeting via HLS
-- Livestream Dyte meetings to other platforms
+- Livestream a Dyte meeting
+- Restream Dyte meetings to multiple platforms
+- Livestream any custom video input
 
-### Livestream any video via RTMP (custom input)
+### Livestream a Dyte meeting
 
-Dyte supports live streaming from applications like
-[OBS](https://en.wikipedia.org/wiki/OBS_Studio),
-[ffmpeg](https://en.wikipedia.org/wiki/FFmpeg), and others. To put it simply,
-you can live stream any RTMP input from any source using Dyte.
-
-You can pass the custom input to the ingest server and stream key, and freely distributed using the playback URL on any HLS/LHLS supported player.
-
-For more information, see [Livestream any video via RTMP](https://docs.dyte.io/guides/livestream/livestream-any-rtmp).
-
-### Livestream a Dyte meeting via HLS
-
-Any meeting you [create](/api/?v=v2#/operations/create_meeting) with Dyte can be
-livestreamed.
+You can livestream any meeting that you created using the [create a meeting](/api/?v=v2#/operations/create_meeting) API.
 
 - To begin live streaming the meeting as soon as it starts, specify the
   `live_stream_on_start` parameter in the
@@ -84,11 +66,22 @@ livestreamed.
   [Start livestreaming a meeting](/api/?v=v2#/paths/meetings-meeting_id--livestreams/post)
   API to start live streaming the meeting as needed.
 
-For more information, see [Livestream a Dyte meeting via HLS](https://docs.dyte.io/guides/livestream/livestream-dyte-meeting).
+For more information, see [Livestream a Dyte meeting](/guides/livestream/interactive-livestream/livestream-dyte-meeting).
 
-### Livestream Dyte meetings to other platforms
+### Restream Dyte meetings to multiple platforms
 
-You can livestream Dyte meetings to any platform that supports
+You can restream Dyte meetings to any platform that supports
 [RTMP](https://dyte.io/blog/rtmp/), such as YouTube, Twitch, LinkedIn, and more.
 
-For more information, see [Livestream Dyte Meetings to Other Platforms](https://docs.dyte.io/guides/livestream/livestreaming-other-platforms).
+For more information, see [Restream Dyte Meeting to Multiple Platforms](/guides/livestream/interactive-livestream/livestreaming-other-platforms).
+
+### Livestream any custom video input
+
+Dyte supports live streaming from applications like
+[OBS](https://en.wikipedia.org/wiki/OBS_Studio),
+[ffmpeg](https://en.wikipedia.org/wiki/FFmpeg), and others. To put it simply,
+you can live stream any RTMP input from any source using Dyte.
+
+You can pass the custom input to the ingest server and stream key, and freely distribute it using the playback URL on any HLS/LHLS supported player.
+
+For more information, see [Livestream any custom video input](/guides/livestream/livestream-rtmp-input/livestream-any-rtmp).

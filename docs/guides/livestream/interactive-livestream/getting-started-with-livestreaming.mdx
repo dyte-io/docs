@@ -1,0 +1,283 @@
+---
+title: 'Get Started with Interactive Livestreaming'
+sidebar_position: 2
+---
+
+This topic will guide you through the steps of getting started with interactive live streaming for your Dyte meetings, enabling you to broadcast and engage with your viewers in real time.
+
+## Prerequisites
+
+Before you begin the livestreaming process, it is recommended to familiarize yourself with the following topics:
+
+- [Getting Started With Dyte](/getting-started)
+- [Introduction to Dyte's Interactive Livestreaming](/guides/livestream/livestream-overview)
+
+Creating an interactive livestreaming involves the following steps:
+
+- Create a Dyte developer account
+- Create presets
+- Create a meeting
+- Add participants
+- Start livestreaming
+
+## Step 1: Get your API Keys
+
+Login to the [Developer Portal](https://dev.dyte.io/) and create an account. Copy the [API Keys](https://dev.dyte.io/apikeys) for your organization from the Developer portal. These API Keys are unique to your organization and are required to use Dyte REST APIs such as when instantiating a meeting.
+
+## Step 2: Create Presets
+
+A preset is a set of permissions and UI configurations that are applied to hosts and participants. They determine the look, feel, and behavior of the livestream, with options to set varied permissions, such as the ability to create polls or chat, control access for plugins, and more. For more information on Presets, see [Add Presets](/guides/presets/add-presets).
+
+:::info Note
+It is important to understand that you need to create two presets for livestreaming. One preset is used for the livestreaming **host** and the other preset is used for the livestreaming **viewer**.
+
+The host requires certain host controls such as the ability to Kick Participants, Mute Audio, Mute Video, and Pin Participant, as well as media permissions like Start Livestream and Admit or remove participants from the livestream. Ensure that you’ve selected those permissions for the host.
+:::
+
+1. In the [Developer Portal](https://dev.dyte.io/), click **Presets**, and click **Create New**.
+   <img
+     src="/static/livestreaming/createpreset.png"
+     width="600"
+     height="300"
+     alt="livestream-create-preset"
+     className="livestrem-create-preset"
+   />
+2. In the **Select Meeting Type**, select **Livestream**.
+3. Set permissions and UI configurations for your livestream.
+
+### Configuration
+
+You can define the following permissions and UI configurations:
+
+**Max number of people on screen**: Set the maximum number of participants who can appear on the screen at any given time. We recommend setting this number between 6 and 9 for the best possible experience.
+
+**Max number of people screensharing**: Set the maximum number of participants who can share the screen at any given time. We recommend setting this number between 3 to 4 for the best experience.
+
+<img
+  src="/static/livestreaming/ls-share-screen.png"
+  width="250"
+  height="50"
+  alt="livestream-share-screen"
+  className="livestrem-sharescreen"
+/>
+
+#### Host Controls
+
+Host controls allow you as the host to control various aspects of a Dyte livestream, such as managing the participants.
+
+| **Permissions and Configurations** | **Description**                                                                                                                                                                                                                                                      |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Kick Participants                  | Adds permissions to remove participants from your meeting. Ensure that you select this option if you're creating a preset for the **host**.                                                                                                                          |
+| Mute Audio                         | Host can mute/unmute individual participants or all of them at once. Ensure that you select this option if you're creating a preset for the **host**.                                                                                                                |
+| Disable Video                      | Hosts can hide video of individual participants or all of them at once. Ensure that you select this option if you're creating a preset for the **host**.                                                                                                             |
+| Pin Participant                    | Allows to pin a participant's view displayed on the screen. When a participant is pinned, their video feed remains visible even if someone else speaks or the video layout changes. Ensure that you select this option if you're creating a preset for the **host**. |
+| Manage Recordings                  | Hosts can start and stop recording of their meeting.                                                                                                                                                                                                                 |
+| Update Participant Preset          | Update participant permissions / meeting type.                                                                                                                                                                                                                       |
+
+<img
+  src="/static/livestreaming/host-control.png"
+  width="250"
+  height="50"
+  alt="host-control"
+  className="hostcontrol"
+/>
+
+#### Media
+
+You can manage permissions for your livestreams in Media, such as who can start the livestream and who can join the livestream with what kind of permissions.
+
+| **Permissions and Configurations**               | **Description**                                                                                                                              |
+| ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| Start Livestream                                 | Adds permissions to start livestreaming your meeting. Ensure that you select this option if you're creating a preset for the **host**.       |
+| Admit or remove participants from the livestream | Allows to admit or remove participants from the livestream. Ensure that you select this option if you're creating a preset for the **host**. |
+| Join Livestream                                  | Participants can join the livestream directly with a link.                                                                                   |
+| Request to Join                                  | Participants can request to join a livestream. Host can accept or reject the request.                                                        |
+| View Only                                        | Participants can only view the livestream.                                                                                                   |
+
+<img
+  src="/static/livestreaming/media.png"
+  width="250"
+  height="50"
+  alt="media-ls"
+  className="media-livestream"
+/>
+
+#### Chat
+
+| **Permissions and Configurations**      | **Description**                                                                                      |
+| --------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Public (can send text, can send files)  | Permissions to be able to send text and/or files to everyone during the livestream.                  |
+| Private (can send text, can send files) | Permissions to be able to send text and/or files to the specific participants during the livestream. |
+
+<img
+  src="/static/livestreaming/chat.png"
+  width="250"
+  height="50"
+  alt="chat-ls"
+  className="chat-livestream"
+/>
+
+#### Polls
+
+| **Permissions and Configurations** | **Description**                                                 |
+| ---------------------------------- | --------------------------------------------------------------- |
+| Can create polls                   | Permissions to be able to create polls during the livestream.   |
+| Can vote on polls                  | Permissions to be able to vote on polls during the livestream.  |
+| Can view polls                     | Permissions to be able to view the polls during the livestream. |
+
+<img
+  src="/static/livestreaming/Polls.png"
+  width="250"
+  height="50"
+  alt="poll-ls"
+  className="poll-livestream"
+/>
+
+#### Plugins
+
+Manage permissions for your plugins.
+
+| **Permissions and Configurations** | **Description**                                                                                                             |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Launch Plugins                     | Permissions to be able to launch plugins during a livestream, for example, witeboard, excalidraw,remote browser, and so on. |
+| Close Plugins                      | Permissions to be able to close plugins, during a livestream, for example, witeboard, excalidraw,remote browser, and so on. |
+| Control Access                     | Allows you to manage plugins for other participants.                                                                        |
+
+<img
+  src="/static/livestreaming/Plugins.png"
+  width="250"
+  height="50"
+  alt="plugins-ls"
+  className="plugins-livestream"
+/>
+
+#### Miscellaneous
+
+Manage permissions for your plugins.
+
+| **Permissions and Configurations** | **Description**                                                       |
+| ---------------------------------- | --------------------------------------------------------------------- |
+| Hidden Participants                | Allows participants to be hidden from all other participants.         |
+| Edit Name                          | Participants can edit their name while joining the livestream.        |
+| Sync Tab Bar View                  | Enables broadcasting of the current tab bar view to all participants. |
+| Hide Participant List              | Hide the list of participants in the livestream.                      |
+
+<img
+  src="/static/livestreaming/Plugins.png"
+  width="250"
+  height="50"
+  alt="plugins-ls"
+  className="plugins-livestream"
+/>
+
+### Colors
+
+You can specify brand color, background color, text color, text color on brand, and video background color.
+
+<img
+  src="/static/livestreaming/colors.png"
+  width="600"
+  height="300"
+  alt="livestream-colors"
+  className="livestrem-colors-preset"
+/>
+
+### Theme
+
+Specify the URL of the logo.
+
+### Plugins
+
+1. Select the plugin that you want to use for the collaboration within your meeting. Multiple plugins such as Excalidraw, Remote browser, Google apps, Quiz, Chess, and so on are supported.
+
+   You can select multiple plugins for your meeting.
+
+2. Click **Configure**.
+3. Select permissions for the selected preset. You can provide **Full Access** or **View Only**.
+   <img
+     src="/static/livestreaming/pluginlivestream.png"
+     width="600"
+     height="300"
+     alt="livestream-plugin"
+     className="livestrem-plugin-preset"
+   />
+4. Select **Show only active plugins** to view the plugins that you’ve configured for your meeting.
+
+## Step 3: Save the Preset Changes
+
+1. Once you’ve made all the changes that you need to add to your preset, click **Save** at the right-corner.
+   <img
+     src="/static/livestreaming/savepreset.png"
+     width="300"
+     height="200"
+     alt="livestream-save"
+     className="livestream-save-preset"
+   />
+2. Enter the name for your preset and click **Save**.
+   <img
+     src="/static/livestreaming/savepresetils.png"
+     width="500"
+     height="300"
+     alt="livestream-saveils"
+     className="livestream-save-ils"
+   />
+3. Your preset is listed. Click **Edit** to make any changes to the preset.
+   <img
+     src="/static/livestreaming/ilslist.png"
+     width="600"
+     height="300"
+     alt="livestream-ilslist"
+     className="livestream-save-ilslist"
+   />
+
+## Step 4: Create a Meeting
+
+Once you've created a preset for livestreaming, create a Dyte meeting that you want to live stream.
+
+You can create a Dyte meeting using the [Create Meeting API](/api#/operations/create_meeting). This API returns a unique identifier for your meeting. If you wish to start livestreaming the meeting as soon as it starts, set the `live_stream_on_start` parameter `true`.
+
+## Step 5: Add Participants
+
+After you've created the meeting, add participants to the meeting using the [Add Participant API](/api#/operations/add_participant).
+
+The preset created in the [step 2](/guides/livestream/interactive-livestream/getting-started-with-livestreaming#step-2-create-presets) must be passed in the body of the Add Participant API request. Specify the name of the preset in the `preset_name` parameter.
+
+## Step 6: Start Livestreaming a Dyte Meeting
+
+There are two ways to start livestreaming a meeting:
+
+1. Using the API
+2. From the meeting UI
+
+### Using API
+
+To start livestreaming a meeting, simply specify the meeting ID in the [Start livestreaming a meeting](/api#/paths/meetings-meeting_id--livestreams/post) API. You can also specify the video configurations for your stream, for example, height and width of the video.
+If you wish to stop the streaming, use the [Stop livestreaming a meeting](/api#/operations/stop_livestreaming) API.
+
+### From the Meeting UI
+
+If you’ve the host permissions, you will see the option to **Go live** and **End live** streaming.
+
+**Start live streaming**
+
+To start livestreaming a meeting, click on the **Go live** button in the control bar of your meeting.
+
+<img
+  src="/static/livestreaming/golive.png"
+  width="700"
+  height="600"
+  alt="livestream-golive"
+  className="livestream-go-live"
+/>
+
+**End live streaming**
+
+To stop livestreaming, click on the **End live** button in the control bar.
+
+<img
+  src="/static/livestreaming/endlive.png"
+  width="700"
+  height="600"
+  alt="livestream-endlive"
+  className="livestream-end-live"
+/>
