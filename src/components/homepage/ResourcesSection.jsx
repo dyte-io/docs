@@ -26,7 +26,7 @@ export default function ResourcesSection() {
                     src={resource.image}
                     alt={resource.title}
                     loading="lazy"
-                    className="aspect-video lg:aspect-square h-full w-full object-cover transition-transform group-hover:scale-110"
+                    className="aspect-video h-full w-full object-cover transition-transform group-hover:scale-110 lg:aspect-square"
                   />
                 </div>
                 <h3 className="font-semibold text-black group-hover:text-primary dark:text-white dark:group-hover:text-primary-100 lg:text-xl">
@@ -40,7 +40,7 @@ export default function ResourcesSection() {
                 <div className="rounded-sm bg-primary-100/10 px-3 py-1 text-sm text-primary-100">
                   {resource.type}
                 </div>
-                <div className="text-text-400 text-sm">
+                <div className="text-sm text-text-400">
                   {`${resource.duration} ${
                     resource.type === 'Video' ? 'watch' : 'read'
                   }`}
@@ -53,7 +53,7 @@ export default function ResourcesSection() {
         <div className="my-20 flex flex-wrap items-center justify-center gap-3 text-center">
           <span>View all</span>
           <div className="flex gap-2">
-            <Link className="underline underline-offset-8" href="/guides/quickstart">
+            <Link className="underline underline-offset-8" href="/guides">
               Guides
             </Link>
             <Link
