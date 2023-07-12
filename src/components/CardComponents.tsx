@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { paramCase } from 'param-case';
 import Link from '@docusaurus/Link';
 import clsx from 'clsx';
@@ -11,6 +11,14 @@ export function CardSection({
   className,
   hasSubSections = false,
   HeadingTag = 'h3',
+}: {
+  id?: string;
+  title: string;
+  children: ReactNode;
+  description?: ReactNode;
+  hasSubSections?: boolean;
+  HeadingTag?: any;
+  className?: string;
 }) {
   return (
     <div
@@ -27,7 +35,19 @@ export function CardSection({
   );
 }
 
-export function Card({ id, icon, title, description, to }) {
+export function Card({
+  id,
+  icon,
+  title,
+  description,
+  to,
+}: {
+  id?: string;
+  icon?: JSX.Element;
+  title: string;
+  description?: string;
+  to: string;
+}) {
   return (
     <Link to={to} className="homepage-card">
       {icon && <div className="icon">{icon}</div>}
@@ -35,7 +55,7 @@ export function Card({ id, icon, title, description, to }) {
         <div className="title" id={id && paramCase(title)}>
           {title}
         </div>
-        <div className="description">{description}</div>
+        {description && <div className="description">{description}</div>}
       </div>
     </Link>
   );

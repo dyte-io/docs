@@ -17,7 +17,7 @@ This step generates credentials and ingest URLs for the livestream.
 #### Request
 
 ```bash
-curl --location --request POST 'https://api.cluster.dyte.in/v2/livestreams' \
+curl --location --request POST 'https://api.dyte.io/v2/livestreams' \
      --header 'Content-Type: application/json' \
      --header 'Authorization: Basic ZGVtbzpwQDU1dzByZA==' \
      --data-raw '{
@@ -83,7 +83,7 @@ This request returns the `ingest_seconds`, `viewer_seconds`, `ingest_server`,
 
 ```bash
 curl --location \
-     --request GET 'https://api.cluster.dyte.in/v2/livestreams/9fb22eea-3392-42ad-b884-1129a4f517d2' \
+     --request GET 'https://api.dyte.io/v2/livestreams/9fb22eea-3392-42ad-b884-1129a4f517d2' \
      --header 'Authorization: Basic ZGVtbzpwQDU1dzByZA=='
 ```
 

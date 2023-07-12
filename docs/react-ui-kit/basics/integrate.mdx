@@ -46,3 +46,35 @@ network.
   }}
 />
 ```
+
+### DyteDialogManager
+
+A component which handles all dialog elements in a component. This component is required for the following components to work:
+
+- DyteLeaveButton
+- DyteSettingsToggle
+- DyteBreakoutRoomsToggle
+- DyteMuteAllButton
+
+This components depends on the values from `states` object.
+
+```jsx
+function Example() {
+  const [states, setStates] = useState({});
+
+  const setState = (s) => setStates((states) => ({ ...states, ...s }));
+
+  return (
+    <Row>
+      <DyteButton onClick={() => setState({ activeLeaveConfirmation: true })}>
+        Show Leave Confirmation
+      </DyteButton>
+      <DyteDialogManager
+        meeting={meeting}
+        states={states}
+        onDyteStateUpdate={(e) => setState(e.detail)}
+      />
+    </Row>
+  );
+}
+```
