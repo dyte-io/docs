@@ -15,6 +15,7 @@ interface Guide {
   title: string;
   icon: any;
   text: string;
+  link: string;
 }
 
 const guides: Guide[] = [
@@ -22,16 +23,19 @@ const guides: Guide[] = [
     title: 'Start Recording a Meeting',
     icon: RecordRegular,
     text: 'Check out an example of this integration of recording a meeting.',
+    link: '/guides/integrate-core-features/recording',
   },
   {
     title: 'Migrate from Twilio or OpenTok',
     icon: VideoRegular,
     text: 'Migration simplified. Refer the guide.',
+    link: '/guides/migration',
   },
   {
     title: 'Create a Breakout Room',
     icon: AppsAddInRegular,
     text: 'Easily split a meeting in separate sessions.',
+    link: '/guides/integrate-core-features/breakoutroom/create-breakout-rooms',
   },
 ];
 
@@ -67,9 +71,12 @@ const samples: Sample[] = [
   },
 ];
 
-function Guide({ title, text, icon: Icon }: (typeof guides)[0]) {
+function Guide({ title, text, icon: Icon, link }: (typeof guides)[0]) {
   return (
-    <Link className="group flex cursor-pointer items-start gap-2 rounded-lg border-2 border-transparent p-3 text-inherit transition-colors hover:border-primary hover:text-primary">
+    <Link
+      to={link}
+      className="group flex cursor-pointer items-start gap-2 rounded-lg border-2 border-transparent p-3 text-inherit transition-colors hover:border-primary hover:text-primary"
+    >
       <Icon className="h-6 w-6" />
 
       <div className="flex flex-col">
@@ -126,7 +133,7 @@ export default function GuidesAndSamples() {
         <div className="mb-8 flex items-center justify-between">
           <h3 className="m-0">Popular how to guides</h3>
 
-          <Link to="" className="font-jakarta text-sm font-semibold">
+          <Link to="/guides" className="font-jakarta text-sm font-semibold">
             View more guides <ArrowRightFilled className="ml-1" />
           </Link>
         </div>
@@ -149,7 +156,10 @@ export default function GuidesAndSamples() {
         <div className="mb-8 flex items-center justify-between">
           <h3 className="m-0">Popular sample apps</h3>
 
-          <Link to="" className="font-jakarta text-sm font-semibold">
+          <Link
+            to="https://github.com/dyte-io"
+            className="font-jakarta text-sm font-semibold"
+          >
             All apps <ArrowRightFilled className="ml-1" />
           </Link>
         </div>
