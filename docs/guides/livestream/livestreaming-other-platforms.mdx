@@ -1,11 +1,9 @@
 ---
 title: Restream Dyte Meetings to Multiple Platforms
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 # Restream Dyte Meetings to Multiple Platforms
-
-Restreaming allows you to redistribute an existing [live stream](/guides/livestream/livestream-overview) to multiple platforms or destinations simultaneously. It allows the content creator to broadcast their live stream to different streaming services, social media platforms, or CDNs, reaching a broader audience and maximizing the content's exposure. Restreaming is a many-to-many communication model, as it enables the simultaneous distribution of a single live stream to multiple platforms, rather than streaming separately to each platform.
 
 Dyte can restream your meeting to any platform that supports an RTMP
 endpoint, such as YouTube, Twitch, or LinkedIn.
@@ -13,7 +11,7 @@ endpoint, such as YouTube, Twitch, or LinkedIn.
 ## Prerequisites
 
 - [Create a meeting](/api?v=v2#/operations/create_meeting)
-- [Create a livestream](/guides/livestream/interactive-livestream/livestream-dyte-meeting#step-2-create-a-live-stream)
+- [Create a livestream](/guides/livestream/livestream-dyte-meeting#step-2-create-a-live-stream)
 
 ## Step 1: Initiate meeting recording
 
@@ -21,9 +19,13 @@ To enable restreaming of a Dyte meeting, you will first need to start recording 
 
 ## Step 2: Configure restreaming settings
 
-In the same [Start recording a meeting](/api#/operations/start_recording) API, you can configure the restreaming settings.
+In the same [Start recording a meeting](/api#/operations/start_recording) API, configure the restreaming settings.
 
-Specify the desired RTMP input URL and stream key where you want the meeting video to be streamed. Your stream key is generated when [creating a livestream](/guides/livestream/interactive-livestream/livestream-dyte-meeting#step-2-create-a-live-stream).
+Specify the desired **RTMP input URL** and **stream key** where you want the meeting video to be streamed.
+
+:::info Note
+Your stream key is generated when [creating a livestream](/guides/livestream/livestream-dyte-meeting#step-2-create-a-live-stream).
+:::
 
 For example, if you want to stream it to [restream.io](https://restream.io), do
 the following:

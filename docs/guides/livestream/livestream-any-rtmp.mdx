@@ -1,6 +1,6 @@
 ---
 title: Live Stream any Custom Video Input
-sidebar_position: 2
+sidebar_position: 6
 ---
 
 # Live Stream any Custom Video Input
@@ -10,9 +10,9 @@ Dyte can livestream video from any applications like
 [ffmpeg](https://en.wikipedia.org/wiki/FFmpeg) that can stream via RTMP in a few
 simple steps.
 
-## Step 1: Get authentication token
+## Step 1: Get your API Keys
 
-Get authentication token for your organization using Developer Portal. For more information, see [Create a Dyte Developer Account](/guides/livestream/interactive-livestream/getting-started-with-livestreaming#step-1-create-a-dyte-developer-account).
+Login to the [Developer Portal](https://dev.dyte.io/) and create an account. Copy the [API Keys](https://dev.dyte.io/apikeys) for your organization from the Developer portal. These API Keys are unique to your organization and are required to use Dyte REST APIs such as when instantiating a meeting.
 
 ## Step 2: Generate credentials for a livestream
 
@@ -56,9 +56,9 @@ The response contains the `ingest_server`, livestream `id`, `stream_key`, and
 | stream_key     | The stream key in RTMP livestreaming is a unique identifier that is used to authorize and link the RTMP encoder to a specific live stream. The stream key is like a password that allows the encoder to access the specific live stream on the server and start sending data to it. It is an important security measure to prevent unauthorized access to the live stream, as the stream key is needed to begin streaming to a specific event or channel. It's important to keep the stream key safe and secure. You need to enter the `stream_key` in your application. See step 2. |
 | playback_url   | The playback URL is the web address that viewers can use to watch the live stream. Viewers can enter the playback URL into their web browser or use a media player that supports HLS or LHLS streaming to watch the live stream.                                                                                                                                                                                                                                                                                                                                                     |
 
-## Step 3: Specify RTMP ingestion URL for livestreaming
+## Step 3: Specify RTMP ingestion URL for live streaming
 
-In your application, enter the ingestion URL you generated in the previous [step](/guides/livestream/livestream-rtmp-input/livestream-any-rtmp#step-2-generate-credentials-for-a-livestream).
+In your application, enter the ingestion URL you generated in the previous step.
 
 - If you're using [OBS](https://en.wikipedia.org/wiki/OBS_Studio), then enter the ingest server URL and stream key separately.
   ![obs-example](/static/guides/obs-example.jpeg)
@@ -73,7 +73,7 @@ In your application, enter the ingestion URL you generated in the previous [step
 
 ## Fetch details of a livestream
 
-Using the livestream ID that you generated in the previous [step](/guides/livestream/livestream-rtmp-input/livestream-any-rtmp#step-2-generate-credentials-for-a-livestream), you can fetch details of
+Using the livestream ID that you generated in the previous [step](/guides/livestream/livestream-any-rtmp#step-2-generate-credentials-for-a-livestream), you can fetch details of
 livestream.
 
 #### Request
