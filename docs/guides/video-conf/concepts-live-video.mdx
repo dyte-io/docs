@@ -5,6 +5,22 @@ sidebar_position: 2
 
 This topic covers essential concepts related to Dyte Live Video applications.
 
+## Backend HTTP REST APIs
+
+Your backend utilizes Dyte REST APIs to perform actions such as:
+
+- [Create meetings](/api#/operations/create_meeting)
+- [Add participants to a meeting](/api#/operations/add_participant)
+- [Start recording a meeting](/api#/operations/start_recording) and so on
+
+## Frontend SDKs
+
+Your applications bundle Dyte Core SDKs (and UI Kits) to acquire, transmit and play media, and manage network connections.
+
+- **Core SDK**: The Dyte Core SDK is designed to provide an easy way to incorporate real-time communication (RTC) solutions. With full customization and branding options, you can build your own UI from the ground up without dealing with complicated media layers. See [Introduction to Core SDK](/web-core/Introduction).
+
+- **UI Kit**: Dyte's UI Kit is a prebuilt design library of UI components designed to simplify the integration of video and voice calls into your product. See [UI Kit](/react-ui-kit).
+
 ## Developer portal
 
 The [Developer Portal](https://dev.dyte.io/dashboard) serves as a comprehensive platform, offering access to meeting logs, API key management, billing operations, and various other functionalities in one place.
@@ -64,11 +80,3 @@ For more information, see [Add Presets](/guides/integrate-core-features/add-pres
 ## Participants
 
 Anyone who joins the `meeting`, including actual users and machine users. You can add participants using the [Add Participant API](/api#/operations/add_participant). Participants will have permissions for the meeting depending on the selected preset. The `presetName` must be passed in the body of the Add Participant API request.
-
-## Meeting ID
-
-The meeting ID is a unique identifier assigned to your meeting, obtained through the [Create a Meeting](/api#/operations/create_meeting) API or from the Developer Portal. This ID is used for various actions, including adding or deleting participants, initiating or stopping meeting recording, starting or ending live streaming, and more.
-
-## Session ID
-
-Session ID is a unique identifier assigned to your meeting, obtained through the [Fetch all sessions of an organization](/api#/operations/GetSessions). This API returns the the session ID along with the associated meeting ID. You can also get the Session IDs and its detail from the Developer Portal.
