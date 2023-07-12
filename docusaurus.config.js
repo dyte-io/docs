@@ -311,7 +311,7 @@ const config = {
           },
           {
             label: 'Guides',
-            to: 'guides/quickstart',
+            to: 'guides',
             position: 'left',
           },
           {

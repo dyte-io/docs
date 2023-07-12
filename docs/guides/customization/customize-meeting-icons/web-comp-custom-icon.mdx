@@ -1,0 +1,186 @@
+---
+sidebar_position: 3
+---
+
+import {
+  HTMLUIKitUtilsInstallation,
+  HTMLUIKitInstallation,
+} from '@site/src/components/LatestInstallation';
+
+# Web Components
+
+Dyte's UI Kit provides all the necessary UI components to allow complete customization of all its UI Kit components. You can customize your meeting icons such as chat, clock, leave meeting, mic on and off, and more.
+
+Customizing the meeting icons involve the following steps:
+
+1. Integrate Dyte’s web SDK into your web application
+2. Customize the default icon pack
+
+## Step 1: Integrate Dyte’s web SDK into your web application
+
+<details open>
+    <summary>
+        To get started with customizing the icons for your meetings, you need to first integrate Dyte's Web SDK into your web application.
+    </summary>
+    1. Install the package using npm or Yarn.
+<Tabs groupId="cdn-npm">
+  <TabItem value="cdn" label="CDN" default>
+
+To set up UI Kit components and web-core, add the following script tags inside
+the `<head />` tag.
+
+<HTMLUIKitInstallation />
+
+You can also import utilities or any other export from CDN:
+
+<HTMLUIKitUtilsInstallation />
+
+  </TabItem>
+  <TabItem value="npm" label="npm">
+
+```bash
+npm install @dytesdk/ui-kit @dytesdk/web-core
+```
+
+[![npm version](https://badge.fury.io/js/@dytesdk%2Fui-kit.svg)](https://badge.fury.io/js/@dytesdk%2Fui-kit)
+
+  </TabItem>
+
+  <TabItem value="yarn" label="yarn">
+
+```bash
+yarn add @dytesdk/ui-kit @dytesdk/web-core
+```
+
+[![npm version](https://badge.fury.io/js/@dytesdk%2Fui-kit.svg)](https://badge.fury.io/js/@dytesdk%2Fui-kit)
+
+  </TabItem>
+</Tabs>
+
+2.  Create a meeting room using the [Create Meeting API](/api#/operations/create_meeting).
+3.  Generate an `authToken` using the [Add Participant API](/api#/operations/add_participant). An `authToken` is a unique token that is used to identify a user in the meeting.
+4.  Initialize the Dyte client using the `DyteClient.init({ authToken })`. It returns the meeting object.
+5.  Pass the meeting object to the UI Kit.
+
+The `dyte-meeting` component generates the default UI experience. Read more about how to customize the UI [here](/ui-kit/basics/components-basics).
+
+```html
+<body>
+  <dyte-meeting id="my-meeting"></dyte-meeting>
+
+  <script>
+    const init = async () => {
+      const meeting = await DyteClient.init({
+        authToken: '',
+        defaults: {
+          audio: true,
+          video: true,
+        },
+      });
+      const meetingEl = document.getElementById('my-meeting');
+      meetingEl.meeting = meeting;
+    };
+    init();
+  </script>
+</body>
+```
+
+</details>
+
+## Step 2: Customize default icon pack
+
+Now that you've integrated Dyte SDK into your application successfully, let's quickly understand how you can customize the icon set for your application.
+
+Dyte's default icon set is available at [icons.dyte.io](https://icons.dyte.io/). You can modify and generate your custom icon set from here.
+
+In order to replace Dyte's default icon set with your own, you can pass the link to your icon set in the `dyte-meeting` component like so.
+
+```html
+<body>
+  <dyte-meeting id="my-meeting"></dyte-meeting>
+
+  <script>
+    const init = async () => {
+      const meeting = await DyteClient.init({
+        authToken: '',
+        defaults: {
+          audio: true,
+          video: true,
+        },
+      });
+      const meetingEl = document.getElementById('my-meeting');
+      meetingEl.meeting = meeting;
+      // Pass custom icon pack url
+      meetingEl.iconPackUrl = 'https://example.com/my-icon-pack.json';
+    };
+    init();
+  </script>
+</body>
+```
+
+## IconPack Reference
+
+Ƭ **IconPack**: typeof `defaultIconPack`
+
+Icon Pack object type:
+
+- Object key denotes name of icon
+- Object value stores the SVG string
+
+### defaultIconPack
+
+• `Const` **defaultIconPack**: `Object`
+
+#### Type declaration
+
+| Name                       | Type     |
+| :------------------------- | :------- |
+| `attach`                   | `string` |
+| `call_end`                 | `string` |
+| `chat`                     | `string` |
+| `checkmark`                | `string` |
+| `chevron_down`             | `string` |
+| `chevron_left`             | `string` |
+| `chevron_right`            | `string` |
+| `chevron_up`               | `string` |
+| `clock`                    | `string` |
+| `copy`                     | `string` |
+| `disconnected`             | `string` |
+| `dismiss`                  | `string` |
+| `download`                 | `string` |
+| `emoji_multiple`           | `string` |
+| `full_screen_maximize`     | `string` |
+| `full_screen_minimize`     | `string` |
+| `image`                    | `string` |
+| `image_off`                | `string` |
+| `join_stage`               | `string` |
+| `leave_stage`              | `string` |
+| `mic_off`                  | `string` |
+| `mic_on`                   | `string` |
+| `more_vertical`            | `string` |
+| `participants`             | `string` |
+| `people`                   | `string` |
+| `pin`                      | `string` |
+| `pin_off`                  | `string` |
+| `poll`                     | `string` |
+| `recording`                | `string` |
+| `rocket`                   | `string` |
+| `search`                   | `string` |
+| `send`                     | `string` |
+| `settings`                 | `string` |
+| `share`                    | `string` |
+| `share_screen_person`      | `string` |
+| `share_screen_start`       | `string` |
+| `share_screen_stop`        | `string` |
+| `speaker`                  | `string` |
+| `spinner`                  | `string` |
+| `spotlight`                | `string` |
+| `stop_recording`           | `string` |
+| `subtract`                 | `string` |
+| `vertical_scroll`          | `string` |
+| `vertical_scroll_disabled` | `string` |
+| `video_off`                | `string` |
+| `video_on`                 | `string` |
+| `wand`                     | `string` |
+| `warning`                  | `string` |
+| `wifi`                     | `string` |
