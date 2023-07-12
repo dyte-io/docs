@@ -28,14 +28,14 @@ const ALL_RESOURCES: Resource[] = [
     duration: '3 min',
   },
   {
-    url: 'https://dyte.io/blog/schedule-send-meeting-invites-dyte/',
+    url: 'https://dyte.io/blog/hls-in-depth/',
     type: 'blog',
-    title: 'How to Schedule and Send Meeting Invites via Dyte?',
+    title: 'HLS in Depth',
     description:
-      'Scheduling and sending meeting invites from your own application made simpler with Dyte SDKs.',
+      "HLS is widely adopted, simple, yet robust. Learn how it works from a client's perspective, its segments, features, and disadvantages.",
     image:
-      'https://dyte.io/blog/content/images/size/w1000/2022/12/Dyte-Blog---Calendar-2.png',
-    duration: '4 min',
+      'https://dyte.io/blog/content/images/size/w1000/2023/07/HLS--indepth--header--1.png',
+    duration: '10 min',
   },
   {
     url: 'https://www.youtube.com/watch?v=eVUqkNNHh1o',
@@ -59,11 +59,10 @@ const ALL_RESOURCES: Resource[] = [
     url: 'https://www.youtube.com/watch?v=UHuzWDxrvLk',
     type: 'video',
     title: 'Calling Dyte REST APIs',
-    description:
-      'Understand our HTTP REST APIs',
+    description: 'Understand our HTTP REST APIs',
     image: 'https://img.youtube.com/vi/UHuzWDxrvLk/hqdefault.jpg',
     duration: '7 min',
-  }
+  },
 ];
 
 function Resource({
@@ -137,7 +136,7 @@ export default function ResourcesSection() {
             <h2 className="mb-6 text-4xl">Want to know more?</h2>
           </div>
           <Link
-            to="#"
+            to="https://dyte.io/blog"
             className="font-jakarta text-sm font-semibold text-primary"
           >
             All Blogs <ArrowRightFilled className="ml-1" />

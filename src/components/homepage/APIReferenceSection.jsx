@@ -6,7 +6,7 @@ import ThemedImage from '@theme/ThemedImage';
 
 export default function APIReferenceSection() {
   return (
-    <section className="relative px-6">
+    <section className="no-underline-links relative px-6">
       <Head>
         <link rel="prefetch" href="/static/landing-page/api-ref-light.png" />
         <link rel="prefetch" href="/static/landing-page/api-ref-dark.png" />

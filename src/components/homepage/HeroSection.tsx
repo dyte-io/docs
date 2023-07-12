@@ -12,7 +12,7 @@ import clsx from 'clsx';
 const PRODUCTS = [
   {
     title: 'Live Video',
-    link: '#',
+    link: '/guides/video-conf/intro-video-conf',
     icon: VideoRegular,
     lightImage: '/static/landing-page/hero/video-graphic.png',
     darkImage: '/static/landing-page/hero/video-graphic-dark.png',
@@ -20,7 +20,7 @@ const PRODUCTS = [
   },
   {
     title: 'Voice',
-    link: '#',
+    link: '/guides/voice-conf/intro-voice-conf',
     icon: MicRegular,
     lightImage: '/static/landing-page/hero/voice-graphic.png',
     darkImage: '/static/landing-page/hero/voice-graphic-dark.png',
@@ -28,7 +28,7 @@ const PRODUCTS = [
   },
   {
     title: 'Interactive Live Streaming',
-    link: '#',
+    link: '/guides/livestream/livestream-overview',
     icon: LiveRegular,
     lightImage: '/static/landing-page/hero/livestream-graphic.png',
     darkImage: '/static/landing-page/hero/livestream-graphic-dark.png',
@@ -37,7 +37,7 @@ const PRODUCTS = [
   {
     title: 'Chat',
     beta: true,
-    link: '#',
+    link: '/guides/chat-sdks/intro-chat-sdks',
     icon: ChatMultipleRegular,
     lightImage: '/static/landing-page/hero/chat-graphic.png',
     darkImage: '/static/landing-page/hero/chat-graphic-dark.png',
@@ -58,11 +58,11 @@ function HeroProduct({
     <Link
       to={link}
       style={{
-        borderWidth: '1px'
+        borderWidth: '1px',
       }}
       className={clsx(
         'group relative cursor-pointer overflow-clip rounded-3xl from-primary/30 via-transparent to-transparent text-black transition-all hover:bg-gradient-to-tr hover:text-primary hover:no-underline dark:text-white',
-        'border-secondary-700 dark:border-secondary-800 bg-secondary-900 hover:!border-primary'
+        'border-secondary-700 bg-secondary-900 hover:!border-primary dark:border-secondary-800'
       )}
     >
       <div className="p-6 !pb-0">
@@ -70,18 +70,16 @@ function HeroProduct({
           <Icon className="h-7 w-7" />
           <div>
             {title}
-            {beta && (
-              <span className="font-normal text-text-400"> (Beta)</span>
-            )}
+            {beta && <span className="font-normal text-text-400"> (Beta)</span>}
           </div>
         </h3>
         <p className="mb-0 text-sm text-zinc-400">{text}</p>
       </div>
       <ThemedImage
-            sources={{
-              light: lightImage,
-              dark: darkImage,
-            }}
+        sources={{
+          light: lightImage,
+          dark: darkImage,
+        }}
         alt={title}
         className="mt-1 w-full transition-transform group-hover:scale-110"
       />
@@ -97,11 +95,11 @@ export default function HeroSection() {
           <h2 className="mb-4 font-jakarta text-5xl font-bold">
             Build with Dyte
           </h2>
-          <p className="max-w-xl text-text-400 text-center">
+          <p className="max-w-xl text-center text-text-400">
             At Dyte, we're building the future of real-time communication.
-            Integrate programmable, and easily customizable live video
-            and voice into your web, mobile, and desktop applications with just
-            a few lines of code.
+            Integrate programmable, and easily customizable live video and voice
+            into your web, mobile, and desktop applications with just a few
+            lines of code.
           </p>
         </div>
       </section>
