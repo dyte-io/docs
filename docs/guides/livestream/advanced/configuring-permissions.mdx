@@ -1,43 +1,14 @@
 ---
-title: 'Start Interactive Live Streaming'
-sidebar_position: 2
+title: 'Configuring Permissions'
+sidebar_position: 1
 ---
 
-This topic guides you through the steps of getting started with interactive live streaming for Dyte meetings.
 
-## Prerequisites
+## Presets
 
-Before you begin the livestreaming process, it is recommended to familiarize yourself with the following topics:
+A preset is a set of permissions and configurations that are applied to participants. They determine the look, feel, and behavior of a livestream participant, with options to set varied permissions, such as the ability to create polls or chat, control access for plugins, and more.
 
-- [Voice conferencing](/guides/video-conf/intro-video-conf)
-- [Overview of Dyte's Interactive Live Streaming](/guides/livestream/livestream-overview)
-
-## Step 1: Get your API Keys
-
-Login to the [Developer Portal](https://dev.dyte.io/) and create an account. Copy the [API Keys](https://dev.dyte.io/apikeys) for your organization from the Developer portal. These API Keys are unique to your organization and are required to use Dyte REST APIs such as when instantiating a meeting.
-
-## Step 2: Create Presets
-
-A preset is a set of permissions and UI configurations that are applied to hosts and participants. They determine the look, feel, and behavior of the livestream, with options to set varied permissions, such as the ability to create polls or chat, control access for plugins, and more. For more information on Presets, see [Add Presets](/guides/features/presets).
-
-:::info Note
-It is important to understand that you need to create two presets for livestreaming. One preset is used for the livestreaming **host** and the other preset is used for the livestreaming **viewer**.
-
-The host requires certain host controls such as the ability to Kick Participants, Mute Audio, Mute Video, and Pin Participant, as well as media permissions like Start Livestream and Admit or remove participants from the livestream. Ensure that you’ve selected those permissions for the host.
-:::
-
-1. In the [Developer Portal](https://dev.dyte.io/), click **Presets**, and click **Create New**.
-   <img
-     src="/static/livestreaming/createpreset.png"
-     width="600"
-     height="300"
-     alt="livestream-create-preset"
-     className="livestrem-create-preset"
-   />
-2. In the **Select Meeting Type**, select **Livestream**.
-3. Set permissions and UI configurations for your livestream.
-
-### Configuration
+## Configuration
 
 You can define the following permissions and UI configurations:
 
@@ -53,7 +24,7 @@ You can define the following permissions and UI configurations:
   className="livestrem-sharescreen"
 />
 
-#### Host Controls
+### Host Controls
 
 Host controls allow you as the host to control various aspects of a Dyte livestream, such as managing the participants.
 
@@ -74,7 +45,7 @@ Host controls allow you as the host to control various aspects of a Dyte livestr
   className="hostcontrol"
 />
 
-#### Media
+### Media
 
 You can manage permissions for your livestreams in Media, such as who can start the livestream and who can join the livestream with what kind of permissions.
 
@@ -94,7 +65,7 @@ You can manage permissions for your livestreams in Media, such as who can start 
   className="media-livestream"
 />
 
-#### Chat
+### Chat
 
 | **Permissions and Configurations**      | **Description**                                                                                      |
 | --------------------------------------- | ---------------------------------------------------------------------------------------------------- |
@@ -109,7 +80,7 @@ You can manage permissions for your livestreams in Media, such as who can start 
   className="chat-livestream"
 />
 
-#### Polls
+### Polls
 
 | **Permissions and Configurations** | **Description**                                                 |
 | ---------------------------------- | --------------------------------------------------------------- |
@@ -125,7 +96,7 @@ You can manage permissions for your livestreams in Media, such as who can start 
   className="poll-livestream"
 />
 
-#### Plugins
+### Plugins
 
 Manage permissions for your plugins.
 
@@ -143,7 +114,7 @@ Manage permissions for your plugins.
   className="plugins-livestream"
 />
 
-#### Miscellaneous
+### Miscellaneous
 
 Manage permissions for your plugins.
 
@@ -162,7 +133,7 @@ Manage permissions for your plugins.
   className="plugins-livestream"
 />
 
-### Colors
+## Colors
 
 You can specify brand color, background color, text color, text color on brand, and video background color.
 
@@ -174,11 +145,11 @@ You can specify brand color, background color, text color, text color on brand, 
   className="livestrem-colors-preset"
 />
 
-### Theme
+## Theme
 
 Specify the URL of the logo.
 
-### Plugins
+## Plugins
 
 1. Select the plugin that you want to use for the collaboration within your meeting. Multiple plugins such as Excalidraw, Remote browser, Google apps, Quiz, Chess, and so on are supported.
 
@@ -195,7 +166,7 @@ Specify the URL of the logo.
    />
 4. Select **Show only active plugins** to view the plugins that you’ve configured for your meeting.
 
-## Step 3: Save the Preset Changes
+# Step 3: Save the Preset Changes
 
 1. Once you’ve made all the changes that you need to add to your preset, click **Save** at the right-corner.
    <img
@@ -221,56 +192,3 @@ Specify the URL of the logo.
      alt="livestream-ilslist"
      className="livestream-save-ilslist"
    />
-
-## Step 4: Create a Meeting
-
-Once you've created a preset for livestreaming, create a Dyte meeting that you want to live stream.
-
-You can create a Dyte meeting using the [Create Meeting API](/api#/operations/create_meeting). This API returns a unique identifier for your meeting. If you wish to start livestreaming the meeting as soon as it starts, set the `live_stream_on_start` parameter `true`.
-
-## Step 5: Add Participants
-
-After you've created the meeting, add participants to the meeting using the [Add Participant API](/api#/operations/add_participant).
-
-The preset created in the [step 2](/guides/livestream/getting-started-with-livestreaming#step-2-create-presets) must be passed in the body of the Add Participant API request. Specify the name of the preset in the `preset_name` parameter.
-
-## Step 6: Start Livestreaming a Dyte Meeting
-
-There are two ways to start livestreaming a meeting:
-
-1. Using the API
-2. From the meeting UI
-
-### Using API
-
-To start livestreaming a meeting, simply specify the meeting ID in the [Start livestreaming a meeting](/api#/paths/meetings-meeting_id--livestreams/post) API.
-
-For more information, see [Live Stream a Dyte Meeting using API](/guides/livestream/livestream-dyte-meeting).
-
-### From the Meeting UI
-
-If you’ve the host permissions, you will see the option to **Go live** and **End live** streaming.
-
-**Start live streaming**
-
-To start livestreaming a meeting, click on the **Go live** button in the control bar of your meeting.
-
-<img
-  src="/static/livestreaming/golive.png"
-  width="700"
-  height="600"
-  alt="livestream-golive"
-  className="livestream-go-live"
-/>
-
-**End live streaming**
-
-To stop livestreaming, click on the **End live** button in the control bar.
-
-<img
-  src="/static/livestreaming/endlive.png"
-  width="700"
-  height="600"
-  alt="livestream-endlive"
-  className="livestream-end-live"
-/>
