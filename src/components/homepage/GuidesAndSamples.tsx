@@ -23,7 +23,7 @@ const guides: Guide[] = [
     title: 'Start Recording a Meeting',
     icon: RecordRegular,
     text: 'Check out an example of this integration of recording a meeting.',
-    link: '/guides/integrate-core-features/recording',
+    link: '/guides/features/recording',
   },
   {
     title: 'Migrate from Twilio or OpenTok',
@@ -35,7 +35,7 @@ const guides: Guide[] = [
     title: 'Create a Breakout Room',
     icon: AppsAddInRegular,
     text: 'Easily split a meeting in separate sessions.',
-    link: '/guides/integrate-core-features/breakoutroom/create-breakout-rooms',
+    link: '/guides/features/breakoutroom/create-breakout-rooms',
   },
 ];
 
