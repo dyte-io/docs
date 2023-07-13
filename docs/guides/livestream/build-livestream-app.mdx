@@ -1,9 +1,9 @@
 ---
 title: 'Integrate Dyte'
-sidebar_position: 1
+sidebar_position: 3
 ---
 
-This topic provides a simple guide to integrating Dyte's Live Video into your app, enabling you to add high-quality real-time communication features.
+This topic guides you through the steps of getting started with interactive live streaming for Dyte meetings.
 
 The following diagram illustrates the steps involved and demonstrates the interaction between Dyte's backend and frontend during the integration process.
 
@@ -24,8 +24,8 @@ required to use Dyte REST APIs such as when instantiating a meeting.
 ## Step 3: Create Presets
 
 A preset is a set of permissions and UI configurations that would be
-applied to a participant. For more information, see [Add
-Presets](/guides/features/presets).
+applied to a participant. 
+
 
 1. In the [Developer Portal](https://dev.dyte.io/), click **Presets**, and click **Create New**.
    <img
@@ -56,6 +56,12 @@ Presets](/guides/features/presets).
      className="livestream-save-preset"
    />
 5. Enter the name for your preset and click **Save**.
+
+:::info Note
+It is important to understand that you need to create two presets for livestreaming. One preset is used for the livestreaming **host** and the other preset is used for the livestreaming **viewer**.
+
+The host requires certain host controls such as the ability to Kick Participants, Mute Audio, Mute Video, and Pin Participant, as well as media permissions like Start Livestream and Admit or remove participants from the livestream. Ensure that you’ve selected those permissions for the host.
+:::
 
 ## Step 4: Create a Meeting
 
