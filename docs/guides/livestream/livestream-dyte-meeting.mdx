@@ -1,35 +1,51 @@
 ---
-title: Livestreaming a Dyte Meeting via HLS
-sidebar_position: 3
+title: Live Stream a Dyte Meeting using APIs
+sidebar_position: 4
 ---
 
-In this guide you will learn how to start and stop livestreaming a Dyte meeting.
+This guide provides step-by-step instructions on starting and stopping livestreaming for your Dyte meetings using simple API calls.
 
-Before getting started with this guide, we recommend that you read
-[Getting Started with Dyte](/getting-started) to familiarize yourself with Dyte.
+## Prerequisites
+
+- [Create a meeting](/api/?v=v2#/operations/create_meeting)
+- [Add participants](/api#/operations/add_participant) to the meeting with the required [presets](/guides/livestream/getting-started-with-livestreaming#step-2-create-presets)
 
 ## Start a livestream
 
 To start livestreaming a meeting, do the following:
 
-### Request
+### Step 1: Get your API Keys
 
-Specify the `meeting ID` of the meeting that you want to live stream in the
-following request.
+Login to the [Developer Portal](https://dev.dyte.io/) and create an account. Copy the [API Keys](https://dev.dyte.io/apikeys) for your organization from the Developer portal. These API Keys are unique to your organization and are required to use Dyte REST APIs such as when instantiating a meeting.
 
-Use the [Fetch all meetings](/api/?v=v2#/operations/get_all_meetings) for an
-organization or [Create a meeting](/api/?v=v2#/operations/create_meeting) API to
-get the **meeting ID**. The API returns a parameter called `id`, which is your
-`meeting ID`.
+### Step 2: Create a live stream
+
+To start live streaming, specify the `meeting ID` of the meeting that you want to live stream. You can obtain the meeting ID by doing the following:
+
+- If you've already created the meeting, use the [Fetch all meetings](/api/?v=v2#/operations/get_all_meetings) API to view all the meetings for your organization.
+- If you've not created a meeting yet, use the [Create a meeting](/api/?v=v2#/operations/create_meeting) API to create the meeting that you want to live stream.
+
+These API returns a parameter called `id`, which is your `meeting ID`.
+
+:::info note
+
+You can also start livestreaming as soon as the meeting starts, by passing `live_stream_on_start: true` in the
+[Create a meeting](/api/?v=v2#/operations/create_meeting) API.
+
+:::
+
+#### Request
+
+In the [Start livestreaming a meeting](/api#/paths/meetings-meeting_id--livestreams/post) specify the `ID` of the meeting that you want to live stream as the following:
 
 ```
 curl --request POST \
-  --url https://api.dyte.io/v2/meetings/{meetingId}/livestreams \
+  --url https://api.cluster.dyte.in/v2/meetings/{meetingId}/livestreams \
   --header 'Authorization: Basic <token>' \
   --header 'Content-Type: application/json'
 ```
 
-### Response
+#### Response
 
 ```json
 {
@@ -46,31 +62,21 @@ curl --request POST \
 }
 ```
 
-:::info note
-
-Note: To begin live streaming the meeting as soon as it starts, simply specify
-`live_stream_on_start` parameter in the
-[Create a meeting API](/api/?v=v2#/operations/create_meeting).
-
-:::
-
-## Fetch active livestream
+## Fetch details of an active livestream
 
 Fetching details of an active livestream is also an HTTP request away.
 
 ### Request
 
-Specify the `meeting_id` of the meeting that you want to fetch the active
-livestream for.
+Specify the `meeting_id` of the meeting for which you want to fetch the active livestream.
 
-Use the [Fetch all meetings](/api/?v=v2#/operations/get_all_meetings) for an
-organization or [Create a meeting](/api/?v=v2#/operations/create_meeting) API to
+Use the [Fetch all meetings](/api/?v=v2#/operations/get_all_meetings) or [Create a meeting](/api/?v=v2#/operations/create_meeting) API to
 get the **meeting ID**. The API returns a parameter called `id`, which is your
 `meeting ID`.
 
 ```bash
 curl --request GET \
-  --url https://api.dyte.io/v2/meetings/{meetingId}/active-livestream \
+  --url https://api.cluster.dyte.in/v2/meetings/{meetingId}/active-livestream \
   --header 'Authorization: Basic <token>' \
   --header 'Content-Type: application/json'
 ```
@@ -94,23 +100,21 @@ curl --request GET \
 }
 ```
 
+You can also use the [Fetch all livestreams for a meeting](/api#/paths/meetings-meeting_id--livestreams/get) API or [Fetch all livestreams](/api#/operations/fetch_all_livestreams) to get livestream details.
+
 ## Stop a livestream
 
-You need the `meeting_id` of the meeting that you want to stop live streaming.
+To stop live streaming of a meeting, provide the `id` of that meeting in the following request.
 
-### Request
-
-Specify the `meeting_id` of the meeting that you want to fetch the active
-livestream for.
-
-Use the [Fetch all meetings](/api/?v=v2#/operations/get_all_meetings) for an
-organization or [Create a meeting](/api/?v=v2#/operations/create_meeting) API to
+Use the [Fetch all meetings](/api/?v=v2#/operations/get_all_meetings) or [Create a meeting](/api/?v=v2#/operations/create_meeting) API to
 get the **meeting ID**. The API returns a parameter called `id`, which is your
 `meeting ID`.
 
+### Request
+
 ```bash
 curl --request POST \
-  --url https://api.dyte.io/v2/meetings/meetingId/active-livestream/stop \
+  --url https://api.cluster.dyte.in/v2/meetings/meetingId/active-livestream/stop \
   --header 'Authorization: Basic <token>' \
   --header 'Content-Type: application/json'
 ```
@@ -126,9 +130,9 @@ curl --request POST \
 }
 ```
 
-## Livestreaming State Management APIs
+## Livestreaming Stage Management APIs
 
-Dyte's livestreaming state management APIs allow you to manage stage requests, such as leave and join stage, manage permissions, kick participants and so on. For more information, see [Livestreaming State Management APIs](https://docs.dyte.io/web-core/livestreaming/state-management-apis).
+Dyte's livestreaming stage management APIs allow you to manage stage requests, such as leave and join stage, manage permissions, kick participants and so on. For more information, see [Livestreaming Stage Management APIs](/web-core/livestreaming/state-management-apis).
 
 ## Livestreaming Properties, Functions, and Events
 
