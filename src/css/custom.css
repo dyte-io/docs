@@ -725,8 +725,16 @@ html[data-theme='dark'] .dropdown > .navbar__link:after {
 }
 
 .dyte-dropdown .sdk-link {
-  @apply flex items-center gap-1.5 rounded-md p-2 text-inherit hover:bg-secondary-700;
+  @apply flex items-center gap-1.5 rounded-md p-2 -ml-1 text-inherit hover:bg-secondary-700;
   @apply text-xs;
+}
+
+.dyte-dropdown .sdk-ul > li {
+  flex-basis:48%;
+}
+
+.dyte-dropdown .sdk-ul {
+  @apply flex list-none pl-0 gap-1 mt-2 flex-wrap;
 }
 
 .dyte-dropdown .sdk-link > img {
