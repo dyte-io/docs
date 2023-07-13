@@ -27,7 +27,7 @@ export const AndroidCoreLatestInstallation = () => {
       <CodeBlock language="groovy">
         {`dependencies {
     // (other dependencies)
-    implementation 'io.dyte:core:${version}'
+    implementation 'io.dyte:core-android:${version}'
 }`}
       </CodeBlock>
     </div>
@@ -79,8 +79,9 @@ export const HTMLUIKitInstallation = () => {
   );
 };
 
-export const HTMLUIKitUtilsInstallation = ({ modules = ['provideDyteDesignSystem',
-'extendConfig,']}) => {
+export const HTMLUIKitUtilsInstallation = ({
+  modules = ['provideDyteDesignSystem', 'extendConfig,'],
+}) => {
   const [uikitVersion, setUIKitVersion] = useState('');
 
   useEffect(() => {
