@@ -37,7 +37,7 @@ const PRODUCTS = [
   {
     title: 'Chat',
     beta: true,
-    link: '/guides/chat-sdks/intro-chat-sdks',
+    link: '/guides/realtime-chat/intro-chat',
     icon: ChatMultipleRegular,
     lightImage: '/static/landing-page/hero/chat-graphic.png',
     darkImage: '/static/landing-page/hero/chat-graphic-dark.png',
