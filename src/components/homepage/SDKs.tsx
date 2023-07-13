@@ -28,7 +28,8 @@ export default function SDKs() {
         <h4 className="mb-2 text-2xl">UI Kit</h4>
 
         <p className="mb-6 text-text-400">
-          Build faster with our prebuilt library of UI components, available for <span className='font-semibold'>all</span> frameworks.
+          Build faster with our prebuilt library of UI components, available for{' '}
+          <span className="font-semibold">all</span> frameworks.
         </p>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
@@ -71,12 +72,11 @@ export default function SDKs() {
       </div>
 
       <div>
-        <h4 className="mb-2 text-2xl">
-          Core{' '}SDK
-        </h4>
+        <h4 className="mb-2 text-2xl">Core SDK</h4>
 
         <p className="mb-6 text-text-400">
-          Our easy to use Audio + Video + Livestreaming + Chat <span className='font-semibold'>all in one</span> SDK
+          Our easy to use Video + Voice + Livestreaming + Chat{' '}
+          <span className="font-semibold">all in one</span> SDK
         </p>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
