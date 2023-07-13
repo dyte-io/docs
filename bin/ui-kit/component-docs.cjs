@@ -84,7 +84,10 @@ for (const component of components) {
   }
 
   /** If there is no readme, skip component */
-  if (!component || component.docs.trim() === '') {
+  if (
+    (!component || component.docs.trim() === '') &&
+    component.tag !== 'dyte-clock'
+  ) {
     continue;
   }
 
