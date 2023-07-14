@@ -1,0 +1,55 @@
+---
+title: 'No code Integration'
+sidebar_position: 5
+---
+
+# No Code Integration
+
+You can easily integrate Dyte into your project without any SDK using an iFrame. An iFrame is a quick and easy way to embed a live video solution into your own website or application without modifying the underlying code.
+
+You can use iFrame for a variety of reasons, including lack of resources, technical expertise, or simply a preference for a lighter integration method.
+You simply need to add a small piece of HTML code to your website or application.
+
+## Before Getting Started
+
+- Create a [Dyte Developer Account](https://dev.dyte.io/)
+- Create [Presets](https://dev.dyte.io/roles-presets)
+- Create a
+  [Dyte Meeting](https://docs.dyte.io/api/?v=v2#/operations/create_meeting)
+- [Add Participant](https://docs.dyte.io/api/?v=v2#/operations/add_participant)
+  to the meeting
+
+## Embed using an iFrame
+
+Pass your options with meeting ID auth token in the URL query. Here's an example with all the available options:
+
+```html
+<iframe
+  src="https://app.dyte.in/v2/meeting?id=<meetingId>&authToken=<authToken>&showSetupScreen=true&disableVideoBackground=true&orgId=<orgId>"
+  allow="camera;microphone;fullscreen;display-capture;picture-in-picture;clipboard-write;"
+/>
+```
+
+### Query Parameters
+
+| Name             | Required   | Description                                                                                                               |
+| :--------------- | :--------- | :------------------------------------------------------------------------------------------------------------------------ | --- |
+| `authToken`      | `required` | The `token` string you receive when you [add a Participant](/api/#/operations/add_participant) to a meeting.              |
+| `meetingID`      | `required` | The ID of the meeting you receive when you [create a meeting](https://docs.dyte.io/api/?v=v2#/operations/create_meeting). |
+| `endRedirectURL` | `optional` | The URL to which the meeting would be redirected on end of the meeting.                                                   |     |
+
+## Events
+
+```js
+window.addEventListener('message', receiveMessage, false);
+
+function receiveMessage(evt) {
+  if (evt.origin === 'https://app.dyte.in') {
+    const data = evt.data;
+    if (data.type === 'meetingEnded') {
+      const reason = data.kicked;
+      // take action on meeting end
+    }
+  }
+}
+```

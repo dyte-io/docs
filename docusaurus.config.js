@@ -280,7 +280,7 @@ const config = {
     ({
       image: '/img/dyte-docs-card.png',
       colorMode: {
-        defaultMode: 'dark',
+        defaultMode: 'light',
       },
       docs: {
         sidebar: {
@@ -311,9 +311,8 @@ const config = {
           },
           {
             label: 'Guides',
-            to: 'guides/quickstart',
+            to: 'guides',
             position: 'left',
-            className: 'new-badge',
           },
           {
             label: 'API Reference',
@@ -419,7 +418,7 @@ const config = {
             ],
           },
         ],
-        copyright: 'Copyright © Dyte since 2020. All rights reserved.',
+        copyright: 'Copyright © Dyte since 2023. All rights reserved.',
       },
       prism: {
         theme: code_themes.light,

@@ -1,0 +1,87 @@
+---
+title: 'Integrate Dyte'
+sidebar_position: 3
+---
+
+This topic provides a simple guide to integrate Dyte's voice conferencing solution into your app.
+
+The following diagram illustrates the steps involved and demonstrates the interaction between Dyte's backend and frontend during the integration process.
+
+![Diagram explaining how Dyte works](/static/home/how-dyte-works-v2.png)
+
+## Step 1: Register in the Developer Portal
+
+To get started with Dyte, you must first register in the [Developer portal](https://dev.dyte.io).
+
+## Step 2: Get your API Keys
+
+Copy the [API Keys](https://dev.dyte.io/apikeys) for your organization from
+the Developer portal. These API Keys are unique to your organization and are
+required to use Dyte REST APIs such as when instantiating a meeting.
+
+![APIKeys](/static/home/api-keys.png)
+
+## Step 3: Create Presets
+
+A preset is a set of permissions and UI configurations that would be
+applied to a participant. For more information, see [Add
+Presets](/guides/features/presets).
+
+1. In the [Developer Portal](https://dev.dyte.io/), click **Presets**, and click **Create New**.
+   <img
+     src="/static/livestreaming/createpreset.png"
+     width="600"
+     height="300"
+     alt="livestream-create-preset"
+     className="livestrem-create-preset"
+   />
+2. In the **Select Meeting Type**, select **Group Call**.
+
+   <img
+     src="/static/guides/add-preset-live-video.png"
+     width="600"
+     height="300"
+     alt="chat-sdk"
+     className="add-preset-live-video"
+   />
+
+3. Set permissions and UI configurations.
+
+4. Once you’ve made all the changes that you need to add to your preset, click **Save** at the right-corner.
+   <img
+     src="/static/livestreaming/savepreset.png"
+     width="600"
+     height="300"
+     alt="livestream-save"
+     className="livestream-save-preset"
+   />
+5. Enter the name for your preset and click **Save**.
+
+## Step 4: Create a Meeting
+
+Create a Dyte meeting using the
+[Create Meeting API](/api#/operations/create_meeting). This API returns a
+unique identifier for your meeting. <br/>
+
+:::tip
+
+You may want to persist the meeting ID in your database.
+
+:::
+
+## Step 5: Add Participants
+
+After you've created the meeting, add participants to the meeting using the [Add Participant API](/api#/operations/add_participant).
+
+The preset created in the previous step must be passed in the body of the Add Participant API request. Specify the name of the preset in the `preset_name` parameter.
+
+This API returns the authentication `token` that is required to initialize your frontend SDKs.
+
+Dyte meetings do not have a date or time associated with them, so you can create
+them in advance or just when users need to join the meeting. The idea is that
+your backend controls when to distribute authentication `token` and thus you can share the
+tokens with the users at the scheduled time.
+
+## Next Step
+
+[Initialize Your Frontend](/guides/voice-conf/initialize-frontend-sdks)

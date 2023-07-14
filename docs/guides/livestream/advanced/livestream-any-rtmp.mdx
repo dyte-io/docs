@@ -1,0 +1,114 @@
+---
+title: Custom / RTMP Video Input
+sidebar_position: 2
+---
+
+# Live Stream any Custom Video Input
+
+Dyte can livestream video from any applications like
+[OBS](https://en.wikipedia.org/wiki/OBS_Studio),
+[ffmpeg](https://en.wikipedia.org/wiki/FFmpeg) that can stream via RTMP in a few
+simple steps.
+
+## Step 1: Get your API Keys
+
+Login to the [Developer Portal](https://dev.dyte.io/) and create an account. Copy the [API Keys](https://dev.dyte.io/apikeys) for your organization from the Developer portal. These API Keys are unique to your organization and are required to use Dyte REST APIs such as when instantiating a meeting.
+
+## Step 2: Generate credentials for a livestream
+
+This step generates credentials and ingest URLs for the livestream.
+
+#### Request
+
+```bash
+curl --location --request POST 'https://api.dyte.io/v2/livestreams' \
+     --header 'Content-Type: application/json' \
+     --header 'Authorization: Basic ZGVtbzpwQDU1dzByZA==' \
+     --data-raw '{
+    "name": "test_livestream"
+}'
+```
+
+#### Response
+
+The response contains the `ingest_server`, livestream `id`, `stream_key`, and
+`playback_url`.
+
+```json
+{
+  "success": true,
+  "data": {
+    "status": "OFFLINE",
+    "name": "test_livestream",
+    "meeting_id": null,
+    "ingest_server": "rtmps://2bd803bb7b1.global-contribute.live-video.net:443/app/",
+    "id": "9fb22eea-3392-42ad-b884-1129a4f517d2",
+    "stream_key": "sk_ap-south-2_JKLBQlfOE_eb14jL5zj3lbj58xHSb",
+    "playback_url": "https://2bd803bb7b1.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.e1lAS0BHpDxP.m3u8"
+  }
+}
+```
+
+| **Parameters** | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ingest_server  | The ingest server URL in RTMP livestreaming is the server URL to which the RTMP encoder sends the video and audio data. The ingest server receives the RTMP stream and transcodes it into different video formats and bitrates, which can then be distributed to viewers through a content delivery network (CDN). It is essentially the address of the server where the video data is sent to be processed and distributed for live streaming. You need to enter the `ingest_server` along with `stream_key` in your application. See step 2.                                       |
+| id             | This is your livestream ID.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| stream_key     | The stream key in RTMP livestreaming is a unique identifier that is used to authorize and link the RTMP encoder to a specific live stream. The stream key is like a password that allows the encoder to access the specific live stream on the server and start sending data to it. It is an important security measure to prevent unauthorized access to the live stream, as the stream key is needed to begin streaming to a specific event or channel. It's important to keep the stream key safe and secure. You need to enter the `stream_key` in your application. See step 2. |
+| playback_url   | The playback URL is the web address that viewers can use to watch the live stream. Viewers can enter the playback URL into their web browser or use a media player that supports HLS or LHLS streaming to watch the live stream.                                                                                                                                                                                                                                                                                                                                                     |
+
+## Step 3: Specify RTMP ingestion URL for live streaming
+
+In your application, enter the ingestion URL you generated in the previous step.
+
+- If you're using [OBS](https://en.wikipedia.org/wiki/OBS_Studio), then enter the ingest server URL and stream key separately.
+  ![obs-example](/static/guides/obs-example.jpeg)
+- However, for [ffmpeg](https://en.wikipedia.org/wiki/FFmpeg), you must specify
+  both the ingest URL and the stream key together. For example:
+
+  ```bash
+  ffmpeg -re -f lavfi -i "testsrc=size=1280x720 [out0]; sine=frequency=500 [out1]" \
+  -acodec aac -vcodec h264 -f flv \
+  rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/sk_ap-south-1_nDT9sbq3qZyf_SYSyPE7wnVGUQYNyejMe6Z3n
+  ```
+
+## Fetch details of a livestream
+
+Using the livestream ID that you generated in the previous [step](/guides/livestream/advanced/livestream-any-rtmp#step-2-generate-credentials-for-a-livestream), you can fetch details of
+livestream.
+
+#### Request
+
+This request returns the `ingest_seconds`, `viewer_seconds`, `ingest_server`,
+`id`, `stream_key`, and `playback_url`.
+
+```bash
+curl --location \
+     --request GET 'https://api.dyte.io/v2/livestreams/9fb22eea-3392-42ad-b884-1129a4f517d2' \
+     --header 'Authorization: Basic ZGVtbzpwQDU1dzByZA=='
+```
+
+:::info note
+
+The ingest and viewer seconds details are returned after 40-50 seconds; until then,
+they default to 60.
+
+:::
+
+#### Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "status": "OFFLINE",
+    "name": "test_livestream",
+    "meeting_id": null,
+    "ingest_seconds": 0,
+    "viewer_seconds": 0,
+    "ingest_server": "rtmps://2bd803bb7b1.global-contribute.live-video.net:443/app/",
+    "id": "9fb22eea-3392-42ad-b884-1129a4f517d2",
+    "stream_key": "sk_ap-south-2_JKLBQlfOE_eb14jL5zj3lbj58xHSb",
+    "playback_url": "https://2bd803bb7b1.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.e1lAS0BHpDxP.m3u8"
+  }
+}
+```

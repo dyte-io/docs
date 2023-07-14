@@ -1,0 +1,116 @@
+---
+slug: /
+sidebar_position: 1
+sidebar_class_name: guide_sidebar_index
+---
+
+import {
+  ChatMultipleRegular,
+  LiveRegular,
+  MicRegular,
+  VideoRegular,
+} from '@fluentui/react-icons';
+
+# Guides
+
+<CardSection
+  id="Quickstart"
+  title="Quickstart"
+  description="Learn how to integrate live video and voice, live stream, and chat experiences into your product."
+>
+  <Card
+    title="Live Video"
+    icon={<VideoRegular />}
+    to="/guides/video-conf/intro-video-conf"
+    description="Add live video functionality to your web, mobile, and desktop applications."
+  />
+  <Card
+    title="Voice Conferencing"
+    icon={<MicRegular />}
+    to="/guides/voice-conf/intro-voice-conf"
+    description="Integrate reliable voice calling experiences into your product."
+  />
+  <Card
+    title="Interactive Livestreaming"
+    icon={<LiveRegular />}
+    to="/guides/livestream/livestream-overview"
+    description="Get started with interactive live streaming and broadcast to a large audience"
+  />
+  <Card
+    title="Realtime Chat"
+    icon={<ChatMultipleRegular />}
+    to="/guides/realtime-chat/intro-chat"
+    description="Create interactive and collaborative in-app chat experiences."
+  />
+</CardSection>
+<CardSection
+  id="features"
+  title="Features"
+  description="Learn how to use key features of Dyte, such as recording, breakout rooms, webinars, and more."
+>
+  <Card
+    title="Recording"
+    to="/guides/features/recording/recording-overview"
+    description="Record audio, video, and plugin interactions of multiple meeting users in a single file using composite recording."
+  />
+  <Card
+    title="Webinar"
+    to="/guides/features/webinar/intro-webinar"
+    description="Leverage Dyte's Webinar for hosting and delivering one-to-many events to larger audiences."
+  />
+  <Card
+    title="Webhooks & Events"
+    to="/guides/features/webhooks/webhooks-overview"
+    description="Utilize webhooks to push real-time updates to your applications."
+  />
+  <Card
+    title="Breakout Rooms"
+    to="/guides/features/breakoutroom/introduction-breakout-rooms"
+    description="Facilitate focused discussions and collaboration with breakout rooms."
+  />
+  <Card
+    title="No Code Integration"
+    to="/guides/features/embed"
+    description="Integrate Dyte into your project using an iFrame, eliminating the need for SDKs."
+  />
+  <Card
+    title="Presets"
+    to="/guides/features/presets"
+    description="Configure meeting presets for tailored participant permissions and UI configurations."
+  />
+  <Card
+    title="Customizations"
+    to="/guides/features/customization"
+    description="Customize the experience."
+  />
+  <Card
+    title="Export chat"
+    to="/guides/features/export-chat-dump"
+    description="Retrieve all chat messages of a Dyte session programmatically."
+  />
+</CardSection>
+<CardSection
+  id="migration"
+  title="Migrate to Dyte"
+  description="Learn how to quickly migrate from other providers."
+>
+  <Card
+    title="Migrate from Twilio"
+    to="/guides/migration/twilio/concepts-twilio-vs-dyte"
+  />
+  <Card
+    title="Migrate from OpenTok"
+    to="/guides/migration/opentok/concepts-opentok-vs-dyte"
+  />
+</CardSection>
+<CardSection
+  id="re"
+  title="Working with Dyte APIs"
+  description="Learn the basics of working with Dyte's REST APIs."
+>
+  <Card
+    title="REST APIs"
+    to="/guides/rest-apis/quickstart"
+    description="Elevate your developer experience with the enhanced capabilities of Dyte's v2 REST APIs."
+  />
+</CardSection>

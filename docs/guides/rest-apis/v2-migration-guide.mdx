@@ -1,0 +1,233 @@
+---
+title: 'Migrate to v2 REST API'
+slug: '/v2-migration-guide'
+---
+
+# Migrate to v2 REST API
+
+Dyte v2 REST API is now the primary API for Dyte and the focus of development
+efforts. The API has been redesigned to cater to a wider range of developer
+requirements and to enhance the developer experience. With v2 endpoints you can
+manage Dyte’s organizations, sessions, meetings, recording, webhooks,
+livestreaming, analytics, and much more.
+
+We highly recommend that you start migrating to v2, as v1 will eventually be
+discontinued. However, rest assured that support for v1 will still be provided
+for the near future.
+
+## What’s new with Dyte v2 REST API
+
+The Dyte v2 REST API includes a range of new features to help you get more from
+the Dyte API.
+
+### New endpoints
+
+While the majority of the endpoints in Dyte API v2 are replacements, we have
+introduced several new endpoints. Here are a few examples of new endpoints we've
+added to v2:
+
+- **Chat Replay**: Allows you to programmatically
+  [retrieve all chat messages](https://docs.dyte.io/api#/operations/GetSessionChat)
+  of a Dyte session.
+- **Sessions**: Provides information about all
+  [meetings](https://docs.dyte.io/api#/operations/GetSessions) that have taken
+  place within your organization, including the list of participants, their
+  details, and more.
+- **Active session**: Provides details about an
+  [ongoing meeting](https://docs.dyte.io/api#/operations/GetActiveSession),
+  allows to mute participants, create polls, kick participants, and so on.
+- **Livestreaming**: Enables you to
+  [create a livestream](https://docs.dyte.io/api#/paths/livestreams/post), start
+  livestreaming a meeting, and retrieve livestreaming details.
+- **Analytics**: Provides complete
+  [analytics data](https://docs.dyte.io/api#/operations/GetOverallStats) of an
+  organization for the specified time period.
+- **Organizations**: Allows you to
+  [create](https://docs.dyte.io/api#/operations/createOrg) an organization,
+  [view details](https://docs.dyte.io/api#/operations/getOrg) of an
+  organization,
+  [edit the details](https://docs.dyte.io/api#/operations/editOrg), and so on.
+- **Participant token**: Allows you to
+  [regenerate authentication token](https://docs.dyte.io/api#/operations/regenerate_token)
+  for the given meeting and participant ID.
+- **Presets**: Allows you to
+  [delete](https://docs.dyte.io/api#/operations/delete-presets-preset_id) a
+  preset.
+
+### Improved performance
+
+APIs are optimized for better performance resulting in:
+
+- 71% improvement in adding participant time
+- 89% improvement in response times for most endpoint
+- Significant improvement in caching
+- 32% improvement in analytics
+
+### Authentication schema changes
+
+The v2 APIs employ Basic authentication with the organizationId serving as the
+username and APIKEY as the password.
+
+`Basic ${base64encode(orgId + ':' + apikey)}`
+
+### Preset changes
+
+In v1 REST APIs preset is an optional requirement but you can set it at both the
+meeting and participants level. In V2 preset can only be applied at participant
+level, but it is a mandatory requirement.
+
+### Pagination
+
+All endpoints now support pagination. The responses to v2 APIs are paginated to
+make them easier to handle.
+
+### Enhanced structure
+
+The structure of our API requests and responses has been improved, with
+ambiguous terms and routes present in the v1 APIs being deprecated. The new APIs
+are more intuitive to use and perfectly align with your specific needs.
+
+### Consistency
+
+A key feature of the updated v2 version of the Dyte API is consistency among
+endpoints, which ensures uniform objects, functions, and behavior across similar
+endpoints.
+
+## Migrate to v2
+
+To start the migration, do the following:
+
+1. Log into the [Developer Portal](https://dev.dyte.io/).
+2. In the **API Version**, select **v2** from the drop-down.
+   <img
+     src="/static/v2-API-migration/v2_selector.png"
+     width="400"
+     height="100"
+     alt="v2 Selector"
+     className="v2-switch"
+   />
+
+That’s all, you are in the v2 version.
+
+In the v2 view of the Developer Portal, you can view and manage the meetings and
+recordings that you have created using v2 APIs, as well as access and manage the
+dashboard, API keys, logs, and webhooks.
+
+Dyte also provides the option to copy your v1 presets to v2, which offers
+greater flexibility.
+
+### Copy v1 Presets to v2
+
+To copy your v1 presets, do the following:
+
+1. In the [Developer Portal](https://dev.dyte.io/), select **Presets**.
+2. In **Presets**, click **Migrate from v1**. If you’re in the v1 view of the
+   Developer Portal, click **Migrate to v2**.
+   <img
+     src="/static/v2-API-migration/Preset1.png"
+     alt="Migrate Preset"
+     className="v2-preset-migrate"
+   />
+3. Select all the presets that you want to copy to v2 and click **Migrate
+   selected**. You can also copy all the presets by selecting **Select all**.
+
+   <img
+     src="/static/v2-API-migration/Preset2.png"
+     width="300"
+     height="200"
+     alt="Migrate Preset All"
+     className="v2-preset-selectall"
+   />
+
+4. Click **Done**. All the selected presets are copied to v2 as well.
+
+By copying the chosen presets in v2, you can maintain consistent roles, UI
+elements, buttons, and configurations for your participants in v2 meetings, just
+as in v1 meetings.
+
+:::info Note
+
+It is important to understand that v1 and v2 are
+distinct systems. You can not make API calls for v1 entities using v2 APIs.
+
+Ensure that you are using v2 APIs only for all your v2 meetings. If you need to
+create an organization using v1 APIs, please use v1 APIs only to create
+meetings, add participants, and so on.
+
+Although the v1 APIs will continue to function, we strongly recommend that you
+transition to v2 APIs as soon as possible. The updated version offers several
+enhancements, such as improved performance and additional capabilities.
+Additionally, all future features will be exclusively developed for the v2 APIs.
+
+:::
+
+### General guidelines
+
+The migration process from REST API v1 to v2 can vary depending on the specific
+use case, but here are some general guidelines:
+
+- **Review changes in API endpoint and payload format**: Before making any
+  changes, familiarize yourself with the changes in the endpoint URLs and the
+  format of the payload data in API v2 compared to API v1.
+- **Update API calls**: Update all API calls in your code to use the new API v2
+  endpoints and payload formats.
+- **Understand error codes** : Update error handling in your application for v2
+  errors.
+
+## Postman collection
+
+We've provided a ready-to-use
+[Postman collection](https://www.postman.com/dyte-api/workspace/dyte-s-public-workspace/collection/208979[…]8d7-8739-49ac-b88c-c5e6ec365e21?action=share&creator=20897959)
+of relevant APIs to help you get started quickly with the new endpoints and
+capabilities. This allows you to test authentication and experiment with
+endpoints.
+
+## Dyte API endpoint map
+
+The following table maps the Dyte API v2 endpoints to the corresponding v1.
+
+| **Base URL** | **v1**                 | **v2**                 |
+| ------------ | ---------------------- | ---------------------- |
+|              | https://api.dyte.io/v1 | https://api.dyte.io/v2 |
+
+### Meetings and participants
+
+| **Action**                                  | **v1**                                                                             | **v2**                                                       |
+| ------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| Create a meeting                            | POST/v1/organizations/{orgId}/meeting                                              | POST /v2/meetings                                            |
+| Update details of a meeting                 | PATCH /v1/organizations/{orgId}/meetings/{meetingId}                               | PATCH /v2/meetings/{meetingId}                               |
+| Fetch details of a meeting in an org        | GET /v1/organizations/{orgId}/meetings/{meetingId}                                 | GET /v2/meetings/{meetingId}                                 |
+| Fetch details of all the meetings in an org | GET /v1/organizations/{orgId}/meetings                                             | GET /v2/meetings                                             |
+| Add a participant                           | POST /v1/organizations/{orgId}/meetings/{meetingId}/participant                    | POST /v2/meetings/{meetingId}/participants                   |
+| Fetch all participants in a meeting         | GET /v1/organizations/{orgId}/meetings/{meetingId}/participants                    | GET /v2/meetings/{meetingId}/participants                    |
+| Fetch details of a participant in a meeting | GET /v1/organizations/{orgId}/meetings/{meetingId}/participants/{participantId}    | GET /v2/meetings/{meetingId}/participants/{participantId}    |
+| Edit participant details                    | PATCH /v1/organizations/{orgId}/meetings/{meetingId}/participants/{participantId}  | PATCH /v2/meetings/{meetingId}/participants/{participantId}  |
+| Delete a participant                        | DELETE /v1/organizations/{orgId}/meetings/{meetingId}/participants/{participantId} | DELETE /v2/meetings/{meetingId}/participants/{participantId} |
+
+### Webhooks
+
+| **Action**                                  | **v1**                                                                               | **v2**                            |
+| ------------------------------------------- | ------------------------------------------------------------------------------------ | --------------------------------- |
+| Add a webhook                               | POST /v1/organizations/{organizationId}/webhook                                      | POST /v2/webhooks                 |
+| Edit a webhook                              | PATCH /v1/organizations/{organizationId}/webhooks/{webhookId}                        | PATCH /v2/webhooks/{webhook_id}   |
+| Fetch details of all the webhooks in an org | GET /v1/organizations/{organizationId}/webhooks/{webhookId}/logs                     | GET /v2/webhooks                  |
+| Update a webhook                            | PUT /v1/organizations/{organizationId}/webhooks/{webhookId}                          | PUT /v2/webhooks/{webhook_id}     |
+| Delete a webhook                            | PUT /v1/organizations/{organizationId}/meetings/{meetingId}/recordings/{recordingId} | PUT /v2/recordings/{recording_id} |
+
+### Recording
+
+| **Action**                                        | **v1**                                                                               | **v2**                                            |
+| ------------------------------------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------- |
+| Start recording a meeting                         | POST /v1/organizations/{organizationId}/meetings/{meetingId}/recording               | POST /v2/recordings                               |
+| Stop recording a meeting                          | PUT /v1/organizations/{organizationId}/meetings/{meetingId}/recordings/{recordingId} | PUT /v2/recordings/{recording_id}                 |
+| Fetch details of an active recording in a meeting | GET /v1/organizations/{organizationId}/rooms/{roomName}/active-recording             | GET /v2/recordings/active-recordings/{meeting_id} |
+| Fetch details of a recording                      | GET /v1/organizations/{organizationId}/meetings/{meetingId}/recordings/{recordingId} | GET /v2/recordings/{recording_id}                 |
+| Fetch details of all recordings in an org         | GET /v1/organizations/{organizationId}/recordings                                    | GET /v2/recordings                                |
+
+### Presets
+
+| **Action**                | **v1**                                          | **v2**                        |
+| ------------------------- | ----------------------------------------------- | ----------------------------- |
+| Create a preset           | POST /v1/organizations/{organizationId}/preset  | POST /v2/presets              |
+| Update a preset           | PATCH /v1/organizations/{organizationId}/preset | PATCH /v2/presets/{preset_id} |
+| Fetch details of a preset | GET /v1/organizations/{organizationId}/presets  | GET /v2/presets/{preset_id}   |

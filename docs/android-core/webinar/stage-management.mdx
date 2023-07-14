@@ -12,6 +12,7 @@ In the webinar, both hosts and participants have the ability to manage the stage
 ## Host stage management
 
 In Dyte's webinar platform, hosts have the capability to request participants to join the stage. When a host sends a request to a participant, the participant will receive a callback in the `DyteWebinarEventsListener#onPresentRequestReceived()` method. The participant can then choose to accept or decline the request using specific functions.
+
 ```kotlin
 meeting.addWebinarEventsListener(object : DyteWebinarEventsListener {
   ...
@@ -23,11 +24,13 @@ meeting.addWebinarEventsListener(object : DyteWebinarEventsListener {
 ```
 
 To accept the request and join the stage, participants can utilize the following command:
+
 ```kotlin
 meeting.webinar.acceptRequestToPresent()
 ```
 
 Alternatively, if participants wish to decline the request and not join the stage, use the following command:
+
 ```kotlin
 meeting.webinar.rejectRequestToPresent()
 ```
@@ -93,7 +96,7 @@ meeting.webinar.acceptRequest(id)
 meeting.webinar.acceptAllRequest()
 ```
 
-### Reject a request
+### Reject stage requests
 
 To reject a request, call the following function:
 
@@ -105,3 +108,11 @@ meeting.webinar.rejectAllRequest()
 :::note
 It's important to note that if a participant doesn't have the permission to perform these operations, the SDK will throw an `UnsupportedOperationException`
 :::
+
+### Withdraw stage request
+
+To withdraw a request to join the stage, call the following function:
+
+```kotlin
+meeting.webinar.withdrawRequestToJoinStage()
+```
