@@ -140,7 +140,7 @@ export type SectionsGroup = {
 const SECTION_GROUPS: SectionsGroup[][] = [
   [
     {
-      name: 'Prebuilt SDK',
+      name: 'UI Kit',
       section: 'web-prebuilt',
       className: 'deprecated-badge',
     },
@@ -160,14 +160,13 @@ const SECTION_GROUPS: SectionsGroup[][] = [
   ],
   [
     {
-      name: 'Prebuilt SDK',
+      name: 'UI Kit',
       section: 'mobile-sdk',
       description: 'Use our pre-built mobile SDK, ready to go',
     },
     {
       name: 'Core SDK',
       section: 'mobile-core',
-      className: 'new-badge',
       description: 'Build your own UI from scratch, use our low level APIs.',
     },
   ],

@@ -131,7 +131,7 @@ const docs = [
     },
   },
 
-  // Mobile Prebuilt SDKs
+  // Mobile UI Kits
   {
     id: 'android',
     path: 'docs/android',
@@ -298,6 +298,11 @@ const config = {
         },
         items: [
           {
+            label: 'Guides',
+            to: 'guides',
+            className: 'guides-top-header'
+          },
+          {
             label: 'SDKs',
             type: 'dropdown',
             className: 'dyte-dropdown',
@@ -310,12 +315,7 @@ const config = {
             ],
           },
           {
-            label: 'Guides',
-            to: 'guides',
-            position: 'left',
-          },
-          {
-            label: 'API Reference',
+            label: 'REST API',
             to: '/api/',
           },
           {
