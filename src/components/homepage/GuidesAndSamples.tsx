@@ -26,10 +26,10 @@ const guides: Guide[] = [
     link: '/guides/features/recording',
   },
   {
-    title: 'Migrate from Twilio or OpenTok',
+    title: 'Migrate from Twilio',
     icon: VideoRegular,
     text: 'Migration simplified. Refer the guide.',
-    link: '/guides/migration',
+    link: '/guides/migration/twilio/concepts-twilio-vs-dyte',
   },
   {
     title: 'Create a Breakout Room',
