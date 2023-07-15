@@ -120,28 +120,12 @@ meeting.addWaitlistEventListener(waitlistEventListener: self)
 
 ## Step 3: Set the properties in the DyteMeetingInfo class
 
-If you're using v1 APIs, then you need to pass the roonName and authToken. For
-v2, you just need to provide the participant's authToken.
-
-You can get the `roomName` and `authToken` using our backend APIs. Please refer
-[this for room name](https://docs.dyte.io/api#/operations/createMeeting) &
-[this for auth token](https://docs.dyte.io/api#/operations/addParticipant)
+Add `authToken` that you got from the REST API to constructor of DyteMeetingInfoV2 - [Add Participant API](https://docs.dyte.io/api#/operations/addParticipant)
 
 | Name        | Description                                                                                                                                                                                                                                                                                                                                   |
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `roomName`  | [Create a meeting API](https://docs.dyte.io/api/?v=v1#/operations/create_meeting) returns <br/> an unique identifier for your meeting <br/> `roomName`.                                                                                                                                                                                       |
-| `authToken` | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
+| `authToken` | Token from [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
 
-For v1 APIs:
-
-```swift
-let meetingInfo = DyteMeetingInfo(authToken: authToken,
-                                   roomName: meetingText,
-                                   enableAudio: true,
-                                   enableVideo: true)
-```
-
-For v2 APIs:
 
 ```swift
 let meetingInfo = DyteMeetingInfoV2(authToken: authToken,

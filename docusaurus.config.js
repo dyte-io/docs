@@ -172,28 +172,6 @@ const docs = [
       },
     },
   },
-
-  // Web SDKs - Old
-  {
-    id: 'react',
-    path: 'docs/react',
-    routeBasePath: '/react',
-    versions: {
-      current: {
-        label: '0.37.0',
-      },
-    },
-  },
-  {
-    id: 'javascript',
-    path: 'docs/javascript',
-    routeBasePath: '/javascript',
-    versions: {
-      current: {
-        label: '0.37.0',
-      },
-    },
-  },
 ];
 
 /** @type {import('@docusaurus/plugin-content-docs').Options} */
@@ -232,7 +210,36 @@ const { webpackPlugin } = require('./plugins/webpack-plugin.cjs');
 const tailwindPlugin = require('./plugins/tailwind-plugin.cjs');
 const docs_plugins = docs.map((doc) => create_doc_plugin(doc));
 
-const plugins = [tailwindPlugin, ...docs_plugins, webpackPlugin];
+const plugins = [tailwindPlugin, ...docs_plugins, webpackPlugin, ['@docusaurus/plugin-client-redirects',
+  {
+    createRedirects(path) {
+      if (path.startsWith("/guides/features/webhooks")) {
+        return [path.replace("/guides/features/webhooks", "/guides/webhooks")];
+      }
+      if (path.startsWith("/guides/features/recording")) {
+        return [path.replace("/guides/features/recording", "/guides/recording")];
+      }
+      if (path.startsWith("/guides/features/recording")) {
+        return [path.replace("/guides/features/recording", "/guides/recording")];
+      }
+      if (path.startsWith("/guides/features/embed")) {
+        return [path.replace("/guides/features/embed", "/guides/embed")];
+      }
+      if (path.startsWith("/guides/features/export-chat-dump")) {
+        return [path.replace("/guides/features/export-chat-dump", "/guides/export-chat-dump")];
+      }
+      if (path.startsWith("/guides/features/breakoutroom")) {
+        return [path.replace("/guides/features/breakoutroom", "/guides/breakoutroom")];
+      }
+      if (path === "/ui-kit") {
+        return ['/javascript/advanced-usage', '/javascript/customize-meeting-ui', '/javascript/events', '/javascript/installation', '/javascript/quickstart', '/javascript/reference/chat-message', '/javascript/reference/connection-config', '/javascript/reference/dyte-client', '/javascript/reference/dyte-control-bar', '/javascript/reference/dyte-errors', '/javascript/reference/dyte-grid', '/javascript/reference/dyte-meeting-events', '/javascript/reference/dyte-plugin', '/javascript/reference/dyte-ui-config', '/javascript/reference/meeting', '/javascript/reference/participant', '/javascript/reference/self-participant', '/javascript/sample-app', '/javascript/usage', '/javascript/virtual-background', '/javascript/'];
+      }
+      if (path === "/react-ui-kit") {
+        return ['/react/advanced-usage', '/react/customize-meeting-ui', '/react/events', '/react/installation', '/react/quickstart', '/react/reference/chat-message', '/react/reference/connection-config', '/react/reference/dyte-client', '/react/reference/dyte-control-bar', '/react/reference/dyte-errors', '/react/reference/dyte-grid', '/react/reference/dyte-meeting-events', '/react/reference/dyte-plugin', '/react/reference/dyte-ui-config', '/react/reference/meeting', '/react/reference/participant', '/react/reference/self-participant', '/react/sample-app', '/react/usage', '/react/virtual-background', '/react/'];
+      }
+      return undefined; // Return a falsy value: no redirect created
+    }
+  }]];
 
 const fs = require('fs');
 const sdksHTML = fs.readFileSync('./src/snippets/sdks.html', 'utf-8');
