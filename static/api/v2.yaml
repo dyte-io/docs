@@ -7,7 +7,7 @@ servers:
     variables: {}
 info:
   version: v2
-  title: Dyte REST APIs V2
+  title: Dyte REST APIs
   description: |-
     ## Rate Limiting
 
@@ -575,6 +575,161 @@ paths:
         in: path
         required: true
         description: ID of the livestream
+  '/livestreams/{livestreamId}/reset-stream-key':
+    post:
+      summary: Reset a livestream's stream key
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: prdmmp-xhycsl
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    success: false
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    $ref: '#/components/schemas/LivestreamBase'
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: string
+                  data:
+                    $ref: '#/components/schemas/LivestreamBase'
+      description: Reset a livestream's stream key for the given livestream ID.
+      tags:
+        - Live streams
+      operationId: asdf
+    parameters:
+      - schema:
+          type: string
+        name: livestreamId
+        in: path
+        required: true
+        description: ID of the livestream. You can get the livestream ID using the create an independent livestream API.
+  '/livestreams/{livestreamId}/analytics':
+    parameters:
+      - schema:
+          type: string
+        name: livestreamId
+        in: path
+        required: true
+    get:
+      summary: Get livestream analytics
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsResponse'
+              examples: {}
+      operationId: get-livestream-analytics
+      description: Get analytics about a livestream between a given range of time
+      tags:
+        - Live streams
+        - LivestreamAnalytics
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: start_time
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: end_time
+        - schema:
+            type: string
+          in: query
+          name: sort_order
+        - schema:
+            type: string
+            default: '25'
+          in: query
+          name: per_page
+        - schema:
+            type: string
+            default: '1'
+          in: query
+          name: page_no
+  '/livestreams/{livestreamId}/enable':
+    parameters:
+      - schema:
+          type: string
+        name: livestreamId
+        in: path
+        required: true
+    put:
+      summary: Enable a livestream
+      operationId: enable-livestream
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    x-stoplight:
+                      id: e5non3upkulx5
+                  data:
+                    $ref: '#/components/schemas/LivestreamBase'
+                    x-stoplight:
+                      id: h3kbfpcf0cvz3
+      description: Enables a livestream for the given livestream ID.
+      tags:
+        - Live streams
+  '/livestreams/{livestreamId}/disable':
+    parameters:
+      - schema:
+          type: string
+        name: livestreamId
+        in: path
+        required: true
+    put:
+      summary: Disable a livestream
+      operationId: disable-livestream
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    x-stoplight:
+                      id: e5non3upkulx5
+                  data:
+                    $ref: '#/components/schemas/LivestreamBase'
+                    x-stoplight:
+                      id: h3kbfpcf0cvz3
+      description: Disables a livestream for the given livestream ID.
+      tags:
+        - Live streams
   '/meetings/{meeting_id}/active-livestream':
     parameters:
       - schema:
@@ -1153,8 +1308,6 @@ paths:
       tags:
         - Organizations
       operationId: getAllOrgs
-      security:
-        - OrgBearer: []
       parameters:
         - in: query
           name: per_page
@@ -1187,6 +1340,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - OrgBearer: []
     post:
       summary: Create an organization
       description: Creates an organization. The authenticated user becomes the owner of the organization.
@@ -1661,6 +1816,333 @@ paths:
         - Presets
 components:
   schemas:
+    LivestreamWithSessions:
+      type: object
+      x-examples:
+        example-1:
+          status: OFFLINE
+          name: Livestreaming-Demo
+          meeting_id: null
+          ingest_seconds: 0
+          viewer_seconds: 0
+          ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
+          id: 78dd0b50-4147-4bb8-88d3-2ccc2e98bff0
+          stream_key: sk_ap-south-1_BSErwBSdrcWn_0eG01cFGCJcRcCsflOAX3Eu4B3RyRX
+          playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.Jk1l97eJF0ME.m3u8'
+      title: LivestreamWithSessions
+      properties:
+        status:
+          type: string
+          enum:
+            - LIVE
+            - ERRORED
+            - INVOKED
+            - IDLE
+        name:
+          type: string
+          nullable: true
+        meeting_id:
+          type: string
+          nullable: true
+        ingest_server:
+          type: string
+        id:
+          type: string
+        stream_key:
+          type: string
+        playback_url:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        disabled:
+          type: boolean
+        sessions:
+          type: array
+          items:
+            $ref: '#/components/schemas/LivestreamSessionBase'
+    LivestreamBaseWithoutCreds:
+      type: object
+      x-examples:
+        example-1:
+          status: OFFLINE
+          name: Livestreaming-Demo
+          meeting_id: null
+          ingest_seconds: 0
+          viewer_seconds: 0
+          ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
+          id: 78dd0b50-4147-4bb8-88d3-2ccc2e98bff0
+          stream_key: sk_ap-south-1_BSErwBSdrcWn_0eG01cFGCJcRcCsflOAX3Eu4B3RyRX
+          playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.Jk1l97eJF0ME.m3u8'
+      title: LivestreamBaseWithoutCreds
+      properties:
+        status:
+          type: string
+          enum:
+            - LIVE
+            - OFFLINE
+            - ERRORED
+          description: The status of the livestream.
+        name:
+          type: string
+          description: Name of the livestream.
+          nullable: true
+        meeting_id:
+          type: string
+          description: ID of the meeting.
+          nullable: true
+        id:
+          type: string
+          description: The livestream ID.
+        playback_url:
+          type: string
+          description: The web address that viewers can use to watch the livestream.
+        created_at:
+          type: string
+          format: date-time
+          description: The timestamp at which the livestream was created. The time is returned in ISO format.
+        updated_at:
+          type: string
+          format: date-time
+          description: The timestamp at which the livestream was updated. The time is returned in ISO format.
+        disabled:
+          type: boolean
+          description: Specifies if the livestream was disabled.
+    LivestreamBaseWithoutCredsWithSessions:
+      type: object
+      x-examples:
+        example-1:
+          status: OFFLINE
+          name: Livestreaming-Demo
+          meeting_id: null
+          ingest_seconds: 0
+          viewer_seconds: 0
+          ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
+          id: 78dd0b50-4147-4bb8-88d3-2ccc2e98bff0
+          stream_key: sk_ap-south-1_BSErwBSdrcWn_0eG01cFGCJcRcCsflOAX3Eu4B3RyRX
+          playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.Jk1l97eJF0ME.m3u8'
+      title: LivestreamBaseWithoutCredsWithSessions
+      properties:
+        status:
+          type: string
+          enum:
+            - LIVE
+            - ERRORED
+            - INVOKED
+            - IDLE
+        name:
+          type: string
+          nullable: true
+        meeting_id:
+          type: string
+          nullable: true
+        id:
+          type: string
+        playback_url:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        disabled:
+          type: boolean
+        sessions:
+          type: array
+          items:
+            $ref: '#/components/schemas/LivestreamSessionBase'
+    LivestreamBaseWithoutCredsWithActiveSession:
+      type: object
+      x-examples:
+        example-1:
+          status: OFFLINE
+          name: Livestreaming-Demo
+          meeting_id: null
+          ingest_seconds: 0
+          viewer_seconds: 0
+          ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
+          id: 78dd0b50-4147-4bb8-88d3-2ccc2e98bff0
+          stream_key: sk_ap-south-1_BSErwBSdrcWn_0eG01cFGCJcRcCsflOAX3Eu4B3RyRX
+          playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.Jk1l97eJF0ME.m3u8'
+      title: LivestreamBaseWithoutCredsWithActiveSession
+      properties:
+        session:
+          $ref: '#/components/schemas/LivestreamSessionBase'
+        livestream:
+          $ref: '#/components/schemas/LivestreamBaseWithoutCreds'
+    LivestreamSessionBase:
+      title: LivestreamSessionBase
+      x-stoplight:
+        id: s4a01bosmpn5x
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the session.
+        livestream_id:
+          type: string
+          description: The ID of the livestream.
+        invoked_time:
+          type: string
+          format: date-time
+          description: The timestamp at which the API was called or invoked. The time is returned in ISO format.
+        error_message:
+          type: string
+          x-stoplight:
+            id: 2u1jx283ldmso
+        started_time:
+          type: string
+          format: date-time
+          description: The timestamp at which the livestream session started. The time is returned in ISO format.
+        stopped_time:
+          type: string
+          format: date-time
+          description: The timestamp at which the livestream session stopped. The time is returned in ISO format.
+        created_at:
+          type: string
+          format: date-time
+          description: The timestamp at which the livestream session was created. The time is returned in ISO format.
+        updated_at:
+          type: string
+          format: date-time
+          description: The timestamp at which the livestream session was updated. The time is returned in ISO format.
+        ingest_seconds:
+          type: number
+          description: The time duration for which the input was given or the meeting was streamed.
+        viewer_seconds:
+          type: number
+          description: The total view time for which the viewers watched the stream.
+    LivestreamAnalytics:
+      title: LivestreamAnalytics
+      x-stoplight:
+        id: 8kpmfujzowg1i
+      type: object
+      properties:
+        id:
+          type: string
+        live_stream_session_id:
+          type: string
+        livestream_id:
+          type: string
+        viewer_count:
+          type: integer
+        ingest_audio_bitrate:
+          type: number
+        ingest_framerate:
+          type: number
+        ingest_video_bitrate:
+          type: number
+        keyframe_interval:
+          type: number
+        ingest_seconds:
+          type: integer
+        viewer_seconds:
+          type: integer
+        timestamp:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+    AnalyticsResponse:
+      title: AnalyticsResponse
+      x-stoplight:
+        id: gtm41ommpwbn1
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+          properties:
+            analytics:
+              type: array
+              items:
+                $ref: '#/components/schemas/LivestreamAnalytics'
+            paging:
+              $ref: '#/components/schemas/PaginationBase'
+            total_stats:
+              $ref: '#/components/schemas/AnalyticsResponseTotalStats'
+    PaginationBase:
+      title: PaginationBase
+      x-stoplight:
+        id: e0iqmp3b8yibp
+      type: object
+      properties:
+        total_count:
+          type: number
+        start_offset:
+          type: number
+        end_offset:
+          type: number
+    AnalyticsResponseTotalStats:
+      title: AnalyticsResponseTotalStats
+      x-stoplight:
+        id: lno8y9ekd7e0s
+      type: object
+      properties:
+        total_viewer_count:
+          type: number
+        total_ingest_seconds:
+          type: number
+        total_viewer_seconds:
+          type: number
+    LivestreamBase:
+      type: object
+      x-examples:
+        example-1:
+          status: OFFLINE
+          name: Livestreaming-Demo
+          meeting_id: null
+          ingest_seconds: 0
+          viewer_seconds: 0
+          ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
+          id: 78dd0b50-4147-4bb8-88d3-2ccc2e98bff0
+          stream_key: sk_ap-south-1_BSErwBSdrcWn_0eG01cFGCJcRcCsflOAX3Eu4B3RyRX
+          playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.Jk1l97eJF0ME.m3u8'
+      properties:
+        status:
+          type: string
+          enum:
+            - LIVE
+            - OFFLINE
+            - ERRORED
+          description: The status of the livestream.
+        name:
+          type: string
+          description: Name of the livestream.
+          nullable: true
+        meeting_id:
+          type: string
+          description: ID of the meeting.
+          nullable: true
+        ingest_server:
+          type: string
+          description: The server URL to which the RTMP encoder sends the video and audio data.
+        id:
+          type: string
+          description: The livestream ID.
+        stream_key:
+          type: string
+          description: Unique key for accessing each livestream.
+        playback_url:
+          type: string
+          description: The web address that viewers can use to watch the livestream.
+        created_at:
+          type: string
+          format: date-time
+          description: The timestamp at which the livestream was created. The time is returned in ISO format.
+        updated_at:
+          type: string
+          format: date-time
+          description: The timestamp at which the livestream was updated. The time is returned in ISO format.
+        disabled:
+          type: boolean
+          description: Specifies if the livestream was disabled.
     Webhook:
       type: object
       properties:
