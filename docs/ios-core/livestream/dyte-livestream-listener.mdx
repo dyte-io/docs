@@ -1,0 +1,111 @@
+---
+title: Livestream event listeners
+description: Livestream events to listen to for triggering
+sidebar_position: 3
+tags: [flutter-core, livestream]
+---
+
+You can listen to livestream events by attaching a listener by calling `addLivestreamEventsListener` on `dyteMobileClient` object where `dyteMobileClient` is an instance of `DyteMobileClient()`.
+
+```kotlin
+val dyteLiveStreamEventsListener = object : DyteLiveStreamEventsListener {
+  override fun onLiveStreamStarting() {
+    // when livestream is starting
+  }
+
+  override fun onLiveStreamStarted() {
+    // when livestream is started
+  }
+
+  override fun onLiveStreamEnding() {
+    // when livestream is ending
+  }
+
+  override fun onLiveStreamEnded() {
+    // when livestream is ended
+  }
+
+  override fun onLiveStreamErrored() {
+    // errored livestream
+  }
+
+  override fun onViewerCountUpdated(count: Int) {
+    // when viewer count updates in livestream
+  }
+
+  override fun onStageCountUpdated(count: Int) {
+    // when stage count updates in livestream
+  }
+
+  override fun onStageRequestsUpdated(requests: List<LiveStreamStageRequestPeer>) {
+    // when there are updates in stage requests
+  }
+
+  override fun onJoinRequestAccepted(peer: LiveStreamStagePeer) {
+    // when localUser's join request is accepted by host
+  }
+
+  override fun onJoinRequestRejected(peer: LiveStreamStagePeer) {
+    // when localUser's join request is rejected by host
+  }
+
+  override fun onLiveStreamStateUpdate(data: DyteLivestreamData) {
+    // when there is an update in state of the livestream
+  }
+}
+meeting.addLiveStreamEventsListener(dyteLiveStreamEventsListener)
+```
+
+## Livestream events
+
+- ### onLiveStreamStarting
+
+  This event is triggered when the livestream is about to start.
+
+- ### onLiveStreamStarted
+
+  This event is triggered when the livestream has started.
+
+- ### onLiveStreamStateUpdate
+
+  This event is triggered when the livestream state is updated. 
+
+- ### onViewerCountUpdated
+
+  This event is triggered when the viewer count is updated. 
+
+- ### onLiveStreamEnding
+
+  This event is triggered when the livestream is about to end.
+
+- ### onLiveStreamEnded
+
+  This event is triggered when the livestream has ended.
+
+- ### onLiveStreamErrored
+
+  This event is triggered when their is an error while starting/stopping the livestream.
+
+- ### onStageCountUpdated
+
+  This event is triggered when the number of users on stage is updated. The `count` object contains the updated stage count.
+
+- ### onStageRequestsUpdated
+
+  This event is triggered when the stage requests are updated. The `requests` object contains the updated list of stage requests. 
+
+- ### onJoinRequestAccepted
+
+  This event is triggered when a stage request is accepted. The `peer` object contains the peer whose request is accepted.
+
+  ```kotlin
+    void onJoinRequestAccepted(DyteLiveStreamStagePeer peer) {}
+  ```
+
+- ### onJoinRequestRejected
+
+  This event is triggered when a stage request is rejected. The `peer` object contains the peer whose request is rejected.
+
+  ```kotlin
+    void onJoinRequestRejected(DyteLiveStreamStagePeer peer) {}
+  ```
