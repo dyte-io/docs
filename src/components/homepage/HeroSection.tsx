@@ -12,7 +12,7 @@ import clsx from 'clsx';
 const PRODUCTS = [
   {
     title: 'Live Video',
-    link: '/guides/video-conf/intro-video-conf',
+    link: '/guides/live-video/intro-video-conf',
     icon: VideoRegular,
     lightImage: '/static/landing-page/hero/video-graphic.png',
     darkImage: '/static/landing-page/hero/video-graphic-dark.png',
