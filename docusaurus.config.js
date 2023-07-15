@@ -218,26 +218,29 @@ const plugins = [
     '@docusaurus/plugin-client-redirects',
     {
       createRedirects(path) {
-        if (path.startsWith('/guides/capabilities')) {
-          return [path.replace('/guides/capabilities', '/guides/features')];
-        }
         if (path.startsWith('/guides/capabilities/webhooks')) {
           return [
             path.replace('/guides/capabilities/webhooks', '/guides/webhooks'),
+            path.replace('/guides/capabilities/webhooks', '/guides/features/webhooks')
           ];
         }
         if (path.startsWith('/guides/capabilities/recording')) {
           return [
             path.replace('/guides/capabilities/recording', '/guides/recording'),
+            path.replace('/guides/capabilities/recording', '/guides/features/recording')
           ];
         }
         if (path.startsWith('/guides/capabilities/recording')) {
           return [
             path.replace('/guides/capabilities/recording', '/guides/recording'),
+            path.replace('/guides/capabilities/recording', '/guides/features/recording')
           ];
         }
         if (path.startsWith('/guides/capabilities/embed')) {
-          return [path.replace('/guides/capabilities/embed', '/guides/embed')];
+          return [
+            path.replace('/guides/capabilities/embed', '/guides/embed'),
+            path.replace('/guides/capabilities/embed', '/guides/features/embed')
+          ];
         }
         if (path.startsWith('/guides/capabilities/export-chat-dump')) {
           return [
@@ -245,6 +248,7 @@ const plugins = [
               '/guides/capabilities/export-chat-dump',
               '/guides/export-chat-dump'
             ),
+            path.replace('/guides/capabilities/export-chat-dump', '/guides/features/export-chat-dump')
           ];
         }
         if (path.startsWith('/guides/capabilities/breakoutroom')) {
@@ -253,7 +257,15 @@ const plugins = [
               '/guides/capabilities/breakoutroom',
               '/guides/breakoutroom'
             ),
+            path.replace(
+              '/guides/capabilities/breakoutroom',
+              '/guides/features/breakoutroom'
+            ),
           ];
+        }
+        /* for everything else */
+        if (path.startsWith('/guides/capabilities')) {
+          return [path.replace('/guides/capabilities', '/guides/features')];
         }
         if (path === '/ui-kit') {
           return [
