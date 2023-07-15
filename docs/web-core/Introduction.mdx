@@ -3,11 +3,11 @@ title: Introduction
 sidebar_position: 1
 ---
 
+import ProductSection from '/docs/partials/_product-section.mdx';
+
 # Introduction
 
-The Dyte Core SDK is designed to provide developers with an easy way to incorporate real-time communication (RTC) solutions into their apps and websites. With full customization and branding options, you can build your own user interface from the ground up without dealing with complicated media layers. 
-
-The Core SDK acts as a data-only layer, offering high-level primitives and abstracting away complex media and networking optimizations. It only provides simple APIs that are user-friendly and easy to work with.
+The Dyte Core SDK is designed to provide you with an easy way to incorporate live video, voice, livestream and chat capabilities into your apps and websites. The Core SDK acts as a data-only layer. It provides simple APIs offering high-level primitives and abstracting away complex media and networking optimizations.
 
 ## Why Core SDK?
 
@@ -23,29 +23,3 @@ The Core SDK includes various modules for in-call utilities like chat, polls, an
 - **meeting.polls**: Meetings can have polls. This module lets you perform actions related to polls, that is create and manage a poll within a meeting.
 - **meeting.recording**: When a meeting needs to be recorded, this module can be used. It lets you start or stop a recording, and get the current status of an ongoing recording.
 - **meeting.meta**: This object consists of all the metadata related to the current meeting, such as the title, the timestamp of when it started, and more.
-
-## Supported Browser
-
-Here are the browser requirements:
-
-- Chrome (or Chromium based) 74+
-- Firefox 78+
-- Opera 64+
-- Safari 12+
-- Edge 79+
-- iOS (Safari) 12.1+
-- iOS (Non-Safari) 15+
-
-## Internet Requirements
-
-- Downlink (Minimum) 4 Mbps
-- Downlink (Optimal) 8 Mbps
-- Uplink (Minimum) 2 Mbps
-- Uplink (Optimal) 4 Mbps
-
-## Features of Core SDKs
-
-- **Fully customizable**: Provides you the flexibility to build your own UI from scratch.
-- **Independent modules**: Each module is independent of each other. For example, a bug in the chat module does not hamper the video-calling experience.
-- 
-**Minimum external dependencies**: The Core SDKs have minimal external dependencies, which helps to control the size of the SDK.
