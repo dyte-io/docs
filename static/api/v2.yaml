@@ -7,7 +7,7 @@ servers:
     variables: {}
 info:
   version: v2
-  title: Dyte REST APIs V2
+  title: Dyte REST APIs
   description: |-
     ## Rate Limiting
 
@@ -1153,8 +1153,6 @@ paths:
       tags:
         - Organizations
       operationId: getAllOrgs
-      security:
-        - OrgBearer: []
       parameters:
         - in: query
           name: per_page
@@ -1187,6 +1185,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - OrgBearer: []
     post:
       summary: Create an organization
       description: Creates an organization. The authenticated user becomes the owner of the organization.
