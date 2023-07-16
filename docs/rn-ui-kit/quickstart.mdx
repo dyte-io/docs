@@ -12,11 +12,6 @@ Dyte also offers the flexibility to build your own UI using various individual
 components. This offers limitless customization options to tailor the UI to fit
 your requirements. For more information, see the Build your own UI section.
 
-For getting started quickly, you can use our
-[sample code](https://github.com/dyte-io/react-samples). You can clone and run a
-sample application from the
-[React UI Kit GitHub repository](https://github.com/dyte-io/react-samples).
-
 ## Objective
 
 You'll learn how to:
@@ -42,7 +37,7 @@ You'll learn how to:
   - [Add Participant](/api/?v=v2#/operations/add_participant) to the meeting
 - Install [React 16.8](https://reactjs.org/blog/2019/02/06/react-v16.8.0.html)
   or higher on your device
-- Read the [Introduction to React Native UI Kit](/rn-ui-kit) to understand the UI
+- Read the [Introduction to React Native UI Kit](/react-native) to understand the UI
   Kit and its relationship with web core SDKs.
 
 ## Step 1: Install the SDK
@@ -58,6 +53,18 @@ You can install the package using npm or Yarn.
 npm install @dytesdk/react-native-ui-kit @dytesdk/react-native-core
 ```
 
+Install the required dependencies
+
+```bash npm2yarn
+npm install react-native-webrtc react-native-get-random-values react-native-url-polyfill react-native-document-picker react-native-file-viewer react-native-fs react-native-safe-area-context react-native-sound-player react-native-svg react-native-webview
+```
+
+Install the following dependencies only if you need livestream.
+
+```bash npm2yarn
+npm install react-native-gradle-plugin amazon-ivs-react-native-player
+```
+
 :::tip Import Errors
 
 If you get errors when importing the `react-native-ui-kit` and `react-native-core`
@@ -67,10 +74,10 @@ packages, try installing them separately.
 
 ### Version
 
-|                         |                                                                                                                              |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| @dytesdk/react-native-ui-kit   | 1.2.0
-| @dytesdk/react-native-core | 0.3.0
+|                              |                                                                                                                                        |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| @dytesdk/react-native-ui-kit | [![npm version](https://badge.fury.io/js/@dytesdk%2Freact-native-ui-kit.svg)](https://badge.fury.io/js/@dytesdk%2Freact-native-ui-kit) |
+| @dytesdk/react-native-core   | [![npm version](https://badge.fury.io/js/@dytesdk%2Freact-native-core.svg)](https://badge.fury.io/js/@dytesdk%2Freact-native-core)     |
 
 ## Step 2: Get Started with Dyte Prebuilt Components
 
@@ -98,7 +105,7 @@ Here's a series of steps that you need to perform:
 
 ```jsx
 import { useDyteClient } from '@dytesdk/react-native-core';
-import { DyteUIProvider, DyteMeeting} from '@dytesdk/react-native-ui-kit';
+import { DyteUIProvider, DyteMeeting } from '@dytesdk/react-native-ui-kit';
 
 export default function App() {
   const [meeting, initMeeting] = useDyteClient();
@@ -134,20 +141,18 @@ the UI based on it. With this component, you don't have to handle all the
 states, dialogs, and other smaller bits of managing the application.
 
 For more information on the other props of `DyteMeeting`, see
-[DyteMeeting](/rn-ui-kit/components/dyte-meeting).
+[DyteMeeting](/react-native/components/dyte-meeting).
 
 ```jsx
 function MyMeeting() {
   const { meeting } = useDyteMeeting();
 
   return (
-    <View>
-      <DyteProvider value={meeting}>
-        <DyteUIProvider>
-          <DyteMeeting meeting={meeting} />
-        </DyteUIProvider>
-      </DyteProvider>
-    </View>
+    <DyteProvider value={meeting}>
+      <DyteUIProvider>
+        <DyteMeeting meeting={meeting} />
+      </DyteUIProvider>
+    </DyteProvider>
   );
 }
 ```

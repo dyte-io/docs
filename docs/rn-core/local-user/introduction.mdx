@@ -2,7 +2,7 @@
 title: Introduction
 description: Local user setup guide.
 sidebar_position: 1
-tags: [web-core, local-user, self]
+tags: [rn-core, local-user, self]
 ---
 
 # Introduction - Local User
@@ -31,8 +31,8 @@ Here is a list of properties that local user provides:
   participant.
 - `roomJoined`: A boolean value indicating if the local user has joined the
   meeting.
-- `preview`: The local audio and video stream for the preview purpose (it will
-  be populated after calling `enablePreview`).
+- `roomState`: Indicates the state of the user in the meeting. It
+  can take the following values: `init` | `joined` | `waitlisted` | `rejected` | `kicked` | `left` | `ended`;
 - `permissions`: The permissions related to various capabilities within a
   meeting context for the local user
 - `mediaPermissions`: The current audio and video permissions given by the local
@@ -51,6 +51,7 @@ Here is a list of properties that local user provides:
   currently enabled.
 - `config`: The suggested theme for building the user interface.
 - ~~`suggestedTheme`: The suggested theme for building the user interface.~~
+- ~~`preview`: The local audio and video stream for the preview purpose (it will be populated after calling `enablePreview`).~~
 
 ## Change default audio / video settings
 
@@ -58,11 +59,7 @@ By default as soon as you join the meeting the SDK will produce your video and
 audio streams. To change this behaviour use the `default` parameter
 
 ```ts {5}
-import { useDyteClient } from '@dytesdk/react-native-core';
-
-const [client, initClient] = useDyteClient();
-
-const meeting = await initClient({
+const meeting = await DyteClient.init({
   authToken,
   defaults: {
     audio: false, // Disable user's audio by default
@@ -129,21 +126,3 @@ await meeting.self.disableScreenShare();
 // Get current status
 meeting.self.screenShareEnabled;
 ```
-
-### Screen share configuration
-
-You can set the defaults for screen share during initialization
-
-```ts
-const meeting = await DyteClient.init({
-  authToken,
-  defaults: {
-    screenShare: {
-      displaySurface: 'window',
-    },
-  },
-});
-```
-
-[displaySurface](https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints#displaysurface): Specifies the types of display surface that may be selected by the user.
-Allowed values: `window`, `monitor`, `browser`

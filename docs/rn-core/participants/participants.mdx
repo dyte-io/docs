@@ -2,7 +2,7 @@
 title: Participants
 description: Events, methods and data pertaining to meeting participants.
 sidebar_position: 1
-tags: [web-core, participants, participant]
+tags: [rn-core, participants, participant]
 ---
 
 # Participants
@@ -119,7 +119,7 @@ await meeting.participants.kickAll();
 
 // remove a participant from the meeting
 const participantId = '...';
-await meeting.partcipants.kick(participantId);
+await meeting.participants.kick(participantId);
 ```
 
 ## Webinar methods
@@ -128,7 +128,7 @@ The `acceptAllRequestToJoinStageRequests()` method lets the host accept all
 pending requests to join a webinar.
 
 ```ts
-await meeting.partcipants.joined.acceptAllRequestToJoinStageRequests();
+await meeting.participants.joined.acceptAllRequestToJoinStageRequests();
 ```
 
 ## Waiting room methods

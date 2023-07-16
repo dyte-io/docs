@@ -126,7 +126,7 @@ const docs = [
     routeBasePath: '/rn-core',
     versions: {
       current: {
-        label: '1.x.x',
+        label: '0.5.x',
       },
     },
   },
@@ -164,47 +164,15 @@ const docs = [
   },
   {
     id: 'react-native',
-    path: 'docs/react-native',
+    path: 'docs/rn-ui-kit',
     routeBasePath: '/react-native',
     versions: {
       current: {
-        label: '0.25.x',
+        label: '1.4.x',
       },
     },
   },
 
-  {
-    id: 'rn-ui-kit',
-    path: 'docs/rn-ui-kit',
-    routeBasePath: '/rn-ui-kit',
-    versions: {
-      current: {
-        label: '1.x.x',
-      },
-    },
-  },
-
-  // Web SDKs - Old
-  {
-    id: 'react',
-    path: 'docs/react',
-    routeBasePath: '/react',
-    versions: {
-      current: {
-        label: '0.37.0',
-      },
-    },
-  },
-  {
-    id: 'javascript',
-    path: 'docs/javascript',
-    routeBasePath: '/javascript',
-    versions: {
-      current: {
-        label: '0.37.0',
-      },
-    },
-  },
 ];
 
 /** @type {import('@docusaurus/plugin-content-docs').Options} */

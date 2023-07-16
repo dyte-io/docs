@@ -123,7 +123,7 @@ const SECTIONS: Section[] = [
   },
   {
     name: 'React Native',
-    docId: 'rn-ui-kit',
+    docId: 'react-native',
     icon: ReactIcon,
     section: 'mobile-ui-kit',
   },

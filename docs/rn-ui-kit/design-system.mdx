@@ -47,9 +47,11 @@ function Example() {
   }, []);
 
   return (
-    <View style={{ height: '400px' }}>
-      <DyteMeeting meeting={meeting}/>
-    </View>
+    <DyteProvider>
+      <DyteUIProvider style={{ height: '400px' }}>
+        <DyteMeeting meeting={meeting} />
+      </DyteUIProvider>
+    </DyteProvider>
   );
 }
 ```
@@ -63,15 +65,12 @@ it's design system.
 
 Design tokens are the design related values which are used to maintain a design
 system, which provides flexibility in customizing the overall design of a system
-with values such as: typography, spacing, colors etc.
-
-These design tokens are stored and shared among components with the help of
-[CSS variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties).
+with values such as: typography, colors etc.
 
 ### Typography
 
 ```css
-fontFamily: 'Inter';
+fontfamily: 'Inter';
 ```
 
 You can tweak the font family used in your UI Kit components easily with this
@@ -84,16 +83,13 @@ You can edit this value in two ways with the provideDyteDesignSystem utility.
 ```js
 const designTokens = {
   fontFamily: 'Custom Font';
-  // or
-  googleFont: 'A Google Font';
 }
 ```
 
-Set either of these values in your design tokens.
+Set this value in your design tokens.
 
-1. With `fontFamily` 🪡 - Use a custom font family, you'll have to load the font
-   manually.
-2. With `googleFont` ✨ - Use a google font, the font is loaded automatically.
+With `fontFamily` 🪡 - Use a custom font family, you'll have to load the font
+manually.
 
 ### Colors
 
@@ -109,8 +105,6 @@ colors: {
 /* ... rest of the shades */
 }
 ```
-
-CSS Variables are set in the format: `R G B`.
 
 Here are all the color tokens, along with their default values.
 
@@ -177,7 +171,7 @@ Here are all the color tokens, along with their default values.
 
 :::info
 
-Note the exception of `text` and `text-on-brand` colors, you only specify a
+Note the exception of `text` and `textOnBrand` colors, you only specify a
 single color even though there are the following shades: 1000 - 600.
 
 This is because the `provideDyteDesignSystem()` utility sets the color you pass
@@ -201,51 +195,8 @@ const designTokens = {
     brand: { 500: '#0D51FD' },
     background: { 1000: '#080808' },
     text: '#ffffff',
-    'text-on-primary': '#ffffff',
-    'video-bg': '#181818',
+    textOnBrand: '#ffffff',
+    videoBg: '#181818',
   },
-};
-```
-
-### Spacing
-
-```css
-spacingBase: '4';
-/* ... rest of the spacing scale */
-```
-
-The spacing scale is used for setting width, height, margins, paddings,
-positions etc. throughout the components.
-
-- The default value for the spacing scale base is `4px`.
-- Rest of the values are calculated with this base, set to `spacingBase`.
-- Current spacing scale ranges from `0` to `96`.
-
-#### Usage
-
-Set the base of the spacing scale with `spacingBase` property.
-
-```js
-const designTokens = {
-  spacingBase: 4, // value in px
-};
-```
-
-### Border Width & Border Radius
-
-Border Width and Border Radius properties can also be customized with design
-tokens!
-
-| Token Name     | Values                                          |
-| :------------- | :---------------------------------------------- |
-| `borderWidth`  | `none`, `thin`, `fat`                           |
-| `borderRadius` | `sharp`, `rounded`, `extra-rounded`, `circular` |
-
-#### Usage
-
-```js
-const designTokens = {
-  borderWidth: 'thin',
-  borderRadiys: 'rounded',
 };
 ```

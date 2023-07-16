@@ -2,7 +2,7 @@
 title: Events
 description: Local user events guide.
 sidebar_position: 2
-tags: [web-core, local-user, self, self events]
+tags: [rn-core, local-user, self, self events]
 ---
 
 # Local User - Events
@@ -91,18 +91,13 @@ Triggered when the user starts / stops the screen share using
 `enableScreenShare()` or `disableScreenShare()`.
 
 ```ts
-const screenElem = document.getElementById('my-screen-share');
-
 meeting.self.on(
   'screenShareUpdate',
   async ({ screenShareEnabled, screenShareTracks }) => {
     if (screenShareEnabled) {
-      const stream = new MediaStream();
-      stream.addTrack(screenShareTracks.video);
-      screenElem.srcObject(stream);
-      await screenElem.play();
+      // Display the screenshare
     } else {
-      await screenElem.stop();
+      // Stop the screenshare
     }
   }
 );
