@@ -1,0 +1,30 @@
+---
+title: 'Integrate Dyte'
+sidebar_position: 3
+---
+
+import IntegrateDyte from '/docs/partials/_integrate-dyte.mdx';
+import Admonition from '@theme/Admonition';
+
+<IntegrateDyte
+  product="Interactive Livestream"
+  productSlug="livestream"
+  preset="Livestream"
+  presetType="livestream"
+  savePresetInfo={
+    <Admonition type="info">
+      <p>
+        It is important to understand that you need to create two presets for
+        livestreaming. One preset is used for the livestreaming <b>host</b> and
+        the other preset is used for the livestreaming <b>viewer</b>.
+      </p>
+      <p>
+        The host requires certain host controls such as the ability to Kick
+        Participants, Mute Audio, Mute Video, and Pin Participant, as well as
+        media permissions like Start Livestream and Admit or remove participants
+        from the livestream. Ensure that you’ve selected those permissions for
+        the host.
+      </p>
+    </Admonition>
+  }
+/>

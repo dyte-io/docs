@@ -44,7 +44,7 @@ You must complete the following steps:
 
 ```python
   // other dependencies here
-  implementation 'io.dyte:uikit:1.11.0'
+  implementation 'io.dyte:uikit:1.12.2'
 ```
 
 2. Add the following permissions to the AndroidManifest.xml file.
@@ -66,25 +66,7 @@ builds, refer to the [Release Builds](#release-builds) section.
 
 :::
 
-## Step 2: Initialize the SDK
-
-The `DyteUIKitBuilder` is the main class of the SDK. It is the entry point and
-the only class required to initialize Dyte SDK.
-
-```kotlin
-val meetingInfo = = DyteMeetingInfoV2(
-  authToken = state.authToken,
-)
-val config = DyteUIKitConfig(
-  activity = this,
-  dyteMeetingInfo = meetingInfo
-)
-val dyteClient = DyteUIKitBuilder.build(config)
-```
-
-You need to create
-
-## Step 3: Configure a Dyte meeting
+## Step 2: Initialisation configuration
 
 Set the properties in the `DyteMeetingInfoV2` class. You just need to provide
 the participant's `authToken`.
@@ -99,13 +81,28 @@ val meetingInfo = DyteMeetingInfoV2(
                   )
 ```
 
+## Step 3: Initialize the SDK
+
+The `DyteUIKitBuilder` is the main class of the SDK. It is the entry point and
+the only class required to initialize Dyte SDK.
+
+```kotlin
+val config = DyteUIKitConfig(
+  activity = this,
+  dyteMeetingInfo = meetingInfo
+)
+val dyteUIKit = DyteUIKitBuilder.build(config)
+```
+
+
+
 ## Step 4: Launch the meeting UI
 
-To lanuch the meeting UI all you need to do is call `loadUi()` which will take
+To launch the meeting UI all you need to do is call `loadUi()` which will take
 care of everything for you.
 
 ```kotlin
-dyteClient.loadUi()
+dyteUIKit.loadUi()
 ```
 
 Here is a pictorial representation of all the config options defined below.

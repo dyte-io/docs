@@ -18,18 +18,21 @@
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier -w src docs",
     "format:docs": "prettier -w docs",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "spell-check": "npx cspell docs/**/*.mdx"
   },
   "dependencies": {
     "@docusaurus/core": "^2.4.1",
     "@docusaurus/module-type-aliases": "^2.4.1",
+    "@docusaurus/plugin-client-redirects": "^2.4.1",
     "@docusaurus/preset-classic": "^2.4.1",
     "@docusaurus/remark-plugin-npm2yarn": "^2.4.1",
     "@docusaurus/theme-live-codeblock": "^2.4.1",
     "@dytesdk/docs-ai-react": "^1.0.10",
-    "@dytesdk/react-ui-kit": "^1.23.0",
+    "@dytesdk/react-ui-kit": "^1.52.1",
     "@dytesdk/react-web-core": "file:./modules/dytesdk-react-web-core-1.5.1-stripped.1.tgz",
     "@dytesdk/web-core": "file:./modules/dytesdk-web-core-0.28.2-stripped.5.tgz",
+    "@fluentui/react-icons": "^2.0.204",
     "@headlessui/react": "^1.7.14",
     "@radix-ui/react-select": "^0.1.1",
     "@stoplight/elements": "^7.7.7",

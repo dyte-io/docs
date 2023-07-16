@@ -79,7 +79,20 @@ function generateFile(component, framework = 'core') {
 for (const component of components) {
   const { tag } = component;
 
-  if (tag.startsWith('dyte-breakout')) {
+  if (tag.startsWith('dyte-breakout') || tag.startsWith('dyte-ai')) {
+    continue;
+  }
+
+  /** If there is no readme, skip component */
+  if (
+    (!component || component.docs.trim() === '') &&
+    component.tag !== 'dyte-clock'
+  ) {
+    continue;
+  }
+
+  /** If there is no usage documentation for any framework, skip component */
+  if (component?.usage && Object.keys(component.usage) === 0) {
     continue;
   }
 

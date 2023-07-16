@@ -1,0 +1,83 @@
+---
+title: "Verify Webhooks Using Dyte's Signature and Webhook ID"
+sidebar_position: 4
+---
+
+You can verify webhooks using Dyte's signature and webhook IDs.
+
+## Verify using Dyte's signature
+
+Dyte verifies the webhook events it sends to your endpoints by including a
+signature in the dyte-signature header of each event. This allows you to confirm
+that the event came from Dyte and not a malicious server impersonating Dyte.
+
+Perform the following steps to verify signatures.
+
+### Obtain our public key
+
+Our public key is available at
+`https://api.dyte.io/.well-known/webhooks.json`. You can obtain it by
+making a GET request to this endpoint.
+
+```
+curl -X GET "https://api.dyte.io/.well-known/webhooks.json"
+```
+
+### Check for the signature header
+
+Every incoming request will have a custom `dyte-signature` header. This is the
+value that you should verify in the next step.
+
+### Verify the signature
+
+The signature is based on the `RSA-SHA256` digest of the request payload. You
+can calculate this on your end and compare it against the one supplied in the
+header. If the two values are equal, you can safely consider that this request
+indeed originated from Dyte.
+
+### Sample code
+
+<Tabs>
+
+<TabItem value="node" label="Node.js">
+
+```js
+const crypto = require('crypto');
+
+app.post('/webhook', express.json({ type: 'application/json' }), (req, res) => {
+  const signature = req.headers['dyte-signature'];
+  const payload = req.body;
+
+  const isVerified = crypto.verify(
+    'RSA-SHA256',
+    Buffer.from(JSON.stringify(payload)),
+    dytePublicKey,
+    Buffer.from(signature, 'base64')
+  );
+  // ... do further processing
+});
+```
+
+</TabItem>
+
+</Tabs>
+
+## Verify using webhook IDs
+
+Webhook IDs are used to uniquely identify a specific webhook endpoint or events. When a webhook is created in a system, the system assigns it a unique ID that can be used to manage and track the webhook's activity. This ID is usually a string of characters or a number that is specific to the webhook and cannot be duplicated.
+
+<img
+  src="/static/webhook/webhook_id.png"
+  width="600"
+  height="300"
+  alt="webhook-id"
+  className="webhook-id-use"
+/>
+
+Webhook IDs are commonly utilized for the following purposes:
+
+- **Manage the events**: When a webhook is subscribed to a specific event or resource, the webhook ID is used to manage the subscription.
+
+- **Enhanced security**: Typically a signature is added to the request header of the webhook. To further add a security check, Dyte adds a webhook ID to the header. As mentioned earlier, this ID is unique to each webhook subscription and can be used to verify that the request corresponds to the correct subscription.
+
+- **Error handling**: If there is an issue with a webhook request, such as a failed delivery or invalid payload, the webhook ID can be used to identify which specific webhook endpoint caused the error. This can be useful for troubleshooting and resolving issues with webhook integrations.

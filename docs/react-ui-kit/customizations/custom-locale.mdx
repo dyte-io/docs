@@ -61,28 +61,20 @@ Now that you've integrated Dyte SDK into your application successfully, let's qu
 Dyte's default language pack can be imported like so.
 
 ```jsx
-import { defaultLanguage } from '@dytesdk/react-ui-kit';
+import { defaultLanguage, useLanguage } from '@dytesdk/react-ui-kit';
 ```
 
 In order to replace Dyte's default locale set with your own, you can pass your own locale to the `t` prop exposed by the UI components.
 
 ```jsx
 // Customise Dyte's default locale object
-const myLanguagePack = {
+const myLanguagePack = useLanguage({
   ...defaultLanguage,
   'mute_all': 'Mute All Users',
-}
+});
 
-const useLanguage = (lang) => {
-  return (key) => {
-    return lang[key] ?? key;
-  };
-}
-
- <DyteMeeting meeting={meeting!} t={useLanguage(myLanguagePack)} />;
+<DyteMeeting meeting={meeting!} t={myLanguagePack} />;
 ```
-
-The `useLanguage` function takes in your custom locale object as an argument and generates a function that retrieves the value associated with the provided key.
 
 ## Dyte's Default Language Reference
 
@@ -179,7 +171,7 @@ Here is the default language pack offered by Dyte:
 | screenshare.shared                                             | Your screen is being shared.                                                                                                                                   |
 | screenshare.start                                              | Share Screen                                                                                                                                                   |
 | screenshare.stop                                               | Stop Sharing                                                                                                                                                   |
-| screenshare.error.unknown                                      | An error occured while starting screenshare.                                                                                                                   |
+| screenshare.error.unknown                                      | An error occurred while starting screenshare.                                                                                                                   |
 | screenshare.error.max_count                                    | Maximum screen share limit reached.                                                                                                                            |
 | plugins                                                        | Plugins                                                                                                                                                        |
 | perm_denied                                                    | Permission denied by browser.                                                                                                                                  |
@@ -337,7 +329,7 @@ Here is the default language pack offered by Dyte:
 | ai.personal                                                    | Personal                                                                                                                                                       |
 | ai.caption_view                                                | Caption View                                                                                                                                                   |
 | ai.chat.tooltip                                                | This conversation will just be visible to you and not to others in the call.                                                                                   |
-| ai.chat.summerise                                              | Hey AI, summarise this call                                                                                                                                    |
+| ai.chat.summarise                                              | Hey AI, summarise this call                                                                                                                                    |
 | ai.chat.agenda                                                 | Hey AI, what is today's agenda?                                                                                                                                |
 | search                                                         | Search                                                                                                                                                         |
 | search.could_not_find                                          | Couldn't find a participant with the specified name or ID.                                                                                                     |
@@ -367,7 +359,7 @@ Here is the default language pack offered by Dyte:
 | livestream.stopping                                            | Livestream is stopping...                                                                                                                                      |
 | livestream.error.not_supported                                 | Player not supported.                                                                                                                                          |
 | livestream.error.not_found                                     | Playback URL not found.                                                                                                                                        |
-| livestream.error.unknown                                       | An unknown error occured.                                                                                                                                      |
+| livestream.error.unknown                                       | An unknown error occurred.                                                                                                                                      |
 | livestream.error.sync                                          | Could not sync livestream please try again later.                                                                                                              |
 | livestream.error.start                                         | Error while starting livestream.                                                                                                                               |
 | livestream.error.stop                                          | Error while stopping livestream.                                                                                                                               |
@@ -381,5 +373,5 @@ Here is the default language pack offered by Dyte:
 | remote_access.empty                                            | There are no remote requests, yet.                                                                                                                             |
 | remote_access.requests                                         | The following people have requested remote control to your screen share.                                                                                       |
 | remote_access.allow                                            | Please select whom you want to give access to.                                                                                                                 |
-| remote_access.grant                                            | Grant acess                                                                                                                                                    |
+| remote_access.grant                                            | Grant access                                                                                                                                                    |
 | remote_access.indicator                                        | Any plugin or screenshare you switch to will sync the change across the meeting                                                                                |

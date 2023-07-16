@@ -3,25 +3,38 @@ description: A short guide on how to integrate dyte and how dyte works with your
   application
 ---
 
-# Getting Started With Dyte
+# Introduction to Dyte
 
 Dyte offers solutions for integrating high-quality video/voice calls into your
-web, mobile, and desktop applications.
+web, mobile, and desktop applications. The platform provides APIs and SDKs to capture, distribute, record, and render high quality audio and video applications.
 
-This topic introduces you to the components of Dyte and gives a quick
+## Supported Platforms
+
+Dyte currently supports the following platforms:
+
+- **Mobile**: Flutter, Android (Java/Kotlin), iOS (Objective-C/Swift), React Native
+- **Web**: Javascript Core SDK + UI Kit for React JS, Angular, and Web Components for other frameworks.
+- **Desktop**: Electron
+
+## Components of Dyte
+
+- **Backend HTTP REST APIs**: Your backend uses Dyte REST APIs to perform
+  actions such as, create meetings, add participants to a meeting etc.
+- **Frontend SDKs**: Your applications bundle Dyte Core SDKs (and UI Kits) to
+  acquire, transmit and play media, and manage network connections.
+
+  - **Core SDKs**: These SDKs empower you to create custom video and voice calls with real-time communication. They are highly customizable and easy to integrate.
+  - **UI Kit**: By utilizing Dyte's prebuilt design library of UI components, you can seamlessly integrate video and voice calls into your app or website within minutes.
+
+- **Developer Portal**: The Developer Portal serves as a comprehensive platform, offering access to meeting logs, API key management, billing operations, and various other functionalities in one place.
+
+# Getting Started With Dyte
+
+This topic gives a quick
 walkthrough of the steps involved in integrating high-quality real-time
 communication features into your app using Dyte.
 
-### Components of Dyte
-
-- **Backend HTTP REST APIs**: Your backend uses Dyte REST APIs to perform
-  actions such as, create meetings, add participants to a meeting etc
-- **Frontend SDKs**: Your applications bundle Dyte Core SDKs (and UI Kits) to
-  acquire, transmit and play media, and manage network connections.
-- **Developer Portal**: Your one-stop shop for all meeting logs, API keys,
-  billing and more
-
-### Integrate Dyte
+## Integrate Dyte
 
 1. To get started with Dyte, you must first register in the
    [Developer portal](https://dev.dyte.io)

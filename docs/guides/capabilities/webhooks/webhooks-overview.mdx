@@ -1,0 +1,80 @@
+---
+sidebar_position: 1
+---
+
+# Webhooks Overview
+
+Webhooks are
+[HTTP-based](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) callback
+functions that can be defined by the user to allow lightweight, event-driven
+communication between two APIs.
+
+Setting up a webhook involves the following steps:
+
+1. The client provides a unique URL to the server API and specifies which event
+   it wanted to be notified about.
+2. Once the webhook is configured, the server automatically sends the relevant
+   payload to the client's webhook URL when the specified event occurs.
+
+Dyte uses webhooks to notify your application when an event happens. Webhooks
+are particularly useful for asynchronous events, such as when a recording is
+uploaded or when a participant joins your meeting.
+
+## How does Dyte use Webhooks?
+
+A webhook enables Dyte to push real-time updates to your applications. When the
+event occurs, Dyte makes an HTTP request (usually a POST) to the URL you
+configured for the webhook and sends the updates to your application as a JSON
+payload. You can then use these events to perform actions in your backend
+systems. To learn more, see Dyte webhook events overview.
+
+Webhooks are particularly useful for asynchronous events, such as when a
+recording is uploaded or when a participant joins the meeting.
+
+Let’s say you have a meeting that you want to record. You have registered to
+receive the `meeting.started` and `meeting.ended` event. A webhook notifies your
+app when the meeting starts and when it ends. After your webhook endpoint
+receives the meeting.started event, your webhook function can then run backend
+actions to start recording the meeting and end the recording of the meeting when
+`meeting.ended` event is received.
+
+## Anatomy of a Webhook
+
+A webhook HTTP request generally consists of the following:
+
+- Header
+- Payload
+
+### Header
+
+For each event that triggers the webhook, a header is included to describe the event. The header provides information about the request, such as content type, webhook ID, UUID, signature details, and so on.
+
+<img
+  src="/static/webhook/webhook_id.png"
+  width="600"
+  height="300"
+  alt="webhook-id"
+  className="webhook-id-use"
+/>
+
+The following headers are of more importance for your security and reliability:
+
+| **Header**        | **Description**                                                                                                                                                                                                                                                                                                                                               |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `dyte-webhook-id` | Webhook IDs are used to uniquely identify a specific webhook endpoint or events. See [Verify using webhook IDs](/guides/capabilities/webhooks/signatures#verify-using-webhook-ids).                                                                                                                                                                           |
+| `dyte-uuid`       | This is a unique UUID identifying the event.                                                                                                                                                                                                                                                                                                                  |
+| `dyte-signature`  | Dyte verifies the webhook events it sends to your endpoints by including a signature in the dyte-signature header of each event. This allows you to confirm that the event came from Dyte and not a malicious server impersonating Dyte. See [Verify Webhooks Using Dyte's Signature](/guides/capabilities/webhooks/signatures#verify-using-dytes-signature). |
+
+### Payload
+
+Payload contains information about the event that triggered the webhook, such as user data or a change in state.
+
+For example,
+
+```json
+{
+  "event": "livestreaming.statusUpdate",
+  "streamId": "d231d346-c422-43a6-a324-c0d65b79c8a7",
+  "status": "OFFLINE"
+}
+```

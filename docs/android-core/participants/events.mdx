@@ -7,7 +7,7 @@ tags: [mobile-core, participants, self]
 
 You can subscribe to events for all participants by implementing
 `DyteParticipantEventsListener` callback and then passing that object to
-`meeeting.addParticipantEventsListener(dyteParticipantEventsListener)` method.
+`meeting.addParticipantEventsListener(dyteParticipantEventsListener)` method.
 Here are the supported methods:
 
 ## Participant joined
@@ -83,8 +83,8 @@ Trigger an event when any participant starts / stops audio.
 
 ```kotlin
     private val participantEventsListener = object : DyteParticipantEventsListener {
-        override fun onAudioUpdate(audioEnbled: Boolean, participant: DyteMeetingParticipant) {
-            super.onAudioUpdate(audioEnbled, participant)
+        override fun onAudioUpdate(audioEnabled: Boolean, participant: DyteMeetingParticipant) {
+            super.onAudioUpdate(audioEnabled, participant)
             // your code here to handle participant audio toggle update
         }
     }

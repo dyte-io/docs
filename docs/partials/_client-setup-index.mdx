@@ -1,0 +1,31 @@
+import { Code } from 'react-feather';
+
+<span>
+  After integrating Dyte, the next step is to initialize your frontend by
+  installing the SDK and initializing the frontend SDKs with the `authToken`.
+  The `authToken` is returned by the{' '}
+  <a href={props.addParticipantPath}>Add Participant API</a>.
+</span>
+
+Dyte offers a UI kit for utilizing design library components and a Core SDK for building a custom user interface without complex media layers. To view code samples and begin with your preferred SDK, refer to the web and mobile quickstart guides of your choice.
+
+<CardSection id="client-setup-web" title="Web" hasSubSections>
+  <CardSection id="web-sdk" title="">
+    <Card title="React" to="./client-setup/react" icon={<ReactIcon />} />
+    <Card title="Angular" to="./client-setup/angular" icon={<AngularIcon />} />
+    <Card
+      title="Javascript"
+      to="./client-setup/javascript"
+      icon={<HTMLIcon />}
+    />
+  </CardSection>
+</CardSection>
+
+<CardSection id="client-setup-mobile" title="Mobile" hasSubSections>
+  <CardSection id="mobile-sdk" title="">
+    <Card title="iOS" to="./client-setup/ios" icon={<SwiftIcon />} />
+    <Card title="Android" to="./client-setup/android" icon={<KotlinIcon />} />
+    {/* <Card title="React Native" to="./client-setup" icon={<ReactIcon />} /> */}
+    <Card title="Flutter" to="./client-setup/flutter" icon={<FlutterIcon />} />
+  </CardSection>
+</CardSection>
