@@ -73,7 +73,7 @@ export default function APIReferenceSection() {
                 </span>
               </Link>
               <div className="text-zinc-400">
-                Delete a particpant from the meeting
+                Delete a participant from the meeting
               </div>
             </li>
           </ul>

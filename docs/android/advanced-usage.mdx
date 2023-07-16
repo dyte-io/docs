@@ -15,7 +15,6 @@ val meetingInfo = DyteMeetingInfoV2(
 val config = DyteUIKitConfig(
   activity = this,
   dyteMeetingInfo = meetingInfo,
-  designTokens = getImarticusTheme()
 )
 val dyteUIKit = DyteUIKitBuilder.build(config)
 ```
@@ -129,7 +128,7 @@ This section defines all the possible properties and actions that can be taken.
 To get hold of participant you want to manage, do as follows
 
 ```kotlin
-val particiapnt = meeting.participants.joined.find { it.id = "my_participant_id" }
+val participant = meeting.participants.joined.find { it.id = "my_participant_id" }
 ```
 
 #### Disable participant's audio stream
@@ -137,7 +136,7 @@ val particiapnt = meeting.participants.joined.find { it.id = "my_participant_id"
 To remotely turn the participant's mic off, you can do
 
 ```kotlin
-particiapnt.disableAudio()
+participant.disableAudio()
 ```
 
 #### Check if participant's video is on
@@ -145,7 +144,7 @@ particiapnt.disableAudio()
 To check whether a participant's video is on (camera is turned on), you can use
 
 ```kotlin
-val video = particiapnt.videoEnabled;
+val video = participant.videoEnabled;
 ```
 
 which sets the value of `video` to a boolean specifying if the camera is on or
@@ -156,7 +155,7 @@ not.
 If the participant's video is on, you can get the associated video stream using
 
 ```kotlin
-val videoStream = particiapnt.getVideoView()
+val videoStream = participant.getVideoView()
 ```
 
 #### Disable participant's audio stream
@@ -164,7 +163,7 @@ val videoStream = particiapnt.getVideoView()
 To remotely turn the participant's camera off, you can do
 
 ```kotlin
-particiapnt.disableVideo()
+participant.disableVideo()
 ```
 
 #### Check if the participant is pinned to the grid
@@ -173,7 +172,7 @@ To check whether a participant's video is pinned to the meeting grid; by the
 host, by the user, by the preset, or by any other mechanism; you can use
 
 ```kotlin
-val pinned = particiapnt.isPinned;
+val pinned = participant.isPinned;
 ```
 
 which sets the value of `pinned` to a boolean specifying whether the video is
@@ -184,7 +183,7 @@ pinned or not.
 You can pin a participant's video to the grid using
 
 ```kotlin
-particiapnt.pin();
+participant.pin();
 ```
 
 #### Unpin a participant video from the grid
@@ -192,5 +191,5 @@ particiapnt.pin();
 You can unpin a participant's video from the grid using
 
 ```kotlin
-particiapnt.unpin();
+participant.unpin();
 ```

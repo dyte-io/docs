@@ -79,8 +79,8 @@ piece which triggers display on/off.
 extension MeetingViewModel: DyteSelfEventsListener {
     func onProximityChanged(isNear: Bool) {
       // isNear
-      // if true, display should be turned off, as user might be speaking through earpience
-      // if false, display should be tunred on, as user might be looking at display and listening through speaker/earphones.
+      // if true, display should be turned off, as user might be speaking through earpiece
+      // if false, display should be turned on, as user might be looking at display and listening through speaker/earphones.
     }
 }
 ```
@@ -109,7 +109,7 @@ extension MeetingViewModel: DyteSelfEventsListener {
 
 You can subscribe to events for all participants by implementing
 `DyteParticipantEventsListener` callback and then passing that object to
-`meeeting.addParticipantEventsListener(dyteParticipantEventsListener)` method.
+`meeting.addParticipantEventsListener(dyteParticipantEventsListener)` method.
 Here are the supported methods:
 
 ### Participant joined
@@ -249,7 +249,7 @@ the recording. The valid states are `IDLE`, `STARTING`, `RECORDING`, and
 
 The changes to `meeting.recording.recordingState` can be listened by
 implementing `onMeetingRecordingStateUpdated` from
-`DyteMeetingRoomEventsListener`. You can attach this obserbver by calling
+`DyteMeetingRoomEventsListener`. You can attach this observer by calling
 `meeting.addMeetingRoomEventsListener(listener)`.
 
 ```kotlin

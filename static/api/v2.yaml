@@ -822,7 +822,7 @@ paths:
     post:
       summary: Kick participants from an active session
       description: Kicks one or more participants from an active session using user ID or custom participant ID.
-      operationId: KickPartcipants
+      operationId: KickParticipants
       parameters:
         - $ref: '#/components/parameters/meetingId'
       tags:
@@ -1608,7 +1608,7 @@ paths:
           $ref: '#/components/responses/DeleteParticipant'
         '500':
           $ref: '#/components/responses/GenericError'
-      description: Deletes a participant for the given meeting and partcipant ID.
+      description: Deletes a participant for the given meeting and Participant ID.
       tags:
         - Meetings
   '/meetings/{meeting_id}/participants/{participant_id}/token':
@@ -4517,7 +4517,7 @@ components:
             participantNotFound:
               $ref: '#/components/examples/ParticipantNotFoundResponse'
     KickAllParticipants:
-      description: Kick all participants from a meeeting
+      description: Kick all participants from a meeting
       content:
         application/json:
           schema:
