@@ -4,95 +4,57 @@ sidebar_position: 1
 sidebar_class_name: guide_sidebar_index
 ---
 
-import {
-  ChatMultipleRegular,
-  LiveRegular,
-  MicRegular,
-  VideoRegular,
-} from '@fluentui/react-icons';
+import ProductSection from '/docs/partials/_product-section.mdx';
 
 # Guides
 
+<ProductSection></ProductSection>
+
 <CardSection
-  id="Quickstart"
-  title="Quickstart"
-  description="Learn how to integrate live video and voice, live stream, and chat experiences into your product."
->
-  <Card
-    title="Live Video"
-    icon={<VideoRegular />}
-    to="/guides/video-conf/intro-video-conf"
-    description="Add live video functionality to your web, mobile, and desktop applications."
-  />
-  <Card
-    title="Voice Conferencing"
-    icon={<MicRegular />}
-    to="/guides/voice-conf/intro-voice-conf"
-    description="Integrate reliable voice calling experiences into your product."
-  />
-  <Card
-    title="Interactive Livestreaming"
-    icon={<LiveRegular />}
-    to="/guides/livestream/livestream-overview"
-    description="Get started with interactive live streaming and broadcast to a large audience"
-  />
-  <Card
-    title="Realtime Chat"
-    icon={<ChatMultipleRegular />}
-    to="/guides/realtime-chat/intro-chat"
-    description="Create interactive and collaborative in-app chat experiences."
-  />
-</CardSection>
-<CardSection
-  id="features"
-  title="Features"
+  id="capabilities"
+  title="Capabilities"
   description="Learn how to use key features of Dyte, such as recording, breakout rooms, webinars, and more."
 >
   <Card
     title="Recording"
-    to="/guides/features/recording/recording-overview"
-    description="Record audio, video, and plugin interactions of multiple meeting users in a single file using composite recording."
+    to="/guides/capabilities/recording/recording-overview"
+    description="Understand Dyte's recording capabilities and record audio, video, whiteboard and other custom elements"
   />
   <Card
     title="Webinar"
-    to="/guides/features/webinar/intro-webinar"
-    description="Leverage Dyte's Webinar for hosting and delivering one-to-many events to larger audiences."
+    to="/guides/capabilities/webinar/intro-webinar"
+    description="Leverage Dyte's Webinar feature for one-to-many events with larger audiences."
   />
   <Card
     title="Webhooks & Events"
-    to="/guides/features/webhooks/webhooks-overview"
-    description="Utilize webhooks to push real-time updates to your applications."
+    to="/guides/capabilities/webhooks/webhooks-overview"
+    description="Utilize webhooks to push real-time updates to your server."
   />
   <Card
     title="Breakout Rooms"
-    to="/guides/features/breakoutroom/introduction-breakout-rooms"
+    to="/guides/capabilities/breakoutroom/introduction-breakout-rooms"
     description="Facilitate focused discussions and collaboration with breakout rooms."
   />
   <Card
     title="No Code Integration"
-    to="/guides/features/embed"
+    to="/guides/capabilities/embed"
     description="Integrate Dyte into your project using an iFrame, eliminating the need for SDKs."
   />
   <Card
     title="Presets"
-    to="/guides/features/presets"
-    description="Configure meeting presets for tailored participant permissions and UI configurations."
-  />
-  <Card
-    title="Customizations"
-    to="/guides/features/customization"
-    description="Customize the experience."
+    to="/guides/capabilities/presets"
+    description="Understand what Presets are and how they can be used to configure the meeting experience"
   />
   <Card
     title="Export chat"
-    to="/guides/features/export-chat-dump"
-    description="Retrieve all chat messages of a Dyte session programmatically."
+    to="/guides/capabilities/export-chat-dump"
+    description="Retrieve all chat messages of a Dyte meeting through the REST API"
   />
 </CardSection>
 <CardSection
   id="migration"
-  title="Migrate to Dyte"
-  description="Learn how to quickly migrate from other providers."
+  title="Migrate from Twilio/Vonage"
+  description="Learn the differences and how to quickly migrate from Twilio/Vonage."
 >
   <Card
     title="Migrate from Twilio"
@@ -111,6 +73,6 @@ import {
   <Card
     title="REST APIs"
     to="/guides/rest-apis/quickstart"
-    description="Elevate your developer experience with the enhanced capabilities of Dyte's v2 REST APIs."
+    description="Understand how our REST APIs work and how to get started with them"
   />
 </CardSection>

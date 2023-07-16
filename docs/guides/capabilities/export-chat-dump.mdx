@@ -1,0 +1,101 @@
+---
+title: 'Export Chat Dump of a Session'
+sidebar_position: 8
+---
+
+# Export Chat Dump of a Session
+
+You can programmatically retrieve all chat messages of a Dyte session in the following ways:
+
+- Using [Chat Replay API](/api/?v=v2#/operations/GetSessionChat)
+- Setting up webhook for the [meeting.chatSynced](/guides/capabilities/webhooks/webhook-events#meetingchatsynced) event
+
+This guide walks you through the steps involved in exporting chat dump of a session using Chat Replay API.
+
+If you wish to use webhooks, see [Set Up Webhooks](/guides/capabilities/webhooks/webhooks-and-events) and [meeting.chatSynced](/guides/capabilities/webhooks/webhook-events#meetingchatsynced).
+
+:::info Note
+
+Chat Replay API is not enabled by default for your organization.
+[Contact us](https://dyte.io/contact) to enable the Chat Replay API for your
+organization.
+
+:::
+
+Once [Chat Replay API](/api/?v=v2#/operations/GetSessionChat) is enabled, do the
+following:
+
+1. Get the `chat_download_url` using
+   [Chat Replay API](/api/?v=v2#/operations/GetSessionChat).
+2. Download the chat dump CSV file.
+
+## Get `chat_download_url`
+
+To get the `chat_download_url`, make a `HTTP GET` request to
+[Chat Replay API](/api/?v=v2#/operations/GetSessionChat). The API returns the
+following:
+
+```json
+{
+  "success": true,
+  "data": {
+    "chat_download_url": "string",
+    "chat_download_url_expiry": "string"
+  }
+}
+```
+
+- The `chat_download_url` is a URL that allows you to download the entire chat dump of a session in CSV format from AWS S3.
+- `chat_download_url_expiry` indicates the expiry timestamp of the `chat_download_url`. If the `chat_download_url` gets expired, simply call this endpoint again to obtain a new download URL.
+
+## Download the chat dump file
+
+You can download the chat dump file in CSV format by making `HTTP GET` request
+to `chat_download_url` that you obtained in the previous step.
+
+The process of downloading any file from a HTTP URL in JavaScript differs
+slightly based on whether you are doing it on client side or server side.
+
+### Download on the client
+
+To download at client side, do the following:
+
+1. Make a GET request to the `chat_download_url`.
+2. Convert response to blob.
+3. Create an invisible `<a>` HTML element with download attribute and add the
+   above blob to it's `href`.
+4. Programmatically click on the `<a>` element so that the browser automatically
+   starts downloading and then remove the `<a>` element.
+
+### Download on the server
+
+We use `Node.js` streams to download files on the server, so the steps are as
+follows:
+
+1. Create a writable stream for a local file.
+2. Make a GET request to `chat_download_url`.
+3. Get a readable stream using `res.body` and pipe to the writable stream
+   created in the first step.
+
+## Example: CSV chat dump file
+
+This CSV file contains all the chat messages along with the participant's name
+and some other metadata. It includes the following column headings:
+
+- `id`: Unique chat message ID
+- `participantId`: ID of the participant who sent the message
+- `sessionId`: The session ID from which the chat message was sent
+- `meetingId`: The ID of the meeting to which this session belongs
+- `displayName`: Display name of the participant who sent this message
+- `pinned`: A boolean that indicates if the current message was pinned or not
+- `isEdited`: A boolean that indicates if the current message was edited or not
+- `payloadType`: An ENUM that indicates the type of payload sent in the chat
+  message. It can be one of TEXT_MESSAGE, IMAGE_MESSAGE, FILE_MESSAGE
+- `payload`: The actual payload sent in the chat message
+- `createdAt`: Timestamp when this chat message was sent
+
+![Sample Chat Dump File](https://dyte.io/blog/content/images/size/w1600/2022/11/Dyte-Blog---Sample-Chat-Dump.png)
+
+For more information on downloading the file, refer to
+[How to Fetch Chat History of a Dyte Session](https://dyte.io/blog/fetch-chat-history-of-a-dyte-session/)
+blog.

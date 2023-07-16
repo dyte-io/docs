@@ -1,0 +1,220 @@
+---
+title: 'HTML'
+sidebar_position: 1
+---
+
+import {
+  HTMLUIKitUtilsInstallation,
+  HTMLUIKitInstallation,
+} from '@site/src/components/LatestInstallation';
+
+## Quickstart
+
+<span>
+  This quickstart shows how to use Dyte's {props.product} to your web
+  applications with a variety of meeting UI customization options.
+</span>
+
+Dyte also offers the flexibility to build your own UI using various individual
+components. This offers limitless customization options to tailor the UI to fit
+your requirements. For more information, see the Build your own UI section.
+
+For getting started quickly, you can use our [sample code](https://github.com/dyte-io/html-samples#samples). You can clone
+and run a sample application from the [HTML UI Kit GitHub repository](https://github.com/dyte-io/html-samples).
+
+## Objective
+
+You'll learn how to:
+
+- Install the Dyte client side SDKs
+- Initialize Dyte Client
+- Bringing up a UI
+- Go live!
+
+## Before Getting Started
+
+- Make sure you've a mechanism to get `authToken` from your server side which you would have received as part of [Add Participant](/guides/live-video/build-live-video-app#step-5-add-participants) call.
+
+## Step 1: Install
+
+We are going to install 2 packages.
+
+- `@dytesdk/web-core`: This core package powers video, voice, livestream and chat SDKs. This is a required package.
+- `@dytesdk/ui-kit`: Contains Dyte UI components which can be used with core to easily build your own UI, including a prebuilt UI component. If you want to build your own UI you can skip installing this package.
+
+You can install the SDKs using CDN, npm, or Yarn.
+
+<Tabs groupId="cdn-npm">
+  <TabItem value="cdn" label="CDN" default>
+
+To set up web-core and UI Kit components, add the following script tags inside
+the `<head />` tag.
+
+<HTMLUIKitInstallation />
+
+You can also import utilities or any other export from CDN:
+
+<HTMLUIKitUtilsInstallation />
+  </TabItem>
+  <TabItem value="npm" label="npm">
+```bash
+npm install @dytesdk/web-core @dytesdk/ui-kit
+```
+  </TabItem>
+
+  <TabItem value="yarn" label="yarn">
+```bash
+yarn add @dytesdk/web-core @dytesdk/ui-kit
+```
+  </TabItem>
+</Tabs>
+
+### Version
+
+|                   |                                                                                                                  |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------- |
+| @dytesdk/web-core | [![npm version](https://badge.fury.io/js/@dytesdk%2Fweb-core.svg)](https://badge.fury.io/js/@dytesdk%2Fweb-core) |
+| @dytesdk/ui-kit   | [![npm version](https://badge.fury.io/js/@dytesdk%2Fui-kit.svg)](https://badge.fury.io/js/@dytesdk%2Fui-kit)     |
+
+## Step 2: Prepare meeting object
+
+Here's a series of steps that you need to perform:
+
+### Fetch the `authToken` from your server side.
+
+```html {10}
+<body>
+  <script>
+    const get_auth_token = async () => {
+      // fetch('https://your-server/path-to-token');
+      return '<auth-token>';
+    };
+
+    const init = async () => {
+      // Fetch auth token from server side
+      const authToken = await get_auth_token();
+    };
+    init();
+  </script>
+</body>
+```
+
+### Call the `DyteClient.init()` method from the `web-core` package and pass the `authToken`:
+
+This will establish the connection with the Dyte server. You should keep the returned `meeting` object.
+
+```html {12-18}
+<body>
+  <script>
+    const get_auth_token = async () => {
+      // fetch('https://your-server/path-to-token');
+      return '{participant-auth-token}';
+    };
+
+    const init = async () => {
+      // Fetch auth token from server side
+      const authToken = await get_auth_token();
+
+      const meeting = await DyteClient.init({
+        authToken,
+        defaults: {
+          audio: true,
+          video: true,
+        },
+      });
+    };
+
+    init();
+  </script>
+</body>
+```
+
+Now, you have established the connection with the Dyte meeting server
+successfully.
+
+## Step 3: Bring up the UI
+
+The `meeting` object serves as the link between web-core and UI Kit, allowing them to communicate with one another. Once the UI Kit has the meeting object, it can join and leave meetings, and so on.
+Dyte offers a UI Kit that is highly customizatble and uses the `meeting` instance that you just created.
+
+### UI Kit
+
+A single `<dyte-meeting />` component that is feature rich and renders a complete meeting UI and handles all events.
+
+```html {2,21}
+<body>
+  <dyte-meeting id="my-meeting"></dyte-meeting>
+  <script>
+    const get_auth_token = async () => {
+      // fetch('https://your-server/path-to-token');
+      return '{participant-auth-token}';
+    };
+
+    const init = async () => {
+      // Fetch auth token from server side
+      const authToken = await get_auth_token();
+
+      const meeting = await DyteClient.init({
+        authToken,
+        defaults: {
+          audio: true,
+          video: true,
+        },
+      });
+
+      document.getElementById('my-meeting').meeting = meeting;
+    };
+
+    init();
+  </script>
+</body>
+```
+
+You can still use
+
+### Build your own UI
+
+If you want more customizations, pick the components that are needed and build the UI that suits your need using low level APIs that our core SDK offers [here](/web-core/introduction).
+
+```html {2,21}
+<body>
+  <div>
+    <dyte-grid id="my-grid"></dyte-grid>
+    <!--your own UI -->
+    <div class="controlbar">
+      <!-- Your own components -->
+      <button id="mic">Toggle Mic</button>
+    </div>
+  </div>
+  <script>
+    const get_auth_token = async () => {
+      // fetch('https://your-server/path-to-token');
+      return '{participant-auth-token}';
+    };
+
+    const init = async () => {
+      // Fetch auth token from server side
+      const authToken = await get_auth_token();
+
+      const meeting = await DyteClient.init({
+        authToken,
+        defaults: {
+          audio: true,
+          video: true,
+        },
+      });
+
+      document.getElementById('my-grid').meeting = meeting;
+      document.getElementById('mic').addEventListener('click', (e) => {
+        if (meeting.self.audioEnabled) {
+          meeting.self.disableAudio();
+        } else {
+          meeting.self.enableAudio();
+        }
+      });
+    };
+
+    init();
+  </script>
+</body>
+```

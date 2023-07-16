@@ -23,19 +23,19 @@ const guides: Guide[] = [
     title: 'Start Recording a Meeting',
     icon: RecordRegular,
     text: 'Check out an example of this integration of recording a meeting.',
-    link: '/guides/features/recording',
+    link: '/guides/capabilities/recording',
   },
   {
-    title: 'Migrate from Twilio or OpenTok',
+    title: 'Migrate from Twilio',
     icon: VideoRegular,
     text: 'Migration simplified. Refer the guide.',
-    link: '/guides/migration',
+    link: '/guides/migration/twilio/concepts-twilio-vs-dyte',
   },
   {
     title: 'Create a Breakout Room',
     icon: AppsAddInRegular,
     text: 'Easily split a meeting in separate sessions.',
-    link: '/guides/features/breakoutroom/create-breakout-rooms',
+    link: '/guides/capabilities/breakoutroom/create-breakout-rooms',
   },
 ];
 

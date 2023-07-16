@@ -1,0 +1,45 @@
+---
+title: Restream to Social Platforms
+sidebar_position: 5
+---
+
+# Restream to Social Platforms
+
+Dyte can restream your meeting to any platform that supports an RTMP
+endpoint, such as YouTube, Twitch, or LinkedIn.
+
+## Prerequisites
+
+- [Create a meeting](/api?v=v2#/operations/create_meeting)
+- [Add a participant](/guides/livestream/build-livestream-app#step-5-add-participants)
+
+## Step 1: Initiate meeting recording
+
+To enable restreaming of a Dyte meeting, you will first need to start recording the meeting. In the [Start recording a meeting](/api#/operations/start_recording) API, provide the `meeting_id` of the meeting you wish to restream.
+
+## Step 2: Configure restreaming settings
+
+In the same [Start recording a meeting](/api#/operations/start_recording) API, configure the restreaming settings.
+
+Specify the desired **RTMP input URL** and **stream key** where you want the meeting video to be streamed.
+
+:::info Note
+Your stream key is generated when [creating a livestream](/guides/rest-apis/livestream-dyte-meeting#step-2-create-a-live-stream).
+:::
+
+For example, if you want to stream it to [restream.io](https://restream.io), do
+the following:
+
+```shell
+curl --request POST \
+  --url https://api.dyte.in/v2/organizations/orgid/meetings/meetingid/recording \
+  --header 'Authorization: APIKEY yourapi-key' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "liveStreamingConfig": {
+        "rtmpUrl": "rtmp://live.restream.io/live/your-stream-key"
+    }
+}'
+```
+
+You may notice a few seconds of lag between the meeting and the stream.
