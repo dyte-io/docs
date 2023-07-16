@@ -1,42 +1,33 @@
----
-title: Quickstart
-description: Quickstart guide for Dyte's Flutter UI Kit.
-sidebar_position: 2
----
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import { AndroidCoreLatestInstallation } from '@site/src/components/LatestInstallation';
 
-# Quickstart
+## Quickstart
 
-This quickstart shows how to use Dyte's Flutter UI Kit SDK to add live video and
-audio to your Flutter applications.
+<span class="block mb-2">
+  This quickstart shows how to add Dyte's {props.product} SDK to your{' '}
+  Flutter applications
+</span>
 
-For getting started quickly, you can use our sample code. You can clone and run
-a sample application from the
-[Flutter UI Kit Sample App GitHub repository](https://github.com/dyte-io/mobile-samples/tree/main/flutter_uikit).
+<span class="block mb-2">Further down this guide we also explain how Dyte's UI component library can help to build your UI faster with components specially made for {props.product} applications.</span>
+
+You can also checkout our
+[sample code](https://github.com/dyte-io/mobile-samples#samples) for Flutter. You can clone
+and run a sample application from the
+[Android Samples GitHub repository](https://github.com/dyte-io/mobile-samples).
 
 ## Objective
 
-You’ll learn how to:
+You'll learn how to:
 
-- Install the Dyte SDK
-- Configuring Android & iOS permissions
-- Initialize the SDK
-- Configure a Dyte meeting
-- Launch the meeting UI
+- Install the Dyte client side SDKs
+- Initialize Dyte Client
+- Bringing up a UI
+- Go live!
 
 ## Before Getting Started
 
-Make sure you've read the
-[Getting Started with Dyte](https://docs.dyte.io/getting-started) topic and
-completed the steps in the
-[Integrate Dyte](https://docs.dyte.io/getting-started#integrate-dyte) section.
-You must complete the following steps:
-
-- Create a [Dyte Developer Account](https://dev.dyte.io/)
-- Create [Presets](https://dev.dyte.io/roles-presets)
-- Create a
-  [Dyte Meeting](https://docs.dyte.io/api/?v=v2#/operations/create_meeting)
-- [Add Participant](https://docs.dyte.io/api/?v=v2#/operations/add_participant)
-  to the meeting
+- Make sure you've a mechanism to get `authToken` from your server side which you would have received as part of [Add Participant](/guides/live-video/build-live-video-app#step-5-add-participants) call.
 
 ## Step 1: Install the SDK
 
@@ -99,19 +90,13 @@ After getting the `authToken`, you need to create the `DyteMeetingInfoV2` object
 final meetingInfoV2 = DyteMeetingInfoV2(authToken: '<auth_token>');
 ```
 
+
 ## Step 4: Initialize the SDK
 
 The `DyteUIKit` is the main class of the SDK. It is the entry point and the only
 class required to initialize Dyte UI Kit SDK.
 
 ```dart
-/* Passing `configuration` is optional, it is used to setup the theme of Dyte UI Kit. */
-final configurations = Configurations(
-  baseBackground: Color(yourBaseColor),
-  basePrimary: Color(yourPrimaryColor),
-  textColor: Color(yourTextColor),
-);
-
 /* Passing the DyteMeetingInfoV2 object `meetingInfoV2` you created in the Step 3,
    and your context in `clientContext` parameter. */
 
@@ -143,7 +128,7 @@ class DyteMeetingPage extends StatelessWidget {
 
 ```
 
-Voila! You're all done. Here is the pictorial representation of all the configuration options passed.
+Voila! You're all done. 
 
 <div
   id="one"
