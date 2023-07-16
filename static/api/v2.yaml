@@ -90,20 +90,14 @@ paths:
                         type: string
                         enum:
                           - LIVE
-                          - OFFLINE
+                          - IDLE
                           - ERRORED
+                          - INVOKED
                       name:
                         type: string
-                        nullable: true
                       meeting_id:
                         type: string
                         nullable: true
-                      ingest_seconds:
-                        type: number
-                        description: The time duration for which the input was given or the meeting was streamed.
-                      viewer_seconds:
-                        type: number
-                        description: The total view time for which the viewers watched the stream.
                       ingest_server:
                         type: string
                         description: The server URL to which the RTMP encoder should send the video and audio data.
@@ -116,6 +110,11 @@ paths:
                       playback_url:
                         type: string
                         description: The web address that viewers can use to watch the livestream.
+                      disabled:
+                        type: boolean
+                        x-stoplight:
+                          id: agr64mp2vma62
+                        description: Specifies if the livestream was disabled.
               examples:
                 example-1:
                   value:
@@ -146,13 +145,43 @@ paths:
         - schema:
             type: integer
           in: query
-          name: limit
-          description: 'Specifies the number of results to return on each page. The default value is 10. '
+          name: per_page
+          description: Number of results per page.
         - schema:
             type: integer
           in: query
-          name: offset
-          description: Sets the first position to return from the results of the query. The default is 0.
+          name: page_no
+          description: The page number from which you want your page search results to be displayed.
+        - schema:
+            type: string
+            enum:
+              - LIVE
+              - IDLE
+              - ERRORED
+              - INVOKED
+          in: query
+          name: status
+          description: Specifies the status of the operation.
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: start_time
+          description: Specify the start time range in ISO format to access the live stream.
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: end_time
+          description: Specify the end time range in ISO format to access the live stream.
+        - schema:
+            type: string
+            enum:
+              - ASC
+              - DSC
+          in: query
+          name: sort_order
+          description: Specifies the sorting order for the results.
       responses:
         '200':
           description: OK
@@ -165,84 +194,112 @@ paths:
                 properties:
                   success:
                     type: boolean
-                  message:
-                    type: string
                   data:
                     type: object
                     properties:
-                      limit:
-                        type: integer
-                        description: The number of results returned on each page. The default value is 10.
-                      total:
-                        type: integer
-                        description: Total number of livestreams returned.
-                      total_count:
-                        type: integer
-                        description: Total number of livestreams returned.
-                      page_count:
-                        type: integer
-                        description: Total number of pages returned.
-                      current_page:
-                        type: integer
-                        description: The current page number that is returned.
-                      livestreams:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            status:
-                              type: string
-                              enum:
-                                - LIVE
-                                - OFFLINE
-                                - ERRORED
-                            name:
-                              type: string
-                              description: Name of the livestream.
-                              nullable: true
-                            meeting_id:
-                              type: string
-                              nullable: true
-                            ingest_seconds:
-                              type: number
-                              description: The time duration for which the input was given or the meeting was streamed.
-                            viewer_seconds:
-                              type: number
-                              description: The total view time for which the viewers watched the stream.
-                            ingest_server:
-                              type: string
-                              description: The server URL to which the RTMP encoder sends the video and audio data.
-                            id:
-                              type: string
-                              description: The livestream ID.
-                            stream_key:
-                              type: string
-                              description: Unique key for accessing each livestream.
-                            playback_url:
-                              type: string
-                              description: The web address that viewers can use to watch the livestream.
+                      status:
+                        x-stoplight:
+                          id: oe3trqljjekgt
+                        enum:
+                          - LIVE
+                          - IDLE
+                          - ERRORED
+                          - INVOKED
+                      id:
+                        type: string
+                        x-stoplight:
+                          id: 0ye8a9cpfilt4
+                        description: The ID of the livestream.
+                        format: uuid
+                        example: 3fd739f4-3c41-456e-bfba-6ebd51e16d2d
+                      name:
+                        type: string
+                        x-stoplight:
+                          id: k2l2a3mgv7dw3
+                        description: Name of the livestream.
+                        example: test
+                      ingest_server:
+                        type: string
+                        x-stoplight:
+                          id: vvuyzsx4xwool
+                        description: The server URL to which the RTMP encoder sends the video and audio data.
+                        example: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
+                      stream_key:
+                        type: string
+                        x-stoplight:
+                          id: gzscy47k5fvz9
+                        description: Unique key for accessing each livestream.
+                        example: sk_ap-south-1_fiETVh5SNa3V_MAs0NlNCkJqTokqrMbrdWyA2naII25
+                      playback_url:
+                        type: string
+                        x-stoplight:
+                          id: aqtss2w1ubei3
+                        description: The web address that viewers can use to watch the livestream.
+                        example: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.mA2dNqrBulpi.m3u8'
+                      meeting_id:
+                        type: string
+                        x-stoplight:
+                          id: q5srp28fax71d
+                        description: ID of the meeting.
+                      created_at:
+                        type: string
+                        x-stoplight:
+                          id: yx17eqgil0wnx
+                        format: date-time
+                        description: Timestamp the object was created at. The time is returned in ISO format.
+                        example: '2023-07-15T11:48:34.753Z'
+                      updated_at:
+                        type: string
+                        x-stoplight:
+                          id: jruccp4ohxszr
+                        format: date-time
+                        description: Timestamp the object was updated at. The time is returned in ISO format.
+                        example: '2023-07-15T11:48:34.753Z'
+                      disabled:
+                        type: string
+                        x-stoplight:
+                          id: hd1567rcnmmll
+                        description: Specifies if the livestream was disabled.
+                      paging:
+                        type: object
+                        x-stoplight:
+                          id: se6iy5mh0ye2i
+                        properties:
+                          total_count:
+                            type: integer
+                            x-stoplight:
+                              id: kmdvztss5e36c
+                            example: 1
+                          start_offset:
+                            type: integer
+                            x-stoplight:
+                              id: pw88aeivpxy5c
+                            example: 1
+                          end_offset:
+                            type: integer
+                            x-stoplight:
+                              id: wr112fr83t6uy
+                            example: 1
               examples:
                 example-0:
                   summary: Get All Live streams Of An Org Staging Success
                   value:
                     success: true
-                    message: ''
                     data:
-                      limit: 10
-                      total: 17
-                      total_count: 17
-                      page_count: 2
-                      current_page: 1
-                      livestreams:
-                        - status: OFFLINE
-                          name: prdmmp-xhycsl
-                          meeting_id: null
-                          ingest_seconds: 0
-                          viewer_seconds: 0
-                          ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
-                          id: 82e363e9-6ce2-462a-a9e5-37068a729548
-                          stream_key: sk_ap-south-1_6z1GZy7HtfQh_9qCdXZVrLV8E2xDxrkPO0uzXSvB2Eg
-                          playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.rHYG1VHblte6.m3u8'
+                      - id: 3fd739f4-3c41-456e-bfba-6ebd51e16d2c
+                        name: null
+                        ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
+                        stream_key: sk_ap-south-1_fiETVh5SNa3V_MAs0NlNCkJqTokqrMbrdWyA2naII26
+                        status: IDLE
+                        meeting_id: null
+                        playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.mA2dNqrBulpi.m3u8'
+                        created_at: '2023-07-15T11:48:34.753Z'
+                        updated_at: '2023-07-15T11:48:34.753Z'
+                        disabled: false
+                    paging:
+                      total_count: 1
+                      start_offset: 1
+                      end_offset: 1
       description: 'Returns details of all livestreams associated with the given organization ID. This includes the livestreams that you have created for your organization and also the Dyte meetings that are livestreamed by that organization. If you only want details of livestreams created by your organization and not Dyte meetings that are streamed, use the `excludeMeetings` query parameter.'
       tags:
         - Live streams
@@ -301,14 +358,9 @@ paths:
                         type: string
                         enum:
                           - LIVE
-                          - OFFLINE
+                          - IDLE
                           - ERRORED
-                      name:
-                        type: string
-                        description: Name of the livestream.
-                        nullable: true
-                      meeting_id:
-                        type: string
+                          - INVOKED
                       ingest_server:
                         type: string
                         description: The server URL to which the RTMP encoder sends the video and audio data.
@@ -326,9 +378,7 @@ paths:
                   value:
                     success: true
                     data:
-                      status: OFFLINE
-                      name: null
-                      meeting_id: 188566bc-8770-4ca0-9eb3-24b594ecaf7e
+                      status: INVOKED
                       ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
                       id: 7088bba8-f522-49a8-b59b-3cd0e946bbb0
                       stream_key: sk_ap-south-1_AfnVpeYZjidO_fBpWKody7sDUOEfy9Zc6XAZegkR0Va
@@ -337,7 +387,7 @@ paths:
       tags:
         - Live streams
     get:
-      summary: Fetch all livestreams for a meeting
+      summary: Fetch all livestreams with sessions for a meeting
       parameters:
         - schema:
             type: integer
@@ -349,6 +399,16 @@ paths:
           in: query
           name: offset
           description: Sets the first position to return from the results of the query. The default is 0.
+        - schema:
+            type: integer
+          in: query
+          name: page_no
+          description: The page number from which you want your page search results to be displayed.
+        - schema:
+            type: integer
+          in: query
+          name: per_page
+          description: Number of results per page.
       responses:
         '200':
           description: OK
@@ -366,21 +426,6 @@ paths:
                   data:
                     type: object
                     properties:
-                      limit:
-                        type: integer
-                        description: The number of results returned on each page. The default value is 10.
-                      total:
-                        type: integer
-                        description: Total number of livestreams returned.
-                      total_count:
-                        type: integer
-                        description: Total number of livestreams returned.
-                      page_count:
-                        type: integer
-                        description: Total number of pages returned.
-                      current_page:
-                        type: integer
-                        description: 'The current page number that is returned. '
                       livestreams:
                         type: array
                         items:
@@ -390,20 +435,27 @@ paths:
                               type: string
                               enum:
                                 - LIVE
-                                - OFFLINE
+                                - INVOKED
                                 - ERRORED
+                                - IDLE
                             name:
                               type: string
                               description: Name of the livestream.
                               nullable: true
                             meeting_id:
                               type: string
-                            ingest_seconds:
-                              type: number
+                            created_at:
+                              type: string
                               description: The time duration for which the input was given or the meeting was streamed.
-                            viewer_seconds:
-                              type: number
+                              x-stoplight:
+                                id: 2ursflc0yjudg
+                              format: date-time
+                            updated_at:
+                              type: string
                               description: The total view time for which the viewers watched the stream.
+                              x-stoplight:
+                                id: fbm89kkhekzuk
+                              format: date-time
                             ingest_server:
                               type: string
                               description: The server URL to which the RTMP encoder sends the video and audio data.
@@ -416,28 +468,103 @@ paths:
                             playback_url:
                               type: string
                               description: The web address that viewers can use to watch the livestream.
+                            disabled:
+                              type: string
+                              x-stoplight:
+                                id: ek0x3argsduzr
+                      sessions:
+                        type: object
+                        x-stoplight:
+                          id: s8nlnnhrluzpj
+                        properties:
+                          id:
+                            type: string
+                            x-stoplight:
+                              id: u025nkbx2xmg4
+                          livestream_id:
+                            type: string
+                            x-stoplight:
+                              id: k7cjavgfzthe1
+                          err_message:
+                            type: string
+                            x-stoplight:
+                              id: 8mw67artca1ac
+                          invoked_time:
+                            type: string
+                            x-stoplight:
+                              id: fqsjh126jnr7f
+                          started_time:
+                            type: string
+                            x-stoplight:
+                              id: 8dldpat32z1ig
+                          stopped_time:
+                            type: string
+                            x-stoplight:
+                              id: zitn99bcmdq0f
+                          created_at:
+                            type: string
+                            x-stoplight:
+                              id: nfeotj6ehmynf
+                          updated_at:
+                            type: string
+                            x-stoplight:
+                              id: 7apkv2lysdpsz
+                          ingest_seconds:
+                            type: string
+                            x-stoplight:
+                              id: 0fu4ifbczmh09
+                      paging:
+                        type: object
+                        x-stoplight:
+                          id: rqq4vdz2o9uj4
+                        properties:
+                          total_count:
+                            type: integer
+                            x-stoplight:
+                              id: tdmcuu6ilrcih
+                            example: 1
+                          start_offset:
+                            type: integer
+                            x-stoplight:
+                              id: 7kou64ollx7is
+                            example: 1
+                          end_offset:
+                            type: integer
+                            x-stoplight:
+                              id: 7rfzlb0l97o87
+                            example: 1
               examples:
                 example-0:
                   summary: Get LiveStream From StreamId Success
                   value:
                     success: true
-                    message: ''
                     data:
-                      limit: 10
-                      total: 1
+                      livestream:
+                        id: b60ef3da-fbbb-441b-9168-8235b0035248
+                        name: null
+                        ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
+                        stream_key: sk_ap-south-1_x3lKBdJa8UDN_3q6PPLMJnqnbnhyrkXrOG504MUsxnZ
+                        status: LIVE
+                        meeting_id: bbb87945-df1c-49d9-8159-262a7ae6cfde
+                        playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.ob5KQUrP5Zaf.m3u8'
+                        created_at: '2023-07-15T07:08:26.634Z'
+                        updated_at: '2023-07-15T07:08:40.726Z'
+                        disabled: false
+                      sessions:
+                        - id: cf55a850-c3fd-46b5-b5d2-25b3b9aa1686
+                          livestream_id: b60ef3da-fbbb-441b-9168-8235b0035248
+                          err_message: null
+                          invoked_time: null
+                          started_time: '2023-07-15T07:08:39.000Z'
+                          stopped_time: null
+                          created_at: '2023-07-15T07:08:40.742Z'
+                          updated_at: '2023-07-15T07:08:40.742Z'
+                          ingest_seconds: 60
+                          viewer_seconds: 60
+                    paging:
                       total_count: 1
-                      page_count: 1
-                      curren_page: 1
-                      livestreams:
-                        - status: OFFLINE
-                          name: null
-                          meeting_id: 188566bc-8770-4ca0-9eb3-24b594ecaf7e
-                          ingest_seconds: 171
-                          viewer_seconds: 160.15999992
-                          ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
-                          id: 7088bba8-f522-49a8-b59b-3cd0e946bbb0
-                          stream_key: sk_ap-south-1_AfnVpeYZjidO_fBpWKody7sDUOEfy9Zc6XAZegkR0Va
-                          playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.rVKA2KM5Lunt.m3u8'
+                      start_offset: 1
+                      end_offset: 1
       description: Returns details of all livestreams for the given meeting ID.
       tags:
         - Live streams
@@ -489,7 +616,7 @@ paths:
                   value:
                     success: true
                     data:
-                      message: livestream stopped
+                      message: Stopped live stream successfully
       description: Stops active livestreaming of a meeting for the given meeting ID.
       tags:
         - Live streams
@@ -501,81 +628,7 @@ paths:
         in: path
         required: true
         description: ID of the meeting
-  '/livestreams/{stream_id}':
-    get:
-      summary: Fetch livestream details using stream ID
-      parameters: []
-      responses:
-        '200':
-          description: OK
-          headers: {}
-          content:
-            application/json:
-              schema:
-                type: object
-                x-examples: null
-                properties:
-                  success:
-                    type: boolean
-                  data:
-                    type: object
-                    properties:
-                      status:
-                        type: string
-                        enum:
-                          - LIVE
-                          - OFFLINE
-                          - ERRORED
-                      name:
-                        type: string
-                        description: Name of the livestream.
-                        nullable: true
-                      meeting_id:
-                        type: string
-                      ingest_seconds:
-                        type: number
-                        description: The time duration for which the input was given or the meeting was streamed.
-                      viewer_seconds:
-                        type: number
-                        description: The total view time for which the viewers watched the stream.
-                      ingest_server:
-                        type: string
-                        description: The server URL to which the RTMP encoder sends the video and audio data.
-                      id:
-                        type: string
-                        description: The livestream ID.
-                      stream_key:
-                        type: string
-                        description: Unique key for accessing each livestream.
-                      playback_url:
-                        type: string
-                        description: The web address that viewers can use to watch the livestream.
-              examples:
-                example-1:
-                  value:
-                    success: true
-                    data:
-                      status: OFFLINE
-                      name: null
-                      meeting_id: 188566bc-8770-4ca0-9eb3-24b594ecaf7e
-                      ingest_seconds: 171
-                      viewer_seconds: 160.15999992
-                      ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
-                      id: 7088bba8-f522-49a8-b59b-3cd0e946bbb0
-                      stream_key: sk_ap-south-1_AfnVpeYZjidO_fBpWKody7sDUOEfy9Zc6XAZegkR0Va
-                      playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.rVKA2KM5Lunt.m3u8'
-      description: Fetch details of a livestream for the given stream ID.
-      tags:
-        - Live streams
-    parameters:
-      - schema:
-          type: string
-          format: uuid
-        name: stream_id
-        in: path
-        required: true
-        description: ID of the livestream
-  '/livestreams/{livestreamId}/reset-stream-key':
+  '/livestreams/{livestream_id}/reset-stream-key':
     post:
       summary: Reset a livestream's stream key
       requestBody:
@@ -601,7 +654,65 @@ paths:
                   success:
                     type: boolean
                   data:
-                    $ref: '#/components/schemas/LivestreamBase'
+                    type: object
+                    x-stoplight:
+                      id: tkq6d7y5za34s
+                    properties:
+                      id:
+                        type: string
+                        x-stoplight:
+                          id: 9hdbrcoypcwzd
+                      name:
+                        type: string
+                        x-stoplight:
+                          id: cva5malguw20o
+                      ingest_server:
+                        type: string
+                        x-stoplight:
+                          id: lf56wa9w3eb5a
+                      stream_key:
+                        type: string
+                        x-stoplight:
+                          id: 51nskgzoid1no
+                      status:
+                        type: string
+                        x-stoplight:
+                          id: sm10jmhb2hbrd
+                      meeting_id:
+                        type: string
+                        x-stoplight:
+                          id: 6xxw0hoicncpf
+                      playback_url:
+                        type: string
+                        x-stoplight:
+                          id: w8bj0bvvg7h2d
+                      created_at:
+                        type: string
+                        x-stoplight:
+                          id: mxhwbbeeqj9m9
+                      updated_at:
+                        type: string
+                        x-stoplight:
+                          id: aw2rdz6z5q4df
+                      disabled:
+                        type: string
+                        x-stoplight:
+                          id: 5vqay20n3z0lj
+              examples:
+                Example 1:
+                  value:
+                    success: true
+                    data:
+                      id: string
+                      name: string
+                      ingest_server: string
+                      stream_key: string
+                      status: string
+                      meeting_id: string
+                      playback_url: string
+                      created_at: string
+                      updated_at: string
+                      disabled: string
             application/xml:
               schema:
                 type: object
@@ -613,23 +724,17 @@ paths:
       description: Reset a livestream's stream key for the given livestream ID.
       tags:
         - Live streams
-      operationId: asdf
+      operationId: reset-stream-key
     parameters:
       - schema:
           type: string
-        name: livestreamId
+        name: livestream_id
         in: path
         required: true
-        description: ID of the livestream. You can get the livestream ID using the create an independent livestream API.
-  '/livestreams/{livestreamId}/analytics':
-    parameters:
-      - schema:
-          type: string
-        name: livestreamId
-        in: path
-        required: true
+  /analytics/livestreams/overall:
+    parameters: []
     get:
-      summary: Get livestream analytics
+      summary: Fetch complete analytics data your livestreams
       responses:
         '200':
           description: OK
@@ -638,8 +743,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/AnalyticsResponse'
               examples: {}
-      operationId: get-livestream-analytics
-      description: Get analytics about a livestream between a given range of time
+      operationId: get-livestream-analytics-complete
+      description: Get analytics about your livestreams for the given range of time.
       tags:
         - Live streams
         - LivestreamAnalytics
@@ -672,11 +777,57 @@ paths:
             default: '1'
           in: query
           name: page_no
-  '/livestreams/{livestreamId}/enable':
+  /analytics/livestreams/daywise:
+    parameters: []
+    get:
+      summary: Fetch day wise analytics data for your livestreams
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsResponse'
+              examples: {}
+      operationId: get-livestream-analytics-daywise
+      description: Get analytics about your livestreams for the given range of time.
+      tags:
+        - Live streams
+        - LivestreamAnalytics
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: start_time
+        - schema:
+            type: string
+            format: date-time
+          in: query
+          name: end_time
+        - schema:
+            type: string
+          in: query
+          name: sort_order
+        - schema:
+            type: string
+            default: '25'
+          in: query
+          name: per_page
+        - schema:
+            type: string
+            default: '1'
+          in: query
+          name: page_no
+  '/livestreams/{livestream_id}/enable':
     parameters:
       - schema:
           type: string
-        name: livestreamId
+        name: livestream_id
         in: path
         required: true
     put:
@@ -701,11 +852,11 @@ paths:
       description: Enables a livestream for the given livestream ID.
       tags:
         - Live streams
-  '/livestreams/{livestreamId}/disable':
+  '/livestreams/{livestream_id}/disable':
     parameters:
       - schema:
           type: string
-        name: livestreamId
+        name: livestream_id
         in: path
         required: true
     put:
@@ -730,6 +881,114 @@ paths:
       description: Disables a livestream for the given livestream ID.
       tags:
         - Live streams
+  '/sessions/{session_id}/livestream-sessions':
+    parameters:
+      - schema:
+          type: string
+        name: session_id
+        in: path
+        required: true
+    get:
+      summary: Fetch live stream sessions from a session
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples: null
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      err_message:
+                        type: string
+                        enum:
+                          - LIVE
+                          - IDLE
+                          - ERRORED
+                          - INVOKED
+                        x-stoplight:
+                          id: ajlcjgry8wag1
+                      invoked_time:
+                        type: string
+                        description: Name of the livestream.
+                        x-stoplight:
+                          id: 8w0e379jakl1c
+                        nullable: true
+                      livestream_id:
+                        type: string
+                        x-stoplight:
+                          id: umdhjls9fzu2u
+                      created_at:
+                        type: string
+                        description: Timestamp the object was created at. The time is returned in ISO format.
+                        format: date-time
+                      updated_at:
+                        type: string
+                        description: Timestamp the object was updated at. The time is returned in ISO format.
+                        format: date-time
+                      id:
+                        type: string
+                        description: The livestream ID.
+                      stopped_time:
+                        type: string
+                        description: Specifies if the livestream was disabled.
+                        x-stoplight:
+                          id: fz5e8qwwjdvbv
+                      ingest_seconds:
+                        type: string
+                        x-stoplight:
+                          id: m436v28et0h4b
+                      viewer_seconds:
+                        type: string
+                        x-stoplight:
+                          id: gt6682qreyibs
+                      paging:
+                        type: object
+                        x-stoplight:
+                          id: licc3tlfn4zqs
+                        properties:
+                          total_count:
+                            type: integer
+                            x-stoplight:
+                              id: fn1g7l6m26trp
+                          start_offset:
+                            type: integer
+                            x-stoplight:
+                              id: o90qti19q4w05
+                          end_offset:
+                            type: integer
+                            x-stoplight:
+                              id: zf67fjkaz5zqg
+              examples:
+                example-1:
+                  value:
+                    success: true
+                    data:
+                      data:
+                        - id: cf55a850-c3fd-46b5-b5d2-25b3b9aa1686
+                          livestream_id: b60ef3da-fbbb-441b-9168-8235b0035248
+                          err_message: null
+                          invoked_time: null
+                          started_time: '2023-07-15T07:08:39.000Z'
+                          stopped_time: '2023-07-15T07:10:45.000Z'
+                          created_at: '2023-07-15T07:08:40.742Z'
+                          updated_at: '2023-07-15T07:11:47.274Z'
+                          ingest_seconds: 118
+                          viewer_seconds: 116.11599994199997
+                      paging:
+                        total_count: 1
+                        start_offset: 1
+                        end_offset: 1
+      operationId: get-v2-livestreamsession-session-meetingId-active-livestream
+      description: Returns details of all active livestreams for the given meeting ID.
+      tags:
+        - Live streams
+      parameters: []
   '/meetings/{meeting_id}/active-livestream':
     parameters:
       - schema:
@@ -759,20 +1018,23 @@ paths:
                         type: string
                         enum:
                           - LIVE
-                          - OFFLINE
+                          - IDLE
                           - ERRORED
+                          - INVOKED
                       name:
                         type: string
                         description: Name of the livestream.
                         nullable: true
                       meeting_id:
                         type: string
-                      ingest_seconds:
-                        type: integer
-                        description: The time duration for which the input was given or the meeting was streamed.
-                      viewer_seconds:
-                        type: integer
-                        description: The total view time for which the viewers watched the stream.
+                      created_at:
+                        type: string
+                        description: Timestamp the object was created at. The time is returned in ISO format.
+                        format: date-time
+                      updated_at:
+                        type: string
+                        description: Timestamp the object was updated at. The time is returned in ISO format.
+                        format: date-time
                       ingest_server:
                         type: string
                         description: The server URL to which the RTMP encoder sends the video and audio data.
@@ -785,21 +1047,375 @@ paths:
                       playback_url:
                         type: string
                         description: The web address that viewers can use to watch the livestream.
+                      disabled:
+                        type: string
+                        x-stoplight:
+                          id: p5vbni7rp58hd
+                        description: Specifies if the livestream was disabled.
               examples:
                 example-1:
                   value:
                     success: true
                     data:
-                      status: LIVE
+                      id: 61e03cb4-d4da-42ad-9169-f53360f4f4b4
                       name: null
-                      meeting_id: 188566bc-8770-4ca0-9eb3-24b594ecaf7e
-                      ingest_seconds: 0
-                      viewer_seconds: 0
-                      ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
-                      id: 7088bba8-f522-49a8-b59b-3cd0e946bbb0
-                      stream_key: sk_ap-south-1_AfnVpeYZjidO_fBpWKody7sDUOEfy9Zc6XAZegkR0Va
-                      playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.rVKA2KM5Lunt.m3u8'
+                      status: LIVE
+                      meeting_id: bbb03399-24e3-4b0c-90ec-172e97e636be
+                      playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.9Ztr6yk4vndX.m3u8'
+                      created_at: '2023-07-15T11:58:08.404Z'
+                      updated_at: '2023-07-15T11:58:24.278Z'
+                      disabled: false
       operationId: get-v2-meetings-meetingId-active-livestream
+      description: Returns details of all active livestreams for the given meeting ID.
+      tags:
+        - Live streams
+      parameters: []
+  '/livestreams/sessions/{livestream-session-id}':
+    parameters:
+      - schema:
+          type: string
+        name: livestream-session-id
+        in: path
+        required: true
+    get:
+      summary: Fetch details of a live stream session using live stream session ID
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples: null
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      livestream_id:
+                        type: string
+                        x-stoplight:
+                          id: z7kmz0pjqgovc
+                      created_at:
+                        type: string
+                        description: Timestamp the object was created at. The time is returned in ISO format.
+                        format: date-time
+                      updated_at:
+                        type: string
+                        x-stoplight:
+                          id: 2zf2eriza9alu
+                      err_message:
+                        type: string
+                        description: The server URL to which the RTMP encoder sends the video and audio data.
+                        x-stoplight:
+                          id: 5itonc9euk07e
+                      id:
+                        type: string
+                        description: The livestream ID.
+                      started_time:
+                        type: string
+                        description: Unique key for accessing each livestream.
+                        x-stoplight:
+                          id: hjv81ynruiaps
+                      stopped_time:
+                        type: string
+                        description: The web address that viewers can use to watch the livestream.
+                        x-stoplight:
+                          id: cif4ymldivkid
+                      ingest_seconds:
+                        type: integer
+                        description: Name of the livestream.
+                        x-stoplight:
+                          id: quuqyvb6c22du
+                      viewer_seconds:
+                        type: integer
+                        description: Specifies if the livestream was disabled.
+                        x-stoplight:
+                          id: ss840fa42f2dj
+              examples:
+                example-1:
+                  value:
+                    success: true
+                    data:
+                      id: cf55a850-c3fd-46b5-b5d2-25b3b9aa1686
+                      livestream_id: b60ef3da-fbbb-441b-9168-8235b0035248
+                      err_message: null
+                      invoked_time: null
+                      started_time: '2023-07-15T07:08:39.000Z'
+                      stopped_time: null
+                      created_at: '2023-07-15T07:08:40.742Z'
+                      updated_at: '2023-07-15T07:08:40.742Z'
+                      ingest_seconds: 60
+                      viewer_seconds: 60
+      operationId: get-v2-livestreams-livestream-session-id
+      description: Returns details of all active livestreams for the given meeting ID.
+      tags:
+        - Live streams
+      parameters: []
+  '/livestreams/{livestream_id}/active-livestream-session':
+    parameters:
+      - schema:
+          type: string
+        name: livestream_id
+        in: path
+        required: true
+    get:
+      summary: Fetch active live stream session details
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples: null
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      livestream:
+                        type: object
+                        x-stoplight:
+                          id: z1n8zof1y1d7f
+                        properties:
+                          id:
+                            type: string
+                            x-stoplight:
+                              id: obdwjc45i6hiu
+                          name:
+                            type: string
+                            x-stoplight:
+                              id: pck3pj9rslvyb
+                          ingest_server:
+                            type: string
+                            x-stoplight:
+                              id: km7t1lrhq7wu5
+                          stream_key:
+                            type: string
+                            x-stoplight:
+                              id: lk2vyiyj0w81i
+                          status:
+                            type: string
+                            x-stoplight:
+                              id: xylo1jluliuf8
+                          meeting_id:
+                            type: string
+                            x-stoplight:
+                              id: y3r1tm75cfi4a
+                          playback_url:
+                            type: string
+                            x-stoplight:
+                              id: 53eq0tpog5ib2
+                          created_at:
+                            type: string
+                            x-stoplight:
+                              id: nckmepbq06ldp
+                          updated_at:
+                            type: string
+                            x-stoplight:
+                              id: 5y596dwsxaeue
+                          disabled:
+                            type: string
+                            x-stoplight:
+                              id: 97k85uncuiij7
+                      session:
+                        type: object
+                        x-stoplight:
+                          id: otdg6an2qn65t
+                        properties:
+                          id:
+                            type: string
+                            x-stoplight:
+                              id: 8fqik84h9x7l8
+                          livestream_id:
+                            type: string
+                            x-stoplight:
+                              id: keu70ty635eby
+                          err_message:
+                            type: string
+                            x-stoplight:
+                              id: a4qlsa10bl1a5
+                          invoked_time:
+                            type: string
+                            x-stoplight:
+                              id: sy8qrnkspmp1x
+                          started_time:
+                            type: string
+                            x-stoplight:
+                              id: n07o9ogpxkeiz
+                          stopped_time:
+                            type: string
+                            x-stoplight:
+                              id: o4z48ppd6k294
+                          created_at:
+                            type: string
+                            x-stoplight:
+                              id: s7f3gaqqsrmtk
+                          updated_at:
+                            type: string
+                            x-stoplight:
+                              id: 9zx76nxrx2yft
+                          ingest_seconds:
+                            type: string
+                            x-stoplight:
+                              id: 8n412l8lqc3z7
+                          viewer_seconds:
+                            type: string
+                            x-stoplight:
+                              id: gzpj7k9nx650f
+              examples:
+                example-1:
+                  value:
+                    success: true
+                    data:
+                      livestream:
+                        id: b60ef3da-fbbb-441b-9168-8235b0035248
+                        name: null
+                        ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
+                        stream_key: sk_ap-south-1_x3lKBdJa8UDN_3q6PPLMJnqnbnhyrkXrOG504MUsxnZ
+                        status: LIVE
+                        meeting_id: bbb87945-df1c-49d9-8159-262a7ae6cfde
+                        playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.ob5KQUrP5Zaf.m3u8'
+                        created_at: '2023-07-15T07:08:26.634Z'
+                        updated_at: '2023-07-15T07:08:40.726Z'
+                        disabled: false
+                      session:
+                        id: cf55a850-c3fd-46b5-b5d2-25b3b9aa1686
+                        livestream_id: b60ef3da-fbbb-441b-9168-8235b0035248
+                        err_message: null
+                        invoked_time: null
+                        started_time: '2023-07-15T07:08:39.000Z'
+                        stopped_time: null
+                        created_at: '2023-07-15T07:08:40.742Z'
+                        updated_at: '2023-07-15T07:08:40.742Z'
+                        ingest_seconds: 60
+                        viewer_seconds: 60
+      operationId: get-v2-active-livestream-session-details
+      description: Returns details of all active livestreams for the given meeting ID.
+      tags:
+        - Live streams
+      parameters: []
+  '/livestreams/{livestream_id}':
+    parameters:
+      - schema:
+          type: string
+        name: livestream_id
+        in: path
+        required: true
+    get:
+      summary: Fetch live stream details with sessions using live stream ID
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples: null
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      livestream:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          name:
+                            type: string
+                          ingest_server:
+                            type: string
+                          stream_key:
+                            type: string
+                          status:
+                            type: string
+                          meeting_id:
+                            type: string
+                          playback_url:
+                            type: string
+                          created_at:
+                            type: string
+                          updated_at:
+                            type: string
+                          disabled:
+                            type: string
+                      session:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          livestream_id:
+                            type: string
+                          err_message:
+                            type: string
+                          invoked_time:
+                            type: string
+                          started_time:
+                            type: string
+                          stopped_time:
+                            type: string
+                          created_at:
+                            type: string
+                          updated_at:
+                            type: string
+                          ingest_seconds:
+                            type: string
+                          viewer_seconds:
+                            type: string
+                      paging:
+                        type: object
+                        x-stoplight:
+                          id: 5voo3tsec17pj
+                        properties:
+                          total_count:
+                            type: integer
+                            x-stoplight:
+                              id: ueiu1cvwn51tn
+                          start_offset:
+                            type: integer
+                            x-stoplight:
+                              id: lsf93fojv1tlo
+                          end_offset:
+                            type: integer
+                            x-stoplight:
+                              id: q0ya8kcvei9nc
+              examples:
+                example-1:
+                  value:
+                    success: true
+                    data:
+                      livestream:
+                        id: b60ef3da-fbbb-441b-9168-8235b0035248
+                        name: null
+                        ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
+                        stream_key: sk_ap-south-1_x3lKBdJa8UDN_3q6PPLMJnqnbnhyrkXrOG504MUsxnZ
+                        status: LIVE
+                        meeting_id: bbb87945-df1c-49d9-8159-262a7ae6cfde
+                        playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.ob5KQUrP5Zaf.m3u8'
+                        created_at: '2023-07-15T07:08:26.634Z'
+                        updated_at: '2023-07-15T07:08:40.726Z'
+                        disabled: false
+                      sessions:
+                        - id: cf55a850-c3fd-46b5-b5d2-25b3b9aa1686
+                          livestream_id: b60ef3da-fbbb-441b-9168-8235b0035248
+                          err_message: null
+                          invoked_time: null
+                          started_time: '2023-07-15T07:08:39.000Z'
+                          stopped_time: null
+                          created_at: '2023-07-15T07:08:40.742Z'
+                          updated_at: '2023-07-15T07:08:40.742Z'
+                          ingest_seconds: 60
+                          viewer_seconds: 60
+                    paging:
+                      total_count: 1
+                      start_offset: 1
+                      end_offset: 1
+      operationId: get-v2-livestream-session-livestream-id
       description: Returns details of all active livestreams for the given meeting ID.
       tags:
         - Live streams
@@ -2109,8 +2725,9 @@ components:
           type: string
           enum:
             - LIVE
-            - OFFLINE
+            - IDLE
             - ERRORED
+            - INVOKED
           description: The status of the livestream.
         name:
           type: string
@@ -2143,6 +2760,14 @@ components:
         disabled:
           type: boolean
           description: Specifies if the livestream was disabled.
+        external_id:
+          type: string
+          x-stoplight:
+            id: nry3ig09yy13q
+        org_id:
+          type: string
+          x-stoplight:
+            id: 6f6cyezsk3ew6
     Webhook:
       type: object
       properties:
@@ -4091,6 +4716,20 @@ components:
           enum:
             - ID3
           description: The metadata is presented in the form of ID3 tags.
+    FetchLivestream:
+      title: FetchLivestream
+      x-stoplight:
+        id: 13sdmzd5ericg
+      type: object
+      properties:
+        id:
+          type: string
+          x-stoplight:
+            id: mdvyrq30j0rw4
+        name:
+          type: string
+          x-stoplight:
+            id: 0b5t8sncdhv1c
   parameters:
     Content-Type:
       name: Content-Type
