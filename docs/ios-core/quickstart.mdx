@@ -86,14 +86,6 @@ pod install
 <string>For people to share, we need access to your photos.</string>
 ```
 
-:::tip Note
-
-If you intend to publish your app to the App Store, you'll need to perform a few
-additional steps. So if you’re working on release build and not debug builds,
-refer to the [iOS release builds](#ios-release-builds) section.
-
-:::
-
 ## Step 2: Initialize the SDK
 
 1. The `DyteMobileClient` is the main class of the SDK. It is the main entry
@@ -140,13 +132,6 @@ To initialize the connection request, call the `doInit()` method obtained on
 `meeting` with the `meetingInfo` argument. This will establish the connection
 with the Dyte meeting server.
 
-For v1 APIs:
-
-```swift
-meeting.doInit(dyteMeetingInfo: meetingInfo)
-```
-
-For v2 APIs:
 
 ```swift
 meeting.doInit(dyteMeetingInfo_: meetingInfo)
@@ -208,18 +193,4 @@ extension MeetingViewModel: DyteSelfEventsListener {
     // meeting room leave completed
   }
 }
-```
-
-## iOS release builds
-
-Disable `BITCODE` in your Podfile.
-
-```dart
-post_install do |installer|
-   installer.pods_project.targets.each do |target|
-       target.build_configurations.each do |config|
-           config.build_settings['ENABLE_BITCODE'] = 'NO'
-       end
-   end
-end
 ```
