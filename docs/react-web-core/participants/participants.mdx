@@ -57,7 +57,7 @@ meeting.participants.pinned.on('participantJoined', (participant) => {
 ## Set participant view mode
 
 The view mode indicates whether the participants are populated in `ACTIVE_GRID`
-mode or `PAGINATED` mode. In `ACTIVE_GRID` mode, the partcipants are
+mode or `PAGINATED` mode. In `ACTIVE_GRID` mode, the participants are
 automatically replaced in `meeting.participants.active`, based on who is
 speaking or who has their video turned on.
 
@@ -119,7 +119,7 @@ await meeting.participants.kickAll();
 
 // remove a participant from the meeting
 const participantId = '...';
-await meeting.partcipants.kick(participantId);
+await meeting.participants.kick(participantId);
 ```
 
 ## Webinar methods
@@ -128,7 +128,7 @@ The `acceptAllRequestToJoinStageRequests()` method lets the host accept all
 pending requests to join a webinar.
 
 ```ts
-await meeting.partcipants.acceptAllRequestToJoinStageRequests();
+await meeting.participants.acceptAllRequestToJoinStageRequests();
 ```
 
 ## Waiting room methods
