@@ -773,7 +773,7 @@ paths:
                 $ref: '#/components/schemas/AnalyticsResponse'
               examples: {}
       operationId: get-livestream-analytics-complete
-      description: Get analytics about your livestreams for the given range of time.
+      description: Returns livestream analytics for the specified time range.
       tags:
         - Live streams
         - LivestreamAnalytics
@@ -787,29 +787,38 @@ paths:
             format: date-time
           in: query
           name: start_time
+          description: Specify the start time range in ISO format to access the livestream analytics.
         - schema:
             type: string
             format: date-time
           in: query
           name: end_time
+          description: Specify the end time range in ISO format to access the livestream analytics.
         - schema:
             type: string
+            format: date
+            enum:
+              - ASC
+              - DSC
           in: query
           name: sort_order
+          description: Specifies the sorting order for the results.
         - schema:
-            type: string
+            type: integer
             default: '25'
           in: query
           name: per_page
+          description: Number of results per page.
         - schema:
-            type: string
+            type: integer
             default: '1'
           in: query
           name: page_no
+          description: The page number from which you want your page search results to be displayed.
   /analytics/livestreams/daywise:
     parameters: []
     get:
-      summary: Fetch day wise analytics data for your livestreams
+      summary: Fetch day-wise analytics data for your livestreams
       responses:
         '200':
           description: OK
@@ -819,7 +828,7 @@ paths:
                 $ref: '#/components/schemas/AnalyticsResponse'
               examples: {}
       operationId: get-livestream-analytics-daywise
-      description: Get analytics about your livestreams for the given range of time.
+      description: Returns day-wise livestream analytics data for the specified time range.
       tags:
         - Live streams
         - LivestreamAnalytics
@@ -833,25 +842,33 @@ paths:
             format: date-time
           in: query
           name: start_time
+          description: Specify the start time range in ISO format to access the livestream analytics.
         - schema:
             type: string
             format: date-time
           in: query
           name: end_time
+          description: Specify the end time range in ISO format to access the livestream analytics.
         - schema:
             type: string
+            enum:
+              - ASC
+              - DSC
           in: query
           name: sort_order
+          description: Specifies the sorting order for the results.
         - schema:
-            type: string
+            type: integer
             default: '25'
           in: query
           name: per_page
+          description: Number of results per page.
         - schema:
-            type: string
+            type: integer
             default: '1'
           in: query
           name: page_no
+          description: The page number from which you want your page search results to be displayed.
   '/livestreams/{livestream_id}/enable':
     parameters:
       - schema:
@@ -918,7 +935,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Fetch live stream sessions from a session
+      summary: Fetch livestream sessions using a session ID
       responses:
         '200':
           description: OK
@@ -952,6 +969,7 @@ paths:
                         type: string
                         x-stoplight:
                           id: umdhjls9fzu2u
+                        description: The ID of the livestream.
                       created_at:
                         type: string
                         description: Timestamp the object was created at. The time is returned in ISO format.
@@ -968,29 +986,32 @@ paths:
                         description: Specifies if the livestream was disabled.
                         x-stoplight:
                           id: fz5e8qwwjdvbv
+                        format: date-time
                       ingest_seconds:
-                        type: string
+                        type: number
                         x-stoplight:
                           id: m436v28et0h4b
+                        description: The time duration for which the input was given or the meeting was streamed.
                       viewer_seconds:
-                        type: string
+                        type: number
                         x-stoplight:
                           id: gt6682qreyibs
+                        description: The total view time for which the viewers watched the stream.
                       paging:
                         type: object
                         x-stoplight:
                           id: licc3tlfn4zqs
                         properties:
                           total_count:
-                            type: integer
+                            type: number
                             x-stoplight:
                               id: fn1g7l6m26trp
                           start_offset:
-                            type: integer
+                            type: number
                             x-stoplight:
                               id: o90qti19q4w05
                           end_offset:
-                            type: integer
+                            type: number
                             x-stoplight:
                               id: zf67fjkaz5zqg
               examples:
@@ -1107,7 +1128,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Fetch details of a live stream session using live stream session ID
+      summary: Fetch livestream session details using livestream session ID
       responses:
         '200':
           description: OK
@@ -1134,6 +1155,7 @@ paths:
                         type: string
                         x-stoplight:
                           id: 2zf2eriza9alu
+                        description: Timestamp the object was updated at. The time is returned in ISO format.
                       err_message:
                         type: string
                         description: The server URL to which the RTMP encoder sends the video and audio data.
@@ -1178,7 +1200,7 @@ paths:
                       ingest_seconds: 60
                       viewer_seconds: 60
       operationId: get-v2-livestreams-livestream-session-id
-      description: Returns details of all active livestreams for the given meeting ID.
+      description: Returns livestream session details using the livestream session ID.
       tags:
         - Live streams
       parameters: []
@@ -1190,7 +1212,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Fetch active live stream session details
+      summary: Fetch active livestream session details
       responses:
         '200':
           description: OK
@@ -1218,38 +1240,52 @@ paths:
                             type: string
                             x-stoplight:
                               id: pck3pj9rslvyb
+                            description: Name of the livestream.
                           ingest_server:
                             type: string
                             x-stoplight:
                               id: km7t1lrhq7wu5
+                            description: The server URL to which the RTMP encoder sends the video and audio data.
                           stream_key:
                             type: string
                             x-stoplight:
                               id: lk2vyiyj0w81i
+                            description: Unique key for accessing each livestream.
                           status:
-                            type: string
                             x-stoplight:
                               id: xylo1jluliuf8
+                            enum:
+                              - LIVE
+                              - IDLE
+                              - ERRORED
+                              - INVOKED
                           meeting_id:
                             type: string
                             x-stoplight:
                               id: y3r1tm75cfi4a
+                            description: ID of the meeting.
                           playback_url:
                             type: string
                             x-stoplight:
                               id: 53eq0tpog5ib2
+                            description: The web address that viewers can use to watch the livestream.
                           created_at:
                             type: string
                             x-stoplight:
                               id: nckmepbq06ldp
+                            format: date-time
+                            description: Timestamp the object was created at. The time is returned in ISO format.
                           updated_at:
                             type: string
                             x-stoplight:
                               id: 5y596dwsxaeue
+                            format: date-time
+                            description: Timestamp the object was updated at. The time is returned in ISO format.
                           disabled:
                             type: string
                             x-stoplight:
                               id: 97k85uncuiij7
+                            description: Specifies if the livestream was disabled.
                       session:
                         type: object
                         x-stoplight:
@@ -1271,30 +1307,42 @@ paths:
                             type: string
                             x-stoplight:
                               id: sy8qrnkspmp1x
+                            format: date-time
+                            description: Timestamp the object was invoked. The time is returned in ISO format.
                           started_time:
                             type: string
                             x-stoplight:
                               id: n07o9ogpxkeiz
+                            format: date-time
+                            description: Timestamp the object was started. The time is returned in ISO format.
                           stopped_time:
                             type: string
                             x-stoplight:
                               id: o4z48ppd6k294
+                            format: date-time
+                            description: Timestamp the object was stopped. The time is returned in ISO format.
                           created_at:
                             type: string
                             x-stoplight:
                               id: s7f3gaqqsrmtk
+                            format: date-time
+                            description: Timestamp the object was created at. The time is returned in ISO format.
                           updated_at:
                             type: string
                             x-stoplight:
                               id: 9zx76nxrx2yft
+                            format: date-time
+                            description: Timestamp the object was updated at. The time is returned in ISO format.
                           ingest_seconds:
                             type: string
                             x-stoplight:
                               id: 8n412l8lqc3z7
+                            description: The time duration for which the input was given or the meeting was streamed.
                           viewer_seconds:
                             type: string
                             x-stoplight:
                               id: gzpj7k9nx650f
+                            description: The total view time for which the viewers watched the stream.
               examples:
                 example-1:
                   value:
@@ -1323,7 +1371,7 @@ paths:
                         ingest_seconds: 60
                         viewer_seconds: 60
       operationId: get-v2-active-livestream-session-details
-      description: Returns details of all active livestreams for the given meeting ID.
+      description: Returns details of all active livestreams for the given livestream ID.
       tags:
         - Live streams
       parameters: []
@@ -1335,7 +1383,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Fetch live stream details with sessions using live stream ID
+      summary: Fetch livestream details with sessions using livestream ID
       responses:
         '200':
           description: OK
@@ -1355,47 +1403,73 @@ paths:
                         properties:
                           id:
                             type: string
+                            description: ID of the livestream.
                           name:
                             type: string
+                            description: Name of the livestream.
                           ingest_server:
                             type: string
+                            description: The server URL to which the RTMP encoder sends the video and audio data.
                           stream_key:
                             type: string
+                            description: Unique key for accessing each livestream.
                           status:
-                            type: string
+                            enum:
+                              - LIVE
+                              - IDLE
+                              - ERRORED
+                              - INVOKED
                           meeting_id:
                             type: string
+                            description: The ID of the meeting.
                           playback_url:
                             type: string
+                            description: The web address that viewers can use to watch the livestream.
                           created_at:
                             type: string
+                            description: Timestamp the object was created at. The time is returned in ISO format.
                           updated_at:
                             type: string
+                            description: Timestamp the object was updated at. The time is returned in ISO format.
                           disabled:
                             type: string
+                            description: Specifies if the livestream was disabled.
                       session:
                         type: object
                         properties:
                           id:
                             type: string
+                            description: ID of the session.
                           livestream_id:
                             type: string
                           err_message:
                             type: string
                           invoked_time:
                             type: string
+                            description: Timestamp the object was invoked. The time is returned in ISO format.
+                            format: date-time
                           started_time:
                             type: string
+                            description: Timestamp the object was started. The time is returned in ISO format.
+                            format: date-time
                           stopped_time:
                             type: string
+                            description: Timestamp the object was stopped. The time is returned in ISO format.
+                            format: date-time
                           created_at:
                             type: string
+                            description: Timestamp the object was created at. The time is returned in ISO format.
+                            format: date-time
                           updated_at:
                             type: string
+                            description: Timestamp the object was updated at. The time is returned in ISO format.
+                            format: date-time
                           ingest_seconds:
-                            type: string
+                            type: number
+                            description: The time duration for which the input was given or the meeting was streamed.
                           viewer_seconds:
-                            type: string
+                            type: number
+                            description: The total view time for which the viewers watched the stream.
                       paging:
                         type: object
                         x-stoplight:
@@ -1405,14 +1479,17 @@ paths:
                             type: integer
                             x-stoplight:
                               id: ueiu1cvwn51tn
+                            example: 1
                           start_offset:
                             type: integer
                             x-stoplight:
                               id: lsf93fojv1tlo
+                            example: 1
                           end_offset:
                             type: integer
                             x-stoplight:
                               id: q0ya8kcvei9nc
+                            example: 1
               examples:
                 example-1:
                   value:
@@ -1445,7 +1522,7 @@ paths:
                       start_offset: 1
                       end_offset: 1
       operationId: get-v2-livestream-session-livestream-id
-      description: Returns details of all active livestreams for the given meeting ID.
+      description: Returns details of a livestream with sessions for the given livestream ID.
       tags:
         - Live streams
       parameters: []
