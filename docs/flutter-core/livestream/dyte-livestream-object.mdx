@@ -1,11 +1,11 @@
 ---
-title: Livestream objects & methods
-description: Livestream object containing all livestream related data and methods.
+title: Livestream Objects and Methods
+description: This topic covers the usage of livestreaming APIs for handling stage requests, including actions like joining or leaving the stage, accepting or rejecting requests, withdrawing invitations, and more.
 sidebar_position: 1
 tags: [flutter-core, livestream]
 ---
 
-`DyteLivestream` object contains all the methods and properties required for integrating livestream. This livestream object can be accessed via `dyteMobileClient.livestream` method, where `dyteMobileClient` is the instance of `DyteMobileClient()`.
+`DyteLivestream` object contains all the methods and properties required for integrating livestream. The livestream object can be accessed via `dyteMobileClient.livestream` method, where `dyteMobileClient` is the instance of `DyteMobileClient()`.
 
 ```dart
 class DyteLivestream {
@@ -28,31 +28,32 @@ class DyteLivestream {
 
 ### data : [_DyteLivestreamData_]
 
-Livestream data can be accessed via `dyteMobileClient.livestream.data` method and contains the data related to metadata for livestream. It has 4 properties:<br />
+Livestream data can be accessed via `dyteMobileClient.livestream.data` method and contains the data related to metadata for livestream. It has four properties:<br />
 
-1.  `roomName`: [*String*] The name of the room.<br />
-2.  `state`: [*DyteLivestreamStatus*] The current status of the livestream, possible values can be: <br/>
-    - `DyteLivestreamStatus.none`
-    - `DyteLivestreamStatus.starting`
-    - `DyteLivestreamStatus.started`
-    - `DyteLivestreamStatus.ending`
-    - `DyteLivestreamStatus.ended`
-    - `DyteLivestreamStatus.errored`
-3.  `url`: [*String?*] The url of the livestream.
-4.  `viewerCount`: [*int*] The number of viewers in the livestream.<br/><br />
+  -  `roomName`: The name of the room.<br />
+  -  `state`: The current status of the livestream, possible values can be: <br/>
+      - `DyteLivestreamStatus.none`
+      - `DyteLivestreamStatus.starting`
+      - `DyteLivestreamStatus.started`
+      - `DyteLivestreamStatus.ending`
+      - `DyteLivestreamStatus.ended`
+      - `DyteLivestreamStatus.errored`
+  -  `url`: The url of the livestream.
+  -  `viewerCount`: The number of viewers in the livestream.<br/><br />
 
 ### requests : _List&ltDyteLiveStreamStageRequestPeer&gt_
 
-- `requests`: _List&ltDyteLiveStreamStageRequestPeer&gt_ object accessed via `dyteMobileClient.livestream.requests` contains the list of requests to join the stage. Each request contains 3 properties:<br />
-  1. `peerId`: [*String*] The peerId of the user who requested to join the stage.
-  2. `userId`: [*String*] The userId of the user who requested to join the stage.
-  3. `displayName`: [*String*] The display name of the user who requested to join the stage.<br/><br />
+- `requests`: _List&ltDyteLiveStreamStageRequestPeer&gt_ object accessed via `dyteMobileClient.livestream.requests`, contains a list of requests to join the stage. Each request includes three properties: <br />
+  - `peerId`: The peerId of the user who requested to join the stage.
+  - `userId`: The userId of the user who requested to join the stage.
+  - `displayName`: The display name of the user who requested to join the stage.<br/><br />
 
 ## Methods
+Use the following methods to do the following:
 
 ### Request host to join stage
 
-This method can be called if the preset permission allows the user to request to be on stage, this method can be used to request to join the stage.
+Call this method to request host to join stage. Ensure that the participant has the required (preset permissions)[https://github.com/guides/livestream/advanced/configuring-permissions].
 
 ```dart
 dyteMobileClient.livestream.requestToJoinStage();
@@ -60,7 +61,7 @@ dyteMobileClient.livestream.requestToJoinStage();
 
 ### Accept invitation to join stage
 
-This method can be called to accept the invitation to join the stage when the participant requested to be on stage and it gets approved, then participant's stage status (`dyteMobileClient.stageStatus`) is `DyteStageStatus.acceptedToJoinStage`.
+Call this method to accept an invitation and join the stage when the participant's request has been approved. Once the participant is on the stage, the participant's stage status `(dyteMobileClient.stageStatus)` is set as `DyteStageStatus.acceptedToJoinStage`.
 
 ```dart
 dyteMobileClient.livestream.acceptRequestToJoinStage();
@@ -68,13 +69,13 @@ dyteMobileClient.livestream.acceptRequestToJoinStage();
 
 :::tip Note
 
-To listen to updated stage status of the user, listen to `onStageStatusUpdated()` event in `DyteSelfEventsListener`. To get more info on how to setup listener for this event and learn more, head over to: [Listen to stage status changes](#./../local-user/events.mdx/#listen-to-stage-status-changes)
+To listen to updated stage status of the user, listen to `onStageStatusUpdated()` event in `DyteSelfEventsListener`. To get more info on how to setup listener for this event, see [Listen to stage status changes](#./../local-user/events.mdx/#listen-to-stage-status-changes).
 
 :::
 
 ### Withdraw/reject invitation to join stage
 
-This method is called when the user wants to withdraw/reject his invitation to stage.
+Call this method to withdraw or reject the stage invitation.
 
 ```dart
 dyteMobileClient.livestream.withdrawRequestToJoinStage();
@@ -98,7 +99,7 @@ Dyte’s stage management APIs allow hosts to receive and manage stage requests 
 
 ### Join stage
 
-If the user is off-stage and has permission to join stage directly then this method need can be called to go on stage.
+Use this method to join the stage directly if the user is currently off-stage and has the required permissions.
 
 ```dart
 dyteMobileClient.livestream.joinStage();
@@ -106,7 +107,7 @@ dyteMobileClient.livestream.joinStage();
 
 ### Leave stage
 
-If the user is on stage then this method need can be called to leave the stage.
+Call this method to leave the stage if the user is currently on stage.
 
 ```dart
 dyteMobileClient.livestream.leaveStage();
