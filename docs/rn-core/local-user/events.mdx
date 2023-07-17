@@ -2,7 +2,7 @@
 title: Events
 description: Local user events guide.
 sidebar_position: 2
-tags: [web-core, local-user, self, self events]
+tags: [rn-core, local-user, self, self events]
 ---
 
 # Local User - Events
@@ -28,10 +28,22 @@ meeting.self.on('roomJoined', () => {
 Triggered when the local user leaves the meeting.
 
 ```js
-meeting.self.on('roomLeft', () => {
-  console.log('User has left the meeting');
+meeting.self.on('roomLeft', ({ state }) => {
+  // state is a string whose values are explained below
+  if (state === 'left') {
+    console.log('User has left the meeting');
+  }
 });
 ```
+
+Here are all the possible values of the `state` variable.
+
+| Event      | Description                                                                         |
+| ---------- | ----------------------------------------------------------------------------------- |
+| `left`     | Participant has left the room.                                                      |
+| `kicked`   | Participant is removed from the meeting.                                            |
+| `ended`    | Everyone is removed from the meeting, and the session has ended.                    |
+| `rejected` | Participant's request to join the room is rejected (when you're in a waiting room). |
 
 ## Video update
 
@@ -79,18 +91,13 @@ Triggered when the user starts / stops the screen share using
 `enableScreenShare()` or `disableScreenShare()`.
 
 ```ts
-const screenElem = document.getElementById('my-screen-share');
-
 meeting.self.on(
   'screenShareUpdate',
   async ({ screenShareEnabled, screenShareTracks }) => {
     if (screenShareEnabled) {
-      const stream = new MediaStream();
-      stream.addTrack(screenShareTracks.video);
-      screenElem.srcObject(stream);
-      await screenElem.play();
+      // Display the screenshare
     } else {
-      await screenElem.stop();
+      // Stop the screenshare
     }
   }
 );
@@ -143,5 +150,18 @@ meeting.self.on('mediaScoreUpdate', ({ kind, isScreenshare, score }) => {
 
 ## Webinar Stage events
 
-In a `WEBINAR` setup (more details here), below events can be used to bring a
-user on to stage
+In a `WEBINAR` setup, below events can be used to bring a user on to stage
+
+| **Event**                  | **Description**                                                                          |
+| -------------------------- | ---------------------------------------------------------------------------------------- |
+| `waitlisted`               | Emitted when the user has been added to the waitlist.                                    |
+| `joinStageRequestAccepted` | Emitted to all host users, when a host accepts a user's request to join webinar meeting. |
+| `joinStageRequestRejected` | Emitted to all host users, when a host rejects a user's request to join webinar meeting. |
+| `removedFromStage`         | Emitted when the user has been kicked from the webinar meeting.                          |
+| `stageJoined`              | Emitted when the user has joined the webinar meeting.                                    |
+| `stageLeft`                | Emitted when the user has left the webinar meeting.                                      |
+| `peerRequestToJoinStage`   | Emitted when a user has requested to join the webinar meeting.                           |
+| `peerRejectedToJoinStage`  | Emitted when the user's request to join the meeting has been rejected.                   |
+| `peerAcceptedToJoinStage`  | Emitted when the user's request to join the meeting has been accepted                    |
+| `peerStoppedPresenting`    | Emitted when a participant stops presenting in the webinar meeting.                      |
+| `peerStartedPresenting`    | Emitted when a participant starts presenting in the webinar meeting.                     |

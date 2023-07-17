@@ -11,13 +11,13 @@ import {
 
 export type Section = { docId: string } & (
   | {
-      section: false;
-    }
+    section: false;
+  }
   | {
-      section: string;
-      icon: (props: ComponentProps<'svg'>) => ReactNode;
-      name: string;
-    }
+    section: string;
+    icon: (props: ComponentProps<'svg'>) => ReactNode;
+    name: string;
+  }
 );
 
 const SECTIONS: Section[] = [
@@ -91,13 +91,6 @@ const SECTIONS: Section[] = [
     icon: AppleIcon,
     section: 'mobile-core',
   },
-
-  {
-    name: 'React Native Core',
-    docId: 'rn-core',
-    icon: ReactIcon,
-    section: 'mobile-core',
-  },
   {
     name: 'Flutter Core',
     docId: 'flutter-core',
@@ -105,28 +98,34 @@ const SECTIONS: Section[] = [
     section: 'mobile-core',
   },
   {
-    name: 'React Native',
-    docId: 'react-native',
+    name: 'React Native Core',
+    docId: 'rn-core',
     icon: ReactIcon,
-    section: 'mobile-sdk',
+    section: 'mobile-core',
   },
   {
     name: 'Android',
     docId: 'android',
     icon: AndroidIcon,
-    section: 'mobile-sdk',
+    section: 'mobile-ui-kit',
   },
   {
     name: 'iOS',
     docId: 'ios',
     icon: AppleIcon,
-    section: 'mobile-sdk',
+    section: 'mobile-ui-kit',
   },
   {
     name: 'Flutter',
     docId: 'flutter',
     icon: FlutterIcon,
-    section: 'mobile-sdk',
+    section: 'mobile-ui-kit',
+  },
+  {
+    name: 'React Native',
+    docId: 'react-native',
+    icon: ReactIcon,
+    section: 'mobile-ui-kit',
   },
 ];
 
@@ -161,8 +160,8 @@ const SECTION_GROUPS: SectionsGroup[][] = [
   [
     {
       name: 'UI Kit',
-      section: 'mobile-sdk',
-      description: 'Use our pre-built mobile SDK, ready to go',
+      section: 'mobile-ui-kit',
+      description: 'Use our pre-built mobile UI Kit SDK, ready to go',
     },
     {
       name: 'Core SDK',

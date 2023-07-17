@@ -2,7 +2,7 @@
 title: Introducing chat
 description: Send and receive chat messages in a meeting.
 sidebar_position: 1
-tags: [web-core, chat]
+tags: [rn-core, chat]
 ---
 
 # Introducing chat
@@ -24,9 +24,11 @@ interface BaseMessage<T extends MessageType> {
   displayName: string;
   time: Date;
   id: string;
+  isEdited?: boolean;
   read?: boolean;
   pluginId?: string;
   pinned?: boolean;
+  targetUserIds?: string[];
 }
 
 interface TextMessage extends BaseMessage<MessageType.text> {

@@ -2,7 +2,7 @@
 title: Functions to disable plugins
 description: Methods on a plugin in a meeting.
 sidebar_position: 3
-tags: [web-core, plugins]
+tags: [rn-core, plugins]
 ---
 
 # Functions to disable plugins
@@ -52,18 +52,4 @@ const plugins = meeting.plugins.active.toArray();
 const plugin = plugins.find((p) => p.name === 'YouTube');
 
 await plugin?.deactivate();
-```
-
-### ~~Disable Plugins~~
-
-**_Deprecated_**
-
-The `disable()` method deactivates the plugin for the current user. This does
-not affect other users in the meeting.
-
-```ts
-const plugins = meeting.plugins.active.toArray();
-const plugin = plugins.find((p) => p.name === 'YouTube');
-
-await plugin?.disable();
 ```

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-web_core_version: 0.42.0
+web_core_version: 1.2.0
 ---
 
 <!-- Auto Generated Below -->
@@ -33,8 +33,10 @@ const participant4 = meeting.participants.active
   - [.videoEnabled](#module_DyteParticipant+videoEnabled)
   - [.audioEnabled](#module_DyteParticipant+audioEnabled)
   - [.screenShareEnabled](#module_DyteParticipant+screenShareEnabled)
+  - [.producers](#module_DyteParticipant+producers)
   - [.supportsRemoteControl](#module_DyteParticipant+supportsRemoteControl)
   - [.webinarStageStatus](#module_DyteParticipant+webinarStageStatus)
+  - [.presetName](#module_DyteParticipant+presetName)
   - [.isPinned](#module_DyteParticipant+isPinned)
   - [.pin()](#module_DyteParticipant+pin)
   - [.unpin()](#module_DyteParticipant+unpin)
@@ -140,6 +142,14 @@ This is true if the participant is screensharing.
 
 **Kind**: instance property of
 [<code>DyteParticipant</code>](#module_DyteParticipant)  
+<a name="module_DyteParticipant+producers"></a>
+
+### participant.producers
+
+producers created by participant
+
+**Kind**: instance property of
+[<code>DyteParticipant</code>](#module_DyteParticipant)  
 <a name="module_DyteParticipant+supportsRemoteControl"></a>
 
 ### participant.supportsRemoteControl
@@ -153,6 +163,14 @@ This is true if the dyte participant supports remote control.
 ### participant.webinarStageStatus
 
 Represents the participants current webinar status
+
+**Kind**: instance property of
+[<code>DyteParticipant</code>](#module_DyteParticipant)  
+<a name="module_DyteParticipant+presetName"></a>
+
+### participant.presetName
+
+The preset of the participant.
 
 **Kind**: instance property of
 [<code>DyteParticipant</code>](#module_DyteParticipant)  

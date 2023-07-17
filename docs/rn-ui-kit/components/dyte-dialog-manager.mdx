@@ -1,0 +1,45 @@
+# DyteDialogManager
+
+A component which handles all dialog elements in a component such as:
+
+- dyte-settings
+- dyte-leave-meeting
+- dyte-permissions-message
+- dyte-image-viewer
+- dyte-remote-access-manager
+
+This components depends on the values from `states` object.
+
+```jsx
+function Example() {
+  const [states, setStates] = useState({});
+
+  const setState = (s) => setStates((states) => ({ ...states, ...s }));
+
+  return (
+    <Row>
+      <DyteButton onClick={() => setState({ activeSettings: true })}>
+        Show Settings
+      </DyteButton>
+      <DyteButton onClick={() => setState({ activeLeaveConfirmation: true })}>
+        Show Leave Confirmation
+      </DyteButton>
+      <DyteButton onClick={() => setState({ activePermissionsMessage: true })}>
+        Show Permissions Troubleshooting UI
+      </DyteButton>
+      <DyteButton onClick={() => setState({ activeRemoteAccessManager: true })}>
+        Show Remote Access Manager
+      </DyteButton>
+      <DyteDialogManager
+        meeting={meeting}
+        states={states}
+        onDyteStateUpdate={(e) => setState(e.detail)}
+      />
+    </Row>
+  );
+}
+```
+
+## Props
+
+<PropsTable of="dyte-dialog-manager" />
