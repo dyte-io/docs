@@ -35,7 +35,7 @@ You'll learn how to:
 
 ```python
   // other dependencies here
-  implementation 'io.dyte:uikit:1.12.2'
+  implementation 'io.dyte:uikit:1.13.0'
 ```
 
 
@@ -77,23 +77,21 @@ The `DyteUIKitBuilder` is the main class of the SDK. It is the entry point and
 the only class required to initialize Dyte SDK.
 
 ```kotlin
-val config = DyteUIKitConfig(
+val dyteUIKitInfo = DyteUIKitInfo(
   activity = this,
   dyteMeetingInfo = meetingInfo
 )
-val dyteUIKit = DyteUIKitBuilder.build(config)
+val dyteUIKit = DyteUIKitBuilder.build(dyteUIKitInfo)
 ```
 
 ## Step 4: Launch the meeting UI
 
-To launch the meeting UI all you need to do is call `loadUi()` which will take
+To launch the meeting UI all you need to do is call `startMeeting()` which will take
 care of everything for you.
 
 ```kotlin
-dyteUIKit.loadUi()
+dyteUIKit.startMeeting()
 ```
-
-Here is a pictorial representation of all the config options defined below.
 
 ![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-setup.png)
 ![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-meeting.png)
