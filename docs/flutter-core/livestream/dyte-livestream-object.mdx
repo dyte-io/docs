@@ -7,22 +7,6 @@ tags: [flutter-core, livestream]
 
 `DyteLivestream` object contains all the methods and properties required for integrating livestream. The livestream object can be accessed via `dyteMobileClient.livestream` method, where `dyteMobileClient` is the instance of `DyteMobileClient()`.
 
-```dart
-class DyteLivestream {
-  DyteLivestreamData get data;
-  List<DyteLiveStreamStageRequestPeer> get requests;
-  void start() {}
-  void stop() {}
-  void acceptRequest(DyteLiveStreamStageRequestPeer peer) {}
-  void rejectRequest(DyteLiveStreamStageRequestPeer peer) {}
-  void acceptAllRequests() {}
-  void rejectAllRequests() {}
-  Future<String?> getUrl();
-  Future<String> getRoomName();
-  Future<DyteLivestreamStatus?> getState();
-}
-
-```
 
 ## Objects
 
