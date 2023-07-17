@@ -174,7 +174,16 @@ When the local user is removed from the meeting, the `onRemovedFromMeeting()` ca
 @override
 void onRemovedFromMeeting() {
   // Display an alert to the user indicating that they are no longer in the meeting.
+}
+```
 
+## Listen to stage status changes
 
+When the stage status of local user is updated, this event is triggered. It contains updated stage status as an argument.
+
+```dart
+@override
+void onStageStatusUpdated(DyteStageStatus status){
+  // Update your UI as per this stage status.
 }
 ```
