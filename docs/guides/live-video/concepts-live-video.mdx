@@ -1,0 +1,82 @@
+---
+title: 'Concepts'
+sidebar_position: 2
+---
+
+This topic covers essential concepts related to Dyte Live Video applications.
+
+## Backend HTTP REST APIs
+
+Your backend utilizes Dyte REST APIs to perform actions such as:
+
+- [Create meetings](/api#/operations/create_meeting)
+- [Add participants to a meeting](/api#/operations/add_participant)
+- [Start recording a meeting](/api#/operations/start_recording) and so on
+
+## Frontend SDKs
+
+Your applications bundle Dyte Core SDKs (and UI Kits) to acquire, transmit and play media, and manage network connections.
+
+- **Core SDK**: The Dyte Core SDK is designed to provide an easy way to incorporate real-time communication (RTC) solutions. With full customization and branding options, you can build your own UI from the ground up without dealing with complicated media layers. See [Introduction to Core SDK](/web-core/Introduction).
+
+- **UI Kit**: Dyte's UI Kit is a prebuilt design library of UI components designed to simplify the integration of video and voice calls into your product. See [UI Kit](/react-ui-kit).
+
+## Developer portal
+
+The [Developer Portal](https://dev.dyte.io/dashboard) serves as a comprehensive platform, offering access to meeting logs, API key management, billing operations, and various other functionalities in one place.
+
+You can also use Developer Portal to create meetings, presets, setup storage for recordings, add webhooks, and much more.
+
+<img
+  src="/static/guides/dev-portal.png"
+  width="600"
+  height="300"
+  alt="dev-portal"
+  className="dev-portal-preview"
+/>
+
+## Organization
+
+In Dyte, the organization serves as the top-level entity where all participants of your group are added. You can create an organization using the [API](/api#/operations/createOrg) or through the Developer Portal.
+
+- Meetings are created within the organization.
+- The API keys are generated for your organization. These API Keys are unique to your organization and are required to use Dyte REST APIs such as when instantiating a meeting.
+- Additionally, Dyte considers the organization as a billing unit.
+
+## Meeting
+
+A communication channel created on Dyte is termed as a `meeting`. Meetings can be created using the [Create a meeting API](/api#/operations/create_meeting) or through the Developer Portal. Similarly, you can get the details of your meeting using the [API](/api#/operations/get_all_meetings) or developer portal.
+
+An example from the Developer Portal displaying meeting details.
+
+<img
+  src="/static/guides/concept-meeting.png"
+  width="800"
+  height="500"
+  alt="chat-sdk"
+  className="concept-meeting-live-video"
+/>
+
+## Session
+
+In Dyte, a meeting is a communication channel, and each instance of that channel is called a session. A session represents an ongoing meeting within that communication channel. Like meetings, you can get fetch the details of a session via Developer Portal or using the [APIs](/api#/operations/GetSessions).
+
+An example from the Developer Portal displaying session details.
+
+<img
+  src="/static/guides/session-details.png"
+  width="800"
+  height="500"
+  alt="chat-sdk"
+  className="session-details-live-video"
+/>
+
+## Preset
+
+A preset is a set of permissions and UI configurations that are applied to participants for different meeting types such as Group Call, Webinar, and Livestream. The presets define how a meeting will appear visually and functional aspects of the meeting. They allow customization options like setting maximum number of participants on-screen, permissions to share screen, enabling poll creation, disabling video and audio, adjusting text color, configuring plugins, etc.
+
+For more information, see [Add Presets](/guides/capabilities/presets).
+
+## Participants
+
+Anyone who joins the `meeting`, including actual users and machine users. You can add participants using the [Add Participant API](/api#/operations/add_participant). Participants will have permissions for the meeting depending on the selected preset. The `presetName` must be passed in the body of the Add Participant API request.

@@ -1,0 +1,200 @@
+---
+title: 'React'
+sidebar_position: 1
+---
+
+## Quickstart
+
+<span>
+  This quickstart shows how to use Dyte's {props.product} to your{' '}
+  <a href="https://react.dev/">React</a> applications with a variety of meeting
+  UI customization options.
+</span>
+
+Dyte also offers the flexibility to build your own UI using various individual
+components. This offers limitless customization options to tailor the UI to fit
+your requirements. For more information, see the Build your own UI section.
+
+For getting started quickly, you can use our
+[sample code](https://github.com/dyte-io/react-samples). You can clone and run a
+sample application from the
+[React UI Kit GitHub repository](https://github.com/dyte-io/react-samples).
+
+## Objective
+
+You'll learn how to:
+
+- Install the Dyte client side SDKs
+- Initialize Dyte Client
+- Bringing up a UI
+- Go live!
+
+## Before Getting Started
+
+- Make sure you've a mechanism to get `authToken` from your server side which you would have received as part of [Add Participant](/guides/live-video/build-live-video-app#step-5-add-participants) call.
+
+## Step 1: Install
+
+We are going to install 2 packages.
+
+- `@dytesdk/react-web-core`: This core package powers video, voice, livestream and chat SDKs. This is a required package.
+- `@dytesdk/ui-kit`: Contains Dyte UI components which can be used with core to easily build your own UI, including a prebuilt UI component. If you want to build your own UI you can skip installing this package.
+
+`react-web-core` consists of hooks written on top of our `core` package, which makes it easy to use [`web-core`](https://npmjs.com/package/@dytesdk/web-core) in React applications.
+
+You can install the package using npm or Yarn.
+
+```bash npm2yarn
+npm install @dytesdk/react-web-core @dytesdk/react-ui-kit
+```
+
+:::tip Import Errors
+
+If you get errors when importing the `react-web-core` and `react-ui-kit`
+packages, try installing them separately.
+
+:::
+
+### Version
+
+|                         |                                                                                                                              |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| @dytesdk/react-web-core | [![npm version](https://badge.fury.io/js/@dytesdk%2Freact-web-core.svg)](https://badge.fury.io/js/@dytesdk%2Freact-web-core) |
+| @dytesdk/react-ui-kit   | [![npm version](https://badge.fury.io/js/@dytesdk%2Freact-ui-kit.svg)](https://badge.fury.io/js/@dytesdk%2Freact-ui-kit)     |
+
+## Step 2: Prepare meeting object
+
+Here's a series of steps that you need to perform:
+
+### Initialize the Dyte client. Use the `useDyteClient()` hook and `initMeeting`
+
+You also need to provide the `authToken` that you have fetched from your server side.
+
+```jsx
+import { useEffect } from 'react';
+import { useDyteClient } from '@dytesdk/react-web-core';
+
+export default function Meeting({ authToken }) {
+  const [meeting, initMeeting] = useDyteClient();
+
+  useEffect(() => {
+    initMeeting({
+      authToken: '<auth-token>',
+      defaults: {
+        audio: false,
+        video: false,
+      },
+    });
+  }, []);
+
+  return <></>; // TODO: render the UI
+}
+```
+
+### Set up `DyteProvider`.
+
+You need it to import the `DyteProvider` from the `dytesdk/react-web-core`. DyteProvider basically is a hook wrapper on dytesdk/web-core. This provides a meeting object to child components.
+
+```jsx {2,17-21}
+import { useEffect } from 'react';
+import { useDyteClient, DyteProvider } from '@dytesdk/react-web-core';
+
+export default function App() {
+  const [meeting, initMeeting] = useDyteClient();
+
+  useEffect(() => {
+    initMeeting({
+      authToken: '<auth-token>',
+      defaults: {
+        audio: false,
+        video: false,
+      },
+    });
+  }, []);
+
+  return (
+    <DyteProvider value={meeting} fallback={<i>Loading...</i>}>
+      {/* Render your UI here. Subcomponents can now use the `useDyteMeeting` and `useDyteSelector` hooks */}
+    </DyteProvider>
+  );
+}
+```
+
+`fallback` can be used to add a loading indicator while the meeting is being initialized.
+
+## Step 3: Bring up the UI
+
+The `meeting` object serves as the link between web-core and UI Kit, allowing
+them to communicate with one another. Once the UI Kit has the meeting object,
+it can join and leave meetings, and so on.
+
+1. First you create a `MyMeeting` component and render it within `DyteProvider`
+
+```jsx {3,21}
+import { useEffect } from 'react';
+import { useDyteClient, DyteProvider } from '@dytesdk/react-web-core';
+import MyMeeting from './my-meeting';
+
+export default function App() {
+  const [meeting, initMeeting] = useDyteClient();
+
+  useEffect(() => {
+    initMeeting({
+      authToken: '<auth-token>',
+      defaults: {
+        audio: false,
+        video: false,
+      },
+    });
+  }, []);
+
+  return (
+    <DyteProvider value={meeting} fallback={<i>Loading...</i>}>
+      {/* Render your UI here. Subcomponents can now use the `useDyteMeeting` and `useDyteSelector` hooks */}
+      <MyMeeting />
+    </DyteProvider>
+  );
+}
+```
+
+### UI Kit
+
+`DyteMeeting` renders the entire meeting UI. It loads your preset and renders
+the UI based on it. With this component, you don't have to handle all the
+states, dialogs, and other smaller bits of managing the application.
+
+For more information on the other props of `DyteMeeting`, see [DyteMeeting](/react-ui-kit/components/dyte-meeting).
+
+```jsx
+import { DyteMeeting } from '@dytesdk/react-ui-kit';
+function MyMeeting() {
+  const { meeting } = useDyteMeeting();
+
+  return (
+    <div style={{ height: '480px' }}>
+      <DyteMeeting mode="fill" meeting={meeting} />
+    </div>
+  );
+}
+```
+
+### Build your own UI
+
+If you want more customizations, pick the components that are needed and build the rest of the UI that suits your need using low level APIs that our core SDK offers [here](/web-core/introduction).
+
+```jsx
+import { DyteGrid, DyteMicToggle } from '@dytesdk/react-ui-kit';
+
+function MyMeeting() {
+  const { meeting } = useDyteMeeting();
+
+  return (
+    <div style={{ height: '480px' }}>
+      <DyteGrid meeting={meeting} />
+      <div className="controlbar">
+        <DyteMicToggle meeting={meeting} />
+      </div>
+    </div>
+  );
+}
+```

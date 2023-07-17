@@ -2,7 +2,7 @@
 title: Quickstart
 description: Quickstart guide for web-core.
 sidebar_position: 2
-tags: [web-core, quickstart, setup]
+tags: [rn-core, quickstart, setup]
 ---
 
 # Quickstart
@@ -21,14 +21,17 @@ SDK. It is the only class that you need to instantiate in order to use the SDK.
 To instantiate DyteClient, you can run the following command:
 
 ```js
-const meeting = await DyteClient.init({
-  roomName,
-  authToken,
+import { useDyteClient } from '@dytesdk/react-native-core';
+
+const [client, initClient] = useDyteClient();
+
+const meeting = await initClient({
+  authToken: 'YourAuthToken',
 });
 await meeting.joinRoom();
 ```
 
-You can get the roomName and authToken using our backend APIs and then pass it
+You can get the authToken using our backend APIs and then pass it
 to the init method of DyteClient.
 
 :::info

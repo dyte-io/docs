@@ -1,0 +1,34 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-menu.svg
+---
+
+# DyteMenu
+
+A menu component.
+
+```jsx
+<Row style={{ padding: '52px 0 0 0' }}>
+  <DyteMenu placement="top">
+    <DyteButton slot="trigger">Top Menu</DyteButton>
+    <DyteMenuList>
+      <DyteMenuItem onClick={() => alert('You clicked: alert()')}>
+        alert()
+      </DyteMenuItem>
+    </DyteMenuList>
+  </DyteMenu>
+
+  {/* This menu will be placed at top due to less space */}
+  <DyteMenu placement="bottom">
+    <DyteButton slot="trigger">Bottom Menu</DyteButton>
+    <DyteMenuList>
+      <DyteMenuItem onClick={() => alert('You clicked: alert()')}>
+        alert()
+      </DyteMenuItem>
+    </DyteMenuList>
+  </DyteMenu>
+</Row>
+```
+
+## Props
+
+<PropsTable of="dyte-menu" />

@@ -1,0 +1,35 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-sidebar.svg
+---
+
+# DyteSidebar
+
+A component which handles the sidebar and you can customize which sections you
+want, and which section you want as the default.
+
+```jsx
+<Center>
+  <DyteSidebar
+    defaultSection="participants"
+    meeting={meeting}
+    style={{ height: '480px' }}
+  />
+</Center>
+```
+
+To see a mobile sidebar:
+
+```jsx
+<div style={{ position: 'relative', height: '600px' }}>
+  <DyteSidebar
+    view="full-screen"
+    defaultSection="participants"
+    meeting={meeting}
+    style={{ maxWidth: '360px', margin: 'auto' }}
+  />
+</div>
+```
+
+## Props
+
+<PropsTable of="dyte-sidebar" />

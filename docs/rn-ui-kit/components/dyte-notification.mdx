@@ -1,0 +1,32 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-notification.svg
+---
+
+# DyteNotification
+
+A component which shows a notification.
+
+You need to remove the element after you receive the `dyteNotificationDismiss`
+event.
+
+```jsx
+<DyteNotification
+  notification={{
+    id: 'your-id',
+    message: 'Vaibhav says hi!',
+    image: 'https://github.com/vaibhavshn.png',
+    button: {
+      text: 'Say Hi back',
+      variant: 'ghost',
+      onClick: () => alert('Hey'),
+    },
+  }}
+  onDyteNotificationDismiss={(e) => {
+    e.target.remove();
+  }}
+/>
+```
+
+## Props
+
+<PropsTable of="dyte-notification" />

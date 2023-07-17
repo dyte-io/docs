@@ -1,0 +1,19 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-name-tag.svg
+---
+
+# DyteNameTag
+
+A component which shows a participant's name.
+
+```jsx
+<Row>
+  <DyteNameTag participant={meeting.self} />
+  {/* pass `meeting` to it to differentiate `you`. */}
+  <DyteNameTag participant={meeting.self} meeting={meeting} />
+</Row>
+```
+
+## Props
+
+<PropsTable of="dyte-name-tag" />

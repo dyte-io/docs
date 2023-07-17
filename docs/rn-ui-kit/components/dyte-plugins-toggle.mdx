@@ -1,0 +1,24 @@
+# DytePluginsToggle
+
+A button which toggles visibility of plugins.
+
+When clicked it emits a `dyteStateUpdate` event with the data:
+
+```ts
+{
+  activeSidebar: boolean;
+  sidebar: 'plugins' | 'none';
+}
+```
+
+```jsx
+<Center>
+  <DytePluginsToggle size="sm" meeting={meeting} />
+  <DytePluginsToggle size="lg" meeting={meeting} />
+  <DytePluginsToggle variant="horizontal" size="sm" meeting={meeting} />
+</Center>
+```
+
+## Props
+
+<PropsTable of="dyte-plugins-toggle" />

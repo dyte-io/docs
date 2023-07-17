@@ -2,13 +2,13 @@
 title: The participant object
 description: The object corresponding to a particular participant.
 sidebar_position: 2
-tags: [web-core, participants, participant]
+tags: [rn-core, participants, participant]
 ---
 
 # The participant object
 
 The `participant` object consists of all the information related to a particular
-participant. For instance, it contains a partcipants video/audio/screenshare
+participant. For instance, it contains a participants video/audio/screenshare
 stream, and the participant's name. It also contains state variables that
 indicate whether a participant's camera is on or off, and whether they are muted
 or unmuted. Head over to [DyteParticipant](../reference/DyteParticipant.md) for
@@ -33,6 +33,8 @@ The participant object has the following properties.
 - `supportsRemoteControl`: Set to true if the participant is using an SDK that
   supports remote control.
 - `isPinned`: Set to true if the participant is pinned.
+- `presetName`: Name of the preset associated with the participant.
+- `webinarStageStatus`: Represents the participants current webinar status.
 
 The participant object is an event emitter, so you can set listeners on this
 object for events such as video and audio updates. For instance, to fire a
@@ -74,7 +76,7 @@ meeting.participants.joined.on(
 ```
 
 Read more about the participant events in the
-[events](../reference/DyteParticipant.md) section in the API reference.
+[events](/web-core/participants/events) section in the API reference.
 
 ## Host controls methods
 
@@ -106,4 +108,34 @@ await participant.pin();
 
 // Unpin a participant in the meeting.
 await participant.unpin();
+```
+
+## Webinar methods
+
+The host can accept a user's request to join the webinar using
+`acceptJoinStageRequest()`.
+
+```ts
+meeting.participants.joined.on('peerRequestToJoinStage', (p) => {
+  const participant = meeting.participants.joined.get(p.id);
+  await participant.acceptJoinStageRequest();
+});
+```
+
+The host can reject a user's request to join the webinar using
+`rejectRequestToJoinStage()`.
+
+```ts
+meeting.participants.joined.on('peerRequestToJoinStage', (p) => {
+  const participant = meeting.participants.joined.get(p.id);
+  await participant.rejectRequestToJoinStage();
+});
+```
+
+The host has the option of removing a user from the webinar. It can be done
+using the `removeFromStage()` method.
+
+```ts
+const participant = meeting.participants.joined.get(participantId);
+await participant.removeFromStage();
 ```

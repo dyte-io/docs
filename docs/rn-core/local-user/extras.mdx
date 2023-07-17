@@ -1,0 +1,36 @@
+---
+title: Other Methods
+description: Methods to manage the local user.
+sidebar_position: 5
+tags: [rn-core, local-user, self, methods]
+---
+
+## Pinning & unpinning
+
+You can pin or unpin yourself given you have the appropriate permissions. You
+can check the pinned status of the local user using `meeting.isPinned`.
+
+```ts
+meeting.self.pin();
+```
+
+```ts
+meeting.self.unpin();
+```
+
+## Webinar
+
+The Dyte Webinar revolves around the concept of a stage. The stage is directly
+accessible for hosts, while participants can request to join the stage. Here's
+how you can interact with stage APIs.
+
+Read more about Dyte Webinars
+[here](https://dyte.io/blog/introducing-dyte-webinar/).
+
+```ts
+// Request to join stage
+await meeting.self.requestToJoinStage();
+
+// Leave stage
+await meeting.self.leaveStage();
+```

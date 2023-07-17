@@ -126,12 +126,12 @@ const docs = [
     routeBasePath: '/rn-core',
     versions: {
       current: {
-        label: '1.x.x',
+        label: '0.5.x',
       },
     },
   },
 
-  // Mobile Prebuilt SDKs
+  // Mobile UI Kits
   {
     id: 'android',
     path: 'docs/android',
@@ -164,36 +164,15 @@ const docs = [
   },
   {
     id: 'react-native',
-    path: 'docs/react-native',
+    path: 'docs/rn-ui-kit',
     routeBasePath: '/react-native',
     versions: {
       current: {
-        label: '0.25.x',
+        label: '1.4.x',
       },
     },
   },
 
-  // Web SDKs - Old
-  {
-    id: 'react',
-    path: 'docs/react',
-    routeBasePath: '/react',
-    versions: {
-      current: {
-        label: '0.37.0',
-      },
-    },
-  },
-  {
-    id: 'javascript',
-    path: 'docs/javascript',
-    routeBasePath: '/javascript',
-    versions: {
-      current: {
-        label: '0.37.0',
-      },
-    },
-  },
 ];
 
 /** @type {import('@docusaurus/plugin-content-docs').Options} */
@@ -232,7 +211,118 @@ const { webpackPlugin } = require('./plugins/webpack-plugin.cjs');
 const tailwindPlugin = require('./plugins/tailwind-plugin.cjs');
 const docs_plugins = docs.map((doc) => create_doc_plugin(doc));
 
-const plugins = [tailwindPlugin, ...docs_plugins, webpackPlugin];
+const plugins = [
+  tailwindPlugin,
+  ...docs_plugins,
+  webpackPlugin,
+  [
+    '@docusaurus/plugin-client-redirects',
+    {
+      createRedirects(path) {
+        if (path.startsWith('/guides/capabilities/webhooks')) {
+          return [
+            path.replace('/guides/capabilities/webhooks', '/guides/webhooks'),
+            path.replace('/guides/capabilities/webhooks', '/guides/features/webhooks')
+          ];
+        }
+        if (path.startsWith('/guides/capabilities/recording')) {
+          return [
+            path.replace('/guides/capabilities/recording', '/guides/recording'),
+            path.replace('/guides/capabilities/recording', '/guides/features/recording')
+          ];
+        }
+        if (path.startsWith('/guides/capabilities/recording')) {
+          return [
+            path.replace('/guides/capabilities/recording', '/guides/recording'),
+            path.replace('/guides/capabilities/recording', '/guides/features/recording')
+          ];
+        }
+        if (path.startsWith('/guides/capabilities/embed')) {
+          return [
+            path.replace('/guides/capabilities/embed', '/guides/embed'),
+            path.replace('/guides/capabilities/embed', '/guides/features/embed')
+          ];
+        }
+        if (path.startsWith('/guides/capabilities/export-chat-dump')) {
+          return [
+            path.replace(
+              '/guides/capabilities/export-chat-dump',
+              '/guides/export-chat-dump'
+            ),
+            path.replace('/guides/capabilities/export-chat-dump', '/guides/features/export-chat-dump')
+          ];
+        }
+        if (path.startsWith('/guides/capabilities/breakoutroom')) {
+          return [
+            path.replace(
+              '/guides/capabilities/breakoutroom',
+              '/guides/breakoutroom'
+            ),
+            path.replace(
+              '/guides/capabilities/breakoutroom',
+              '/guides/features/breakoutroom'
+            ),
+          ];
+        }
+        /* for everything else */
+        if (path.startsWith('/guides/capabilities')) {
+          return [path.replace('/guides/capabilities', '/guides/features')];
+        }
+        if (path === '/ui-kit') {
+          return [
+            '/javascript/advanced-usage',
+            '/javascript/customize-meeting-ui',
+            '/javascript/events',
+            '/javascript/installation',
+            '/javascript/quickstart',
+            '/javascript/reference/chat-message',
+            '/javascript/reference/connection-config',
+            '/javascript/reference/dyte-client',
+            '/javascript/reference/dyte-control-bar',
+            '/javascript/reference/dyte-errors',
+            '/javascript/reference/dyte-grid',
+            '/javascript/reference/dyte-meeting-events',
+            '/javascript/reference/dyte-plugin',
+            '/javascript/reference/dyte-ui-config',
+            '/javascript/reference/meeting',
+            '/javascript/reference/participant',
+            '/javascript/reference/self-participant',
+            '/javascript/sample-app',
+            '/javascript/usage',
+            '/javascript/virtual-background',
+            '/javascript/',
+          ];
+        }
+        if (path === '/react-ui-kit') {
+          return [
+            '/react/advanced-usage',
+            '/react/customize-meeting-ui',
+            '/react/events',
+            '/react/installation',
+            '/react/quickstart',
+            '/react/reference/chat-message',
+            '/react/reference/connection-config',
+            '/react/reference/dyte-client',
+            '/react/reference/dyte-control-bar',
+            '/react/reference/dyte-errors',
+            '/react/reference/dyte-grid',
+            '/react/reference/dyte-meeting-events',
+            '/react/reference/dyte-plugin',
+            '/react/reference/dyte-ui-config',
+            '/react/reference/meeting',
+            '/react/reference/participant',
+            '/react/reference/self-participant',
+            '/react/sample-app',
+            '/react/usage',
+            '/react/virtual-background',
+            '/react/',
+          ];
+        }
+        return undefined; // Return a falsy value: no redirect created
+      },
+    },
+  ],
+];
 
 const fs = require('fs');
 const sdksHTML = fs.readFileSync('./src/snippets/sdks.html', 'utf-8');
@@ -298,6 +388,11 @@ const config = {
         },
         items: [
           {
+            label: 'Guides',
+            to: 'guides',
+            className: 'guides-top-header',
+          },
+          {
             label: 'SDKs',
             type: 'dropdown',
             className: 'dyte-dropdown',
@@ -310,12 +405,7 @@ const config = {
             ],
           },
           {
-            label: 'Guides',
-            to: 'guides',
-            position: 'left',
-          },
-          {
-            label: 'API Reference',
+            label: 'REST API',
             to: '/api/',
           },
           {

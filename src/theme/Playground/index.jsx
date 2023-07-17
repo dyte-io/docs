@@ -101,6 +101,11 @@ export default function Playground({ children, transformCode, ...props }) {
       Object.defineProperty(meeting.self.permissions.produceVideo, 'allow', {
         value: 'ALLOWED',
       });
+      Object.defineProperty(meeting, 'connectedMeetings', {
+        value: {
+          supportsConnectedMeetings: false,
+        },
+      });
       meeting.meta.meetingStartedTimestamp = new Date();
       meeting.participants.mockAddParticipants(5, 5);
       meeting.recording.recordingState = 'RECORDING';

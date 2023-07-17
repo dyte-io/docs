@@ -77,7 +77,7 @@ export default function Home() {
       <div className="header">
         <h1 className="mb-0 flex items-center gap-2 text-sm font-semibold lg:text-lg">
           <APIIcon className="hidden h-8 lg:block" />
-          REST API {currentVersion}
+          REST API
         </h1>
         <div className="aside">
           {currentVersion === 'v2' && (

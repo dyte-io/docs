@@ -1,6 +1,6 @@
 ---
 sidebar_position: 12
-web_core_version: 0.42.0
+web_core_version: 1.2.0
 ---
 
 <!-- Auto Generated Below -->
@@ -17,7 +17,7 @@ const plugin2 = meeting.plugins.all.get(pluginId);
 
 - [DytePlugin](#module_DytePlugin)
   - [.sendIframeEvent(message)](#module_DytePlugin+sendIframeEvent)
-  - [.sendData(data)](#module_DytePlugin+sendData)
+  - [.sendData(payload)](#module_DytePlugin+sendData)
   - [.removePluginView(viewId)](#module_DytePlugin+removePluginView)
   - [.addPluginView(iframe, viewId)](#module_DytePlugin+addPluginView)
   - [.activateForSelf()](#module_DytePlugin+activateForSelf)
@@ -39,15 +39,17 @@ const plugin2 = meeting.plugins.all.get(pluginId);
 
 <a name="module_DytePlugin+sendData"></a>
 
-### plugin.sendData(data)
+### plugin.sendData(payload)
 
 This method is used to send arbitrary data to the plugin.
 
 **Kind**: instance method of [<code>DytePlugin</code>](#module_DytePlugin)
 
-| Param | Description                                       |
-| ----- | ------------------------------------------------- |
-| data  | The data that you want to send inside the plugin. |
+| Param             | Description                                                            |
+| ----------------- | ---------------------------------------------------------------------- |
+| payload           | The payload that you want to send inside the plugin.                   |
+| payload.eventName | Name of the event. This is used to listen for the event in plugin SDK. |
+| payload.data      | Data you wish to emit. It can assume any data type.                    |
 
 <a name="module_DytePlugin+removePluginView"></a>
 
@@ -66,7 +68,7 @@ must be used before the iframe is removed from the DOM.
 
 ### plugin.addPluginView(iframe, viewId)
 
-This method adds the communcation layer between the plugin inside the iframe and
+This method adds the communication layer between the plugin inside the iframe and
 the core application (meeting object) in the main window.
 
 **Kind**: instance method of [<code>DytePlugin</code>](#module_DytePlugin)

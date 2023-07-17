@@ -1,0 +1,111 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import { AndroidCoreLatestInstallation } from '@site/src/components/LatestInstallation';
+
+## Quickstart
+
+<span class="block mb-2">
+  This quickstart shows how to add Dyte's {props.product} SDK to your{' '}
+  Android applications
+</span>
+
+<span class="block mb-2">Further down this guide we also explain how Dyte's UI component library can help to build your UI faster with components specially made for {props.product} applications.</span>
+
+You can also checkout our
+[sample code](https://github.com/dyte-io/ios-samples) for iOS. You can clone
+and run a sample application from the
+[iOS Samples GitHub repository](https://github.com/dyte-io/ios-samples).
+
+## Objective
+
+You'll learn how to:
+
+- Install the Dyte client side SDKs
+- Initialize Dyte Client
+- Bringing up a UI
+- Go live!
+
+## Before Getting Started
+
+- Make sure you've a mechanism to get `authToken` from your server side which you would have received as part of [Add Participant](/guides/live-video/build-live-video-app#step-5-add-participants) call.
+
+## Step 1: Install the SDK
+
+1. Add the following line to your `Podfile`
+
+```ruby
+pod 'DyteUiKit'
+```
+
+OR for specific version:
+
+```ruby
+pod 'DyteUiKit', '0.2.6'
+```
+
+2. Install the client SDK as CocoaPods dependency
+
+```shell
+pod install
+```
+
+3. Add the fonts and permission entries in `info.plist` - the strings are
+   displayed in the permission pop-ups, feel free to customize them to suit your
+   audience
+
+```xml
+<key>NSBluetoothPeripheralUsageDescription</key>
+<string>We will use your Bluetooth to access your Bluetooth headphones.</string>
+<key>NSBluetoothAlwaysUsageDescription</key>
+<string>We will use your Bluetooth to access your Bluetooth headphones.</string>
+<key>NSCameraUsageDescription</key>
+<string>For people to see you during meetings, we need access to your camera.</string>
+<key>NSMicrophoneUsageDescription</key>
+<string>For people to hear you during meetings, we need access to your microphone.</string>
+<key>NSPhotoLibraryUsageDescription</key>
+<string>For people to share, we need access to your photos.</string>
+```
+
+## Step 2: Configure and Launch UI
+
+To set the initialization properties in the `DyteUiKitEngine` class, simply initialize `DyteMeetingInfoV2` and provide the participant's `authToken`.
+
+Try this in `viewDidAppear()`
+
+| Name        | Description                                                                                                                                                                                                                                                                                                                                   |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authToken` | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
+
+```swift
+import DyteUiKit
+import DyteiOSCore
+
+class ViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        DyteUiKitEngine.setupV2(DyteMeetingInfoV2(authToken: authToken,
+                                                enableAudio: true,
+                                                enableVideo: true,
+                                                baseUrl: baseUrl))
+
+        let controller = DyteUiKitEngine.shared.getInitialController { [weak self] in
+            guard let self = self else {return}
+            self.dismiss(animated: true)
+        }
+
+        controller.modalPresentationStyle = .fullScreen
+        self.present(controller, animated: true)
+    }
+r}
+```
+
+Here is a pictorial representation of all the config options defined below.
+
+![meeting UI screenshot with labeled parts](/static/ios/meeting-setup.png)
+![meeting UI screenshot with labeled parts](/static/ios/meeting.png)
+![meeting UI screenshot with labeled parts](/static/ios/meeting-options.png)

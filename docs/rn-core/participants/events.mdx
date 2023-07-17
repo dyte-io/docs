@@ -2,13 +2,13 @@
 title: Participant Events
 description: Event handling for participants.
 sidebar_position: 3
-tags: [web-core, participants, self]
+tags: [rn-core, participants, self]
 ---
 
 ## Events
 
 You can subscribe to events for all participants using
-`meeeting.participants.on()` method. Here are the supported events:
+`meeting.participants.on()` method. Here are the supported events:
 
 ### View mode change
 
@@ -71,6 +71,26 @@ Trigger an event when any participant leaves the meeting.
 ```ts
 meeting.participants.joined.on('participantLeft', (participant) => {
   console.log(`A participant with id "${participant.id}" has left the meeting`);
+});
+```
+
+### Participant pinned
+
+Trigger an event when a participant is pinned.
+
+```ts
+meeting.participants.joined.on('pinned', (participant) => {
+  console.log(`Participant with id "${participant.id}" was pinned`);
+});
+```
+
+### Participant unpinned
+
+Trigger an event when a participant is unpinned.
+
+```ts
+meeting.participants.joined.on('unpinned', (participant) => {
+  console.log(`Participant with id "${participant.id}" was unpinned`);
 });
 ```
 
@@ -164,3 +184,16 @@ meeting.participants.joined.on(
 If you want to subscribe to above events but for a specific participant only,
 you can do so by binding event to `meeting.participants.joined.get(peerId).on()`
 method. where the `peerId` is the id of the participant that you want to watch.
+
+### Webinar events
+
+Here is a list of events that can are emitted for a participants in a `WEBINAR`
+setup.
+
+| **Event**                 | **Description**                                                        |
+| ------------------------- | ---------------------------------------------------------------------- |
+| `peerRequestToJoinStage`  | Emitted when a user has requested to join the webinar meeting.         |
+| `peerRejectedToJoinStage` | Emitted when the user's request to join the meeting has been rejected. |
+| `peerAcceptedToJoinStage` | Emitted when the user's request to join the meeting has been accepted  |
+| `peerStoppedPresenting`   | Emitted when a participant stops presenting in the webinar meeting.    |
+| `peerStartedPresenting`   | Emitted when a participant starts presenting in the webinar meeting.   |

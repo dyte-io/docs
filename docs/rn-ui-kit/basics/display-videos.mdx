@@ -1,0 +1,174 @@
+---
+sidebar_position: 3
+---
+
+# Render participant videos
+
+To display the videos of all participants you need to show on the screen, you
+can either render each participant tile manually or choose from our pre built
+video tile grid components
+
+## Render each participant manually
+
+```jsx
+function Meeting() {
+  const { meeting } = useDyteMeeting();
+  const activeParticipants = useDyteSelector(
+    (meeting) => meeting.participants.active
+  );
+
+  function ParticipantTile({ participant, meeting }) {
+    return (
+      <DyteParticipantTile
+        participant={participant}
+        style={{
+          maxWidth: '240px',
+        }}
+      >
+        <DyteNameTag participant={participant} meeting={meeting}>
+          <DyteAudioVisualizer participant={participant} />
+        </DyteNameTag>
+        <DyteAvatar size="sm" participant={participant} />
+      </DyteParticipantTile>
+    );
+  }
+
+  return (
+    <Row
+      id="grid"
+      style={{
+        flex: 1,
+        flexWrap: 'wrap',
+        alignContent: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      {activeParticipants.toArray().map((participant) => (
+        <ParticipantTile participant={participant} meeting={meeting} />
+      ))}
+    </Row>
+  );
+}
+```
+
+But in the real world, a video tile grid is more complex, it is responsive, tile
+sizes are dynamic, there are differnt layouts, the grid handles screensharing
+etc.
+
+Dyte has ready to use grid components, that you can use out of the box
+
+## Grid Components
+
+There are two types of grid components, so that the grid can be easily extended
+and modularized.
+
+- Parent Grid component - `DyteGrid`
+- Child Grid components each having a different layour - `DyteSimpleGrid`,
+  `DyteMixedGrid`, `DyteSpotlightGrid`
+
+#### Parent Grid Component
+
+The `DyteGrid` component is a monolith component which handles all grid related
+events and data on it's own and passes the following props to it's children.
+
+| Prop                        | Description                         |
+| :-------------------------- | :---------------------------------- |
+| `participants[]`            | Active Participants                 |
+| `pinnedParticipants[]`      | Pinned Participants                 |
+| `screenShareParticipants[]` | Participants who are screen sharing |
+| `plugins[]`                 | Active Plugins                      |
+
+These props are passed to it's children which it computes from the UI Config
+which is passed to it. By default it will use the default UI Config.
+
+:::tip
+
+Try editing the `aspectRatio` and `gap` props.
+
+:::
+
+```jsx
+function Example() {
+  const { meeting } = useDyteMeeting();
+
+  return (
+    <Row style={{ width: '100%', height: '400' }}>
+      <DyteGrid meeting={meeting} aspectRatio="16:9" gap="8" size="sm" />
+    </Row>
+  );
+}
+```
+
+#### Normal Grid Components
+
+These components just accept the props mentioned above and render the UI.
+
+Read more about them in their Reference pages.
+
+##### DyteSimpleGrid
+
+Accepts: `participants`, `pinnedParticipants`.
+
+This grid renders just the ParticipantTiles of the participants you pass to it.
+It also brings `pinnedParticipants` to the start of the grid.
+
+##### DyteSimpleGrid
+
+Accepts: `participants`, `pinnedParticipants`.
+
+This grid renders the ParticipantTiles of the participants and
+pinnedParticipants in separate grids.
+
+Pinned participants are in spotlight area, i.e; larger grid.
+
+##### DyteMixedGrid
+
+Accepts: `participants`, `pinnedParticipants`, `screenShareParticipants`,
+`plugins`.
+
+This grid renders screenshares as well as plugins in the main larger Row and
+renders a smaller grid on the right side which is configurable via the UI
+Config. You can use SimleGrid or SpotlightGrid here.
+
+If you just want to render `self` twice in a SimpleGrid:
+
+##### Example for SimpleGrid
+
+```jsx
+function Example() {
+  const { meeting } = useDyteMeeting();
+  const [count, setCount] = useState(2);
+
+  if (!meeting) return null;
+
+  const add = () => setCount((count) => count + 1);
+  const remove = () => count > 1 && setCount((count) => count - 1);
+
+  const participants = new Array(count).fill(meeting.self);
+
+  return (
+    <Row>
+      <Row
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          gap: '12px',
+        }}
+      >
+        <DyteButton onClick={add}>Add</DyteButton>
+        <DyteButton variant="danger" onClick={remove}>
+          Remove
+        </DyteButton>
+      </Row>
+      <Row style={{ width: '100%', height: '400px' }}>
+        <DyteSimpleGrid
+          aspectRatio="16:9"
+          gap="8"
+          participants={participants}
+        />
+      </Row>
+    </Row>
+  );
+}
+```

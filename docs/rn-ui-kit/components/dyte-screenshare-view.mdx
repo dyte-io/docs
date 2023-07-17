@@ -1,0 +1,25 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-screenshare-view.svg
+---
+
+# DyteScreenshareView
+
+A component which plays a participant's screenshared video.
+
+It also allows for placement of other components similar to
+`dyte-participant-tile`.
+
+This component will not render anything if the participant hasn't start
+screensharing.
+
+```jsx
+<DyteScreenshareView participant={meeting.self} style={{ height: '480px' }}>
+  <DyteNameTag participant={meeting.self}>
+    <DyteAudioVisualizer slot="start" participant={meeting.self} />
+  </DyteNameTag>
+</DyteScreenshareView>
+```
+
+## Props
+
+<PropsTable of="dyte-screenshare-view" />
