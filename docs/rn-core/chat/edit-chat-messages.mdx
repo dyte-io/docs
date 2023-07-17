@@ -1,0 +1,31 @@
+---
+title: Editing Chat Messages
+description: Edit chat messages that you have sent in a meeting.
+sidebar_position: 4
+tags: [rn-core, chat]
+---
+
+As mentioned in introduction, there are 3 types of chat messages - text
+messages, images, and files. There is a method in meeting.chat to edit a message
+of each type.
+
+## Edit a text message
+
+To edit a text message, the `meeting.chat.editTextMessage()` method can be used.
+This accepts a `messageId` (type `string`) and a `message` (type `string`).
+
+```ts
+const message = meeting.chat.messages[0];
+const messageId = message?.id;
+const newMessage = 'Is this the real life?';
+await;
+meeting.chat.editTextMessage(messageId, newMessage);
+```
+
+Here's how you would use the `editMessage()` method to edit a text message.
+
+```ts
+const messageId = '...';
+const message = 'Is this just fantasy?';
+await meeting.chat.sendMessage(messageId, { type: 'text', message });
+```

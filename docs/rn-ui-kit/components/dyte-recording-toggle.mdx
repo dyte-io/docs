@@ -1,0 +1,21 @@
+# DyteRecordingToggle
+
+A button which toggles recording state of a meeting.
+
+Only a privileged user can perform this action, thus the button will not be
+visible for participants who don't have the permission to record a meeting.
+
+Note that the toggle button won't be rendered if you do not have the necessary
+permission.
+
+```jsx
+<Center>
+  <DyteRecordingToggle size="sm" meeting={meeting} />
+  <DyteRecordingToggle size="lg" meeting={meeting} />
+  <DyteRecordingToggle variant="horizontal" size="sm" meeting={meeting} />
+</Center>
+```
+
+## Props
+
+<PropsTable of="dyte-recording-toggle" />

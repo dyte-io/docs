@@ -1,0 +1,95 @@
+---
+sidebar_position: 1
+---
+
+# Components Basics
+
+Let's look at the structure of individual components and how to use them when
+building your own UI.
+
+There are two important things to understand about dyte UI Components
+
+## 1. They work with very tightly with our core SDK
+
+Our UI component are tightly coupled with classes from our core SDK, they will
+automatically update when the underlying property changes
+
+### Participant components
+
+These are components which take a single participant object as prop
+
+`meeting.self` and participant objects from `meeting.participants` maps can be
+passed as a participant to this prop.
+
+```jsx
+function Example() {
+  const { meeting } = useDyteMeeting();
+
+  return (
+    <Row style={{ flex:1, flexWrap: 'wrap', gap: '12px' }}>
+      <DyteNameTag participant={meeting.self} />
+      {/* You should also pass the `meeting` object to see the `(you)` text */}
+      <DyteNameTag participant={meeting.self} meeting={meeting} />
+    </Row>
+  );
+}
+```
+
+### Meeting components
+
+Similar to participant components, there are components that take the entire
+meeting object
+
+```jsx
+function Example() {
+  const { meeting } = useDyteMeeting();
+
+  return (
+    <Row style={{ flex:1, flexWrap: 'wrap', gap: '12px' }}>
+      <DyteChat meeting={meeting} />
+    </Row>
+  );
+}
+```
+
+The above code will render the Chat UI, updates when there is a new message and
+allow you to send a new message.
+
+## 2. State Management
+
+While meeting state is stored in core SDK's classes, there are also some pure UI
+states that might change during a meeting. For example, when user clicks the
+leave meeting button, there is a confirmation popup on the screen, this state
+reflects only a UI state.
+
+To listen and manipulate these states some components will accept a `states`
+props and a `onDyteStateUpdate` callback prop when the state updates
+
+```jsx
+<DyteDialogManager
+    states={{
+        activeLeaveConfirmation: true
+      }}
+    onDyteStateUpdate=((s) => {
+      // check activeLeaveConfirmation to see if the leave dialog has been closed
+    })
+  />
+
+```
+
+## 3. Component Specific Props
+
+Each component can have their own set of props
+
+Here are some examples on `DyteButton` component:
+
+### Button variants
+
+```jsx
+<Row style={{ flex:1, flexWrap: 'wrap', gap: '8px' }}>
+  <DyteButton>Primary button</DyteButton>
+  <DyteButton variant="secondary">Secondary button</DyteButton>
+  <DyteButton variant="danger">Danger button</DyteButton>
+  <DyteButton variant="ghost">Ghost button</DyteButton>
+</Row>
+```

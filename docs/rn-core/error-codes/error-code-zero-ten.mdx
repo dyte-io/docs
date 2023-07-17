@@ -1,0 +1,90 @@
+---
+title: 'System Error Codes (0-16)'
+sidebar_position: 2
+---
+
+This topic describes web core system error codes 0-16.
+
+## Error code: 0001
+
+- **Error message**: Failed to initialize
+- **Possible reason**: `DyteClient` is not getting initialized.
+- **Possible solution**: Verify if you initialized the `DyteClient` correctly `await DyteClient.init({ ... })`. See [DyteClient](/web-core/reference/DyteClient). If you continue to experience issue, please [reach out](https://dyte.io/contact) to us for the help.
+
+## Error code: 0002
+
+- **Error message**: Failed to join room
+- **Possible reason**: Indicates a problem with the `DyteClient`.
+- **Possible solution**: The `joinRoom()` method is used to join a meeting room in Dyte. Try calling this method on the `DyteClient`:
+
+```bash
+await meeting.joinRoom();
+```
+
+If you're using Android, try calling:
+
+```bash
+dyteClient.joinRoom();
+```
+
+Once the join room process completes, you'll see the `roomJoined` event is emitted on the `meeting.self` namespace.
+
+## Error code: 0003
+
+- **Error message**: Failed to leave room
+- **Possible reason**: Indicates a problem with the `DyteClient`.
+- **Possible solution**: The `leaveRoom()` method is used to leave a meeting room in Dyte. Try calling this method on the `DyteClient`:
+
+```bash
+meeting.leaveRoom();
+```
+
+If you're using Android, try calling:
+
+```bash
+dyteClient.leaveRoom();
+```
+
+## Error code: 0501
+
+- **Error message**: Permission denied
+- **Possible reason**: Indicates a problem with chat.
+- **Possible solution**: Please check if you've added the required permissions to your organization for your [preset](https://dev.dyte.io/).
+
+<img
+  src="/static/errorcodes/chat-perms.png"
+  width="300"
+  height="100"
+  alt="error-chat-preset"
+  className="errorcode-chat-perms-preset"
+/>
+
+## Error code: 0502
+
+- **Error message**: Invalid message body
+- **Possible reason**: Indicates a problem with chat.
+- **Possible solution**: The type `Message` is not defined correctly. See [Chat](/web-core/chat/introduction).
+
+## Error code: 1601
+
+- **Error message**: Failed to get audio track
+- **Possible reason**: Indicates a problem with the audio track of the device.
+- **Possible solution**: Verify if you've subscribed to the [Audio update event](/web-core/local-user/events#audio-update). Check your audio track status. If the problem persists, please [contact us](https://dyte.io/contact) for the help.
+
+## Error code: 1602
+
+- **Error message**: Failed to get video track
+- **Possible reason**: Indicates a problem with the video track of the device.
+- **Possible solution**: Verify if you've subscribed to the [Video update event](/web-core/local-user/events#video-update). Check your video track status. If the problem persists, please [contact us](https://dyte.io/contact) for the help.
+
+## Error code: 1603
+
+- **Error message**: Incorrect device
+- **Possible reason**: Indicates a problem with the device.
+- **Possible solution**: Verify if you're connected to the correct device. See [Device update](/web-core/local-user/events#device-update). If the problem persists, please [contact us](https://dyte.io/contact) for the help.
+
+## Error code: 1604
+
+- **Error message**: Failed to change device
+- **Possible reason**: Indicates a problem with the device.
+- **Possible solution**: Please [contact us](https://dyte.io/contact) for the help.

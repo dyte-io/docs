@@ -1,0 +1,99 @@
+---
+title: 'Livestreaming Stage Management APIs'
+sidebar_position: 6
+---
+
+This topic talks about how you can use livestreaming stage management APIs. Using Dyte's live-streaming stage management APIs you can easily manage stage requests, such as leave and join stage, manage permissions, kick participants and so on.
+
+The foundation of Dyte's livestreaming is based on a stage, which can be accessed by hosts and viewers. While hosts can directly enter the stage, viewers can request to join it. The stage is broadcasted live to all viewers. Here's how you can interact with stage APIs:
+
+## Access the stage APIs
+
+The stage module can be accessed under [`meeting.stage`](https://docs.dyte.io/react-web-core/reference/DyteStage) namespace.
+
+## Properties
+
+Dyte's livestreaming stage management APIs provides useful properties to help you manage your stage effectively. One of these properties is the `status` attribute, which can take on various values based on the user's activity. The status can assume the following values:
+
+- **ON_STAGE**: This value indicates that the user is currently on the stage and participating in the live stream.
+- **OFF_STAGE**: This value means that the user is viewing the live stream but is not on the stage.
+- **REQUESTED_TO_JOIN_STAGE**: The user has a pending request to join livestream. If the user has made a request to join the stage, this value will be assigned to their status until the host accepts or rejects their request.
+- **ACCEPTED_TO_JOIN_STAGE**: The host has accepted user’s request to join livestream. If the host accepts the user's request to join the stage, this value will be assigned to the user's status.
+
+A user with permission to join livestream directly can only assume `ON_STAGE` and `ACCEPTED_TO_JOIN_STAGE` status values.
+
+## Host controls
+
+Dyte’s stage management APIs allow hosts to receive and manage stage requests as well as leave and join the stage.
+
+### Join stage
+
+This method connects the user to the media room, enabling them to interact with other peers in the meeting.
+
+`await meeting.stage.join();`
+
+### Leave stage
+
+By employing this method, the user will be disconnected from the media room and subsequently unable to communicate with their peers. Additionally, their audio and video will no longer be visible to others in the room.
+
+`await meeting.stage.leave();`
+
+### Grant access
+
+You can get the user IDs from the `stageAccessRequestUpdate` event.
+
+| **Parameters** | **Type** |
+| -------------- | -------- |
+| userIds        | string[] |
+
+`await meeting.stage.grantAccess(userIds);`
+
+### Deny access
+
+You can get the user IDs from the `stageAccessRequestUpdate` event.
+
+| **Parameters** | **Type** |
+| -------------- | -------- |
+| userIds        | string[] |
+
+`await meeting.stage.grantAccess(userIds);`
+
+### Kick users
+
+You can get the user IDs from the `stageAccessRequestUpdate` event.
+
+| **Parameters** | **Type** |
+| -------------- | -------- |
+| userIds        | string[] |
+
+`await meeting.stage.kick(userIds);`
+
+## Participant controls
+
+Dyte’s stage management APIs allow participants to receive and manage stage requests as well as leave and join the stage.
+
+### Request access
+
+This method is used to create a new stage request which can be approved by the host. Each user (viewer or host) must call this method in order to join the stage.
+
+When the host calls this method, their status will be updated to `ACCEPTED_TO_JOIN_STAGE`.
+
+`await meeting.stage.requestAccess();`
+
+### Cancel access request
+
+You can call this method in order to cancel your stage request.
+
+`await meeting.stage.cancelRequestAccess();`
+
+## Events
+
+Here is a list of events that the `meeting.stage` module emits:
+
+| **Event**                  | **Description**                                                                                                                                                                                                                       |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `stageAccessRequestUpdate` | Emitted to the users with the permission `acceptPresentRequests` set to true. When a new request is made or a request is cancelled, this event is triggered. It contains the updated list of stage requests in its payload.           |
+| `stageStatusUpdate`        | Emitted when the user’s stage status changes. It contains the updated stage status in the payload.                                                                                                                                    |
+| `newStageRequest`          | Emitted to the users with the permission `acceptPresentRequests` set to true. This event is triggered when there are new stage requests. It contains the number of stage requests in its payload. For example, to show notifications. |
+| `stageRequestApproved`     | Emitted when a user’s request to join stage has been approved.                                                                                                                                                                        |
+| `stageRequestRejected`     | Emitted when a user’s request to join stage has been rejected.                                                                                                                                                                        |
