@@ -12,6 +12,7 @@ In the webinar, both hosts and participants have the ability to manage the stage
 ## Host stage management
 
 In Dyte's webinar platform, hosts have the capability to request participants to join the stage. When a host sends a request to a participant, the participant will receive a callback in the `DyteWebinarEventsListener#onPresentRequestReceived()` method. The participant can then choose to accept or decline the request using specific functions.
+
 ```swift
 extension MeetingViewModel: DyteWebinarEventsListener {
   ...
@@ -24,11 +25,13 @@ meeting.addWebinarEventsListener(webinarEventsListener: meetingModel)
 ```
 
 To accept the request and join the stage, participants can utilize the following command:
+
 ```swift
 meeting.webinar.acceptRequestToPresent()
 ```
 
 Alternatively, if participants wish to decline the request and not join the stage, use the following command:
+
 ```swift
 meeting.webinar.rejectRequestToPresent()
 ```
@@ -60,16 +63,16 @@ extension MeetingViewModel: DyteWebinarEventsListener {
   func onPresentRequestReceived() {
     // when host requests this user to join stage. Here one should give choice to either accept the request or decline it.
   }
-  func onPresetRequestAccepted(participant: RequestToPresentParticipant) {
+  func onPresentRequestAccepted(participant: RequestToPresentParticipant) {
     // when a join stage request is accepted by host
   }
-  func onPresetRequestAdded(participant: RequestToPresentParticipant) {
+  func onPresentRequestAdded(participant: RequestToPresentParticipant) {
     // when a user is requesting to join the stage
   }
-  func onPresetRequestRejected(participant: RequestToPresentParticipant) {
+  func onPresentRequestRejected(participant: RequestToPresentParticipant) {
     // when a join stage request is denied by host
   }
-  func onPresetRequestWithdrawn(participant: RequestToPresentParticipant) {
+  func onPresentRequestWithdrawn(participant: RequestToPresentParticipant) {
     // when a user who was trying to join stage withdraws their request to join.
   }
   func onRemovedFromStage() {
