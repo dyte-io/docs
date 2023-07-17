@@ -2,58 +2,60 @@
 title: Livestream event listeners
 description: Livestream events to listen to for triggering
 sidebar_position: 3
-tags: [flutter-core, livestream]
+tags: [mobile-core, livestream]
 ---
 
 You can listen to livestream events by attaching a listener by calling `addLivestreamEventsListener` on `dyteMobileClient` object where `dyteMobileClient` is an instance of `DyteMobileClient()`.
 
-```kotlin
-val dyteLiveStreamEventsListener = object : DyteLiveStreamEventsListener {
-  override fun onLiveStreamStarting() {
-    // when livestream is starting
-  }
+```swift
+extension LivestreamViewController: DyteLiveStreamEventsListener {
+    public func onJoinRequestAccepted(peer: LiveStreamStagePeer) {
+        // when localUser's join request is accepted by host
+    }
 
-  override fun onLiveStreamStarted() {
-    // when livestream is started
-  }
+    public func onJoinRequestRejected(peer: LiveStreamStagePeer) {
+        // when localUser's join request is rejected by host
+    }
 
-  override fun onLiveStreamEnding() {
-    // when livestream is ending
-  }
+    public func onLiveStreamEnded() {
+        // when livestream is ended
+    }
 
-  override fun onLiveStreamEnded() {
-    // when livestream is ended
-  }
+    public func onLiveStreamEnding() {
+        // when livestream is ending
+    }
 
-  override fun onLiveStreamErrored() {
-    // errored livestream
-  }
+    public func onLiveStreamErrored() {
+        // errored livestream
+    }
 
-  override fun onViewerCountUpdated(count: Int) {
-    // when viewer count updates in livestream
-  }
+    public func onLiveStreamStarted() {
+        // when livestream is started
+    }
 
-  override fun onStageCountUpdated(count: Int) {
-    // when stage count updates in livestream
-  }
+    public func onLiveStreamStarting() {
+        // when livestream is starting
+    }
 
-  override fun onStageRequestsUpdated(requests: List<LiveStreamStageRequestPeer>) {
-    // when there are updates in stage requests
-  }
+    public func onLiveStreamStateUpdate(data: DyteLivestreamData) {
+        // when there is an update in state of the livestream
+    }
 
-  override fun onJoinRequestAccepted(peer: LiveStreamStagePeer) {
-    // when localUser's join request is accepted by host
-  }
+    public func onStageCountUpdated(count: Int32) {
+        // when stage count updates in livestream
+    }
 
-  override fun onJoinRequestRejected(peer: LiveStreamStagePeer) {
-    // when localUser's join request is rejected by host
-  }
+    public func onStageRequestsUpdated(requests: [LiveStreamStageRequestPeer]) {
+        // when there are updates in stage requests
+    }
 
-  override fun onLiveStreamStateUpdate(data: DyteLivestreamData) {
-    // when there is an update in state of the livestream
-  }
+    public func onViewerCountUpdated(count: Int32) {
+        // when viewer count updates in livestream
+    }
+
 }
-meeting.addLiveStreamEventsListener(dyteLiveStreamEventsListener)
+
+meeting.addLiveStreamEventsListener(liveStreamEventsListener: self)
 ```
 
 ## Livestream events
@@ -68,11 +70,11 @@ meeting.addLiveStreamEventsListener(dyteLiveStreamEventsListener)
 
 - ### onLiveStreamStateUpdate
 
-  This event is triggered when the livestream state is updated. 
+  This event is triggered when the livestream state is updated.
 
 - ### onViewerCountUpdated
 
-  This event is triggered when the viewer count is updated. 
+  This event is triggered when the viewer count is updated.
 
 - ### onLiveStreamEnding
 
@@ -92,20 +94,20 @@ meeting.addLiveStreamEventsListener(dyteLiveStreamEventsListener)
 
 - ### onStageRequestsUpdated
 
-  This event is triggered when the stage requests are updated. The `requests` object contains the updated list of stage requests. 
+  This event is triggered when the stage requests are updated. The `requests` object contains the updated list of stage requests.
 
 - ### onJoinRequestAccepted
 
   This event is triggered when a stage request is accepted. The `peer` object contains the peer whose request is accepted.
 
-  ```kotlin
-    void onJoinRequestAccepted(DyteLiveStreamStagePeer peer) {}
+  ```swift
+    public func onJoinRequestAccepted(peer: LiveStreamStagePeer) {}
   ```
 
 - ### onJoinRequestRejected
 
   This event is triggered when a stage request is rejected. The `peer` object contains the peer whose request is rejected.
 
-  ```kotlin
-    void onJoinRequestRejected(DyteLiveStreamStagePeer peer) {}
+  ```swift
+    public func onJoinRequestRejected(peer: LiveStreamStagePeer) {}
   ```
