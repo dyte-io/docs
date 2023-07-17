@@ -287,11 +287,11 @@ paths:
                     data:
                       - id: 3fd739f4-3c41-456e-bfba-6ebd51e16d2c
                         name: null
-                        ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
-                        stream_key: sk_ap-south-1_fiETVh5SNa3V_MAs0NlNCkJqTokqrMbrdWyA2naII26
+                        ingest_server: 'rtmps://1ab802dd26b0.global-contribute.live-video.net:344/app/'
+                        stream_key: sk_ap-south-1_fiETVh5SNa3V_ABs0NlNCkJqTokqrMbrdWyA1bcII32
                         status: IDLE
                         meeting_id: null
-                        playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.mA2dNqrBulpi.m3u8'
+                        playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.811208621215.channel.mA2dNqrBulpi.m3u8'
                         created_at: '2023-07-15T11:48:34.753Z'
                         updated_at: '2023-07-15T11:48:34.753Z'
                         disabled: false
@@ -302,6 +302,47 @@ paths:
       description: 'Returns details of livestreams associated with the given organization ID. It includes livestreams created by your organization and Dyte meetings that are livestreamed by your organization. If you only want details of livestreams created by your organization and not Dyte meetings, you can use the `excludeMeetings` query parameter.'
       tags:
         - Live streams
+  '/meetings/{meeting_id}/active-livestream/stop':
+    post:
+      operationId: stop_livestreaming
+      summary: Stop livestreaming a meeting
+      requestBody:
+        content: {}
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                x-examples: null
+              examples:
+                example-1:
+                  value:
+                    success: true
+                    data:
+                      message: Stopped live stream successfully
+      description: Stops the active livestream of a meeting associated with the given meeting ID. Retreive the meeting ID using the `Create a meeting` API.
+      tags:
+        - Live streams
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: meeting_id
+        in: path
+        required: true
+        description: ID of the meeting
   '/meetings/{meeting_id}/livestreams':
     post:
       summary: Start livestreaming a meeting
@@ -382,7 +423,7 @@ paths:
                       id: 7088bba8-f522-49a8-b59b-3cd0e946bbb0
                       stream_key: sk_ap-south-1_AfnVpeYZjidO_fBpWKody7sDUOEfy9Zc6XAZegkR0Va
                       playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.rVKA2KM5Lunt.m3u8'
-      description: Starts livestream of a meeting associated with the given meeting ID.
+      description: Starts livestream of a meeting associated with the given meeting ID. Retreive the meeting ID using the `Create a meeting` API.
       tags:
         - Live streams
       operationId: start-livestreaming
@@ -555,11 +596,11 @@ paths:
                       livestream:
                         id: b60ef3da-fbbb-441b-9168-8235b0035248
                         name: null
-                        ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
-                        stream_key: sk_ap-south-1_x3lKBdJa8UDN_3q6PPLMJnqnbnhyrkXrOG504MUsxnZ
+                        ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:233/app/'
+                        stream_key: sk_ap-south-1_x3lKBdJa8UDN_3q6ABCDJnqnbnhyrkXrOG103ABsxnZ
                         status: LIVE
-                        meeting_id: bbb87945-df1c-49d9-8159-262a7ae6cfde
-                        playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.ob5KQUrP5Zaf.m3u8'
+                        meeting_id: aaa87945-df1c-49d9-8159-262a7ae6cfde
+                        playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.855008621410.channel.ob5KQUrP5Zaf.m3u8'
                         created_at: '2023-07-15T07:08:26.634Z'
                         updated_at: '2023-07-15T07:08:40.726Z'
                         disabled: false
@@ -578,62 +619,12 @@ paths:
                       total_count: 1
                       start_offset: 1
                       end_offset: 1
-      description: Returns livestream session details for the given meeting ID.
+      description: Returns livestream session details for the given meeting ID. Retreive the meeting ID using the `Create a meeting` API.
       tags:
         - Live streams
       requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties: {}
+        content: {}
       operationId: livestream-session-details
-    parameters:
-      - schema:
-          type: string
-          format: uuid
-        name: meeting_id
-        in: path
-        required: true
-        description: ID of the meeting
-  '/meetings/{meeting_id}/active-livestream/stop':
-    post:
-      operationId: stop_livestreaming
-      summary: Stop livestreaming a meeting
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              example:
-                name: prdmmp-xhycsl
-      parameters: []
-      responses:
-        '200':
-          description: OK
-          headers: {}
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                  data:
-                    type: object
-                    properties:
-                      message:
-                        type: string
-                x-examples: null
-              examples:
-                example-1:
-                  value:
-                    success: true
-                    data:
-                      message: Stopped live stream successfully
-      description: Stops the active livestream of a meeting associated with the given meeting ID.
-      tags:
-        - Live streams
     parameters:
       - schema:
           type: string
@@ -646,12 +637,7 @@ paths:
     post:
       summary: Reset a livestream's stream key
       requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              example:
-                name: prdmmp-xhycsl
+        content: {}
       parameters: []
       responses:
         '200':
@@ -734,11 +720,11 @@ paths:
                     data:
                       id: 61e03cb4-d4da-42ad-9169-f53360f4f4b4
                       name: null
-                      ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
+                      ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:223/app/'
                       stream_key: ''
                       status: LIVE
                       meeting_id: bbb03399-24e3-4b0c-90ec-172e97e636be
-                      playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.9Ztr6yk4vndX.m3u8'
+                      playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.124408622242.channel.9Ztr6yk4vndX.m3a1'
                       created_at: '2023-07-15T11:58:08.404Z'
                       updated_at: '2023-07-15T12:02:48.242Z'
                       disabled: true
@@ -750,7 +736,7 @@ paths:
                     type: string
                   data:
                     $ref: '#/components/schemas/LivestreamBase'
-      description: Resets the stream key for the given livestream ID.
+      description: Resets the stream key for the given livestream ID. Retreive the livestream ID using the `Start livestreaming a meeting` API.
       tags:
         - Live streams
       operationId: reset-stream-key
@@ -763,25 +749,54 @@ paths:
   /analytics/livestreams/overall:
     parameters: []
     get:
-      summary: Fetch complete analytics data your livestreams
+      summary: Fetch complete analytics data for your livestreams
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnalyticsResponse'
-              examples: {}
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    x-stoplight:
+                      id: x17mrgl1g9bf5
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: ld0etwu7u7pdk
+                    properties:
+                      count:
+                        type: integer
+                        x-stoplight:
+                          id: 5pe2xf0w6dnkp
+                        description: Count of total livestreams.
+                      total_ingest_seconds:
+                        type: integer
+                        x-stoplight:
+                          id: 7cbckohgd5uew
+                        description: Total time duration for which the input was given or the meeting was streamed.
+                      total_viewer_seconds:
+                        type: integer
+                        x-stoplight:
+                          id: 7b4e77ziz71wu
+                        description: Total view time for which the viewers watched the stream.
+              examples:
+                Example 1:
+                  value:
+                    success: true
+                    data:
+                      - date: '2023-07-15T00:00:00.000Z'
+                        count: 4
+                        total_ingest_seconds: 531
+                        total_viewer_seconds: 116
       operationId: get-livestream-analytics-complete
       description: Returns livestream analytics for the specified time range.
       tags:
         - Live streams
         - LivestreamAnalytics
       parameters:
-        - schema:
-            type: string
-          in: header
-          name: Authorization
         - schema:
             type: string
             format: date-time
@@ -794,27 +809,6 @@ paths:
           in: query
           name: end_time
           description: Specify the end time range in ISO format to access the livestream analytics.
-        - schema:
-            type: string
-            format: date
-            enum:
-              - ASC
-              - DSC
-          in: query
-          name: sort_order
-          description: Specifies the sorting order for the results.
-        - schema:
-            type: integer
-            default: '25'
-          in: query
-          name: per_page
-          description: Number of results per page.
-        - schema:
-            type: integer
-            default: '1'
-          in: query
-          name: page_no
-          description: The page number from which you want your page search results to be displayed.
   /analytics/livestreams/daywise:
     parameters: []
     get:
@@ -825,18 +819,52 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AnalyticsResponse'
-              examples: {}
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    x-stoplight:
+                      id: jcscopi2ycxju
+                  data:
+                    type: object
+                    x-stoplight:
+                      id: 9olhjvthhbcb9
+                    properties:
+                      date:
+                        type: string
+                        x-stoplight:
+                          id: mtmh7ceclnudo
+                        description: 'The livestream timestamp, provided in ISO format.'
+                      count:
+                        type: string
+                        x-stoplight:
+                          id: z9sa35x2hhyq2
+                        description: Count of total livestreams.
+                      total_ingest_seconds:
+                        type: string
+                        x-stoplight:
+                          id: ms15h83p1repq
+                        description: Total time duration for which the input was given or the meeting was streamed.
+                      total_viewer_seconds:
+                        type: string
+                        x-stoplight:
+                          id: rtxhta3yyu9yd
+                        description: Total view time for which the viewers watched the stream.
+              examples:
+                Example 1:
+                  value:
+                    success: true
+                    data:
+                      - date: '2023-07-15T00:00:00.000Z'
+                        count: 4
+                        total_ingest_seconds: 531
+                        total_viewer_seconds: 116
       operationId: get-livestream-analytics-daywise
       description: Returns day-wise livestream analytics data for the specified time range.
       tags:
         - Live streams
         - LivestreamAnalytics
       parameters:
-        - schema:
-            type: string
-          in: header
-          name: Authorization
         - schema:
             type: string
             format: date-time
@@ -849,26 +877,6 @@ paths:
           in: query
           name: end_time
           description: Specify the end time range in ISO format to access the livestream analytics.
-        - schema:
-            type: string
-            enum:
-              - ASC
-              - DSC
-          in: query
-          name: sort_order
-          description: Specifies the sorting order for the results.
-        - schema:
-            type: integer
-            default: '25'
-          in: query
-          name: per_page
-          description: Number of results per page.
-        - schema:
-            type: integer
-            default: '1'
-          in: query
-          name: page_no
-          description: The page number from which you want your page search results to be displayed.
   '/livestreams/{livestream_id}/enable':
     parameters:
       - schema:
@@ -895,7 +903,7 @@ paths:
                     $ref: '#/components/schemas/LivestreamBase'
                     x-stoplight:
                       id: h3kbfpcf0cvz3
-      description: Enables a livestream for the given livestream ID.
+      description: Enables a livestream for the given livestream ID. Retreive the livestream ID using the `Start livestreaming a meeting` API.
       tags:
         - Live streams
   '/livestreams/{livestream_id}/disable':
@@ -924,7 +932,7 @@ paths:
                     $ref: '#/components/schemas/LivestreamBase'
                     x-stoplight:
                       id: h3kbfpcf0cvz3
-      description: Disables a livestream for the given livestream ID.
+      description: Disables a livestream for the given livestream ID. Retreive the livestream ID using the `Start livestreaming a meeting` API.
       tags:
         - Live streams
   '/sessions/{session_id}/livestream-sessions':
@@ -935,7 +943,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Fetch livestream sessions using a session ID
+      summary: Fetch livestream session details using a session ID
       responses:
         '200':
           description: OK
@@ -952,11 +960,6 @@ paths:
                     properties:
                       err_message:
                         type: string
-                        enum:
-                          - LIVE
-                          - IDLE
-                          - ERRORED
-                          - INVOKED
                         x-stoplight:
                           id: ajlcjgry8wag1
                       invoked_time:
@@ -980,7 +983,7 @@ paths:
                         format: date-time
                       id:
                         type: string
-                        description: The livestream ID.
+                        description: The livestream session ID.
                       stopped_time:
                         type: string
                         description: Specifies if the livestream was disabled.
@@ -1021,7 +1024,7 @@ paths:
                     data:
                       data:
                         - id: cf55a850-c3fd-46b5-b5d2-25b3b9aa1686
-                          livestream_id: b60ef3da-fbbb-441b-9168-8235b0035248
+                          livestream_id: b60ef3da-fbbb-441b-9168-8235b0035123
                           err_message: null
                           invoked_time: null
                           started_time: '2023-07-15T07:08:39.000Z'
@@ -1035,10 +1038,20 @@ paths:
                         start_offset: 1
                         end_offset: 1
       operationId: get-v2-livestreamsession-session-meetingId-active-livestream
-      description: Returns details of all active livestreams for the given meeting ID.
+      description: Returns livestream session details for the given session ID. Retreive the session ID using the `Fetch all sessions of an organization` API.
       tags:
         - Live streams
-      parameters: []
+      parameters:
+        - schema:
+            type: number
+          in: query
+          name: per_page
+          description: Number of results per page.
+        - schema:
+            type: number
+          in: query
+          name: page_no
+          description: The page number from which you want your page search results to be displayed.
   '/meetings/{meeting_id}/active-livestream':
     parameters:
       - schema:
@@ -1111,7 +1124,7 @@ paths:
                       name: null
                       status: LIVE
                       meeting_id: bbb03399-24e3-4b0c-90ec-172e97e636be
-                      playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.9Ztr6yk4vndX.m3u8'
+                      playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.811208621410.channel.9Ztr6yk4vndX.a1c3'
                       created_at: '2023-07-15T11:58:08.404Z'
                       updated_at: '2023-07-15T11:58:24.278Z'
                       disabled: false
@@ -1200,7 +1213,7 @@ paths:
                       ingest_seconds: 60
                       viewer_seconds: 60
       operationId: get-v2-livestreams-livestream-session-id
-      description: Returns livestream session details using the livestream session ID.
+      description: Returns livestream session details for the given livestream session ID. Retrieve the `livestream_session_id`using the `Fetch livestream session details using a session ID` API.
       tags:
         - Live streams
       parameters: []
@@ -1371,7 +1384,7 @@ paths:
                         ingest_seconds: 60
                         viewer_seconds: 60
       operationId: get-v2-active-livestream-session-details
-      description: Returns details of all active livestreams for the given livestream ID.
+      description: Returns details of all active livestreams for the given livestream ID. Retreive the livestream ID using the `Start livestreaming a meeting` API.
       tags:
         - Live streams
       parameters: []
@@ -1383,7 +1396,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Fetch livestream details with sessions using livestream ID
+      summary: Fetch livestream details using livestream ID
       responses:
         '200':
           description: OK
@@ -1522,10 +1535,20 @@ paths:
                       start_offset: 1
                       end_offset: 1
       operationId: get-v2-livestream-session-livestream-id
-      description: Returns details of a livestream with sessions for the given livestream ID.
+      description: Returns details of a livestream with sessions for the given livestream ID. Retreive the livestream ID using the `Start livestreaming a meeting` API.
       tags:
         - Live streams
-      parameters: []
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: page_no
+          description: The page number from which you want your page search results to be displayed.
+        - schema:
+            type: integer
+          in: query
+          name: per_page
+          description: Number of results per page.
   '/meetings/{meeting_id}/active-session':
     get:
       summary: Fetch details of an active session
@@ -1746,32 +1769,6 @@ paths:
         in: path
         required: true
         description: ID of the session
-  /analytics/overall:
-    get:
-      summary: Fetch complete analytics data
-      description: 'Returns complete analytics such as sessions_count, sessions_minutes_consumed and recordings_minutes_consumed of an organization in a given time period.'
-      operationId: GetOverallStats
-      tags:
-        - Analytics
-      parameters:
-        - $ref: '#/components/parameters/startDate'
-        - $ref: '#/components/parameters/endDate'
-      responses:
-        '200':
-          $ref: '#/components/responses/GetOverallStats'
-  /analytics/daywise:
-    get:
-      summary: Fetch daywise analytics data
-      description: 'Returns analytics such as sessions_count, sessions_minutes_consumed and recordings_minutes_consumed of an organization grouped by day in a given time period.'
-      operationId: GetDaywiseStats
-      tags:
-        - Analytics
-      parameters:
-        - $ref: '#/components/parameters/startDate'
-        - $ref: '#/components/parameters/endDate'
-      responses:
-        '200':
-          $ref: '#/components/responses/GetDaywiseStats'
   /webhooks:
     summary: Represents webhooks for organization
     description: Represents webhooks for organization
@@ -2822,10 +2819,10 @@ components:
           meeting_id: null
           ingest_seconds: 0
           viewer_seconds: 0
-          ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
-          id: 78dd0b50-4147-4bb8-88d3-2ccc2e98bff0
-          stream_key: sk_ap-south-1_BSErwBSdrcWn_0eG01cFGCJcRcCsflOAX3Eu4B3RyRX
-          playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.Jk1l97eJF0ME.m3u8'
+          ingest_server: 'rtmps://1ec802dd47a1.global-contribute.live-video.net:344/app/'
+          id: 58dd0b50-4147-4bb8-88d3-2ccc2e98baa0
+          stream_key: sk_ap-south-1_ABCrwBSdrcWn_0eG01cFGCJcRcCsflOAX3Eu4B3RyZX
+          playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.100108621410.channel.Ab1l97eJF0ME.m3u8'
       properties:
         status:
           type: string
@@ -2866,10 +2863,6 @@ components:
         disabled:
           type: boolean
           description: Specifies if the livestream was disabled.
-        external_id:
-          type: string
-          x-stoplight:
-            id: nry3ig09yy13q
         org_id:
           type: string
           x-stoplight:
