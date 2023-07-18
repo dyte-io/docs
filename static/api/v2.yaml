@@ -139,7 +139,7 @@ paths:
             type: boolean
             default: false
           in: query
-          name: excludeMeetings
+          name: exclude_meetings
           description: Exclude the Dyte meetings that are livestreamed.
         - schema:
             type: integer
@@ -299,7 +299,7 @@ paths:
                       total_count: 1
                       start_offset: 1
                       end_offset: 1
-      description: 'Returns details of livestreams associated with the given organization ID. It includes livestreams created by your organization and Dyte meetings that are livestreamed by your organization. If you only want details of livestreams created by your organization and not Dyte meetings, you can use the `excludeMeetings` query parameter.'
+      description: 'Returns details of livestreams associated with the given organization ID. It includes livestreams created by your organization and Dyte meetings that are livestreamed by your organization. If you only want details of livestreams created by your organization and not Dyte meetings, you can use the `exclude_meetings` query parameter.'
       tags:
         - Live streams
   '/meetings/{meeting_id}/active-livestream/stop':
@@ -430,16 +430,6 @@ paths:
     get:
       summary: Fetch livestream session details for a meeting
       parameters:
-        - schema:
-            type: integer
-          in: query
-          name: limit
-          description: 'Specifies the number of results to return on each page. The default value is 10. '
-        - schema:
-            type: integer
-          in: query
-          name: offset
-          description: Sets the first position to return from the results of the query. The default is 0.
         - schema:
             type: integer
           in: query
@@ -932,6 +922,22 @@ paths:
                     $ref: '#/components/schemas/LivestreamBase'
                     x-stoplight:
                       id: h3kbfpcf0cvz3
+              examples:
+                Example 1:
+                  value:
+                    success: true
+                    data:
+                      status: LIVE
+                      name: string
+                      meeting_id: string
+                      ingest_server: string
+                      id: string
+                      stream_key: string
+                      playback_url: string
+                      created_at: '2019-08-24T14:15:22Z'
+                      updated_at: '2019-08-24T14:15:22Z'
+                      disabled: false
+                      org_id: string
       description: Disables a livestream for the given livestream ID. Retreive the livestream ID using the `Start livestreaming a meeting` API.
       tags:
         - Live streams
@@ -960,6 +966,11 @@ paths:
                     properties:
                       err_message:
                         type: string
+                        enum:
+                          - LIVE
+                          - IDLE
+                          - ERRORED
+                          - INVOKED
                         x-stoplight:
                           id: ajlcjgry8wag1
                       invoked_time:
