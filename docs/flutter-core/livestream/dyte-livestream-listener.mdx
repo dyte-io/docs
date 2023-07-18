@@ -5,7 +5,8 @@ sidebar_position: 3
 tags: [flutter-core, livestream]
 ---
 
-You can listen to livestream events by attaching a listener by calling `addLivestreamEventsListener` on `dyteMobileClient` object where `dyteMobileClient` is an instance of `DyteMobileClient()`.
+You can listen to livestream events by attaching a listener `addLivestreamEventsListener` on `dyteMobileClient` object where `dyteMobileClient` is an instance of `DyteMobileClient()`.
+
 
 ```dart
 
@@ -40,11 +41,13 @@ dyteMobileClient.addLivestreamEventsListener(LivestreamListener())
 
   This event is triggered when the livestream state is updated. The `data` is `DyteLivestreamData` object that contains the updated livestream state. You can access the updated livestream state by:
 
+
   ```dart
     DyteLivestreamData data = dyteMobileClient.livestream.data
     DyteLivestreamStatus currentStatus = dyteMobileClient.livestream.data.state
     String? livestreamUrl = dyteMobileClient.livestream.data.url
   ```
+
 
 - ### onViewerCountUpdated
 
@@ -53,6 +56,7 @@ dyteMobileClient.addLivestreamEventsListener(LivestreamListener())
   ```dart
     int updatedViewerCount = dyteMobileClient.livestream.viewerCount
   ```
+
 
 - ### onLiveStreamEnding
 
@@ -68,6 +72,7 @@ dyteMobileClient.addLivestreamEventsListener(LivestreamListener())
 
 - ### onStageCountUpdated
 
+
   This event is triggered when the number of users on stage is updated. The `count` object contains the updated stage count.
 
   ```dart
@@ -76,6 +81,7 @@ dyteMobileClient.addLivestreamEventsListener(LivestreamListener())
       int updatedStageCount = count
     }
   ```
+
 
 - ### onStageRequestsUpdated
 

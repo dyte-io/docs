@@ -1,4 +1,5 @@
 ---
+
 title: Livestream objects & methods
 description: Livestream object containing all livestream related data and methods.
 sidebar_position: 2
@@ -53,13 +54,14 @@ Dyte’s stage management APIs allow hosts to receive and manage stage requests 
 
 This method lets the host accept a request to join the stage. It takes the _DyteLiveStreamStageRequestPeer_ as an argument whose request has to be accepted.
 
+
 ```dart
 dyteMobileClient.livestream.acceptRequest(peer);
 ```
 
 ### Reject request
 
-This method lets the host reject a request to join the stage. It takes the _DyteLiveStreamStageRequestPeer_ as an argument whose request has to be rejected.
+This method lets the host reject a request to join the stage. It takes the `DyteLiveStreamStageRequestPeer` as an argument whose request has to be rejected.
 
 ```dart
 dyteMobileClient.livestream.rejectRequest(peer);
