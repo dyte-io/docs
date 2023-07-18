@@ -68,37 +68,42 @@ dyteClient.setPage(1);
 
 ## Video update for all participants
 
-Triggered when the user starts / stops the video using `enableVideo` or
-`disableVideo`
+Triggered when any participant of the meeting enable/disable it's video. It also passes the participant details who has updated it's video status.
 
 ```dart
+class ParticipantNotifier implements DyteParticipantEventsListener{
 
-void videoUpdate(bool videoEnabled) {
-  if (videoEnabled) {
-      // video is enabled, and other participants in room can see local user
-    } else {
-      // video is disabled, and other participants in room can not see local user.
-    }
+  ...
+  @override
+  void videoUpdate(
+    bool videoEnabled,
+    DyteMeetingParticipant participant,
+  ) {
+    //
+  }
+  ...
 }
+
 
 ```
 
 ## Audio update
 
-Triggered when the user starts / stops the audio using `enableAudio` or
-`disableAudio`
+Triggered when any participant of the meeting enable/disable it's audio. It also passes the participant details who has updated it's audio status.
 
 ```dart
 
-void audioUpdate({
-  required bool audioEnabled,
-  required DyteMeetingParticipant participant,
-}) {
-    if (audioEnabled) {
-      // audio is enabled, and other participants in room can hear local user
-    } else {
-      // audio is disabled, and other participants in room can not hear local user.
-    }
+class ParticipantNotifier implements DyteParticipantEventsListener{
+
+  ...
+  @override
+  void audioUpdate(
+    bool audioEnabled,
+    DyteMeetingParticipant participant,
+  ) {
+    //
+  }
+  ...
 }
 
 ```
