@@ -48,7 +48,9 @@ pod 'DyteUiKit'
 OR for specific version:
 
 ```ruby
-pod 'DyteUiKit', '0.2.6'
+
+pod 'DyteUiKit', '0.3.3'
+
 ```
 
 2. Install the client SDK as CocoaPods dependency
@@ -200,7 +202,7 @@ class AppThemeConfigurator: AppThemeProtocol {
 
 ## Step 3: Configure a Dyte meeting and Launch UI
 
-To set the initialization properties in the `DyteUiKitEngine` class, simply initialize `DyteMeetingInfoV2` and provide the participant's `authToken`.
+To set the initialization properties in the `DyteUiKit` class, simply initialize `DyteMeetingInfoV2` and provide the participant's `authToken`.
 
 Try this in `viewDidAppear()`
 
@@ -217,23 +219,20 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    var dyteUikit: DyteUiKit!
 
-    override func viewDidAppear(_ animated: Bool) {
+   override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        DyteUiKitEngine.setupV2(DyteMeetingInfoV2(authToken: authToken,
-                                                enableAudio: true,
-                                                enableVideo: true,
-                                                baseUrl: baseUrl))
-
-        let controller = DyteUiKitEngine.shared.getInitialController { [weak self] in
+        dyteUikit = DyteUiKit(meetingInfoV2: DyteMeetingInfoV2(authToken: authToken, enableAudio: true, enableVideo: true, baseUrl: Constants.BASE_URL))
+        let controller = dyteUikit.startMeeting {
+            [weak self] in
             guard let self = self else {return}
             self.dismiss(animated: true)
         }
-
         controller.modalPresentationStyle = .fullScreen
         self.present(controller, animated: true)
     }
-r}
+}
 ```
 
 Here is a pictorial representation of all the config options defined below.

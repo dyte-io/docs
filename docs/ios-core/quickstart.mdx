@@ -51,16 +51,16 @@ You’ll learn how to:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-1. Set your platform to iOS 12.0 or above in your Podfile.
+1. Set your platform to iOS 13.0 or above in your Podfile.
 
 ```ruby
-platform :ios, '12.0'
+platform :ios, '13.0'
 ```
 
 2. Add 'DyteiOSCore' to your Podfile.
 
 ```ruby
-pod 'DyteiOSCore'
+pod 'DyteiOSCore' , '0.6.7'
 ```
 
 3. Install the client SDK from pod.
@@ -108,6 +108,7 @@ meeting.addChatEventsListener(chatEventsListener: self)
 meeting.addPollEventsListener(pollEventsListener: self)
 meeting.addRecordingEventsListener(recordingEventsListener: self)
 meeting.addWaitlistEventListener(waitlistEventListener: self)
+meeting.addLiveStreamEventsListener(liveStreamEventsListener: self)
 ```
 
 ## Step 3: Set the properties in the DyteMeetingInfo class
