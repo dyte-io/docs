@@ -30,3 +30,28 @@ meeting, which is the same as `meeting.chat.messages`.
 
 When a chat message is received, the `meeting.chat.messages` list is also
 updated.
+
+DyteChatMessage has different implementations of it, thus you will need to cast and use appropriate type as follows:
+
+```swift
+   func onNewChatMessage(message: DyteChatMessage) {
+    if let msg = message {
+      switch msg.type {
+      case .text:
+        if let textMsg = msg as? DyteTextMessage {
+          //print("onNewChatMessage: Text : \(textMsg)")
+        }
+      case .file:
+        if let fileMsg = msg as? DyteFileMessage {
+          //print("onNewChatMessage: File : \(fileMsg.name)")
+        }
+      case .image:
+        if let imgMsg = msg as? DyteImageMessage {
+           //print("onNewChatMessage: Image : \(imgMsg.link)")
+        }
+
+      default:
+        print("Error! Message type unknown!")
+      }
+    }
+```

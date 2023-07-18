@@ -1,0 +1,113 @@
+---
+title: Livestream event listeners
+description: Livestream events to listen to for triggering
+sidebar_position: 3
+tags: [mobile-core, livestream]
+---
+
+You can listen to livestream events by attaching a listener by calling `addLivestreamEventsListener` on `dyteMobileClient` object where `dyteMobileClient` is an instance of `DyteMobileClient()`.
+
+```swift
+extension LivestreamViewController: DyteLiveStreamEventsListener {
+    public func onJoinRequestAccepted(peer: LiveStreamStagePeer) {
+        // when localUser's join request is accepted by host
+    }
+
+    public func onJoinRequestRejected(peer: LiveStreamStagePeer) {
+        // when localUser's join request is rejected by host
+    }
+
+    public func onLiveStreamEnded() {
+        // when livestream is ended
+    }
+
+    public func onLiveStreamEnding() {
+        // when livestream is ending
+    }
+
+    public func onLiveStreamErrored() {
+        // errored livestream
+    }
+
+    public func onLiveStreamStarted() {
+        // when livestream is started
+    }
+
+    public func onLiveStreamStarting() {
+        // when livestream is starting
+    }
+
+    public func onLiveStreamStateUpdate(data: DyteLivestreamData) {
+        // when there is an update in state of the livestream
+    }
+
+    public func onStageCountUpdated(count: Int32) {
+        // when stage count updates in livestream
+    }
+
+    public func onStageRequestsUpdated(requests: [LiveStreamStageRequestPeer]) {
+        // when there are updates in stage requests
+    }
+
+    public func onViewerCountUpdated(count: Int32) {
+        // when viewer count updates in livestream
+    }
+
+}
+
+meeting.addLiveStreamEventsListener(liveStreamEventsListener: self)
+```
+
+## Livestream events
+
+- ### onLiveStreamStarting
+
+  This event is triggered when the livestream is about to start.
+
+- ### onLiveStreamStarted
+
+  This event is triggered when the livestream has started.
+
+- ### onLiveStreamStateUpdate
+
+  This event is triggered when the livestream state is updated.
+
+- ### onViewerCountUpdated
+
+  This event is triggered when the viewer count is updated.
+
+- ### onLiveStreamEnding
+
+  This event is triggered when the livestream is about to end.
+
+- ### onLiveStreamEnded
+
+  This event is triggered when the livestream has ended.
+
+- ### onLiveStreamErrored
+
+  This event is triggered when their is an error while starting/stopping the livestream.
+
+- ### onStageCountUpdated
+
+  This event is triggered when the number of users on stage is updated. The `count` object contains the updated stage count.
+
+- ### onStageRequestsUpdated
+
+  This event is triggered when the stage requests are updated. The `requests` object contains the updated list of stage requests.
+
+- ### onJoinRequestAccepted
+
+  This event is triggered when a stage request is accepted. The `peer` object contains the peer whose request is accepted.
+
+  ```swift
+    public func onJoinRequestAccepted(peer: LiveStreamStagePeer) {}
+  ```
+
+- ### onJoinRequestRejected
+
+  This event is triggered when a stage request is rejected. The `peer` object contains the peer whose request is rejected.
+
+  ```swift
+    public func onJoinRequestRejected(peer: LiveStreamStagePeer) {}
+  ```

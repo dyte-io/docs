@@ -65,7 +65,7 @@ meeting.addWebinarEventsListener(object : DyteWebinarEventsListener {
     // when this user is no longer on stage
   }
 
-  override fun onPresetRequestAdded(participant: RequestToPresentParticipant) {
+  override fun onPresentRequestAdded(participant: RequestToPresentParticipant) {
     // when a user is requesting to join the stage
   }
 
@@ -73,15 +73,15 @@ meeting.addWebinarEventsListener(object : DyteWebinarEventsListener {
     // when a user who was trying to join stage leaves the call.
   }
 
-  override fun onPresetRequestAccepted(participant: RequestToPresentParticipant) {
+  override fun onPresentRequestAccepted(participant: RequestToPresentParticipant) {
     // when a join stage request is accepted by host
   }
 
-  override fun onPresetRequestRejected(participant: RequestToPresentParticipant) {
+  override fun onPresentRequestRejected(participant: RequestToPresentParticipant) {
     // when a join stage request is denied by host
   }
 
-  override fun onPresetRequestWithdrawn(participant: RequestToPresentParticipant) {
+  override fun onPresentRequestWithdrawn(participant: RequestToPresentParticipant) {
     // when a user who was trying to join stage withdraws their request to join.
   }
 })

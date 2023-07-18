@@ -1,0 +1,78 @@
+---
+title: Introduction
+description: Control livestreaming in your product.
+sidebar_position: 1
+tags: [flutter-core, livestream]
+---
+
+# Introduction - Livestream
+
+This section will guide you through the process of integrating the livestreaming feature into your product. Using Dyte's live-streaming state management APIs you can easily manage stage requests, such as leave and join stage, manage permissions, kick participants and so on.
+
+The foundation of Dyte's livestreaming is based on a stage, which can be accessed by hosts and viewers. While hosts can directly enter the stage, viewers can request to join it. The stage is broadcasted live to all viewers.
+
+## DyteLivestream Object
+
+`DyteLivestream` object contains all the methods and properties for the ongoing livestream session. This livestream object can be accessed via `dyteMobileClient.livestream` method, where `dyteMobileClient` is the instance of `DyteMobileClient()`.
+
+```dart
+class DyteLivestream {
+  DyteLivestreamData get data;
+  List<DyteLiveStreamStageRequestPeer> get requests;
+  void start() {}
+  void stop() {}
+  void acceptRequest(DyteLiveStreamStageRequestPeer peer) {}
+  void rejectRequest(DyteLiveStreamStageRequestPeer peer) {}
+  void acceptAllRequests() {}
+  void rejectAllRequests() {}
+  Future<String?> getUrl();
+  Future<String> getRoomName();
+  Future<DyteLivestreamStatus?> getState();
+}
+
+```
+
+## Livestream Events Listener
+
+You can listen to the livestream events via `DyteLivestreamEventsListener`. You can register the listener via `dyteMobileClient.addLivestreamEventsListener()` method and listen to livestream events.
+
+```dart
+class DyteLivestreamEventsListener {
+  void onLiveStreamStarting() {}
+  void onLiveStreamStarted() {}
+  void onLiveStreamStateUpdate(DyteLivestreamData data) {}
+  void onViewerCountUpdated(int count) {}
+  void onLiveStreamEnding() {}
+  void onLiveStreamEnded() {}
+  void onLiveStreamErrored() {}
+  void onStageCountUpdated(int count) {}
+  void onStageRequestsUpdated(List<DyteLiveStreamStageRequestPeer> requests) {}
+  void onJoinRequestAccepted(DyteLiveStreamStagePeer peer) {}
+  void onJoinRequestRejected(DyteLiveStreamStagePeer peer) {}
+}
+```
+
+## LivestreamView
+
+LivestreamView widget returns the view for the current livestream. It takes `String? url` as an argument of the livestream which is accessible via `dyteMobileClient.livestream.url` method or `Future<String?> getUrl()` method on `DyteLivestream` class, which returns null if there's no livestream url.
+
+```dart
+final livestreamView = LivestreamView(
+  url: dyteMobileClient.livestream.url,
+);
+
+// or
+
+Future<Widget> fetchLivestreamView () async {
+  String? url = await dyteMobileClient.livestream.getUrl();
+  if (url != null) {
+    return LivestreamView(
+      url: url,
+    );
+  } else {
+    return Container();
+  }
+
+  final livestreamView = await fetchLivestreamView();
+}
+```
