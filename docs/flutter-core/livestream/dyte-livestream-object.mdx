@@ -1,16 +1,17 @@
 ---
 title: Livestream Objects and Methods
-description: This topic covers the usage of livestreaming APIs for handling stage requests, including actions like joining or leaving the stage, accepting or rejecting requests, withdrawing invitations, and more.
 sidebar_position: 1
 tags: [flutter-core, livestream]
 ---
+
+This topic covers the usage of livestreaming APIs for handling stage requests, including actions like joining or leaving the stage, accepting or rejecting requests, withdrawing invitations, and more.
 
 `DyteLivestream` object contains all the methods and properties required for integrating livestream. The livestream object can be accessed via `dyteMobileClient.livestream` method, where `dyteMobileClient` is the instance of `DyteMobileClient()`.
 
 
 ## Objects
 
-### data : [_DyteLivestreamData_]
+### data : [DyteLivestreamData]
 
 Livestream data can be accessed via `dyteMobileClient.livestream.data` method and contains the data related to metadata for livestream. It has four properties:<br />
 
@@ -25,9 +26,9 @@ Livestream data can be accessed via `dyteMobileClient.livestream.data` method an
   -  `url`: The url of the livestream.
   -  `viewerCount`: The number of viewers in the livestream.<br/><br />
 
-### requests : _List&ltDyteLiveStreamStageRequestPeer&gt_
+### requests : List&ltDyteLiveStreamStageRequestPeer&gt
 
-- `requests`: _List&ltDyteLiveStreamStageRequestPeer&gt_ object accessed via `dyteMobileClient.livestream.requests`, contains a list of requests to join the stage. Each request includes three properties: <br />
+- `requests`: List&ltDyteLiveStreamStageRequestPeer&gt object accessed via `dyteMobileClient.livestream.requests`, contains a list of requests to join the stage. Each request includes three properties: <br />
   - `peerId`: The peerId of the user who requested to join the stage.
   - `userId`: The userId of the user who requested to join the stage.
   - `displayName`: The display name of the user who requested to join the stage.<br/><br />
@@ -37,7 +38,7 @@ Use the following methods to do the following:
 
 ### Request host to join stage
 
-Call this method to request host to join stage. Ensure that the participant has the required (preset permissions)[https://docs.dyte.io/guides/livestream/advanced/configuring-permissions].
+Call this method to request host to join stage. Ensure that the participant has the required [preset permissions](/guides/livestream/advanced/configuring-permissions).
 
 ```dart
 dyteMobileClient.livestream.requestToJoinStage();
@@ -67,15 +68,15 @@ dyteMobileClient.livestream.withdrawRequestToJoinStage();
 
 ### getUrl()
 
-[_String?_]: Returns the url of the livestream.
+[String?]: Returns the url of the livestream.
 
 ### getRoomName()
 
-[_String?_]: Returns the name of the room.
+[String?]: Returns the name of the room.
 
 ### getState()
 
-[_DyteLivestreamStatus?_]: Returns the current status of the livestream.<br /><br />
+[DyteLivestreamStatus?]: Returns the current status of the livestream.<br /><br />
 
 ## Host Controls Methods
 
@@ -99,7 +100,7 @@ dyteMobileClient.livestream.leaveStage();
 
 ### Accept request
 
-This method lets the host accept a request to join the stage. It takes the _DyteLiveStreamStageRequestPeer_ as an argument whose request has to be accepted.
+This method lets the host accept a request to join the stage. It takes the DyteLiveStreamStageRequestPeer as an argument whose request has to be accepted.
 
 ```dart
 dyteMobileClient.livestream.acceptRequest(peer);
@@ -107,7 +108,7 @@ dyteMobileClient.livestream.acceptRequest(peer);
 
 ### Reject request
 
-This method lets the host reject a request to join the stage. It takes the _DyteLiveStreamStageRequestPeer_ as an argument whose request has to be rejected.
+This method lets the host reject a request to join the stage. It takes the DyteLiveStreamStageRequestPeer as an argument whose request has to be rejected.
 
 ```dart
 dyteMobileClient.livestream.rejectRequest(peer);
