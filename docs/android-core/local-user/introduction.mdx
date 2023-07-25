@@ -24,7 +24,6 @@ Here is a list of properties that local user provides:
 - `audioEnabled`: A boolean value that shows whether the audio is currently enabled for the local user.
 - `videoEnabled`: A boolean value that shows whether the video is currently enabled for the local user.
 - `isScreenShareParticipant`: A boolean value indicating if the participant is currently sharing the screen in this meeting.
-- `broadcastMessage`: Broadcasts the message to all participants including `self`.
 
 ## Change default audio/video settings
 
@@ -104,5 +103,5 @@ meeting.localUser.setVideoDevice(videoDevice: DyteVideoDevice)
 
 ```kotlin
 // broadcast message
-meeting.localUser.broadcastMessage(wrappedPayload)
+meeting.localUser.broadcastMessage(Payload)
 ```
