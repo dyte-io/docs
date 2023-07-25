@@ -13,54 +13,98 @@ Dyte's UI Kit uses Atomic design as a principle to bring logic and structure to 
 
 Let's look at how you can customize your UI with Dyte's Flutter UI Kit.
 
-Dyte provides a `Configurations` parameter in `DyteUIKit` object. These configuration are responsible for customizing all the theme colors in Flutter UI Kit. You can set the theme for Dyte UI Kit app as per your convenience.
 
 ## Customizing with Design Tokens - Changing themes
 
-You ca change the color scheme if the meeting to reflect your branch and theme . Dyte's Flutter UI Kit allows you to specify 3 color values:
+Dyte Provided a `DyteDesignToken` class to customize the theme of the UI Kit. You can pass the `DyteDesignToken` object in `DyteUIKitInfo` object to customize the theme of the UI Kit.
 
-- `baseBackground` - The background color of the app.
-- `basePrimary` - The color of primary components of your app like participant name box, Vote button.
-- `textColor` - The color of texts in the UI Kit.
+`DyteDesignToken` has the following parameters:
 
-Here is a pictorial representation of all the configurable options in Flutter UI Kit:
+- `backgroundColor`: The background color of the UI Kit.
+- `textOnBackground`: The text color on the background of the UI Kit.
+- `backgroundColorSwatch`: The background color swatch of the UI Kit.
+- `brandColor`: The primary color of the UI Kit.
 
-<div
-  id="one"
-  style={{
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    flex: '1 1 0',
-    justifyContent: 'center',
-  }}
->
-  {
-    <img
-      src="/static/mobile/0.x.x/flutter-uikit-config.png"
-      alt="Image 1"
-      height="300"
-      padding="10"
-      margin="10 3"
-      style={{ margin: '10px' }}
-    />
-  }
-</div>
-````
+- `textOnBrand`: The text color on the brand color of the UI Kit.
+- `brandColorSwatch`: The brand color swatch of the UI Kit.
+- `danger`: The danger color of the UI Kit.
+- `success`: The success color of the UI Kit.
+- `warning`: The warning color of the UI Kit.
 
-A demo of how you can pass the configurations in Flutter UI Kit is shown below:
+:::info
+To customize the theme of the uikit, you can either pass color or color swatch. You can't pass both at the same time.
+
+To pass brand color swatch, you need to pass the color swatch with 5 entries with keys 300, 400, 500, 600, 700.
+
+To pass background color swatch, you need to pass the color swatch with 5 entries with keys 600, 700, 800, 900, 1000.
+
+This is done through the `DyteColorSwatch` class.
+:::
+
+`DyteColorSwatch` class has two parameters, the first parameter is the default color key and the second parameter is the map of colors.
+
+### Example
 
 ```dart
-final uiKit = DyteUIKit(
-      meetingInfo: meetingInfoV2,
-      configurations: Configurations(
-        baseBackground: Colors.black,
-        textColor: Colors.white,
-        basePrimary: Colors.magenta.shade200,
-      ),
-      clientContext: context,
-    );
-return uiKit.loadUI();
+final primarySwatch = DyteColorSwatch(
+    500,
+    {
+      300: Colors.blue.shade300,
+      400: Colors.blue.shade400,
+      500: Colors.blue.shade500,
+      600: Colors.blue.shade600,
+      700: Colors.blue.shade700,
+    },
+  );
+```
+
+
+
+## Customizing with Configurations - Changing borders.
+
+You can pass the `DyteBorderRadius` and `BorderWidth` enum values in the design token to customize the border radius and border width of the UI Kit.
+
+`borderRadius`: The border radius of the UI Kit. It has the following values.
+  - `DyteBorderRadius.sharp`
+  - `DyteBorderRadius.rounded`
+  - `DyteBorderRadius.extrarounded`
+  - `DyteBorderRadius.circular`
+
+
+`borderWidth`: The border width of the UI Kit.
+  - `BorderWidth.none`
+  - `BorderWidth.thin`
+  - `BorderWidth.fat`
+
+
+## Example
+
+A demo of how you can pass the `DesignToken` in Flutter UI Kit is shown below:
+
+
+```dart
+    final uikitInfo = DyteUIKitInfo(meetingInfo,
+        designToken: DyteDesignToken(
+          colorToken: DyteColorToken(
+              borderRadius: DyteBorderRadius.circular,
+              borderWidth: BorderWidth.fat,
+              backgroundColor: Colors.black,
+              textOnBrand: Colors.white,
+              textOnBackground: Colors.white,
+              danger: Colors.red,
+              success: Colors.green,
+              warning: Colors.yellow,
+              brandColorSwatch: DyteColorSwatch(
+                500,
+                {
+                  300: Colors.blue.shade300,
+                  400: Colors.blue.shade400,
+                  500: Colors.blue.shade500,
+                  600: Colors.blue.shade600,
+                  700: Colors.blue.shade700,
+                },
+              )),
+        ));
 ```
 
 <div
