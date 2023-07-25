@@ -1,17 +1,17 @@
 ---
-title: Manage Stage in Dyte's Webinar
+title: Manage Stage in Dyte's group call meeting
 description: Manage the stage as per your convinience.
 sidebar_position: 3
-tags: [mobile-core, webinar]
+tags: [mobile-core, stage]
 ---
 
-# Manage Stage in Dyte's Webinar
+# Manage Stage in Dyte's group call meeting
 
-In the webinar, both hosts and participants have the ability to manage the stage. This allows for seamless control and organization of the webinar session.
+In the call, both hosts and participants have the ability to manage the stage. This allows for seamless control and organization of the session.
 
 ## Host stage management
 
-In Dyte's webinar platform, hosts have the capability to request participants to join the stage. When a host sends a request to a participant, the participant will receive a callback in the `DyteWebinarEventsListener#onPresentRequestReceived()` method. The participant can then choose to accept or decline the request using specific functions.
+In Dyte's group call platform, hosts have the capability to request participants to join the stage. When a host sends a request to a participant, the participant will receive a callback in the `DyteStageEventListener#onPresentRequestReceived()` method. The participant can then choose to accept or decline the request using specific functions.
 
 ```kotlin
 meeting.addWebinarEventsListener(object : DyteWebinarEventsListener {
@@ -26,13 +26,13 @@ meeting.addWebinarEventsListener(object : DyteWebinarEventsListener {
 To accept the request and join the stage, participants can utilize the following command:
 
 ```kotlin
-meeting.webinar.acceptRequestToPresent()
+meeting.webinar.join()
 ```
 
 Alternatively, if participants wish to decline the request and not join the stage, use the following command:
 
 ```kotlin
-meeting.webinar.rejectRequestToPresent()
+meeting.webinar.cancelRequestAccess()
 ```
 
 ## Participant stage management
@@ -41,10 +41,10 @@ Participants with the "Accept requests" setting enabled in the Preset can manage
 
 ### Access the list of requests
 
-To access the list of requests received to join the stage, you can utilize the `meeting.webinar.requestedParticipants` API. This provides you with the necessary information about the participants who have requested to join the stage.
+To access the list of requests received to join the stage, you can utilize the `meeting.stage.accessRequests` API. This provides you with the necessary information about the participants who have requested to join the stage.
 
 ```kotlin
-meeting.webinar.requestedParticipants
+meeting.webinar.accessRequests
 ```
 
 ### Listen to the incoming requests
@@ -52,7 +52,7 @@ meeting.webinar.requestedParticipants
 Once you are in the meeting, you can register a listener in the meeting object to listen for incoming requests.
 
 ```kotlin
-meeting.addWebinarEventsListener(object : DyteWebinarEventsListener {
+meeting.addStageEventsListener(object : DyteStageEventsListener {
   override fun onPresentRequestReceived() {
     // when host requests this user to join stage. Here one should give choice to either accept the request or decline it.
   }
@@ -65,23 +65,23 @@ meeting.addWebinarEventsListener(object : DyteWebinarEventsListener {
     // when this user is no longer on stage
   }
 
-  override fun onPresentRequestAdded(participant: RequestToPresentParticipant) {
+  override fun onPresentRequestAdded(participant: DyteStageParticipant) {
     // when a user is requesting to join the stage
   }
 
-  override fun onPresentRequestClosed(participant: RequestToPresentParticipant) {
+  override fun onPresentRequestClosed(participant: DyteStageParticipant) {
     // when a user who was trying to join stage leaves the call.
   }
 
-  override fun onPresentRequestAccepted(participant: RequestToPresentParticipant) {
+  override fun onPresentRequestAccepted(participant: DyteStageParticipant) {
     // when a join stage request is accepted by host
   }
 
-  override fun onPresentRequestRejected(participant: RequestToPresentParticipant) {
+  override fun onPresentRequestRejected(participant: DyteStageParticipant) {
     // when a join stage request is denied by host
   }
 
-  override fun onPresentRequestWithdrawn(participant: RequestToPresentParticipant) {
+  override fun onPresentRequestWithdrawn(participant: DyteStageParticipant) {
     // when a user who was trying to join stage withdraws their request to join.
   }
 })
@@ -89,11 +89,10 @@ meeting.addWebinarEventsListener(object : DyteWebinarEventsListener {
 
 ### Accept stage requests
 
-To accept a request to join the stage, call the following function, where `id` represents the unique identifier of the request.
+To accept a request to join the stage, call the following function, where `ids` represents the list of unique identifier of the request.
 
 ```kotlin
-meeting.webinar.acceptRequest(id)
-meeting.webinar.acceptAllRequest()
+meeting.stage.grantAccess(ids: List<String>)
 ```
 
 ### Reject stage requests
@@ -101,8 +100,7 @@ meeting.webinar.acceptAllRequest()
 To reject a request, call the following function:
 
 ```kotlin
-meeting.webinar.rejectRequest(id)
-meeting.webinar.rejectAllRequest()
+meeting.webinar.denyAccess(ids: List<String>)
 ```
 
 :::note
@@ -114,5 +112,5 @@ It's important to note that if a participant doesn't have the permission to perf
 To withdraw a request to join the stage, call the following function:
 
 ```kotlin
-meeting.webinar.withdrawRequestToJoinStage()
+meeting.webinar.cancelRequestAccess()
 ```
