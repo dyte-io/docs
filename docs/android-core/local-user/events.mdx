@@ -13,7 +13,7 @@ You can subscribe to various events on the local user by implementing
 
 ### Room joined
 
-Triggered when the room join event completes and now the meeting is ready to
+Triggered when the room join event completes and the meeting is ready to
 produce and consume media.
 
 ```kotlin
@@ -26,8 +26,8 @@ meeting.addSelfEventsListener(object : DyteSelfEventsListener {
 
 ### Video update
 
-Triggered when the user starts / stops the video using `enableVideo` or
-`disableVideo`
+Triggered when the user starts/stops the video using `enableVideo` or
+`disableVideo`.
 
 ```kotlin
 meeting.addSelfEventsListener(object : DyteSelfEventsListener {
@@ -44,8 +44,8 @@ meeting.addSelfEventsListener(object : DyteSelfEventsListener {
 
 ### Audio update
 
-Triggered when the user starts / stops the audio using `enableAudio` or
-`disableAudio`
+Triggered when the user starts/stops the audio using `enableAudio` or
+`disableAudio`.
 
 ```kotlin
 meeting.addSelfEventsListener(object : DyteSelfEventsListener {
@@ -62,7 +62,7 @@ meeting.addSelfEventsListener(object : DyteSelfEventsListener {
 
 ### Room disconnected update
 
-Triggered when the user is disconnected due to media/network errors
+Triggered when the user is disconnected due to media or network error.
 
 ```kotlin
 meeting.addSelfEventsListener(object : DyteSelfEventsListener {
@@ -74,8 +74,7 @@ meeting.addSelfEventsListener(object : DyteSelfEventsListener {
 
 ### Proximity changed
 
-Triggered when there is any change in proximity. Meaning if device is near ear
-piece which triggers display on/off.
+Triggered whenever there is a change in proximity, indicating if the device is near an earpiece, which subsequently causes the display to turn on or off.
 
 ```kotlin
 meeting.addSelfEventsListener(object : DyteSelfEventsListener {
@@ -98,12 +97,24 @@ To get status of localUser in waiting room we can use
 val waitListStatus = meeting.localUser.waitListStatus
 ```
 
-Developers can listen to those changes in `onWaitListStatusUpdate()` callbacks
+You can listen to those changes in `onWaitListStatusUpdate()` callbacks
 
 ```kotlin
 meeting.addSelfEventsListener(object : DyteSelfEventsListener {
     override fun onWaitListStatusUpdate(waitListStatus: WaitListStatus) {
       super.onWaitListStatusUpdate(waitListStatus)
+    }
+});
+```
+
+### Process message within a room
+
+Manage messages among participants within a room.
+
+```kotlin
+meeting.addSelfEventsListener(object : DyteSelfEventsListener {
+    override fun onRoomMessage(message: String) {
+      super.onRoomMessage()
     }
 });
 ```
