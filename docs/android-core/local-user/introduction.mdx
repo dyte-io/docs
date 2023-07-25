@@ -7,32 +7,27 @@ tags: [mobile-core, local-user, self]
 
 # Introduction - Local User
 
-The local user has the methods and properties on the local user media controls.
-Accessible via `localUser` within the `meeting` object.
+The local user in the `meeting` object has a set of methods and properties related to media controls. These can be accessed using the identifier `localUser`.
 
 ## Properties
 
 Here is a list of properties that local user provides:
 
-- `id`: The ID of the participant pertaining to local user.
-- `name`: Contains Name of the local user.
-- `clientSpecificId`: Identifier provided by the developer while adding the
-  participant.
-- `permissions`: The permissions related to various capabilities within a
-  meeting context for the local user
-- `audioTrack`: The audio track for the local user.
-- `videoTrack`: The video track for the local user.
-- `screenShareTrack`: The screen share video tracks for the local user.
-- `audioEnabled`: A boolean value indicating if the audio currently enabled.
-- `videoEnabled`: A boolean value indicating if the video currently enabled.
-- `isScreenShareParticipant`: A boolean value indicating if the participant is a
-  screen share participant in this meeting.
+- `id`: ID of the local user participant.
+- `name`: Name of the local user.
+- `clientSpecificId`: Unique participant ID.
+- `permissions`: Permissions related to various capabilities within a
+  meeting context for the local user.
+- `audioTrack`: Audio track associated with the local user.
+- `videoTrack`: Video track associated with the local user.
+- `screenShareTrack`: Video track used for screen sharing by the local user.
+- `audioEnabled`: A boolean value that shows whether the audio is currently enabled for the local user.
+- `videoEnabled`: A boolean value that shows whether the video is currently enabled for the local user.
+- `isScreenShareParticipant`: A boolean value indicating if the participant is currently sharing the screen in this meeting.
 
-## Change default audio / video settings
+## Change default audio/video settings
 
-By default as soon as you join the meeting the SDK will produce your video and
-audio streams. To change this behaviour use the `audioEnabled` & `videoEnabled`
-parameter
+When you join the meeting, the SDK will automatically enable your video and audio streams. If you want to change this behavior, use the `audioEnabled` and `videoEnabled` parameters.
 
 ```kotlin {3,4}
 val meetingInfo = DyteMeetingInfo(
@@ -44,36 +39,32 @@ val meetingInfo = DyteMeetingInfo(
 
 ## Get local user video view
 
-To show localUser preview inside a view. use `getVideoView()` method on
-localUser. This method returns a View which can be added in any ViewGroup in
-android.
+To display the `localUser` preview in a view, utilize the `getVideoView()` method on `localUser`. This method provides a View that can be added to any `ViewGroup` in Android.
 
 ```kotlin
 meeting.localUser.getVideoView()
 ```
 
-## Turn audio/video tracks after joining the room
+## Enable audio/video tracks after joining the room
 
-If audio and video tracks are disabled during the `DyteMobileClient`
-initialization process. You can setup the audio and video tracks by simply
-calling `enableAudio()` and `enableVideo()` like below:
+After joining the room, if the audio and video tracks were disabled during the `DyteMobileClient` initialization, you can enable them easily by using the `enableAudio()` and `enableVideo()` functions:
 
 ```kotlin
 meeting.localUser.enableAudio()
 meeting.localUser.enableVideo()
 ```
 
-## Change the name of the local user
+## Update the local user's name
 
-Change the user's name by calling `setDisplayName` method. The changed name will
-reflect across all participants ONLY if the change happens before `joinRoom()`
-the meeting and after `init()`.
+You can change the user's name by using the `setDisplayName` method. However, the name change will be visible to all participants only if it occurs before `joinRoom()` the meeting and after the `init()` process.
 
 ```kotlin
 meeting.localUser.setDisplayName("New Name")
 ```
 
-## Mute/Unmute microphone
+## Mute/unmute microphone
+
+Mute/unmute your microphone in the meeting using `disableAudio()` and `enableAudio()` methods, and check the current status with `audioEnabled`.
 
 ```kotlin
 // Mute Audio
@@ -86,7 +77,9 @@ meeting.localUser.enableAudio()
 meeting.localUser.audioEnabled
 ```
 
-## Enable/Disable camera
+## Enable/disable camera
+
+Enable/disable your camera in the meeting using `disableVideo()` and `enableVideo()` methods, and check the current status with `videoEnabled`.
 
 ```kotlin
 // Disable Video
@@ -104,4 +97,11 @@ meeting.localUser.videoEnabled
 ```kotlin
 // switch camera
 meeting.localUser.setVideoDevice(videoDevice: DyteVideoDevice)
+```
+
+## Broadcast message to all participants
+
+```kotlin
+// broadcast message
+meeting.localUser.broadcastMessage(Payload)
 ```
