@@ -1,0 +1,39 @@
+---
+title: Customizing Meeting Locale
+sidebar_position: 3
+tags: [Flutter UI Kit, Design System, Localization]
+---
+
+Dyte's UI Kit allows you to customize all the text within the video call interface. You can personalize the text to align with your specific locale needs.
+
+Customizing the locale involve the following steps:
+
+
+1. Downloading the default language reference.
+2. Adding the modified file to your app.
+
+## Downloading the default language reference
+
+The default language reference is available [here](https://dyte-assets.s3.ap-south-1.amazonaws.com/sdk/flutter_ui_kit/app_en.arb). This file contains all the text that is displayed in the video call interface. You can download this file and modify it to suit your needs. It is not necessary to convert all the text in the file to your language. You can choose to modify only the text that you want to change.
+
+## Adding the modified file to your app
+
+Once you have modified the file, you can add it to your app. To do this, follow these steps:
+
+1. Create an asset folder in your app's root directory.
+2. Add the modified file to this folder.
+3. Add the following code to your `pubspec.yaml` file:
+
+```yaml
+flutter:
+  assets:
+    - assets/app_en.arb
+```
+
+4. Pass the path to the file to the `arbPath` parameter of the `DyteUIKitBuilder.build` method.
+
+```dart
+
+final uiKit = DyteUIKitBuilder.build(uiKitInfo: uikitInfo, arbPath: 'path/to/arb/file');
+
+```
