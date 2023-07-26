@@ -1,5 +1,5 @@
 ---
-title: Manage Stage in Dyte's group call meeting
+title: Manage Stage in Dyte's Group Call Meeting
 description: Manage the stage as per your convinience.
 sidebar_position: 3
 tags: [mobile-core, stage]
@@ -7,14 +7,14 @@ tags: [mobile-core, stage]
 
 # Manage Stage in Dyte's group call meeting
 
-In the call, both hosts and participants have the ability to manage the stage. This allows for seamless control and organization of the session.
+In a group call, both hosts and participants can manage the stage. This allows for seamless control and organization of the session.
 
 ## Host stage management
 
 In Dyte's group call platform, hosts have the capability to request participants to join the stage. When a host sends a request to a participant, the participant will receive a callback in the `DyteStageEventListener#onPresentRequestReceived()` method. The participant can then choose to accept or decline the request using specific functions.
 
 ```kotlin
-meeting.addWebinarEventsListener(object : DyteWebinarEventsListener {
+meeting.addStageEventsListener(object : DyteStageEventsListener {
   ...
   override fun onPresentRequestReceived() {
     // when host requests this user to join stage. Here one should give choice to either accept the request or decline it.
@@ -26,13 +26,13 @@ meeting.addWebinarEventsListener(object : DyteWebinarEventsListener {
 To accept the request and join the stage, participants can utilize the following command:
 
 ```kotlin
-meeting.webinar.join()
+meeting.stage.join()
 ```
 
 Alternatively, if participants wish to decline the request and not join the stage, use the following command:
 
 ```kotlin
-meeting.webinar.cancelRequestAccess()
+meeting.stage.cancelRequestAccess()
 ```
 
 ## Participant stage management
@@ -44,7 +44,7 @@ Participants with the "Accept requests" setting enabled in the Preset can manage
 To access the list of requests received to join the stage, you can utilize the `meeting.stage.accessRequests` API. This provides you with the necessary information about the participants who have requested to join the stage.
 
 ```kotlin
-meeting.webinar.accessRequests
+meeting.stage.accessRequests
 ```
 
 ### Listen to the incoming requests
@@ -100,7 +100,7 @@ meeting.stage.grantAccess(ids: List<String>)
 To reject a request, call the following function:
 
 ```kotlin
-meeting.webinar.denyAccess(ids: List<String>)
+meeting.stage.denyAccess(ids: List<String>)
 ```
 
 :::note
@@ -112,5 +112,5 @@ It's important to note that if a participant doesn't have the permission to perf
 To withdraw a request to join the stage, call the following function:
 
 ```kotlin
-meeting.webinar.cancelRequestAccess()
+meeting.stage.cancelRequestAccess()
 ```
