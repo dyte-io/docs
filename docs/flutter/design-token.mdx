@@ -7,79 +7,77 @@ tags: [Flutter UI Kit, Design System]
 
 # Design System
 
-A design system ins a collection of customizable methods, guided by clear standards, that can be used to build any number of application with your own personalization touch.
+A design system is a collection of reusable components, defined by clear standards, that can be assembled together to build any number of applications.
 
-Dyte's UI Kit uses Atomic design as a principle to bring logic and structure to individual screens. Read this blog pos to get a complete overview of how we're using design tokens and atomic design principles to create a multi-branch, multi-device design system.
+Dyte's UI kit uses the Atomic design principle, which logically organizes screens for various devices, making it a versatile system. Design tokens are used in Dyte's UI Kit to maintain a consistent look across platforms. By combining design tokens and Atomic design principles, Dyte ensures a smooth and adaptable user interface experience on different platforms.
 
-Let's look at how you can customize your UI with Dyte's Flutter UI Kit.
+## Design Tokens
 
+Design tokens are the single source of truth to name and store design decisions. Design tokens are the design related values which are used to maintain a design system, which provides flexibility in customizing the overall design of a system with values such as, typography, spacing, colors, borders, and so on.
 
-## Customizing with Design Tokens - Changing themes
+In the Flutter UI kit, design tokens are shared and managed using `themes`. Themes in Flutter use the `ThemeData` class to store and propagate design properties, such as colors, fonts, and more, throughout the widget tree.
 
-Dyte Provided a `DyteDesignToken` class to customize the theme of the UI Kit. You can pass the `DyteDesignToken` object in `DyteUIKitInfo` object to customize the theme of the UI Kit.
+Let's understand how you can customize your UI with Dyte's Flutter UI Kit using design tokens.
 
-`DyteDesignToken` has the following parameters:
+### Customize themes with design tokens
+Dyte offers the `DyteDesignToken` class to customize the theme of the UI kit. Pass the `DyteDesignToken` object within the `DyteUIKitInfo` object to customize the theme. 
 
-- `backgroundColor`: The background color of the UI Kit.
-- `textOnBackground`: The text color on the background of the UI Kit.
-- `backgroundColorSwatch`: The background color swatch of the UI Kit.
-- `brandColor`: The primary color of the UI Kit.
+With `DyteDesignToken`, you can customize the following design properties:
 
-- `textOnBrand`: The text color on the brand color of the UI Kit.
-- `brandColorSwatch`: The brand color swatch of the UI Kit.
-- `danger`: The danger color of the UI Kit.
-- `success`: The success color of the UI Kit.
-- `warning`: The warning color of the UI Kit.
-
-:::info
-To customize the theme of the uikit, you can either pass color or color swatch. You can't pass both at the same time.
-
-To pass brand color swatch, you need to pass the color swatch with 5 entries with keys 300, 400, 500, 600, 700.
-
-To pass background color swatch, you need to pass the color swatch with 5 entries with keys 600, 700, 800, 900, 1000.
-
-This is done through the `DyteColorSwatch` class.
-:::
-
-`DyteColorSwatch` class has two parameters, the first parameter is the default color key and the second parameter is the map of colors.
-
-### Example
-
-```dart
-final primarySwatch = DyteColorSwatch(
-    500,
-    {
-      300: Colors.blue.shade300,
-      400: Colors.blue.shade400,
-      500: Colors.blue.shade500,
-      600: Colors.blue.shade600,
-      700: Colors.blue.shade700,
-    },
-  );
-```
+`backgroundColor`:The background color of the UI Kit.
+`textOnBackground`: The text color on the background of the UI Kit.
+`backgroundColorSwatch`: The background color swatch of the UI Kit.
+`brandColor`: The primary color of the UI Kit.
+`textOnBrand`: The text color on the brand color of the UI Kit.
+`brandColorSwatch`: The brand color swatch of the UI Kit.
+`danger`: The danger color of the UI Kit.
+`success`: The success color of the UI Kit.
+`warning`: The warning color of the UI Kit.
 
 
+You have two options to customize the UI Kit's theme:
 
-## Customizing with Configurations - Changing borders.
+** Pass a single color. **
 
-You can pass the `DyteBorderRadius` and `BorderWidth` enum values in the design token to customize the border radius and border width of the UI Kit.
+You can pass a single color to the `backgroundColor`, `brandColor` parameters.
 
-`borderRadius`: The border radius of the UI Kit. It has the following values.
-  - `DyteBorderRadius.sharp`
-  - `DyteBorderRadius.rounded`
-  - `DyteBorderRadius.extrarounded`
-  - `DyteBorderRadius.circular`
+** Use a color swatch. **
 
+  For the brand color swatch, make sure it contains 5 entries with keys 300, 400, 500, 600, and 700.
+  For the background color swatch, provide 5 entries with keys 600, 700, 800, 900, and 1000.
 
-`borderWidth`: The border width of the UI Kit.
-  - `BorderWidth.none`
-  - `BorderWidth.thin`
-  - `BorderWidth.fat`
+  To achieve this, utilize the `DyteColorSwatch` class with two parameters: the default color key and a map of colors.
 
+  ```dart
+  final primarySwatch = DyteColorSwatch(
+      500,
+      {
+        300: Colors.blue.shade300,
+        400: Colors.blue.shade400,
+        500: Colors.blue.shade500,
+        600: Colors.blue.shade600,
+        700: Colors.blue.shade700,
+      },
+    );
+  ```
+### Customize borders with configuration
+  To customize the border radius and border width of the UI Kit, you can use the `DyteBorderRadius` and `BorderWidth` enum values in the design token.
+
+Here are the available `DyteBorderRadius` values:
+
+| Token Name | values |
+| --- | --- |
+| `DyteBorderRadius` | `sharp`,`rounded`,`extraRounded`,`circular` |
+
+Here are the available `BorderWidth` values:
+
+| Token Name | values |
+| --- | --- |
+| `BorderWidth` | `none`, `thin`, `fat` |
 
 ## Example
 
-A demo of how you can pass the `DesignToken` in Flutter UI Kit is shown below:
+Here's an example of how you can customize the Flutter UI Kit using the design token:
 
 
 ```dart
