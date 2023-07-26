@@ -343,7 +343,7 @@ paths:
         in: path
         required: true
         description: ID of the meeting
-  '/meetings/{meeting_id}/livestreams':
+  '/meetings/{meeting_id}/livestream':
     post:
       summary: Start livestreaming a meeting
       requestBody:
@@ -427,6 +427,8 @@ paths:
       tags:
         - Live streams
       operationId: start-livestreaming
+      x-stoplight:
+        id: yrv1m2hf0hlkr
     get:
       summary: Fetch livestream session details for a meeting
       parameters:
@@ -615,6 +617,8 @@ paths:
       requestBody:
         content: {}
       operationId: livestream-session-details
+      x-stoplight:
+        id: pcm61j4127kyj
     parameters:
       - schema:
           type: string
@@ -1578,7 +1582,7 @@ paths:
     post:
       summary: Kick participants from an active session
       description: Kicks one or more participants from an active session using user ID or custom participant ID.
-      operationId: KickParticipants
+      operationId: KickPartcipants
       parameters:
         - $ref: '#/components/parameters/meetingId'
       tags:
@@ -1766,7 +1770,7 @@ paths:
         > #### NOTE
         >
         > This API is in beta and is disabled by default. [Contact us](https://dyte.io/contact) to enable it
-        > for your organization.
+        > for your organization.                        
       operationId: GetSessionChat
       tags:
         - Sessions
@@ -2338,7 +2342,7 @@ paths:
           $ref: '#/components/responses/DeleteParticipant'
         '500':
           $ref: '#/components/responses/GenericError'
-      description: Deletes a participant for the given meeting and Participant ID.
+      description: Deletes a participant for the given meeting and participant ID.
       tags:
         - Meetings
   '/meetings/{meeting_id}/participants/{participant_id}/token':
@@ -2398,7 +2402,7 @@ paths:
           in: query
           name: expired
           required: false
-          description: "If passed, only shows expired/non-expired recordings on Dyte's bucket"
+          description: 'If passed, only shows expired/non-expired recordings on Dyte's bucket'
         - $ref: '#/components/parameters/search'
         - $ref: '#/components/parameters/recordingSortBy'
         - $ref: '#/components/parameters/sortOrder'
@@ -4724,7 +4728,7 @@ components:
           type: boolean
           x-stoplight:
             id: k1f2cjsd28631
-          description: "Controls whether recordings are uploaded to dyte's bucket. If set to false, `download_url`, `audio_download_url`, `download_url_expiry` won't be generated for a recording."
+          description: 'Controls whether recordings are uploaded to Dyte's bucket. If set to false, `download_url`, `audio_download_url`, `download_url_expiry` won't be generated for a recording.'
           default: true
       required:
         - enabled
@@ -5023,7 +5027,7 @@ components:
             properties:
               allow_unmute:
                 type: boolean
-                description: "if false, participants won't be able to unmute themselves after they are muted"
+                description: 'if false, participants won''t be able to unmute themselves after they are muted'
     CreatePollBody:
       description: Request body for creating a new poll
       content:

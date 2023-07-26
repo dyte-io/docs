@@ -11,7 +11,7 @@ The data regarding all meeting participants is stored under
 `meeting.participants`. Use the methods and events to consume the participants
 data.
 
-## Room participants object.
+## Room participants object
 
 - `joined`: A list that contains all the participants who have joined the
   meeting.
@@ -24,6 +24,7 @@ data.
 - `screenshares`: A list that contains all the participants who have shared
   screen in the meeting.
 - `gridInfo`: This object has all data related to pages in the room.
+- `broadcastMessage`: Broadcasts the message to all participants including `self`.
 
 Each participant in each of the `joined`, `waitlisted`, `active` and
 `screenshares` list is of type `DyteMeetingParticipant`.
