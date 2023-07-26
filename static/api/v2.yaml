@@ -2342,7 +2342,7 @@ paths:
           $ref: '#/components/responses/DeleteParticipant'
         '500':
           $ref: '#/components/responses/GenericError'
-      description: Deletes a participant for the given meeting and partcipant ID.
+      description: Deletes a participant for the given meeting and participant ID.
       tags:
         - Meetings
   '/meetings/{meeting_id}/participants/{participant_id}/token':
@@ -2402,7 +2402,7 @@ paths:
           in: query
           name: expired
           required: false
-          description: 'If passed, only shows expired/non-expired recordings on Dyte''s bucket'
+          description: 'If passed, only shows expired/non-expired recordings on Dyte's bucket'
         - $ref: '#/components/parameters/search'
         - $ref: '#/components/parameters/recordingSortBy'
         - $ref: '#/components/parameters/sortOrder'
@@ -4728,7 +4728,7 @@ components:
           type: boolean
           x-stoplight:
             id: k1f2cjsd28631
-          description: 'Controls whether recordings are uploaded to dyte''s bucket. If set to false, `download_url`, `audio_download_url`, `download_url_expiry` won''t be generated for a recording.'
+          description: 'Controls whether recordings are uploaded to Dyte's bucket. If set to false, `download_url`, `audio_download_url`, `download_url_expiry` won''t be generated for a recording.'
           default: true
       required:
         - enabled
