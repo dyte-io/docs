@@ -1,0 +1,37 @@
+---
+title: Join and Leave Stage using Dyte's group call
+description: Conduct webinar like meetings with fine level of access controls for the stage.
+sidebar_position: 1
+tags: [mobile-core, stage]
+---
+
+# Join and Leave Stage
+
+This topic provides a comprehensive guide on performing stage management and participant control within Dyte's group call platform.
+
+In Dyte, the `stage` object, is accessible through the `meeting.stage` property. This provides a range of methods to efficiently manage the stage and participants during session, such as joining and leaving the stage, as well as access control for participants. Additionally, you can also retrieve the list of viewers who have joined the session from the `meeting.stage.viewers` array, and monitor participant requests to join the stage through the `meeting.stage.accessRequests` array.
+
+## Join stage
+
+To join the stage in a session, specific permissions are required, which are managed through [Presets](/guides/capabilities/presets). 
+To join the stage, use the following function:
+
+```kotlin
+// Participants with the media preset set to "Allowed" 
+// can join the stage directly without needing the host to accept their request.
+meeting.stage.join()
+
+// Participants with the media preset set to "Need to Request" must wait for 
+// the host to approve their request. Once the host grants permission, 
+// these participants can start producing media.
+// to request access
+meeting.stage.requestAccess()
+```
+
+## Leave stage
+
+To leave the stage, use the following function:
+
+```kotlin
+meeting.stage.leaveStage()
+```
