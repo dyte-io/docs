@@ -24,15 +24,15 @@ Dyte offers the `DyteDesignToken` class to customize the theme of the UI kit. Pa
 
 With `DyteDesignToken`, you can customize the following design properties:
 
-`backgroundColor`:The background color of the UI Kit.
-`textOnBackground`: The text color on the background of the UI Kit.
-`backgroundColorSwatch`: The background color swatch of the UI Kit.
-`brandColor`: The primary color of the UI Kit.
-`textOnBrand`: The text color on the brand color of the UI Kit.
-`brandColorSwatch`: The brand color swatch of the UI Kit.
-`danger`: The danger color of the UI Kit.
-`success`: The success color of the UI Kit.
-`warning`: The warning color of the UI Kit.
+- `backgroundColor`:The background color of the UI Kit.
+- `textOnBackground`: The text color on the background of the UI Kit.
+- `backgroundColorSwatch`: The background color swatch of the UI Kit.
+- `brandColor`: The primary color of the UI Kit.
+- `textOnBrand`: The text color on the brand color of the UI Kit.
+- `brandColorSwatch`: The brand color swatch of the UI Kit.
+- `danger`: The danger color of the UI Kit.
+- `success`: The success color of the UI Kit.
+- `warning`: The warning color of the UI Kit.
 
 
 You have two options to customize the UI Kit's theme:
@@ -43,31 +43,31 @@ You can pass a single color to the `backgroundColor`, `brandColor` parameters.
 
 ** Use a color swatch. **
 
-  For the brand color swatch, make sure it contains 5 entries with keys 300, 400, 500, 600, and 700.
-  For the background color swatch, provide 5 entries with keys 600, 700, 800, 900, and 1000.
+For the brand color swatch, make sure it contains 5 entries with keys 300, 400, 500, 600, and 700.
+For the background color swatch, provide 5 entries with keys 600, 700, 800, 900, and 1000.
 
-  To achieve this, utilize the `DyteColorSwatch` class with two parameters: the default color key and a map of colors.
+To achieve this, utilize the `DyteColorSwatch` class with two parameters: the default color key and a map of colors.
 
-  ```dart
-  final primarySwatch = DyteColorSwatch(
-      500,
-      {
-        300: Colors.blue.shade300,
-        400: Colors.blue.shade400,
-        500: Colors.blue.shade500,
-        600: Colors.blue.shade600,
-        700: Colors.blue.shade700,
-      },
-    );
+```dart
+final primarySwatch = DyteColorSwatch(
+    500,
+    {
+      300: Colors.blue.shade300,
+      400: Colors.blue.shade400,
+      500: Colors.blue.shade500,
+      600: Colors.blue.shade600,
+      700: Colors.blue.shade700,
+    },
+  );
   ```
 ### Customize borders with configuration
-  To customize the border radius and border width of the UI Kit, you can use the `DyteBorderRadius` and `BorderWidth` enum values in the design token.
+To customize the border radius and border width of the UI Kit, you can use the `DyteBorderRadius` and `BorderWidth` enum values in the design token.
 
 Here are the available `DyteBorderRadius` values:
 
 | Token Name | values |
 | --- | --- |
-| `DyteBorderRadius` | `sharp`,`rounded`,`extraRounded`,`circular` |
+| `DyteBorderRadius` | `sharp`, `rounded`, `extraRounded`, `circular` |
 
 Here are the available `BorderWidth` values:
 
@@ -81,28 +81,28 @@ Here's an example of how you can customize the Flutter UI Kit using the design t
 
 
 ```dart
-    final uikitInfo = DyteUIKitInfo(meetingInfo,
-        designToken: DyteDesignToken(
-          colorToken: DyteColorToken(
-              borderRadius: DyteBorderRadius.circular,
-              borderWidth: BorderWidth.fat,
-              backgroundColor: Colors.black,
-              textOnBrand: Colors.white,
-              textOnBackground: Colors.white,
-              danger: Colors.red,
-              success: Colors.green,
-              warning: Colors.yellow,
-              brandColorSwatch: DyteColorSwatch(
-                500,
-                {
-                  300: Colors.blue.shade300,
-                  400: Colors.blue.shade400,
-                  500: Colors.blue.shade500,
-                  600: Colors.blue.shade600,
-                  700: Colors.blue.shade700,
-                },
-              )),
-        ));
+final uikitInfo = DyteUIKitInfo(meetingInfo,
+    designToken: DyteDesignToken(
+      colorToken: DyteColorToken(
+          borderRadius: DyteBorderRadius.circular,
+          borderWidth: BorderWidth.fat,
+          backgroundColor: Colors.black,
+          textOnBrand: Colors.white,
+          textOnBackground: Colors.white,
+          danger: Colors.red,
+          success: Colors.green,
+          warning: Colors.yellow,
+          brandColorSwatch: DyteColorSwatch(
+            500,
+            {
+              300: Colors.blue.shade300,
+              400: Colors.blue.shade400,
+              500: Colors.blue.shade500,
+              600: Colors.blue.shade600,
+              700: Colors.blue.shade700,
+            },
+          )),
+    ));
 ```
 
 <div
