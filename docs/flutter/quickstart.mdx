@@ -96,31 +96,37 @@ To initiate Dyte Meeting for any participant you just need to pass `authToken` a
 After getting the `authToken`, you need to create the `DyteMeetingInfoV2` object as follows:
 
 ```dart
-final meetingInfoV2 = DyteMeetingInfoV2(authToken: '<auth_token>');
+final meetingInfo = DyteMeetingInfoV2(authToken: '<auth_token>');
 ```
 
 ## Step 4: Initialize the SDK
 
 The `DyteUIKit` is the main class of the SDK. It is the entry point and the only
-class required to initialize Dyte UI Kit SDK.
+class required to initialize Dyte UI Kit SDK. To initialize it we have to pass `DyteUIKitInfo` object as an argument.
+
 
 ```dart
-/* Passing `configuration` is optional, it is used to setup the theme of Dyte UI Kit. */
-final configurations = Configurations(
-  baseBackground: Color(yourBaseColor),
-  basePrimary: Color(yourPrimaryColor),
-  textColor: Color(yourTextColor),
-);
 
-/* Passing the DyteMeetingInfoV2 object `meetingInfoV2` you created in the Step 3,
-   and your context in `clientContext` parameter. */
+/* Passing the DyteMeetingInfoV2 object `meetingInfo` you created in the Step 3,
+*/
 
-final DyteUIKit uiKit = DyteUIKit(
-  meetingInfo: meetingInfoV2,
-  clientContext: context,
-  configurations: configurations, //optional
-);
+final uikitInfo = DyteUIKitInfo(
+      meetingInfo,
+      // Optional: Pass the DyteDesignTokens object to customize the UI
+      designToken: DyteDesignTokens(
+        colorToken: DyteColorToken(
+          brandColor: Colors.purple,
+          backgroundColor: Colors.black,
+          textOnBackground: Colors.white,
+          textOnBrand: Colors.white,
+        ),
+      ),
+    );
+
+final uiKit = DyteUIKitBuilder.build(uiKitInfo: uikitInfo);
+
 ```
+You can learn more about customization of the uikit in the [Design System](/flutter/design-token) section.
 
 ## Step 5: Launch the meeting UI
 
