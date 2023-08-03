@@ -1,0 +1,102 @@
+---
+title: Room Connection Events
+description: Room connection events guide. 
+sidebar_position: 11
+tags: [mobile-core, android-core, connection events, reconnection]
+---
+
+# Room Connection Events
+
+The `meeting` object emits various events for indicating changes in the connection state of the room.
+Whenever there is a connection drop, the Dyte SDK detects it and tries to reconnect the user to the meeting room automatically.
+
+## Events
+
+You can subscribe to these events by implementing the below given callbacks from
+`DyteMeetingRoomEventsListener` and passing the object to
+`meeting.addMeetingRoomEventsListener(dyteMeetingRoomEventsListener)`.
+
+### Connecting to room
+
+Triggered when the local user starts connecting to the meeting room during initialization.
+
+```kotlin
+meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
+    override fun onConnectingToMeetingRoom() {
+      super.onConnectingToMeetingRoom()
+    }
+});
+```
+
+### Connected to room
+
+Triggered when the local user connects to the meeting room after initialization.
+
+```kotlin
+meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
+    override fun onConnectedToMeetingRoom() {
+      super.onConnectedToMeetingRoom()
+    }
+});
+```
+
+### Disconnected from room
+
+Triggered when the local user disconnects while leaving the the meeting room.
+
+```kotlin
+meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
+    override fun onDisconnectedFromMeetingRoom() {
+      super.onDisconnectedFromMeetingRoom()
+    }
+});
+```
+
+### Reconnecting to room
+
+Triggered when the Dyte SDK detects a connection drop and starts trying reconnection with the meeting room.
+
+```kotlin
+meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
+    override fun onReconnectingToMeetingRoom() {
+      super.onReconnectingToMeetingRoom()
+    }
+});
+```
+
+### Reconnected to room
+
+Triggered when the local user successfully reconnects to the meeting room.
+
+```kotlin
+meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
+    override fun onReconnectedToMeetingRoom() {
+      super.onReconnectedToMeetingRoom()
+    }
+});
+```
+
+### Room connection failed
+
+Triggered when the local user fails to connect to the meeting room during initialization. This can happen due to internet connection issues.
+
+```kotlin
+meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
+    override fun onMeetingRoomConnectionFailed() {
+      super.onMeetingRoomConnectionFailed()
+    }
+});
+```
+
+### Room reconnection failed
+
+Triggered when the local user fails to reconnect to the meeting room. This will happen the local user's 
+internet connection is down for a considerably long duration and the Dyte SDK is unable to reconnect even after multiple attempts.
+
+```kotlin
+meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
+    override fun onMeetingRoomReconnectionFailed() {
+      super.onMeetingRoomReconnectionFailed()
+    }
+});
+```
