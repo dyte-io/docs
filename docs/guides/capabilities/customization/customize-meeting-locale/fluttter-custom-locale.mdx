@@ -9,14 +9,41 @@ Dyte's UI Kit allows you to customize all the text within the video call interfa
 Customizing the locale involve the following steps:
 
 
-1. Downloading the default language reference.
-2. Adding the modified file to your app.
+1. Integrate Dyte’s Flutter SDK into your application
+2. Download the default language reference file
+3. Provide your customized locale to the app_en.arb file
+4. Add the modified file to your app
 
-## Downloading the default language reference
 
-The default language reference is available [here](https://dyte-assets.s3.ap-south-1.amazonaws.com/sdk/flutter_ui_kit/app_en.arb). This file contains all the text that is displayed in the video call interface. You can download this file and modify it to suit your needs. It is not necessary to convert all the text in the file to your language. You can choose to modify only the text that you want to change.
+## 1. Integrate Dyte’s Flutter SDK into your application
 
-## Adding the modified file to your app
+To integrate Dyte's Flutter SDK into your application, follow the steps mentioned [here](/flutter/quickstart).
+
+## 2. Downloading the default language reference
+
+The default language reference is available [here](https://dyte-assets.s3.ap-south-1.amazonaws.com/sdk/flutter_ui_kit/app_en.arb). This file contains all the text that is displayed in the video call interface. 
+
+# 3. Providing your customized locale to the downloaded file
+
+You can download this file and modify it to suit your needs. It is not necessary to convert all the text in the file to your language. You can choose to modify only the text that you want to change.
+
+For example, if you want to change these texts from the downloaded file, you can modify the following lines:
+
+```json
+    "back": "Back",
+    "waitingForTheHostToLetYouIn": "Wait for the host to let you in!",
+    "chat": "Chat"
+```
+to Spanish
+
+```json
+    "back": "Atrás",
+    "waitingForTheHostToLetYouIn": "¡Espera a que el anfitrión te permita entrar!",
+    "chat": "Chat"
+```
+
+
+## 4. Add the modified file to your app
 
 Once you have modified the file, you can add it to your app. To do this, follow these steps:
 
@@ -30,7 +57,7 @@ flutter:
     - assets/app_en.arb
 ```
 
-4. Pass the path to the file to the `arbPath` parameter of the `DyteUIKitBuilder.build` method.
+4. In the `DyteUIKitBuilder.build` method, pass the file path to the `arbPath` parameter.
 
 ```dart
 
