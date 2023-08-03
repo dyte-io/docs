@@ -1,0 +1,66 @@
+---
+title: Flutter
+sidebar_position: 4
+tags: [Flutter UI Kit, Design System, Localization]
+---
+
+Dyte's UI Kit allows you to customize all the text within the video call interface. You can personalize the text to align with your specific locale needs.
+
+Customizing the locale involves the following steps:
+
+
+1. Integrate Dyte’s Flutter SDK into your application
+2. Download the default language reference file
+3. Change the locale
+4. Add the modified file to your app
+
+
+## Step 1: Integrate Dyte’s Flutter SDK into your application
+
+To integrate Dyte's Flutter SDK into your application, follow the steps mentioned [here](/flutter/quickstart).
+
+## Step 2: Download the default language reference
+
+You can find the default language reference available at this [location](https://dyte-assets.s3.ap-south-1.amazonaws.com/sdk/flutter_ui_kit/app_en.arb). The file contains all the text that is displayed on the video call interface.
+
+## Step 3: Change the locale
+Customize the text in the downloaded file to meet your requirements. You don't need to translate the entire file into your language; you can simply edit the specific text that you want to change.
+
+For example, suppose you want to change the following text from English to Spanish:
+
+Original English text:
+```json
+    "back": "Back",
+    "waitingForTheHostToLetYouIn": "Wait for the host to let you in!",
+    "chat": "Chat"
+```
+Translated Spanish text:
+
+```json
+    "back": "Atrás",
+    "waitingForTheHostToLetYouIn": "¡Espera a que el anfitrión te permita entrar!",
+    "chat": "Chat"
+```
+
+
+## Step 4: Add the modified file to your app
+
+Once you have modified the file, you can add it to your app. To do this, follow these steps:
+
+1. Create an asset folder in your app's root directory.
+2. Add the modified file to this folder.
+3. Add the following code to your `pubspec.yaml` file:
+
+```yaml
+flutter:
+  assets:
+    - assets/app_en.arb
+```
+
+4. In the `DyteUIKitBuilder.build` method, pass the file path to the `arbPath` parameter.
+
+```dart
+
+final uiKit = DyteUIKitBuilder.build(uiKitInfo: uikitInfo, arbPath: 'path/to/arb/file');
+
+```
