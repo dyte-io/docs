@@ -172,12 +172,11 @@ const docs = [
       },
     },
   },
-
 ];
 
 /** @type {import('@docusaurus/plugin-content-docs').Options} */
 const defaultSettings = {
-  breadcrumbs: false,
+  breadcrumbs: true,
   editUrl: 'https://github.com/dyte-in/docs/tree/main/',
   showLastUpdateTime: true,
   remarkPlugins: [
@@ -222,25 +221,37 @@ const plugins = [
         if (path.startsWith('/guides/capabilities/webhooks')) {
           return [
             path.replace('/guides/capabilities/webhooks', '/guides/webhooks'),
-            path.replace('/guides/capabilities/webhooks', '/guides/features/webhooks')
+            path.replace(
+              '/guides/capabilities/webhooks',
+              '/guides/features/webhooks'
+            ),
           ];
         }
         if (path.startsWith('/guides/capabilities/recording')) {
           return [
             path.replace('/guides/capabilities/recording', '/guides/recording'),
-            path.replace('/guides/capabilities/recording', '/guides/features/recording')
+            path.replace(
+              '/guides/capabilities/recording',
+              '/guides/features/recording'
+            ),
           ];
         }
         if (path.startsWith('/guides/capabilities/recording')) {
           return [
             path.replace('/guides/capabilities/recording', '/guides/recording'),
-            path.replace('/guides/capabilities/recording', '/guides/features/recording')
+            path.replace(
+              '/guides/capabilities/recording',
+              '/guides/features/recording'
+            ),
           ];
         }
         if (path.startsWith('/guides/capabilities/embed')) {
           return [
             path.replace('/guides/capabilities/embed', '/guides/embed'),
-            path.replace('/guides/capabilities/embed', '/guides/features/embed')
+            path.replace(
+              '/guides/capabilities/embed',
+              '/guides/features/embed'
+            ),
           ];
         }
         if (path.startsWith('/guides/capabilities/export-chat-dump')) {
@@ -249,7 +260,10 @@ const plugins = [
               '/guides/capabilities/export-chat-dump',
               '/guides/export-chat-dump'
             ),
-            path.replace('/guides/capabilities/export-chat-dump', '/guides/features/export-chat-dump')
+            path.replace(
+              '/guides/capabilities/export-chat-dump',
+              '/guides/features/export-chat-dump'
+            ),
           ];
         }
         if (path.startsWith('/guides/capabilities/breakoutroom')) {
