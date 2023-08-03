@@ -2,7 +2,6 @@ import React from 'react';
 import Footer from '@theme-original/Footer';
 import Docsly from '@docsly/react';
 import { useLocation } from '@docusaurus/router';
-import '@docsly/react/styles.css';
 import Head from '@docusaurus/Head';
 
 export default function FooterWrapper(props) {
