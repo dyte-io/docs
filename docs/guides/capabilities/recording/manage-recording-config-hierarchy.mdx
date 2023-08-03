@@ -5,9 +5,9 @@ sidebar_position: 5
 
 This document provides an overview of the precedence structure for managing recording configurations within our system. It explains how various configuration levels interact and prioritize settings. The recording configuration can be defined at three different levels:
 
-- Start recording a meeting API
-- Create a Meeting API and
-- Org Level Config using developer portal
+- [Start recording a meeting API](/api#/operations/start_recording)
+- [Create a meeting API](/api#/operations/create_meeting) and
+- [Organization level](https://dev.dyte.io/recordings) specified via developer portal
 
 ## Understand Recording Configuration Precedence
 
@@ -16,8 +16,8 @@ To comprehend the precedence of recording configurations, it is important to del
 | Precedence | Config                                                                              | Description                                                                                                                                           |
 | ---------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 1          | [Start recording API](/api#/operations/start_recording) configs                     | Highest priority in the system. Any settings defined here will take precedence over other configurations.                                             |
-| 2          | [Create a meeting API](/api#/operations/create_meeting) configs                     | Middle priority in the system. Settings here will supersede Org Level Config but not Start recording a meeting API configs.                           |
-| 3          | [Organization level](https://dev.dyte.io/recordings) specified via developer portal | Lowest priority in the system. Settings defined here will be overridden by both Start recording a meeting API config and Create a Meeting API config. |
+| 2          | [Create a meeting API](/api#/operations/create_meeting) configs                     | Second level of priority in the system. Settings here will supersede Org level config but not Start recording a meeting API configs.                  |
+| 3          | [Organization level](https://dev.dyte.io/recordings) specified via developer portal | Lowest priority in the system. Settings defined here will be overridden by both Start recording a meeting API config and Create a meeting API config. |
 
 ## Example Scenario
 
