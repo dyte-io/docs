@@ -83,7 +83,7 @@ export default function Home() {
           {currentVersion === 'v2' && (
             <Link
               href="/release-notes/rest-api"
-              className="no-underline-links new-badge text-xs"
+              className="no-underline-links text-xs"
             >
               Release Notes
             </Link>

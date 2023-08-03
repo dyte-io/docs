@@ -43,13 +43,6 @@ const REFERENCE_PROPS = {
   },
 };
 
-const UI_KIT_TYPE_REFERENCE = {
-  // 'Peer[]': {
-  //   name: 'Participant[]',
-  //   path: '../reference/participant',
-  // },
-};
-
 const WEB_CORE_TYPE_REFERENCES = {
   DyteClient: {
     path: '/web-core/reference/DyteClient',
@@ -58,10 +51,34 @@ const WEB_CORE_TYPE_REFERENCES = {
 };
 
 function PropType({ prop }) {
-  const ref =
-    REFERENCE_PROPS[prop.name] ||
-    UI_KIT_TYPE_REFERENCE[prop.type] ||
-    WEB_CORE_TYPE_REFERENCES[prop.type];
+  if (prop.name === 'participant') {
+    return (
+      <pre className={styles.propType}>
+        <code>
+          <Link href="/web-core/reference/DyteParticipant">
+            DyteParticipant
+          </Link>{' '}
+          | <Link href="/web-core/reference/DyteSelf">DyteSelf</Link>
+        </code>
+      </pre>
+    );
+  }
+
+  if (prop.type === 'Peer[]') {
+    return (
+      <pre className={styles.propType}>
+        <code>
+          (
+          <Link href="/web-core/reference/DyteParticipant">
+            DyteParticipant
+          </Link>{' '}
+          | <Link href="/web-core/reference/DyteSelf">DyteSelf</Link>)[]
+        </code>
+      </pre>
+    );
+  }
+
+  const ref = REFERENCE_PROPS[prop.name] || WEB_CORE_TYPE_REFERENCES[prop.type];
 
   if (ref) {
     return (
