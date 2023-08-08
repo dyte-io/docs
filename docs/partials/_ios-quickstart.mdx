@@ -4,12 +4,16 @@ import { AndroidCoreLatestInstallation } from '@site/src/components/LatestInstal
 
 ## Quickstart
 
-<span class="block mb-2">
-  This quickstart shows how to add Dyte's {props.product} SDK to your{' '}
-  Android applications
+<span class="mb-2 block">
+  This quickstart shows how to add Dyte's {props.product} SDK to your Android
+  applications
 </span>
 
-<span class="block mb-2">Further down this guide we also explain how Dyte's UI component library can help to build your UI faster with components specially made for {props.product} applications.</span>
+<span class="mb-2 block">
+  Further down this guide we also explain how Dyte's UI component library can
+  help to build your UI faster with components specially made for{' '}
+  {props.product} applications.
+</span>
 
 You can also checkout our
 [sample code](https://github.com/dyte-io/ios-samples) for iOS. You can clone
@@ -101,11 +105,33 @@ class ViewController: UIViewController {
         controller.modalPresentationStyle = .fullScreen
         self.present(controller, animated: true)
     }
-r}
+}
 ```
 
 Here is a pictorial representation of all the config options defined below.
 
-![meeting UI screenshot with labeled parts](/static/ios/meeting-setup.png)
-![meeting UI screenshot with labeled parts](/static/ios/meeting.png)
-![meeting UI screenshot with labeled parts](/static/ios/meeting-options.png)
+<div
+  id="one"
+  style={{
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    flex: '1 1 0',
+    justifyContent: 'center',
+  }}
+>
+  {[
+    '/static/ios/meeting-setup.png',
+    '/static/ios/meeting.png',
+    '/static/ios/meeting-options.png',
+  ].map((i) => (
+    <img
+      src={i}
+      alt="meeting UI screenshot with labeled parts"
+      width="220"
+      padding="10"
+      margin="10 3"
+      style={{ margin: '10px', borderRadius: '8px' }}
+    />
+  ))}
+</div>
