@@ -92,7 +92,7 @@ function Safety({ className }) {
         className
       )}
     >
-      <div className="flex max-w-[207px] flex-1 place-items-center justify-center rounded-2xl bg-white px-4 py-6 font-jakarta font-bold text-gray-500">
+      <div className="flex flex-1 place-items-center justify-center rounded-2xl bg-white px-4 py-6 font-jakarta font-bold text-gray-500">
         Your Safety is utmost important to us
       </div>
       <div className="flex flex-1 items-center justify-around px-6">
@@ -169,7 +169,7 @@ export default function Footer() {
     <footer className="bg-zinc-100">
       <div className="mx-auto flex w-full max-w-[1080px] flex-col px-6 py-12">
         <div className="mb-12 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <img src="/logo/light.svg" alt="Dyte" className="h-12 w-fit" />
+          <img src="/logo/dyte.svg" alt="Dyte" className="h-9 w-fit lg:h-12" />
 
           <Safety className="hidden lg:flex" />
           <BrowserOnly>
