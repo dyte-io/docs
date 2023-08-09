@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
 import ThemedImage from '@theme/ThemedImage';
 import clsx from 'clsx';
-
 import {
   Linkedin,
   Twitter,
@@ -10,27 +9,28 @@ import {
   Github,
 } from '@styled-icons/boxicons-logos';
 import { DiscordIcon } from '@site/src/icons';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 const products = [
   {
     name: 'Live Video',
-    href: '#',
+    href: 'https://dyte.io/video-sdk',
   },
   {
     name: 'Voice Conferencing',
-    href: '#',
+    href: 'https://dyte.io/voice-sdk',
   },
   {
     name: 'Live Streaming',
-    href: '#',
+    href: 'https://dyte.io/live-streaming-sdk',
   },
   {
     name: 'Chat SDK',
-    href: '#',
+    href: 'https://dyte.io/chat-sdk',
   },
   {
     name: 'Pricing',
-    href: '#',
+    href: 'https://dyte.io/pricing',
   },
 ];
 
@@ -45,7 +45,7 @@ const developers = [
   },
   {
     name: 'Showcase',
-    href: 'https://dyte.io',
+    href: 'https://dyte.io/showcase',
   },
   {
     name: 'API Reference',
@@ -58,36 +58,44 @@ const developers = [
 ];
 
 const usecases = [
-  { name: 'Ed-Tech', href: '#' },
-  { name: 'Telehealth', href: '#' },
-  { name: 'HR Tech', href: '#' },
-  { name: 'Fitness', href: '#' },
-  { name: 'Social', href: '#' },
+  { name: 'Ed-Tech', href: 'https://dyte.io/use-cases/ed-tech' },
+  { name: 'Telehealth', href: 'https://dyte.io/use-cases/telehealth' },
+  { name: 'HR Tech', href: 'https://dyte.io/use-cases/hr-tech' },
+  { name: 'Fitness', href: 'https://dyte.io/use-cases/fitness' },
+  { name: 'Social', href: 'https://dyte.io/use-cases/social' },
+  { name: 'Gaming', href: 'https://dyte.io/use-cases/gaming' },
+  { name: 'Events', href: 'https://dyte.io/use-cases/events' },
 ];
 
 const company = [
-  { name: 'Ed-Tech', href: '#' },
-  { name: 'Telehealth', href: '#' },
-  { name: 'HR Tech', href: '#' },
-  { name: 'Fitness', href: '#' },
-  { name: 'Social', href: '#' },
+  { name: 'About Us', href: 'https://dyte.io/about' },
+  { name: 'Blog', href: 'https://dyte.io/blog' },
+  { name: 'Careers', href: 'https://jobs.lever.co/dyte-io' },
+  { name: 'Community', href: 'https://dyte.io/community' },
+  { name: 'Startup Program', href: 'https://dyte.io/startups' },
+  { name: 'Contact Us', href: 'https://dyte.io/contact' },
+  { name: 'FAQ', href: '/faq' },
 ];
 
 const comparisons = [
-  { name: 'Ed-Tech', href: '#' },
-  { name: 'Telehealth', href: '#' },
-  { name: 'HR Tech', href: '#' },
-  { name: 'Fitness', href: '#' },
-  { name: 'Social', href: '#' },
+  { name: 'Dyte vs Agora', href: 'https://dyte.io/agora-competitor' },
+  { name: 'Dyte vs Zoom', href: 'https://dyte.io/zoom-sdk-competitor' },
+  { name: 'Dyte vs Twilio', href: 'https://dyte.io/twilio-video-competitor' },
+  { name: 'Dyte vs Vonage', href: 'https://dyte.io/vonage-video-competitor' },
 ];
 
-function Safety() {
+function Safety({ className }) {
   return (
-    <div className="flex h-24 max-w-[418px] overflow-clip rounded-2xl border-2 border-white">
+    <div
+      className={clsx(
+        'flex h-24 max-w-[418px] overflow-clip rounded-2xl border-2 border-white',
+        className
+      )}
+    >
       <div className="flex max-w-[207px] flex-1 place-items-center justify-center rounded-2xl bg-white px-4 py-6 font-jakarta font-bold text-gray-500">
         Your Safety is utmost important to us
       </div>
-      <div className="flex items-center justify-center px-6">
+      <div className="flex flex-1 items-center justify-around px-6">
         <img src="/img/soc-compliant-1.png" />
         <img src="/img/vector.png" />
       </div>
@@ -95,16 +103,64 @@ function Safety() {
   );
 }
 
-function Status() {
+function Status({ className }) {
+  const [status, setStatus] = useState({
+    indicator: 'none',
+    description: 'All Systems Operational',
+  });
+
+  useEffect(() => {
+    if (typeof StatusPage !== 'undefined') {
+      // eslint-disable-next-line no-undef
+      var sp = new StatusPage.page({ page: 'wjlxrzb5h09l' });
+      sp.status({
+        success: function (data) {
+          setStatus({
+            indicator: data.status.indicator,
+            description: data.status.description,
+          });
+        },
+      });
+    }
+  }, []);
+
   return (
     <Link
       href="https://status.dyte.io"
-      className="flex items-center gap-2 rounded-lg border border-transparent p-1 px-2 font-jakarta font-semibold text-gray-500 transition-colors hover:border-gray-400 hover:bg-white hover:no-underline"
+      className={clsx(
+        'flex items-center gap-2 rounded-lg border border-transparent p-1 px-2 font-jakarta font-semibold text-gray-500 transition-colors hover:border-gray-400 hover:bg-white hover:no-underline',
+        className
+      )}
       target="_blank"
     >
-      <div className="h-4 w-4 rounded-full bg-[#2DB002]"></div>
-      <div>All systems operational</div>
+      <div
+        className={clsx(
+          'h-4 w-4 rounded-full bg-[#2DB002]',
+          status.indicator === 'none' ? 'bg-[#2DB002]' : 'bg-yellow-500'
+        )}
+      ></div>
+      <div>{status.description}</div>
     </Link>
+  );
+}
+
+function Links({ name, links }) {
+  return (
+    <div>
+      <h3 className="font-jakarta text-base font-semibold uppercase text-gray-400">
+        {name}
+      </h3>
+      <div className="flex flex-col gap-3">
+        {links.map(({ name, href }) => (
+          <Link
+            href={href}
+            className="text-base text-gray-700 hover:text-primary hover:no-underline"
+          >
+            {name}
+          </Link>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -112,83 +168,34 @@ export default function Footer() {
   return (
     <footer className="bg-zinc-100">
       <div className="mx-auto flex w-full max-w-[1080px] flex-col px-6 py-12">
-        <div className="mb-12 flex items-center justify-between">
-          <img src="/logo/light.svg" alt="Dyte" className="h-12" />
+        <div className="mb-12 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <img src="/logo/light.svg" alt="Dyte" className="h-12 w-fit" />
 
-          <Safety />
+          <Safety className="hidden lg:flex" />
+          <BrowserOnly>
+            {() => {
+              return <Status className="lg:hidden" />;
+            }}
+          </BrowserOnly>
         </div>
 
         <div className="grid grid-cols-2 gap-6 gap-y-12 md:justify-between lg:flex lg:flex-wrap">
-          <div>
-            <h3 className="font-jakarta text-base font-semibold uppercase text-gray-400">
-              Product
-            </h3>
-            <div className="flex flex-col gap-3">
-              {products.map(({ name, href }) => (
-                <Link href={href} className="text-base text-gray-700">
-                  {name}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <h3 className="font-jakarta text-base font-semibold uppercase text-gray-400">
-              Developers
-            </h3>
-            <div className="flex flex-col gap-3">
-              {developers.map(({ name, href }) => (
-                <Link href={href} className="text-base text-gray-700">
-                  {name}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <h3 className="font-jakarta text-base font-semibold uppercase text-gray-400">
-              Usecases
-            </h3>
-            <div className="flex flex-col gap-3">
-              {usecases.map(({ name, href }) => (
-                <Link href={href} className="text-base text-gray-700">
-                  {name}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <h3 className="font-jakarta text-base font-semibold uppercase text-gray-400">
-              Company
-            </h3>
-            <div className="flex flex-col gap-3">
-              {company.map(({ name, href }) => (
-                <Link href={href} className="text-base text-gray-700">
-                  {name}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <h3 className="font-jakarta text-base font-semibold uppercase text-gray-400">
-              Compare
-            </h3>
-            <div className="flex flex-col gap-3">
-              {comparisons.map(({ name, href }) => (
-                <Link href={href} className="text-base text-gray-700">
-                  {name}
-                </Link>
-              ))}
-            </div>
-          </div>
+          <Links name="Product" links={products} />
+          <Links name="Developers" links={developers} />
+          <Links name="Usecases" links={usecases} />
+          <Links name="Company" links={company} />
+          <Links name="Compare" links={comparisons} />
         </div>
 
         <hr className="my-12 !bg-gray-300" />
 
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between lg:gap-0">
-          <Status />
+          <BrowserOnly>
+            {() => {
+              return <Status className="hidden lg:flex" />;
+            }}
+          </BrowserOnly>
+          <Safety className="flex w-full max-w-full lg:hidden" />
 
           <div className="flex items-center gap-4">
             <Link
@@ -215,15 +222,24 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-wrap gap-2 text-sm text-gray-500">
-            <Link className="text-inherit hover:text-black hover:underline">
+            <Link
+              href="https://dyte.io/privacy-policy"
+              className="text-inherit hover:text-black hover:underline"
+            >
               Privacy Policy
             </Link>
             &bull;
-            <Link className="text-inherit hover:text-black hover:underline">
+            <Link
+              href="https://dyte.io/terms-of-service"
+              className="text-inherit hover:text-black hover:underline"
+            >
               Terms of Service
             </Link>
             &bull;
-            <Link className="text-inherit hover:text-black hover:underline">
+            <Link
+              href="https://dyte.io/website-terms-of-use"
+              className="text-inherit hover:text-black hover:underline"
+            >
               Website Terms of Use
             </Link>
             &bull;
