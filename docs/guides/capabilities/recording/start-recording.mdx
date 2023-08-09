@@ -8,7 +8,7 @@ This topic explains how to use Dyte to implement composite recording.
 Before getting started with this guide, we recommend that you read
 [Getting Started with Dyte](/getting-started) to familiarize yourself with Dyte.
 
-There are two ways to start a recording a Dyte meeting:
+There are two ways to start recording a Dyte meeting:
 
 - Using the `record_on_start` flag when
   [creating a meeting](/api/?v=v2#/operations/create_meeting)
@@ -20,8 +20,8 @@ Dyte stores recordings for a period of 7 days, after which they will expire and 
 
 1. Our system does not currently support recordings of brief durations that are less than five seconds. In such cases, it is possible that the recording APIs may experience occasional failures. Due to limitations in encoding recordings of short duration, these failures may result in an ERRORED state.
 2. Recording will stop if there are no participants in a meeting for 60 seconds.
-3. There can only be one active recording of a meeting at any given time.
-4. The average file size for one hour of recording is approximately 300MB.
+3. The average file size for one hour of recording is approximately 300MB.
+4. There can only be one active recording of a meeting at any given time, unless the `allow_multiple_recording` field is set in the [Start recording a meeting](/api#/operations/start_recording) API.
 5. Maximum recording time is 24 hours. Recording will automatically stop after
    24 hours have elapsed since the recording's start time. This option can be
    configured to any value up to 24 hours by passing the `max_seconds` parameter
