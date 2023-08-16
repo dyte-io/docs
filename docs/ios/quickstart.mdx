@@ -1,6 +1,6 @@
 ---
-sidebar_position: 1
-slug: /
+title: Quickstart
+sidebar_position: 2
 ---
 
 # Quickstart
@@ -24,28 +24,27 @@ You’ll learn how to:
 ## Before Getting Started
 
 Make sure you've read the
-[Getting Started with Dyte](https://docs.dyte.io/getting-started) topic and
+[Getting Started with Dyte](/getting-started) topic and
 completed the steps in the
-[Integrate Dyte](https://docs.dyte.io/getting-started#integrate-dyte) section.
+[Integrate Dyte](/getting-started#integrate-dyte) section.
 You must complete the following steps:
 
 - Create a [Dyte Developer Account](https://dev.dyte.io/)
 - Create [Presets](https://dev.dyte.io/roles-presets)
 - Create a
-  [Dyte Meeting](https://docs.dyte.io/api/?v=v2#/operations/create_meeting)
-- [Add Participant](https://docs.dyte.io/api/?v=v2#/operations/add_participant)
-  to the meeting and generate authentication token which is used to join Meeting
-  created above.
+  [Dyte Meeting](/api/?v=v2#/operations/create_meeting)
+- [Add Participants](/api/?v=v2#/operations/add_participant)
+  to the meeting. This API returns the authentication token that is required to initialize your frontend SDKs.
 
 ## Step 1: Install the SDK
 
-1. Add the following line to your `Podfile`
+1. Add the following line to your `Podfile`.
 
 ```ruby
 pod 'DyteUiKit'
 ```
 
-OR for specific version:
+OR for a specific version, use
 
 ```ruby
 
@@ -53,15 +52,13 @@ pod 'DyteUiKit', '0.3.5'
 
 ```
 
-2. Install the client SDK as CocoaPods dependency
+2. Install the client SDK as a CocoaPods dependency.
 
 ```shell
 pod install
 ```
 
-3. Add the fonts and permission entries in `info.plist` - the strings are
-   displayed in the permission pop-ups, feel free to customize them to suit your
-   audience
+3. Add the necessary fonts and permission entries in the `info.plist` file. You can customize the strings shown in the permission pop-ups to match your audience preferences.
 
 ```xml
 <key>NSBluetoothPeripheralUsageDescription</key>
@@ -78,18 +75,13 @@ pod install
 
 ## Step 2 (Optional): Initialize the SDK
 
-Initialization depends on three classes `DesignLibrary`, `AppTheme` and
-`SetupViewController`. `SetupViewController` is the only required class to get
-initialise by client of `DyteUikit` to launch GUI as well initialization of SDK
-with Authentication token.
+You have three classes involved in the initialization process: DesignLibrary, AppTheme, and SetupViewController.
 
-1. `DesignLibrary` is the singleton class which is depend on protocol
-   `DesignLibraryConfiguratorProtocol` responsible for initializing the
-   component from right parameters for eg. Border size, Radius, Background color
-   of inidividual and composite components.
+Among these, `SetupViewController` is the only one required by the client of `DyteUikit` to launch the GUI and initialize the SDK with the authentication token.
 
-You can customise the `DesignLibrary` by setting any object which is confirm to
-'DesignLibraryConfiguratorProtocol'
+1.  `DesignLibrary` is a singleton class that relies on the `DesignLibraryConfiguratorProtocol` to initialize components with specific parameters, like border size, radius, and background color for individual and composite elements.
+
+    For customization, you can set any object that conforms to the `DesignLibraryConfiguratorProtocol` to modify the `DesignLibrary` according to your needs.
 
 ```swift
 // create an type which confirms to  DesignLibraryConfiguratorProtocol
@@ -119,15 +111,9 @@ DesignLibrary.shared.setConfigurator(configurator: DesignLibraryConfigurator())
 
 ```
 
-DesignLibrary is having default value of all the above component which SDK
-initialize them internally.
+DesignLibrary comes with default values for all the mentioned components, and the SDK internally handles their initialization.
 
-2. `AppTheme` is the singleton class which is depend on protocol
-   `AppThemeProtocol` responsible for for setting corner radius and border size
-   widht for various component used inside by DyteUiKit.
-
-You can customise the `DesigAppThemenLibrary` by setting any object which is
-confirm to 'AppThemeProtocol'.
+2. `AppTheme` is a singleton class that relies on the `AppThemeProtocol` to set corner radius and border size for various components used within `DyteUiKit`. You can customize the `AppTheme` by setting any object that confirms to the `AppThemeProtocol`.
 
 ```swift
 class AppThemeConfigurator: AppThemeProtocol {
@@ -202,13 +188,9 @@ class AppThemeConfigurator: AppThemeProtocol {
 
 ## Step 3: Configure a Dyte meeting and Launch UI
 
-To set the initialization properties in the `DyteUiKit` class, simply initialize `DyteMeetingInfoV2` and provide the participant's `authToken`.
+To set the initialization properties in the `DyteUiKit` class, simply initialize `DyteMeetingInfoV2` and provide the participant's `authToken`. You can get the authToken via the [Add Participant API](/api/#/operations/add_participant).
 
 Try this in `viewDidAppear()`
-
-| Name        | Description                                                                                                                                                                                                                                                                                                                                   |
-| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `authToken` | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
 
 ```swift
 import DyteUiKit
@@ -235,7 +217,7 @@ class ViewController: UIViewController {
 }
 ```
 
-Here is a pictorial representation of all the config options defined below.
+Here's a visual representation of all the configuration options described.
 
 ![meeting UI screenshot with labeled parts](/static/ios/meeting-setup.png)
 ![meeting UI screenshot with labeled parts](/static/ios/meeting.png)

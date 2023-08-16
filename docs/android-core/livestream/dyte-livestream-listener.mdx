@@ -1,5 +1,5 @@
 ---
-title: Livestream event listeners
+title: Livestream Event Listeners
 description: Livestream events to listen to for triggering
 sidebar_position: 3
 tags: [flutter-core, livestream]
@@ -58,54 +58,54 @@ meeting.addLiveStreamEventsListener(dyteLiveStreamEventsListener)
 
 ## Livestream events
 
-- ### onLiveStreamStarting
+### onLiveStreamStarting
 
-  This event is triggered when the livestream is about to start.
+This event is triggered when the livestream is about to start.
 
-- ### onLiveStreamStarted
+### onLiveStreamStarted
 
-  This event is triggered when the livestream has started.
+This event is triggered when the livestream has started.
 
-- ### onLiveStreamStateUpdate
+### onLiveStreamStateUpdate
 
-  This event is triggered when the livestream state is updated. 
+This event is triggered when the livestream state is updated.
 
-- ### onViewerCountUpdated
+### onViewerCountUpdated
 
-  This event is triggered when the viewer count is updated. 
+This event is triggered when the viewer count is updated.
 
-- ### onLiveStreamEnding
+### onLiveStreamEnding
 
-  This event is triggered when the livestream is about to end.
+This event is triggered when the livestream is about to end.
 
-- ### onLiveStreamEnded
+### onLiveStreamEnded
 
-  This event is triggered when the livestream has ended.
+This event is triggered when the livestream has ended.
 
-- ### onLiveStreamErrored
+### onLiveStreamErrored
 
-  This event is triggered when their is an error while starting/stopping the livestream.
+This event is triggered when their is an error while starting/stopping the livestream.
 
-- ### onStageCountUpdated
+### onStageCountUpdated
 
-  This event is triggered when the number of users on stage is updated. The `count` object contains the updated stage count.
+This event is triggered when the number of users on stage is updated. The `count` object contains the updated stage count.
 
-- ### onStageRequestsUpdated
+### onStageRequestsUpdated
 
-  This event is triggered when the stage requests are updated. The `requests` object contains the updated list of stage requests. 
+This event is triggered when the stage requests are updated. The `requests` object contains the updated list of stage requests.
 
-- ### onJoinRequestAccepted
+### onJoinRequestAccepted
 
-  This event is triggered when a stage request is accepted. The `peer` object contains the peer whose request is accepted.
+This event is triggered when a stage request is accepted. The `peer` object contains the peer whose request is accepted.
 
-  ```kotlin
-    void onJoinRequestAccepted(DyteLiveStreamStagePeer peer) {}
-  ```
+```kotlin
+  void onJoinRequestAccepted(DyteLiveStreamStagePeer peer) {}
+```
 
-- ### onJoinRequestRejected
+### onJoinRequestRejected
 
-  This event is triggered when a stage request is rejected. The `peer` object contains the peer whose request is rejected.
+This event is triggered when a stage request is rejected. The `peer` object contains the peer whose request is rejected.
 
-  ```kotlin
-    void onJoinRequestRejected(DyteLiveStreamStagePeer peer) {}
-  ```
+```kotlin
+  void onJoinRequestRejected(DyteLiveStreamStagePeer peer) {}
+```
