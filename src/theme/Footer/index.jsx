@@ -3,13 +3,15 @@ import Footer from '@theme-original/Footer';
 import Docsly from '@docsly/react';
 import { useLocation } from '@docusaurus/router';
 import Head from '@docusaurus/Head';
+import HomeFooter from '../../components/homepage/HomeFooter';
 
 export default function FooterWrapper(props) {
   const { pathname } = useLocation();
 
   return (
     <>
-      <Footer {...props} />
+      <HomeFooter />
+      {/* <Footer {...props} /> */}
 
       <Head>
         {/**

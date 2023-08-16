@@ -5,12 +5,16 @@ import {
 
 ## Quickstart
 
-<span class="block mb-2">
+<span class="mb-2 block">
   This quickstart shows how to add Dyte's {props.product} SDK to your{' '}
-  <a href="https://angular.io/">Angular</a> applications
+  <a href="https://angular.io/">Angular</a> applications.
 </span>
 
-<span class="block mb-2">Further down this guide we also explain how Dyte's UI component library can help to build your UI faster with components specially made for {props.product} applications.</span>
+<span class="mb-2 block">
+  Further down this guide we also explain how Dyte's UI component library can
+  help to build your UI faster with components specially made for{' '}
+  {props.product} applications.
+</span>
 
 You can also checkout our
 [sample code](https://github.com/dyte-io/angular-samples#samples) for Angular. You can clone
@@ -21,21 +25,21 @@ and run a sample application from the
 
 You'll learn how to:
 
-- Install the Dyte client side SDKs
+- Install the Dyte client-side SDKs
 - Initialize Dyte Client
-- Bringing up a UI
+- Bringing up your UI
 - Go live!
 
-## Before Getting Started
+## Before getting started
 
-- Make sure you've a mechanism to get `authToken` from your server side which you would have received as part of [Add Participant](/guides/live-video/build-live-video-app#step-5-add-participants) call.
+Make sure you've a mechanism to get `authToken` from your server-side, which you would have received as part of [Add Participant](/guides/live-video/build-live-video-app#step-5-add-participants) call.
 
-## Step 1: Install
+## Step 1: Install Dyte SDK packages
 
-We are going to install 2 packages.
+To begin, install the following packages:
 
 - `@dytesdk/web-core`: This core package powers video, voice, livestream and chat SDKs. This is a required package.
-- `@dytesdk/ui-kit`: Contains Dyte UI components which can be used with core to easily build your own UI, including a prebuilt UI component. If you want to build your own UI you can skip installing this package.
+- `@dytesdk/ui-kit`: This package includes Dyte UI components which can be used with core to easily build your own UI, including a prebuilt UI component. You can skip installing this package if you wish to build your own UI from scratch.
 
 You can install the SDKs using CDN, npm, or Yarn.
 
@@ -54,8 +58,8 @@ npm install @dytesdk/angular-ui-kit @dytesdk/web-core
 
 Here's a series of steps that you need to perform:
 
-1. Fetch the `authToken` from your server side.
-2. Call the `DyteClient.init()` method from the `web-core` package and pass the `authToken`:
+1. Fetch the `authToken` from your server-side.
+2. Call the `DyteClient.init()` method from the `web-core` package and pass the `authToken`.
 
 ```ts
 class AppComponent {
@@ -80,11 +84,11 @@ Dyte offers a UI Kit that is highly customizatble and uses the `meeting` instanc
 
 ### UI Kit
 
-A single `<dyte-meeting />` component that is feature rich and renders a complete meeting UI and handles all events.
+A single `<dyte-meeting />` component that is feature rich renders a complete meeting UI and handles all events.
 
 #### Load the `DyteComponentsModule` into your App Module
 
-This is typically the `app.module.ts` file. This allows you to use Dyte's UI components in your component HTML files. For
+This is how typically the `app.module.ts` file looks like. This allows you to use Dyte's UI components in your component HTML files. For
 more information on the components, see
 [Angular components](https://angular.io/guide/component-overview).
 
@@ -103,10 +107,12 @@ import { AppComponent } from './app.component';
 export class AppModule {}
 ```
 
-#### (Optional) Step 3: Allow Synthetic Default Imports
+#### (Optional) Allow synthetic default imports for TypeScript
 
-If you are using TypeScript, set `allowSyntheticDefaultImports` as true in your
-`tsconfig.json`.
+If you are using TypeScript, perform the following steps:
+
+1. Set `allowSyntheticDefaultImports` as true in your
+   `tsconfig.json`.
 
 ```json
 {
@@ -116,18 +122,15 @@ If you are using TypeScript, set `allowSyntheticDefaultImports` as true in your
 }
 ```
 
-#### Add Dyte Meeting to the Template File
-
-Load the Dyte component to your template file (`component.html`).
+2. Add the Dyte meeting component to your template file (`component.html`).
 
 ```html
 <dyte-meeting #myid></dyte-meeting>
 ```
 
-#### Pass meeting object to the component
+3. Get a reference to the meeting component using `@ViewChild()`.
 
-1. Get a reference to the meeting component using `@ViewChild()`.
-2. Pass the meeting object to the UI Kit component.
+4. Pass the meeting object to the UI Kit component.
 
 ```ts {3,13}
 class AppComponent {

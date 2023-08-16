@@ -1,6 +1,6 @@
 ---
 
-title: Livestream objects & methods
+title: Livestream Objects and Methods
 description: Livestream object containing all livestream related data and methods.
 sidebar_position: 2
 tags: [flutter-core, livestream]
@@ -10,27 +10,28 @@ tags: [flutter-core, livestream]
 
 ## Objects
 
-### data
+### Data
 
 `DyteLivestreamData` object accessed via `dyteMobileClient.livestream.data` contains the data related to metadata for livestream. It has 4 properties:<br />
 
-1.  `roomName`: [*String*] The name of the room.<br />
-2.  `state`: [*DyteLivestreamStatus*] The current status of the livestream, possible values can be: <br/>
+1.  `roomName`: The name of the room.
+2.  `state`: The current status of the livestream, possible values can be:
     - `DyteLivestreamStatus.none`
     - `DyteLivestreamStatus.starting`
     - `DyteLivestreamStatus.started`
     - `DyteLivestreamStatus.ending`
     - `DyteLivestreamStatus.ended`
     - `DyteLivestreamStatus.errored`
-3.  `url`: [*String?*] The url of the livestream.
-4.  `viewerCount`: [*int*] The number of viewers in the livestream.<br/><br />
+3.  `url`: The url of the livestream.
+4.  `viewerCount`: The number of viewers in the livestream.
 
-### requests
+### Requests
 
-- `requests`: _List&ltDyteLiveStreamStageRequestPeer&gt_ object accessed via `dyteMobileClient.livestream.requests` contains the list of requests to join the stage. Each request contains 3 properties:<br />
-  1. `peerId`: [*String*] The peerId of the user who requested to join the stage.
-  2. `userId`: [*String*] The userId of the user who requested to join the stage.
-  3. `displayName`: [*String*] The display name of the user who requested to join the stage.<br/><br />
+`requests`: List&ltDyteLiveStreamStageRequestPeer&gt object accessed via `dyteMobileClient.livestream.requests` contains the list of requests to join the stage. Each request contains 3 properties:<br />
+
+1. `peerId`: The peer ID of the user who requested to join the stage.
+2. `userId`: The user ID of the user who requested to join the stage.
+3. `displayName`: The display name of the user who requested to join the stage.
 
 ## Methods
 
@@ -44,16 +45,15 @@ tags: [flutter-core, livestream]
 
 ### getState()
 
-[_Future&ltString?&gt_]: Returns the current status of the livestream.<br /><br />
+[_Future&ltString?&gt_]: Returns the current status of the livestream.
 
-## **Host Controls Methods**
+## Host control methods
 
 Dyte’s stage management APIs allow hosts to receive and manage stage requests as well as leave and join the stage.
 
 ### Accept request
 
 This method lets the host accept a request to join the stage. It takes the `DyteLiveStreamStageRequestPeer` as an argument whose request has to be accepted.
-
 
 ```dart
 dyteMobileClient.livestream.acceptRequest(peer);

@@ -1,5 +1,5 @@
 ---
-title: Livestream objects & methods
+title: Livestream Objects and Methods
 description: Livestream object containing all livestream related data and methods.
 sidebar_position: 2
 tags: [android-core, livestream]
@@ -9,28 +9,34 @@ tags: [android-core, livestream]
 
 ## Objects
 
-### roomName [*String*] 
+### roomName [*String*]
+
 The name of the room.<br />
 
-### state [*LiveStreamState*] 
+### state [*LiveStreamState*]
+
 The current status of the livestream, possible values can be: <br/>
-  - `LiveStreamState.NONE`
-  - `LiveStreamState.STARTING`
-  - `LiveStreamState.STARTED`
-  - `LiveStreamState.STOPPING`
-  - `LiveStreamState.STOPPED`
-  - `LiveStreamState.ERRORED`
 
-### stage requests [*_List&ltDyteLiveStreamStageRequestPeer&gt_*]
-object accessed via `dyteMobileClient.livestream.stageRequestPeers` contains the list of requests to join the stage. Each request contains 3 properties:<br />
-  1. `peerId`: [*String*] The peerId of the user who requested to join the stage.
-  2. `userId`: [*String*] The userId of the user who requested to join the stage.
-  3. `displayName`: [*String*] The display name of the user who requested to join the stage.<br/><br />
+- `LiveStreamState.NONE`
+- `LiveStreamState.STARTING`
+- `LiveStreamState.STARTED`
+- `LiveStreamState.STOPPING`
+- `LiveStreamState.STOPPED`
+- `LiveStreamState.ERRORED`
 
-### liveStreamUrl [*String*] 
+### Stage Requests [List&ltDyteLiveStreamStageRequestPeer&gt]
+
+Object accessed via `dyteMobileClient.livestream.stageRequestPeers` contains the list of requests to join the stage. Each request contains 3 properties:<br />
+
+1. `peerId`: The peer ID of the user who requested to join the stage.
+2. `userId`: The user ID of the user who requested to join the stage.
+3. `displayName`: The display name of the user who requested to join the stage.<br/><br />
+
+### liveStreamUrl [String]
+
 List of URL which can be used to consume livestream.
 
-## **Host Controls Methods**
+## Host control methods
 
 Dyte’s stage management APIs allow hosts to receive and manage stage requests as well as leave and join the stage.
 

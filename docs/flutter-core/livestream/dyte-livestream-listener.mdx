@@ -1,12 +1,11 @@
 ---
-title: Livestream event listeners
+title: Livestream Event Listeners
 description: Livestream events to listen to for triggering
 sidebar_position: 3
 tags: [flutter-core, livestream]
 ---
 
 You can listen to livestream events by attaching a listener `addLivestreamEventsListener` on `dyteMobileClient` object where `dyteMobileClient` is an instance of `DyteMobileClient()`.
-
 
 ```dart
 
@@ -29,87 +28,82 @@ dyteMobileClient.addLivestreamEventsListener(LivestreamListener())
 
 ## Livestream events
 
-- ### onLiveStreamStarting
+### onLiveStreamStarting
 
-  This event is triggered when the livestream is about to start.
+This event is triggered when the livestream is about to start.
 
-- ### onLiveStreamStarted
+### onLiveStreamStarted
 
-  This event is triggered when the livestream has started.
+This event is triggered when the livestream has started.
 
-- ### onLiveStreamStateUpdate
+### onLiveStreamStateUpdate
 
-  This event is triggered when the livestream state is updated. The `data` is `DyteLivestreamData` object that contains the updated livestream state. You can access the updated livestream state by:
+This event is triggered when the livestream state is updated. The `data` is `DyteLivestreamData` object that contains the updated livestream state. You can access the updated livestream state by:
 
+```dart
+  DyteLivestreamData data = dyteMobileClient.livestream.data
+  DyteLivestreamStatus currentStatus = dyteMobileClient.livestream.data.state
+  String? livestreamUrl = dyteMobileClient.livestream.data.url
+```
 
-  ```dart
-    DyteLivestreamData data = dyteMobileClient.livestream.data
-    DyteLivestreamStatus currentStatus = dyteMobileClient.livestream.data.state
-    String? livestreamUrl = dyteMobileClient.livestream.data.url
-  ```
+### onViewerCountUpdated
 
+This event is triggered when the viewer count is updated. The `count` object contains the updated viewer count. You can access the updated viewer count by:
 
-- ### onViewerCountUpdated
+```dart
+  int updatedViewerCount = dyteMobileClient.livestream.viewerCount
+```
 
-  This event is triggered when the viewer count is updated. The `count` object contains the updated viewer count. You can access the updated viewer count by:
+### onLiveStreamEnding
 
-  ```dart
-    int updatedViewerCount = dyteMobileClient.livestream.viewerCount
-  ```
+This event is triggered when the livestream is about to end.
 
+### onLiveStreamEnded
 
-- ### onLiveStreamEnding
+This event is triggered when the livestream has ended.
 
-  This event is triggered when the livestream is about to end.
+### onLiveStreamErrored
 
-- ### onLiveStreamEnded
+This event is triggered when their is an error while starting/stopping the livestream.
 
-  This event is triggered when the livestream has ended.
+### onStageCountUpdated
 
-- ### onLiveStreamErrored
+This event is triggered when the number of users on stage is updated. The `count` object contains the updated stage count.
 
-  This event is triggered when their is an error while starting/stopping the livestream.
+```dart
+  void onStageCountUpdated(int count) {
+    // count is the updated stage count
+    int updatedStageCount = count
+  }
+```
 
-- ### onStageCountUpdated
+### onStageRequestsUpdated
 
+This event is triggered when the stage requests are updated. The `requests` object contains the updated list of stage requests. You can access the updated list by:
 
-  This event is triggered when the number of users on stage is updated. The `count` object contains the updated stage count.
+```dart
+  void onStageRequestsUpdated(List<DyteLiveStreamStageRequestPeer> requests) {
 
-  ```dart
-    void onStageCountUpdated(int count) {
-      // count is the updated stage count
-      int updatedStageCount = count
-    }
-  ```
+    // On this callback, the requests object `dyteMobileClient.livestream.requests` is already updated.
+    List<DyteLiveStreamStageRequestPeer> updatedRequests = dyteMobileClient.livestream.requests // returns List<DyteLiveStreamStageRequestPeer>
 
+    // or
+    List<DyteLiveStreamStageRequestPeer> updatedRequests = requests
+  }
+```
 
-- ### onStageRequestsUpdated
+### onJoinRequestAccepted
 
-  This event is triggered when the stage requests are updated. The `requests` object contains the updated list of stage requests. You can access the updated list by:
+This event is triggered when a stage request is accepted. The `peer` object contains the peer whose request is accepted.
 
-  ```dart
-    void onStageRequestsUpdated(List<DyteLiveStreamStageRequestPeer> requests) {
+```dart
+  void onJoinRequestAccepted(DyteLiveStreamStagePeer peer) {}
+```
 
-      // On this callback, the requests object `dyteMobileClient.livestream.requests` is already updated.
-      List<DyteLiveStreamStageRequestPeer> updatedRequests = dyteMobileClient.livestream.requests // returns List<DyteLiveStreamStageRequestPeer>
-      
-      // or
-      List<DyteLiveStreamStageRequestPeer> updatedRequests = requests
-    }
-  ```
+### onJoinRequestRejected
 
-- ### onJoinRequestAccepted
+This event is triggered when a stage request is rejected. The `peer` object contains the peer whose request is rejected.
 
-  This event is triggered when a stage request is accepted. The `peer` object contains the peer whose request is accepted.
-
-  ```dart
-    void onJoinRequestAccepted(DyteLiveStreamStagePeer peer) {}
-  ```
-
-- ### onJoinRequestRejected
-
-  This event is triggered when a stage request is rejected. The `peer` object contains the peer whose request is rejected.
-
-  ```dart
-    void onJoinRequestRejected(DyteLiveStreamStagePeer peer) {}
-  ```
+```dart
+  void onJoinRequestRejected(DyteLiveStreamStagePeer peer) {}
+```
