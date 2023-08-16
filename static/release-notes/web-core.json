@@ -1,12 +1,41 @@
 [
   {
+    "version": "1.17.0",
+    "createdAt": "1691712000",
+    "fixes": [
+      "Fixed an issue with activating / deactivating the plugin where the plugin is already in the desired state."
+    ]
+  },
+  {
+    "version": "1.16.x",
+    "createdAt": 1690502400,
+    "fixes": [
+      "Fixed an edge case where the screen share with audio was not working as expected.",
+      "Handle a race condition which used to prevent user from joining stage in a webinar setup.",
+      "Separated the private and public chat permissions.",
+      "Fixed an issue which was adding duplicate device names on the device list.",
+      "Fixed an issue which was not allowing host to kick a participant from the meeting.",
+      "DyteClient.init() is now idempotent. Calling init() multiple times will not cause any issues."
+    ]
+  },
+  {
+    "version": "1.15.0",
+    "createdAt": 1688083200,
+    "fixes": ["Fixed an edge case around file upload in Chat."],
+    "features": [
+      "Added add support for quoting a chat message while reply for Chat SDK",
+      "Chat SDK now shows unread count and last message on channel list.",
+      "Participants using Chat SDK will be able to edit and delete their messages."
+    ]
+  },
+  {
     "version": "1.14.0",
     "createdAt": 1686303420,
     "fixes": [
       "Added execution locks around `DyteClient.init` method to prevent accidental double initialisation method calls",
-      "Handle multiple edge cases around media capture and its retention"    
+      "Handle multiple edge cases around media capture and its retention"
     ],
-    "features":[
+    "features": [
       "Added self-troubleshooting features, allow users to run tests to discover issues in their calls. More details on this in the next release"
     ]
   },
