@@ -4,12 +4,16 @@ import { AndroidCoreLatestInstallation } from '@site/src/components/LatestInstal
 
 ## Quickstart
 
-<span class="block mb-2">
-  This quickstart shows how to add Dyte's {props.product} SDK to your{' '}
-  Android applications
+<span class="mb-2 block">
+  This quickstart shows how to add Dyte's {props.product} SDK to your Android
+  applications.
 </span>
 
-<span class="block mb-2">Further down this guide we also explain how Dyte's UI component library can help to build your UI faster with components specially made for {props.product} applications.</span>
+<span class="mb-2 block">
+  In addition, you'll learn how Dyte's UI component library can help you build
+  your UI faster with components designed specifically for {props.product}{' '}
+  applications.
+</span>
 
 You can also checkout our
 [sample code](https://github.com/dyte-io/mobile-samples#samples) for Android. You can clone
@@ -20,14 +24,14 @@ and run a sample application from the
 
 You'll learn how to:
 
-- Install the Dyte client side SDKs
-- Initialize Dyte Client
-- Bringing up a UI
+- Install the Dyte client-side SDKs
+- Initialize Dyte client
+- Bringing up your UI
 - Go live!
 
 ## Before Getting Started
 
-- Make sure you've a mechanism to get `authToken` from your server side which you would have received as part of [Add Participant](/guides/live-video/build-live-video-app#step-5-add-participants) call.
+Make sure you've a mechanism to get `authToken` from your server-side, which you would have received as part of [Add Participant](/guides/live-video/build-live-video-app#step-5-add-participants) call.
 
 ## Step 1: Install the SDK
 
@@ -37,7 +41,6 @@ You'll learn how to:
   // other dependencies here
   implementation 'io.dyte:uikit:1.13.0'
 ```
-
 
 2. Add the following permissions to the AndroidManifest.xml file.
 
@@ -96,7 +99,6 @@ dyteUIKit.startMeeting()
 ![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-setup.png)
 ![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-meeting.png)
 ![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-meeting-options.png)
-
 
 ### Proguard Builds
 
