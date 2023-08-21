@@ -1854,9 +1854,11 @@ components:
               default: 10 seconds
         audioConfig:
           $ref: '#/components/schemas/AudioConfig'
-        liveStreamingConfig:
+        rtmpOutConfig:
           type: object
           description: Object containing configuration regarding livestreaming the meeting video to a platform that supports RTMP input.
+          x-stoplight:
+            id: uuma4lpsmc0x8
           properties:
             rtmpUrl:
               type: string
