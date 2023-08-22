@@ -4840,6 +4840,36 @@ components:
           type: string
           x-stoplight:
             id: 0b5t8sncdhv1c
+    RecordingConfig:
+      title: RecordingConfig
+      x-stoplight:
+        id: yyo7jv040qf6o
+      type: object
+      description: |
+        Recording Configurations to be used for this meeting. This level of configs takes higher preference over organization level configs on the Dyte developer portal.
+      properties:
+        max_seconds:
+          type: number
+          x-stoplight:
+            id: io98gvoqjyarx
+          minimum: 60
+          maximum: 86400
+          description: 'Specifies the maximum duration for recording in seconds, ranging from a minimum of 60 seconds to a maximum of 24 hours.'
+        file_name_prefix:
+          type: string
+          x-stoplight:
+            id: gvy18dsipftrc
+          description: Adds a prefix to the beginning of the file name of the recording.
+        video_config:
+          $ref: '#/components/schemas/VideoConfig'
+        audio_config:
+          $ref: '#/components/schemas/AudioConfig'
+        storage_config:
+          $ref: '#/components/schemas/StorageConfig'
+        dyte_bucket_config:
+          $ref: '#/components/schemas/DyteBucketConfig'
+        live_streaming_config:
+          $ref: '#/components/schemas/LivestreamingConfig'
   parameters:
     Content-Type:
       name: Content-Type
@@ -5075,35 +5105,7 @@ components:
                 description: Specifies if the meeting should start getting livestreamed on start.
                 nullable: true
               recording_config:
-                type: object
-                x-stoplight:
-                  id: 25i4ef7cvg4qb
-                description: |
-                  Recording Configurations to be used for this meeting. This level of configs takes higher preference over organization level configs on the Dyte developer portal.
-                properties:
-                  storage_config:
-                    $ref: '#/components/schemas/StorageConfig'
-                  audio_config:
-                    $ref: '#/components/schemas/AudioConfig'
-                  video_config:
-                    $ref: '#/components/schemas/VideoConfig'
-                  dyte_bucket_config:
-                    $ref: '#/components/schemas/DyteBucketConfig'
-                  live_streaming_config:
-                    $ref: '#/components/schemas/LivestreamingConfig'
-                  max_seconds:
-                    type: number
-                    x-stoplight:
-                      id: 4gg3sjaisjebi
-                    description: 'Specifies the maximum duration for recording in seconds, ranging from a minimum of 60 seconds to a maximum of 24 hours.'
-                    minimum: 60
-                    maximum: 86400
-                  file_name_prefix:
-                    type: string
-                    x-stoplight:
-                      id: ouehpg8wlkqnx
-                    description: |
-                      Adds a prefix to the beginning of the file name of the recording
+                $ref: '#/components/schemas/RecordingConfig'
       description: Create meeting body
     UpdateMeetingBody:
       content:
@@ -5478,10 +5480,21 @@ components:
           schema:
             allOf:
               - $ref: '#/components/schemas/GenericSuccessResponse'
-              - type: object
-                properties:
-                  data:
-                    $ref: '#/components/schemas/Meeting'
+              - allOf:
+                  - properties:
+                      data:
+                        $ref: '#/components/schemas/Meeting'
+                  - x-stoplight:
+                      id: 2rhsz8bxmgily
+                    properties:
+                      data:
+                        x-stoplight:
+                          id: u1ivkl42i7ksx
+                        type: object
+                        properties:
+                          recording_config:
+                            $ref: '#/components/schemas/RecordingConfig'
+                type: object
       headers: {}
     GetAllMeetings:
       description: Success response
