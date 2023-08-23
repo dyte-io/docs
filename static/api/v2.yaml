@@ -45,7 +45,6 @@ info:
     - [Brute Force Attack](https://www.fortinet.com/resources/cyberglossary/brute-force-attack)
     - [DDOS attack](https://aws.amazon.com/shield/ddos-attack-protection/)
     - [Web-scraping](https://www.geeksforgeeks.org/what-is-web-scraping-and-how-to-use-it/)
-  termsOfService: ''
   license:
     name: ''
 paths:
@@ -1770,7 +1769,7 @@ paths:
         > #### NOTE
         >
         > This API is in beta and is disabled by default. [Contact us](https://dyte.io/contact) to enable it
-        > for your organization.                        
+        > for your organization.
       operationId: GetSessionChat
       tags:
         - Sessions
@@ -1855,7 +1854,6 @@ paths:
       tags:
         - Webhooks
       operationId: getWebhook
-      parameters: null
       responses:
         '200':
           description: Operation successful
@@ -1888,7 +1886,6 @@ paths:
       tags:
         - Webhooks
       operationId: replaceWebhook
-      parameters: null
       requestBody:
         required: true
         content:
@@ -1945,7 +1942,6 @@ paths:
       tags:
         - Webhooks
       operationId: editWebhook
-      parameters: null
       requestBody:
         required: true
         content:
@@ -2233,6 +2229,7 @@ paths:
       parameters:
         - schema:
             type: string
+          name: name
           in: query
     patch:
       summary: Update a meeting
@@ -2402,7 +2399,7 @@ paths:
           in: query
           name: expired
           required: false
-          description: 'If passed, only shows expired/non-expired recordings on Dyte's bucket'
+          description: "If passed, only shows expired/non-expired recordings on Dyte's bucket"
         - $ref: '#/components/parameters/search'
         - $ref: '#/components/parameters/recordingSortBy'
         - $ref: '#/components/parameters/sortOrder'
@@ -4728,8 +4725,7 @@ components:
           type: boolean
           x-stoplight:
             id: k1f2cjsd28631
-          description: 'Controls whether recordings are uploaded to Dyte's bucket. If set to false, `download_url`, `audio_download_url`, `download_url_expiry` won't be generated for a recording.'
-          default: true
+          description: "Controls whether recordings are uploaded to Dyte's bucket. If set to false, `download_url`, `audio_download_url`, `download_url_expiry` won't be generated for a recording."
       required:
         - enabled
     startReason:
@@ -4844,6 +4840,36 @@ components:
           type: string
           x-stoplight:
             id: 0b5t8sncdhv1c
+    RecordingConfig:
+      title: RecordingConfig
+      x-stoplight:
+        id: yyo7jv040qf6o
+      type: object
+      description: |
+        Recording Configurations to be used for this meeting. This level of configs takes higher preference over organization level configs on the Dyte developer portal.
+      properties:
+        max_seconds:
+          type: number
+          x-stoplight:
+            id: io98gvoqjyarx
+          minimum: 60
+          maximum: 86400
+          description: 'Specifies the maximum duration for recording in seconds, ranging from a minimum of 60 seconds to a maximum of 24 hours.'
+        file_name_prefix:
+          type: string
+          x-stoplight:
+            id: gvy18dsipftrc
+          description: Adds a prefix to the beginning of the file name of the recording.
+        video_config:
+          $ref: '#/components/schemas/VideoConfig'
+        audio_config:
+          $ref: '#/components/schemas/AudioConfig'
+        storage_config:
+          $ref: '#/components/schemas/StorageConfig'
+        dyte_bucket_config:
+          $ref: '#/components/schemas/DyteBucketConfig'
+        live_streaming_config:
+          $ref: '#/components/schemas/LivestreamingConfig'
   parameters:
     Content-Type:
       name: Content-Type
@@ -5027,7 +5053,7 @@ components:
             properties:
               allow_unmute:
                 type: boolean
-                description: 'if false, participants won''t be able to unmute themselves after they are muted'
+                description: "if false, participants won't be able to unmute themselves after they are muted"
     CreatePollBody:
       description: Request body for creating a new poll
       content:
@@ -5078,6 +5104,8 @@ components:
                 default: false
                 description: Specifies if the meeting should start getting livestreamed on start.
                 nullable: true
+              recording_config:
+                $ref: '#/components/schemas/RecordingConfig'
       description: Create meeting body
     UpdateMeetingBody:
       content:
@@ -5183,7 +5211,7 @@ components:
                 $ref: '#/components/schemas/VideoConfig'
               audio_config:
                 $ref: '#/components/schemas/AudioConfig'
-              live_streaming_config:
+              rtmp_out_config:
                 $ref: '#/components/schemas/LivestreamingConfig'
               file_name_prefix:
                 type: string
@@ -5452,10 +5480,21 @@ components:
           schema:
             allOf:
               - $ref: '#/components/schemas/GenericSuccessResponse'
-              - type: object
-                properties:
-                  data:
-                    $ref: '#/components/schemas/Meeting'
+              - allOf:
+                  - properties:
+                      data:
+                        $ref: '#/components/schemas/Meeting'
+                  - x-stoplight:
+                      id: 2rhsz8bxmgily
+                    properties:
+                      data:
+                        x-stoplight:
+                          id: u1ivkl42i7ksx
+                        type: object
+                        properties:
+                          recording_config:
+                            $ref: '#/components/schemas/RecordingConfig'
+                type: object
       headers: {}
     GetAllMeetings:
       description: Success response
