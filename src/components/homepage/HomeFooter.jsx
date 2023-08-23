@@ -81,7 +81,7 @@ const comparisons = [
   { name: 'Dyte vs Agora', href: 'https://dyte.io/agora-competitor' },
   { name: 'Dyte vs Zoom', href: 'https://dyte.io/zoom-sdk-competitor' },
   { name: 'Dyte vs Twilio', href: 'https://dyte.io/twilio-video-competitor' },
-  { name: 'Dyte vs Vonage', href: 'https://dyte.io/vonage-video-competitor' },
+  { name: 'Dyte vs Vonage', href: 'https://dyte.io/vonage-video-alternative' },
 ];
 
 function Safety({ className }) {
