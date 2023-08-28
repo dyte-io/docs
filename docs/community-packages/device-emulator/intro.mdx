@@ -102,15 +102,15 @@ navigator.mediaDevices
 navigator.mediaDevices.removeEmulatedDevice(deviceId);
 ```
 
-### Stop the device
+### Fail the device
 
-You can use `brickDevice` method to test scenarios where the devices stops working abruptly.
+You can use `failDevice` method to test scenarios where the devices stops working abruptly.
 
 ```js {4}
 const virtualDeviceID = navigator.mediaDevices.addEmulatedDevice('videoinput');
 
 // Stop the device from working
-navigator.mediaDevices.brickDevice(virtualDeviceID, true);
+navigator.mediaDevices.failDevice(virtualDeviceID, true);
 
 navigator.mediaDevices
   .getUserMedia({
@@ -134,14 +134,14 @@ navigator.mediaDevices
   });
 ```
 
-Executing the `brickDevice` after getting the tracks will stop the active tracks.
+Executing the `failDevice` after getting the tracks will stop the active tracks.
 
 ### Resume the device
 
-Use `brickDevice` method to make the device work normally
+Use `failDevice` method to make the device work normally
 
 ```js
-navigator.mediaDevices.unbrickDevice(deviceId, false);
+navigator.mediaDevices.failDevice(deviceId, false);
 ```
 
 ### Silence the tracks
