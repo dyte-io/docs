@@ -1,0 +1,161 @@
+---
+slug: /device-emulator
+sidebar_position: 1
+keywords: [opensource]
+---
+
+# Introduction
+
+For a product, integration tests are one of the crucial part that improves quality & stability. For a WebRTC based solution like Dyte, having integration tests that can test multi-user call with Audio/Video on is necessary.
+
+For an end user, sharing a camera & mic is easy. For this, browsers expose APIs such as enumerateDevices & getUserMedia on MediaDevices interface, on which user interfaces can be built easily.
+
+Access to camera & mic prompts the users to allow permissions to do so. This works great as long as an end-user is using the product and actively allowing permissions and selecting devices, However this makes it impossible to write integration tests because for integration tests there is no active user and you need to somehow allow permissions programmatically which at the moment of writing this README is not reliably supported in modern tools like Playwright.
+
+Even if we can somehow allow permissions, The next set of questions would be: What would the video & audio feed look like? Can we customize the feed? Can we use the feed to detect delays between a video feed producer and consumer? How do we test multiple devices? How do we test media ejection on the fly? How do we test addition of a new device?
+
+Dyte's Device Emulator is a solution that answers all these questions and provides a easier way to mimic, add, remove devices & their feed.
+
+## Installation
+
+<Tabs groupId="cdn-npm">
+  <TabItem value="cdn" label="CDN" default>
+
+To set up device-emulator add the following script tags inside
+the `<head />` tag.
+
+```html
+<script>
+  window.addEventListener('dyte.deviceEmulatorLoaded', () => {
+    // use device emulator methods here...
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@dytesdk/device-emulator/dist/index.iife.js"></script>
+```
+
+  </TabItem>
+  <TabItem value="npm" label="npm">
+
+```bash
+npm install @dytesdk/device-emulator
+```
+
+use the package like below
+
+```js
+import '@dytesdk/device-emulator';
+
+// use the device emulator methods
+```
+
+  </TabItem>
+
+  <TabItem value="yarn" label="yarn">
+
+```bash
+yarn add @dytesdk/device-emulator
+```
+
+use the package like below
+
+```js
+import '@dytesdk/device-emulator';
+
+// use the device emulator methods
+```
+
+  </TabItem>
+</Tabs>
+
+## API reference
+
+### Add a virtual device
+
+```js {1}
+const virtualDeviceID = navigator.mediaDevices.addEmulatedDevice('videoinput');
+
+// get a media track from the virtual device
+navigator.mediaDevices
+  .getUserMedia({
+    video: {
+      deviceId: {
+        exact: virtualDeviceID,
+      },
+    },
+  })
+  .then((mediaStream) => {
+    const video = document.querySelector('video');
+    video.srcObject = mediaStream;
+    video.onloadedmetadata = () => {
+      video.play();
+    };
+  })
+  .catch((err) => {
+    // always check for errors at the end.
+    console.error(`${err.name}: ${err.message}`);
+  });
+```
+
+### Remove virtual device
+
+```js
+navigator.mediaDevices.removeEmulatedDevice(deviceId);
+```
+
+### Fail the device
+
+You can use `failDevice` method to test scenarios where the devices stops working abruptly.
+
+```js {4}
+const virtualDeviceID = navigator.mediaDevices.addEmulatedDevice('videoinput');
+
+// Stop the device from working
+navigator.mediaDevices.failDevice(virtualDeviceID, true);
+
+navigator.mediaDevices
+  .getUserMedia({
+    video: {
+      deviceId: {
+        exact: virtualDeviceID,
+      },
+    },
+  })
+  .then((mediaStream) => {
+    // This will not work
+    const video = document.querySelector('video');
+    video.srcObject = mediaStream;
+    video.onloadedmetadata = () => {
+      video.play();
+    };
+  })
+  .catch((err) => {
+    // catch `NotReadableError` thrown from the device
+    console.error(`${err.name}: ${err.message}`);
+  });
+```
+
+Executing the `failDevice` after getting the tracks will stop the active tracks.
+
+### Resume the device
+
+Use `failDevice` method to make the device work normally
+
+```js
+navigator.mediaDevices.failDevice(deviceId, false);
+```
+
+### Silence the tracks
+
+Generate tracks that are silent
+
+```js
+navigator.mediaDevices.silenceDevice(deviceId, true);
+```
+
+### Unmute the tracks from the device
+
+Remove the silence check on the device
+
+```js
+navigator.mediaDevices.silenceDevice(deviceId, false);
+```

@@ -917,6 +917,8 @@ img[src$='#terminal'] {
   transition-property: background-color, color;
 
   border-radius: 8px;
+  position: relative;
+  overflow: hidden;
 }
 
 .homepage-card.row {
@@ -932,8 +934,6 @@ img[src$='#terminal'] {
   width: 48px;
   height: 48px;
   @apply mx-1;
-  /* background-color: #262626;
-  border-radius: 8px; */
 }
 
 .card-content {
@@ -952,6 +952,14 @@ img[src$='#terminal'] {
   font-size: 14px;
   color: var(--docs-color-text-100);
   line-height: 1.5;
+}
+
+.homepage-card .tag {
+  font-size: 12px;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+  position: absolute;
 }
 
 details {
@@ -1131,6 +1139,10 @@ article ul {
 }
 
 .guide_sidebar_index {
+  @apply -ml-2;
+}
+
+.community_packages_sidebar_index {
   @apply -ml-2;
 }
 
