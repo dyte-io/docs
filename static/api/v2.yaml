@@ -4658,12 +4658,10 @@ components:
                   type: integer
                   description: Width of the watermark in px
                   minimum: 1
-                  default: 200
                 height:
                   type: integer
                   description: Height of the watermark in px
                   minimum: 1
-                  default: auto
             position:
               type: string
               enum:
@@ -4673,12 +4671,6 @@ components:
                 - right bottom
               description: Position of the watermark
               default: left top
-        segment_length:
-          type: integer
-          x-stoplight:
-            id: nvz2itrdjphlb
-          default: 10 seconds
-          description: The duration of each segment or fragment of a video file.
     LivestreamingConfig:
       title: LivestreamingConfig
       x-stoplight:
