@@ -3833,6 +3833,7 @@ components:
             - azure
             - digitalocean
             - gcs
+            - sftp
           description: Type of storage media.
         access_key:
           type: string
@@ -3856,12 +3857,41 @@ components:
         path:
           type: string
           description: Path relative to the bucket root at which the recording will be placed.
+        auth_method:
+          x-stoplight:
+            id: uklpv4sdxai0a
+          enum:
+            - KEY
+            - PASSWORD
+          description: |
+            Authentication method used for "sftp" type storage medium
+        username:
+          type: string
+          x-stoplight:
+            id: bzea0pjriano5
+          description: SSH destination server username for SFTP type storage medium
+        password:
+          type: string
+          x-stoplight:
+            id: nyi2j6m4lnwhg
+          description: 'SSH destination server password for SFTP type storage medium when auth_method is "PASSWORD". If auth_method is "KEY", this specifies the password for the ssh private key.'
+        host:
+          type: string
+          x-stoplight:
+            id: y9c66jxovb285
+          description: SSH destination server host for SFTP type storage medium
+        port:
+          type: number
+          x-stoplight:
+            id: y5h441zp02ino
+          description: SSH destination server port for SFTP type storage medium
+        private_key:
+          type: string
+          x-stoplight:
+            id: h105s3bbsxb2k
+          description: 'Private key used to login to destination SSH server for SFTP type storage medium, when auth_method used is "KEY"'
       required:
         - type
-        - access_key
-        - secret
-        - bucket
-        - region
     PresetListItem:
       title: PresetListItem
       x-stoplight:
