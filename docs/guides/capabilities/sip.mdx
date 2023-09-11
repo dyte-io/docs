@@ -11,23 +11,28 @@ Dyte’s SIP Interconnect allows you to bridge VOIP calls from an external third
 
 ## Usage
 
-The simplest way to call a SIP Endpoint is using a SIP Client, you can use clients like Zoiper, Telephone(Mac only), etc. 
+Get your SIP credentials from the [Developer Portal](https://dev.dyte.io/apikeys) in the `API Keys` section
 
-You will be provided with -
+<img
+  src="/static/sip/sip-devportal.png"
+  width="500"
+  height="300"
+  alt="SIP Keys in developer portal"
+  className="ml-2 mb-4"
+/>
 
-1. A Username and password combinationa
-2. A SIP Server Endpoint. The default port is 5060.
-
-:::note
-This feature is in beta. Contact us to get Username, Password and SIP Server Endpoint
+:::caution
+This feature is in beta. Contact us to enable SIP Interconnect
 
 :::
 
-Now to connect to a specific Dyte `meetingId`. You can dial in using SIP with the given username and password and an URI in the format `sip:<meetingId>@<DyteSIPEndpoint>`
+Once you have the credentials, the simplest way to test the SIP Endpoint is using a SIP Client, you can use clients like Zoiper, Telephone(Mac only), etc. 
 
-🎉 That is it, your SIP call should now be bridged with Dyte's WebRTC meeting
+Now to connect to a specific Dyte `meetingId`. You can dial in using SIP with the given username and password and an URI in the format `sip:<meetingId>@sip.dyte.io`
 
-## Example
+🎉 That is it, once you dial with the above credentials your SIP call should be bridged with Dyte's WebRTC meeting
+
+## Examples
 
 ### Integration with Twilio Voice
 
@@ -41,11 +46,11 @@ Steps to follow
 3. Configure the VOIP number to [use webhook to handle any incoming calls](https://www.twilio.com/docs/usage/webhooks/voice-webhooks#incoming-voice-call)
 
 <img
-  src="/static/twilio.png"
-  width="400"
-  height="200"
+  src="/static/sip/twilio.png"
+  width="600"
+  height="400"
   alt="Twilio Voice Webhook configuration"
-  className="twilio-webhook ml-2"
+  className="twilio-webhook ml-2 mb-6 mt-2"
 />
 
 
@@ -55,7 +60,7 @@ Steps to follow
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
 <Dial>
-    <Sip username="<DyteSIPUsername>" password="<DyteSIPPassword>>">sip:meetingId@DyteSIPEndpoint</Sip>
+    <Sip username="<DyteSIPUsername>" password="<DyteSIPPassword>">sip:meetingId@sip.dyte.io</Sip>
 </Dial>
 </Response>
 ```
@@ -83,7 +88,7 @@ app.post('/voice', (request, response) => {
     dial.sip({
         username: "<DyteSIPUsername>",
         password: "<DyteSIPPassword>",
-    }, 'sip:<meetingId>@<DyteSIPEndpoint>');
+    }, 'sip:<meetingId>@sip.dyte.io');
 
     // Render the response as XML in reply to the webhook request
     response.type('text/xml');
