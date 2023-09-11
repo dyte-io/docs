@@ -1,0 +1,100 @@
+---
+title: 'SIP Interconnect'
+sidebar_position: 4
+---
+
+## Introduction 
+
+Session Initiation Protocol (SIP) Interconnect refers to the setup where two or more different SIP-based networks or systems are connected to enable the flow of voice traffic between them.
+
+Dyte’s SIP Interconnect allows you to bridge VOIP calls from an external third party service to Dyte’s WebRTC meetings. That means you can use SIP methodologies to connect with our SIP Servers and have it bridged to participants who might be connected through Dyte Client SDKs (WebRTC)
+
+## Usage
+
+Get your SIP credentials from the [Developer Portal](https://dev.dyte.io/apikeys) in the `API Keys` section
+
+<img
+  src="/static/sip/sip-devportal.png"
+  width="500"
+  height="300"
+  alt="SIP Keys in developer portal"
+  className="ml-2 mb-4"
+/>
+
+:::caution
+This feature is in beta. Contact us to enable SIP Interconnect
+
+:::
+
+Once you have the credentials, the simplest way to test the SIP Endpoint is using a SIP Client, you can use clients like Zoiper, Telephone(Mac only), etc. 
+
+Now to connect to a specific Dyte `meetingId`, you can dial in using SIP with the given username and password and an URI in the format `sip:<meetingId>@sip.dyte.io`
+
+🎉 That is it, once you dial with the above credentials your SIP call should be bridged with Dyte's WebRTC meeting
+
+## Examples
+
+### Integration with Twilio Voice
+
+To connect with Dyte we are going to use TwiML to perform the SIP dialin.
+
+#### Guide
+
+Steps to follow
+1. Get a Twilio account. You can go to https://www.twilio.com/try-twilio and create an account
+2. Buy a VOIP number
+3. Configure the VOIP number to [use webhook to handle any incoming calls](https://www.twilio.com/docs/usage/webhooks/voice-webhooks#incoming-voice-call)
+
+<img
+  src="/static/sip/twilio.png"
+  width="600"
+  height="400"
+  alt="Twilio Voice Webhook configuration"
+  className="twilio-webhook ml-2 mb-6 mt-2"
+/>
+
+
+4. Now when you get a webhook, you can respond with a [TwiML SIP Dial](https://www.twilio.com/docs/voice/twiml/sip) verb with Dyte's SIP configuration
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+<Dial>
+    <Sip username="<DyteSIPUsername>" password="<DyteSIPPassword>">sip:meetingId@sip.dyte.io</Sip>
+</Dial>
+</Response>
+```
+
+#### Express Example
+
+```js
+const express = require('express');
+const VoiceResponse = require('twilio').twiml.VoiceResponse;
+const urlencoded = require('body-parser').urlencoded;
+
+const app = express();
+
+// Parse incoming POST params with Express middleware
+app.use(urlencoded({ extended: false }));
+
+// Create a route that will handle Twilio webhook requests, sent as an
+// HTTP POST to /voice in our application
+app.post('/voice', (request, response) => {
+    console.log({ request });
+    // Use the Twilio Node.js SDK to build an XML response
+    const twiml = new VoiceResponse();
+
+    const dial = twiml.dial();
+    dial.sip({
+        username: "<DyteSIPUsername>",
+        password: "<DyteSIPPassword>",
+    }, 'sip:<meetingId>@sip.dyte.io');
+
+    // Render the response as XML in reply to the webhook request
+    response.type('text/xml');
+    console.log({ twiml: twiml.toString() })
+    response.send(twiml.toString());
+});
+```
+
+Hurray 🎉, You have completed the Twilio Voice setup guide. 
