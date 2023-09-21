@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
-import ThemedImage from '@theme/ThemedImage';
 import clsx from 'clsx';
-import {
-  Linkedin,
-  Twitter,
-  Youtube,
-  Github,
-} from '@styled-icons/boxicons-logos';
-import { DiscordIcon } from '@site/src/icons';
+import { Linkedin, Youtube, Github } from '@styled-icons/boxicons-logos';
+import { XIcon } from '@site/src/icons';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 
 const products = [
@@ -88,7 +82,7 @@ function Safety({ className }) {
   return (
     <div
       className={clsx(
-        'flex h-24 max-w-[418px] overflow-clip rounded-2xl border-2 border-white',
+        'flex h-24 max-w-[418px] overflow-clip rounded-2xl bg-white',
         className
       )}
     >
@@ -166,7 +160,7 @@ function Links({ name, links }) {
 
 export default function Footer() {
   return (
-    <footer className="bg-zinc-100">
+    <footer className="bg-[#F4F7FF]">
       <div className="mx-auto flex w-full max-w-[1080px] flex-col px-6 py-12">
         <div className="mb-12 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <img src="/logo/dyte.svg" alt="Dyte" className="h-9 w-fit lg:h-12" />
@@ -197,30 +191,6 @@ export default function Footer() {
           </BrowserOnly>
           <Safety className="flex w-full max-w-full lg:hidden" />
 
-          <div className="flex items-center gap-4">
-            <Link
-              href="https://github.com/dyte-io"
-              aria-label="Dyte's GitHub Organization"
-            >
-              <Github className="h-7 w-7 text-zinc-400 hover:text-primary" />
-            </Link>
-            <Link
-              href="https://linkedin.com/company/dyteio"
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="h-7 w-7 text-zinc-400 hover:text-primary" />
-            </Link>
-            <Link href="https://twitter.com/dyte_io" aria-label="Twitter">
-              <Twitter className="h-7 w-7 text-zinc-400 hover:text-primary" />
-            </Link>
-            <Link
-              href="https://youtube.com/company/dyteio"
-              aria-label="Dyte YouTube Channel"
-            >
-              <Youtube className="h-7 w-7 text-zinc-400 hover:text-primary" />
-            </Link>
-          </div>
-
           <div className="flex flex-wrap gap-2 text-sm text-gray-500">
             <Link
               href="https://dyte.io/privacy-policy"
@@ -247,44 +217,30 @@ export default function Footer() {
               &copy; {new Date().getFullYear()} Dyte Inc.
             </span>
           </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
 
-function HomeFooter({ className }) {
-  return (
-    <footer className="bg-secondary-900">
-      <div
-        className={clsx(
-          'mx-auto flex max-w-7xl flex-col gap-4 px-10 py-8 lg:flex-row lg:items-center lg:gap-8',
-          className
-        )}
-      >
-        <div>
-          <ThemedImage
-            sources={{ light: '/logo/light.svg', dark: '/logo/dark.svg' }}
-            alt="Logo"
-            className="h-10"
-          />
-        </div>
-        <div className="flex items-center gap-3">
-          <Link href="https://community.dyte.io" aria-label="Discord community">
-            <DiscordIcon className="h-7 w-7 text-zinc-400 hover:text-primary" />
-          </Link>
-          <Link href="https://twitter.com/dyte_io" aria-label="Twitter">
-            <Twitter className="h-6 w-6 text-zinc-400 hover:text-primary" />
-          </Link>
-          <Link
-            href="https://linkedin.com/company/dyteio"
-            aria-label="LinkedIn"
-          >
-            <Linkedin className="h-6 w-6 text-zinc-400 hover:text-primary" />
-          </Link>
-        </div>
-        <div className="flex-1 text-zinc-400 lg:text-right">
-          Copyright &copy; Dyte since 2023. All rights reserved.
+          <div className="flex items-center gap-4">
+            <Link
+              href="https://github.com/dyte-io"
+              aria-label="Dyte's GitHub Organization"
+            >
+              <Github className="h-7 w-7 text-zinc-400 hover:text-primary" />
+            </Link>
+            <Link
+              href="https://linkedin.com/company/dyteio"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="h-7 w-7 text-zinc-400 hover:text-primary" />
+            </Link>
+            <Link href="https://twitter.com/dyte_io" aria-label="Twitter">
+              <XIcon className="h-7 w-7 text-zinc-400 hover:text-primary" />
+            </Link>
+            <Link
+              href="https://youtube.com/company/dyteio"
+              aria-label="Dyte YouTube Channel"
+            >
+              <Youtube className="h-7 w-7 text-zinc-400 hover:text-primary" />
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
