@@ -17,7 +17,7 @@ info:
 
     ### Rate Limit by IP Address
 
-    The rate limit threshold is set at 2000 calls per minute per IP address. After 2000 calls, a 429 status code is sent, and access to any of our APIs is denied. 
+    The rate limit threshold is set at 2000 calls per minute per IP address. After 2000 calls, a 429 status code is sent, and access to any of our APIs is denied.
 
     Note: Rate limit is applied at the domain level, which means that all APIs are included in the threshold.
 
@@ -342,7 +342,7 @@ paths:
         in: path
         required: true
         description: ID of the meeting
-  '/meetings/{meeting_id}/livestream':
+  '/meetings/{meeting_id}/livestreams':
     post:
       summary: Start livestreaming a meeting
       requestBody:
@@ -400,6 +400,10 @@ paths:
                           - IDLE
                           - ERRORED
                           - INVOKED
+                      name:
+                        type: string
+                        description: Name of the livestream.
+                        nullable: true
                       ingest_server:
                         type: string
                         description: The server URL to which the RTMP encoder sends the video and audio data.
@@ -428,6 +432,7 @@ paths:
       operationId: start-livestreaming
       x-stoplight:
         id: yrv1m2hf0hlkr
+  '/meetings/{meeting_id}/livestream':
     get:
       summary: Fetch livestream session details for a meeting
       parameters:
@@ -4768,7 +4773,7 @@ components:
             - API_CALL
             - RECORD_ON_START
           description: |-
-            Specifies if the recording was started using the "Start a Recording"API or using the parameter RECORD_ON_START in the "Create a meeting" API. 
+            Specifies if the recording was started using the "Start a Recording"API or using the parameter RECORD_ON_START in the "Create a meeting" API.
 
             If the recording is initiated using the "RECORD_ON_START" parameter, the user details will not be populated.
         caller:
