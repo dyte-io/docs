@@ -87,7 +87,7 @@ function Safety({ className }) {
       )}
     >
       <div className="flex flex-1 place-items-center justify-center rounded-2xl bg-white px-4 py-6 font-jakarta font-bold text-gray-500">
-        Your Safety is utmost important to us
+        Your safety is of utmost importance to us
       </div>
       <div className="flex flex-1 items-center justify-around px-6">
         <img src="/img/soc-compliant-1.png" />
