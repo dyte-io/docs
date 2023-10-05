@@ -186,6 +186,7 @@ const defaultSettings = {
   breadcrumbs: true,
   editUrl: 'https://github.com/dyte-in/docs/tree/main/',
   showLastUpdateTime: true,
+  sidebarCollapsible: true,
   remarkPlugins: [
     [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
   ],
@@ -394,6 +395,7 @@ const config = {
       },
       docs: {
         sidebar: {
+          autoCollapseCategories: true,
           hideable: true,
         },
       },
