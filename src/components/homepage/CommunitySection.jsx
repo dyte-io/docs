@@ -12,7 +12,7 @@ const githubUsernames = [
   'alias-rahil',
   'AshishKumar4',
   'anunaym14',
-  'CallMeTarush',
+  'tarushnagpal',
   'ishita1805',
   'madhugb',
   'mayur-tendulkar',
