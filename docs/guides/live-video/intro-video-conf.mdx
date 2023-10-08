@@ -3,7 +3,13 @@ title: 'Overview'
 sidebar_position: 1
 ---
 
-Dyte's live video platform, built on top of [WebRTC](https://dyte.io/blog/webrtc/), enables you to build real-time communication functionality into your web, and mobile applications. Using Dyte's REST APIs and client-side SDKs, you can acquire, transmit and play media, and manage network connections in your applications.
+Dyte's live video platform, built upon [WebRTC](https://dyte.io/blog/webrtc/), enables you to seamlessly incorporate real-time communication features into your web and mobile applications. Using Dyte's REST APIs and client-side SDKs, you can effortlessly acquire, transmit, and play media while efficiently managing network connections within your applications. All Dyte live video calls come with in-built noise cancellation (powered by Krisp).
+
+On this page, you will find an overview to help you craft an exceptional user experience with minimal hassle. To kickstart your journey, the [Essentials](#essentials) section will guide you through the setup process and fundamental concepts. In the [Capabilities](#capabilities) section, you'll discover functionalities that you can incrementally add to enhance your live video call experience.
+
+Dyte offers a prebuilt library of UI components that simplifies the integration of live video calls into any platform within minutes. In the [Prebuilt UI](#prebuilt-ui) section, you'll find guides on integrating them into your existing applications. There are also guides that can help you customise the components to align with your brand's identity.
+
+Explore the [Reference](#reference) section to build a better understanding of the core SDK that provides simple APIs for complex media and networking optimizations driving your live video experience. Additionally, you can access references for the REST APIs that power your video calls.
 
 ## Supported platforms
 
@@ -13,28 +19,160 @@ Dyte currently supports the following platforms:
 - **Web**: Javascript Core SDK + UI Kit for React JS, Angular, and Web Components for other frameworks
 - **Desktop**: Electron
 
-## Usecases
+## Essentials
 
-The live video applications can be used across a wide range of applications and use cases, including:
+<CardSection
+  id="essentials"
+  description="Learn the very basics to add live video calls in your application through Dyte"
+  HeadingTag="h2"
+>
+  <Card
+    title="Getting started"
+    to="./build-live-video-app"
+    description="Everything you need to setup your Dyte account"
+  />
+  <Card
+    title="Architecture"
+    to="./concepts-live-video"
+    description="Learn about the architecture, design and basic concepts behind Dyte"
+  />
+  <Card
+    title="Server Setup"
+    to="/guides/rest-apis/quickstart"
+    description="Steps to access Dyte’s REST API"
+  />
+  <Card
+    title="Client Setup"
+    to="./client-setup"
+    description="Set up and configure your client to integrate video calls "
+  />
+</CardSection>
 
-- Virtual interviews
-- Remote collaboration
-- Telemedicine
-- Social networking
-- Gaming
-- Virtual events and webinars
+## Capabilities
 
-## Key features
+<CardSection
+  id="capabilities"
+  description="Explore the capabilities that you can incrementally add to your live video experiences"
+>
+  <Card
+    title="Recording"
+    to="/guides/capabilities/recording/recording-overview"
+    description="Understand and leverage Dyte’s recording capabilities"
+  />
+  <Card
+    title="Chat"
+    to="/web-core/chat/introduction"
+    description="Build real-time chat for users in the video call"
+  />
+  <Card
+    title="Polls"
+    to="/web-core/polls/introduction"
+    description="Integrate polls within your video calls"
+  />
+  <Card
+    title="Breakout rooms"
+    to="/guides/capabilities/breakoutroom/create-breakout-rooms"
+    description="Create breakout rooms to split users into smaller groups within a meeting"
+  />
+  <Card
+    title="Virtual Background"
+    to="/guides/capabilities/customization/add-virtual-background"
+    description="Add custom virtual backgrounds for users"
+  />
+  <Card
+    title="Video and audio filters"
+    to="https://dyte.io/blog/streams-blog/"
+    description="Guide to create custom video and audio filters for your video calls using middlewares"
+  />
+  <Card
+    title="Multi Screen Share"
+    to="/web-core/local-user/introduction#enable--disable-screen-share"
+    description="Enable screen sharing for users in a live video call"
+  />
+  <Card
+    title="Transcription"
+    to="https://dyte.io/blog/audio-transcriptions-video-meeting/"
+    description="Guide to enable transcription on Dyte live video calls using Google STT"
+  />
+</CardSection>
 
-Dyte provides a range of features including group calls, webinars, breakout rooms, plugins, auto bandwidth switching, detailed call analytics, and more.
+## Prebuilt UI
 
-- **Chat**: Allows participants to chat with each in real-time.
-- **Poll**: You can create polls.
-- **Breakout rooms**: Breakout rooms allow participants of a meeting to split into smaller groups for targeted discussions and collaboration. See [Create a Breakout Room](/guides/capabilities/breakoutroom/create-breakout-rooms).
-- **Virtual background**: You can add custom virtual background to Dyte video calls. See [Add Custom Virtual Background to Dyte meetings](/guides/capabilities/customization/add-virtual-background).
-- ** Multi screenshare**: Allow participants in the call to share screen with others in real-time.
-- **Transcription**: You can integrate Google Speech-to-Text (STT) into Dyte meetings to add audio transcriptions. See [Add Audio Transcriptions to Video Meetings](https://dyte.io/blog/audio-transcriptions-video-meeting/).
-- **Custom filters**: Build your own audio/video filters, similar to Snapchat or Talking Tom filters, to add fun effects like retro styles, birthday themes, or funny hats, creating engaging and unique experiences for participants. See [Add Exciting Custom Filters to Video Calls with Dyte](https://dyte.io/blog/streams-blog/).
-- **Analytics**: Dyte offers comprehensive meeting analytics, including metrics such as meeting duration, number of sessions, recorded minutes, participant count, total bill, and more. You can access this information via the Dashboard in the [Developer Portal](https://dev.dyte.io/dashboard).
-- **Recording**: Dyte records the audio and video of multiple users in a meeting, as well as interactions with Dyte plugins, in a single file using composite recording mode. See [Recording](/guides/capabilities/recording).
-- ** Noise cancellation**: Dyte offers AI-powered noise and echo cancellation (powered by Krisp).
+<CardSection
+  id="prebuilt-ui"
+  description="Explore Prebuilt UI components from Dyte and learn how to customize them"
+>
+  <Card title="React" to="/react-ui-kit/introduction" icon={<ReactIcon />} />
+  <Card
+    title="Angular"
+    to="/angular-ui-kit/introduction"
+    icon={<AngularIcon />}
+  />
+  <Card title="Web Components" to="/ui-kit/introduction" icon={<HTMLIcon />} />
+  <Card title="Flutter" to="/flutter/introduction" icon={<FlutterIcon />} />
+  <Card
+    title="React Native"
+    to="/rn-ui-kit/introduction"
+    icon={<ReactIcon />}
+  />
+  <Card
+    title="Android"
+    to="/android-ui-kit/introduction"
+    icon={<KotlinIcon />}
+  />
+  <Card title="iOS" to="/ios/intro-ios-uikit" icon={<SwiftIcon />} />
+  <Card
+    title="Configure design system"
+    to="/ui-kit/design-sytem"
+    description="Guide to understand and customise the design system"
+  />
+  <Card
+    title="Components gallery"
+    to="/ui-kit/components"
+    description="Explore the components in the UIKit"
+  />
+</CardSection>
+
+## Reference
+
+<CardSection
+  id="reference"
+  description="Key reference documents to understand the core SDKs and REST APIs"
+>
+  <Card
+    title="REST API Quickstart"
+    to="/guides/rest-apis/quickstart"
+    description="Understand how to get started with using Dyte's APIs"
+  />
+  <Card
+    title="REST API Reference"
+    to="/api/"
+    description="Explore all the Dyte APIs you can make use of"
+  />
+  <Card
+    title="JavaScript coreSDK"
+    to="/web-core/introduction"
+    icon={<JSIcon />}
+  />
+  <Card
+    title="React coreSDK"
+    to="/react-web-core/introduction"
+    icon={<ReactIcon />}
+  />
+  <Card
+    title="React Native coreSDK"
+    to="/rn-core/introduction"
+    icon={<ReactIcon />}
+  />
+  <Card
+    title="Flutter coreSDK"
+    to="/flutter-core/introduction"
+    icon={<FlutterIcon />}
+  />
+  <Card
+    title="Android coreSDK"
+    to="/android-core/introduction"
+    icon={<KotlinIcon />}
+  />
+  <Card title="iOS coreSDK" to="/ios-core/introduction" icon={<SwiftIcon />} />
+</CardSection>
