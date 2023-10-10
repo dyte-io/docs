@@ -7,6 +7,10 @@ sidebar_position: 1
 Dyte's meeting transcription allows you to transcribe your Dyte meetings in real-time, making it easy to capture important discussions and refer back to them later.
 This guide will walk you through how to use this feature effectively.
 
+:::info NOTE
+Dyte's AI meeting transcription currently only supports English.
+:::
+
 ## Control transcriptions for participants using presets
 
 You can control whether or not a participant's audio will be transcribe with the help of the `transcription_enabled` flag in the participant's preset.
@@ -14,11 +18,15 @@ All participants with the `transcription_enabled` turned on in their preset will
 
 You can create a new preset on our [Developer Portal](https://dev.dyte.io/presets), or using our [REST API](https://docs.dyte.io/api#/operations/post-presets)
 
+:::info NOTE
+To learn more about how to create and edit presets, see [Presets](https://docs.dyte.io/guides/capabilities/presets).
+:::
+
 ## Consuming transcripts
 
 There are 2 ways in which these transcripts can be consumed.
-1. The transcripts can be consumed on the client-side using the Dyte SDK that's suitable for your platform. These transcripts are generated on the server in real-time.
-2. The meeting transcript can be consumed via a [webhook after the meeting ends](#consume-transcript-via-a-post-meeting-webhook).
+1. Client core SDK: The transcripts can be consumed on the client-side using the Dyte SDK that's suitable for your platform. These transcripts are generated on the server in real-time.
+2. Webhooks: The meeting transcript can be consumed via a [webhook after the meeting ends](#consume-transcript-via-a-post-meeting-webhook).
 
 ### Consuming transcripts in real-time
 
@@ -48,6 +56,6 @@ To test if meeting transcription has been configured for your organization, perf
 
 1. [Create a meeting](https://docs.dyte.io/api#/operations/create_meeting).
 2. [Add a participant](https://docs.dyte.io/api#/operations/add_participant) to the meeting. Make sure that the preset you use was configured according to this guide.
-3. Join the meeting with the `authToken` you just obtained. As you unmute and speak (in English), your speech should be getting transcribed in real-time for all the participants in the meeting.
+3. Join the meeting with the `authToken` you just obtained. As you unmute and speak, your speech should be getting transcribed in real-time for all the participants in the meeting.
 4. Once the meeting ends, you will be getting a webhook with the event `meeting.transcript`. The body of this webhook will consist of the entire meeting transcript.
 
