@@ -224,6 +224,24 @@ const plugins = [
     '@docusaurus/plugin-client-redirects',
     {
       createRedirects(path) {
+        if (path.startsWith('/web-core/livestreaming')) {
+          return [path.replace('/web-core/livestreaming', '/web-core/livestreaming/livestream-apis')];
+        }
+        if (path.startsWith('/rn-core/livestreaming')) {
+          return [path.replace('/rn-core/livestreaming', '/rn-core/livestreaming/livestream-apis')];
+        }
+        if (path.startsWith('/react-web-core/livestreaming')) {
+          return [path.replace('/react-web-core/livestreaming', '/react-web-core/livestreaming/livestream-apis')];
+        }
+        if (path.startsWith('/web-core/stage')) {
+          return [path.replace('/web-core/stage', '/web-core/livestreaming/state-management-apis')];
+        }
+        if (path.startsWith('/rn-core/stage')) {
+          return [path.replace('/rn-core/stage', '/rn-core/livestreaming/state-management-apis')];
+        }
+        if (path.startsWith('/react-web-core/stage')) {
+          return [path.replace('/react-web-core/stage', '/react-web-core/livestreaming/state-management-apis')];
+        }
         if (path.startsWith('/guides/capabilities/webhooks')) {
           return [
             path.replace('/guides/capabilities/webhooks', '/guides/webhooks'),

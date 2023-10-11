@@ -1,11 +1,14 @@
 ---
-title: 'Livestreaming State Management APIs'
-sidebar_position: 6
+title: 'Stage Management'
+sidebar_position: 10
 ---
 
-This topic talks about how you can use livestreaming state management APIs. Using Dyte's live-streaming state management APIs you can easily manage stage requests, such as leave and join stage, manage permissions, kick participants and so on.
+_Below documentation relevant for Interactive Livestream(LHLS) and Webinar(WebRTC) use cases_
 
-The foundation of Dyte's livestreaming is based on a stage, which can be accessed by hosts and viewers. While hosts can directly enter the stage, viewers can request to join it. The stage is broadcasted live to all viewers. Here's how you can interact with stage APIs:
+Instead of a traditional publish-subscribe model, where a user can publish their media and others can choose to subscribe, Dyte comes with an optional managed configuration.
+In this managed configuration, a less privileged can be configured with a default behavior to not publish media and the user can then request for permission to be allowed to publish their media, where then a privileged user can choose to grant or deny access.
+
+Using Dyte's stage management APIs a user can do actions such as leave and join stage, manage stage requests and permissions, kick participants and so on.
 
 ## Access the stage APIs
 
@@ -13,14 +16,16 @@ The stage module can be accessed under [`meeting.stage`](https://docs.dyte.io/re
 
 ## Properties
 
-Dyte's livestreaming state management APIs provides useful properties to help you manage your stage effectively. One of these properties is the `status` attribute, which can take on various values based on the user's activity. The status can assume the following values:
+### Status
+
+`meeting.stage.status` returns the current stage status of the local user
 
 - **ON_STAGE**: This value indicates that the user is currently on the stage and participating in the live stream.
 - **OFF_STAGE**: This value means that the user is viewing the live stream but is not on the stage.
 - **REQUESTED_TO_JOIN_STAGE**: The user has a pending request to join livestream. If the user has made a request to join the stage, this value will be assigned to their status until the host accepts or rejects their request.
 - **ACCEPTED_TO_JOIN_STAGE**: The host has accepted user’s request to join livestream. If the host accepts the user's request to join the stage, this value will be assigned to the user's status.
 
-A user with permission to join livestream directly can only assume `ON_STAGE` and `ACCEPTED_TO_JOIN_STAGE` status values.
+A user with permission to join stage directly can only assume `ON_STAGE` and `ACCEPTED_TO_JOIN_STAGE` status values.
 
 ## Host controls
 
@@ -40,7 +45,7 @@ By employing this method, the user will be disconnected from the media room and 
 
 ### Grant access
 
-You can get the user IDs from the `stageAccessRequestUpdate` event.
+A privileged user can grant access to stage for a set of users with `grantAccess` method.
 
 | **Parameters** | **Type** |
 | -------------- | -------- |
@@ -50,17 +55,17 @@ You can get the user IDs from the `stageAccessRequestUpdate` event.
 
 ### Deny access
 
-You can get the user IDs from the `stageAccessRequestUpdate` event.
+A privileged user can deny access to stage for a set of users with `denyAccess` method.
 
 | **Parameters** | **Type** |
 | -------------- | -------- |
 | userIds        | string[] |
 
-`await meeting.stage.grantAccess(userIds);`
+`await meeting.stage.denyAccess(userIds);`
 
 ### Kick users
 
-You can get the user IDs from the `stageAccessRequestUpdate` event.
+A privileged user can remove a set of users from stage using the `kick` method
 
 | **Parameters** | **Type** |
 | -------------- | -------- |
