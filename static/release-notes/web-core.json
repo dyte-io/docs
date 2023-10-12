@@ -1,5 +1,30 @@
 [
   {
+    "version": "1.18.0",
+    "createdAt": "1696145560",
+    "fixes": [
+      "Maintain the source aspect ratio when camera device is detected as OBS (Beta)",
+      "[Webinar] Fix a race when an accepted user resend request to join stage"
+    ],
+    "new_api": [
+      "Webinar and Livestream now both use the same [Stage Management APIs](./stage)",
+      "By default Dyte's media handler does not prefer virtual devices, adds a new function to override what is a preferred device and what isn't",
+      "Allow [updating video resolution at runtime](./local-user/extras#update-media-resolution-at-runtime)",
+      "New baseURI to replace the old apiBase. With this new parameter all network connections including socket connections can now be whitelisted",
+      "Render `active` participants as Picture-in-Picture through [a simple new API](./participants/pip)",
+      "Join the meeting using `meeting.join()` and leave with the new `meeting.leave()`"
+    ],
+    "dep_api": [
+      "`meeting.joinRoom()` is deprecated in favour of the new `meeting.join()`",
+      "`meeting.leaveRoom()` is deprecated in favour of the new `meeting.leave()`",
+      "`meeting.self.requestToJoinStage()` is deprecated in favour of `meeting.stage.requestAccess()`",
+      "`meeting.self.withdrawRequestToJoinStage()` is deprecated in favour of `meeting.stage.cancelRequestAccess()`",
+      "`meeting.self.leaveStage()` is deprecated in favour of `meeting.stage.leave()`",
+      "`meeting.self.joinStage()` is deprecated in favour of `meeting.stage.join()`",
+      "`meeting.participants.acceptAllRequestToJoinStageRequests()` is deprecated in favour of `meeting.stage.grantAccess([userIds])`"
+    ]
+  },
+  {
     "version": "1.17.0",
     "createdAt": "1691712000",
     "fixes": [
