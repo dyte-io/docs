@@ -1,24 +1,33 @@
 ---
-title: 'Livestreaming: Properties, Functions, and Events'
-sidebar_position: 7
+title: 'Livestreaming'
+sidebar_position: 11
 ---
+
+- Livestreaming is often used for events, such as concerts, conferences, and sports games, as well as for online classes, gaming, and social media platforms.
+- Dyte uses LHLS to deliver low latency one way streams
+- The Interactive Livestream product delivers interactivity via chat, polls, reactions etc
+- Viewer can also be pulled in the livestream by the host using Stage Management APIs
 
 This topic talks about how you can use livestreaming properties, events, and functions.
 
-Livestreaming is often used for events, such as concerts, conferences, and sports games, as well as for online classes, gaming, and social media platforms. It allows remote viewers to participate in the event or experience, interact with the content creators or other viewers via chat, comments, or reactions, and participate in the real-time conversation.
-
 ## Properties
 
-**playbackUrl**: This URL allows you to watch the live video stream. It is the location of the video file and can be accessed through a web browser or media player.
+### Playlist URL
 
-**status**: The current status of the livestream. This field can assume the following values:
+`meeting.livestream.playbackUrl` - This URL allows you to watch the live stream. It is the location of the video playlist file and can be accessed through a web browser or any media player.
+
+### Livestream Status
+
+`meeting.livestream.status` - The current status of the livestream. This field can assume the following values:
 
 - IDLE
 - STARTING
 - LIVESTREAMING
 - STOPPING
 
-**viewerCount**: The number of people viewing the livestream, including hosts and viewers.
+### Viewer Count
+
+`meeting.livestream.viewerCount` - The number of people viewing the livestream, including hosts and viewers.
 
 ## Methods
 
