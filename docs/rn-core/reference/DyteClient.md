@@ -132,5 +132,5 @@ an instance of DyteClient, which can be used to perform actions on the meeting.
 | options           | The options object.                                                           |
 | options.roomName  | The name of the room. (If you are using V2 Api's you don't need to send this) |
 | options.authToken | The authorization token received using the API.                               |
-| options.apiBase   | The base URL of the API.                                                      |
+| options.baseURI   | The base URL of the environment                                               |
 | options.defaults  | The default audio and video settings.                                         |
