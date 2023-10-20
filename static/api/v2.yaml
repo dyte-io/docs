@@ -17,7 +17,7 @@ info:
 
     ### Rate Limit by IP Address
 
-    The rate limit threshold is set at 2000 calls per minute per IP address. After 2000 calls, a 429 status code is sent, and access to any of our APIs is denied.
+    The rate limit threshold is set at 2000 calls per minute per IP address. After 2000 calls, a 429 status code is sent, and access to any of our APIs is denied. 
 
     Note: Rate limit is applied at the domain level, which means that all APIs are included in the threshold.
 
@@ -342,96 +342,6 @@ paths:
         in: path
         required: true
         description: ID of the meeting
-  '/meetings/{meeting_id}/livestreams':
-    post:
-      summary: Start livestreaming a meeting
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              x-examples:
-                example-1:
-                  name: prdmmp-xhycsl
-              properties:
-                name:
-                  type: string
-                  pattern: '^[a-zA-Z0-9-_]*$'
-                  nullable: true
-                video_config:
-                  type: object
-                  x-stoplight:
-                    id: r08nyyq3aukpd
-                  properties:
-                    height:
-                      type: integer
-                      x-stoplight:
-                        id: avfldug1v6vza
-                      description: Height of the livestreaming video in pixels
-                    width:
-                      type: integer
-                      x-stoplight:
-                        id: bm1i98doqrnw1
-                      description: Width of the livestreaming video in pixels
-            examples:
-              example-1:
-                value:
-                  name: prdmmp-xhycsl
-      parameters: []
-      responses:
-        '201':
-          description: Created
-          headers: {}
-          content:
-            application/json:
-              schema:
-                type: object
-                x-examples: null
-                properties:
-                  success:
-                    type: boolean
-                  data:
-                    type: object
-                    properties:
-                      status:
-                        type: string
-                        enum:
-                          - LIVE
-                          - IDLE
-                          - ERRORED
-                          - INVOKED
-                      name:
-                        type: string
-                        description: Name of the livestream.
-                        nullable: true
-                      ingest_server:
-                        type: string
-                        description: The server URL to which the RTMP encoder sends the video and audio data.
-                      id:
-                        type: string
-                        description: The livestream ID.
-                      stream_key:
-                        type: string
-                        description: Unique key for accessing each livestream.
-                      playback_url:
-                        type: string
-                        description: The web address that viewers can use to watch the livestream.
-              examples:
-                example-1:
-                  value:
-                    success: true
-                    data:
-                      status: INVOKED
-                      ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
-                      id: 7088bba8-f522-49a8-b59b-3cd0e946bbb0
-                      stream_key: sk_ap-south-1_AfnVpeYZjidO_fBpWKody7sDUOEfy9Zc6XAZegkR0Va
-                      playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.rVKA2KM5Lunt.m3u8'
-      description: Starts livestream of a meeting associated with the given meeting ID. Retreive the meeting ID using the `Create a meeting` API.
-      tags:
-        - Live streams
-      operationId: start-livestreaming
-      x-stoplight:
-        id: yrv1m2hf0hlkr
   '/meetings/{meeting_id}/livestream':
     get:
       summary: Fetch livestream session details for a meeting
@@ -623,6 +533,94 @@ paths:
       operationId: livestream-session-details
       x-stoplight:
         id: pcm61j4127kyj
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: meeting_id
+        in: path
+        required: true
+        description: ID of the meeting
+  '/meetings/{meeting_id}/livestreams':
+    post:
+      summary: Start livestreaming a meeting
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  name: prdmmp-xhycsl
+              properties:
+                name:
+                  type: string
+                  pattern: '^[a-zA-Z0-9-_]*$'
+                  nullable: true
+                video_config:
+                  type: object
+                  properties:
+                    height:
+                      type: integer
+                      description: Height of the livestreaming video in pixels
+                    width:
+                      type: integer
+                      description: Width of the livestreaming video in pixels
+            examples:
+              example-1:
+                value:
+                  name: prdmmp-xhycsl
+      parameters: []
+      responses:
+        '201':
+          description: Created
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples: null
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        enum:
+                          - LIVE
+                          - IDLE
+                          - ERRORED
+                          - INVOKED
+                      ingest_server:
+                        type: string
+                        description: The server URL to which the RTMP encoder sends the video and audio data.
+                      id:
+                        type: string
+                        description: The livestream ID.
+                      stream_key:
+                        type: string
+                        description: Unique key for accessing each livestream.
+                      playback_url:
+                        type: string
+                        description: The web address that viewers can use to watch the livestream.
+              examples:
+                example-1:
+                  value:
+                    success: true
+                    data:
+                      status: INVOKED
+                      ingest_server: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
+                      id: 7088bba8-f522-49a8-b59b-3cd0e946bbb0
+                      stream_key: sk_ap-south-1_AfnVpeYZjidO_fBpWKody7sDUOEfy9Zc6XAZegkR0Va
+                      playback_url: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.rVKA2KM5Lunt.m3u8'
+      description: Starts livestream of a meeting associated with the given meeting ID. Retreive the meeting ID using the `Create a meeting` API.
+      tags:
+        - Live streams
+      operationId: start-livestreaming
+      x-stoplight:
+        id: fz9rp69zguhn9
     parameters:
       - schema:
           type: string
@@ -1774,7 +1772,7 @@ paths:
         > #### NOTE
         >
         > This API is in beta and is disabled by default. [Contact us](https://dyte.io/contact) to enable it
-        > for your organization.
+        > for your organization.                        
       operationId: GetSessionChat
       tags:
         - Sessions
@@ -2404,7 +2402,7 @@ paths:
           in: query
           name: expired
           required: false
-          description: "If passed, only shows expired/non-expired recordings on Dyte's bucket"
+          description: 'If passed, only shows expired/non-expired recordings on Dyte''s bucket'
         - $ref: '#/components/parameters/search'
         - $ref: '#/components/parameters/recordingSortBy'
         - $ref: '#/components/parameters/sortOrder'
@@ -2468,8 +2466,8 @@ paths:
         - Authorization: []
         - Bearer: []
     put:
-      summary: Stop recording
-      operationId: stop_recording
+      summary: Pause/Resume/Stop recording
+      operationId: pause_resume_stop_recording
       responses:
         '200':
           $ref: '#/components/responses/GetRecording'
@@ -2483,12 +2481,14 @@ paths:
                   type: string
                   enum:
                     - stop
+                    - pause
+                    - resume
               required:
                 - action
         description: ''
       tags:
         - Recordings
-      description: Stops recording for the given recording ID.
+      description: Pause/Resume/Stop a given recording ID.
   /presets:
     get:
       summary: Fetch all presets
@@ -3792,6 +3792,7 @@ components:
             - UPLOADING
             - UPLOADED
             - ERRORED
+            - PAUSED
           description: Current status of the recording.
         invoked_time:
           type: string
@@ -3976,7 +3977,6 @@ components:
                     quality:
                       type: string
                       enum:
-                        - fhd
                         - hd
                         - vga
                         - qvga
@@ -3995,7 +3995,6 @@ components:
                     quality:
                       type: string
                       enum:
-                        - fhd
                         - hd
                         - vga
                         - qvga
@@ -4385,7 +4384,6 @@ components:
                     quality:
                       type: string
                       enum:
-                        - fhd
                         - hd
                         - vga
                         - qvga
@@ -4401,7 +4399,6 @@ components:
                     quality:
                       type: string
                       enum:
-                        - fhd
                         - hd
                         - vga
                         - qvga
@@ -4756,7 +4753,7 @@ components:
           type: boolean
           x-stoplight:
             id: k1f2cjsd28631
-          description: "Controls whether recordings are uploaded to Dyte's bucket. If set to false, `download_url`, `audio_download_url`, `download_url_expiry` won't be generated for a recording."
+          description: 'Controls whether recordings are uploaded to Dyte''s bucket. If set to false, `download_url`, `audio_download_url`, `download_url_expiry` won''t be generated for a recording.'
       required:
         - enabled
     startReason:
@@ -4773,7 +4770,7 @@ components:
             - API_CALL
             - RECORD_ON_START
           description: |-
-            Specifies if the recording was started using the "Start a Recording"API or using the parameter RECORD_ON_START in the "Create a meeting" API.
+            Specifies if the recording was started using the "Start a Recording"API or using the parameter RECORD_ON_START in the "Create a meeting" API. 
 
             If the recording is initiated using the "RECORD_ON_START" parameter, the user details will not be populated.
         caller:
@@ -5084,7 +5081,7 @@ components:
             properties:
               allow_unmute:
                 type: boolean
-                description: "if false, participants won't be able to unmute themselves after they are muted"
+                description: 'if false, participants won''t be able to unmute themselves after they are muted'
     CreatePollBody:
       description: Request body for creating a new poll
       content:
