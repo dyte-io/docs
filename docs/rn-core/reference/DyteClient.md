@@ -35,7 +35,6 @@ The `participants` object consists of 4 maps of participants, `waitlisted`,
 `joined`, `active`, `pinned`. The maps are indexed by `peerId`s, and the values
 are the corresponding participant objects.
 
-**Kind**: instance property of [<code>DyteClient</code>](#module_DyteClient)  
 <a name="module_DyteClient+self"></a>
 
 ### meeting.self
@@ -44,7 +43,6 @@ The `self` object can be used to manipulate audio and video settings, and other
 configurations for the local participant. This exposes methods to enable and
 disable media tracks, share the user's screen, etc.
 
-**Kind**: instance property of [<code>DyteClient</code>](#module_DyteClient)  
 <a name="module_DyteClient+meta"></a>
 
 ### meeting.meta
@@ -52,7 +50,6 @@ disable media tracks, share the user's screen, etc.
 The `room` object stores information about the current meeting, such as chat
 messages, polls, room name, etc.
 
-**Kind**: instance property of [<code>DyteClient</code>](#module_DyteClient)  
 <a name="module_DyteClient+plugins"></a>
 
 ### meeting.plugins
@@ -60,7 +57,6 @@ messages, polls, room name, etc.
 The `plugins` object stores information about the plugins available in the
 current meeting. It exposes methods to activate and deactivate them.
 
-**Kind**: instance property of [<code>DyteClient</code>](#module_DyteClient)  
 <a name="module_DyteClient+chat"></a>
 
 ### meeting.chat
@@ -68,7 +64,6 @@ current meeting. It exposes methods to activate and deactivate them.
 The chat object stores the chat messages that were sent in the meeting. This
 includes text messages, images, and files.
 
-**Kind**: instance property of [<code>DyteClient</code>](#module_DyteClient)  
 <a name="module_DyteClient+polls"></a>
 
 ### meeting.polls
@@ -76,7 +71,6 @@ includes text messages, images, and files.
 The polls object stores the polls that were initiated in the meeting. It exposes
 methods to create and vote on polls.
 
-**Kind**: instance property of [<code>DyteClient</code>](#module_DyteClient)  
 <a name="module_DyteClient+remote"></a>
 
 ### meeting.remote
@@ -84,7 +78,6 @@ methods to create and vote on polls.
 The remote object stores the remote control requests for the meeting. It exposes
 methods to request, accept and end the remote control.
 
-**Kind**: instance property of [<code>DyteClient</code>](#module_DyteClient)  
 <a name="module_DyteClient+connectedMeetings"></a>
 
 ### meeting.connectedMeetings
@@ -92,7 +85,6 @@ methods to request, accept and end the remote control.
 The connectedMeetings object stores the connected meetings states. It exposes
 methods to create/read/update/delete methods for connected meetings.
 
-**Kind**: instance property of [<code>DyteClient</code>](#module_DyteClient)  
 <a name="module_DyteClient+__internals__"></a>
 
 ### meeting.\_\_internals\_\_
@@ -102,7 +94,6 @@ and logger so that client can utilise the same to build their own feature based
 UI. DyteLogger (**internals**.logger) can be used to send logs to Dyte's servers
 to inform Dyte of issues, if any, proactively.
 
-**Kind**: instance property of [<code>DyteClient</code>](#module_DyteClient)  
 <a name="module_DyteClient+joinRoom"></a>
 
 ### meeting.joinRoom()

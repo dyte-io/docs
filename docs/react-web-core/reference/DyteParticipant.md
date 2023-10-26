@@ -64,133 +64,114 @@ const participant4 = meeting.participants.active
 The peer ID of the participant.
 The participants are indexed by this ID in the participant map.
 
-**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
 <a name="module_DyteParticipant--this.+userId"></a>
 
 #### this..userId
 
 The user ID of the participant.
 
-**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
 <a name="module_DyteParticipant--this.+name"></a>
 
 #### this..name
 
 The name of the participant.
 
-**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
 <a name="module_DyteParticipant--this.+picture"></a>
 
 #### this..picture
 
 The picture of the participant.
 
-**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
 <a name="module_DyteParticipant--this.+clientSpecificId"></a>
 
 #### this..clientSpecificId
 
 The clientSpecificId of the participant.
 
-**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
 <a name="module_DyteParticipant--this.+device"></a>
 
 #### this..device
 
 The device configuration of the participant.
 
-**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
 <a name="module_DyteParticipant--this.+videoTrack"></a>
 
 #### this..videoTrack
 
 The participant's video track.
 
-**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
 <a name="module_DyteParticipant--this.+audioTrack"></a>
 
 #### this..audioTrack
 
 The participant's audio track.
 
-**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
 <a name="module_DyteParticipant--this.+screenShareTracks"></a>
 
 #### this..screenShareTracks
 
 The participant's screenshare video and audio track.
 
-**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
 <a name="module_DyteParticipant--this.+videoEnabled"></a>
 
 #### this..videoEnabled
 
 This is true if the participant's video is enabled.
 
-**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
 <a name="module_DyteParticipant--this.+audioEnabled"></a>
 
 #### this..audioEnabled
 
 This is true if the participant's audio is enabled.
 
-**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
 <a name="module_DyteParticipant--this.+screenShareEnabled"></a>
 
 #### this..screenShareEnabled
 
 This is true if the participant is screensharing.
 
-**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
 <a name="module_DyteParticipant--this.+producers"></a>
 
 #### this..producers
 
 producers created by participant
 
-**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
 <a name="module_DyteParticipant--this.+supportsRemoteControl"></a>
 
 #### this..supportsRemoteControl
 
 This is true if the dyte participant supports remote control.
 
-**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
 <a name="module_DyteParticipant--this.+presetName"></a>
 
 #### this..presetName
 
 The preset of the participant.
 
-**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
 <a name="module_DyteParticipant--this.+webinarStageStatus"></a>
 
 #### ~~this..webinarStageStatus~~
 
 **_Deprecated_**
 
-**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
 <a name="module_DyteParticipant--this.+stageStatus"></a>
 
 #### this..stageStatus
 
 Denotes the participants's current stage status.
 
-**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
 <a name="module_DyteParticipant--this.+roomJoined"></a>
 
 #### this..roomJoined
 
 Returns true if the local participant has joined the meeting.
 
-**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
 <a name="module_DyteParticipant--this.+isPinned"></a>
 
 #### this..isPinned
 
 Returns true if the participant is pinned.
 
-**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
 <a name="module_DyteParticipant--this.+pin"></a>
 
 #### this..pin()

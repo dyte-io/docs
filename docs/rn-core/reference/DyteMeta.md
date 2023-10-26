@@ -24,32 +24,26 @@ title.
 The `viewType` tells the type of the meeting possible values are WEBINAR,
 GROUP_CALL
 
-**Kind**: instance property of [<code>DyteMeta</code>](#module_DyteMeta)  
 <a name="module_DyteMeta+meetingStartedTimestamp"></a>
 
 ### meeting.meta.meetingStartedTimestamp
 
 The timestamp of the time when the meeting started.
 
-**Kind**: instance property of [<code>DyteMeta</code>](#module_DyteMeta)  
 <a name="module_DyteMeta+joined"></a>
 
 ### ~~meeting.meta.joined~~
 
 **_Deprecated_**
 
-**Kind**: instance property of [<code>DyteMeta</code>](#module_DyteMeta)  
 <a name="module_DyteMeta+roomName"></a>
 
 ### meeting.meta.roomName
 
 The room name of the meeting.
 
-**Kind**: instance property of [<code>DyteMeta</code>](#module_DyteMeta)  
 <a name="module_DyteMeta+meetingTitle"></a>
 
 ### meeting.meta.meetingTitle
 
 The title of the meeting.
-
-**Kind**: instance property of [<code>DyteMeta</code>](#module_DyteMeta)

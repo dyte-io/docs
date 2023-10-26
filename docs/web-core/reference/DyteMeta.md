@@ -9,94 +9,94 @@ web_core_version: 1.20.0
 
 This consists of the metadata of the meeting, such as the room name and the title.
 
-
-* [DyteMeta](#module_DyteMeta)
-    * [.selfActiveTab](#module_DyteMeta+selfActiveTab)
-    * [.broadcastTabChanges](#module_DyteMeta+broadcastTabChanges)
-    * [.viewType](#module_DyteMeta+viewType)
-    * [.meetingStartedTimestamp](#module_DyteMeta+meetingStartedTimestamp)
-    * [.meetingTitle](#module_DyteMeta+meetingTitle)
-    * ~~[.joined](#module_DyteMeta+joined)~~
-    * [.roomName](#module_DyteMeta+roomName)
-    * [.mediaConnected](#module_DyteMeta+mediaConnected)
-    * [.socketConnected](#module_DyteMeta+socketConnected)
-    * [.setBroadcastTabChanges(broadcastTabChanges)](#module_DyteMeta+setBroadcastTabChanges)
-    * [.setSelfActiveTab(spotlightTab)](#module_DyteMeta+setSelfActiveTab)
+- [DyteMeta](#module_DyteMeta)
+  - [.selfActiveTab](#module_DyteMeta+selfActiveTab)
+  - [.broadcastTabChanges](#module_DyteMeta+broadcastTabChanges)
+  - [.viewType](#module_DyteMeta+viewType)
+  - [.meetingStartedTimestamp](#module_DyteMeta+meetingStartedTimestamp)
+  - [.meetingTitle](#module_DyteMeta+meetingTitle)
+  - ~~[.joined](#module_DyteMeta+joined)~~
+  - [.roomName](#module_DyteMeta+roomName)
+  - [.mediaConnected](#module_DyteMeta+mediaConnected)
+  - [.socketConnected](#module_DyteMeta+socketConnected)
+  - [.setBroadcastTabChanges(broadcastTabChanges)](#module_DyteMeta+setBroadcastTabChanges)
+  - [.setSelfActiveTab(spotlightTab)](#module_DyteMeta+setSelfActiveTab)
 
 <a name="module_DyteMeta+selfActiveTab"></a>
 
 ### meeting.meta.selfActiveTab
+
 Represents the current active tab
 
-**Kind**: instance property of [<code>DyteMeta</code>](#module_DyteMeta)  
 <a name="module_DyteMeta+broadcastTabChanges"></a>
 
 ### meeting.meta.broadcastTabChanges
+
 Represents whether current user is spotlighted
 
-**Kind**: instance property of [<code>DyteMeta</code>](#module_DyteMeta)  
 <a name="module_DyteMeta+viewType"></a>
 
 ### meeting.meta.viewType
+
 The `viewType` tells the type of the meeting
 possible values are WEBINAR, GROUP_CALL
 
-**Kind**: instance property of [<code>DyteMeta</code>](#module_DyteMeta)  
 <a name="module_DyteMeta+meetingStartedTimestamp"></a>
 
 ### meeting.meta.meetingStartedTimestamp
+
 The timestamp of the time when the meeting started.
 
-**Kind**: instance property of [<code>DyteMeta</code>](#module_DyteMeta)  
 <a name="module_DyteMeta+meetingTitle"></a>
 
 ### meeting.meta.meetingTitle
+
 The title of the meeting.
 
-**Kind**: instance property of [<code>DyteMeta</code>](#module_DyteMeta)  
 <a name="module_DyteMeta+joined"></a>
 
 ### ~~meeting.meta.joined~~
-***Deprecated***
 
-**Kind**: instance property of [<code>DyteMeta</code>](#module_DyteMeta)  
+**_Deprecated_**
+
 <a name="module_DyteMeta+roomName"></a>
 
 ### meeting.meta.roomName
+
 The room name of the meeting.
 
-**Kind**: instance property of [<code>DyteMeta</code>](#module_DyteMeta)  
 <a name="module_DyteMeta+mediaConnected"></a>
 
 ### meeting.meta.mediaConnected
+
 Has room-node connection been made.
 
-**Kind**: instance property of [<code>DyteMeta</code>](#module_DyteMeta)  
 <a name="module_DyteMeta+socketConnected"></a>
 
 ### meeting.meta.socketConnected
+
 This is set to true if user has succesfully connected to the socket.
 
-**Kind**: instance property of [<code>DyteMeta</code>](#module_DyteMeta)  
 <a name="module_DyteMeta+setBroadcastTabChanges"></a>
 
 ### meeting.meta.setBroadcastTabChanges(broadcastTabChanges)
+
 Sets current user as broadcasting tab changes
 
-**Kind**: instance method of [<code>DyteMeta</code>](#module_DyteMeta)  
+**Kind**: instance method of [<code>DyteMeta</code>](#module_DyteMeta)
 
-| Param |
-| --- |
-| broadcastTabChanges | 
+| Param               |
+| ------------------- |
+| broadcastTabChanges |
 
 <a name="module_DyteMeta+setSelfActiveTab"></a>
 
 ### meeting.meta.setSelfActiveTab(spotlightTab)
+
 Sets current active tab for user
 
-**Kind**: instance method of [<code>DyteMeta</code>](#module_DyteMeta)  
+**Kind**: instance method of [<code>DyteMeta</code>](#module_DyteMeta)
 
-| Param |
-| --- |
-| spotlightTab | 
-
+| Param        |
+| ------------ |
+| spotlightTab |

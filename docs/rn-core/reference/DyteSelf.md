@@ -59,56 +59,48 @@ retrieved from this module.
 
 Returns the `audioTrack`.
 
-**Kind**: instance property of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+rawAudioTrack"></a>
 
 ### meeting.self.rawAudioTrack
 
 Returns the `rawAudioTrack` having no middleware executed on it.
 
-**Kind**: instance property of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+videoTrack"></a>
 
 ### meeting.self.videoTrack
 
 Returns the `videoTrack`.
 
-**Kind**: instance property of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+rawVideoTrack"></a>
 
 ### meeting.self.rawVideoTrack
 
 Returns the `videoTrack` having no middleware executed on it.
 
-**Kind**: instance property of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+screenShareTracks"></a>
 
 ### meeting.self.screenShareTracks
 
 Returns the screen share tracks.
 
-**Kind**: instance property of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+audioEnabled"></a>
 
 ### meeting.self.audioEnabled
 
 Returns true if audio is enabled.
 
-**Kind**: instance property of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+videoEnabled"></a>
 
 ### meeting.self.videoEnabled
 
 Returns true if video is enabled.
 
-**Kind**: instance property of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+screenShareEnabled"></a>
 
 ### meeting.self.screenShareEnabled
 
 Returns true if screen share is enabled.
 
-**Kind**: instance property of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+mediaPermissions"></a>
 
 ### meeting.self.mediaPermissions
@@ -119,42 +111,36 @@ permission to use the media. 'SYS_DENIED' if the user's system has denied
 permission to use the media. 'UNAVAILABLE' if the media is not available (or
 being used by a different application).
 
-**Kind**: instance property of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+permissions"></a>
 
 ### meeting.self.permissions
 
 Returns the current permission given to the user for the meeting.
 
-**Kind**: instance property of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+suggestedTheme"></a>
 
 ### ~~meeting.self.suggestedTheme~~
 
 **_Deprecated_**
 
-**Kind**: instance property of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+config"></a>
 
 ### meeting.self.config
 
 Returns configuration for the meeting.
 
-**Kind**: instance property of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+roomJoined"></a>
 
 ### meeting.self.roomJoined
 
 Returns true if the local participant has joined the meeting.
 
-**Kind**: instance property of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+isPinned"></a>
 
 ### meeting.self.isPinned
 
 Returns true if the current user is pinned.
 
-**Kind**: instance property of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+addAudioMiddleware"></a>
 
 ### meeting.self.addAudioMiddleware()

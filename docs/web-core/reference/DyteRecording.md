@@ -20,7 +20,6 @@ to start/stop recordings and check if there's a recording in progress.
 
 ### meeting.recording.recordingId
 
-**Kind**: instance property of [<code>DyteRecording</code>](#module_DyteRecording)  
 <a name="module_DyteRecording+start"></a>
 
 ### meeting.recording.start()

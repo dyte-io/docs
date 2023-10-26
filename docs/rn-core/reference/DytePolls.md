@@ -21,7 +21,6 @@ meeting.
 
 An array of poll items.
 
-**Kind**: instance property of [<code>DytePolls</code>](#module_DytePolls)  
 <a name="module_DytePolls+create"></a>
 
 ### meeting.polls.create(question, options, anonymous, hideVotes)
