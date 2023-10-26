@@ -1,15 +1,15 @@
 ---
-sidebar_position: 5
-web_core_version: 1.2.0
+sidebar_position: 4
+web_core_version: 1.20.0
 ---
 
 <!-- Auto Generated Below -->
 
 <a name="module_DyteParticipant"></a>
 
-This module represents a single participant in the meeting. The participant
-object can be accessed from one of the participant lists present in the
-`meeting.participants` object. For example,
+This module represents a single participant in the meeting.
+The participant object can be accessed from one of the participant lists
+present in the `meeting.participants` object. For example,
 
 ```ts
 const participant1 = meeting.participants.active.get(participantId);
@@ -21,213 +21,246 @@ const participant4 = meeting.participants.active
 ```
 
 - [DyteParticipant](#module_DyteParticipant)
-  - [.id](#module_DyteParticipant+id)
-  - [.userId](#module_DyteParticipant+userId)
-  - [.name](#module_DyteParticipant+name)
-  - [.picture](#module_DyteParticipant+picture)
-  - [.clientSpecificId](#module_DyteParticipant+clientSpecificId)
-  - [.device](#module_DyteParticipant+device)
-  - [.videoTrack](#module_DyteParticipant+videoTrack)
-  - [.audioTrack](#module_DyteParticipant+audioTrack)
-  - [.screenShareTracks](#module_DyteParticipant+screenShareTracks)
-  - [.videoEnabled](#module_DyteParticipant+videoEnabled)
-  - [.audioEnabled](#module_DyteParticipant+audioEnabled)
-  - [.screenShareEnabled](#module_DyteParticipant+screenShareEnabled)
-  - [.producers](#module_DyteParticipant+producers)
-  - [.supportsRemoteControl](#module_DyteParticipant+supportsRemoteControl)
-  - [.webinarStageStatus](#module_DyteParticipant+webinarStageStatus)
-  - [.presetName](#module_DyteParticipant+presetName)
-  - [.isPinned](#module_DyteParticipant+isPinned)
-  - [.pin()](#module_DyteParticipant+pin)
-  - [.unpin()](#module_DyteParticipant+unpin)
-  - [.setIsPinned()](#module_DyteParticipant+setIsPinned)
-  - [.disableAudio()](#module_DyteParticipant+disableAudio)
-  - [.kick()](#module_DyteParticipant+kick)
-  - [.disableVideo()](#module_DyteParticipant+disableVideo)
+  - [this.](#exp_module_DyteParticipant--this.) ⏏
+    - [.id](#module_DyteParticipant--this.+id)
+    - [.userId](#module_DyteParticipant--this.+userId)
+    - [.name](#module_DyteParticipant--this.+name)
+    - [.picture](#module_DyteParticipant--this.+picture)
+    - [.clientSpecificId](#module_DyteParticipant--this.+clientSpecificId)
+    - [.device](#module_DyteParticipant--this.+device)
+    - [.videoTrack](#module_DyteParticipant--this.+videoTrack)
+    - [.audioTrack](#module_DyteParticipant--this.+audioTrack)
+    - [.screenShareTracks](#module_DyteParticipant--this.+screenShareTracks)
+    - [.videoEnabled](#module_DyteParticipant--this.+videoEnabled)
+    - [.audioEnabled](#module_DyteParticipant--this.+audioEnabled)
+    - [.screenShareEnabled](#module_DyteParticipant--this.+screenShareEnabled)
+    - [.producers](#module_DyteParticipant--this.+producers)
+    - [.supportsRemoteControl](#module_DyteParticipant--this.+supportsRemoteControl)
+    - [.presetName](#module_DyteParticipant--this.+presetName)
+    - ~~[.webinarStageStatus](#module_DyteParticipant--this.+webinarStageStatus)~~
+    - [.stageStatus](#module_DyteParticipant--this.+stageStatus)
+    - [.roomJoined](#module_DyteParticipant--this.+roomJoined)
+    - [.isPinned](#module_DyteParticipant--this.+isPinned)
+    - [.pin()](#module_DyteParticipant--this.+pin)
+    - [.unpin()](#module_DyteParticipant--this.+unpin)
+    - [.setIsPinned()](#module_DyteParticipant--this.+setIsPinned)
+    - [.disableAudio()](#module_DyteParticipant--this.+disableAudio)
+    - [.kick()](#module_DyteParticipant--this.+kick)
+    - [.disableVideo()](#module_DyteParticipant--this.+disableVideo)
+    - ~~[.acceptJoinStageRequest()](#module_DyteParticipant--this.+acceptJoinStageRequest)~~
+    - ~~[.rejectRequestToJoinStage()](#module_DyteParticipant--this.+rejectRequestToJoinStage)~~
+    - ~~[.removeFromStage()](#module_DyteParticipant--this.+removeFromStage)~~
+    - ~~[.setWebinarStageStatus()](#module_DyteParticipant--this.+setWebinarStageStatus)~~
 
-<a name="module_DyteParticipant+id"></a>
+<a name="exp_module_DyteParticipant--this."></a>
 
-### participant.id
+### this. ⏏
 
-The peer ID of the participant. The participants are indexed by this ID in the
-participant map.
+**Kind**: Exported member  
+<a name="module_DyteParticipant--this.+id"></a>
 
-**Kind**: instance property of
-[<code>DyteParticipant</code>](#module_DyteParticipant)  
-<a name="module_DyteParticipant+userId"></a>
+#### this..id
 
-### participant.userId
+The peer ID of the participant.
+The participants are indexed by this ID in the participant map.
+
+**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+userId"></a>
+
+#### this..userId
 
 The user ID of the participant.
 
-**Kind**: instance property of
-[<code>DyteParticipant</code>](#module_DyteParticipant)  
-<a name="module_DyteParticipant+name"></a>
+**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+name"></a>
 
-### participant.name
+#### this..name
 
 The name of the participant.
 
-**Kind**: instance property of
-[<code>DyteParticipant</code>](#module_DyteParticipant)  
-<a name="module_DyteParticipant+picture"></a>
+**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+picture"></a>
 
-### participant.picture
+#### this..picture
 
 The picture of the participant.
 
-**Kind**: instance property of
-[<code>DyteParticipant</code>](#module_DyteParticipant)  
-<a name="module_DyteParticipant+clientSpecificId"></a>
+**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+clientSpecificId"></a>
 
-### participant.clientSpecificId
+#### this..clientSpecificId
 
 The clientSpecificId of the participant.
 
-**Kind**: instance property of
-[<code>DyteParticipant</code>](#module_DyteParticipant)  
-<a name="module_DyteParticipant+device"></a>
+**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+device"></a>
 
-### participant.device
+#### this..device
 
 The device configuration of the participant.
 
-**Kind**: instance property of
-[<code>DyteParticipant</code>](#module_DyteParticipant)  
-<a name="module_DyteParticipant+videoTrack"></a>
+**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+videoTrack"></a>
 
-### participant.videoTrack
+#### this..videoTrack
 
 The participant's video track.
 
-**Kind**: instance property of
-[<code>DyteParticipant</code>](#module_DyteParticipant)  
-<a name="module_DyteParticipant+audioTrack"></a>
+**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+audioTrack"></a>
 
-### participant.audioTrack
+#### this..audioTrack
 
 The participant's audio track.
 
-**Kind**: instance property of
-[<code>DyteParticipant</code>](#module_DyteParticipant)  
-<a name="module_DyteParticipant+screenShareTracks"></a>
+**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+screenShareTracks"></a>
 
-### participant.screenShareTracks
+#### this..screenShareTracks
 
 The participant's screenshare video and audio track.
 
-**Kind**: instance property of
-[<code>DyteParticipant</code>](#module_DyteParticipant)  
-<a name="module_DyteParticipant+videoEnabled"></a>
+**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+videoEnabled"></a>
 
-### participant.videoEnabled
+#### this..videoEnabled
 
 This is true if the participant's video is enabled.
 
-**Kind**: instance property of
-[<code>DyteParticipant</code>](#module_DyteParticipant)  
-<a name="module_DyteParticipant+audioEnabled"></a>
+**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+audioEnabled"></a>
 
-### participant.audioEnabled
+#### this..audioEnabled
 
 This is true if the participant's audio is enabled.
 
-**Kind**: instance property of
-[<code>DyteParticipant</code>](#module_DyteParticipant)  
-<a name="module_DyteParticipant+screenShareEnabled"></a>
+**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+screenShareEnabled"></a>
 
-### participant.screenShareEnabled
+#### this..screenShareEnabled
 
 This is true if the participant is screensharing.
 
-**Kind**: instance property of
-[<code>DyteParticipant</code>](#module_DyteParticipant)  
-<a name="module_DyteParticipant+producers"></a>
+**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+producers"></a>
 
-### participant.producers
+#### this..producers
 
 producers created by participant
 
-**Kind**: instance property of
-[<code>DyteParticipant</code>](#module_DyteParticipant)  
-<a name="module_DyteParticipant+supportsRemoteControl"></a>
+**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+supportsRemoteControl"></a>
 
-### participant.supportsRemoteControl
+#### this..supportsRemoteControl
 
 This is true if the dyte participant supports remote control.
 
-**Kind**: instance property of
-[<code>DyteParticipant</code>](#module_DyteParticipant)  
-<a name="module_DyteParticipant+webinarStageStatus"></a>
+**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+presetName"></a>
 
-### participant.webinarStageStatus
-
-Represents the participants current webinar status
-
-**Kind**: instance property of
-[<code>DyteParticipant</code>](#module_DyteParticipant)  
-<a name="module_DyteParticipant+presetName"></a>
-
-### participant.presetName
+#### this..presetName
 
 The preset of the participant.
 
-**Kind**: instance property of
-[<code>DyteParticipant</code>](#module_DyteParticipant)  
-<a name="module_DyteParticipant+isPinned"></a>
+**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+webinarStageStatus"></a>
 
-### participant.isPinned
+#### ~~this..webinarStageStatus~~
+
+**_Deprecated_**
+
+**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+stageStatus"></a>
+
+#### this..stageStatus
+
+Denotes the participants's current stage status.
+
+**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+roomJoined"></a>
+
+#### this..roomJoined
+
+Returns true if the local participant has joined the meeting.
+
+**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+isPinned"></a>
+
+#### this..isPinned
 
 Returns true if the participant is pinned.
 
-**Kind**: instance property of
-[<code>DyteParticipant</code>](#module_DyteParticipant)  
-<a name="module_DyteParticipant+pin"></a>
+**Kind**: instance property of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+pin"></a>
 
-### participant.pin()
+#### this..pin()
 
-Returns `participant.id` if user has permission to pin participants.
+Returns `participant.id` if user has permission
+to pin participants.
 
-**Kind**: instance method of
-[<code>DyteParticipant</code>](#module_DyteParticipant)  
-<a name="module_DyteParticipant+unpin"></a>
+**Kind**: instance method of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+unpin"></a>
 
-### participant.unpin()
+#### this..unpin()
 
-Returns `participant.id` if user has permission to unpin participants.
+Returns `participant.id` if user has permission
+to unpin participants.
 
-**Kind**: instance method of
-[<code>DyteParticipant</code>](#module_DyteParticipant)  
-<a name="module_DyteParticipant+setIsPinned"></a>
+**Kind**: instance method of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+setIsPinned"></a>
 
-### participant.setIsPinned()
+#### this..setIsPinned()
 
-**Kind**: instance method of
-[<code>DyteParticipant</code>](#module_DyteParticipant)  
-<a name="module_DyteParticipant+disableAudio"></a>
+**Kind**: instance method of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+disableAudio"></a>
 
-### participant.disableAudio()
+#### this..disableAudio()
 
-Disables audio for this participant. Requires the permission to disable
-participant audio.
+Disables audio for this participant.
+Requires the permission to disable participant audio.
 
-**Kind**: instance method of
-[<code>DyteParticipant</code>](#module_DyteParticipant)  
-<a name="module_DyteParticipant+kick"></a>
+**Kind**: instance method of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+kick"></a>
 
-### participant.kick()
+#### this..kick()
 
-Kicks this participant from the meeting. Requires the permission to kick a
-participant.
+Kicks this participant from the meeting.
+Requires the permission to kick a participant.
 
-**Kind**: instance method of
-[<code>DyteParticipant</code>](#module_DyteParticipant)  
-<a name="module_DyteParticipant+disableVideo"></a>
+**Kind**: instance method of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+disableVideo"></a>
 
-### participant.disableVideo()
+#### this..disableVideo()
 
-Disables video for this participant. Requires the permission to disable video
-for a participant.
+Disables video for this participant.
+Requires the permission to disable video for a participant.
 
-**Kind**: instance method of
-[<code>DyteParticipant</code>](#module_DyteParticipant)
+**Kind**: instance method of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+acceptJoinStageRequest"></a>
+
+#### ~~this..acceptJoinStageRequest()~~
+
+**_Deprecated_**
+
+**Kind**: instance method of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+rejectRequestToJoinStage"></a>
+
+#### ~~this..rejectRequestToJoinStage()~~
+
+**_Deprecated_**
+
+**Kind**: instance method of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+removeFromStage"></a>
+
+#### ~~this..removeFromStage()~~
+
+**_Deprecated_**
+
+**Kind**: instance method of [<code>this.</code>](#exp_module_DyteParticipant--this.)  
+<a name="module_DyteParticipant--this.+setWebinarStageStatus"></a>
+
+#### ~~this..setWebinarStageStatus()~~
+
+**_Deprecated_**
+
+**Kind**: instance method of [<code>this.</code>](#exp_module_DyteParticipant--this.)
