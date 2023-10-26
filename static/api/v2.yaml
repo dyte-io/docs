@@ -873,6 +873,111 @@ paths:
           in: query
           name: end_time
           description: Specify the end time range in ISO format to access the livestream analytics.
+  /analytics/daywise:
+    parameters: []
+    get:
+      summary: Fetch day-wise session and recording analytics data for an organization
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    success: true
+                    data:
+                      session_stats:
+                        sessions_count: 4
+                        sessions_minutes_consumed: 243.5
+                        day_stats:
+                          - day: '2023-10-17T00:00:00.000Z'
+                            total_sessions: 2
+                            total_session_minutes: 221
+                          - day: '2023-10-18T00:00:00.000Z'
+                            total_sessions: 2
+                            total_session_minutes: 22.5
+                      recording_stats:
+                        recording_count: 7
+                        recording_minutes_consumed: 573.666666666667
+                        day_stats:
+                          - day: '2023-10-16T00:00:00.000Z'
+                            total_recordings: 1
+                            total_recording_minutes: 14
+                          - day: '2023-10-17T00:00:00.000Z'
+                            total_recordings: 5
+                            total_recording_minutes: 365.66666666666697
+                          - day: '2023-10-18T00:00:00.000Z'
+                            total_recordings: 1
+                            total_recording_minutes: 194
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      session_stats:
+                        type: object
+                        description: Session statistics of an organization during the range specified
+                        properties:
+                          sessions_count:
+                            type: integer
+                            description: Total number of sessions during the range specified
+                          sessions_minutes_consumed:
+                            type: number
+                            description: Total session minutes during the range specified
+                          day_stats:
+                            type: array
+                            description: Day wise session stats
+                            items:
+                              type: object
+                              properties:
+                                day:
+                                  type: string
+                                total_sessions:
+                                  type: integer
+                                  description: Total number of sessions for a specific day
+                                total_session_minutes:
+                                  type:
+                                    - integer
+                                    - number
+                                  description: Total session minutes for a specific day
+                      recording_stats:
+                        type: object
+                        description: Recording statistics of an organization during the range specified
+                        properties:
+                          recording_count:
+                            type: integer
+                            description: Total number of recordings during the range specified
+                          recording_minutes_consumed:
+                            type: number
+                            description: Total recording minutes during the range specified
+                          day_stats:
+                            type: array
+                            description: Day wise recording stats
+                            items:
+                              type: object
+                              properties:
+                                day:
+                                  type: string
+                                total_recordings:
+                                  type: integer
+                                  description: Total number of recordings for a specific day
+                                total_recording_minutes:
+                                  type:
+                                    - integer
+                                    - number
+                                  description: Total recording minutes for a specific day
+          headers: {}
+      operationId: get-org-analytics
+      description: 'Returns day-wise session and recording analytics data of an organization for the specified time range start_date to end_date. If start_date and end_date are not provided, the default time range is set from 30 days ago to the current date.'
+      parameters:
+        - $ref: '#/components/parameters/startDate'
+        - $ref: '#/components/parameters/endDate'
+      tags:
+        - Analytics
+        - Organizations
   '/livestreams/{livestream_id}/enable':
     parameters:
       - schema:

@@ -28,14 +28,12 @@ meeting.
 
 An array of chat messages.
 
-**Kind**: instance property of [<code>DyteChat</code>](#module_DyteChat)  
 <a name="module_DyteChat+pinned"></a>
 
 ### meeting.chat.pinned
 
 Returns an array of pinned messages.
 
-**Kind**: instance property of [<code>DyteChat</code>](#module_DyteChat)  
 <a name="module_DyteChat+sendTextMessage"></a>
 
 ### meeting.chat.sendTextMessage(message)
