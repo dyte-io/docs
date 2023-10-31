@@ -75,7 +75,7 @@ Has room-node connection been made.
 
 ### meeting.meta.socketConnected
 
-This is set to true if user has succesfully connected to the socket.
+This is set to true if user has successfully connected to the socket.
 
 <a name="module_DyteMeta+setBroadcastTabChanges"></a>
 

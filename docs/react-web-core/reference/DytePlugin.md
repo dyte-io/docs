@@ -76,7 +76,7 @@ be used before the iframe is removed from the DOM.
 
 ### plugin.addPluginView(iframe, viewId)
 
-This method adds the communcation layer between the plugin inside the iframe
+This method adds the communication layer between the plugin inside the iframe
 and the core application (meeting object) in the main window.
 
 **Kind**: instance method of [<code>DytePlugin</code>](#module_DytePlugin)
