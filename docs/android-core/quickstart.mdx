@@ -8,7 +8,7 @@ slug: /
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import { AndroidCoreLatestInstallation } from '@site/src/components/LatestInstallation';
+import { MavenLatestInstallation } from '@site/src/components/LatestInstallation';
 
 # Android Core SDK Quickstart
 
@@ -49,7 +49,7 @@ You must complete the following steps:
 
 1. Install the SDK using maven dependency.
 
-<AndroidCoreLatestInstallation />
+<MavenLatestInstallation />
 
 2. Add the following permissions to the AndroidManifest.xml file.
 
@@ -84,9 +84,9 @@ val dyteClient = DyteAndroidClientBuilder.build(activity)
 Set the properties in the `DyteMeetingInfoV2` class. You just need to provide the
 participant's `authToken`.
 
-| Name          | Description                                                                                                                                                                                                                                                                                                                                   |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `authToken`   | After you've created the meeting, add each participant to the meeting using the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant) (The presetName created earlier must be passed in the body of the Add Participant API request) The API response contains the `authToken`. |                                                                                                                                                                                                                                                                                        |
+| Name        | Description                                                                                                                                                                                                                                                                                                |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+| `authToken` | After you've created the meeting, add each participant to the meeting using the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant) (The presetName created earlier must be passed in the body of the Add Participant API request) The API response contains the `authToken`. |     |
 
 ```kotlin
 val meetingInfo = DyteMeetingInfoV2(
