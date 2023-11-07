@@ -38,7 +38,7 @@ You’ll learn how to:
     [Dyte Meeting](https://docs.dyte.io/api/?v=v2#/operations/create_meeting)
   - [Add Participant](https://docs.dyte.io/api/?v=v2#/operations/add_participant)
     to the meeting
-- Install Flutter on your device
+- Install Flutter on your system
 - (For iOS apps) Install
   [Xcode](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwin55bqodH8AhUVQXwKHaR-DAsQFnoECA0QAQ&url=https%3A%2F%2Fapps.apple.com%2Fus%2Fapp%2Fxcode%2Fid497799835%3Fmt%3D12&usg=AOvVaw2fEvMbfRtGhB4SPHYB54NX)
 - Ensure that Rosetta is installed with Xcode on Mac computers with Apple
@@ -187,8 +187,8 @@ class RoomStateNotifier implements DyteMeetingRoomEventsListener {
 
 ## Step 5: Connect to the meeting
 
-Now, you have established the connection with the Dyte meeting server
-successfully. Next step is to join the room.
+Now, if you have established the connection with the Dyte meeting server
+successfully i.e. if you received `onMeetingInitCompleted` callback, next step is to join the room.
 
 ### Join the room
 
@@ -213,7 +213,7 @@ class RoomStateNotifier implements DyteMeetingRoomEventsListener {
   }
 
   @override
-  void onMeetingRoomJoined () {
+  void onMeetingRoomJoined() {
     /// Handle joining completion, ex: move to room screen
   }
 
@@ -225,6 +225,8 @@ class RoomStateNotifier implements DyteMeetingRoomEventsListener {
   ...
 }
 ```
+
+Successful joining of meeting is indicated by `onMeetingRoomJoined` callback.
 
 ### Leave the room
 
@@ -259,6 +261,8 @@ class RoomStateNotifier implements DyteMeetingRoomEventsListener {
 
 }
 ```
+
+Successfully exiting the meeting is indicated by `onMeetingRoomLeaveCompleted` callback.
 
 ## Release Builds
 
