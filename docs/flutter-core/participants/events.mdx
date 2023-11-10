@@ -145,21 +145,11 @@ void onActiveParticipantsChanged(List<DyteJoinedMeetingParticipant> active) {
 ...
 ```
 
-Other callbacks:
+Other events:
 
-- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
-    onActiveSpeakerChanged(DyteJoinedMeetingParticipant participant)
-  </span>
-  : Triggered when active speaker is changed to <code>participant</code>.
-- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
-    onNoActiveSpeaker()
-  </span>
-  : Triggered when there is no active participant.
-- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
-    onParticipantPinned(DyteJoinedMeetingParticipant participant)
-  </span>
-  : Triggered when the <code>participant</code> is pinned.
-- <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
-    onParticipantUnpinned(DyteJoinedMeetingParticipant participant)
-  </span>
-  : Trigerred when participant is unpinned.
+| **Event**                | **Description**                                                                            |
+| ------------------------ | ------------------------------------------------------------------------------------------ |
+| `onActiveSpeakerChanged` | Triggered when active speaker is change. Updated active speaker is sent as payload.        |
+| `onNoActiveSpeaker`      | Triggered when there is no active participant.                                             |
+| `onParticipantPinned`    | Triggered when a participant is pinned. Pinned participant details is sent as payload.     |
+| `onParticipantUnpinned`  | Triggered when a participant is unpinned. Unpinned participant details is sent as payload. |
