@@ -1,0 +1,74 @@
+---
+title: 'Getting Started'
+sidebar_position: 3
+---
+
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+To get started with creating live video calls from Dyte, make sure to finish these steps and then move on to integrating Dyte in your application.
+
+### Step 1: Register in the Developer Portal
+
+To get started with Dyte, you must first register an account on the [Developer portal](https://dev.dyte.io).
+
+### Step 2: Create an Organisation
+
+After you have created your account on Dyte, it is necessary for you to create an orgnisation. All meeting, sessions, logs and recordings are created within an organisation.
+
+### Step 3: Get your API Keys
+
+Copy the [API Keys](https://dev.dyte.io/apikeys) for your organization from
+the Developer portal. The API Key is unique to your organization and is
+required as an authorization header to use Dyte REST APIs.
+
+<ThemedImage
+  alt="API key"
+  width="600"
+  height="300"
+  sources={{
+    light: useBaseUrl('/static/dev-portal/api-key-light.png'),
+    dark: useBaseUrl('/static/dev-portal/api-key-dark.png'),
+  }}
+/>
+
+### Step 4: Create Presets
+
+A preset is a set of permissions and UI configurations that would be
+applied to a participant. For more information, see [Add Presets](/guides/capabilities/presets).
+
+1. In the [Developer Portal](https://dev.dyte.io/), click **Presets**, and click **Create New**.
+   <ThemedImage
+     alt="Create preset"
+     width="600"
+     height="300"
+     sources={{
+       light: useBaseUrl('/static/dev-portal/create-preset-light.png'),
+       dark: useBaseUrl('/static/dev-portal/create-preset-dark.png'),
+     }}
+   />
+2. <span>
+     In the <b>Select Meeting Type</b>, select <b>Group Call</b>.
+   </span>
+   <ThemedImage
+     alt="Create preset"
+     width="600"
+     height="300"
+     sources={{
+       light: useBaseUrl('/static/preset/' + 'group-call' + '.png'),
+       dark: useBaseUrl('/static/preset/' + 'group-call' + '.png'),
+     }}
+   />
+
+3. Set permissions and UI configurations. For more details on what permissions you can change, refer to the [Presets](/guides/capabilities/presets) guide.
+
+4. Once you’ve made all the required changes to your preset, click **Save** at the right-corner.
+   <img
+     src="/static/preset/savepreset.png"
+     width="600"
+     height="300"
+     alt="preset-save"
+   />
+5. Enter the name for your preset and click **Save**. The preset name is often used in the code so we recommend naming it based on the user role it serves.
+
+The next guide (Integrate Dyte)[./build-live-video-app] will cover the steps to use Dyte in your application!
