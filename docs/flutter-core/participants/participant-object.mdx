@@ -123,3 +123,26 @@ void onAudioUpdate({
 ...
 
 ```
+
+## Host controls methods
+
+If you (the local user) have the relevant permissions in the meeting, you can
+disable a participant's video/audio streams, or even remove them from the
+meeting.
+
+```dart
+final participant = meeting.participants.joined.first;
+
+// To disable a participant's video stream
+participant.disableVideo();
+
+// To disable a participant's audio stream
+participant.disableAudio();
+
+// To kick a participant from the meeting
+participant.kick();
+
+// to pin a participant in a meeting
+participant.pin();
+
+```
