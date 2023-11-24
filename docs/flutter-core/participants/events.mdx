@@ -13,7 +13,7 @@ Trigger an event when any participant joins the meeting.
 class ParticipantsEventListener extends DytePartcipantEventsListener {
   ...
   @override
-  void onParticipantJoin(DyteMeetingParticipant participant) {
+  void onParticipantJoin(DyteJoinedMeetingParticipant participant) {
     // your code here to handle new participant
   }
   ...
@@ -28,7 +28,7 @@ Trigger an event when any participant update in meeting. For example, when a par
 ...
 
 @override
-void onParticipantUpdated(DyteMeetingParticipant participant) {
+void onParticipantUpdated(DyteJoinedMeetingParticipant participant) {
          // your code here to handle new participant
 }
 
@@ -43,7 +43,7 @@ Trigger an event when any participant leaves the meeting.
 ...
 
 @override
-void onParticipantLeave(DyteMeetingParticipant participant) {
+void onParticipantLeave(DyteJoinedMeetingParticipant participant) {
          // your code here to handle participant left from meeting
 }
 
@@ -60,7 +60,7 @@ Trigger an event when any participant starts or stops the video.
 @override
 void onVideoUpdate({
  required bool videoEnabled,
- required DyteMeetingParticipant participant,
+ required DyteJoinedMeetingParticipant participant,
 }) {
          // your code here to handle participant video toggle update
 }
@@ -89,7 +89,7 @@ Triggers an event when a participant starts or stops the audio.
 @override
 void onAudioUpdate({
  required bool audioEnabled,
- required DyteMeetingParticipant participant,
+ required DyteJoinedMeetingParticipant participant,
 }) {
     // your code here to handle participant audio toggle update
 }
@@ -105,13 +105,13 @@ Triggers an event when a participant starts or stops screen share.
 ...
 
 @override
-void onScreenShareStarted(DyteMeetingParticipant participant) {
-  /// handle screen share started of `DyteMeetingParticipant` participant
+void onScreenShareStarted(DyteJoinedMeetingParticipant participant) {
+  /// handle screen share started of `DyteJoinedMeetingParticipant` participant
 }
 
 @override
-void onScreenShareEnded(DyteMeetingParticipant participant) {
-  /// handle screen share ended of `DyteMeetingParticipant` participant
+void onScreenShareEnded(DyteJoinedMeetingParticipant participant) {
+  /// handle screen share ended of `DyteJoinedMeetingParticipant` participant
 }
 
 ...
@@ -138,7 +138,7 @@ This event is triggered when the active participant changes, for example, when t
 ...
 
 @override
-void onActiveParticipantsChanged(List<DyteMeetingParticipant> active) {
+void onActiveParticipantsChanged(List<DyteJoinedMeetingParticipant> active) {
   /// handle active participants changed
 }
 
@@ -148,7 +148,7 @@ void onActiveParticipantsChanged(List<DyteMeetingParticipant> active) {
 Other callbacks:
 
 - <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
-    onActiveSpeakerChanged(DyteMeetingParticipant participant)
+    onActiveSpeakerChanged(DyteJoinedMeetingParticipant participant)
   </span>
   : Triggered when active speaker is changed to <code>participant</code>.
 - <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
@@ -156,10 +156,10 @@ Other callbacks:
   </span>
   : Triggered when there is no active participant.
 - <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
-    onParticipantPinned(DyteMeetingParticipant participant)
+    onParticipantPinned(DyteJoinedMeetingParticipant participant)
   </span>
   : Triggered when the <code>participant</code> is pinned.
 - <span style={{ fontSize: '1em', fontWeight: 'bold' }}>
-    onParticipantUnpinned(DyteMeetingParticipant participant)
+    onParticipantUnpinned(DyteJoinedMeetingParticipant participant)
   </span>
   : Trigerred when participant is unpinned.

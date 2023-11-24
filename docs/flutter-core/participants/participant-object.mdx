@@ -5,7 +5,7 @@ sidebar_position: 2
 tags: [flutter-core, participants, participant]
 ---
 
-# The DyteMeetingParticipant object
+# The Participant object
 
 The `DyteMeetingParticipant` object consists of all the information related to a
 particular participant. For instance, it contains a participants
@@ -38,14 +38,14 @@ class ParticipantEventListener extends DyteParticipantEventsListener {
   @override
   void onAudioUpdate({
     required bool audioEnabled,
-    required DyteMeetingParticipant participant,
+    required DyteJoinedMeetingParticipant participant,
   }) {
-    /// handle audioUpdate of `DyteMeetingParticipant` participant
+    /// handle audioUpdate of `DyteJoinedMeetingParticipant` participant
   }
 
   @override
-  void onActiveSpeakerChanged(DyteMeetingParticipant participant) {
-    /// handle active speaker changing to `DyteMeetingParticipant` participant
+  void onActiveSpeakerChanged(DyteJoinedMeetingParticipant participant) {
+    /// handle active speaker changing to `DyteJoinedMeetingParticipant` participant
   }
 
   @override
@@ -54,32 +54,32 @@ class ParticipantEventListener extends DyteParticipantEventsListener {
   }
 
   @override
-  void onParticipantPinned(DyteMeetingParticipant participant) {
-    /// handle pinning of `DyteMeetingParticipant` participant
+  void onParticipantPinned(DyteJoinedMeetingParticipant participant) {
+    /// handle pinning of `DyteJoinedMeetingParticipant` participant
   }
 
 
   @override
-  void onParticipantUnpinned(DyteMeetingParticipant participant) {
+  void onParticipantUnpinned(DyteJoinedMeetingParticipant participant) {
     /// handle unpinning the pinned participant
   }
 
   @override
-  void onScreenShareStarted(DyteMeetingParticipant participant) {
-    /// handle screen share started of `DyteMeetingParticipant` participant
+  void onScreenShareStarted(DyteJoinedMeetingParticipant participant) {
+    /// handle screen share started of `DyteJoinedMeetingParticipant` participant
   }
 
   @override
-  void onScreenShareEnded(DyteMeetingParticipant participant) {
-    /// handle screen share ended of `DyteMeetingParticipant` participant
+  void onScreenShareEnded(DyteJoinedMeetingParticipant participant) {
+    /// handle screen share ended of `DyteJoinedMeetingParticipant` participant
   }
 
   @override
   void onVideoUpdate({
     required bool videoEnabled,
-    required DyteMeetingParticipant participant,
+    required DyteJoinedMeetingParticipant participant,
   }) {
-    /// handle videoUpdate of `DyteMeetingParticipant` participant
+    /// handle videoUpdate of `DyteJoinedMeetingParticipant` participant
   }
 
 }
@@ -111,7 +111,7 @@ void onVideoUpdate(bool videoEnabled) {
 @override
 void onAudioUpdate({
   required bool audioEnabled,
-  required DyteMeetingParticipant participant,
+  required DyteJoinedMeetingParticipant participant,
 }) {
     if (audioEnabled) {
       // audio is enabled, and other participants in room can hear local user
