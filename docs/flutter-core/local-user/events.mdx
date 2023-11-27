@@ -9,7 +9,7 @@ tags: [flutter-core, local-user, self]
 
 You can subscribe to various local user events:
 
-- To subscribe, pass the instance of `LocalUserListener` class created above
+- To subscribe, pass the instance of `LocalUserListener` class created below
   to `addSelfEventsListener()` method of `dyteClient` instance as follows:
 
 ```dart {2}
@@ -84,24 +84,6 @@ class LocalUserListener implements DyteSelfEventsListener {
 }
 ```
 
-### Room disconnected update
-
-Triggered when the user is disconnected due to media or network errors
-
-```dart
-
-class RoomStateNotifier implements DyteMeetingRoomEventsListener {
-
-  ...
-
-  @override
-  void onMeetingRoomDisconnected() {
-    // Display a notification to the user indicating that they have been disconnected from the meeting.
-  }
-  ...
-}
-```
-
 ### Proximity changed
 
 Triggered by any change in proximity, such as when the device is brought near or moved away from an earpiece, which triggers the display to turn on or off.
@@ -147,24 +129,6 @@ class LocalUserNotifier implements DyteSelfEventsListener {
 }
 ```
 
-## Webinar request
-
-When the local user receives a request to join the webinar, the `onWebinarPresentRequestReceived()` callback function is triggered. Similarly, when the local user stops presenting during the webinar, the `onStoppedPresenting()` callback function is triggered.
-
-```dart
-@override
-void onWebinarPresentRequestReceived() {
-  // Display an alert to the user, allowing them to accept or reject the request.
-
-
-}
-
-@override
-void onStoppedPresenting() {
-  // Display an alert to the user indicating that they are no longer presenting.
-}
-```
-
 ## Local user removed
 
 When the local user is removed from the meeting, the `onRemovedFromMeeting()` callback is triggered.
@@ -177,13 +141,19 @@ void onRemovedFromMeeting() {
 }
 ```
 
-## Listen to stage status changes
+## Change in audio/video source
 
-When the stage status of local user is updated, this event is triggered. It contains updated stage status as an argument.
+Whenever user changes audio/video source using `setAudioDevice(DyteAudioDevice)` and `setVideoDevice(DyteVideoDevice)` respectively [ref: [here](/flutter-core/local-user/manage-media-devices)], `onAudioDevicesUpdated()` and `onVideoDevicesChanged()` are triggered respectively.
 
 ```dart
 @override
-void onStageStatusUpdated(DyteStageStatus status){
-  // Update your UI as per this stage status.
+void onAudioDevicesUpdated() {
+  // triggered on successful execution of `setAudioDevice(DyteAudioDevice)`
 }
+
+@override
+void onVideoDeviceChanged() {
+  // triggered on successful execution of `setVideoDevice(DyteVideoDevice)`
+}
+
 ```
