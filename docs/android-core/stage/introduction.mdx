@@ -13,16 +13,16 @@ In Dyte, the `stage` object, is accessible through the `meeting.stage` property.
 
 ## Join stage
 
-To join the stage in a session, specific permissions are required, which are managed through [Presets](/guides/capabilities/presets). 
+To join the stage in a session, specific permissions are required, which are managed through [Presets](https://editor.dyte.io)
 To join the stage, use the following function:
 
 ```kotlin
-// Participants with the media preset set to "Allowed" 
+// Participants with the media preset set to "Allowed"
 // can join the stage directly without needing the host to accept their request.
 meeting.stage.join()
 
-// Participants with the media preset set to "Need to Request" must wait for 
-// the host to approve their request. Once the host grants permission, 
+// Participants with the media preset set to "Need to Request" must wait for
+// the host to approve their request. Once the host grants permission,
 // these participants can start producing media.
 // to request access
 meeting.stage.requestAccess()
