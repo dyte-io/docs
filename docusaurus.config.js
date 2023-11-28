@@ -225,13 +225,27 @@ const plugins = [
     {
       createRedirects(path) {
 
-        if (path.startsWith('/guides/capabilities/middleware')) {
-          return ['/guides/capabilities/video/add-virtual-background']
+        if (path.startsWith('/guides/capabilities/video')) {
+          return ['/guides/capabilities/middleware/add-virtual-background']
         }
 
-        if (path.startsWith('/web-core/livestreaming')) {
-          return [path.replace('/web-core/livestreaming', '/web-core/livestreaming/livestream-apis')];
+        if (path.startsWith('/guides/live-video/concepts')) {
+          return ['/guides/live-video/concepts-live-video']
         }
+
+        if (path.startsWith('/guides/voice-conf/concepts')) {
+          return ['/guides/voice-conf/concepts-voice-conf']
+        }
+
+        if (path.startsWith('/guides/livestream/concepts')) {
+          return ['/guides/livestream/concepts-ils']
+        }
+
+        if (path.startsWith(''))
+
+          if (path.startsWith('/web-core/livestreaming')) {
+            return [path.replace('/web-core/livestreaming', '/web-core/livestreaming/livestream-apis')];
+          }
         if (path.startsWith('/rn-core/livestreaming')) {
           return [path.replace('/rn-core/livestreaming', '/rn-core/livestreaming/livestream-apis')];
         }
