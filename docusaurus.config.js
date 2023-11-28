@@ -224,6 +224,11 @@ const plugins = [
     '@docusaurus/plugin-client-redirects',
     {
       createRedirects(path) {
+
+        if (path.startsWith('/guides/capabilities/middleware')) {
+          return ['/guides/capabilities/video/add-virtual-background']
+        }
+
         if (path.startsWith('/web-core/livestreaming')) {
           return [path.replace('/web-core/livestreaming', '/web-core/livestreaming/livestream-apis')];
         }
