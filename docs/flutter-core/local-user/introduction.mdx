@@ -7,7 +7,7 @@ tags: [flutter-core, local-user, self]
 
 # Introduction - Local User
 
-Local User object contain all the methods and properties about the local user
+`DyteSelfUser` object contain all the methods and properties about the self user including their
 media controls for the current room.
 
 ## Properties
@@ -31,7 +31,7 @@ Here is a list of properties that local user provides:
 Local user properties can be fetched via `localUser` getter on the `dyteClient`.
 
 ```dart
-final localUserProperties = dyteClient.localUser;
+final selfUser = dyteClient.localUser;
 ```
 
 ## Change default audio / video settings
@@ -49,7 +49,7 @@ final meetingInfo = DyteMeetingInfo(
 );
 ```
 
-## Turn audio/video tracks after joining the room
+## Turn audio/video tracks after initializing the client
 
 If audio and video tracks are disabled during the `DyteMobileClient`
 initialization process. You can setup the audio and video tracks by simply
@@ -96,7 +96,7 @@ dyteClient.localUser.enableVideo();
 final isVideoEnabled = dyteClient.localUser.videoEnabled;
 ```
 
-## Switch camera between primary and secondary
+## Switch camera between sources
 
 ```dart
 // switch camera

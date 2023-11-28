@@ -23,11 +23,8 @@ maps:
 
 All plugins accessible by the current user.
 
-**Kind**: instance property of [<code>DytePlugins</code>](#module_DytePlugins)  
 <a name="module_DytePlugins+active"></a>
 
 ### meeting.plugins.active
 
 All plugins that are currently enabled in the room.
-
-**Kind**: instance property of [<code>DytePlugins</code>](#module_DytePlugins)

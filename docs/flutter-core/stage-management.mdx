@@ -1,0 +1,165 @@
+---
+title: Stage management
+sidebar_position: 10
+tags: [flutter-core, stage, livestream, webinar]
+---
+
+## Access the stage APIs
+
+Stage feature is useful when you're using webinar/livestream. We allow central stage methods for both call types.
+
+Using Dyte's stage management APIs a user can do actions such as request to join, join/leave stage, grant/deny stage access to other users, etc.
+
+All stage APIs are accessible by following excerpt:
+
+```dart
+final stage = dyteClient.stage;
+```
+
+## Properties
+
+### Status
+
+The following method returns the current stage status of the local user.
+
+```dart
+final DyteStageStatus stageStatus = dyteClient.stage.status;
+```
+
+It can have the following values:
+
+- DyteStageStatus.onStage : This value indicates that the user is currently on the stage.
+- DyteStageStatus.offStage : This value means that the user is viewing the webinar/livestream but is not on the stage.
+- DyteStageStatus.requestedToJoinStage : The user has a pending request to join stage. This value will be assigned to their status until the host accepts or rejects their request.
+- DyteStageStatus.acceptedToJoinStage : The host has accepted user’s request to join stage. If the host accepts the user's request to join the stage, this value will be assigned to the user's status.
+
+## Host Controls
+
+:::tip Note
+
+These methods are preset dependent, hence if a user's preset doesn't allow certain host actions, calling the API won't change anything.
+
+:::
+
+Dyte’s stage management APIs allow hosts to receive and manage stage requests as well as leave and join the stage.
+
+### Join stage
+
+This method enables the user to be on stage and let them interact with other peers in the meeting.
+
+```dart
+dyteClient.stage.join();
+```
+
+### Leave stage
+
+This method lets user leave the stage and. Additionally, their audio/video will no longet be visible to others in the room.
+
+```dart
+dyteClient.stage.leave();
+```
+
+### Grant stage access
+
+A privileged user can grant access to stage for a set of users with `grantAccess` method.
+
+| **Parameters** | **Type**                       |
+| -------------- | ------------------------------ |
+| peer           | _DyteJoinedMeetingParticipant_ |
+
+```dart
+dyteClient.stage.grantAccess(peer);
+```
+
+To grant access to all stage requests at a time, you can user `grantAccessToAll()` method. This method takes no parameters.
+
+```dart
+dyteClient.stage.grantAccessToAll();
+```
+
+### Deny stage access
+
+A privileged user can deny access to stage for a set of users with `denyAccess` method.
+
+| **Parameters** | **Type**                       |
+| -------------- | ------------------------------ |
+| peer           | _DyteJoinedMeetingParticipant_ |
+
+```dart
+dyteClient.stage.denyAccess(peer);
+```
+
+To deny all stage requests at a time, you can user `denyAccessToAll()` method. This method takes no parameters.
+
+```dart
+dyteClient.stage.denyAccessToAll();
+```
+
+### Kick participant from stage
+
+A privileged user can kick a participant from stage with `kick` method.
+
+| **Parameters** | **Type**                       |
+| -------------- | ------------------------------ |
+| peer           | _DyteJoinedMeetingParticipant_ |
+
+```dart
+dyteClient.stage.kick(peer);
+```
+
+## Participant controls
+
+Dyte's stage management APIs allow participant to receive and manage stage requests as well as leave and join the stage.
+
+### Request access
+
+This method is used to create a new stage request which can be approved by the host.
+
+```dart
+dyteClient.stage.requestAccess();
+```
+
+### Withdraw join request
+
+You can call this method in order to cancel your stage request.
+
+```dart
+dyteClient.stage.withdrawJoinRequest();
+```
+
+## Stage Events
+
+To be able to listen to stage events, you need to attach a stage events listener as:
+
+```dart
+class StageEventListener extends DyteStageEventsListener {
+  ...
+
+  @override
+  void onStageStatusUpdated(DyteStageStatus status) {
+    // Update your UI as per this stage status.
+  }
+  ...
+}
+```
+
+```dart
+dyteClient.addStageEventsListener(StageEventsListener())
+```
+
+When the stage status of local user is updated, this event is triggered. It contains updated stage status as an argument.
+
+```dart
+@override
+void onStageStatusUpdated(DyteStageStatus status){
+  // Update your UI/ manage you state as per this stage status.
+}
+```
+
+Here are a list of events the stage occurs:
+
+| **Event**                       | **Description**                                                                                                               |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `onStageRequestsUpdated`        | Emitted when stageRequests changes. This event also contain a list of updated requests in the payload as `accessRequests`     |
+| `onStageStatusUpdated`          | Emitted when the user’s stage status changes. It contains the updated stage status in the payload as `stageStatus`.           |
+| `onParticipantRemovedFromStage` | Emitted when a participant is removed from stage. It contains the participant that is removed in the payload as `participant` |

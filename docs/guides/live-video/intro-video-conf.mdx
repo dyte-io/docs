@@ -3,7 +3,12 @@ title: 'Overview'
 sidebar_position: 1
 ---
 
-Dyte's live video platform, built on top of [WebRTC](https://dyte.io/blog/webrtc/), enables you to build real-time communication functionality into your web, and mobile applications. Using Dyte's REST APIs and client-side SDKs, you can acquire, transmit and play media, and manage network connections in your applications.
+Dyte's live video platform, built upon [WebRTC](https://dyte.io/blog/webrtc/), enables you to seamlessly incorporate real-time communication features into your web and mobile applications. Using Dyte's REST APIs and client-side SDKs, you can effortlessly acquire, transmit, and play media while efficiently managing network connections within your applications. All Dyte live video calls come with in-built noise cancellation (powered by Krisp).
+
+- [Essentials](#essentials): Step by step guides to help you through the setup process and fundamental concepts
+- [Capabilities](#capabilities): Guides to functionalities that you can incrementally add to enhance your live video call experience
+- [UI Kit](#ui-kit): Learn about Dyte's prebuilt library of UI components through guides on integrating them and customizing them to align with your brand's identity
+- [Reference](#reference): Build a better understanding of the core SDK that provides APIs driving your live video experience along with references for the REST APIs that power your live streams
 
 ## Supported platforms
 
@@ -13,28 +18,117 @@ Dyte currently supports the following platforms:
 - **Web**: Javascript Core SDK + UI Kit for React JS, Angular, and Web Components for other frameworks
 - **Desktop**: Electron
 
-## Usecases
+## Essentials
 
-The live video applications can be used across a wide range of applications and use cases, including:
+<CardSection
+  id="essentials"
+  description="Learn the very basics to add live video calls in your application through Dyte"
+  HeadingTag="h2"
+>
+  <Card
+    title="Concepts"
+    to="./concepts-live-video"
+    description="Learn about the architecture, design and basic concepts behind Dyte"
+  />
+  <Card
+    title="Server Setup"
+    to="./build-live-video-app"
+    description="Steps to access Dyte’s REST API"
+  />
+  <Card
+    title="Client Setup"
+    to="./client-setup"
+    description="Set up and configure your client to integrate video calls "
+  />
+</CardSection>
 
-- Virtual interviews
-- Remote collaboration
-- Telemedicine
-- Social networking
-- Gaming
-- Virtual events and webinars
+## Capabilities
 
-## Key features
+<CardSection
+  id="capabilities"
+  description="Explore the capabilities that you can incrementally add to your live video experiences"
+>
+  <Card
+    title="Recording"
+    to="/guides/capabilities/recording/recording-overview"
+    description="Understand and leverage Dyte’s recording capabilities"
+  />
+  <Card
+    title="Chat"
+    to="/web-core/chat/introduction"
+    description="Build real-time chat for users in the video call"
+  />
+  <Card
+    title="Polls"
+    to="/web-core/polls/introduction"
+    description="Integrate polls within your video calls"
+  />
+  <Card
+    title="Breakout rooms"
+    to="/guides/capabilities/breakoutroom/create-breakout-rooms"
+    description="Create breakout rooms to split users into smaller groups within a meeting"
+  />
+  <Card
+    title="Virtual Background"
+    to="/guides/capabilities/customization/add-virtual-background"
+    description="Add custom virtual backgrounds for users"
+  />
+  <Card
+    title="Video and audio filters"
+    to="https://dyte.io/blog/streams-blog/"
+    description="Guide to create custom video and audio filters for your video calls using middlewares"
+  />
+  <Card
+    title="Multi Screen Share"
+    to="/web-core/local-user/introduction#enable--disable-screen-share"
+    description="Enable screen sharing for users in a live video call"
+  />
+  <Card
+    title="Transcription"
+    to="https://dyte.io/blog/audio-transcriptions-video-meeting/"
+    description="Guide to enable transcription on Dyte live video calls using Google STT"
+  />
+</CardSection>
 
-Dyte provides a range of features including group calls, webinars, breakout rooms, plugins, auto bandwidth switching, detailed call analytics, and more.
+## UI Kit
 
-- **Chat**: Allows participants to chat with each in real-time.
-- **Poll**: You can create polls.
-- **Breakout rooms**: Breakout rooms allow participants of a meeting to split into smaller groups for targeted discussions and collaboration. See [Create a Breakout Room](/guides/capabilities/breakoutroom/create-breakout-rooms).
-- **Virtual background**: You can add custom virtual background to Dyte video calls. See [Add Custom Virtual Background to Dyte meetings](/guides/capabilities/video/add-virtual-background).
-- ** Multi screenshare**: Allow participants in the call to share screen with others in real-time.
-- **Transcription**: You can integrate Google Speech-to-Text (STT) into Dyte meetings to add audio transcriptions. See [Add Audio Transcriptions to Video Meetings](https://dyte.io/blog/audio-transcriptions-video-meeting/).
-- **Custom filters**: Build your own audio/video filters, similar to Snapchat or Talking Tom filters, to add fun effects like retro styles, birthday themes, or funny hats, creating engaging and unique experiences for participants. See [Add Exciting Custom Filters to Video Calls with Dyte](https://dyte.io/blog/streams-blog/).
-- **Analytics**: Dyte offers comprehensive meeting analytics, including metrics such as meeting duration, number of sessions, recorded minutes, participant count, total bill, and more. You can access this information via the Dashboard in the [Developer Portal](https://dev.dyte.io/dashboard).
-- **Recording**: Dyte records the audio and video of multiple users in a meeting, as well as interactions with Dyte plugins, in a single file using composite recording mode. See [Recording](/guides/capabilities/recording).
-- ** Noise cancellation**: Dyte offers AI-powered noise and echo cancellation (powered by Krisp).
+<CardSection
+  id="ui-kit"
+  description="Explore UI Kit components from Dyte and learn how to customize them"
+>
+  <Card title="React" to="/react-ui-kit" icon={<ReactIcon />} />
+  <Card title="Angular" to="/angular-ui-kit" icon={<AngularIcon />} />
+  <Card title="Web Components" to="/ui-kit" icon={<HTMLIcon />} />
+  <Card title="Flutter" to="/flutter" icon={<FlutterIcon />} />
+  <Card title="React Native" to="/react-native" icon={<ReactIcon />} />
+  <Card title="Android" to="/android" icon={<KotlinIcon />} />
+  <Card title="iOS" to="/ios" icon={<SwiftIcon />} />
+</CardSection>
+
+## Reference
+
+<CardSection
+  id="reference"
+  description="Key reference documents to understand the core SDKs and REST APIs"
+>
+  <Card
+    title="REST API Quickstart"
+    to="/guides/rest-apis/quickstart"
+    description="Understand how to get started with using Dyte's APIs"
+  />
+  <Card
+    title="REST API Reference"
+    to="/api/"
+    description="Explore all the Dyte APIs you can make use of"
+  />
+  <Card title="JavaScript SDK" to="/web-core/introduction" icon={<JSIcon />} />
+  <Card
+    title="React SDK"
+    to="/react-web-core/introduction"
+    icon={<ReactIcon />}
+  />
+  <Card title="React Native SDK" to="/rn-core" icon={<ReactIcon />} />
+  <Card title="Flutter SDK" to="/flutter-core" icon={<FlutterIcon />} />
+  <Card title="Android SDK" to="/android-core" icon={<KotlinIcon />} />
+  <Card title="iOS SDK" to="/ios-core" icon={<SwiftIcon />} />
+</CardSection>

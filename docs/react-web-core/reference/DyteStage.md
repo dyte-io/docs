@@ -1,6 +1,6 @@
 ---
-sidebar_position: 11
-web_core_version: 1.6.0
+sidebar_position: 10
+web_core_version: 1.20.0
 ---
 
 <!-- Auto Generated Below -->
@@ -9,7 +9,8 @@ web_core_version: 1.6.0
 
 The DyteStage module represents a class to mange the Stage of the meeting
 Stage refers to a virtual area, where participants stream are visible to other participants.
-When a participant is off stage, they are not producing media but only consuming media from participants who are on Stage
+When a participant is off stage, they are not producing media
+but only consuming media from participants who are on Stage
 
 
 * [DyteStage](#module_DyteStage)
@@ -44,7 +45,7 @@ Method to cancel a previous Stage join request
 
 ### meeting.stage.grantAccess()
 Method to grant access to Stage.
- This can be in response to a Stage Join request but it can be called on other users as well
+	This can be in response to a Stage Join request but it can be called on other users as well
 
 `permissions.acceptPresentRequests` privilege required
 
