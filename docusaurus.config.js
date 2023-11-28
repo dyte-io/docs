@@ -225,8 +225,24 @@ const plugins = [
     {
       createRedirects(path) {
 
+        if (path.startsWith('/guides/capabilities/chat/export-chat-dump')) {
+          return ['/capabilities/export-chat-dump']
+        }
+
+        if (path.startsWith('/guides/capabilities/audio/transcriptions')) {
+          return ['/guides/capabilities/ai/meeting-transcription']
+        }
+
+        if (path.startsWith('/guides/capabilities/misc/embed')) {
+          return ['/guides/capabilities/embed']
+        }
+
+        if (path.startsWith('/guides/capabilities/misc/livestreaming-other-platforms')) {
+          return ['/guides/capabilities/livestreaming-other-platforms']
+        }
+
         if (path.startsWith('/guides/capabilities/video')) {
-          return ['/guides/capabilities/middleware/add-virtual-background']
+          return ['/guides/capabilities/middleware/add-virtual-background', '/guides/capabilities/customization/add-virtual-background']
         }
 
         if (path.startsWith('/guides/live-video/concepts')) {
