@@ -39,10 +39,10 @@ val meetingInfo = DyteMeetingInfo(
 
 ## Get local user video view
 
-To display the `localUser` preview in a view, utilize the `getVideoView()` method on `localUser`. This method provides a View that can be added to any `ViewGroup` in Android.
+To display the `localUser` preview in a view, utilize the `getSelfPreview()` method on `localUser`. This method provides a View that can be added to any `ViewGroup` in Android.
 
 ```kotlin
-meeting.localUser.getVideoView()
+meeting.localUser.getSelfPreview()
 ```
 
 ## Enable audio/video tracks after joining the room
