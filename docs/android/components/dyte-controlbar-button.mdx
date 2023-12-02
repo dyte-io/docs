@@ -1,0 +1,29 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-controlbar-button.svg
+---
+
+# DyteControlBarButton
+
+A skeleton component used for composing buttons.
+
+```xml
+<dyte.io.uikit.view.controlbars.DyteMeetingControlBarView
+      android:id="@+id/dyte_control_bar_button"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:dyte_cbb_showText="true"
+      app:dyte_cbb_iconSize="12sp"
+      app:dyte_cbb_iconPadding="4dp"
+      app:dyte_cbb_variant="button|horizontal"
+      />
+```
+
+To setup the controlbar button inside kotlin/Java code do as follows
+```kotlin
+val buttonView = findViewById(R.id.dyte_control_bar_button)
+buttonView.setOnClickListener(
+  {
+    // TODO: your action here
+  }
+)
+```

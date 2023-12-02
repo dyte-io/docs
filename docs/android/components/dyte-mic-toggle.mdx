@@ -1,0 +1,17 @@
+# DyteMicToggleButton
+
+A button which toggles your microphone.
+
+```xml
+<dyte.io.uikit.view.controlbarbuttons.DyteMicToggleButton
+          android:id="@+id/dyte_mic_toggle"
+          android:layout_width="48dp"
+          android:layout_height="48dp"
+          app:dyte_cbb_showText="false"/>
+```
+
+To use the component do in kotlin/java as follows:
+```kotlin
+val micToggleButton = view.findViewById(R.id.dyte_mic_toggle)
+micToggleButton.activate(meeting)
+```

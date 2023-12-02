@@ -1,0 +1,22 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-grid.svg
+---
+
+# DyteGridViewV2
+
+The main grid component which abstracts all the grid handling logic and renders
+it for you.
+
+```xml
+<dyte.io.uikit.molecules.dytegrid.DyteGridViewV2
+        android:id="@+id/dyte_grid_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+```
+
+To setup the grid inside kotlin/Java code do as follows
+```kotlin
+val gridView = findViewById(R.id.dyte_grid_view)
+gridView.activate(meeting)  
+```

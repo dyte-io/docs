@@ -1,0 +1,18 @@
+# DyteAvatarView
+
+Avatar component which renders a participant's image or their initials.
+
+```xml
+<dyte.io.uikit.view.avatarview.DyteAvatarView
+      android:id="@+id/dyteavatarview_dyte_participant_tile"
+      android:layout_width="100dp"
+      android:layout_height="100dp"
+      android:layout_gravity="center"
+      />
+```
+
+And to setup DyteAvatarView inside your kotlin/Java code use as follow:
+```kotlin
+val avatarView = findViewById(R.id.dyteavatarview_dyte_participant_tile)
+avatarView.activate(participant)
+```

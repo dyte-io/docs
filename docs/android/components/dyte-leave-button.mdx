@@ -1,0 +1,18 @@
+# DyteLeaveButton
+
+A button which toggles visilibility of the leave confirmation dialog.
+
+```xml
+<dyte.io.uikit.view.controlbarbuttons.DyteLeaveButton
+      android:id="@+id/dyte_leave_button"
+      android:layout_width="48dp"
+      android:layout_height="48dp"
+      app:dyte_cbb_showText="false"
+      />
+```
+
+To activate DyteLeaveButton, do as follows:
+```kotlin
+val leaveButton = findViewById(R.id.dyte_leave_button)
+leaveButton.activate(meeting)
+```

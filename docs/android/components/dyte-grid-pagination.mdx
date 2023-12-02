@@ -1,0 +1,21 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-grid-pagination.svg
+---
+
+# DyteGridPaginatorView
+
+A component which allows you to change current page and view mode of active
+participants list.
+
+```xml
+<dyte.io.uikit.view.DyteGridPaginatorView
+      android:id="@+id/dyte_grid_paginator"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+```
+
+To setup the paginator inside kotlin/Java code do as follows
+```kotlin
+val paginatorView = findViewById(R.id.dyte_grid_paginator)
+paginatorView.activate(meeting)  
+```
