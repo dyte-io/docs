@@ -10,6 +10,7 @@ import HelpSection from '../components/homepage/HelpSection';
 import Head from '@docusaurus/Head';
 import GuidesAndSamples from '../components/homepage/GuidesAndSamples';
 import SDKs from '../components/homepage/SDKs';
+import Link from '@docusaurus/Link';
 
 export default function Homepage() {
   return (
@@ -21,6 +22,17 @@ export default function Homepage() {
       <Head>
         <link rel="prefetch" href="/assets/css/elements.min.css" />
       </Head>
+      <div>
+        <div className="m-0 w-full  bg-orange-500 p-4 text-center font-bold">
+          Looking to migrate from Twilio Video
+          <Link
+            to="/guides/migration/twilio/concepts-twilio-vs-dyte"
+            className={'ml-2 text-white underline dark:text-black'}
+          >
+            Read our migration guide
+          </Link>
+        </div>
+      </div>
 
       <HeroSection />
 
