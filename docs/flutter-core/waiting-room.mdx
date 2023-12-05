@@ -1,0 +1,29 @@
+---
+title: Waiting room
+sidebar_position: 11
+tags: [flutter-core, stage, livestream, webinar]
+---
+
+## Events
+
+To subscrible to waiting room events, you need to attach a waiting room listener as:
+
+```dart
+
+class WaitingRoomListener extends DyteWaitingRoomEventsListener {
+  ...
+  void onWaitListParticipantAccepted(DyteWaitlistedParticipant participant){
+    // manage state/UI to show that participant has been accepted
+  }
+  ...
+}
+
+dyteClient.addWaitingRoomListener(WaitingRoomListener());
+```
+
+| **Event**                       | **Description**                                                                                                          |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `onWaitListParticipantJoined`   | Emitted when a participant joins the waitlisted queue. This event also contain participant details in the payload        |
+| `onWaitListParticipantClosed`   | Emitted when a waitlisted participant withdraws it's request. This event also contain participant details in the payload |
+| `onWaitListParticipantAccepted` | Emitted when a waitlisted participant is accepted. This event also contain participant details in the payload.           |
+| `onWaitListParticipantRejected` | Emitted when a waitlisted participant is rejected. This event also contain participant details in the payload.           |

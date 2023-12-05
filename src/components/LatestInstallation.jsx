@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CodeBlock from '@theme/CodeBlock';
 import latestNPMVersion from '../utils/npm';
 
-export const AndroidCoreLatestInstallation = () => {
+export const MavenLatestInstallation = () => {
   const [version, setVersion] = useState('+');
 
   useEffect(() => {

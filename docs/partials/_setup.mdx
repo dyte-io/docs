@@ -1,0 +1,28 @@
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+### Step 1: Register in the Developer Portal
+
+To get started with Dyte, you must first register an account on the [Developer portal](https://dev.dyte.io).
+
+### Step 2: Create an Organisation
+
+After you have created your account on Dyte, go ahead and create an orgnisation. All meeting, sessions, logs and recordings are created within an organisation.
+
+### Step 3: Get your API Keys
+
+Copy the [API Keys](https://dev.dyte.io/apikeys) for your organization from
+the Developer portal. The API Key is unique to your organization and is
+required as an authorization header to use Dyte REST APIs.
+
+<ThemedImage
+  alt="API key"
+  width="600"
+  height="300"
+  sources={{
+    light: useBaseUrl('/static/dev-portal/api-key-light.png'),
+    dark: useBaseUrl('/static/dev-portal/api-key-dark.png'),
+  }}
+/>
+
+The next guide <a href={props.slug}>Server Integration</a> will cover the steps to use Dyte in your application!
