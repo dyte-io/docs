@@ -1,0 +1,139 @@
+---
+title: Livestreaming
+sidebar_position: 7
+tags: [flutter-core, livestream]
+---
+
+## Introduction
+
+- Livestreaming is often used for events, such as concerts, conferences, and sports games, as well as for online classes, gaming, and social media platforms.
+- Dyte uses LHLS to deliver low latency one way streams.
+- The Interactive Livestream product delivers interactivity via chat, polls, reactions etc.
+- Viewer can also be pulled in the livestream by the host using Stage Management APIs [ref: [here](/flutter-core/stage-management)].
+
+This section will guide you through the process of integrating the livestreaming feature into your product.
+
+## Properties
+
+### Playlist URL:
+
+Livestream playlist URL is accessible via `url` property of `DyteLivestreamData` instance:
+
+If the livestream is not active for current room, it'll return `null`.
+
+```dart
+final String? url = dyteClient.livestream.data.url;
+```
+
+### Livestream Status:
+
+The current livestream status can be accessed from `state` property of the `DyteLivestreamData` instance:
+
+```dart
+final DyteLivestreamStatus? status = dyteClient.livestream.data.state;
+```
+
+There can be 6 livestream statuses:
+
+- _DyteLivestreamStatus.none_ : When livestream is not active.
+- _DyteLivestreamStatus.starting_ : When livestream is starting.
+- _DyteLivestreamStatus.started_ : When livestream is going on.
+- _DyteLivestreamStatus.ending_ : When livestream is ending.
+- _DyteLivestreamStatus.ended_ : When livestream ended.
+- _DyteLivestreamStatus.errored_ : When livestream encountered an error.
+
+### Viewer Count
+
+The current viewer count for livestream can be accessed via `viewerCount`peroperty of `DyteLivestreamData` instance.
+
+```dart
+final int? viewerCount = dyteClient.livestream.data.viewerCount;
+```
+
+### Room Name
+
+The room name of current livestream can be accessed via `roomName` property of `DyteLivestreamData` instance.
+
+```dart
+final String? roomName = dyteClient.livestream.data.roomName;
+```
+
+## Methods
+
+Use the following methods to start and stop livestreaming.
+
+:::tip Note
+
+You'll be able to start/stop livestream if your preset allows it.
+
+:::
+
+### Start Livestream
+
+You can start a livestream with the following method:
+
+```dart
+dyteClient.livestream.start();
+```
+
+### Stop Livestream
+
+You can stop a livestream with the following method:
+
+```dart
+dyteClient.livestream.stop();
+```
+
+## LivestreamView
+
+LivestreamView widget returns the view for the current livestream. It takes `String? url` as an argument of the livestream which is accessible via `dyteMobileClient.livestream.url` method or `Future<String?> getUrl()` method on `DyteLivestream` instance, which returns `null` if there's no livestream url.
+
+```dart
+final livestreamView = LivestreamView(
+  url: dyteMobileClient.livestream.url,
+);
+
+// or
+
+Future<Widget> fetchLivestreamView () async {
+  String? url = await dyteMobileClient.livestream.getUrl();
+  if (url != null) {
+    return LivestreamView(
+      url: url,
+    );
+  } else {
+    return Container();
+  }
+
+  final livestreamView = await fetchLivestreamView();
+}
+```
+
+## Events
+
+You need to subscrible to LivestreamEventListener to be able to listen livestream events. You can do it as follows:
+
+```dart
+class LivestreamListener implements DyteLivestreamEventsListener{
+  ...
+  void onLiveStreamStateUpdate(DyteLivestreamData data) {
+    // Handle livestream state update
+  }
+  ...
+}
+
+dyteClient.addLivestreamEventsListener(LivestreamListener());
+```
+
+Here are a list of events the livestream listener emits:
+
+| **Event**                 | **Description**                                                                                              |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `onLiveStreamStateUpdate` | Emitted when a livestream state is updated. It contains the updated livestream state in the payload.         |
+| `onViewerCountUpdated`    | Emitted when a viewer count of a livestream is updated. It contains the updated viewer count in the payload. |
+| `onStageCountUpdated`     | Emitted when a participants on stage changes. It contains the updated viewer count in the payload.           |
+| `onLiveStreamStarting`    | Emitted when livestream state is updated to _DyteLivestreamStatus.Starting_                                  |
+| `onLiveStreamStarted`     | Emitted when livestream state is updated to _DyteLivestreamStatus.Started_                                   |
+| `onLiveStreamEnding`      | Emitted when livestream state is updated to _DyteLivestreamStatus.Ending_                                    |
+| `onLiveStreamEnded`       | Emitted when livestream state is updated to _DyteLivestreamStatus.Ended_                                     |
+| `onLiveStreamErrored`     | Emitted when livestream state is updated to _DyteLivestreamStatus.Errored_                                   |

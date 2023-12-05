@@ -2,95 +2,54 @@ import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 <span>
-  This topic provides a simple guide to integrating Dyte's {props.product} into
-  your app, enabling you to add high-quality real-time communication features.
+  Now that you have your Dyte API Key, you can move on to integrating Dyte's
+  REST APIs with your server code. This diagram walks you through the flow
+  request of starting a {props.product} call via Dyte.
 </span>
 
-The following diagram illustrates the steps involved and demonstrates the interaction between Dyte's backend and frontend during the integration process.
+<br />
+<br />
 
 ![Diagram explaining how Dyte works](/static/home/how-dyte-works-v2.png)
 
-## Step 1: Register in the Developer Portal
+It all starts with creating a meeting which is needed to start a live video call. After a meeting has been created on Dyte's server, you can now add participants to the meeting. Each participant is given an `authToken` which is necessary for your client side to further interact with the meeting.
 
-To get started with Dyte, you must first register in the [Developer portal](https://dev.dyte.io).
+:::info
+To learn move about these terms, refer to our [Concepts](./concepts) page.
+:::
 
-## Step 2: Get your API Keys
+Let's dive into further details.
 
-Copy the [API Keys](https://dev.dyte.io/apikeys) for your organization from
-the Developer portal. The API Key is unique to your organization and is
-required to use Dyte REST APIs such as when instantiating a meeting.
+### Step 1: Create a meeting
 
-<ThemedImage
-  alt="API key"
-  width="600"
-  height="300"
-  sources={{
-    light: useBaseUrl('/static/dev-portal/api-key-light.png'),
-    dark: useBaseUrl('/static/dev-portal/api-key-dark.png'),
-  }}
-/>
+There are two ways to go about creating a meeting.
 
-## Step 3: Create Presets
+1. Create a Dyte meeting using the [Create Meeting API](/api#/operations/create_meeting). The API returns a unique identifier for your meeting which you will be using later.
 
-A preset is a set of permissions and UI configurations that would be
-applied to a participant. For more information, see [Add Presets](/guides/capabilities/presets).
+2. If you are going for a no-code integration, you can also create a meeting using the [Developer Portal](https://accounts.dyte.io/) and copy the unique identifier for the meeting.
 
-1. In the [Developer Portal](https://dev.dyte.io/), click **Presets**, and click **Create New**.
-   <ThemedImage
-     alt="Create preset"
-     width="600"
-     height="300"
-     sources={{
-       light: useBaseUrl('/static/dev-portal/create-preset-light.png'),
-       dark: useBaseUrl('/static/dev-portal/create-preset-dark.png'),
-     }}
-   />
-2. <span>
-     In the <b>Select Meeting Type</b>, select <b>{props.preset}</b>.
-   </span>
-   <ThemedImage
-     alt="Create preset"
-     width="600"
-     height="300"
-     sources={{
-       light: useBaseUrl('/static/preset/' + props.presetType + '.png'),
-       dark: useBaseUrl('/static/preset/' + props.presetType + '.png'),
-     }}
-   />
+Dyte meetings do not have a specific date or time associated to them, so you can either create
+them in advance or right when users need to join the meeting.
 
-3. Set permissions and UI configurations.
+### Step 2: Add Participants
 
-4. Once you’ve made all the changes that you need to add to your preset, click **Save** at the right-corner.
-   <img
-     src="/static/preset/savepreset.png"
-     width="600"
-     height="300"
-     alt="preset-save"
-   />
-5. Enter the name for your preset and click **Save**.
+Now that you have a meeting, it's time to add participants to the meeting. There are two ways in which you can add participants to a meeting:
+
+1. Call the [Add Participant API](/api#/operations/add_participant) with the unique identifier of your meeting. To specify the preset that your participant should use, remember to pass the `preset_name` parameter as well.
+
+2. Similar to creating a meeting, you can also add participants to the meeting through the [Developer Portal](https://accounts.dyte.io/) and share the `authToken` with the respective participants.
+
+On successfully creating a participant, you will receive an authorization token (`authToken`) for each participant. Your server has complete control over when to distribute this token to the participants. Your client side needs the `authToken` to connect and interact with the meeting.
 
 <span>{props.savePresetInfo}</span>
 
-## Step 4: Create a Meeting
+## What's Next?
 
-Create a Dyte meeting using the [Create Meeting API](/api#/operations/create_meeting). This API returns a unique identifier for your meeting.
-
-## Step 5: Add Participants
-
-After you've created the meeting, add participants to the meeting using the [Add Participant API](/api#/operations/add_participant).
-
-The preset created in the previous step must be passed in the body of the Add Participant API request. Specify the name of the preset in the `preset_name` parameter.
-
-This API returns the authentication `token` that is required to initialize your frontend SDKs.
-
-Dyte meetings do not have a date or time associated with them, so you can create
-them in advance or just when users need to join the meeting. The idea is that
-your backend controls when to distribute authentication `token` and thus you can share the
-tokens with the users at the scheduled time.
+You have completed the basic steps needed to integrate dyte on the server side. Now, you can move now to integrating dyte on your client side or you can learn more about the different [REST APIs](/api/) that Dyte provides and how you can utilise them.
 
 ## Next Step
 
 <Card
-  title="Initialize Your Frontend"
+  title="Client Setup"
   to={'/guides/' + props.productSlug + '/client-setup'}
 />
