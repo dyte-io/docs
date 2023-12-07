@@ -1,0 +1,22 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-recording-indicator.svg
+---
+
+# DyteRecordingIndicator
+
+A component which indicates the recording status of a meeting.
+
+It will not render anything if no recording is taking place.
+
+```xml
+<dyte.io.uikit.view.DyteRecordingIndicator
+      android:id="@+id/dyte_recording_indicator"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+```
+
+To setup the DyteRecordingIndicator inside kotlin/Java code do as follows
+```kotlin
+val dyteRecordingIndicator = findViewById(R.id.dyte_recording_indicator)
+dyteRecordingIndicator.activate(meeting)  
+```

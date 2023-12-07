@@ -1,0 +1,18 @@
+# DyteCameraToggle
+
+A button which toggles your camera.
+
+```xml
+<dyte.io.uikit.view.controlbarbuttons.DyteCameraToggleButton
+          android:id="@+id/btn_camera_toggle"
+          android:layout_width="48dp"
+          android:layout_height="48dp"
+          app:dyte_cbb_showText="false"
+          />
+```
+
+To setup the button inside kotlin/Java code do as follows
+```kotlin
+val cameraToggleButton = findViewById(R.id.btn_camera_toggle)
+cameraToggleButton.activate(meeting)  
+```

@@ -1,0 +1,25 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-audio-visualizer.svg
+---
+
+# DyteParticipantAudioIndicator
+
+An audio visualizer component which visualizes a participants audio.
+
+To use this component inside an xml use following syntax
+
+```xml
+<dyte.io.uikit.atoms.DyteParticipantAudioIndicator
+      android:id="@+id/audio_indicator"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/ic_mic_on_24"
+      ... <!--other xml attributes-->
+      />
+```
+
+Inside kotlin/Java code you need to pass objtec of `DyteMeetingParticipant` to render their audio status.
+```kotlin
+val audioIndicator = findViewById(R.id.audio_indicator)
+audioIndicator.activate(participant)
+```
