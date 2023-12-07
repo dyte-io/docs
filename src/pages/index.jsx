@@ -23,13 +23,13 @@ export default function Homepage() {
         <link rel="prefetch" href="/assets/css/elements.min.css" />
       </Head>
       <div>
-        <div className="m-0 w-full  bg-orange-500 p-4 text-center font-bold">
-          Looking to migrate from Twilio Video
+        <div className="w-full bg-gradient-to-r from-blue-500 to-red-500 p-4 text-center font-medium text-white">
+          Affected by Twilio Video sunsetting? Switch to Dyte with our{' '}
           <Link
             to="/guides/migration/twilio/concepts-twilio-vs-dyte"
-            className={'ml-2 text-white underline dark:text-black'}
+            className="text-white underline"
           >
-            Read our migration guide
+            migration guide.
           </Link>
         </div>
       </div>
