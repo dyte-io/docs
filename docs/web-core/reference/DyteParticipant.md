@@ -158,7 +158,7 @@ The preset of the participant.
 
 #### this..stageStatus
 
-Denotes the participants's current stage status.
+Denotes the participant's current stage status.
 
 <a name="module_DyteParticipant--this.+roomJoined"></a>
 
