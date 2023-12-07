@@ -3038,6 +3038,11 @@ components:
           format: date-time
           example: '2022-05-28T07:01:53.075Z'
           description: Timestamp when this webhook was updated
+        enabled:
+          type: boolean
+          x-stoplight:
+            id: l3hofopunopq2
+          description: Set to true if the webhook is active
       required:
         - id
         - name
@@ -3045,6 +3050,7 @@ components:
         - events
         - created_at
         - updated_at
+        - enabled
     WebhookSuccessResponse:
       type: object
       properties:
@@ -3127,6 +3133,12 @@ components:
               - meeting.chatSynced
               - recording.statusUpdate
               - livestreaming.statusUpdate
+        enabled:
+          type: boolean
+          x-stoplight:
+            id: sdmlx3dxq7xtq
+          description: Set whether or not the webhook should be active when created
+          default: true
       required:
         - name
         - url
@@ -3154,6 +3166,11 @@ components:
               - meeting.participantLeft
               - recording.statusUpdate
               - livestreaming.statusUpdate
+        enabled:
+          type: boolean
+          x-stoplight:
+            id: 3gh3gj4jpz7fh
+          default: true
     ActiveSession:
       type: object
       properties:
