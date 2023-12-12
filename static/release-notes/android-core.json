@@ -3,8 +3,8 @@
     "version": "1.24.0",
     "createdAt": 1701778861,
     "fixes": [
-      "Fixed an issues with a callback not getting triggered for un-pinning a participant",
-      "Fixed an crash on apps targetting to android-14 as compileSdk"
+      "Fixed an issue where callback was not getting triggered on un-pinning a participant",
+      "Fixed a crash for customers targeting Android 14 as their compileSdk configuration on their application"
     ],
     "breaking-changes": []
   },
@@ -12,10 +12,10 @@
     "version": "1.26.1",
     "createdAt": 1702288067,
     "new_api": [
-      "Added new api's in DyteRecording to pause and resume on-going recordings"
+      "DyteRecording class now have [pause()](../android-core/recording) and [resume()](../android-core/recording) methods to pause a recording and resume the same recording"
     ],
     "fixes": [
-      "Fixed an issues with stage, when a new peer receives the request to join stage, that peers stage status was not updating to current stage"
+      "Fixed an issue with DyteStage where the stage status was not updating correctly when a participant received a request to join stage"
     ],
     "breaking-changes": []
   }
