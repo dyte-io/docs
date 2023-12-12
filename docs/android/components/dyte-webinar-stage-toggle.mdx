@@ -1,0 +1,16 @@
+# DyteWebinarStageToggleButton
+
+Component that lets you add provisin for localUser to Join stage. This component internally handles operations related to Request Access, Join Stage, Cancel Request Access and Leave the stage.
+
+```xml
+<dyte.io.uikit.view.controlbarbuttons.webinarstagetogglebutton.DyteWebinarStageToggleButton
+      android:id="@+id/dyte_webinar_stage_toggle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+```
+
+To setup the button inside kotlin/Java code do as follows
+```kotlin
+val dyteStageToggleButton = findViewById(R.id.dyte_webinar_stage_toggle)
+dyteStageToggleButton.activate(meeting)  
+```

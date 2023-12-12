@@ -1,0 +1,20 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-participant-count.svg
+---
+
+# DyteParticipantCountView
+
+A component which shows count of total joined participants in a meeting.
+
+```xml
+<dyte.io.uikit.view.DyteParticipantCountView
+      android:id="@+id/dyte_participant_count_view"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+```
+
+To use the component do in kotlin/java as follows:
+```kotlin
+var participantCountView = findViewById(R.id.dyte_participant_count_view)
+participantCountView.activate(meeting)
+```

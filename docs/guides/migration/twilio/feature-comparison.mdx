@@ -1,0 +1,77 @@
+---
+title: 'Compatibility Matrix'
+wrapperClassName: 'test2'
+---
+
+<div class="table-w-border">
+
+## Features
+
+| **Feature**                  | **Twilio web** | **Twilio iOS** | **Twilio Android** | **Dyte Web** | **Dyte iOS** | **Dyte Android** |
+| ---------------------------- | -------------- | -------------- | ------------------ | ------------ | ------------ | ---------------- |
+| Join                         | ✅             | ✅             | ✅                 | ✅           | ✅           | ✅               |
+| Start audio/speaker          | ✅             | ✅             | ✅                 | ✅           | ✅           | ✅               |
+| Mute                         | ✅             | ✅             | ✅                 | ✅           | ✅           | ✅               |
+| Unmute                       | ✅             | ✅             | ✅                 | ✅           | ✅           | ✅               |
+| Start video                  | ✅             | ✅             | ✅                 | ✅           | ✅           | ✅               |
+| Stop video                   | ✅             | ✅             | ✅                 | ✅           | ✅           | ✅               |
+| Virtual background           | ✅             | ❌             | ❌                 | ✅           | ❌           | ✅               |
+| Render user video            | ✅             | ✅             | ✅                 | ✅           | ✅           | ✅               |
+| Leave                        | ✅             | ✅             | ✅                 | ✅           | ✅           | ✅               |
+| PSTN                         | ✅             | ✅             | ✅                 | 🔵           | 🔵           | 🔵               |
+| Recording                    | ✅             | ✅             | ✅                 | ✅           | ✅           | ✅               |
+| Recording composition        | ✅             | ✅             | ✅                 | ✅           | ✅           | ✅               |
+| Network bandwidth management | ✅             | ✅             | ✅                 | ✅           | ✅           | ✅               |
+| Noise cancellation           | ✅ + Krisp     | ✅ + Krisp     | ✅ + Krisp         | ✅ + Krisp   | ✅ + Krisp   | ✅ + Krisp       |
+| Preview                      | ✅             | ✅             | ✅                 | ✅           | ✅           | ✅               |
+| Screenshare                  | ✅             | ✅             | ✅                 | ✅           | ✅           | ✅               |
+| Data center selection        | ✅             | ✅             | ✅⭐               | ✅ ⭐        | ✅ ⭐        | ✅ ⭐            |
+| Reconnection                 | ✅             | ✅             | ✅                 | ✅           | ✅           | ✅               |
+| Webview Support (Web SDK)    | ✅             | N/A            | N/A                | ✅           | N/A          | N/A              |
+| Video Devices                | ✅             | ✅             | ✅                 | ✅           | ✅           | ✅               |
+| Speaker Devices              | ✅             | ✅             | ✅                 | ✅           | ✅           | ✅               |
+| Mic Devices                  | ✅             | ✅             | ✅                 | ✅           | ✅           | ✅               |
+| Data Tracks API              | ✅             | ✅             | ✅                 | ✅           | ✅           | ✅               |
+| Quality of Service           | ✅ HTTP        | ✅ HTTP        | ✅ HTTP            | ✅ HTTP      | ✅ HTTP      | ✅ HTTP          |
+| Analytics                    | ✅             | ✅             | ✅                 | ✅           | ✅           | ✅               |
+| Diagnostic CS Tooling        | ✅             | ✅             | ✅                 | ✅           | ❌           | ❌               |
+| Reports                      | ✅             | ✅             | ✅                 | ✅           | ✅           | ✅               |
+| Callkit (iOS)                | N/A            | ✅             | N/A                | N/A          | 🟠           | N/A              |
+| PiP (iOS)                    | N/A            | ✅             | N/A                | N/A          | ❌           | N/A              |
+
+<br />
+
+1. **PSTN** 🔵 - Can integrate with third party SIP to provide telephony support
+
+2. **Callkit (iOS)** 🟠 - Customers can add it at their end, sample code available
+
+3. **Data center selection** ⭐ - With Twilio a Room can only take place in one Data Center at a time, so that means if a user from US is connecting with a user in India, a region in the middle of two (like Europe) would be choose by default under 'gcc'. In Dyte a single media meeting can take place across multiple regions (Beta), so for the previous example the US user will connect to the US region and Indian user to the India region.
+
+<br />
+
+## Metrics / Quotas
+
+| \*                                            | **Twilio** | **Dyte** |
+| --------------------------------------------- | ---------- | -------- |
+| Max participants per Room                     | 50         | 10000\*  |
+| Max Audio Track Publications per Room         | 60         | 300      |
+| Max Video Track Publications per Room         | 60         | 300      |
+| Max Data Track Publications per Room          | 60         | MAX_ROOM |
+| Max Audio Track Subscriptions per Participant | 60         | 30       |
+| Max Video Track Subscriptions per Participant | 60         | 30       |
+| Max Data Track Subscriptions per Participant  | 60         | MAX_ROOM |
+| Max Audio Track Publications per Participant  | 2          | 2        |
+| Max Video Track Publications per Participant  | 6          | 2        |
+
+<br />* Default quota is 1000, contact support to increase it upto 10000
+
+<br />
+<br />
+
+Note: These are upper bound numbers and it might not be possible to reach the maximum of multiple of these metrics at the same time, for eg
+
+Scenario : In case where participants in Room (Meeting) = 10000; We will not be able to do 300 publications per Room with 30 subscriptions per Participant
+
+Reach out to us at support [at] dyte.io to understand how we can accommodate your limits
+
+</div>

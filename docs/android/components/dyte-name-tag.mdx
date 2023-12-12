@@ -1,0 +1,20 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-name-tag.svg
+---
+
+# DyteNameTagView
+
+A component which shows a participant's name.
+
+```xml
+<dyte.io.uikit.view.nametagview.DyteNameTagView
+      android:id="@+id/dyte_name_tag_view"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+```
+
+To use the component do in kotlin/java as follows:
+```kotlin
+var nameTagView = findViewById(R.id.dyte_name_tag_view)
+nameTagView.activate(participant)
+```

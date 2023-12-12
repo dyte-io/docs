@@ -1891,6 +1891,31 @@ paths:
         in: path
         required: true
         description: ID of the session
+  '/sessions/{session_id}/transcript':
+    get:
+      summary: Fetch the complete transcript for a session
+      description: |
+        Returns a URL to download the transcript for the session ID in CSV format.
+        <!-- theme: warning -->
+        > #### NOTE
+        >
+        > This API is in beta. [Contact us](https://dyte.io/contact) if you face
+        > any issues.
+      operationId: GetSessionTranscript
+      tags:
+        - Sessions
+      responses:
+        '200':
+          $ref: '#/components/responses/GetSessionTranscript'
+      x-stoplight:
+        id: h9a6ubd8g7l7b
+    parameters:
+      - schema:
+          type: string
+        name: session_id
+        in: path
+        required: true
+        description: ID of the session
   /webhooks:
     summary: Represents webhooks for organization
     description: Represents webhooks for organization
@@ -3038,6 +3063,11 @@ components:
           format: date-time
           example: '2022-05-28T07:01:53.075Z'
           description: Timestamp when this webhook was updated
+        enabled:
+          type: boolean
+          x-stoplight:
+            id: l3hofopunopq2
+          description: Set to true if the webhook is active
       required:
         - id
         - name
@@ -3045,6 +3075,7 @@ components:
         - events
         - created_at
         - updated_at
+        - enabled
     WebhookSuccessResponse:
       type: object
       properties:
@@ -3127,6 +3158,12 @@ components:
               - meeting.chatSynced
               - recording.statusUpdate
               - livestreaming.statusUpdate
+        enabled:
+          type: boolean
+          x-stoplight:
+            id: sdmlx3dxq7xtq
+          description: Set whether or not the webhook should be active when created
+          default: true
       required:
         - name
         - url
@@ -3154,6 +3191,11 @@ components:
               - meeting.participantLeft
               - recording.statusUpdate
               - livestreaming.statusUpdate
+        enabled:
+          type: boolean
+          x-stoplight:
+            id: 3gh3gj4jpz7fh
+          default: true
     ActiveSession:
       type: object
       properties:
@@ -3255,6 +3297,20 @@ components:
       required:
         - chat_download_url
         - chat_download_url_expiry
+    Transcript:
+      type: object
+      x-stoplight:
+        id: 9023dd94ef9aa
+      properties:
+        transcript_download_url:
+          type: string
+          description: URL where the transcript can be downloaded
+        transcript_download_url_expiry:
+          type: string
+          description: Time when the download URL will expire
+      required:
+        - transcript_download_url
+        - transcript_download_url_expiry
     SessionParticipant:
       type: object
       properties:
@@ -5576,6 +5632,18 @@ components:
               data:
                 type: object
                 $ref: '#/components/schemas/ChatMessage'
+    GetSessionTranscript:
+      description: Returns the complete transcript of a session.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: object
+                $ref: '#/components/schemas/Transcript'
     GetOverallStats:
       description: Returns complete analytics of an organization
       content:

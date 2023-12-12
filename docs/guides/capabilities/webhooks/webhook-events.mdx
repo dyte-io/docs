@@ -173,13 +173,6 @@ instead.
 This event is received when the chat messages dump of a meeting becomes
 available after the meeting ends.
 
-:::info Note
-
-By default, this event is not enabled for your organization.
-[Contact us](https://dyte.io/contact) to enable the `meeting.chatSynced` event for your
-organization.
-
-:::
 The payload for this event is like the following:
 
 ```json
@@ -193,6 +186,34 @@ The payload for this event is like the following:
     "id": "70c5d391-4bac-4cf3-9907-bec205798adb",
     "name": "Dyte"
   }
+}
+```
+
+### `meeting.transcript`
+
+This event is received when the chat messages dump of a meeting becomes
+available after the meeting ends.
+
+The payload for this event is like the following:
+
+```json
+{
+  "event": "meeting.transcript",
+  "meeting": {
+    "id": "bbbba351-90c5-487f-8358-ce4885555134",
+    "sessionId": "01eab2e1-3cd4-4237-8cf3-c8c071ef87e9",
+    "title": "Meeting",
+    "status": "LIVE",
+    "createdAt": "2023-08-10T10:31:20.173Z",
+    "startedAt": "2023-08-10T10:31:20.173Z",
+    "endedAt": "2023-08-10T10:33:56.771Z",
+    "organizedBy": {
+      "id": "d6f046b8-b638-4cf7-8090-d9332447ae49",
+      "name": "Dyte"
+    }
+  },
+  "transcriptDownloadUrl": "https://sample.com/transcript.csv",
+  "transcriptDownloadUrlExpiry": "2023-12-13 07:08:39.051621Z",
 }
 ```
 

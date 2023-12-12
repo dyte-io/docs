@@ -1,0 +1,14 @@
+# DyteJoinStage
+
+A confirmation dialog screen which is shown 
+- When the user's request to Join Stage is approved by the meeting host.
+- When host invites the localUser to join stage.
+
+```kotlin
+val dyteJoinStage = DyteJoinStage(requireContext())
+dyteJoinStage.setOnCancelListener {
+  // when dialog is dismissed by the localUser
+}
+dyteJoinStage.show()
+dyteJoinStage.activate(meeting)
+```
