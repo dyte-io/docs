@@ -14,7 +14,7 @@ If a user has the right set of permissions, the first thing they woulds want to 
 <Tabs groupId="framework">
 <TabItem value="web-components" label="Web Components">
 
-```jsx 
+```jsx
   <dyte-poll-form id="dyte-el"></dyte-poll-form>
     <script>
       document.getElementById('dyte-el').addEventListener('dyteCreatePoll', (e) => {
@@ -27,7 +27,7 @@ If a user has the right set of permissions, the first thing they woulds want to 
 <TabItem value="react" label="React">
 
 ```jsx
-      <DytePollForm onDyteCreatePoll={(e) => console.log('create poll', e.detail)} />
+<DytePollForm onDyteCreatePoll={(e) => console.log('create poll', e.detail)} />
 ```
 
 You can control what happens after a poll is creating by using `onDyteCreatePoll` prop.
@@ -89,7 +89,7 @@ After a user is done creating a poll, they can see all the polls available in a 
 <Tabs groupId="framework">
 <TabItem value="web-components" label="Web Components">
 
-```js
+```jsx
       <dyte-polls id="dyte-el"></dyte-polls>
 
       <script>
@@ -108,12 +108,12 @@ After a user is done creating a poll, they can see all the polls available in a 
 
 </TabItem>
 <TabItem value="react" label="React">
- 
-```jsx 
-  <DytePolls
-      meeting={meeting}
-      style={{ height: '480px', maxWidth: '320px', backgroundColor: '#000' }}
-    />
+
+```jsx
+<DytePolls
+  meeting={meeting}
+  style={{ height: '480px', maxWidth: '320px', backgroundColor: '#000' }}
+/>
 ```
 
 </TabItem>
@@ -148,10 +148,10 @@ This component is not yet available on Flutter.
 <TabItem value="react-native" label="React Native">
 
 ```jsx
-  <DytePolls
-    meeting={meeting}
-    style={{ height: '480px', maxWidth: '320px', backgroundColor: '#000' }}
-  />
+<DytePolls
+  meeting={meeting}
+  style={{ height: '480px', maxWidth: '320px', backgroundColor: '#000' }}
+/>
 ```
 
 </TabItem>
@@ -220,32 +220,32 @@ The `Dyte Poll` component lets the users view a given poll. It requires a poll o
 <TabItem value="react" label="React">
 
 ```jsx
-      <DytePoll
-        poll={{
-          id: 'poll-id',
-          question: 'Have you started using dyte yet?',
-          options: [
-            {
-              text: 'Yes',
-              votes: [{ id: 'vaibhavs-user-id', name: 'Vaibhav' }],
-              count: 0,
-            },
-            {
-              text: 'Nope',
-              votes: [],
-              count: 0,
-            },
-          ],
-          anonymous: false,
-          hideVotes: false,
-          createdBy: 'Vaibhav',
-          createdByUserId: 'vaibhavs-user-id',
-          voted: [],
-        }}
-        onDyteVotePoll={(e) => {
-          console.log('Voted', e.detail);
-        }}
-      />
+<DytePoll
+  poll={{
+    id: 'poll-id',
+    question: 'Have you started using dyte yet?',
+    options: [
+      {
+        text: 'Yes',
+        votes: [{ id: 'vaibhavs-user-id', name: 'Vaibhav' }],
+        count: 0,
+      },
+      {
+        text: 'Nope',
+        votes: [],
+        count: 0,
+      },
+    ],
+    anonymous: false,
+    hideVotes: false,
+    createdBy: 'Vaibhav',
+    createdByUserId: 'vaibhavs-user-id',
+    voted: [],
+  }}
+  onDyteVotePoll={(e) => {
+    console.log('Voted', e.detail);
+  }}
+/>
 ```
 
 </TabItem>
@@ -298,32 +298,32 @@ This component is not yet available on Flutter.
 <TabItem value="react-native" label="React Native">
 
 ```jsx
-      <DytePoll
-        poll={{
-          id: 'poll-id',
-          question: 'Have you started using dyte yet?',
-          options: [
-            {
-              text: 'Yes',
-              votes: [{ id: 'vaibhavs-user-id', name: 'Vaibhav' }],
-              count: 0,
-            },
-            {
-              text: 'Nope',
-              votes: [],
-              count: 0,
-            },
-          ],
-          anonymous: false,
-          hideVotes: false,
-          createdBy: 'Vaibhav',
-          createdByUserId: 'vaibhavs-user-id',
-          voted: [],
-        }}
-        onDyteVotePoll={(e) => {
-          console.log('Voted', e.detail);
-        }}
-      />
+<DytePoll
+  poll={{
+    id: 'poll-id',
+    question: 'Have you started using dyte yet?',
+    options: [
+      {
+        text: 'Yes',
+        votes: [{ id: 'vaibhavs-user-id', name: 'Vaibhav' }],
+        count: 0,
+      },
+      {
+        text: 'Nope',
+        votes: [],
+        count: 0,
+      },
+    ],
+    anonymous: false,
+    hideVotes: false,
+    createdBy: 'Vaibhav',
+    createdByUserId: 'vaibhavs-user-id',
+    voted: [],
+  }}
+  onDyteVotePoll={(e) => {
+    console.log('Voted', e.detail);
+  }}
+/>
 ```
 
 </TabItem>
@@ -368,7 +368,7 @@ Using the `Dyte Polls Toggle`, one can easily change the visibility of a poll on
 <TabItem value="react" label="React">
 
 ```jsx
-      <DytePollsToggle variant="horizontal" size="sm" meeting={meeting} />
+<DytePollsToggle variant="horizontal" size="sm" meeting={meeting} />
 ```
 
 </TabItem>
@@ -398,7 +398,7 @@ This component is not yet available on Flutter.
 <TabItem value="react-native" label="React Native">
 
 ```jsx
-      <DytePollsToggle variant="horizontal" size="sm" meeting={meeting} />
+<DytePollsToggle variant="horizontal" size="sm" meeting={meeting} />
 ```
 
 </TabItem>
@@ -421,4 +421,3 @@ This component is not yet available for iOS development.
 
 </TabItem>
 </Tabs>
-
