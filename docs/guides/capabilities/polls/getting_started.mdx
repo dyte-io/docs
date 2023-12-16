@@ -140,6 +140,8 @@ The type `DytePollMessage` is the main class for any poll in Dyte. It also conta
 
 ### Creating a new Poll
 
+#### coreSDK
+
 The `Polls` object gives a create function to create a new poll. It accepts the following parameters:
 
 | Param     | Type     | Default Value | Required | Description                                |
@@ -224,6 +226,60 @@ meeting.polls.create(
 
 </TabItem>
 </Tabs>
+
+#### REST API
+
+You can also create a poll using the (Create a Poll)[] REST API. This can be used to create a new poll in an active meeting session. In the request, make sure to provide the meeting ID of the session.
+
+##### Request
+
+Here is a sample request, make sure to replace the meeting ID and the authorization header with your own.
+
+```bash
+curl --request POST \
+  --url https://api.dyte.io/v2/meetings/meeting_id/active-session/poll \
+  --header 'Authorization: Basic undefined' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "question": "string",
+  "options": [
+    "string"
+  ],
+  "anonymous": true,
+  "hide_votes": true
+}'
+```
+
+##### Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "action": "string",
+    "poll": {
+      "id": "string",
+      "question": "string",
+      "options": [
+        {
+          "text": "string",
+          "count": 0,
+          "votes": [
+            {
+              "id": "string",
+              "name": "string"
+            }
+          ]
+        }
+      ],
+      "anonymous": true,
+      "hide_votes": true,
+      "created_by": "string",
+      "voted": ["string"]
+    }
+  }
+}
+```
 
 ### Voting on a Poll
 
