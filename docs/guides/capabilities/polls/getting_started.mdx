@@ -7,54 +7,52 @@
 
 `meeting.polls.items` returns an array of all polls created in a meeting, where each element is an object of type `Poll` which is defined in the following manner.
 
-```js
-interface Poll {
-  id: string;
-  question: string;
-  options: PollOption[];
-  anonymous: boolean;
-  hideVotes: boolean;
-  createdBy: string;
-  createdByUserId: string;
-  voted: string[]; // stores participant ID
-}
+The Poll object has the following properties:
 
-interface PollOption {
-  text: string;
-  votes: {
-    id: string, // stores participant ID
-    name: string,
-  }[];
-  count: number;
-}
-```
+| Property        | Description                                                               |
+| --------------- | ------------------------------------------------------------------------- |
+| id              | Unique ID assigned to each poll                                           |
+| question        | Question of the poll                                                      |
+| options         | Array of PollOption object, contains all the options to the poll question |
+| anonymous       | To hide the votes of each user even after completion (false by default)   |
+| hideVotes       | Hide votes until the voting is complete (enabled if anonymous is enabled) |
+| createdBy       | Name of creator of the poll                                               |
+| createdByUserId | ID of creator of the poll                                                 |
+| voted           | List of participant IDs who have voted on the poll                        |
+
+The `PollOption` object has the following properties:
+
+| Property | Description                                                                          |
+| -------- | ------------------------------------------------------------------------------------ |
+| text     | Contains the option text                                                             |
+| votes    | List of PollVote object, which contains the id and name of the voters of this option |
+| count    | Int of number of votes given to this option                                          |
 
 </TabItem>
 <TabItem value="react" label="React">
 
 `meeting.polls.items` returns an array of all polls created in a meeting, where each element is an object of type `Poll` which is defined in the following manner.
 
-```js
-interface Poll {
-  id: string;
-  question: string;
-  options: PollOption[];
-  anonymous: boolean;
-  hideVotes: boolean;
-  createdBy: string;
-  createdByUserId: string;
-  voted: string[]; // stores participant ID
-}
+The Poll object has the following properties:
 
-interface PollOption {
-  text: string;
-  votes: {
-    id: string, // stores participant ID
-    name: string,
-  }[];
-  count: number;
-}
-```
+| Property        | Description                                                               |
+| --------------- | ------------------------------------------------------------------------- |
+| id              | Unique ID assigned to each poll                                           |
+| question        | Question of the poll                                                      |
+| options         | Array of PollOption object, contains all the options to the poll question |
+| anonymous       | To hide the votes of each user even after completion (false by default)   |
+| hideVotes       | Hide votes until the voting is complete (enabled if anonymous is enabled) |
+| createdBy       | Name of creator of the poll                                               |
+| createdByUserId | ID of creator of the poll                                                 |
+| voted           | List of participant IDs who have voted on the poll                        |
+
+The `PollOption` object has the following properties:
+
+| Property | Description                                                                          |
+| -------- | ------------------------------------------------------------------------------------ |
+| text     | Contains the option text                                                             |
+| votes    | List of PollVote object, which contains the id and name of the voters of this option |
+| count    | Int of number of votes given to this option                                          |
 
 </TabItem>
 <TabItem value="flutter" label="Flutter">
@@ -92,27 +90,26 @@ The `DytePollVote` has the following properties:
 
 `meeting.polls.items` returns an array of all polls created in a meeting, where each element is an object of type `Poll` which is defined in the following manner.
 
-```js
-interface Poll {
-  id: string;
-  question: string;
-  options: PollOption[];
-  anonymous: boolean;
-  hideVotes: boolean;
-  createdBy: string;
-  createdByUserId: string;
-  voted: string[]; // stores participant ID
-}
+The Poll object has the following properties:
 
-interface PollOption {
-  text: string;
-  votes: {
-    id: string, // stores participant ID
-    name: string,
-  }[];
-  count: number;
-}
-```
+| Property        | Description                                                               |
+| --------------- | ------------------------------------------------------------------------- |
+| id              | Unique ID assigned to each poll                                           |
+| question        | Question of the poll                                                      |
+| options         | Array of PollOption object, contains all the options to the poll question |
+| anonymous       | To hide the votes of each user even after completion (false by default)   |
+| hideVotes       | Hide votes until the voting is complete (enabled if anonymous is enabled) |
+| createdBy       | Name of creator of the poll                                               |
+| createdByUserId | ID of creator of the poll                                                 |
+| voted           | List of participant IDs who have voted on the poll                        |
+
+The `PollOption` object has the following properties:
+
+| Property | Description                                                                          |
+| -------- | ------------------------------------------------------------------------------------ |
+| text     | Contains the option text                                                             |
+| votes    | List of PollVote object, which contains the id and name of the voters of this option |
+| count    | Int of number of votes given to this option                                          |
 
 </TabItem>
 <TabItem value="android" label="Android(Kotlin)">
@@ -138,9 +135,9 @@ The type `DytePollMessage` is the main class for any poll in Dyte. It also conta
 </TabItem>
 </Tabs>
 
-### Creating a new Poll
+## Creating a new Poll
 
-#### Using the coreSDK
+### Using the coreSDK
 
 The `Polls` object gives a create function to create a new poll. It accepts the following parameters:
 
@@ -227,11 +224,11 @@ meeting.polls.create(
 </TabItem>
 </Tabs>
 
-#### Using the REST API
+### Using the REST API
 
 You can also create a poll using the [Create a Poll](/api#/operations/CreatePoll) REST API. This can be used to create a new poll in an active meeting session. In the request, make sure to provide the meeting ID of the session.
 
-##### Request
+#### Request
 
 Here is a sample request, make sure to replace the meeting ID and the authorization header with your own.
 
@@ -250,7 +247,7 @@ curl --request POST \
 }'
 ```
 
-##### Response
+#### Response
 
 ```json
 {
@@ -281,7 +278,7 @@ curl --request POST \
 }
 ```
 
-### Voting on a Poll
+## Voting on a Poll
 
 The `Poll` object also provides a `vote` method that can be used to register votes on a poll.
 It accepts the following parameters:
@@ -345,7 +342,7 @@ meeting.polls.vote(pollMessage: poll, pollOption: selectedPollOption)
 </TabItem>
 </Tabs>
 
-### View Poll Results
+## View Poll Results
 
 The total votes on a poll can be accessed in the following manner where `votes` is an array of all participant ids.
 
@@ -464,7 +461,7 @@ let options = poll.option;
 </TabItem>
 </Tabs>
 
-### Get notified when a poll is created or updated
+## Get notified when a poll is created or updated
 
 An event is fired each time `items` in the `Polls Objects` are updated or created. User
 can listen for this to get the updated list of polls. the response object
