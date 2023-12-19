@@ -39,19 +39,20 @@ You can set the defaults for recording during initialization
 const meeting = await DyteClient.init({
   authToken,
   defaults: {
-    recording: recordingConfig
-  }
+    recording: recordingConfig,
+  },
 });
 ```
+
 In recording config you can specify height, width and codec of the recording output
 
 ```ts
 interface RecordingConfig {
-    videoConfig?: {
-        height?: number;
-        width?: number;
-        codec?: 'H264' | 'VP8';
-    }
+  videoConfig?: {
+    height?: number;
+    width?: number;
+    codec?: 'H264' | 'VP8';
+  };
 }
 ```
 
@@ -62,16 +63,14 @@ interface RecordingConfig {
    Default: `H264`
 
 2. **width** - Width of the recording video in pixels
-   Allowed values: 1 >= width <= 1920
+   Allowed values: 1 \>= width \<= 1920
 
    Default: `1280`
 
 3. **height** - Height of the recording video in pixels
-   Allowed values: 1 >= height <= 1920
+   Allowed values: 1 \>= height \<= 1920
 
    Default: `720`
-
-
 
 ## Check active recording state
 

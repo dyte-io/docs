@@ -15,7 +15,7 @@ Here are some frequently asked questions about the Plugin SDK.
     <p>
         <code>plugin.ready()</code> can be manually used to control when this communication starts.
     </p>
-
+    ```ts
     import DytePlugin from "@dytesdk/plugin-sdk";
     ...
     const plugin = await DytePlugin.init({ready: false});
@@ -23,6 +23,7 @@ Here are some frequently asked questions about the Plugin SDK.
     // .. do something
 
     plugin.ready();
+    ```
 
 </details>
 
@@ -34,7 +35,8 @@ Here are some frequently asked questions about the Plugin SDK.
         Peer events like <code>peerLeft</code> and <code>peerJoined</code> are only fired for when another participant leaves/joins the meeting, not for the current user. 
     </p>
     <p>These events can be called like so.</p>
-
+    
+    ```ts
     import DytePlugin from "@dytesdk/plugin-sdk";
     ...
     const plugin = await DytePlugin.init();
@@ -46,5 +48,6 @@ Here are some frequently asked questions about the Plugin SDK.
     plugin.on('peerLeft', (peer) => {
         console.log(peer);
     });
+    ```
 
 </details>
