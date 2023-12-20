@@ -3,6 +3,8 @@ sidebar_position: 1
 slug: /
 ---
 
+import { MavenLatestInstallation } from '@site/src/components/LatestInstallation';
+
 # Quickstart
 
 This quickstart shows how to use Dyte's Android UI Kit SDK to add live video and
@@ -42,10 +44,7 @@ You must complete the following steps:
 
 1. Install the SDK using maven dependency.
 
-```python
-  // other dependencies here
-  implementation 'io.dyte:uikit:1.14.2'
-```
+<MavenLatestInstallation pkg="uikit" />
 
 2. Add the following permissions to the AndroidManifest.xml file.
 
@@ -93,8 +92,6 @@ val dyteUIKitInfo = DyteUIKitInfo(
 )
 val dyteUIKit = DyteUIKitBuilder.build(dyteUIKitInfo)
 ```
-
-
 
 ## Step 4: Launch the meeting UI
 

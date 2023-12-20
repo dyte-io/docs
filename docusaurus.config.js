@@ -133,7 +133,7 @@ const docs = [
     routeBasePath: '/rn-core',
     versions: {
       current: {
-        label: '0.5.x',
+        label: '0.x.x',
       },
     },
   },
@@ -145,7 +145,7 @@ const docs = [
     routeBasePath: '/android',
     versions: {
       current: {
-        label: '0.14.x',
+        label: '1.x.x',
       },
     },
   },
@@ -165,7 +165,7 @@ const docs = [
     routeBasePath: '/ios',
     versions: {
       current: {
-        label: '1.33.x',
+        label: '1.x.x',
       },
     },
   },
@@ -175,7 +175,7 @@ const docs = [
     routeBasePath: '/react-native',
     versions: {
       current: {
-        label: '1.4.x',
+        label: '1.x.x',
       },
     },
   },
