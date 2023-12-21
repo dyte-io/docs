@@ -133,7 +133,7 @@ const docs = [
     routeBasePath: '/rn-core',
     versions: {
       current: {
-        label: '0.5.x',
+        label: '0.x.x',
       },
     },
   },
@@ -145,7 +145,7 @@ const docs = [
     routeBasePath: '/android',
     versions: {
       current: {
-        label: '0.14.x',
+        label: '1.x.x',
       },
     },
   },
@@ -165,7 +165,7 @@ const docs = [
     routeBasePath: '/ios',
     versions: {
       current: {
-        label: '1.33.x',
+        label: '1.x.x',
       },
     },
   },
@@ -175,7 +175,7 @@ const docs = [
     routeBasePath: '/react-native',
     versions: {
       current: {
-        label: '1.4.x',
+        label: '1.x.x',
       },
     },
   },
@@ -184,7 +184,7 @@ const docs = [
 /** @type {import('@docusaurus/plugin-content-docs').Options} */
 const defaultSettings = {
   breadcrumbs: true,
-  editUrl: 'https://github.com/dyte-in/docs/tree/main/',
+  editUrl: 'https://github.com/dyte-io/docs/tree/main/',
   showLastUpdateTime: true,
   sidebarCollapsible: true,
   remarkPlugins: [
@@ -224,58 +224,93 @@ const plugins = [
     '@docusaurus/plugin-client-redirects',
     {
       createRedirects(path) {
-
         if (path.startsWith('/guides/capabilities/chat/export-chat-dump')) {
-          return ['/capabilities/export-chat-dump']
+          return ['/capabilities/export-chat-dump'];
         }
 
         if (path.startsWith('/guides/capabilities/audio/transcriptions')) {
-          return ['/guides/capabilities/ai/meeting-transcription']
+          return ['/guides/capabilities/ai/meeting-transcription'];
         }
 
         if (path.startsWith('/guides/capabilities/misc/embed')) {
-          return ['/guides/capabilities/embed']
+          return ['/guides/capabilities/embed'];
         }
 
-        if (path.startsWith('/guides/capabilities/misc/livestreaming-other-platforms')) {
-          return ['/guides/capabilities/livestreaming-other-platforms']
+        if (
+          path.startsWith(
+            '/guides/capabilities/misc/livestreaming-other-platforms'
+          )
+        ) {
+          return ['/guides/capabilities/livestreaming-other-platforms'];
         }
 
         if (path.startsWith('/guides/capabilities/video')) {
-          return ['/guides/capabilities/middleware/add-virtual-background', '/guides/capabilities/customization/add-virtual-background']
+          return [
+            '/guides/capabilities/middleware/add-virtual-background',
+            '/guides/capabilities/customization/add-virtual-background',
+          ];
         }
 
         if (path.startsWith('/guides/live-video/concepts')) {
-          return ['/guides/live-video/concepts-live-video']
+          return ['/guides/live-video/concepts-live-video'];
         }
 
         if (path.startsWith('/guides/voice-conf/concepts')) {
-          return ['/guides/voice-conf/concepts-voice-conf']
+          return ['/guides/voice-conf/concepts-voice-conf'];
         }
 
         if (path.startsWith('/guides/livestream/concepts')) {
-          return ['/guides/livestream/concepts-ils']
+          return ['/guides/livestream/concepts-ils'];
         }
 
         if (path.startsWith(''))
-
           if (path.startsWith('/web-core/livestreaming')) {
-            return [path.replace('/web-core/livestreaming', '/web-core/livestreaming/livestream-apis')];
+            return [
+              path.replace(
+                '/web-core/livestreaming',
+                '/web-core/livestreaming/livestream-apis'
+              ),
+            ];
           }
         if (path.startsWith('/rn-core/livestreaming')) {
-          return [path.replace('/rn-core/livestreaming', '/rn-core/livestreaming/livestream-apis')];
+          return [
+            path.replace(
+              '/rn-core/livestreaming',
+              '/rn-core/livestreaming/livestream-apis'
+            ),
+          ];
         }
         if (path.startsWith('/react-web-core/livestreaming')) {
-          return [path.replace('/react-web-core/livestreaming', '/react-web-core/livestreaming/livestream-apis')];
+          return [
+            path.replace(
+              '/react-web-core/livestreaming',
+              '/react-web-core/livestreaming/livestream-apis'
+            ),
+          ];
         }
         if (path.startsWith('/web-core/stage')) {
-          return [path.replace('/web-core/stage', '/web-core/livestreaming/state-management-apis')];
+          return [
+            path.replace(
+              '/web-core/stage',
+              '/web-core/livestreaming/state-management-apis'
+            ),
+          ];
         }
         if (path.startsWith('/rn-core/stage')) {
-          return [path.replace('/rn-core/stage', '/rn-core/livestreaming/state-management-apis')];
+          return [
+            path.replace(
+              '/rn-core/stage',
+              '/rn-core/livestreaming/state-management-apis'
+            ),
+          ];
         }
         if (path.startsWith('/react-web-core/stage')) {
-          return [path.replace('/react-web-core/stage', '/react-web-core/livestreaming/state-management-apis')];
+          return [
+            path.replace(
+              '/react-web-core/stage',
+              '/react-web-core/livestreaming/state-management-apis'
+            ),
+          ];
         }
         if (path.startsWith('/guides/capabilities/webhooks')) {
           return [

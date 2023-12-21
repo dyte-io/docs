@@ -14,9 +14,9 @@
     <br />
     <a href="https://app.dyte.io">View Demo</a>
     ·
-    <a href="https://github.com/dyte-in/docs/issues">Report Bug</a>
+    <a href="https://github.com/dyte-io/docs/issues">Report Bug</a>
     ·
-    <a href="https://github.com/dyte-in/docs/issues">Request Feature</a>
+    <a href="https://github.com/dyte-io/docs/issues">Request Feature</a>
   </p>
 </p>
 
@@ -67,7 +67,7 @@ This section describes how you can get our documentation portal up and running o
 1. Clone the repo
 
 ```sh
-git clone https://github.com/dyte-in/docs.git
+git clone https://github.com/dyte-io/docs.git
 ```
 
 2. Install NPM packages
@@ -131,7 +131,7 @@ const SECTIONS = [
     icon: GoIcon,
     section: false, // if it shouldn't have a sections menu
   },
-]
+];
 ```
 
 You'll need to create a GoIcon component too.
@@ -148,13 +148,13 @@ See [CHANGELOG](./CHANGELOG.md).
 
 ## Roadmap
 
-See the [open issues](https://github.com/dyte-in/docs/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/dyte-io/docs/issues) for a list of proposed features (and known issues).
 
 <!-- CONTRIBUTING -->
 
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**. Sincere thanks to all our contributors. Thank you, [contributors](https://github.com/dyte-in/docs/graphs/contributors)!
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**. Sincere thanks to all our contributors. Thank you, [contributors](https://github.com/dyte-io/docs/graphs/contributors)!
 
 You are requested to follow the contribution guidelines specified in [CONTRIBUTING.md](./CONTRIBUTING.md) and code of conduct at [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) while contributing to the project :smile:.
 
@@ -178,4 +178,4 @@ Distributed under the Apache License, Version 2.0. See [`LICENSE`](./LICENSE) fo
 
 The names and logos for Dyte are trademarks of Dyte, Inc.
 
-We love open source software! See [our other projects](https://github.com/dyte-in) and [our products](https://dyte.io).
+We love open source software! See [our other projects](https://github.com/dyte-io) and [our products](https://dyte.io).
