@@ -1,1 +1,354 @@
 # Plugins
+
+Dyte Plugins allow you to build collaborative and immersive experiences in your meetings without ever having to the meeting. The guides listed here will help you enable or disable plugins during meetings, configure existing plugins and even create new plugins with the help of Meeting APIs and built-in realtime database.
+
+## Enable Plugins
+
+Here is an introduction on how to enable plugins in your meetings:
+
+<Tabs groupId="framework">
+<TabItem value="web-components" label="Web Components">
+The activate() method activates a plugin for all users in the meeting. When you activate a plugin, it moves into the active plugins map and can be accessed from `meeting.plugins.active`.
+
+The snippet below displays all plugins and activates a plugin on click.
+
+```js
+const plugins = meeting.plugins.all.toArray();
+
+plugins.forEach((plugin: DytePlugin) => {
+  const button = document.createElement('button');
+  button.innerText = plugin.name;
+  button.onclick = async () => {
+    await plugin.activate();
+  };
+  document.body.appendChild(button);
+});
+```
+
+</TabItem>
+<TabItem value="react" label="React">
+The activate() method activates a plugin for all users in the meeting. When you activate a plugin, it moves into the active plugins map and can be accessed from `meeting.plugins.active`.
+
+The snippet below displays all plugins and activates a plugin on click.
+
+```js
+const plugins = meeting.plugins.all.toArray();
+
+plugins.forEach((plugin: DytePlugin) => {
+  const button = document.createElement('button');
+  button.innerText = plugin.name;
+  button.onclick = async () => {
+    await plugin.activate();
+  };
+  document.body.appendChild(button);
+});
+```
+
+</TabItem>
+<TabItem value="flutter" label="Flutter">
+
+:::info
+
+Plugins are not yet available for FlutterCore.
+
+:::
+
+</TabItem>
+<TabItem value="react-native" label="React Native">
+The activate() method activates a plugin for all users in the meeting. When you activate a plugin, it moves into the active plugins map and can be accessed from `meeting.plugins.active`.
+
+The snippet below displays all plugins and activates a plugin on click.
+
+```js
+const plugins = meeting.plugins.all.toArray();
+
+plugins.forEach((plugin: DytePlugin) => {
+  const button = document.createElement('button');
+  button.innerText = plugin.name;
+  button.onclick = async () => {
+    await plugin.activate();
+  };
+  document.body.appendChild(button);
+});
+```
+
+</TabItem>
+<TabItem value="android" label="Android">
+The activate() method activates a plugin for all users in the meeting. When you activate a plugin, it moves into the active plugins map and can be accessed from `meeting.plugins.active`. You can get all plugins in a meeting using `meeting.plugins.all`.
+
+The snippet below displays activates a given plugin.
+
+```kotlin
+  val plugin = meeting.plugins.all['pluginName']
+  plugin?.activate()
+```
+
+This will trigger a callback in onPluginActivated(). To be able to listen to plugin events you need to implement a methods from callback `DytePluginEventsListener`. You can subscribe to this events by calling meeting.addPluginEventsListener(dytePluginEventsListener).
+
+```kotlin
+    meeting.addMeetingRoomEventsListener(object :
+      DyteMeetingRoomEventsListener {
+      override fun onPluginActivated(plugin: DytePlugin) {
+      super.onPluginActivated(plugin)
+      // your code to handle plugin activation
+    }
+
+    override fun onPluginDeactivated(plugin: DytePlugin) {
+      super.onPluginDeactivated(plugin)
+      // your code to handle plugin de-activation
+    }
+```
+
+</TabItem>
+<TabItem value="ios" label="iOS">
+
+The activate() method activates a plugin for all users in the meeting. When you activate a plugin, it moves into the active plugins map and can be accessed from `meeting.plugins.active`. You can get all plugins in a meeting using `meeting.plugins.all`.
+
+The snippet below displays activates a given plugin.
+
+```kotlin
+  val plugin = meeting.plugins.all['pluginName']
+  plugin?.activate()
+```
+
+This will trigger a callback in onPluginActivated(). To be able to listen to plugin events you need to implement a methods from callback `DytePluginEventsListener`. You can subscribe to this events by calling meeting.addPluginEventsListener(dytePluginEventsListener).
+
+```swift
+extension MeetingViewModel: DytePluginEventsListener {
+
+  func onPluginActivated(plugin: DytePlugin) {
+    // your code to handle plugin activation
+  }
+
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Disable Plugins
+
+Here is an introduction on how to disable plugins in your meetings:
+
+<Tabs groupId="framework">
+<TabItem value="web-components" label="Web Components">
+The deactivate() method deactivates the plugin for all users in the meeting. When you deactivate a plugin, it gets removed from the active plugins map and can only be accessed from meeting.plugins.all.
+
+The snippet below displays all active plugins and deactivate a plugin on click.
+
+```js
+const plugins = meeting.plugins.active.toArray();
+
+plugins.forEach((plugin: DytePlugin) => {
+  const button = document.createElement('button');
+  button.innerText = `Deactivate ${plugin.name}`;
+  button.onclick = async () => {
+    await plugin.deactivate();
+  };
+  document.body.appendChild(button);
+});
+```
+
+Alternately, to disable a particular plugin, you can filter the `plugins` array by name of the plugins you want to deactivate.
+
+```js
+const plugins = meeting.plugins.active.toArray();
+const plugin = plugins.find((p) => p.name === 'YouTube');
+
+await plugin?.deactivate();
+```
+
+</TabItem>
+<TabItem value="react" label="React">
+The deactivate() method deactivates the plugin for all users in the meeting. When you deactivate a plugin, it gets removed from the active plugins map and can only be accessed from meeting.plugins.all.
+
+The snippet below displays all active plugins and deactivate a plugin on click.
+
+```js
+const plugins = meeting.plugins.active.toArray();
+
+plugins.forEach((plugin: DytePlugin) => {
+  const button = document.createElement('button');
+  button.innerText = `Deactivate ${plugin.name}`;
+  button.onclick = async () => {
+    await plugin.deactivate();
+  };
+  document.body.appendChild(button);
+});
+```
+
+Alternately, to disable a particular plugin, you can filter the `plugins` array by name of the plugins you want to deactivate.
+
+```js
+const plugins = meeting.plugins.active.toArray();
+const plugin = plugins.find((p) => p.name === 'YouTube');
+
+await plugin?.deactivate();
+```
+
+</TabItem>
+<TabItem value="flutter" label="Flutter">
+
+:::info
+
+Plugins are not yet available for FlutterCore.
+
+:::
+
+</TabItem>
+<TabItem value="react-native" label="React Native">
+The deactivate() method deactivates the plugin for all users in the meeting. When you deactivate a plugin, it gets removed from the active plugins map and can only be accessed from meeting.plugins.all.
+
+The snippet below displays all active plugins and deactivate a plugin on click.
+
+```js
+const plugins = meeting.plugins.active.toArray();
+
+plugins.forEach((plugin: DytePlugin) => {
+  const button = document.createElement('button');
+  button.innerText = `Deactivate ${plugin.name}`;
+  button.onclick = async () => {
+    await plugin.deactivate();
+  };
+  document.body.appendChild(button);
+});
+```
+
+Alternately, to disable a particular plugin, you can filter the `plugins` array by name of the plugins you want to deactivate.
+
+```js
+const plugins = meeting.plugins.active.toArray();
+const plugin = plugins.find((p) => p.name === 'YouTube');
+
+await plugin?.deactivate();
+```
+
+</TabItem>
+<TabItem value="android" label="Android">
+
+The deactivate() method activates a plugin for all users in the meeting. You can access all active plugins from `meeting.plugins.active`.
+
+The snippet below displays deactivate a single plugin.
+
+```kotlin
+  val plugin = meeting.plugins.active['pluginName']
+  plugin?.deactivate()
+```
+
+</TabItem>
+<TabItem value="ios" label="iOS">
+
+The deactivate() method activates a plugin for all users in the meeting. You can access all active plugins from `meeting.plugins.active`.
+
+The snippet below displays deactivate a single plugin.
+
+```swift
+  val plugin = meeting.plugins.active['pluginName']
+  plugin?.deactivate()
+```
+
+When a plugin is deactivated, it triggers a callback in onPluginDeactivated(). To be able to listen to plugin events you need to implement a methods from callback `DytePluginEventsListener`. You can subscribe to this events by calling meeting.addPluginEventsListener(dytePluginEventsListener).
+
+```swift
+extension MeetingViewModel: DytePluginEventsListener {
+
+  func onPluginDeactivated(plugin: DytePlugin) {
+    // your code to handle plugin de-activation
+  }
+
+}
+```
+
+</TabItem>
+</Tabs>
+
+## Configure existing plgins
+
+For further reading on configuring existing plugins, check out the guides below:
+
+<CardSection id="existing-plugins">
+  <Card
+    title="Document Sharing"
+    to="./plugins/docshare"
+    description="Learn about APIs to control the document viewer"
+  />
+  <Card
+    title="Streamer"
+    to="./plugins/streamer"
+    description="Learn about APIs to control the video playback"
+  />
+  <Card
+    title="Whiteboard"
+    to="./plugins/whiteboard"
+    description="Configure the whiteboard built on top of excalidraw"
+  />
+</CardSection>
+
+## Create new plugins
+
+:::warning Important
+
+Plugin-SDK is currently in beta. To use this SDK, please contact support@dyte.io
+
+:::
+
+If existing plugins don't meet your requirements, you can create your own plugins using Dyte's Plugin SDK which includes Meeting APIs and a built-in realtime database.
+
+### Install Plugin SDK
+
+<Tabs
+  groupId="node-pm"
+  defaultValue="npm"
+  values={[
+    { label: "npm", value: "npm" },
+    { label: "yarn", value: "yarn" },
+    { label: "CDN", value: "CDN" },
+  ]}
+>
+<TabItem value="npm">
+
+```shell
+npm install @dytesdk/plugin-sdk
+```
+
+</TabItem>
+<TabItem value="yarn">
+
+```shell
+yarn add @dytesdk/plugin-sdk
+```
+
+</TabItem>
+<TabItem value="CDN">
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@dytesdk/plugin-sdk" />
+```
+
+</TabItem>
+</Tabs>
+
+Check out the guides below to use the Plugin-SDK:
+
+<CardSection id="new-plugins">
+  <Card
+    title="Create a plugin"
+    to="/plugin-sdk/setup/create"
+    description="Learn to use the Dyte CLI to create a new plugin"
+  />
+  <Card
+    title="Publish plugin"
+    to="/plugin-sdk/setup/publish"
+    description="Learn to build and publish the plugin"
+  />
+  <Card
+    title="Meeting APIs for plugin"
+    to="/plugin-sdk/usage/rooms-api/methods"
+    description="Learn to use the Meeting APIs to align your plugin with the meeting"
+  />
+  <Card
+    title="Realtime Data Store for plugin"
+    to="/plugin-sdk/usage/stores-api/introduction"
+    description="Learn to leverage the temporary realtime database to manage your data better"
+  />
+</CardSection>
