@@ -55,11 +55,16 @@ You can also define defaults for screen sharing during the client initialisation
 </TabItem>
 <TabItem value="flutter" label="Flutter">
 
-:::info
+```dart
+// Enable Screenshare
+dyteClient.localUser.enableScreenShare();
 
-This function is not yet available on the Flutter coreSDK.
+// Disable Screenshare
+dyteClient.localUser.disableScreenShare();
 
-:::
+// Get current status
+dyteClient.localUser.screenShareEnabled;
+```
 
 </TabItem>
 <TabItem value="react-native" label="React Native">
@@ -76,22 +81,48 @@ meeting.self.screenShareEnabled;
 ```
 
 </TabItem>
-<TabItem value="android" label="Android (Kotlin)"></TabItem>
-<TabItem value="ios" label="iOS (Swift)"></TabItem>
+<TabItem value="android" label="Android (Kotlin)">
+
+```kotlin
+// Enable Screenshare
+meeting.localUser.enableScreenShare();
+
+// Disable Screenshare
+meeting.localUser.disableScreenShare();
+
+// Get current status
+meeting.localUser.screenShareEnabled;
+```
+
+</TabItem>
+<TabItem value="ios" label="iOS (Swift)">
+
+```swift
+// Enable Screenshare
+meeting.localUser.enableScreenShare();
+
+// Disable Screenshare
+meeting.localUser.disableScreenShare();
+
+// Get current status
+meeting.localUser.screenShareEnabled;
+```
+
+</TabItem>
 </Tabs>
 
 ## Building UI for screen sharing
 
 ### Screen share View
 
-Once the user starts sharing the screen, use the screenshare view from the UIKit to display the shared screen. The component allows you to nest other components inside it to create a custom layout based on your needs. Check out a the sample usage of UIKit on your prefered platform. 
+Once the user starts sharing the screen, use the screenshare view from the UIKit to display the shared screen. The component allows you to nest other components inside it to create a custom layout based on your needs. Check out a the sample usage of UIKit on your prefered platform.
 
 This component does not render anything if the participant hasn't start sharing their screen.
 
 <Tabs groupId="framework">
 <TabItem value="web-components" label="Web Components">
 
-```jsx 
+```jsx
 <dyte-screenshare-view class="dyte-el" style="height: 480px">
   <dyte-name-tag class="dyte-el">
     <dyte-audio-visualizer class="dyte-el" slot="start"></dyte-audio-visualizer>
@@ -105,6 +136,7 @@ This component does not render anything if the participant hasn't start sharing 
   }
 </script>
 ```
+
 Check out the [reference](/ui-kit/components/dyte-screenshare-view) for more details about the attributes.
 
 To create your own component, you can use the `screenShareTracks` property of the [local user](/web-core/local-user/introduction) to get the list of screen share tracks and control how you want to display them.
@@ -113,11 +145,17 @@ To create your own component, you can use the `screenShareTracks` property of th
 <TabItem value="react" label="React">
 
 ```jsx
+import {
+  DyteScreenshareView,
+  DyteNameTag,
+  DyteAudioVisualizer,
+} from '@dytesdk/react-ui-kit';
+
 <DyteScreenshareView participant={meeting.self} style={{ height: '480px' }}>
   <DyteNameTag participant={meeting.self}>
     <DyteAudioVisualizer slot="start" participant={meeting.self} />
   </DyteNameTag>
-</DyteScreenshareView>
+</DyteScreenshareView>;
 ```
 
 Check out the [reference](/react-ui-kit/components/dyte-screenshare-view) for more details about the props.
@@ -127,7 +165,7 @@ To create your own component, you can use the `screenShareTracks` property of th
 </TabItem>
 <TabItem value="angular" label="Angular">
 
-```jsx 
+```jsx
 <dyte-screenshare-view class="dyte-el" style="height: 480px">
   <dyte-name-tag class="dyte-el">
     <dyte-audio-visualizer class="dyte-el" slot="start"></dyte-audio-visualizer>
@@ -150,11 +188,17 @@ This UI component does not currently exist in the Flutter UIKit.
 <TabItem value="react-native" label="React Native">
 
 ```jsx
+import {
+  DyteScreenshareView,
+  DyteNameTag,
+  DyteAudioVisualizer,
+} from '@dytesdk/react-native-ui-kit';
+
 <DyteScreenshareView participant={meeting.self} style={{ height: '480px' }}>
   <DyteNameTag participant={meeting.self}>
     <DyteAudioVisualizer slot="start" participant={meeting.self} />
   </DyteNameTag>
-</DyteScreenshareView>
+</DyteScreenshareView>;
 ```
 
 Check out the [reference](/react-native/components/dyte-screenshare-view) for more details about the props.
@@ -209,11 +253,12 @@ You can create your own button to toggle screen sharing for the user or use the 
 <TabItem value="react" label="React">
 
 ```jsx
+import { DyteScreenShareToggle } from '@dytesdk/react-ui-kit';
 <Center>
   <DyteScreenShareToggle size="sm" meeting={meeting} />
   <DyteScreenShareToggle size="lg" meeting={meeting} />
   <DyteScreenShareToggle variant="horizontal" size="sm" meeting={meeting} />
-</Center>
+</Center>;
 ```
 
 </TabItem>
@@ -239,11 +284,12 @@ This UI component does not currently exist in the Flutter UIKit.
 <TabItem value="react-native" label="React Native">
 
 ```jsx
+import { DyteScreenShareToggle } from '@dytesdk/react-native-ui-kit';
 <Center>
   <DyteScreenShareToggle size="sm" meeting={meeting} />
   <DyteScreenShareToggle size="lg" meeting={meeting} />
   <DyteScreenShareToggle variant="horizontal" size="sm" meeting={meeting} />
-</Center>
+</Center>;
 ```
 
 </TabItem>
