@@ -52,8 +52,16 @@ You can use this API to get the transcript for a meeting at a later time. Dyte s
 The transcript is received in the form of a CSV. Here is the format of the said CSV:
 
 ```csv
-Timestamp, Participant ID, Participant Name, Transcript
+Timestamp, Peer ID, Participant ID, Custom Participant ID, Participant Name, Transcript
 ```
+
+The following is a description of all the fields specified in the above CSV.
+1. Timestamp: An ISO 8601 format string indicating the time of utterance (or the time of speech).
+2. Peer ID: An identifier for individual peers in the meeting. For instance, if the participant joins the meeting twice, both the "peers" will have the same Participant ID but different Peer IDs.
+3. Participant ID: An identifier for a participant in the meeting, as returned by the [add participant API call](https://docs.dyte.io/api#/operations/add_participant#response-body).
+4. Custom Participant ID: An identifier that you can specify to identify a user. This can be sent in the request body of the [add participant API call](https://docs.dyte.io/api#/operations/add_participant#request-body).
+5. Participant Name: The display name of the user.
+6. Transcript: The transcribed utterance.
 
 ## Testing transcription
 
