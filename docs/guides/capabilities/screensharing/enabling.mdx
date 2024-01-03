@@ -55,6 +55,48 @@ await meeting.self.disableScreenShare();
 ```
 
 </TabItem>
+<TabItem value="flutter" label="Flutter">
+
+```dart
+// Enable Screenshare
+dyteClient.localUser.enableScreenShare();
+
+// Disable Screenshare
+dyteClient.localUser.disableScreenShare();
+
+// Get current status
+dyteClient.localUser.screenShareEnabled;
+```
+
+</TabItem>
+<TabItem value="android" label="Android (Kotlin)">
+
+```kotlin
+// Enable Screenshare
+meeting.localUser.enableScreenShare();
+
+// Disable Screenshare
+meeting.localUser.disableScreenShare();
+
+// Get current status
+meeting.localUser.screenShareEnabled;
+```
+
+</TabItem>
+<TabItem value="ios" label="iOS (Swift)">
+
+```swift
+// Enable Screenshare
+meeting.localUser.enableScreenShare();
+
+// Disable Screenshare
+meeting.localUser.disableScreenShare();
+
+// Get current status
+meeting.localUser.screenShareEnabled;
+```
+
+</TabItem>
 </Tabs>
 
 ### Events <div class="header-tag tag-core">Core</div>
@@ -147,11 +189,13 @@ If you don't want to create your own button to toggle screen sharing, use the de
 <TabItem value="react" label="React">
 
 ```jsx
+import { DyteScreenShareToggle } from '@dytesdk/react-ui-kit';
+
 <Center>
   <DyteScreenShareToggle size="sm" meeting={meeting} />
   <DyteScreenShareToggle size="lg" meeting={meeting} />
   <DyteScreenShareToggle variant="horizontal" size="sm" meeting={meeting} />
-</Center>
+</Center>;
 ```
 
 </TabItem>
@@ -170,11 +214,13 @@ If you don't want to create your own button to toggle screen sharing, use the de
 <TabItem value="react-native" label="React Native">
 
 ```jsx
+import { DyteScreenShareToggle } from '@dytesdk/react-native-ui-kit';
+
 <Center>
   <DyteScreenShareToggle size="sm" meeting={meeting} />
   <DyteScreenShareToggle size="lg" meeting={meeting} />
   <DyteScreenShareToggle variant="horizontal" size="sm" meeting={meeting} />
-</Center>
+</Center>;
 ```
 
 </TabItem>

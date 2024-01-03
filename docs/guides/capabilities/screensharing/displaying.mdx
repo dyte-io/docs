@@ -146,11 +146,17 @@ To create your own component, you can use the `screenShareTracks` property of th
 <TabItem value="react" label="React">
 
 ```jsx
+import {
+  DyteScreenshareView,
+  DyteNameTag,
+  DyteAudioVisualizer,
+} from '@dytesdk/react-ui-kit';
+
 <DyteScreenshareView participant={ssParticipant} style={{ height: '480px' }}>
   <DyteNameTag participant={ssParticipant}>
     <DyteAudioVisualizer slot="start" participant={ssParticipant} />
   </DyteNameTag>
-</DyteScreenshareView>
+</DyteScreenshareView>;
 ```
 
 Check out the [reference](/react-ui-kit/components/dyte-screenshare-view) for more details about the props.
@@ -190,11 +196,17 @@ This UI component does not currently exist in the Flutter UIKit.
 <TabItem value="react-native" label="React Native">
 
 ```jsx
+import {
+  DyteScreenshareView,
+  DyteNameTag,
+  DyteAudioVisualizer,
+} from '@dytesdk/react-native-ui-kit';
+
 <DyteScreenshareView participant={ssParticipant} style={{ height: '480px' }}>
   <DyteNameTag participant={ssParticipant}>
     <DyteAudioVisualizer slot="start" participant={ssParticipant} />
   </DyteNameTag>
-</DyteScreenshareView>
+</DyteScreenshareView>;
 ```
 
 Check out the [reference](/react-native/components/dyte-screenshare-view) for more details about the props.
