@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import CodeBlock from '@theme/CodeBlock';
 import latestNPMVersion from '../utils/npm';
 
-export const MavenLatestInstallation = () => {
+export const MavenLatestInstallation = ({ pkg }) => {
   const [version, setVersion] = useState('+');
 
   useEffect(() => {
     const raw = JSON.stringify({
-      androidCore: true,
+      maven: pkg,
     });
 
     const requestOptions = {
@@ -27,8 +27,33 @@ export const MavenLatestInstallation = () => {
       <CodeBlock language="groovy">
         {`dependencies {
     // (other dependencies)
-    implementation 'io.dyte:core-android:${version}'
+    implementation 'io.dyte:${pkg}:${version}'
 }`}
+      </CodeBlock>
+    </div>
+  );
+};
+
+export const CocoaPodInstallation = ({ pkg, path }) => {
+  const [version, setVersion] = useState(undefined);
+
+  useEffect(() => {
+    const requestOptions = {
+      method: 'GET',
+      body: null,
+    };
+
+    const url = `https://api.github.com/repos/CocoaPods/Specs/contents/Specs/${path}/`;
+
+    fetch(url, requestOptions)
+      .then((response) => response.json())
+      .then((result) => setVersion(result[result.length - 1]['name']));
+  }, []);
+
+  return (
+    <div>
+      <CodeBlock language="ruby">
+        {`pod '${pkg}' ${version ? `, '${version}'` : ''}`}
       </CodeBlock>
     </div>
   );

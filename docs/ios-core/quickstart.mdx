@@ -6,6 +6,8 @@ tags: [mobile-core, quickstart]
 slug: /
 ---
 
+import { CocoaPodInstallation } from '@site/src/components/LatestInstallation';
+
 # iOS Core SDK Quickstart
 
 This quickstart shows how to use Dyte's iOS Core SDK to add live video and audio
@@ -59,9 +61,7 @@ platform :ios, '13.0'
 
 2. Add 'DyteiOSCore' to your Podfile.
 
-```ruby
-pod 'DyteiOSCore' , '1.25.4'
-```
+<CocoaPodInstallation pkg="DyteiOSCore" path="c/d/1/DyteiOSCore" />
 
 3. Install the client SDK from pod.
 
@@ -147,6 +147,22 @@ with the Dyte meeting server.
 ```swift
 meeting.doInit(dyteMeetingInfo_: meetingInfo)
 ```
+Note: This is the asynchronous method, You will have to attached observer (meeting.addMeetingRoomEventsListener(meetingRoomEventsListener: self)
+) to know its completion state, success or failure, Listen to below callbacks of 'DyteMeetingRoomEventsListener'.
+
+
+```swift
+func onMeetingInitCompleted() {
+ }
+    
+func onMeetingInitFailed(exception: KotlinException) {
+ }
+```    
+
+OR 
+
+To initialize the connection request, call the `doInit(dyteMeetingInfo: DyteMeetingInfoV2, onInitCompleted: () -> Void, onInitFailed_: () -> Void)` method 
+which is asynchronous and callback based. 
 
 ## Step 5: Connect to the meeting
 
@@ -156,10 +172,26 @@ the room.
 
 ### Join the room
 
-To join the meeting room, do the following:
+To join the meeting room, do the following only after you received the doInit completion callbacks.
 
 ```swift
-meeting.joinRoom()
+func onMeetingInitCompleted() {
+   meeting.joinRoom()
+ }
+```
+
+Or 
+
+```swift
+ meeting.doInit(dyteMeetingInfo: meetingInfo) {
+            self.meeting.joinRoom {
+                print("Room Joined successfully")
+            } onRoomJoinFailed: {
+                print("Room Joined failed")
+            }
+        } onInitFailed_: {
+            print("Meeting Initialisation got failed")
+        }
 ```
 
 Join room event listeners: Once you call `joinRoom()`, you can listen to
