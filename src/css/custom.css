@@ -1221,3 +1221,27 @@ html[data-theme='dark'] .video_sidebar_header > div > a::before {
   border-right: 1px solid rgb(240, 240, 240);
   border-left: 1px solid rgb(240, 240, 240);
 }
+
+.header-tag {
+  @apply ml-1 mt-0.5 inline rounded-md bg-secondary-700 p-1 text-xs text-text-400;
+}
+
+.header-tag.tag-core {
+  @apply bg-teal-500 text-white;
+}
+
+.header-tag.tag-ui {
+  @apply bg-fuchsia-400 text-white;
+}
+
+.table-of-contents .header-tag {
+  @apply mt-0 rounded-sm py-0.5 text-[0.5rem];
+}
+
+.anchor {
+  @apply flex items-center;
+}
+
+.max-512 {
+  max-width: 512px;
+}
