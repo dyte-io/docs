@@ -2680,6 +2680,37 @@ paths:
         $ref: '#/components/requestBodies/UpdatePresetBody'
       tags:
         - Presets
+  '/sessions/peer-report/{peer_id}':
+    parameters:
+      - schema:
+          type: string
+        name: peer_id
+        in: path
+        required: true
+        description: ID of the peer
+    get:
+      summary: Fetch details of peer
+      tags:
+        - Sessions
+      responses:
+        '200':
+          $ref: '#/components/responses/GetParticipantDataFromPeerId'
+      operationId: GetParticipantDataFromPeerId
+      x-stoplight:
+        id: b693pckykbu4q
+      description: Returns details of the given peer ID along with call statistics for the given session ID.
+      parameters:
+        - schema:
+            type: string
+            enum:
+              - device_info
+              - ip_information
+              - precall_network_information
+              - events
+              - quality_stats
+          in: query
+          name: filters
+          description: Comma separated list of filters to apply. Note that there must be no spaces between the filters.
 components:
   schemas:
     LivestreamWithSessions:
@@ -5902,6 +5933,855 @@ components:
                       - $ref: '#/components/schemas/Preset'
                 required:
                   - data
+    GetParticipantDataFromPeerId:
+      description: Returns details of a participant (using peer id) along with callstats data.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              data:
+                type: object
+                properties:
+                  participant:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      user_id:
+                        type: string
+                      custom_participant_id:
+                        type: string
+                      display_name:
+                        type: string
+                      role:
+                        type: string
+                      joined_at:
+                        type: string
+                      left_at:
+                        type: string
+                      duration:
+                        type: number
+                      created_at:
+                        type: string
+                      updated_at:
+                        type: string
+                      peer_stats:
+                        type: object
+                        properties:
+                          events:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                timestamp:
+                                  type: string
+                                metadata:
+                                  type: object
+                                  properties:
+                                    connection_info:
+                                      type: object
+                                      properties:
+                                        ip_details:
+                                          type: object
+                                          properties:
+                                            city:
+                                              type: string
+                                            country:
+                                              type: string
+                                            region:
+                                              type: string
+                                            loc:
+                                              type: string
+                                            timezone:
+                                              type: string
+                                            ip:
+                                              type: string
+                                            postal:
+                                              type: string
+                                            asn:
+                                              type: object
+                                              properties:
+                                                asn:
+                                                  type: string
+                                        effective_network_type:
+                                          type: string
+                                        location:
+                                          type: object
+                                          properties:
+                                            coords:
+                                              type: object
+                                              properties:
+                                                latitude:
+                                                  type: number
+                                                longitude:
+                                                  type: number
+                                        turn_connectivity:
+                                          type: boolean
+                                        connectivity:
+                                          type: object
+                                          properties:
+                                            host:
+                                              type: boolean
+                                            relay:
+                                              type: boolean
+                                            reflexive:
+                                              type: boolean
+                                        throughput:
+                                          type: integer
+                                        fractional_loss:
+                                          type: integer
+                                        r_t_t:
+                                          type: number
+                                        jitter:
+                                          type: integer
+                                        backend_r_t_t:
+                                          type: number
+                          device_info:
+                            type: object
+                            properties:
+                              browser:
+                                type: string
+                              browser_version:
+                                type: string
+                              cpus:
+                                type: integer
+                              engine:
+                                type: string
+                              is_mobile:
+                                type: boolean
+                              os:
+                                type: string
+                              os_version:
+                                type: string
+                              sdk_name:
+                                type: string
+                              sdk_version:
+                                type: string
+                              user_agent:
+                                type: string
+                              webgl_support:
+                                type: 'null'
+                          ip_information:
+                            type: object
+                            properties:
+                              city:
+                                type: string
+                              country:
+                                type: string
+                              timezone:
+                                type: string
+                              region:
+                                type: string
+                              asn:
+                                type: object
+                                properties:
+                                  asn:
+                                    type: string
+                              ipv4:
+                                type: string
+                              ip_location:
+                                type: string
+                              org:
+                                type: string
+                          precall_network_information:
+                            type: object
+                            properties:
+                              backend_rtt:
+                                type: number
+                              effective_networktype:
+                                type: string
+                              fractional_loss:
+                                type: integer
+                              jitter:
+                                type: integer
+                              reflexive_connectivity:
+                                type: boolean
+                              relay_connectivity:
+                                type: boolean
+                              rtt:
+                                type: number
+                              throughput:
+                                type: integer
+                              turn_connectivity:
+                                type: boolean
+                      quality_stats:
+                        type: object
+                        properties:
+                          audio_stats:
+                            type: array
+                            items:
+                              type: object
+                              properties: {}
+                          video_stats:
+                            type: array
+                            items:
+                              type: object
+                              properties: {}
+                          peer_ids:
+                            type: array
+                            items:
+                              type: string
+                          start:
+                            type: 'null'
+                          end:
+                            type: 'null'
+                          total_audio_packets:
+                            type: integer
+                          total_audio_packets_lost:
+                            type: integer
+                          total_video_packets:
+                            type: integer
+                          total_video_packets_lost:
+                            type: integer
+                          first_audio_packet_received:
+                            type: 'null'
+                          first_video_packet_received:
+                            type: 'null'
+                          last_audio_packet_received:
+                            type: 'null'
+                          last_video_packet_received:
+                            type: 'null'
+                          average_quality:
+                            type: integer
+                          audio_bandwidth:
+                            type: integer
+                          video_bandwidth:
+                            type: integer
+                      peer_report:
+                        type: object
+                        properties:
+                          metadata:
+                            type: object
+                            properties:
+                              events:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    name:
+                                      type: string
+                                    timestamp:
+                                      type: string
+                              pc_metadata:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    effective_network_type:
+                                      type: string
+                                    reflexive_connectivity:
+                                      type: boolean
+                                    relay_connectivity:
+                                      type: boolean
+                                    turn_connectivity:
+                                      type: boolean
+                                    timestamp:
+                                      type: string
+                              audio_devices_updates:
+                                type: array
+                                items:
+                                  type: object
+                                  properties: {}
+                              video_devices_updates:
+                                type: array
+                                items:
+                                  type: object
+                                  properties: {}
+                              speaker_devices_updates:
+                                type: array
+                                items:
+                                  type: object
+                                  properties: {}
+                              selected_device_updates:
+                                type: array
+                                items:
+                                  type: object
+                                  properties: {}
+                              candidate_pairs:
+                                type: object
+                                properties:
+                                  producing_transport:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        nominated:
+                                          type: boolean
+                                        current_round_trip_time:
+                                          type: number
+                                        total_round_trip_time:
+                                          type: number
+                                        bytes_received:
+                                          type: integer
+                                        bytes_sent:
+                                          type: integer
+                                        available_outgoing_bitrate:
+                                          type: integer
+                                        last_packet_received_timestamp:
+                                          type: integer
+                                        last_packet_sent_timestamp:
+                                          type: integer
+                                        local_candidate_id:
+                                          type: string
+                                        remote_candidate_id:
+                                          type: string
+                                        bytes_discarded_on_send:
+                                          type: integer
+                                        packets_sent:
+                                          type: integer
+                                        packets_received:
+                                          type: integer
+                                        packets_discarded_on_send:
+                                          type: integer
+                                        local_candidate_type:
+                                          type: string
+                                        local_candidate_address:
+                                          type: string
+                                        local_candidate_port:
+                                          type: integer
+                                        local_candidate_protocol:
+                                          type: string
+                                        local_candidate_network_type:
+                                          type: string
+                                        local_candidate_related_address:
+                                          type: string
+                                        local_candidate_related_port:
+                                          type: integer
+                                        remote_candidate_type:
+                                          type: string
+                                        remote_candidate_address:
+                                          type: string
+                                        remote_candidate_port:
+                                          type: integer
+                                        remote_candidate_protocol:
+                                          type: string
+                                  consuming_transport:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties: {}
+                              device_info:
+                                type: object
+                                properties:
+                                  cpus:
+                                    type: integer
+                                  is_mobile:
+                                    type: boolean
+                                  os:
+                                    type: string
+                                  os_version:
+                                    type: string
+                              browser_metadata:
+                                type: object
+                                properties:
+                                  browser:
+                                    type: string
+                                  browser_version:
+                                    type: string
+                                  engine:
+                                    type: string
+                                  user_agent:
+                                    type: string
+                                  webgl_support:
+                                    type: 'null'
+                              sdk_name:
+                                type: string
+                              sdk_version:
+                                type: string
+                              room_view_type:
+                                type: string
+                              ip_information:
+                                type: object
+                                properties:
+                                  city:
+                                    type: string
+                                  country:
+                                    type: string
+                                  timezone:
+                                    type: string
+                                  region:
+                                    type: string
+                                  asn:
+                                    type: object
+                                    properties:
+                                      asn:
+                                        type: string
+                                  ipv4:
+                                    type: string
+                          quality:
+                            type: object
+                            properties:
+                              video_consumer:
+                                type: array
+                                items:
+                                  type: object
+                                  properties: {}
+                              audio_consumer:
+                                type: array
+                                items:
+                                  type: object
+                                  properties: {}
+                              screenshare_video_consumer:
+                                type: array
+                                items:
+                                  type: object
+                                  properties: {}
+                              screenshare_audio_consumer:
+                                type: array
+                                items:
+                                  type: object
+                                  properties: {}
+                              video_producer:
+                                type: array
+                                items:
+                                  type: object
+                                  properties: {}
+                              audio_producer:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    mos_quality:
+                                      type: integer
+                                    timestamp:
+                                      type: string
+                                    packets_lost:
+                                      type: integer
+                                    jitter:
+                                      type: integer
+                                    rtt:
+                                      type:
+                                        - integer
+                                        - number
+                                    packets_sent:
+                                      type: integer
+                                    bytes_sent:
+                                      type: integer
+                                    producer_id:
+                                      type: string
+                                    ssrc:
+                                      type: integer
+                                    mid:
+                                      type: string
+                              screenshare_video_producer:
+                                type: array
+                                items:
+                                  type: object
+                                  properties: {}
+                              screenshare_audio_producer:
+                                type: array
+                                items:
+                                  type: object
+                                  properties: {}
+                              video_consumer_cumulative:
+                                type: object
+                                properties: {}
+                              audio_consumer_cumulative:
+                                type: object
+                                properties: {}
+                              screenshare_video_consumer_cumulative:
+                                type: object
+                                properties: {}
+                              screenshare_audio_consumer_cumulative:
+                                type: object
+                                properties: {}
+                              video_producer_cumulative:
+                                type: object
+                                properties: {}
+                              screenshare_video_producer_cumulative:
+                                type: object
+                                properties: {}
+                              audio_producer_cumulative:
+                                type: object
+                                properties:
+                                  quality_mos:
+                                    type: object
+                                    properties:
+                                      avg:
+                                        type: integer
+                                      p50:
+                                        type: integer
+                                      p75:
+                                        type: integer
+                                      p90:
+                                        type: integer
+                                  packet_loss:
+                                    type: object
+                                    properties:
+                                      avg:
+                                        type: integer
+                                      50_or_greater_event_fraction:
+                                        type: integer
+                                      25_or_greater_event_fraction:
+                                        type: integer
+                                      10_or_greater_event_fraction:
+                                        type: integer
+                                      5_or_greater_event_fraction:
+                                        type: integer
+                                  rtt:
+                                    type: object
+                                    properties:
+                                      avg:
+                                        type: number
+                                      500ms_or_greater_event_fraction:
+                                        type: number
+                                      250ms_or_greater_event_fraction:
+                                        type: number
+                                      100ms_or_greater_event_fraction:
+                                        type: number
+                              screenshare_audio_producer_cumulative:
+                                type: object
+                                properties: {}
+            x-examples:
+              Example 1:
+                success: true
+                data:
+                  participant:
+                    id: bd45f5a3-44d0-4d48-a9e5-b880b39d9e1c
+                    user_id: aaad2360-4bf6-451d-b89a-98617f2bc549
+                    custom_participant_id: 0.svveiltvjko
+                    display_name: sush
+                    role: group_call_participant
+                    joined_at: '2023-12-14T13:35:36.332Z'
+                    left_at: '2023-12-14T13:36:42.872Z'
+                    duration: 1.109
+                    created_at: '2023-12-14T13:35:36.346Z'
+                    updated_at: '2023-12-14T13:36:42.907Z'
+                    peer_stats:
+                      events:
+                        - type: precall_begin
+                          timestamp: '2023-12-14T13:35:33.288Z'
+                        - type: video_off
+                          timestamp: '2023-12-14T13:35:35.182Z'
+                        - type: audio_off
+                          timestamp: '2023-12-14T13:35:35.558Z'
+                        - type: call_join
+                          metadata:
+                            peer_meta_data:
+                              user_id: aaad2360-4bf6-451d-b89a-98617f2bc549
+                              peer_id: bd45f5a3-44d0-4d48-a9e5-b880b39d9e1c
+                              display_name: sush
+                              room_u_u_i_d: 8b25af6b-14f4-4c50-948a-ad1ca48d4ad8
+                              room_view_type: groupCall
+                              room_name: bbbf5e93-289c-4c9b-bd44-d677a9206df7
+                              device_info:
+                                is_mobile: false
+                                browser_name: Chrome
+                                os_name: macOS
+                                browser_version: 119.0.0.0
+                                os_version_name: 10.15.7
+                                engine_name: Blink
+                                user_agent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'
+                                memory: 8
+                                cpus: 8
+                              sdk_name: web-core
+                              sdk_version: 1.21.1-staging.3
+                              meta_data: {}
+                              permissions: {}
+                              meeting_env: devel
+                          timestamp: '2023-12-14T13:35:36.552Z'
+                        - type: audio_off
+                          timestamp: '2023-12-14T13:35:36.553Z'
+                        - type: video_off
+                          timestamp: '2023-12-14T13:35:36.553Z'
+                        - type: tab_change
+                          metadata:
+                            is_meetings_tab_active: false
+                          timestamp: '2023-12-14T13:35:38.593Z'
+                        - type: browser_backgrounded
+                          timestamp: '2023-12-14T13:35:38.593Z'
+                        - type: precall_end
+                          metadata:
+                            connection_info:
+                              ip_details:
+                                city: Nashik
+                                country: IN
+                                region: Maharashtra
+                                loc: '20.00240,73.79450'
+                                timezone: Asia/Kolkata
+                                ip: 103.183.81.21
+                                postal: '422003'
+                                asn:
+                                  asn: AS135248
+                              effective_network_type: 4g
+                              location:
+                                coords:
+                                  latitude: 20.0024
+                                  longitude: 73.7945
+                              turn_connectivity: true
+                              connectivity:
+                                host: true
+                                relay: true
+                                reflexive: false
+                              throughput: 7931
+                              fractional_loss: 0
+                              r_t_t: 0.03
+                              jitter: 0
+                              backend_r_t_t: 0.031
+                          timestamp: '2023-12-14T13:35:41.144Z'
+                      device_info:
+                        browser: Chrome
+                        browser_version: 119.0.0.0
+                        cpus: 8
+                        engine: Blink
+                        is_mobile: false
+                        os: macOS
+                        os_version: 10.15.7
+                        sdk_name: web-core
+                        sdk_version: 1.21.1-staging.3
+                        user_agent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'
+                        webgl_support: null
+                      ip_information:
+                        city: Nashik
+                        country: IN
+                        timezone: Asia/Kolkata
+                        region: Maharashtra
+                        asn:
+                          asn: AS135248
+                        ipv4: 103.183.81.21
+                        ip_location: 103.183.81.21
+                        org: 103.183.81.21
+                      precall_network_information:
+                        backend_rtt: 0.031
+                        effective_networktype: 4g
+                        fractional_loss: 0
+                        jitter: 0
+                        reflexive_connectivity: false
+                        relay_connectivity: true
+                        rtt: 0.03
+                        throughput: 7931
+                        turn_connectivity: true
+                    quality_stats:
+                      audio_stats: []
+                      video_stats: []
+                      peer_ids:
+                        - bd45f5a3-44d0-4d48-a9e5-b880b39d9e1c
+                      start: null
+                      end: null
+                      total_audio_packets: 0
+                      total_audio_packets_lost: 0
+                      total_video_packets: 0
+                      total_video_packets_lost: 0
+                      first_audio_packet_received: null
+                      first_video_packet_received: null
+                      last_audio_packet_received: null
+                      last_video_packet_received: null
+                      average_quality: 0
+                      audio_bandwidth: 0
+                      video_bandwidth: 0
+                    peer_report:
+                      metadata:
+                        events:
+                          - name: precall_begin
+                            timestamp: '2023-12-14T13:35:33.288Z'
+                          - name: video_off
+                            timestamp: '2023-12-14T13:35:35.182Z'
+                          - name: audio_off
+                            timestamp: '2023-12-14T13:35:35.558Z'
+                          - name: audio_off
+                            timestamp: '2023-12-14T13:35:36.553Z'
+                          - name: video_off
+                            timestamp: '2023-12-14T13:35:36.553Z'
+                          - name: meeting_view_backgrounded
+                            timestamp: '2023-12-14T13:35:38.593Z'
+                        pc_metadata:
+                          - effective_network_type: 4g
+                            reflexive_connectivity: false
+                            relay_connectivity: true
+                            turn_connectivity: true
+                            timestamp: '2023-12-14T13:35:41.144Z'
+                        audio_devices_updates: []
+                        video_devices_updates: []
+                        speaker_devices_updates: []
+                        selected_device_updates: []
+                        candidate_pairs:
+                          producing_transport:
+                            - nominated: true
+                              current_round_trip_time: 0.009
+                              total_round_trip_time: 4.055
+                              bytes_received: 33950
+                              bytes_sent: 200996
+                              available_outgoing_bitrate: 54858
+                              last_packet_received_timestamp: 1702561000121
+                              last_packet_sent_timestamp: 1702561000139
+                              local_candidate_id: IKf7CPY3N
+                              remote_candidate_id: IAEFfn0BW
+                              bytes_discarded_on_send: 0
+                              packets_sent: 3203
+                              packets_received: 692
+                              packets_discarded_on_send: 0
+                              local_candidate_type: prflx
+                              local_candidate_address: 103.183.81.21
+                              local_candidate_port: 64799
+                              local_candidate_protocol: udp
+                              local_candidate_network_type: wifi
+                              local_candidate_related_address: 192.168.0.119
+                              local_candidate_related_port: 64799
+                              remote_candidate_type: host
+                              remote_candidate_address: 43.205.177.161
+                              remote_candidate_port: 46252
+                              remote_candidate_protocol: udp
+                          consuming_transport: []
+                        device_info:
+                          cpus: 8
+                          is_mobile: false
+                          os: macOS
+                          os_version: 10.15.7
+                        browser_metadata:
+                          browser: Chrome
+                          browser_version: 119.0.0.0
+                          engine: Blink
+                          user_agent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'
+                          webgl_support: null
+                        sdk_name: web-core
+                        sdk_version: 1.21.1-staging.3
+                        room_view_type: groupCall
+                        ip_information:
+                          city: Nashik
+                          country: IN
+                          timezone: Asia/Kolkata
+                          region: Maharashtra
+                          asn:
+                            asn: AS135248
+                          ipv4: 103.183.81.21
+                      quality:
+                        video_consumer: []
+                        audio_consumer: []
+                        screenshare_video_consumer: []
+                        screenshare_audio_consumer: []
+                        video_producer: []
+                        audio_producer:
+                          - mos_quality: 1
+                            timestamp: '2023-12-14T13:35:36.554Z'
+                            packets_lost: 0
+                            jitter: 0
+                            rtt: 0
+                            packets_sent: 5
+                            bytes_sent: 86
+                            producer_id: fb6e75d3-d353-42a9-87cb-ce57f30e44b5
+                            ssrc: 2051826975
+                            mid: '0'
+                          - mos_quality: 1
+                            timestamp: '2023-12-14T13:35:44.140Z'
+                            packets_lost: 0
+                            jitter: 0
+                            rtt: 0.782913
+                            packets_sent: 382
+                            bytes_sent: 8162
+                            producer_id: fb6e75d3-d353-42a9-87cb-ce57f30e44b5
+                            ssrc: 2051826975
+                            mid: '0'
+                          - mos_quality: 1
+                            timestamp: '2023-12-14T13:35:51.140Z'
+                            packets_lost: 0
+                            jitter: 0
+                            rtt: 0.014374
+                            packets_sent: 350
+                            bytes_sent: 6300
+                            producer_id: fb6e75d3-d353-42a9-87cb-ce57f30e44b5
+                            ssrc: 2051826975
+                            mid: '0'
+                          - mos_quality: 1
+                            timestamp: '2023-12-14T13:35:58.142Z'
+                            packets_lost: 0
+                            jitter: 0
+                            rtt: 0.49529999999999996
+                            packets_sent: 351
+                            bytes_sent: 6318
+                            producer_id: fb6e75d3-d353-42a9-87cb-ce57f30e44b5
+                            ssrc: 2051826975
+                            mid: '0'
+                          - mos_quality: 1
+                            timestamp: '2023-12-14T13:36:05.143Z'
+                            packets_lost: 0
+                            jitter: 0
+                            rtt: 0.009659
+                            packets_sent: 350
+                            bytes_sent: 6300
+                            producer_id: fb6e75d3-d353-42a9-87cb-ce57f30e44b5
+                            ssrc: 2051826975
+                            mid: '0'
+                          - mos_quality: 1
+                            timestamp: '2023-12-14T13:36:12.143Z'
+                            packets_lost: 0
+                            jitter: 0
+                            rtt: 0.008513999999999999
+                            packets_sent: 350
+                            bytes_sent: 6300
+                            producer_id: fb6e75d3-d353-42a9-87cb-ce57f30e44b5
+                            ssrc: 2051826975
+                            mid: '0'
+                          - mos_quality: 1
+                            timestamp: '2023-12-14T13:36:19.136Z'
+                            packets_lost: 0
+                            jitter: 0
+                            rtt: 0.013321
+                            packets_sent: 349
+                            bytes_sent: 6282
+                            producer_id: fb6e75d3-d353-42a9-87cb-ce57f30e44b5
+                            ssrc: 2051826975
+                            mid: '0'
+                          - mos_quality: 1
+                            timestamp: '2023-12-14T13:36:26.142Z'
+                            packets_lost: 0
+                            jitter: 0
+                            rtt: 0.009888
+                            packets_sent: 351
+                            bytes_sent: 6318
+                            producer_id: fb6e75d3-d353-42a9-87cb-ce57f30e44b5
+                            ssrc: 2051826975
+                            mid: '0'
+                          - mos_quality: 1
+                            timestamp: '2023-12-14T13:36:33.141Z'
+                            packets_lost: 0
+                            jitter: 0
+                            rtt: 0.011932
+                            packets_sent: 350
+                            bytes_sent: 6300
+                            producer_id: fb6e75d3-d353-42a9-87cb-ce57f30e44b5
+                            ssrc: 2051826975
+                            mid: '0'
+                          - mos_quality: 1
+                            timestamp: '2023-12-14T13:36:40.138Z'
+                            packets_lost: 0
+                            jitter: 0
+                            rtt: 0.011108
+                            packets_sent: 350
+                            bytes_sent: 6300
+                            producer_id: fb6e75d3-d353-42a9-87cb-ce57f30e44b5
+                            ssrc: 2051826975
+                            mid: '0'
+                        screenshare_video_producer: []
+                        screenshare_audio_producer: []
+                        video_consumer_cumulative: {}
+                        audio_consumer_cumulative: {}
+                        screenshare_video_consumer_cumulative: {}
+                        screenshare_audio_consumer_cumulative: {}
+                        video_producer_cumulative: {}
+                        screenshare_video_producer_cumulative: {}
+                        audio_producer_cumulative:
+                          quality_mos:
+                            avg: 1
+                            p50: 1
+                            p75: 1
+                            p90: 1
+                          packet_loss:
+                            avg: 0
+                            50_or_greater_event_fraction: 0
+                            25_or_greater_event_fraction: 0
+                            10_or_greater_event_fraction: 0
+                            5_or_greater_event_fraction: 0
+                          rtt:
+                            avg: 135.7009
+                            500ms_or_greater_event_fraction: 0.1
+                            250ms_or_greater_event_fraction: 0.2
+                            100ms_or_greater_event_fraction: 0.2
+                        screenshare_audio_producer_cumulative: {}
   examples:
     GetActiveSessionSuccessResponse:
       summary: Success response for fetching active session
