@@ -250,7 +250,7 @@ The snippet below displays deactivate a single plugin.
 When a plugin is deactivated, it triggers a callback in onPluginDeactivated(). To be able to listen to plugin events you need to implement a methods from callback `DytePluginEventsListener`. You can subscribe to this events by calling meeting.addPluginEventsListener(dytePluginEventsListener).
 
 ```swift
-extension MeetingViewModel: DytePluginEventsListener {
+DytePluginEventsListener {
 
   func onPluginDeactivated(plugin: DytePlugin) {
     // your code to handle plugin de-activation
@@ -262,7 +262,7 @@ extension MeetingViewModel: DytePluginEventsListener {
 </TabItem>
 </Tabs>
 
-## Configure existing plgins
+## Configure existing plugins
 
 For further reading on configuring existing plugins, check out the guides below:
 
