@@ -4,8 +4,8 @@ sidebar_position: 1
 
 # Meeting Transcription
 
-:::info alpha
-The meeting transcription feature is currently in alpha, which means it is still being tested and evaluated, and may undergo some change. This feature is not accessible to the public at the moment and will be activated solely upon request, subject to our team's assessment of your usage and needs. If you wish to have this feature enabled for your organization, please [get in touch with us](https://dyte.io/contact).
+:::info beta
+The meeting transcription feature is currently in beta, which means it is still being tested and evaluated, and may undergo some change. This feature is not accessible to the public at the moment and will be activated solely upon request, subject to our team's assessment of your usage and needs. If you wish to have this feature enabled for your organization, please [get in touch with us](https://dyte.io/contact).
 :::
 
 Dyte's meeting transcription allows you to transcribe your Dyte meetings in real-time, making it easy to capture important discussions and refer back to them later.
@@ -28,14 +28,29 @@ To learn more about how to create and edit presets, see [Presets](https://docs.d
 
 ## Consuming transcripts
 
-There are 2 ways in which these transcripts can be consumed.
+There are 3 ways in which these transcripts can be consumed.
 1. Client core SDK: The transcripts can be consumed on the client-side using the Dyte SDK that's suitable for your platform. These transcripts are generated on the server in real-time.
 2. Webhooks: The meeting transcript can be consumed via a [webhook after the meeting ends](#consume-transcript-via-a-post-meeting-webhook).
+3. REST API: The meeting transcript can also be fetched via the [rest API](/api#/operations/GetSessionTranscript).
 
 ### Consuming transcripts in real-time
 
 For consuming transcripts in real-time on the client SDK of your choice, you just need to ensure that the `transcription_enabled` flag is enabled in the preset.
 Transcripts for all the participants having this flag set will be broadcasted in the meeting.
+
+You can use the `meeting.ai` object to access the transcripts.
+
+```ts
+console.log(meeting.ai.transcripts);
+```
+
+The transcripts are also emitted by the `meeting.ai` object, so a listener can be attached to it.
+
+```ts
+meeting.ai.on('transcript', (transcriptData) => {
+  console.log('Transcript:', transcriptData);
+});
+```
 
 ### Consume transcript via a post-meeting webhook
 
@@ -52,13 +67,13 @@ You can use this API to get the transcript for a meeting at a later time. Dyte s
 The transcript is received in the form of a CSV. Here is the format of the said CSV:
 
 ```csv
-Timestamp, Peer ID, Participant ID, Custom Participant ID, Participant Name, Transcript
+Timestamp, Participant ID, User ID, Custom Participant ID, Participant Name, Transcript
 ```
 
 The following is a description of all the fields specified in the above CSV.
 1. Timestamp: An ISO 8601 format string indicating the time of utterance (or the time of speech).
-2. Peer ID: An identifier for individual peers in the meeting. For instance, if the participant joins the meeting twice, both the "peers" will have the same Participant ID but different Peer IDs.
-3. Participant ID: An identifier for a participant in the meeting, as returned by the [add participant API call](https://docs.dyte.io/api#/operations/add_participant#response-body).
+2. Participant ID: An identifier for individual peers in the meeting. For instance, if the participant joins the meeting twice, both the "peers" will have the same User ID but different Participant IDs.
+3. User ID: An identifier for a participant in the meeting, as returned by the [add participant API call](https://docs.dyte.io/api#/operations/add_participant#response-body).
 4. Custom Participant ID: An identifier that you can specify to identify a user. This can be sent in the request body of the [add participant API call](https://docs.dyte.io/api#/operations/add_participant#request-body).
 5. Participant Name: The display name of the user.
 6. Transcript: The transcribed utterance.
