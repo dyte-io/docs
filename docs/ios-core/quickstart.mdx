@@ -31,15 +31,15 @@ You’ll learn how to:
 ## Before Getting Started
 
 - Make sure you've read the
-  [Getting Started with Dyte](https://docs.dyte.io/getting-started) topic and
+  [Getting Started with Dyte](/getting-started) topic and
   completed the steps in the
-  [Integrate Dyte](https://docs.dyte.io/getting-started#integrate-dyte) section.
+  [Integrate Dyte](/getting-started#integrate-dyte) section.
   You must complete the following steps:
   - Create a [Dyte Developer Account](https://dev.dyte.io/)
   - Create [Presets](https://dev.dyte.io/roles-presets)
   - Create a
-    [Dyte Meeting](https://docs.dyte.io/api/?v=v2#/operations/create_meeting)
-  - [Add Participant](https://docs.dyte.io/api/?v=v2#/operations/add_participant)
+    [Dyte Meeting](/api/?v=v2#/operations/create_meeting)
+  - [Add Participant](/api/?v=v2#/operations/add_participant)
     to the meeting
 - Install
   [Xcode](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwin55bqodH8AhUVQXwKHaR-DAsQFnoECA0QAQ&url=https%3A%2F%2Fapps.apple.com%2Fus%2Fapp%2Fxcode%2Fid497799835%3Fmt%3D12&usg=AOvVaw2fEvMbfRtGhB4SPHYB54NX)
@@ -125,11 +125,11 @@ meeting.addLiveStreamEventsListener(liveStreamEventsListener: self)
 
 ## Step 3: Set the properties in the DyteMeetingInfo class
 
-Add `authToken` that you got from the REST API to constructor of DyteMeetingInfoV2 - [Add Participant API](https://docs.dyte.io/api#/operations/addParticipant)
+Add `authToken` that you got from the REST API to constructor of DyteMeetingInfoV2 - [Add Participant API](/api#/operations/addParticipant)
 
-| Name        | Description                                                                                                                                                                                                                                                  |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `authToken` | Token from [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
+| Name        | Description                                                                                                                                                                                                                              |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authToken` | Token from [Add Participant API](/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
 
 ```swift
 let meetingInfo = DyteMeetingInfoV2(authToken: authToken,
@@ -147,22 +147,22 @@ with the Dyte meeting server.
 ```swift
 meeting.doInit(dyteMeetingInfo_: meetingInfo)
 ```
+
 Note: This is the asynchronous method, You will have to attached observer (meeting.addMeetingRoomEventsListener(meetingRoomEventsListener: self)
 ) to know its completion state, success or failure, Listen to below callbacks of 'DyteMeetingRoomEventsListener'.
-
 
 ```swift
 func onMeetingInitCompleted() {
  }
-    
+
 func onMeetingInitFailed(exception: KotlinException) {
  }
-```    
+```
 
-OR 
+OR
 
-To initialize the connection request, call the `doInit(dyteMeetingInfo: DyteMeetingInfoV2, onInitCompleted: () -> Void, onInitFailed_: () -> Void)` method 
-which is asynchronous and callback based. 
+To initialize the connection request, call the `doInit(dyteMeetingInfo: DyteMeetingInfoV2, onInitCompleted: () -> Void, onInitFailed_: () -> Void)` method
+which is asynchronous and callback based.
 
 ## Step 5: Connect to the meeting
 
@@ -180,7 +180,7 @@ func onMeetingInitCompleted() {
  }
 ```
 
-Or 
+Or
 
 ```swift
  meeting.doInit(dyteMeetingInfo: meetingInfo) {

@@ -444,7 +444,7 @@ const config = {
   trailingSlash: false,
   themes: ['@docusaurus/theme-live-codeblock'],
   clientModules: [require.resolve('./src/client/define-ui-kit.js')],
-  scripts: [{ src: 'https://cdn.statuspage.io/se-v2.js' }],
+  scripts: [{ src: 'https://cdn.statuspage.io/se-v2.js', async: true }],
 
   presets: [
     [
@@ -465,7 +465,7 @@ const config = {
           ],
         },
         sitemap: {
-          ignorePatterns: ['/tags/**'],
+          ignorePatterns: ['**/tags/**'],
         },
         googleTagManager: {
           containerId: 'GTM-5FDFFSS',

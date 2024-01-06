@@ -27,16 +27,16 @@ You’ll learn how to:
 ## Before Getting Started
 
 Make sure you've read the
-[Getting Started with Dyte](https://docs.dyte.io/getting-started) topic and
+[Getting Started with Dyte](/getting-started) topic and
 completed the steps in the
-[Integrate Dyte](https://docs.dyte.io/getting-started#integrate-dyte) section.
+[Integrate Dyte](/getting-started#integrate-dyte) section.
 You must complete the following steps:
 
 - Create a [Dyte Developer Account](https://dev.dyte.io/)
 - Create [Presets](https://dev.dyte.io/roles-presets)
 - Create a
-  [Dyte Meeting](https://docs.dyte.io/api/?v=v2#/operations/create_meeting)
-- [Add Participant](https://docs.dyte.io/api/?v=v2#/operations/add_participant)
+  [Dyte Meeting](/api/?v=v2#/operations/create_meeting)
+- [Add Participant](/api/?v=v2#/operations/add_participant)
   to the meeting
 - Install [Android Studio](https://developer.android.com/studio)
 
@@ -70,9 +70,9 @@ builds, refer to the [Release Builds](#release-builds) section.
 Set the properties in the `DyteMeetingInfoV2` class. You just need to provide
 the participant's `authToken`.
 
-| Name        | Description                                                                                                                                                                                                                                                                                                                                   |
-| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `authToken` | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
+| Name        | Description                                                                                                                                                                                                                                                                                                               |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authToken` | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
 
 ```kotlin
 val meetingInfo = DyteMeetingInfoV2(
