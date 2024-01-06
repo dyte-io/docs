@@ -228,10 +228,6 @@ const plugins = [
           return ['/capabilities/export-chat-dump'];
         }
 
-        if (path.startsWith('/guides/capabilities/audio/transcriptions')) {
-          return ['/guides/capabilities/ai/meeting-transcription'];
-        }
-
         if (path.startsWith('/guides/capabilities/misc/embed')) {
           return ['/guides/capabilities/embed'];
         }
