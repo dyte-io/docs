@@ -26,16 +26,16 @@ You’ll learn how to:
 ## Before Getting Started
 
 Make sure you've read the
-[Getting Started with Dyte](https://docs.dyte.io/getting-started) topic and
+[Getting Started with Dyte](/getting-started) topic and
 completed the steps in the
-[Integrate Dyte](https://docs.dyte.io/getting-started#integrate-dyte) section.
+[Integrate Dyte](/getting-started#integrate-dyte) section.
 You must complete the following steps:
 
 - Create a [Dyte Developer Account](https://dev.dyte.io/)
 - Create [Presets](https://dev.dyte.io/roles-presets)
 - Create a
-  [Dyte Meeting](https://docs.dyte.io/api/?v=v2#/operations/create_meeting)
-- [Add Participant](https://docs.dyte.io/api/?v=v2#/operations/add_participant)
+  [Dyte Meeting](/api/?v=v2#/operations/create_meeting)
+- [Add Participant](/api/?v=v2#/operations/add_participant)
   to the meeting
 
 ## Step 1: Install the SDK
@@ -89,7 +89,7 @@ platform :ios, '13.0'
 
 ## Step 3: Configure a Dyte meeting
 
-To initiate Dyte Meeting for any participant you just need to pass `authToken` as an argument. You can get the `authToken` via the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant).
+To initiate Dyte Meeting for any participant you just need to pass `authToken` as an argument. You can get the `authToken` via the [Add Participant API](/api?v=v2#/operations/add_participant).
 
 After getting the `authToken`, you need to create the `DyteMeetingInfoV2` object as follows:
 
@@ -101,7 +101,6 @@ final meetingInfo = DyteMeetingInfoV2(authToken: '<auth_token>');
 
 The `DyteUIKit` is the main class of the SDK. It is the entry point and the only
 class required to initialize Dyte UI Kit SDK. To initialize it we have to pass `DyteUIKitInfo` object as an argument.
-
 
 ```dart
 
@@ -124,6 +123,7 @@ final uikitInfo = DyteUIKitInfo(
 final uiKit = DyteUIKitBuilder.build(uiKitInfo: uikitInfo);
 
 ```
+
 You can learn more about customization of the uikit in the [Design System](/flutter/design-token) section.
 
 ## Step 5: Launch the meeting UI

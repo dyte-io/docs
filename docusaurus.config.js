@@ -228,10 +228,6 @@ const plugins = [
           return ['/capabilities/export-chat-dump'];
         }
 
-        if (path.startsWith('/guides/capabilities/audio/transcriptions')) {
-          return ['/guides/capabilities/ai/meeting-transcription'];
-        }
-
         if (path.startsWith('/guides/capabilities/misc/embed')) {
           return ['/guides/capabilities/embed'];
         }
@@ -444,7 +440,7 @@ const config = {
   trailingSlash: false,
   themes: ['@docusaurus/theme-live-codeblock'],
   clientModules: [require.resolve('./src/client/define-ui-kit.js')],
-  scripts: [{ src: 'https://cdn.statuspage.io/se-v2.js' }],
+  scripts: [{ src: 'https://cdn.statuspage.io/se-v2.js', async: true }],
 
   presets: [
     [
@@ -465,7 +461,7 @@ const config = {
           ],
         },
         sitemap: {
-          ignorePatterns: ['/tags/**'],
+          ignorePatterns: ['**/tags/**'],
         },
         googleTagManager: {
           containerId: 'GTM-5FDFFSS',
