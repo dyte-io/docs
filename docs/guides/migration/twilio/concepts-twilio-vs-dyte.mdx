@@ -1,6 +1,7 @@
 ---
-title: 'Concepts: Basics'
+title: '💡 Concepts'
 sidebar_position: 1
+slug: 'concepts-twilio-vs-dyte'
 ---
 
 This topic guides you through the standard practices utilized in [Twilio Video API](https://www.twilio.com/docs/video) and illustrates how they correspond with Dyte's API. The main purpose of this tutorial is to support you in migrating an existing application from Twilio to Dyte's video and audio APIs.
@@ -34,30 +35,3 @@ It's important to note that the credentials for both Twilio and Dyte are intende
 | ----------- | --------------- |
 | Account SID | Organization ID |
 | API Secret  | API Key         |
-
-## Rooms / Meeting
-
-Twilio utilizes Rooms to establish connections between participants, whereas Dyte uses [Meetings](/api#/operations/create_meeting) for the same purpose.
-
-| **Twilio** | **Dyte**   |
-| ---------- | ---------- |
-| Room       | Meeting    |
-| Room SID   | Meeting ID |
-
-## Participant Authentication
-
-In Twilio, helper libraries are used to generate a participant access token.
-
-```ts
-const token = new AccessToken(twilioAccountSid, twilioApiKey, twilioApiSecret, {
-  identity: identity,
-});
-token.addGrant(videoGrant);
-console.log(token.toJwt());
-```
-
-In Dyte, you make a REST API call to [Add Participant API](/api/#/operations/add_participant) which returns `authToken`.
-
-| **Twilio**   | **Dyte**  |
-| ------------ | --------- |
-| Access Token | Authtoken |
