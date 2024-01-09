@@ -1,6 +1,7 @@
 ---
-title: 'Migrate from Twilio to Dyte with Shim'
+title: 'Introduction'
 sidebar_position: 3
+slug: '/migration/twilio/twilio-shim-by-dyte'
 ---
 
 The Twilio [Shim](<https://en.wikipedia.org/wiki/Shim_(computing)>) by Dyte is a package that allows you to migrate your video calling applications from [Twilio](https://sdk.twilio.com/js/video/releases/2.27.0/docs/index.html) to Dyte infrastructure.
@@ -32,11 +33,11 @@ You can obtain Dyte authentication token `<DYTE-AUTH-TOKEN>` using the [Add a Pa
 const { connect } = require('@dytesdk/twilio-shim');
 
 const authToken = '<AUTH_TOKEN_FROM_DYTE_API>';
-const room = await connect(authToken, {audio: false, video: true});
+const room = await connect(authToken, { audio: false, video: true });
 console.log(`Successfully joined a Room: ${room.name}`);
 console.log(room);
-room.on('participantConnected', participant => {
-console.log(`A remote Participant connected: ${participant}`);
+room.on('participantConnected', (participant) => {
+  console.log(`A remote Participant connected: ${participant}`);
 });
 ```
 
@@ -46,23 +47,23 @@ console.log(`A remote Participant connected: ${participant}`);
 const { connect } = require('@dytesdk/twilio-shim');
 
 const authToken = '<AUTH_TOKEN_FROM_DYTE_API>';
-const room = await connect(authToken, {audio: false, video: false});
-room.on('participantConnected', participant => {
-    console.log(`Participant "${participant.identity}" connected`);
+const room = await connect(authToken, { audio: false, video: false });
+room.on('participantConnected', (participant) => {
+  console.log(`Participant "${participant.identity}" connected`);
 
-    participant.tracks.forEach(publication => {
-        if (publication.isSubscribed) {
-            const track = publication.track;
-            document.getElementById('remote-media-div').appendChild(track.attach());
-        }
-    });
+  participant.tracks.forEach((publication) => {
+    if (publication.isSubscribed) {
+      const track = publication.track;
+      document.getElementById('remote-media-div').appendChild(track.attach());
+    }
+  });
 
-    participant.on('trackSubscribed', track => {
-        console.log('Subscribed to track', track);
-        const element = track.attach();
-        console.log(element);
-        document.getElementById('remote-media-div').appendChild(element);
-    });
+  participant.on('trackSubscribed', (track) => {
+    console.log('Subscribed to track', track);
+    const element = track.attach();
+    console.log(element);
+    document.getElementById('remote-media-div').appendChild(element);
+  });
 });
 ```
 
@@ -72,25 +73,24 @@ room.on('participantConnected', participant => {
 const { connect } = require('@dytesdk/twilio-shim');
 
 const authToken = '<AUTH_TOKEN_FROM_DYTE_API>';
-const room = await connect(authToken, {audio: true, video: true});
+const room = await connect(authToken, { audio: true, video: true });
 
-room.localParticipant.audioTracks.forEach(publication => {
-    publication.track.disable();
+room.localParticipant.audioTracks.forEach((publication) => {
+  publication.track.disable();
 });
 
-room.localParticipant.videoTracks.forEach(publication => {
-    publication.track.disable();
+room.localParticipant.videoTracks.forEach((publication) => {
+  publication.track.disable();
 });
-
 
 // Enable audio and video tracks after 5 seconds
 setTimeout(() => {
-    room.localParticipant.audioTracks.forEach(publication => {
-        publication.track.enable();
-    });
+  room.localParticipant.audioTracks.forEach((publication) => {
+    publication.track.enable();
+  });
 
-    room.localParticipant.videoTracks.forEach(publication => {
-        publication.track.enable();
-    });
+  room.localParticipant.videoTracks.forEach((publication) => {
+    publication.track.enable();
+  });
 }, 5000);
 ```
