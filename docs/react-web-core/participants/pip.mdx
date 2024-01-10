@@ -17,12 +17,12 @@ Use the boolean value at `meeting.participants.pip.isSupported` to check if the 
 
 ### Initialization
 
-Call `meeting.participant.pip.init()` to activate PIP mode. Optionally you can pass height and width the configure the size of the PIP tile
+Call `meeting.participants.pip.init()` to activate PIP mode. Optionally you can pass height and width the configure the size of the PIP tile
 
 ```ts
 const { meeting } = useDyteMeeting();
 
-meeting.participant.pip.init({
+meeting.participants.pip.init({
   width: 360,
   height: 360,
 });
@@ -30,8 +30,8 @@ meeting.participant.pip.init({
 
 ### Enable
 
-`meeting.participant.pip.enable()` to enable PIP mode if disabled
+`meeting.participants.pip.enable()` to enable PIP mode if disabled
 
 ### Disable
 
-`meeting.participant.pip.disable()` to enable PIP mode if enabled
+`meeting.participants.pip.disable()` to enable PIP mode if enabled
