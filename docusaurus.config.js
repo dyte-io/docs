@@ -461,7 +461,7 @@ const config = {
           ],
         },
         sitemap: {
-          ignorePatterns: ['**/tags/**'],
+          ignorePatterns: ['**/tags/**', '/api/*'],
         },
         googleTagManager: {
           containerId: 'GTM-5FDFFSS',
