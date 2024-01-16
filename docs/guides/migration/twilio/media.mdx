@@ -94,7 +94,7 @@ meeting.self.disableVideo();
 
 **Twilio**
 
-Twilio emits  `participantConnected` and `trackSubscribed` events, Dyte emits a similar`videoUpdate` (but you don’t need to listen for this event)
+Twilio emits  `participantConnected` and `trackSubscribed` events, Dyte emits a similar`videoUpdate` (but you don't need to listen for this event)
 
 ```tsx
 twilioRoom.on('participantConnected', (participant) => {
@@ -120,7 +120,7 @@ meeting.participants.active.on('videoUpdate', (participant) => {
 });
 ```
 
-But you don’t need this event to render remote participants, the `dyte-participant-tile` component sets up this listener on its own and will render the video on its own
+But you don't need this event to render remote participants, the `dyte-participant-tile` component sets up this listener on its own and will render the video on its own
 
 ```tsx
 <dyte-participant-tile participant={remoteParticipant} />
