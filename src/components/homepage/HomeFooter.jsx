@@ -5,6 +5,15 @@ import { Linkedin, Youtube, Github } from '@styled-icons/boxicons-logos';
 import { XIcon } from '@site/src/icons';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 
+
+function MyButton(){
+  return (
+    <button>
+      Some text here
+    </button>
+  );
+}
+
 const products = [
   {
     name: 'Live Video',
