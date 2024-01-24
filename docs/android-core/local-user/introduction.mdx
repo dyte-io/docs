@@ -30,7 +30,7 @@ Here is a list of properties that local user provides:
 When you join the meeting, the SDK will automatically enable your video and audio streams. If you want to change this behavior, use the `audioEnabled` and `videoEnabled` parameters.
 
 ```kotlin {3,4}
-val meetingInfo = DyteMeetingInfo(
+val meetingInfo = DyteMeetingInfoV2(
       authToken = AUTH_TOKEN,
       audioEnabled = false,
       videoEnabled = true
