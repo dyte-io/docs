@@ -2711,6 +2711,79 @@ paths:
           in: query
           name: filters
           description: Comma separated list of filters to apply. Note that there must be no spaces between the filters.
+  /chat/channels:
+    post:
+      summary: Create chat channels in bulk
+      tags:
+        - Chat
+      responses:
+        '201':
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples: null
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      chat_channels:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            display_name:
+                              type: string
+                            target_user_ids:
+                              type: array
+                              items:
+                                type: string
+                            visibility:
+                              type: string
+                            is_direct_message:
+                              type: boolean
+                      failed_inserts:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            display_name:
+                              type: string
+                            target_user_ids:
+                              type: array
+                              items:
+                                type: string
+                            visibility:
+                              type: string
+                            is_direct_message:
+                              type: boolean
+      operationId: BulkCreateChatChannels
+      x-stoplight:
+        id: gs5a19s8n23ne
+      requestBody:
+        description: Create chat channels body
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples: null
+              properties:
+                meeting_id:
+                  type: string
+                  format: uuid
+                channels_info:
+                  x-stoplight:
+                    id: 46uvual2wkgj4
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/CreateChatChannelInfo'
+      description: Create chat channels within a given meeting ID.
+    parameters: []
 components:
   schemas:
     LivestreamWithSessions:
@@ -5090,6 +5163,35 @@ components:
           $ref: '#/components/schemas/DyteBucketConfig'
         live_streaming_config:
           $ref: '#/components/schemas/LivestreamingConfig'
+    CreateChatChannelInfo:
+      type: object
+      x-stoplight:
+        id: 366atbz8irevk
+      x-examples:
+        Example 1:
+          display_name: Channel 1
+          custom_participant_ids:
+            - custom_participant_id_1
+          visibility: public
+      properties:
+        display_name:
+          type: string
+          x-stoplight:
+            id: wxepkkzz7j21c
+        custom_participant_ids:
+          type: array
+          items:
+            type: string
+            x-stoplight:
+              id: 0tfh47p4b9vmk
+          x-stoplight:
+            id: hylanzo8x6mjd
+        visibility:
+          enum:
+            - public
+            - private
+          x-stoplight:
+            id: mx3q80kica7h6
   parameters:
     Content-Type:
       name: Content-Type
@@ -6938,6 +7040,7 @@ tags:
   - name: Live streams
   - name: Analytics
   - name: Organizations
+  - name: Chat
 externalDocs:
   url: 'https://docs.dyte.io'
   description: ''
