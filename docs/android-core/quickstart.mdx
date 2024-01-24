@@ -45,29 +45,26 @@ You must complete the following steps:
   to the meeting
 - Install [Android Studio](https://developer.android.com/studio)
 
-## Step 1: Install the SDK
-
-1. Install the SDK using maven central
+## Step 1: Install the SDK using maven central
 
 <MavenLatestInstallation pkg="core-android" />
 
-2. Add the following permissions to the AndroidManifest.xml file.
-
-```python
-<uses-permission android:name="android.permission.RECORD_AUDIO" />
-<uses-permission android:name="android.permission.CAMERA" />
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.BLUETOOTH" />
-<uses-permission android:name="android.permission.WAKE_LOCK" />
-<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-```
-
 :::tip Note
+If your app targets to lower versions of android (android api <= 24), Please enable core desugering in your app's build.gradle file like follows.
+```
+android {
+  // other configurations
+  compileOptions {
+    // other configurations
+    isCoreLibraryDesugaringEnabled = true
+  }
+}
 
-If you intend to publish your app to the Google Play, you'll need to perform a
-few additional steps. So if you're working on release builds and not debug
-builds, refer to the [Release Builds](#release-builds) section.
-
+dependencies {
+   // other dependencies
+   coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
+}
+```
 :::
 
 ## Step 2: Initialize the SDK
@@ -90,7 +87,7 @@ participant's `authToken`.
 
 ```kotlin
 val meetingInfo = DyteMeetingInfoV2(
-                    authToken = '<auth_token>',
+                    authToken = "<auth_token>",
                   )
 ```
 
@@ -140,55 +137,4 @@ dyteClient.leaveRoom({
 }, {
   // leave failed
 })
-```
-
-## Release Builds
-
-If you intend to publish your app to the Google Play, perform the following
-steps after installing the SDKs. So if you're working on release builds and not
-debug builds, do the following:
-
-### For Android release builds
-
-Perform the following steps, for Android release builds:
-
-1. Create `/android/app/proguard-rules.pro` file.
-
-```python
-# Keep `Companion` object fields of serializable classes.
-# This avoids serializer lookup through `getDeclaredClasses` as done for named companion objects.
--if @kotlinx.serialization.Serializable class **
--keepclassmembers class <1> {
-   static <1>$Companion Companion;
-}
-
-# Keep `serializer()` on companion objects (both default and named) of serializable classes.
--if @kotlinx.serialization.Serializable class ** {
-   static **$* *;
-}
--keepclassmembers class <2>$<3> {
-   kotlinx.serialization.KSerializer serializer(...);
-}
-
-# keep webrtc classes
--keep class org.webrtc.** { *; }
--dontwarn org.chromium.build.BuildHooksAndroid
-
-# keep ktor classes
--keep class io.ktor.** { *; }
-
-```
-
-2. Add the following to your `android/app/build.gradle` to import the proguard
-   configuration.
-
-```python
-buildTypes {
-        release {
-            ...
-            ...
-            ...
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
 ```
