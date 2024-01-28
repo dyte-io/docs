@@ -2772,6 +2772,9 @@ paths:
             schema:
               type: object
               x-examples: null
+              required:
+                - meeting_id
+                - channels_info
               properties:
                 meeting_id:
                   type: string
@@ -2782,8 +2785,207 @@ paths:
                   type: array
                   items:
                     $ref: '#/components/schemas/CreateChatChannelInfo'
-      description: Create chat channels within a given meeting ID.
+      description: |-
+        Create chat channels within a given meeting ID.
+        <!-- theme: warning -->
+        > #### NOTE
+        >
+        > This API is in beta. [Contact us](https://dyte.io/contact) if you face
+        > any issues.
     parameters: []
+  '/chat/channels/{chat_channel_id}':
+    parameters:
+      - schema:
+          type: string
+        name: chat_channel_id
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: chat_channel_id
+        in: path
+        required: true
+    put:
+      summary: Update chat channel
+      tags:
+        - Chat
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      display_name:
+                        type: string
+                      target_user_ids:
+                        type: array
+                        items:
+                          type: string
+                      visibility:
+                        type: string
+                      is_direct_message:
+                        type: boolean
+                x-examples: null
+      operationId: UpdateChatChannel
+      x-stoplight:
+        id: arpbzp237fce1
+      description: |-
+        Update a chat channel's details for a given chat channel ID.
+        <!-- theme: warning -->
+        > #### NOTE
+        >
+        > This API is in beta. [Contact us](https://dyte.io/contact) if you face
+        > any issues.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples: null
+              required:
+                - meeting_id
+              properties:
+                meeting_id:
+                  type: string
+                visibility:
+                  enum:
+                    - public
+                    - private
+                display_name:
+                  type: string
+  '/chat/channels/{chat_channel_id}/members':
+    parameters:
+      - schema:
+          type: string
+        name: chat_channel_id
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: chat_channel_id
+        in: path
+        required: true
+    post:
+      summary: Add members to a chat channel
+      tags:
+        - Chat
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      display_name:
+                        type: string
+                      target_user_ids:
+                        type: array
+                        items:
+                          type: string
+                      visibility:
+                        type: string
+                      is_direct_message:
+                        type: boolean
+                x-examples: null
+      operationId: AddChatChannelMembers
+      x-stoplight:
+        id: mhu8fgazg81ck
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples: null
+              required:
+                - meeting_id
+                - custom_participant_ids
+              properties:
+                meeting_id:
+                  type: string
+                custom_participant_ids:
+                  type: array
+                  minItems: 1
+                  items:
+                    type: string
+      description: |-
+        <!-- theme: warning -->
+        > #### NOTE
+        >
+        > This API is in beta. [Contact us](https://dyte.io/contact) if you face
+        > any issues.
+    delete:
+      summary: Remove members from a chat channel
+      tags:
+        - Chat
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      display_name:
+                        type: string
+                      target_user_ids:
+                        type: array
+                        items:
+                          type: string
+                      visibility:
+                        type: string
+                      is_direct_message:
+                        type: boolean
+                x-examples: null
+      operationId: RemoveChatChannelMembers
+      x-stoplight:
+        id: rfg66uw9b2pwo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples: null
+              required:
+                - meeting_id
+                - custom_participant_ids
+              properties:
+                meeting_id:
+                  type: string
+                custom_participant_ids:
+                  type: array
+                  minItems: 1
+                  items:
+                    type: string
+      description: |-
+        <!-- theme: warning -->
+        > #### NOTE
+        >
+        > This API is in beta. [Contact us](https://dyte.io/contact) if you face
+        > any issues.
 components:
   schemas:
     LivestreamWithSessions:
