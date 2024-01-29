@@ -30,19 +30,22 @@ function App() {
   const [client, initClient] = useDyteClient();
 
   useEffect(() => {
-    initClient({
-      authToken: '<auth-token>',
-      // set default values for user media
-      defaults: {
-        audio: false,
-        video: true,
-      },
-    });
+    const init = async () => {
+      initMeeting({
+        authToken: '<auth-token>',
+        defaults: {
+          audio: true,
+          video: true,
+        },
+      });
+    };
+    init();
   }, []);
 
   return (
     <DyteProvider value={client}>
-      <Meeting />
+      {/* Render your component */}
+      <MyComponent />
     </DyteProvider>
   );
 }
@@ -61,13 +64,16 @@ export default function App() {
   const [meeting, initMeeting] = useDyteClient();
 
   useEffect(() => {
-    initMeeting({
-      authToken: '<auth-token>',
-      defaults: {
-        audio: false,
-        video: false,
-      },
-    });
+    const init = async () => {
+      initMeeting({
+        authToken: '<auth-token>',
+        defaults: {
+          audio: true,
+          video: true,
+        },
+      });
+    };
+    init();
   }, []);
 
   return (
@@ -144,7 +150,7 @@ the various properties of the `meeting` object.
 import React from 'react';
 import { View } from 'react-native';
 import { useDyteMeeting, useDyteSelector } from '@dytesdk/react-native-core';
-import { DyteGrid, DyteButton } from '@dytesdk/react-ui-kit';
+import { DyteGrid, DyteButton, DyteText } from '@dytesdk/react-ui-kit';
 
 function Meeting() {
   const { meeting } = useDyteMeeting();
@@ -152,17 +158,15 @@ function Meeting() {
 
   if (!roomJoined) {
     return (
-      <div>
-        <p>You haven't joined the room yet.</p>
+      <View>
+        <DyteText>You haven't joined the room yet.</DyteText>
         <DyteButton onClick={() => meeting.joinRoom()}>Join Room</DyteButton>
       </div>
     );
   }
 
   return (
-    <View style={{ height: '100', width: '100' }}>
-      <DyteGrid meeting={meeting} />
-    </View>
+    <DyteGrid meeting={meeting} />
   );
 }
 
