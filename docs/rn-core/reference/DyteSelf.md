@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-web_core_version: 1.2.0
+web_core_version: 1.20.0
 ---
 
 <!-- Auto Generated Below -->
@@ -8,108 +8,51 @@ web_core_version: 1.2.0
 <a name="module_DyteSelf"></a>
 
 The DyteSelf module represents the current user, and allows to modify the state
-of the user in the meeting. The audio and video streams of the user can be
-retrieved from this module.
+of the user in the meeting. The audio and video streams of the user can be retrieved from
+this module.
 
 - [DyteSelf](#module_DyteSelf)
-  - [.audioTrack](#module_DyteSelf+audioTrack)
-  - [.rawAudioTrack](#module_DyteSelf+rawAudioTrack)
-  - [.videoTrack](#module_DyteSelf+videoTrack)
-  - [.rawVideoTrack](#module_DyteSelf+rawVideoTrack)
-  - [.screenShareTracks](#module_DyteSelf+screenShareTracks)
-  - [.audioEnabled](#module_DyteSelf+audioEnabled)
-  - [.videoEnabled](#module_DyteSelf+videoEnabled)
-  - [.screenShareEnabled](#module_DyteSelf+screenShareEnabled)
-  - [.mediaPermissions](#module_DyteSelf+mediaPermissions)
+  - [.roomState](#module_DyteSelf+roomState)
   - [.permissions](#module_DyteSelf+permissions)
   - ~~[.suggestedTheme](#module_DyteSelf+suggestedTheme)~~
   - [.config](#module_DyteSelf+config)
   - [.roomJoined](#module_DyteSelf+roomJoined)
   - [.isPinned](#module_DyteSelf+isPinned)
-  - [.addAudioMiddleware()](#module_DyteSelf+addAudioMiddleware)
-  - [.removeAudioMiddleware()](#module_DyteSelf+removeAudioMiddleware)
-  - [.addVideoMiddleware()](#module_DyteSelf+addVideoMiddleware)
-  - [.removeVideoMiddleware()](#module_DyteSelf+removeVideoMiddleware)
+  - ~~[.webinarStageStatus](#module_DyteSelf+webinarStageStatus)~~
   - [.setName(name)](#module_DyteSelf+setName)
   - [.setupTracks(options)](#module_DyteSelf+setupTracks)
   - [.enableAudio()](#module_DyteSelf+enableAudio)
   - [.enableVideo()](#module_DyteSelf+enableVideo)
+  - [.updateVideoConstraints()](#module_DyteSelf+updateVideoConstraints)
   - [.enableScreenShare()](#module_DyteSelf+enableScreenShare)
+  - [.updateScreenshareConstraints()](#module_DyteSelf+updateScreenshareConstraints)
   - [.disableAudio()](#module_DyteSelf+disableAudio)
   - [.disableVideo()](#module_DyteSelf+disableVideo)
   - [.disableScreenShare()](#module_DyteSelf+disableScreenShare)
-  - [.getCurrentDevices()](#module_DyteSelf+getCurrentDevices)
-  - [.getAudioDevices()](#module_DyteSelf+getAudioDevices)
-  - [.getVideoDevices()](#module_DyteSelf+getVideoDevices)
-  - [.getSpeakerDevices()](#module_DyteSelf+getSpeakerDevices)
-  - [.getDeviceById(deviceId, kind)](#module_DyteSelf+getDeviceById)
   - [.getAllDevices()](#module_DyteSelf+getAllDevices)
   - [.setIsPinned()](#module_DyteSelf+setIsPinned)
   - [.pin()](#module_DyteSelf+pin)
   - [.unpin()](#module_DyteSelf+unpin)
   - [.setDevice(device)](#module_DyteSelf+setDevice)
-  - [.requestToJoinStage()](#module_DyteSelf+requestToJoinStage)
-  - [.leaveStage()](#module_DyteSelf+leaveStage)
-  - [.joinStage()](#module_DyteSelf+joinStage)
+  - ~~[.requestToJoinStage()](#module_DyteSelf+requestToJoinStage)~~
+  - ~~[.withdrawRequestToJoinStage()](#module_DyteSelf+withdrawRequestToJoinStage)~~
+  - ~~[.leaveStage()](#module_DyteSelf+leaveStage)~~
+  - ~~[.joinStage()](#module_DyteSelf+joinStage)~~
+  - ~~[.setWebinarStageStatus()](#module_DyteSelf+setWebinarStageStatus)~~
   - ~~[.disablePreview()](#module_DyteSelf+disablePreview)~~
 
-<a name="module_DyteSelf+audioTrack"></a>
+<a name="module_DyteSelf+roomState"></a>
 
-### meeting.self.audioTrack
+### meeting.self.roomState
 
-Returns the `audioTrack`.
-
-<a name="module_DyteSelf+rawAudioTrack"></a>
-
-### meeting.self.rawAudioTrack
-
-Returns the `rawAudioTrack` having no middleware executed on it.
-
-<a name="module_DyteSelf+videoTrack"></a>
-
-### meeting.self.videoTrack
-
-Returns the `videoTrack`.
-
-<a name="module_DyteSelf+rawVideoTrack"></a>
-
-### meeting.self.rawVideoTrack
-
-Returns the `videoTrack` having no middleware executed on it.
-
-<a name="module_DyteSelf+screenShareTracks"></a>
-
-### meeting.self.screenShareTracks
-
-Returns the screen share tracks.
-
-<a name="module_DyteSelf+audioEnabled"></a>
-
-### meeting.self.audioEnabled
-
-Returns true if audio is enabled.
-
-<a name="module_DyteSelf+videoEnabled"></a>
-
-### meeting.self.videoEnabled
-
-Returns true if video is enabled.
-
-<a name="module_DyteSelf+screenShareEnabled"></a>
-
-### meeting.self.screenShareEnabled
-
-Returns true if screen share is enabled.
-
-<a name="module_DyteSelf+mediaPermissions"></a>
-
-### meeting.self.mediaPermissions
-
-Returns the current audio and video permissions given by the user. 'ACCEPTED' if
-the user has given permission to use the media. 'DENIED' if the user has denied
-permission to use the media. 'SYS_DENIED' if the user's system has denied
-permission to use the media. 'UNAVAILABLE' if the media is not available (or
-being used by a different application).
+Returns the current state of room
+init - Inital State
+joined - User is in the meeting
+waitlisted - User is in the waitlist state
+rejected - User's was in the waiting room, but the entry was rejected
+kicked - A priveleged user removed the user from the meeting
+left - User left the meeting
+ended - The meeting was ended
 
 <a name="module_DyteSelf+permissions"></a>
 
@@ -141,46 +84,19 @@ Returns true if the local participant has joined the meeting.
 
 Returns true if the current user is pinned.
 
-<a name="module_DyteSelf+addAudioMiddleware"></a>
+<a name="module_DyteSelf+webinarStageStatus"></a>
 
-### meeting.self.addAudioMiddleware()
+### ~~meeting.self.webinarStageStatus~~
 
-Adds the audio middleware to be executed on the raw audio stream. If there are
-more than 1 audio middlewares, they will be executed in the sequence they were
-added in. If you want the sequence to be altered, please remove all previous
-middlewares and re-add.
+**_Deprecated_**
 
-**Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
-<a name="module_DyteSelf+removeAudioMiddleware"></a>
-
-### meeting.self.removeAudioMiddleware()
-
-Removes the audio middleware, if it is there.
-
-**Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
-<a name="module_DyteSelf+addVideoMiddleware"></a>
-
-### meeting.self.addVideoMiddleware()
-
-Adds the video middleware to be executed on the raw video stream. If there are
-more than 1 video middlewares, they will be executed in the sequence they were
-added in. If you want the sequence to be altered, please remove all previous
-middlewares and re-add.
-
-**Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
-<a name="module_DyteSelf+removeVideoMiddleware"></a>
-
-### meeting.self.removeVideoMiddleware()
-
-Removes the video middleware, if it is there.
-
-**Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+setName"></a>
 
 ### meeting.self.setName(name)
 
-The name of the user can be set by calling this method. This will get reflected
-to other participants ONLY if this method is called before the room is joined.
+The name of the user can be set by calling this method.
+This will get reflected to other participants ONLY if
+this method is called before the room is joined.
 
 **Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)
 
@@ -213,16 +129,32 @@ This method is used to unmute the local participant's audio.
 
 ### meeting.self.enableVideo()
 
-This method is used to start streaming the local participant's video to the
-meeting.
+This method is used to start streaming the local participant's video
+to the meeting.
+
+**Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
+<a name="module_DyteSelf+updateVideoConstraints"></a>
+
+### meeting.self.updateVideoConstraints()
+
+This method is used to apply constraints to the current video
+stream.
 
 **Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+enableScreenShare"></a>
 
 ### meeting.self.enableScreenShare()
 
-This method is used to start sharing the local participant's screen to the
-meeting.
+This method is used to start sharing the local participant's screen
+to the meeting.
+
+**Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
+<a name="module_DyteSelf+updateScreenshareConstraints"></a>
+
+### meeting.self.updateScreenshareConstraints()
+
+This method is used to apply constraints to the current screenshare
+stream.
 
 **Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+disableAudio"></a>
@@ -246,47 +178,6 @@ This participant is used to disable the local participant's video.
 This method is used to stop sharing the local participant's screen.
 
 **Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
-<a name="module_DyteSelf+getCurrentDevices"></a>
-
-### meeting.self.getCurrentDevices()
-
-Returns the media devices currently being used.
-
-**Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
-<a name="module_DyteSelf+getAudioDevices"></a>
-
-### meeting.self.getAudioDevices()
-
-Returns the local participant's audio devices.
-
-**Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
-<a name="module_DyteSelf+getVideoDevices"></a>
-
-### meeting.self.getVideoDevices()
-
-Returns the local participant's video devices.
-
-**Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
-<a name="module_DyteSelf+getSpeakerDevices"></a>
-
-### meeting.self.getSpeakerDevices()
-
-Returns the local participant's speaker devices.
-
-**Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
-<a name="module_DyteSelf+getDeviceById"></a>
-
-### meeting.self.getDeviceById(deviceId, kind)
-
-Returns the local participant's device, indexed by ID and kind.
-
-**Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)
-
-| Param    | Description                                       |
-| -------- | ------------------------------------------------- |
-| deviceId | The ID of the device.                             |
-| kind     | The kind of the device: audio, video, or speaker. |
-
 <a name="module_DyteSelf+getAllDevices"></a>
 
 ### meeting.self.getAllDevices()
@@ -303,14 +194,16 @@ Returns all media devices accessible by the local participant.
 
 ### meeting.self.pin()
 
-Returns `self.id` if user has permission to pin participants.
+Returns `self.id` if user has permission
+to pin participants.
 
 **Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+unpin"></a>
 
 ### meeting.self.unpin()
 
-Returns `self.id` if user has permission to unpin participants.
+Returns `self.id` if user has permission
+to unpin participants.
 
 **Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+setDevice"></a>
@@ -327,23 +220,37 @@ Change the current media device that is being used by the local participant.
 
 <a name="module_DyteSelf+requestToJoinStage"></a>
 
-### meeting.self.requestToJoinStage()
+### ~~meeting.self.requestToJoinStage()~~
 
-Requests the moderator to join stage. ONLY FOR WEBINARS.
+**_Deprecated_**
+
+**Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
+<a name="module_DyteSelf+withdrawRequestToJoinStage"></a>
+
+### ~~meeting.self.withdrawRequestToJoinStage()~~
+
+**_Deprecated_**
 
 **Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+leaveStage"></a>
 
-### meeting.self.leaveStage()
+### ~~meeting.self.leaveStage()~~
 
-Leave stage. ONLY FOR WEBINARS.
+**_Deprecated_**
 
 **Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+joinStage"></a>
 
-### meeting.self.joinStage()
+### ~~meeting.self.joinStage()~~
 
-Assumes you have been accepted to join stage.
+**_Deprecated_**
+
+**Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
+<a name="module_DyteSelf+setWebinarStageStatus"></a>
+
+### ~~meeting.self.setWebinarStageStatus()~~
+
+**_Deprecated_**
 
 **Kind**: instance method of [<code>DyteSelf</code>](#module_DyteSelf)  
 <a name="module_DyteSelf+disablePreview"></a>
