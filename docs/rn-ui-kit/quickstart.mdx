@@ -94,6 +94,7 @@ Here's a series of steps that you need to perform:
    it can join and leave meetings, and so on.
 
 ```jsx
+import React from 'react';
 import { useDyteClient } from '@dytesdk/react-native-core';
 import { DyteUIProvider, DyteMeeting } from '@dytesdk/react-native-ui-kit';
 
@@ -101,15 +102,25 @@ export default function App() {
   const [meeting, initMeeting] = useDyteClient();
 
   useEffect(() => {
-    initMeeting({
-      authToken: '<auth-token>',
-      defaults: {
-        audio: false,
-        video: false,
-      },
-    });
+    const init = async () => {
+      initMeeting({
+        authToken: '<auth-token>',
+        defaults: {
+          audio: true,
+          video: true,
+        },
+      });
+    };
+    init();
   }, []);
-
+  useEffect(() => {
+    meeting?.self.addListener('roomLeft', () => console.log('Meeting ended'));
+    () => {
+      meeting?.self.removeListener('roomLeft', () =>
+        console.log('Meeting ended')
+      );
+    };
+  }, [meeting]);
   return (
     <DyteProvider value={meeting}>
       <DyteUIProvider>
@@ -138,11 +149,9 @@ function MyMeeting() {
   const { meeting } = useDyteMeeting();
 
   return (
-    <DyteProvider value={meeting}>
-      <DyteUIProvider>
-        <DyteMeeting meeting={meeting} />
-      </DyteUIProvider>
-    </DyteProvider>
+    <DyteUIProvider>
+      <DyteMeeting meeting={meeting} />
+    </DyteUIProvider>
   );
 }
 ```

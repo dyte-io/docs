@@ -1,14 +1,15 @@
 ---
-sidebar_position: 12
-web_core_version: 1.2.0
+sidebar_position: 14
+web_core_version: 1.20.0
 ---
 
 <!-- Auto Generated Below -->
 
 <a name="module_DytePlugin"></a>
 
-The DytePlugin module represents a single plugin in the meeting. A plugin can be
-obtained from one of the plugin arrays in `meeting.plugins`. For example,
+The DytePlugin module represents a single plugin in the meeting.
+A plugin can be obtained from one of the plugin arrays in `meeting.plugins`.
+For example,
 
 ```ts
 const plugin1 = meeting.plugins.active.get(pluginId);
@@ -16,6 +17,7 @@ const plugin2 = meeting.plugins.all.get(pluginId);
 ```
 
 - [DytePlugin](#module_DytePlugin)
+  - [.roomJoined](#module_DytePlugin+roomJoined)
   - [.sendIframeEvent(message)](#module_DytePlugin+sendIframeEvent)
   - [.sendData(payload)](#module_DytePlugin+sendData)
   - [.removePluginView(viewId)](#module_DytePlugin+removePluginView)
@@ -26,6 +28,12 @@ const plugin2 = meeting.plugins.all.get(pluginId);
   - ~~[.disable()](#module_DytePlugin+disable)~~
   - [.activate()](#module_DytePlugin+activate)
   - [.deactivate()](#module_DytePlugin+deactivate)
+
+<a name="module_DytePlugin+roomJoined"></a>
+
+### plugin.roomJoined
+
+Returns true if the local participant has joined the meeting.
 
 <a name="module_DytePlugin+sendIframeEvent"></a>
 
@@ -55,8 +63,8 @@ This method is used to send arbitrary data to the plugin.
 
 ### plugin.removePluginView(viewId)
 
-This method is used for cleaning up event listeners attached to an iframe. It
-must be used before the iframe is removed from the DOM.
+This method is used for cleaning up event listeners attached to an iframe. It must
+be used before the iframe is removed from the DOM.
 
 **Kind**: instance method of [<code>DytePlugin</code>](#module_DytePlugin)
 
@@ -68,8 +76,8 @@ must be used before the iframe is removed from the DOM.
 
 ### plugin.addPluginView(iframe, viewId)
 
-This method adds the communication layer between the plugin inside the iframe and
-the core application (meeting object) in the main window.
+This method adds the communication layer between the plugin inside the iframe
+and the core application (meeting object) in the main window.
 
 **Kind**: instance method of [<code>DytePlugin</code>](#module_DytePlugin)
 

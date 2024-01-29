@@ -1,17 +1,17 @@
 ---
-sidebar_position: 9
-web_core_version: 1.2.0
+sidebar_position: 8
+web_core_version: 1.20.0
 ---
 
 <!-- Auto Generated Below -->
 
 <a name="module_DytePolls"></a>
 
-The DytePolls module consists of the polls that have been created in the
-meeting.
+The DytePolls module consists of the polls that have been created in the meeting.
 
 - [DytePolls](#module_DytePolls)
   - [.items](#module_DytePolls+items)
+  - [.roomJoined](#module_DytePolls+roomJoined)
   - [.create(question, options, anonymous, hideVotes)](#module_DytePolls+create)
   - [.vote(pollId, index)](#module_DytePolls+vote)
 
@@ -20,6 +20,12 @@ meeting.
 ### meeting.polls.items
 
 An array of poll items.
+
+<a name="module_DytePolls+roomJoined"></a>
+
+### meeting.polls.roomJoined
+
+Returns true if the local participant has joined the meeting.
 
 <a name="module_DytePolls+create"></a>
 

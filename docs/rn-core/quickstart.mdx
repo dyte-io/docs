@@ -21,14 +21,34 @@ SDK. It is the only class that you need to instantiate in order to use the SDK.
 To instantiate DyteClient, you can run the following command:
 
 ```js
-import { useDyteClient } from '@dytesdk/react-native-core';
+import React from 'react';
+import { useDyteClient, DyteProvider } from '@dytesdk/react-native-core';
 
-const [client, initClient] = useDyteClient();
+export default function App() {
+  const [meeting, initMeeting] = useDyteClient();
+  React.useEffect(() => {
+    const init = async () => {
+      const meetingOptions = {
+        audio: true,
+        video: true,
+      };
+      await initMeeting({
+        authToken: 'YourAuthToken',
+        defaults: meetingOptions,
+      });
+    };
+    init();
+    if (meeting) meeting.joinRoom();
+  }, []);
 
-const meeting = await initClient({
-  authToken: 'YourAuthToken',
-});
-await meeting.joinRoom();
+  if (meeting)
+    return (
+      <DyteProvider value={meeting}>
+        {/* Render you Components here*/}
+        {/* Components rendered inside DyteProvider can access DyteClient object using useDyteClient() hook */}
+      </DyteProvider>
+    );
+}
 ```
 
 You can get the authToken using our backend APIs and then pass it
@@ -42,12 +62,14 @@ and stop recording etc. it should be done after the `roomJoined` event is fired.
 
 For example:
 
-    meeting.self.on('roomJoined', () => {
-        console.log('User has joined the room', meeting.self.roomJoined);
-        // run my actions.
-    });
+```js
+meeting.self.on('roomJoined', () => {
+  console.log('User has joined the room', meeting.self.roomJoined);
+  // run my actions.
+});
 
-    await meeting.joinRoom();
+await meeting.joinRoom();
+```
 
 :::
 
