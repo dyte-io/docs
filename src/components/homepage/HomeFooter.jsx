@@ -5,6 +5,15 @@ import { Linkedin, Youtube, Github } from '@styled-icons/boxicons-logos';
 import { XIcon } from '@site/src/icons';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 
+
+function MyButton(){
+  return (
+    <button>
+      Some text here
+    </button>
+  );
+}
+
 const products = [
   {
     name: 'Live Video',
@@ -31,7 +40,7 @@ const products = [
 const developers = [
   {
     name: 'Developer Portal',
-    href: 'https://dev.dyte.io',
+    href: 'https://accounts.dyte.io/auth/login',
   },
   {
     name: 'Documentation',
@@ -49,6 +58,10 @@ const developers = [
     name: 'Guides',
     href: '/guides',
   },
+  {
+    name: 'Migrate from Twilio',
+    href: 'https://dyte.io/blog/migrate-twilio-video-dyte-shim/'
+  }
 ];
 
 const usecases = [
@@ -59,19 +72,23 @@ const usecases = [
   { name: 'Social', href: 'https://dyte.io/use-cases/social' },
   { name: 'Gaming', href: 'https://dyte.io/use-cases/gaming' },
   { name: 'Events', href: 'https://dyte.io/use-cases/events' },
+  {name: 'Dating', href: "https://dyte.io/use-cases/dating"}
 ];
 
 const company = [
   { name: 'About Us', href: 'https://dyte.io/about' },
+  {name: 'Customers', href: 'https://dyte.io/customers'},
   { name: 'Blog', href: 'https://dyte.io/blog' },
   { name: 'Careers', href: 'https://jobs.lever.co/dyte-io' },
   { name: 'Community', href: 'https://dyte.io/community' },
   { name: 'Startup Program', href: 'https://dyte.io/startups' },
   { name: 'Contact Us', href: 'https://dyte.io/contact' },
   { name: 'FAQ', href: '/faq' },
+  {name: 'Guide on Video SDK', href: 'https://dyte.io/blog/video-sdk/'}
 ];
 
 const comparisons = [
+  {name: 'Dyte vs Raw WebRTC', href: 'https://dyte.io/webrtc-alternative'},
   { name: 'Dyte vs Agora', href: 'https://dyte.io/agora-competitor' },
   { name: 'Dyte vs Zoom', href: 'https://dyte.io/zoom-sdk-competitor' },
   { name: 'Dyte vs Twilio', href: 'https://dyte.io/twilio-video-competitor' },

@@ -1,9 +1,73 @@
 [
     {
+        "version": "1.25.1",
+        "createdAt": "1706085081",
+        "fixes": [
+            "Added missing permission checks on `meeting.chat.pin(messageId)`"
+        ]
+    },
+    {
+        "version": "1.25.0",
+        "createdAt": "1705912281",
+        "features": [
+            "Stereo audio support"
+        ],
+        "new_api": [
+            "User can now configure media quality configuration include stereo audio on `DyteClient.init`. Checkout the [documentation here](/web-core/advanced/advance#mediaconfiguration)"
+        ]
+    },
+    {
+        "version": "1.24.0",
+        "createdAt": "1705890681",
+        "fixes": [
+            "Fix blank Picture-in-Picture stream on PIP resize"
+        ],
+        "perf": [
+            "Updated [simulcast](https://en.wikipedia.org/wiki/Simulcast) configuration for better video performance"
+        ],
+        "new_api": [
+            "New `meeting.meta.meetingId` to get the meetingId of the current meeting",
+            "New `meeting.self.customParticipantId` to fetch the participantId set by the customer during Add Participant REST API"
+        ],
+        "dep_api": [
+            "`meeting.meta.roomName` in favour of `meeting.meta.meetingId`",
+            "`meeting.self.clientSpecificId` in favour of `meeting.self.customParticipantId`"
+        ]
+    },
+    {
+        "version": "1.23.1",
+        "createdAt": "1705458681",
+        "fixes": [
+            "Populate `meeting.ai.transcripts` with previous transcripts, generated before the user joins"
+        ]
+    },
+    {
+        "version": "1.23.0",
+        "createdAt": "1705285881",
+        "fixes": [
+            "Add undefined checks on deviceId passed to `meeting.self.setDevice`"
+        ],
+        "new_api": [
+            "`meeting.ai.transcripts` now contain `customParticipantId` with every transcript record",
+            "Emit `kicked` on `meeting.participants.joined` locally for a privileged users when they kick another user",
+            "New `meeting.chat.pin(messageId)` API to pin chat messages"
+        ]
+    },
+    {
+        "version": "1.22.x",
+        "createdAt": "1703030400",
+        "fixes": [
+            "Fix network reconnection when user disconnects while inside a waiting room"
+        ],
+        "new_api": [
+            "New `meeting.chat.sendCustomMessages` for custom chat messages"
+        ]
+    },
+    {
         "version": "1.21.2",
         "createdAt": "1703030400",
         "fixes": [
-            "Fixed a corner case on stage management.",
+            "Fixed an edge case on stage management.",
             "Added type definitions for some events."
         ]
     },
@@ -86,7 +150,9 @@
     {
         "version": "1.15.0",
         "createdAt": 1688083200,
-        "fixes": ["Fixed an edge case around file upload in Chat."],
+        "fixes": [
+            "Fixed an edge case around file upload in Chat."
+        ],
         "features": [
             "Added add support for quoting a chat message while reply for Chat SDK",
             "Chat SDK now shows unread count and last message on channel list.",
@@ -185,7 +251,9 @@
     {
         "version": "1.5.x",
         "createdAt": 1677609000,
-        "fixes": ["Handle WeWork Solistice Camera gracefully"],
+        "fixes": [
+            "Handle WeWork Solistice Camera gracefully"
+        ],
         "features": [
             "Initial support for our upcoming Interactive Livestream product (LL-HLS)",
             "Webcam quality can now be controlled from the preset, allows customer to select a higher base quality in the preset editor (beta)"
@@ -220,7 +288,9 @@
     {
         "version": "1.2.0",
         "createdAt": 1674714600,
-        "fixes": ["Improved permissions check for audio/video/screenshare"],
+        "fixes": [
+            "Improved permissions check for audio/video/screenshare"
+        ],
         "features": [
             "When Tab Sync is enabled, now a `selfTabUpdate` event is fired on the local user when the user switches a plugin"
         ],

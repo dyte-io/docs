@@ -25,20 +25,10 @@ You'll learn how to:
 
 - Make sure you've read the [Getting Started with Dyte](/getting-started) topic
   and completed the following steps:
+
   - Create a [Dyte Developer Account](https://dev.dyte.io/)
-  - Create [Presets](https://dev.dyte.io/roles-presets). Dyte also includes the
-    following pre-configured presets for group call and webinar. You can simply
-    use the default preset if you don't wish to create one.
-    - webinar_viewer
-    - webinar_presenter
-    - group_call_host
-    - group_call_participant
   - Create a [Dyte Meeting](/api/?v=v2#/operations/create_meeting)
   - [Add Participant](/api/?v=v2#/operations/add_participant) to the meeting
-- Install [React 16.8](https://reactjs.org/blog/2019/02/06/react-v16.8.0.html)
-  or higher on your device
-- Read the [Introduction to React Native UI Kit](/react-native) to understand the UI
-  Kit and its relationship with web core SDKs.
 
 ## Step 1: Install the SDK
 
@@ -56,7 +46,7 @@ npm install @dytesdk/react-native-ui-kit @dytesdk/react-native-core
 Install the required dependencies
 
 ```bash npm2yarn
-npm install react-native-webrtc react-native-document-picker react-native-file-viewer react-native-fs react-native-safe-area-context react-native-sound-player react-native-svg react-native-webview
+npm install @dyteinternals/react-native-webrtc react-native-document-picker react-native-file-viewer react-native-fs react-native-safe-area-context react-native-sound-player react-native-svg react-native-webview
 ```
 
 Install the following dependencies only if you need livestream.
@@ -104,6 +94,7 @@ Here's a series of steps that you need to perform:
    it can join and leave meetings, and so on.
 
 ```jsx
+import React from 'react';
 import { useDyteClient } from '@dytesdk/react-native-core';
 import { DyteUIProvider, DyteMeeting } from '@dytesdk/react-native-ui-kit';
 
@@ -111,15 +102,25 @@ export default function App() {
   const [meeting, initMeeting] = useDyteClient();
 
   useEffect(() => {
-    initMeeting({
-      authToken: '<auth-token>',
-      defaults: {
-        audio: false,
-        video: false,
-      },
-    });
+    const init = async () => {
+      initMeeting({
+        authToken: '<auth-token>',
+        defaults: {
+          audio: true,
+          video: true,
+        },
+      });
+    };
+    init();
   }, []);
-
+  useEffect(() => {
+    meeting?.self.addListener('roomLeft', () => console.log('Meeting ended'));
+    () => {
+      meeting?.self.removeListener('roomLeft', () =>
+        console.log('Meeting ended')
+      );
+    };
+  }, [meeting]);
   return (
     <DyteProvider value={meeting}>
       <DyteUIProvider>
@@ -148,11 +149,9 @@ function MyMeeting() {
   const { meeting } = useDyteMeeting();
 
   return (
-    <DyteProvider value={meeting}>
-      <DyteUIProvider>
-        <DyteMeeting meeting={meeting} />
-      </DyteUIProvider>
-    </DyteProvider>
+    <DyteUIProvider>
+      <DyteMeeting meeting={meeting} />
+    </DyteUIProvider>
   );
 }
 ```

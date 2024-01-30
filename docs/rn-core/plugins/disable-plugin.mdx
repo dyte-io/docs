@@ -36,12 +36,7 @@ The snippet below displays all active plugins and deactivate a plugin on click.
 const plugins = meeting.plugins.active.toArray();
 
 plugins.forEach((plugin: DytePlugin) => {
-  const button = document.createElement('button');
-  button.innerText = `Deactivate ${plugin.name}`;
-  button.onclick = async () => {
-    await plugin.deactivate();
-  };
-  document.body.appendChild(button);
+  await plugin.deactivate();
 });
 ```
 

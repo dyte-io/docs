@@ -9,36 +9,21 @@ image: /static/ui-kit/1.x.x/ui-kit-cover.jpg
 Dyte's React Native UI Kit is a prebuilt design library of UI components that makes it
 easy to integrate video and voice calls into any app or website within minutes.
 
-## The Anatomy of React Native UI Kit
+## Usage
 
-The UI Kit is a design library of prebuilt UI components built on top of the
-core SDKs. Core SDK handles all the low-level media and network handling parts
-of a meeting and exposes simpler APIs to use. You can create a meeting object
-using the web-core components and pass it to the UI Kit components.
+The UI Kit under the hood works on top of the same Core SDK that is publicly available. Core SDK handles all the low-level media and network handling parts
+of a meeting and exposes methods and properties that the UI Kit uses
 
-- Uses a layered design structure, allowing you to start with one prebuilt
-  component and slowly add further layers as the needs evolve.
-- Includes a number of [Hooks](https://beta.reactjs.org/reference/react). Hooks
-  enable you to use various React features from your components. For more
-  information, see [Use React Native Core Hooks](/react-native/using-hooks).
+Uses a layered design structure, allowing you to start with one prebuilt component and slowly go down layers and add custom UI incrementally as your needs evolve.
 
-## How to Use React Native UI Kit?
-
-Dyte's UI Kit offers a couple of ways to get started with your live video and
-voice calling applications.
-
-- **Use prebuilt components**: You can use prebuilt `DyteMeeting` component to
+- **Use prebuilt component**: You can use prebuilt component `<DyteMeeting />` to
   create your meeting quickly. With this component, you don't have to handle all
   the states, dialogs, and other aspects of managing the application. The UI kit
   also respect your permissions and theming configuration from the preset.
 
-  For more information, see [React Native UI Kit Quickstart](/react-native/quickstart).
+  For more information, see [UI Kit Quickstart](/react-native/quickstart).
 
-- **Build your own UI**: Dyte also offers the flexibility to build your own UI
-  using various individual components. This offers limitless customization
-  options, ranging from colors and font to spacing, participant tiles, screen
-  share views, logo, height, width and more, you can tailor the UI to fit your
-  exact needs. See Build your own UI section.
+- **Mix and match**: Use some components from our component library, build some custom components yourself. Read the [basics of our component design](/react-native/basics/components-basics) and checkout the [gallery of available components](/react-native/components)
 
 ## Supported Devices
 

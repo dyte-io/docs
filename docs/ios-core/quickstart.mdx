@@ -36,7 +36,6 @@ You'll learn how to:
   [Integrate Dyte](/getting-started#integrate-dyte) section.
   You must complete the following steps:
   - Create a [Dyte Developer Account](https://dev.dyte.io/)
-  - Create [Presets](https://dev.dyte.io/roles-presets)
   - Create a
     [Dyte Meeting](/api/?v=v2#/operations/create_meeting)
   - [Add Participant](/api/?v=v2#/operations/add_participant)
@@ -49,6 +48,8 @@ You'll learn how to:
   higher.
 
 ## Step 1: Install the SDK
+
+- ### **CocoaPods**
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -68,6 +69,9 @@ platform :ios, '13.0'
 ```shell
 pod install
 ```
+
+- ### **Swift Package Manager**
+  Add `DyteiOSCore` SDK through Swift Package Manager in Xcode. Use https://github.com/dyte-in/DyteMobileCoreiOS.git as the package source.
 
 4. Add the following entries to the info.plist file. This gives permission to
    your app to access the camera and microphone, access photos, install the
@@ -109,7 +113,7 @@ Sources: Apple Developer Documentation: [Declaring Your App's Supported Backgrou
 let meeting = DyteiOSClientBuilder().build()
 ```
 
-2. Add listeners and implement callback stubs.
+2. Add the required listeners and implement callback stubs as per requirement
 
 ```swift
 meeting.addMeetingRoomEventsListener(meetingRoomEventsListener: self)
@@ -135,7 +139,7 @@ Add `authToken` that you got from the REST API to constructor of DyteMeetingInfo
 let meetingInfo = DyteMeetingInfoV2(authToken: authToken,
                                   enableAudio: true,
                                   enableVideo: true,
-                                  baseUrl: Constants.BASE_URL)
+                                  baseUrl: "https://api.dyte.io/v2")
 ```
 
 ## Step 4: Initialize the connection request
