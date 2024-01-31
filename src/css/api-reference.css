@@ -19,6 +19,10 @@
   height: 100%;
 }
 
+.elements-container svg[data-icon='bullseye'] {
+  display: none;
+}
+
 .elements-container.stacked {
   padding: 2rem 1rem;
 }
@@ -42,20 +46,16 @@ html[data-theme='dark'] .TryItPanel {
   --color-canvas-200: var(--docs-color-background-200) !important;
 }
 
-html[data-theme='dark']
-  .elements-container
-  :is(.token.string, .token.function, .token.property) {
+html[data-theme='dark'] .elements-container :is(.token.string, .token.function, .token.property) {
   @apply !text-primary-100;
 }
 
 /* Hides title in elements */
-.sl-elements-api > div:first-child > div:first-child > div:first-child {
+.sl-elements-api>div:first-child>div:first-child>div:first-child {
   @apply hidden;
 }
 
-html[data-theme='dark']
-  .elements-container
-  :is(.token.punctuation, .token.operator) {
+html[data-theme='dark'] .elements-container :is(.token.punctuation, .token.operator) {
   color: #fff !important;
 }
 
@@ -63,7 +63,7 @@ html[data-theme='dark'] .elements-container :is(.token.boolean, .token.number) {
   color: #fff !important;
 }
 
-.JsonSchemaViewer > div:first-child {
+.JsonSchemaViewer>div:first-child {
   --color-canvas-pure: var(--docs-color-background-200);
   z-index: 0;
   border-radius: 4px;
