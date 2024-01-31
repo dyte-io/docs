@@ -2711,6 +2711,27 @@ paths:
           in: query
           name: filters
           description: Comma separated list of filters to apply. Note that there must be no spaces between the filters.
+  /recordings/track:
+    post:
+      summary: ''
+      operationId: Start Track Recording for a Meeting
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: rc8el9mk4wa8s
+      requestBody:
+        $ref: '#/components/requestBodies/StartTrackRecordingBody'
+      tags:
+        - Recordings
+      description: |-
+        <!-- theme: warning -->
+        > #### NOTE
+        >
+        > This API is in beta. [Contact us](https://dyte.io/contact) if you face
+        > any issues.
+
+        Starts a track recording in a meeting. Track recordings consist of "layers". Layers are used to map audio/video tracks in a meeting to output destinations. More information about track recordings is available in the [Track Recordings Guide Page](https://docs.dyte.io/guides/capabilities/recording/recording-overview). 
 components:
   schemas:
     LivestreamWithSessions:
@@ -3654,7 +3675,7 @@ components:
           example: Dyte
         contact:
           type: string
-          example: '7783302389'
+          example: 778-330-2389
         website:
           type: string
           format: uri
@@ -5090,6 +5111,42 @@ components:
           $ref: '#/components/schemas/DyteBucketConfig'
         live_streaming_config:
           $ref: '#/components/schemas/LivestreamingConfig'
+    TrackConfigLayer:
+      title: TrackLayerConfig
+      x-stoplight:
+        id: 6m0irpwsm5l0m
+      type: object
+      properties:
+        file_name_prefix:
+          type: string
+          x-stoplight:
+            id: q3raplgytmxxh
+          description: A file name prefix to apply for files generated from this layer
+        outputs:
+          x-stoplight:
+            id: pzqzlzca74iaw
+          type: array
+          items:
+            $ref: '#/components/schemas/TrackLayerOutput'
+    TrackLayerOutput:
+      title: TrackLayerOutput
+      x-stoplight:
+        id: 5bjn4llxqxyna
+      type: object
+      properties:
+        type:
+          x-stoplight:
+            id: ho62tlyy3z8kb
+          enum:
+            - DYTE_BUCKET
+            - STORAGE_CONFIG
+            - RTMP_OUT
+          default: DYTE_BUCKET
+          description: The type of output destination this layer is being exported to.
+        storage_config:
+          $ref: '#/components/schemas/StorageConfig'
+        rtmp_out_config:
+          $ref: '#/components/schemas/LivestreamingConfig'
   parameters:
     Content-Type:
       name: Content-Type
@@ -5466,6 +5523,30 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/UpdatePreset'
+    StartTrackRecordingBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - layers
+            properties:
+              meeting_id:
+                type: string
+                x-stoplight:
+                  id: 6sv1wqhnxgkwu
+                description: ID of the meeting to record.
+              layers:
+                type: object
+                x-stoplight:
+                  id: e9mwa0fkn9gt2
+                additionalProperties:
+                  $ref: '#/components/schemas/TrackConfigLayer'
+              max_seconds:
+                type: string
+                x-stoplight:
+                  id: t5mmm348ds7jk
+                description: Maximum seconds this recording should be active for (beta)
   responses:
     GetActiveSession:
       description: Active Session Success response
@@ -6938,6 +7019,7 @@ tags:
   - name: Live streams
   - name: Analytics
   - name: Organizations
+  - name: Chat
 externalDocs:
   url: 'https://docs.dyte.io'
   description: ''
