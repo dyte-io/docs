@@ -2,7 +2,10 @@
 title: Voting on a poll
 description: Voting on polls in a meeting.
 sidebar_position: 3
-tags: [mobile-core, polls, votes]
+tags:
+  - mobile-core
+  - polls
+  - votes
 ---
 
 # Voting on a poll
@@ -23,3 +26,7 @@ let poll = meeting.polls.items.first
 let selectedPollOption = poll.options.first
 meeting.polls.vote(pollMessage: poll, pollOption: selectedPollOption)
 ```
+
+<head>
+  <title>iOS Core Voting on a poll</title>
+</head>

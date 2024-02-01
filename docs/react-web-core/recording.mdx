@@ -2,7 +2,9 @@
 title: Recording
 description: Control recordings in a meeting.
 sidebar_position: 9
-tags: [web-core, recording]
+tags:
+  - web-core
+  - recording
 ---
 
 # Recording
@@ -39,19 +41,20 @@ You can set the defaults for recording during initialization
 const meeting = await DyteClient.init({
   authToken,
   defaults: {
-    recording: recordingConfig
-  }
+    recording: recordingConfig,
+  },
 });
 ```
+
 In recording config you can specify height, width and codec of the recording output
 
 ```ts
 interface RecordingConfig {
-    videoConfig?: {
-        height?: number;
-        width?: number;
-        codec?: 'H264' | 'VP8';
-    }
+  videoConfig?: {
+    height?: number;
+    width?: number;
+    codec?: 'H264' | 'VP8';
+  };
 }
 ```
 
@@ -71,10 +74,12 @@ interface RecordingConfig {
 
    Default: `720`
 
-
-
 ## Check active recording state
 
 The `meeting.recording.recordingState` property describes the current state of
 the recording. The valid states are `IDLE`, `STARTING`, `RECORDING`, and
 `STOPPING`.
+
+<head>
+  <title>React Web Core Recording</title>
+</head>

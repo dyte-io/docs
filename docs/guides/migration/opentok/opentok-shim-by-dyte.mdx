@@ -1,5 +1,5 @@
 ---
-title: 'Migrate from OpenTok to Dyte with Shim'
+title: Migrate from OpenTok to Dyte with Shim
 sidebar_position: 2
 ---
 
@@ -42,8 +42,8 @@ To create a connection to an OpenTok session, you can use the `OT.initSession()`
 You can obtain Dyte authentication token `<DYTE-AUTH-TOKEN>` using the [Add a Participant API](/api#/operations/add_participant).
 
 ```ts
-const token = "<DYTE-AUTH-TOKEN>";
-const sessionId = "";
+const token = '<DYTE-AUTH-TOKEN>';
+const sessionId = '';
 const session = OT.initSession(token, sessionId);
 ```
 
@@ -52,15 +52,15 @@ const session = OT.initSession(token, sessionId);
 This establishes an OpenTok session and listens for events such as `streamCreated`, `connectionCreated`, and `connectionDestroyed`.
 
 ```ts
-session.on("streamCreated", function streamCreated(event) {
-  console.log("[streamCreated] index.ts: ", event.stream);
+session.on('streamCreated', function streamCreated(event) {
+  console.log('[streamCreated] index.ts: ', event.stream);
   session.subscribe(
     event.stream,
-    "subscriber",
+    'subscriber',
     {
-      insertMode: "append",
-      width: "100%",
-      height: "100%",
+      insertMode: 'append',
+      width: '100%',
+      height: '100%',
     },
     handleError
   );
@@ -68,8 +68,8 @@ session.on("streamCreated", function streamCreated(event) {
 });
 
 let connections: OT.Connection[] = [];
-session.on("connectionCreated", (connectionCreatedEvent) => {
-  console.log("session connectionCreatedEvent: ", connectionCreatedEvent);
+session.on('connectionCreated', (connectionCreatedEvent) => {
+  console.log('session connectionCreatedEvent: ', connectionCreatedEvent);
   connections.push(connectionCreatedEvent.connection);
 
   if (
@@ -79,19 +79,22 @@ session.on("connectionCreated", (connectionCreatedEvent) => {
         connectionCreatedEvent.connection.connectionId
     )
   ) {
-    console.log("connection already exists");
+    console.log('connection already exists');
     return;
   }
   connections.push(connectionCreatedEvent.connection);
 });
 
-session.on("connectionDestroyed", (connectionDestroyedEvent) => {
-  console.log("session connectionDestroyedEvent: ", connectionDestroyedEvent);
+session.on('connectionDestroyed', (connectionDestroyedEvent) => {
+  console.log('session connectionDestroyedEvent: ', connectionDestroyedEvent);
   connections = connections.filter(
     (connection) =>
       connection.connectionId !==
       connectionDestroyedEvent.connection.connectionId
   );
 });
-
 ```
+
+<head>
+  <title>Migrate from OpenTok to Dyte with Shim Guide</title>
+</head>

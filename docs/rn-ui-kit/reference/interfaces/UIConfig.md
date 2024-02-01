@@ -1,6 +1,6 @@
 ---
-id: "UIConfig"
-title: "Interface: UIConfig"
+id: UIConfig
+title: 'Interface: UIConfig'
 custom_edit_url: null
 ---
 
@@ -29,3 +29,8 @@ ___
 ### styles
 
 • `Optional` **styles**: `UIStyles`
+
+
+<head>
+	<title>React Native UI Kit Interface: UIConfig</title>
+</head>

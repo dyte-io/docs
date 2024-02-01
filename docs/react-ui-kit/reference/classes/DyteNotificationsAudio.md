@@ -1,6 +1,6 @@
 ---
-id: "DyteNotificationsAudio"
-title: "Class: DyteNotificationsAudio"
+id: DyteNotificationsAudio
+title: 'Class: DyteNotificationsAudio'
 custom_edit_url: null
 ---
 
@@ -56,3 +56,8 @@ ___
 #### Returns
 
 `Promise`<`void`\>
+
+
+<head>
+	<title>React UI Kit Class: DyteNotificationsAudio</title>
+</head>

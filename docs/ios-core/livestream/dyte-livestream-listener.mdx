@@ -2,7 +2,9 @@
 title: Livestream event listeners
 description: Livestream events to listen to for triggering
 sidebar_position: 3
-tags: [mobile-core, livestream]
+tags:
+  - mobile-core
+  - livestream
 ---
 
 You can listen to livestream events by attaching a listener by calling `addLivestreamEventsListener` on `dyteMobileClient` object where `dyteMobileClient` is an instance of `DyteMobileClient()`.
@@ -111,3 +113,7 @@ meeting.addLiveStreamEventsListener(liveStreamEventsListener: self)
   ```swift
     public func onJoinRequestRejected(peer: LiveStreamStagePeer) {}
   ```
+
+<head>
+  <title>iOS Core Livestream event listeners</title>
+</head>

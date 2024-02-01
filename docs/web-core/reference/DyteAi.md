@@ -10,4 +10,3 @@ web_core_version: 1.20.0
 (Beta - API not stable)
 This module provides (real-time) transcript data
 and will expand to server more AI properties in future
-
