@@ -1,6 +1,6 @@
 ---
-id: "UserPreferences"
-title: "Interface: UserPreferences"
+id: UserPreferences
+title: 'Interface: UserPreferences'
 custom_edit_url: null
 ---
 
@@ -24,3 +24,8 @@ ___
 ### muteNotificationSounds
 
 • `Optional` **muteNotificationSounds**: `boolean`
+
+
+<head>
+	<title>React Native UI Kit Interface: UserPreferences</title>
+</head>

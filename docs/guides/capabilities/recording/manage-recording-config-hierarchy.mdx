@@ -1,6 +1,9 @@
 ---
 title: Manage Recording Config Precedence Order
 sidebar_position: 5
+description: >-
+  Learn how to manage recording configuration hierarchy with Dyte's
+  capabilities. Follow our guide for effective hierarchy management.
 ---
 
 This document provides an overview of the precedence structure for managing recording configurations within our system. It explains how various configuration levels interact and prioritize settings. The recording configuration can be defined at three different levels:
@@ -30,3 +33,7 @@ To illustrate the precedence order in action, consider the following scenario fo
 3. Start recording a meeting API is configured to store recordings in the DigitalOcean's Spaces bucket using the VP8 codec.
 
 In this scenario, the Start recording a meeting API takes precedence over the Create a Meeting API Config and Org Level Config. As a result, the meeting's recording will be stored in the DigitalOcean's Spaces bucket using VP8 codec, regardless of the defaults set at other levels.
+
+<head>
+  <title>Manage Recording Config Precedence Order Guide</title>
+</head>

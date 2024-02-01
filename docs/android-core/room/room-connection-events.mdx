@@ -1,8 +1,14 @@
 ---
 title: Room Connection Events
-description: Room connection events guide. 
+description: >-
+  Understand and handle room connection events in Android with Dyte's
+  comprehensive documentation.
 sidebar_position: 2
-tags: [mobile-core, android-core, connection events, reconnection]
+tags:
+  - mobile-core
+  - android-core
+  - connection events
+  - reconnection
 ---
 
 # Room Connection Events
@@ -10,7 +16,7 @@ tags: [mobile-core, android-core, connection events, reconnection]
 The `meeting` object emits various events to indicate changes in the connection status of the room. When a connection is lost,
 the Dyte SDK detects it and attempts to reconnect the user to the meeting room automatically.
 
-You can subscribe to these events by implementing the `DyteMeetingRoomEventsListener` callbacks and passing the object to 
+You can subscribe to these events by implementing the `DyteMeetingRoomEventsListener` callbacks and passing the object to
 the `meeting.addMeetingRoomEventsListener(dyteMeetingRoomEventsListener)`.
 
 The following are the room connection events:
@@ -77,7 +83,7 @@ meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
 
 ### Room connection failed
 
-When the local user fails to connect to the meeting room during initialization, this event is triggered. This might occur 
+When the local user fails to connect to the meeting room during initialization, this event is triggered. This might occur
 because of internet connection issues.
 
 ```kotlin
@@ -100,3 +106,7 @@ meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
     }
 });
 ```
+
+<head>
+  <title>Android Core Room Connection Events</title>
+</head>

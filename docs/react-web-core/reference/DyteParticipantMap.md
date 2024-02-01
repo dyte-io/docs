@@ -12,4 +12,3 @@ This map emits an event whenever a participant present in the map emits an event
 For example, when a participant is added to this map, a `participantJoined` event is
 emitted from the map. When a participant object emits an event `videoUpdate`, the map
 re-emits that event (provided the participant is present in the map).
-

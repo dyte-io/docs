@@ -6,7 +6,8 @@ const code_themes = {
 /** @type {import('@docusaurus/types').Config} */
 const meta = {
   title: 'Dyte Docs',
-  tagline: 'Real-time audio & video SDKs, ready to launch 🚀',
+  tagline:
+    'Explore comprehensive documentation for Dyte, including guides, references, and best practices.',
   url: 'https://docs.dyte.io',
   baseUrl: '/',
   favicon: '/favicon.ico',
@@ -488,7 +489,7 @@ const config = {
           href: '/',
           src: '/logo/light.svg',
           srcDark: '/logo/dark.svg',
-          alt: 'Dyte Docs',
+          alt: 'Dyte Documentation | Dyte Docs',
           height: '40px',
           width: '101px',
         },
@@ -554,7 +555,7 @@ const config = {
           href: '/',
           src: '/logo/light.svg',
           srcDark: '/logo/dark.svg',
-          alt: 'Dyte Docs',
+          alt: 'Dyte Documentation | Dyte Docs',
           height: '36px',
         },
         links: [

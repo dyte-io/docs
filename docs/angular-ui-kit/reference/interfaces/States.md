@@ -1,6 +1,6 @@
 ---
-id: "States"
-title: "Interface: States"
+id: States
+title: 'Interface: States'
 custom_edit_url: null
 ---
 
@@ -111,3 +111,8 @@ ___
 ### sidebar
 
 • `Optional` **sidebar**: ``"chat"`` \| ``"polls"`` \| ``"participants"`` \| ``"plugins"`` \| ``"none"``
+
+
+<head>
+	<title>Angular UI Kit Interface: States</title>
+</head>

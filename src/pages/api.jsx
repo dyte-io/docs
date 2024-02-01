@@ -58,13 +58,20 @@ export default function Home() {
 
   return (
     <Layout
-      title="API Reference"
-      description="Dyte REST API Reference"
+      title={`API ${
+        currentVersion === 'v2' ? 'v2' : ''
+      }Documentation | Dyte Docs`}
+      description={
+        currentVersion === 'v2'
+          ? "Dive into Dyte's API v2 documentation, offering advanced features and functionalities."
+          : "Explore the comprehensive API documentation provided by Dyte. Learn how to integrate and leverage Dyte's API."
+      }
       noFooter
       wrapperClassName="api-reference"
     >
       <Head>
         {/* Load styles for Stoplight Elements */}
+        <title></title>
         <link rel="preload" href="/assets/css/elements.min.css" as="style" />
         <link rel="stylesheet" href="/assets/css/elements.min.css" />
       </Head>
