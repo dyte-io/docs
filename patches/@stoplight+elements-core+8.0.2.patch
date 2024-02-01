@@ -1,0 +1,81 @@
+diff --git a/node_modules/@stoplight/elements-core/index.esm.js b/node_modules/@stoplight/elements-core/index.esm.js
+index 2619ff3..08c87a7 100644
+--- a/node_modules/@stoplight/elements-core/index.esm.js
++++ b/node_modules/@stoplight/elements-core/index.esm.js
+@@ -1034,11 +1034,11 @@ const BasicAuth = ({ onChange, value }) => {
+         React.createElement("div", null, "Username"),
+         React.createElement(Text, { mx: 3 }, ":"),
+         React.createElement(Flex, { flex: 1 },
+-            React.createElement(Input, { style: { paddingLeft: 15 }, "aria-label": "Username", appearance: "minimal", flex: 1, placeholder: "username", value: username, type: "text", required: true, onChange: e => onCredentialsChange(e.currentTarget.value, password) })),
++            React.createElement(Input, { style: { paddingLeft: 15 }, "aria-label": "Username", appearance: "minimal", flex: 1, placeholder: "<ORG_ID>", value: username, type: "text", required: true, onChange: e => onCredentialsChange(e.currentTarget.value, password) })),
+         React.createElement("div", null, "Password"),
+         React.createElement(Text, { mx: 3 }, ":"),
+         React.createElement(Flex, { flex: 1 },
+-            React.createElement(Input, { style: { paddingLeft: 15 }, "aria-label": "Password", appearance: "minimal", flex: 1, placeholder: "password", value: password, type: "password", required: true, onChange: e => onCredentialsChange(username, e.currentTarget.value) }))));
++            React.createElement(Input, { style: { paddingLeft: 15 }, "aria-label": "Password", appearance: "minimal", flex: 1, placeholder: "<API_KEY>", value: password, type: "password", required: true, onChange: e => onCredentialsChange(username, e.currentTarget.value) }))));
+ };
+ function encode(value) {
+     return btoa(value);
+@@ -2438,7 +2438,7 @@ function getApiKeyDescription(inProperty, name) {
+ function getBasicAuthDescription() {
+     return `Basic authentication is a simple authentication scheme built into the HTTP protocol.
+   To use it, send your HTTP requests with an Authorization header that contains the word Basic
+-  followed by a space and a base64-encoded string \`username:password\`.
++  followed by a space and a base64-encoded string \`<ORG_ID>:<API_KEY>\`.
+ 
+   Example: \`Authorization: Basic ZGVtbzpwQDU1dzByZA==\``;
+ }
+diff --git a/node_modules/@stoplight/elements-core/index.js b/node_modules/@stoplight/elements-core/index.js
+index b7972fc..ad22c36 100644
+--- a/node_modules/@stoplight/elements-core/index.js
++++ b/node_modules/@stoplight/elements-core/index.js
+@@ -1091,11 +1091,11 @@ const BasicAuth = ({ onChange, value }) => {
+         React__namespace.createElement("div", null, "Username"),
+         React__namespace.createElement(mosaic.Text, { mx: 3 }, ":"),
+         React__namespace.createElement(mosaic.Flex, { flex: 1 },
+-            React__namespace.createElement(mosaic.Input, { style: { paddingLeft: 15 }, "aria-label": "Username", appearance: "minimal", flex: 1, placeholder: "username", value: username, type: "text", required: true, onChange: e => onCredentialsChange(e.currentTarget.value, password) })),
++            React__namespace.createElement(mosaic.Input, { style: { paddingLeft: 15 }, "aria-label": "Username", appearance: "minimal", flex: 1, placeholder: "<ORG_ID>", value: username, type: "text", required: true, onChange: e => onCredentialsChange(e.currentTarget.value, password) })),
+         React__namespace.createElement("div", null, "Password"),
+         React__namespace.createElement(mosaic.Text, { mx: 3 }, ":"),
+         React__namespace.createElement(mosaic.Flex, { flex: 1 },
+-            React__namespace.createElement(mosaic.Input, { style: { paddingLeft: 15 }, "aria-label": "Password", appearance: "minimal", flex: 1, placeholder: "password", value: password, type: "password", required: true, onChange: e => onCredentialsChange(username, e.currentTarget.value) }))));
++            React__namespace.createElement(mosaic.Input, { style: { paddingLeft: 15 }, "aria-label": "Password", appearance: "minimal", flex: 1, placeholder: "<API_KEY>", value: password, type: "password", required: true, onChange: e => onCredentialsChange(username, e.currentTarget.value) }))));
+ };
+ function encode(value) {
+     return btoa(value);
+@@ -2495,7 +2495,7 @@ function getApiKeyDescription(inProperty, name) {
+ function getBasicAuthDescription() {
+     return `Basic authentication is a simple authentication scheme built into the HTTP protocol.
+   To use it, send your HTTP requests with an Authorization header that contains the word Basic
+-  followed by a space and a base64-encoded string \`username:password\`.
++  followed by a space and a base64-encoded string \`<ORG_ID>:<API_KEY>\`.
+ 
+   Example: \`Authorization: Basic ZGVtbzpwQDU1dzByZA==\``;
+ }
+diff --git a/node_modules/@stoplight/elements-core/index.mjs b/node_modules/@stoplight/elements-core/index.mjs
+index 2619ff3..08c87a7 100644
+--- a/node_modules/@stoplight/elements-core/index.mjs
++++ b/node_modules/@stoplight/elements-core/index.mjs
+@@ -1034,11 +1034,11 @@ const BasicAuth = ({ onChange, value }) => {
+         React.createElement("div", null, "Username"),
+         React.createElement(Text, { mx: 3 }, ":"),
+         React.createElement(Flex, { flex: 1 },
+-            React.createElement(Input, { style: { paddingLeft: 15 }, "aria-label": "Username", appearance: "minimal", flex: 1, placeholder: "username", value: username, type: "text", required: true, onChange: e => onCredentialsChange(e.currentTarget.value, password) })),
++            React.createElement(Input, { style: { paddingLeft: 15 }, "aria-label": "Username", appearance: "minimal", flex: 1, placeholder: "<ORG_ID>", value: username, type: "text", required: true, onChange: e => onCredentialsChange(e.currentTarget.value, password) })),
+         React.createElement("div", null, "Password"),
+         React.createElement(Text, { mx: 3 }, ":"),
+         React.createElement(Flex, { flex: 1 },
+-            React.createElement(Input, { style: { paddingLeft: 15 }, "aria-label": "Password", appearance: "minimal", flex: 1, placeholder: "password", value: password, type: "password", required: true, onChange: e => onCredentialsChange(username, e.currentTarget.value) }))));
++            React.createElement(Input, { style: { paddingLeft: 15 }, "aria-label": "Password", appearance: "minimal", flex: 1, placeholder: "<API_KEY>", value: password, type: "password", required: true, onChange: e => onCredentialsChange(username, e.currentTarget.value) }))));
+ };
+ function encode(value) {
+     return btoa(value);
+@@ -2438,7 +2438,7 @@ function getApiKeyDescription(inProperty, name) {
+ function getBasicAuthDescription() {
+     return `Basic authentication is a simple authentication scheme built into the HTTP protocol.
+   To use it, send your HTTP requests with an Authorization header that contains the word Basic
+-  followed by a space and a base64-encoded string \`username:password\`.
++  followed by a space and a base64-encoded string \`<ORG_ID>:<API_KEY>\`.
+ 
+   Example: \`Authorization: Basic ZGVtbzpwQDU1dzByZA==\``;
+ }
