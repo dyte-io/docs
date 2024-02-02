@@ -188,6 +188,12 @@ class RoomStateNotifier implements DyteMeetingRoomEventsListener {
 
 ```
 
+Subscibe to the `DyteMeetingRoomEventsListener` to receive the callbacks for the meeting object.
+
+```dart
+dyteClient.addMeetingRoomEventsListener(RoomStateNotifier());
+```
+
 ## Step 5: Connect to the meeting
 
 Now, if you have established the connection with the Dyte meeting server
