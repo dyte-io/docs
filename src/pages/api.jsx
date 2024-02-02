@@ -58,9 +58,7 @@ export default function Home() {
 
   return (
     <Layout
-      title={`API ${
-        currentVersion === 'v2' ? 'v2' : ''
-      }Documentation | Dyte Docs`}
+      title={`API ${currentVersion === 'v2' ? 'v2 ' : ''}Documentation`}
       description={
         currentVersion === 'v2'
           ? "Dive into Dyte's API v2 documentation, offering advanced features and functionalities."
