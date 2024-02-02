@@ -69,10 +69,13 @@ dyteClient.localUser.enableVideo();
 
 Change the user's name by calling `setDisplayName` method. The changed name will
 reflect across all participants ONLY if the change happens before joining the
-meeting.
+meeting. This is only possible when the user has the permission to change the name.
 
 ```dart
-dyteClient.localUser.setDisplayName("New Name");
+if(dyteClient.permissions.miscellaneous.canEditDisplayName)
+{
+  dyteClient.localUser.setDisplayName("New Name");
+}
 ```
 
 ## Mute/Unmute microphone
