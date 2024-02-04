@@ -27,10 +27,10 @@ components.
 import { useDyteClient } from '@dytesdk/react-web-core';
 
 function App() {
-  const [client, initClient] = useDyteClient();
+  const [meeting, initMeeting] = useDyteClient();
 
   useEffect(() => {
-    initClient({
+    initMeeting({
       authToken: '<auth-token>',
       // set default values for user media
       defaults: {
@@ -41,7 +41,7 @@ function App() {
   }, []);
 
   return (
-    <DyteProvider value={client}>
+    <DyteProvider value={meeting}>
       <Meeting />
     </DyteProvider>
   );

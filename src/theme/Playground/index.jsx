@@ -82,11 +82,11 @@ export default function Playground({ children, transformCode, ...props }) {
 
   const prismTheme = usePrismTheme();
 
-  const [client, initClient] = useDyteClient();
+  const [meeting, initMeeting] = useDyteClient();
 
   // TODO: Uncomment following block of code after adding mock web-core package
   useEffect(() => {
-    initClient({
+    initMeeting({
       roomName: 'qplrfc-uuujcj',
       authToken:
         'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdkYzU0MGRjLWQ5MjUtNDVjMi1hZTFiLWM2NDc2YTUwNmM2NyIsImxvZ2dlZEluIjp0cnVlLCJpYXQiOjE2NjU2NDcxNjksImV4cCI6MTY3NDI4NzE2OX0.hJvo1PV1_jaxwiQbT8ft7Yi4lhIPgAsuEJHqohHYC_2XNef7kA4NhrYLvwrrxOo3AKh9_XTjnj_bsgzIDh35RRggawJniEjuE83ju2xhMXMVaa7TNDje2BsH5-VnFJ4y5hOwxGphrP5iHY_U4k_0qOQcEfVEJMymJvx0gq_Ueds',
@@ -94,31 +94,31 @@ export default function Playground({ children, transformCode, ...props }) {
         audio: false,
         video: false,
       },
-    }).then((meeting) => {
-      Object.defineProperty(meeting.self.permissions, 'produceAudio', {
+    }).then((m) => {
+      Object.defineProperty(m.self.permissions, 'produceAudio', {
         value: 'ALLOWED',
       });
-      Object.defineProperty(meeting.self.permissions.produceVideo, 'allow', {
+      Object.defineProperty(m.self.permissions.produceVideo, 'allow', {
         value: 'ALLOWED',
       });
-      Object.defineProperty(meeting, 'connectedMeetings', {
+      Object.defineProperty(m, 'connectedMeetings', {
         value: {
           supportsConnectedMeetings: false,
         },
       });
-      meeting.meta.meetingStartedTimestamp = new Date();
-      meeting.participants.mockAddParticipants(5, 5);
-      meeting.recording.recordingState = 'RECORDING';
+      m.meta.meetingStartedTimestamp = new Date();
+      m.participants.mockAddParticipants(5, 5);
+      m.recording.recordingState = 'RECORDING';
     });
   }, []);
 
   if (typeof window !== 'undefined') {
-    window.meeting = client || {};
+    window.meeting = meeting || {};
   }
 
   return (
     <div className={styles.playgroundContainer}>
-      <DyteProvider value={client}>
+      <DyteProvider value={meeting}>
         {/* @ts-expect-error: type incompatibility with refs */}
         <LiveProvider
           code={children.replace(/\n$/, '')}
