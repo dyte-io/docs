@@ -1,311 +1,312 @@
 [
-    {
-        "version": "1.25.1",
-        "createdAt": "1706085081",
-        "fixes": [
-            "Added missing permission checks on `meeting.chat.pin(messageId)`"
-        ]
-    },
-    {
-        "version": "1.25.0",
-        "createdAt": "1705912281",
-        "features": [
-            "Stereo audio support"
-        ],
-        "new_api": [
-            "User can now configure media quality configuration include stereo audio on `DyteClient.init`. Checkout the [documentation here](/web-core/advanced/advance#mediaconfiguration)"
-        ]
-    },
-    {
-        "version": "1.24.0",
-        "createdAt": "1705890681",
-        "fixes": [
-            "Fix blank Picture-in-Picture stream on PIP resize"
-        ],
-        "perf": [
-            "Updated [simulcast](https://en.wikipedia.org/wiki/Simulcast) configuration for better video performance"
-        ],
-        "new_api": [
-            "New `meeting.meta.meetingId` to get the meetingId of the current meeting",
-            "New `meeting.self.customParticipantId` to fetch the participantId set by the customer during Add Participant REST API"
-        ],
-        "dep_api": [
-            "`meeting.meta.roomName` in favour of `meeting.meta.meetingId`",
-            "`meeting.self.clientSpecificId` in favour of `meeting.self.customParticipantId`"
-        ]
-    },
-    {
-        "version": "1.23.1",
-        "createdAt": "1705458681",
-        "fixes": [
-            "Populate `meeting.ai.transcripts` with previous transcripts, generated before the user joins"
-        ]
-    },
-    {
-        "version": "1.23.0",
-        "createdAt": "1705285881",
-        "fixes": [
-            "Add undefined checks on deviceId passed to `meeting.self.setDevice`"
-        ],
-        "new_api": [
-            "`meeting.ai.transcripts` now contain `customParticipantId` with every transcript record",
-            "Emit `kicked` on `meeting.participants.joined` locally for a privileged users when they kick another user",
-            "New `meeting.chat.pin(messageId)` API to pin chat messages"
-        ]
-    },
-    {
-        "version": "1.22.x",
-        "createdAt": "1703030400",
-        "fixes": [
-            "Fix network reconnection when user disconnects while inside a waiting room"
-        ],
-        "new_api": [
-            "New `meeting.chat.sendCustomMessages` for custom chat messages"
-        ]
-    },
-    {
-        "version": "1.21.2",
-        "createdAt": "1703030400",
-        "fixes": [
-            "Fixed an edge case on stage management.",
-            "Added type definitions for some events."
-        ]
-    },
-    {
-        "version": "1.21.1",
-        "createdAt": "1702598400",
-        "fixes": [
-            "Fixed an issue where the video would not be produced correctly in Firefox browser.",
-            "Improved webinars and livestreams reliability by handling edge cases around stage management."
-        ]
-    },
-    {
-        "version": "1.21.0",
-        "createdAt": "1702252800",
-        "new_api": [
-            "Recordings now supports Pause and resume functionality with the new [pauseRecording](./recording#pause-recording) and [resumeRecording](./recording#resume-recording) APIs"
-        ]
-    },
-    {
-        "version": "1.20.0",
-        "createdAt": "1698351924",
-        "fixes": [
-            "Firefox 110+ [simulcast](https://en.wikipedia.org/wiki/Simulcast) optimizations"
-        ],
-        "new_api": [
-            "New [DyteSelfMedia](./reference/DyteSelfMedia) class to initialize media before from DyteClient.init"
-        ]
-    },
-    {
-        "version": "1.19.0",
-        "createdAt": "1697840724",
-        "new_api": [
-            "New `DyteClient.init` parameter `defaults.autoSwitchAudioDevice` allows user to disable the default behavior of switching to a newly connected audio device automatically"
-        ]
-    },
-    {
-        "version": "1.18.0-2",
-        "createdAt": "1696145560",
-        "fixes": [
-            "Maintain the source aspect ratio when camera device is detected as OBS (Beta)",
-            "[Webinar] Fix a race when an accepted user resend request to join stage"
-        ],
-        "new_api": [
-            "Webinar and Livestream now both use the same [Stage Management APIs](./stage)",
-            "By default Dyte's media handler does not prefer virtual devices, adds a new function to override what is a preferred device and what isn't",
-            "Allow [updating video resolution at runtime](./local-user/extras#update-media-resolution-at-runtime)",
-            "New baseURI to replace the old apiBase. With this new parameter all network connections including socket connections can now be whitelisted",
-            "Render `active` participants as Picture-in-Picture through [a simple new API](./participants/pip)",
-            "Join the meeting using `meeting.join()` and leave with the new `meeting.leave()`"
-        ],
-        "dep_api": [
-            "`meeting.joinRoom()` is deprecated in favour of the new `meeting.join()`",
-            "`meeting.leaveRoom()` is deprecated in favour of the new `meeting.leave()`",
-            "`meeting.self.requestToJoinStage()` is deprecated in favour of `meeting.stage.requestAccess()`",
-            "`meeting.self.withdrawRequestToJoinStage()` is deprecated in favour of `meeting.stage.cancelRequestAccess()`",
-            "`meeting.self.leaveStage()` is deprecated in favour of `meeting.stage.leave()`",
-            "`meeting.self.joinStage()` is deprecated in favour of `meeting.stage.join()`",
-            "`meeting.participants.acceptAllRequestToJoinStageRequests()` is deprecated in favour of `meeting.stage.grantAccess([userIds])`"
-        ]
-    },
-    {
-        "version": "1.17.0",
-        "createdAt": "1691712000",
-        "fixes": [
-            "Fixed an issue with activating / deactivating the plugin where the plugin is already in the desired state."
-        ]
-    },
-    {
-        "version": "1.16.x",
-        "createdAt": 1690502400,
-        "fixes": [
-            "Fixed an edge case where the screen share with audio was not working as expected.",
-            "Handle a race condition which used to prevent user from joining stage in a webinar setup.",
-            "Separated the private and public chat permissions.",
-            "Fixed an issue which was adding duplicate device names on the device list.",
-            "Fixed an issue which was not allowing host to kick a participant from the meeting.",
-            "DyteClient.init() is now idempotent. Calling init() multiple times will not cause any issues."
-        ]
-    },
-    {
-        "version": "1.15.0",
-        "createdAt": 1688083200,
-        "fixes": [
-            "Fixed an edge case around file upload in Chat."
-        ],
-        "features": [
-            "Added add support for quoting a chat message while reply for Chat SDK",
-            "Chat SDK now shows unread count and last message on channel list.",
-            "Participants using Chat SDK will be able to edit and delete their messages."
-        ]
-    },
-    {
-        "version": "1.14.0",
-        "createdAt": 1686303420,
-        "fixes": [
-            "Added execution locks around `DyteClient.init` method to prevent accidental double initialisation method calls",
-            "Handle multiple edge cases around media capture and its retention"
-        ],
-        "features": [
-            "Added self-troubleshooting features, allow users to run tests to discover issues in their calls. More details on this in the next release"
-        ]
-    },
-    {
-        "version": "1.13.0",
-        "createdAt": 1685491200,
-        "fixes": [
-            "Optimized `mediaPermissionUpdate` event to be emitted when the user grants media permission for the first time.",
-            "Improved the correctness of `meeting.self.getCurrentDevices()` to return the recent device list when the user grants the permission for the first time.",
-            "Fixed an edge case where the `screenshareUpdate` event would be emitted twice upon stopping the screenshare.",
-            "Improved the reliability of clearing the `pinned` state from participant after they leave meeting."
-        ],
-        "new_api": [
-            "Added a new `CANCELLED` state to [meeting.self.mediaPermission](./local-user/introduction#properties) when the user cancels the screenshare selection dialog in Chromium browsers."
-        ]
-    },
-    {
-        "version": "1.12.x",
-        "createdAt": 1682985600,
-        "perf": [
-            "⚡ Optimized the performance of an API to save ~400ms on meeting join time.",
-            "⚡ Optimized the SDK to reduce the bundle size by 3%."
-        ],
-        "fixes": [
-            "**🚨 Critical 🚨** Fixed an issue with Safari 16.4 that was breaking video calls.",
-            "Emit `peerRequestToJoinStage` and `stageLeft` for _self_ participant when the user joins or leaves the stage."
-        ],
-        "features": [
-            "Added support for request retry with alternative network path when the primary network path fails. This improves the reliability of the meeting experience in case of network issues."
-        ]
-    },
-    {
-        "version": "1.11.x",
-        "createdAt": 1682035200,
-        "perf": [
-            "⚡ Optimized the performance to get 2x faster meeting join time."
-        ],
-        "fixes": [
-            "Emit `peerRequestToJoinStage` and `stageLeft` for _self_ participant when the user joins or leaves the stage."
-        ],
-        "new_api": [
-            "[meeting.self.roomState](./local-user/introduction#properties) now contains the current room state of the participant."
-        ]
-    },
-    {
-        "version": "1.10.x",
-        "createdAt": 1680048000,
-        "fixes": [
-            "Improved the reliability of `mediaPermissionUpdate` events.",
-            "Observability improvements to help us debug issues faster."
-        ],
-        "features": [
-            "Emit `mediaPermissionUpdate` events when media permission goes from errored to granted."
-        ]
-    },
-    {
-        "version": "1.9.0",
-        "createdAt": 1679433268,
-        "fixes": [
-            "Build issue for customers using Webpack v5 aliasing `process` with `false` is resolved.",
-            "Removed `Poll Messages` from [meeting.chat.messages](./reference/DyteChat#module_DyteChat+messages). Poll messages were wrongly included in the chat messages.",
-            "Optimized screenshare production for higher frame rate.",
-            "Improved correctness of [mediaScoreUpdate](./participants/events#network-quality-score) on participant."
-        ],
-        "new_api": [
-            "The `defaults` parameter in the init() function [now take recording configuration](./recording#recording-configuration), which is utilized when [starting a recording](./recording#start-a-recording). ",
-            "When calling init() the `defaults` param now take screen sharing configuration. \nConfigure the preferred screen sharing screen surface (Screen / Window / Browser Tab)."
-        ]
-    },
-    {
-        "version": "1.6.0",
-        "createdAt": 1678333268,
-        "fixes": [],
-        "features": [
-            "**Interactive Livestream Release (LL-HLS)** \n 1. Broadcast a meeting to up to 100,000 viewers with low latency of just 3 to 6 seconds.\n 2. Interactive chat and polls. \n 3. Viewers can raise hands to join the stage or the host can invite viewers to join the stage. \n For more information, see [ILS Overview](https://docs.dyte.io/guides/livestream/livestream-overview) and [Getting Started with ILS](https://docs.dyte.io/guides/livestream/getting-started-with-livestreaming)."
-        ],
-        "new_api": [
-            "A new `DyteStage` module introduced at [meeting.stage](./reference/DyteStage) to manage the stage during livestreaming. \n For more information, see [Livestreaming State Management APIs](https://docs.dyte.io/guides/livestream/state-management-apis).",
-            "A new 'DyteLiveStream' module introduced at [meeting.livestream](./Reference/DyteLivestream) to start and stop the livestreaming. \n For more information, see [Livestreaming: Properties, Functions, and Events](https://docs.dyte.io/guides/livestream/livestream-apis)."
-        ]
-    },
-    {
-        "version": "1.5.x",
-        "createdAt": 1677609000,
-        "fixes": [
-            "Handle WeWork Solistice Camera gracefully"
-        ],
-        "features": [
-            "Initial support for our upcoming Interactive Livestream product (LL-HLS)",
-            "Webcam quality can now be controlled from the preset, allows customer to select a higher base quality in the preset editor (beta)"
-        ],
-        "new_api": [
-            "Added boolean flag `socketConnected` to `meeting.meta` that shows when the socket connection is established"
-        ]
-    },
-    {
-        "version": "1.4.0",
-        "createdAt": 1676643893,
-        "fixes": [
-            "**🚨 Critical 🚨** Fixed a WebRTC video production bug that would impact *future* Chrome/Edge browser builds (version ≥ M111 - Scheduled to be released in the first week of March)",
-            "Fixed a regression introduced in `1.3.1` where defaults values passed during initialisation were not respected correctly under a certain edge case",
-            "Fixed an issue where a bluetooth device disconnection on Google Chrome did not automatically switch to an alternative device",
-            "Added workarounds for a [Safari Bug](https://bugs.webkit.org/show_bug.cgi?id=231787) where on disconnection of a bluetooth device, local video playback was paused",
-            "Fixed an issue with Safari screenshare, this improves the screenshare quality in Safari.",
-            "Minor improvement in the loading times of participant videos when joining a meeting with many participant on the Stage"
-        ],
-        "features": [
-            "Reduced the size impact of this library from from 1020KB to 880KB (from 228KB to 208KB GZipped). A 12% improvement from the previous release "
-        ]
-    },
-    {
-        "version": "1.3.1",
-        "createdAt": 1675261282,
-        "fixes": [
-            "Improve text legibility when screensharing on Chrome under poor network conditions"
-        ],
-        "features": []
-    },
-    {
-        "version": "1.2.0",
-        "createdAt": 1674714600,
-        "fixes": [
-            "Improved permissions check for audio/video/screenshare"
-        ],
-        "features": [
-            "When Tab Sync is enabled, now a `selfTabUpdate` event is fired on the local user when the user switches a plugin"
-        ],
-        "breaking-changes": []
-    },
-    {
-        "version": "1.1.0",
-        "createdAt": 1674206130,
-        "fixes": [
-            "Improved handling of iphone Continuity on Mac OS",
-            "Fix issues in Websocket connection on Safari 12.x / 13.x / 14.x"
-        ],
-        "features": [
-            "**V2 REST API** - Supports `authToken` generated from V2 REST APIs"
-        ],
-        "breaking-changes": []
-    }
+  {
+    "version": "1.26.0",
+    "createdAt": "1707323400",
+    "features": ["The event callbacks now have type information"],
+    "fixes": [
+      "Fixed an issue with livestream where hosts were not able to see participants accepted on stage",
+      "Fixed an issue with video middleware where they were causing video issues on webkit based browsers",
+      "Breakout rooms child rooms will now be auto-joined",
+      "Fixed an issue with webinar where request count were not consistent"
+    ]
+  },
+  {
+    "version": "1.25.1",
+    "createdAt": "1706085081",
+    "fixes": [
+      "Added missing permission checks on `meeting.chat.pin(messageId)`"
+    ]
+  },
+  {
+    "version": "1.25.0",
+    "createdAt": "1705912281",
+    "features": ["Stereo audio support"],
+    "new_api": [
+      "User can now configure media quality configuration include stereo audio on `DyteClient.init`. Checkout the [documentation here](/web-core/advanced/advance#mediaconfiguration)"
+    ]
+  },
+  {
+    "version": "1.24.0",
+    "createdAt": "1705890681",
+    "fixes": ["Fix blank Picture-in-Picture stream on PIP resize"],
+    "perf": [
+      "Updated [simulcast](https://en.wikipedia.org/wiki/Simulcast) configuration for better video performance"
+    ],
+    "new_api": [
+      "New `meeting.meta.meetingId` to get the meetingId of the current meeting",
+      "New `meeting.self.customParticipantId` to fetch the participantId set by the customer during Add Participant REST API"
+    ],
+    "dep_api": [
+      "`meeting.meta.roomName` in favour of `meeting.meta.meetingId`",
+      "`meeting.self.clientSpecificId` in favour of `meeting.self.customParticipantId`"
+    ]
+  },
+  {
+    "version": "1.23.1",
+    "createdAt": "1705458681",
+    "fixes": [
+      "Populate `meeting.ai.transcripts` with previous transcripts, generated before the user joins"
+    ]
+  },
+  {
+    "version": "1.23.0",
+    "createdAt": "1705285881",
+    "fixes": [
+      "Add undefined checks on deviceId passed to `meeting.self.setDevice`"
+    ],
+    "new_api": [
+      "`meeting.ai.transcripts` now contain `customParticipantId` with every transcript record",
+      "Emit `kicked` on `meeting.participants.joined` locally for a privileged users when they kick another user",
+      "New `meeting.chat.pin(messageId)` API to pin chat messages"
+    ]
+  },
+  {
+    "version": "1.22.x",
+    "createdAt": "1703030400",
+    "fixes": [
+      "Fix network reconnection when user disconnects while inside a waiting room"
+    ],
+    "new_api": [
+      "New `meeting.chat.sendCustomMessages` for custom chat messages"
+    ]
+  },
+  {
+    "version": "1.21.2",
+    "createdAt": "1703030400",
+    "fixes": [
+      "Fixed an edge case on stage management.",
+      "Added type definitions for some events."
+    ]
+  },
+  {
+    "version": "1.21.1",
+    "createdAt": "1702598400",
+    "fixes": [
+      "Fixed an issue where the video would not be produced correctly in Firefox browser.",
+      "Improved webinars and livestreams reliability by handling edge cases around stage management."
+    ]
+  },
+  {
+    "version": "1.21.0",
+    "createdAt": "1702252800",
+    "new_api": [
+      "Recordings now supports Pause and resume functionality with the new [pauseRecording](./recording#pause-recording) and [resumeRecording](./recording#resume-recording) APIs"
+    ]
+  },
+  {
+    "version": "1.20.0",
+    "createdAt": "1698351924",
+    "fixes": [
+      "Firefox 110+ [simulcast](https://en.wikipedia.org/wiki/Simulcast) optimizations"
+    ],
+    "new_api": [
+      "New [DyteSelfMedia](./reference/DyteSelfMedia) class to initialize media before from DyteClient.init"
+    ]
+  },
+  {
+    "version": "1.19.0",
+    "createdAt": "1697840724",
+    "new_api": [
+      "New `DyteClient.init` parameter `defaults.autoSwitchAudioDevice` allows user to disable the default behavior of switching to a newly connected audio device automatically"
+    ]
+  },
+  {
+    "version": "1.18.0-2",
+    "createdAt": "1696145560",
+    "fixes": [
+      "Maintain the source aspect ratio when camera device is detected as OBS (Beta)",
+      "[Webinar] Fix a race when an accepted user resend request to join stage"
+    ],
+    "new_api": [
+      "Webinar and Livestream now both use the same [Stage Management APIs](./stage)",
+      "By default Dyte's media handler does not prefer virtual devices, adds a new function to override what is a preferred device and what isn't",
+      "Allow [updating video resolution at runtime](./local-user/extras#update-media-resolution-at-runtime)",
+      "New baseURI to replace the old apiBase. With this new parameter all network connections including socket connections can now be whitelisted",
+      "Render `active` participants as Picture-in-Picture through [a simple new API](./participants/pip)",
+      "Join the meeting using `meeting.join()` and leave with the new `meeting.leave()`"
+    ],
+    "dep_api": [
+      "`meeting.joinRoom()` is deprecated in favour of the new `meeting.join()`",
+      "`meeting.leaveRoom()` is deprecated in favour of the new `meeting.leave()`",
+      "`meeting.self.requestToJoinStage()` is deprecated in favour of `meeting.stage.requestAccess()`",
+      "`meeting.self.withdrawRequestToJoinStage()` is deprecated in favour of `meeting.stage.cancelRequestAccess()`",
+      "`meeting.self.leaveStage()` is deprecated in favour of `meeting.stage.leave()`",
+      "`meeting.self.joinStage()` is deprecated in favour of `meeting.stage.join()`",
+      "`meeting.participants.acceptAllRequestToJoinStageRequests()` is deprecated in favour of `meeting.stage.grantAccess([userIds])`"
+    ]
+  },
+  {
+    "version": "1.17.0",
+    "createdAt": "1691712000",
+    "fixes": [
+      "Fixed an issue with activating / deactivating the plugin where the plugin is already in the desired state."
+    ]
+  },
+  {
+    "version": "1.16.x",
+    "createdAt": 1690502400,
+    "fixes": [
+      "Fixed an edge case where the screen share with audio was not working as expected.",
+      "Handle a race condition which used to prevent user from joining stage in a webinar setup.",
+      "Separated the private and public chat permissions.",
+      "Fixed an issue which was adding duplicate device names on the device list.",
+      "Fixed an issue which was not allowing host to kick a participant from the meeting.",
+      "DyteClient.init() is now idempotent. Calling init() multiple times will not cause any issues."
+    ]
+  },
+  {
+    "version": "1.15.0",
+    "createdAt": 1688083200,
+    "fixes": ["Fixed an edge case around file upload in Chat."],
+    "features": [
+      "Added add support for quoting a chat message while reply for Chat SDK",
+      "Chat SDK now shows unread count and last message on channel list.",
+      "Participants using Chat SDK will be able to edit and delete their messages."
+    ]
+  },
+  {
+    "version": "1.14.0",
+    "createdAt": 1686303420,
+    "fixes": [
+      "Added execution locks around `DyteClient.init` method to prevent accidental double initialisation method calls",
+      "Handle multiple edge cases around media capture and its retention"
+    ],
+    "features": [
+      "Added self-troubleshooting features, allow users to run tests to discover issues in their calls. More details on this in the next release"
+    ]
+  },
+  {
+    "version": "1.13.0",
+    "createdAt": 1685491200,
+    "fixes": [
+      "Optimized `mediaPermissionUpdate` event to be emitted when the user grants media permission for the first time.",
+      "Improved the correctness of `meeting.self.getCurrentDevices()` to return the recent device list when the user grants the permission for the first time.",
+      "Fixed an edge case where the `screenshareUpdate` event would be emitted twice upon stopping the screenshare.",
+      "Improved the reliability of clearing the `pinned` state from participant after they leave meeting."
+    ],
+    "new_api": [
+      "Added a new `CANCELLED` state to [meeting.self.mediaPermission](./local-user/introduction#properties) when the user cancels the screenshare selection dialog in Chromium browsers."
+    ]
+  },
+  {
+    "version": "1.12.x",
+    "createdAt": 1682985600,
+    "perf": [
+      "⚡ Optimized the performance of an API to save ~400ms on meeting join time.",
+      "⚡ Optimized the SDK to reduce the bundle size by 3%."
+    ],
+    "fixes": [
+      "**🚨 Critical 🚨** Fixed an issue with Safari 16.4 that was breaking video calls.",
+      "Emit `peerRequestToJoinStage` and `stageLeft` for _self_ participant when the user joins or leaves the stage."
+    ],
+    "features": [
+      "Added support for request retry with alternative network path when the primary network path fails. This improves the reliability of the meeting experience in case of network issues."
+    ]
+  },
+  {
+    "version": "1.11.x",
+    "createdAt": 1682035200,
+    "perf": [
+      "⚡ Optimized the performance to get 2x faster meeting join time."
+    ],
+    "fixes": [
+      "Emit `peerRequestToJoinStage` and `stageLeft` for _self_ participant when the user joins or leaves the stage."
+    ],
+    "new_api": [
+      "[meeting.self.roomState](./local-user/introduction#properties) now contains the current room state of the participant."
+    ]
+  },
+  {
+    "version": "1.10.x",
+    "createdAt": 1680048000,
+    "fixes": [
+      "Improved the reliability of `mediaPermissionUpdate` events.",
+      "Observability improvements to help us debug issues faster."
+    ],
+    "features": [
+      "Emit `mediaPermissionUpdate` events when media permission goes from errored to granted."
+    ]
+  },
+  {
+    "version": "1.9.0",
+    "createdAt": 1679433268,
+    "fixes": [
+      "Build issue for customers using Webpack v5 aliasing `process` with `false` is resolved.",
+      "Removed `Poll Messages` from [meeting.chat.messages](./reference/DyteChat#module_DyteChat+messages). Poll messages were wrongly included in the chat messages.",
+      "Optimized screenshare production for higher frame rate.",
+      "Improved correctness of [mediaScoreUpdate](./participants/events#network-quality-score) on participant."
+    ],
+    "new_api": [
+      "The `defaults` parameter in the init() function [now take recording configuration](./recording#recording-configuration), which is utilized when [starting a recording](./recording#start-a-recording). ",
+      "When calling init() the `defaults` param now take screen sharing configuration. \nConfigure the preferred screen sharing screen surface (Screen / Window / Browser Tab)."
+    ]
+  },
+  {
+    "version": "1.6.0",
+    "createdAt": 1678333268,
+    "fixes": [],
+    "features": [
+      "**Interactive Livestream Release (LL-HLS)** \n 1. Broadcast a meeting to up to 100,000 viewers with low latency of just 3 to 6 seconds.\n 2. Interactive chat and polls. \n 3. Viewers can raise hands to join the stage or the host can invite viewers to join the stage. \n For more information, see [ILS Overview](https://docs.dyte.io/guides/livestream/livestream-overview) and [Getting Started with ILS](https://docs.dyte.io/guides/livestream/getting-started-with-livestreaming)."
+    ],
+    "new_api": [
+      "A new `DyteStage` module introduced at [meeting.stage](./reference/DyteStage) to manage the stage during livestreaming. \n For more information, see [Livestreaming State Management APIs](https://docs.dyte.io/guides/livestream/state-management-apis).",
+      "A new 'DyteLiveStream' module introduced at [meeting.livestream](./Reference/DyteLivestream) to start and stop the livestreaming. \n For more information, see [Livestreaming: Properties, Functions, and Events](https://docs.dyte.io/guides/livestream/livestream-apis)."
+    ]
+  },
+  {
+    "version": "1.5.x",
+    "createdAt": 1677609000,
+    "fixes": ["Handle WeWork Solistice Camera gracefully"],
+    "features": [
+      "Initial support for our upcoming Interactive Livestream product (LL-HLS)",
+      "Webcam quality can now be controlled from the preset, allows customer to select a higher base quality in the preset editor (beta)"
+    ],
+    "new_api": [
+      "Added boolean flag `socketConnected` to `meeting.meta` that shows when the socket connection is established"
+    ]
+  },
+  {
+    "version": "1.4.0",
+    "createdAt": 1676643893,
+    "fixes": [
+      "**🚨 Critical 🚨** Fixed a WebRTC video production bug that would impact *future* Chrome/Edge browser builds (version ≥ M111 - Scheduled to be released in the first week of March)",
+      "Fixed a regression introduced in `1.3.1` where defaults values passed during initialisation were not respected correctly under a certain edge case",
+      "Fixed an issue where a bluetooth device disconnection on Google Chrome did not automatically switch to an alternative device",
+      "Added workarounds for a [Safari Bug](https://bugs.webkit.org/show_bug.cgi?id=231787) where on disconnection of a bluetooth device, local video playback was paused",
+      "Fixed an issue with Safari screenshare, this improves the screenshare quality in Safari.",
+      "Minor improvement in the loading times of participant videos when joining a meeting with many participant on the Stage"
+    ],
+    "features": [
+      "Reduced the size impact of this library from from 1020KB to 880KB (from 228KB to 208KB GZipped). A 12% improvement from the previous release "
+    ]
+  },
+  {
+    "version": "1.3.1",
+    "createdAt": 1675261282,
+    "fixes": [
+      "Improve text legibility when screensharing on Chrome under poor network conditions"
+    ],
+    "features": []
+  },
+  {
+    "version": "1.2.0",
+    "createdAt": 1674714600,
+    "fixes": ["Improved permissions check for audio/video/screenshare"],
+    "features": [
+      "When Tab Sync is enabled, now a `selfTabUpdate` event is fired on the local user when the user switches a plugin"
+    ],
+    "breaking-changes": []
+  },
+  {
+    "version": "1.1.0",
+    "createdAt": 1674206130,
+    "fixes": [
+      "Improved handling of iphone Continuity on Mac OS",
+      "Fix issues in Websocket connection on Safari 12.x / 13.x / 14.x"
+    ],
+    "features": [
+      "**V2 REST API** - Supports `authToken` generated from V2 REST APIs"
+    ],
+    "breaking-changes": []
+  }
 ]
