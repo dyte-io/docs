@@ -17,7 +17,15 @@ There are also certain limits which you can set as well.
   config={{
     config: {
       notifications: {
+        participant_joined: false,
         participant_left: false,
+        participant_joined_waitlist: false,
+        chat: false,
+        polls: false,
+        webinar: false,
+        tab_sync: false,
+        recording_started: false,
+        recording_stopped: false,
       },
       notification_sounds: {
         participant_left: false,
@@ -29,9 +37,10 @@ There are also certain limits which you can set as well.
 />
 ```
 
-The configurations take a specific category of notifications. Available
-categories are `participant_joined`, `participant_left`,
-`participant_joined_waitlist`, `chat`, `polls`, `webinar`, `tab_sync`.
+The configurations take a specific category of notifications.
+Available categories are `participant_joined`, `participant_left`,
+`participant_joined_waitlist`, `chat`, `polls`, `webinar`,
+`tab_sync`, `recording_started`, `recording_stopped`.
 
 ## Notifications Popup
 
@@ -47,9 +56,15 @@ To disable specific category of notifications set the value of the category to
 ```jsx live
 const config = {
   notifications: {
+    participant_joined: false,
     participant_left: false,
+    participant_joined_waitlist: false,
     chat: false,
+    polls: false,
+    webinar: false,
     tab_sync: false,
+    recording_started: false,
+    recording_stopped: false,
   },
 };
 
@@ -72,6 +87,8 @@ Here are the default display durations (in milliseconds)
     polls: 2000
     webinar: 2000
     tab_sync: 2000
+    recording_started: 2000
+    recording_stopped: 2000
 
 To change the duration for a specific category of notifications set the value of
 the category to the milliseconds.
@@ -83,6 +100,8 @@ const config = {
     participant_left: 1000, // Show participant left notification for 1 second only
     chat: 5000, // Show chat for 1 second only
     tab_sync: 1000, // Show tab sync changes for 1 second only
+    recording_started: 60 * 1000, // show recording started notification for 1 minute
+    recording_stopped: 3 * 1000, // show recording stopped notification for 3 seconds
   },
 };
 
