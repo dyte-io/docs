@@ -13,7 +13,11 @@ It will not render anything if no recording is taking place.
 
 ```swift
 private lazy var recordingView: DyteRecordingView = {
-       let view = DyteRecordingView(meeting: self.meeting, title: "Rec", image: nil, appearance: AppTheme.shared.recordingViewAppearance)
+       let view = DyteRecordingView(
+                      meeting: self.meeting,
+                      title: "Rec",
+                      image: nil,
+                      appearance: AppTheme.shared.recordingViewAppearance)
         view.isHidden = true
         return view
     }()

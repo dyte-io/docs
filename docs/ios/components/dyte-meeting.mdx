@@ -14,7 +14,12 @@ don't have to handle all the states, dialogs and other smaller bits of managing
 the application.
 
 ```swift
-self.dyteUikit = DyteUiKit.init(meetingInfoV2: DyteMeetingInfoV2(authToken: authToken, enableAudio: false, enableVideo: false, baseUrl: Constants.BASE_URL_INIT), flowDelegate: nil)
+self.dyteUikit = DyteUiKit.init(meetingInfoV2:
+                  DyteMeetingInfoV2(authToken: authToken,
+                  enableAudio: false,
+                  enableVideo: false,
+                  baseUrl: Constants.BASE_URL_INIT),
+                  flowDelegate: nil)
 let controller =  self.dyteUikit.startMeeting {
     [weak self] in
     guard let self = self else {return}

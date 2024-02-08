@@ -19,7 +19,10 @@ if meeting.localUser.permissions.host.canMuteVideo {
     menus.append(.muteAllVideo)
 }
 
-self.bottomSheet = DyteMoreMenuBottomSheet(menus: menus, meeting: self.meeting, presentingViewController: self.presentingViewController)
+self.bottomSheet = DyteMoreMenuBottomSheet(
+                        menus: menus,
+                        meeting: self.meeting,
+                        presentingViewController: self.presentingViewController)
 self.bottomSheet.show()
 ```
 

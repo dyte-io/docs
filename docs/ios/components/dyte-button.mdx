@@ -10,8 +10,10 @@ description: >-
 A button that follows Dyte's Design System.
 
 ```swift
+let dyteImage = DyteImage(image:ImageProvider.image(named: "icon_down_arrow"))
 let downloadButton: DyteButton = {
-        let button = DyteButton(style: .iconOnly(icon: DyteImage(image: ImageProvider.image(named: "icon_down_arrow"))), dyteButtonState: .active)
+        let button = DyteButton(style: .iconOnly(icon: dyteImage),
+                      dyteButtonState: .active)
         button.backgroundColor = dyteSharedTokenColor.background.shade800
         button.isUserInteractionEnabled = false
         button.tintColor = .white

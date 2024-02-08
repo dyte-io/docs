@@ -12,7 +12,8 @@ A settings component to see and change your audio/video devices.
 To show SettingViewController do in iOS as follows:
 
 ```swift
-let controller = SettingViewController(nameTag: participant.name, dyteMobileClient: mobileClient)
+let controller = SettingViewController(nameTag: participant.name,
+                              dyteMobileClient: mobileClient)
 controller.view.backgroundColor = self.view.backgroundColor
 controller.modalPresentationStyle = .fullScreen
 self.present(controller, animated: true)

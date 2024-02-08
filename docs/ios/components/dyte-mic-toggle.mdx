@@ -11,7 +11,7 @@ A button which toggles your microphone.
 ```swift
 var buttons = [DyteControlBarButton]()
 if meeting.localUser.permissions.media.canPublishAudio {
-  let micButton = self.dataSource?.getMicControlBarButton(for: meeting) ?? DyteAudioButtonControlBar(meeting: meeting)
+  let micButton = DyteAudioButtonControlBar(meeting: meeting)
   buttons.append(micButton)
 }
 ```

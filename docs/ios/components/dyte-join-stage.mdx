@@ -15,8 +15,14 @@ A confirmation dialog screen which is shown
 let alert = WebinarAlertView(meetingClient: meeting, participant: meeting.localUser)
 alert.layer.zPosition = 1.0
 baseController.view.addSubview(alert)
-alert.confirmAndJoinButton.addTarget(self, action: #selector(alertConfirmAndJoinClick(button:)), for: .touchUpInside)
-alert.cancelButton.addTarget(self, action: #selector(alertCancelButton(button:)), for: .touchUpInside)
+alert.confirmAndJoinButton
+  .addTarget(self,
+            action: #selector(alertConfirmAndJoinClick(button:)),
+            for: .touchUpInside)
+alert.cancelButton
+  .addTarget(self,
+            action: #selector(alertCancelButton(button:)),
+            for: .touchUpInside)
 ```
 
 <head>
