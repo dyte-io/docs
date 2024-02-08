@@ -1,0 +1,30 @@
+---
+description: >-
+  Learn how to use and customize the WebinarAlertView component in Dyte's iOS UiKit
+  with our detailed documentation.
+---
+
+# WebinarAlertView
+
+A confirmation dialog screen which is shown
+
+- When the user's request to Join Stage is approved by the meeting host.
+- When host invites the localUser to join stage.
+
+```swift
+let alert = WebinarAlertView(meetingClient: meeting, participant: meeting.localUser)
+alert.layer.zPosition = 1.0
+baseController.view.addSubview(alert)
+alert.confirmAndJoinButton
+  .addTarget(self,
+            action: #selector(alertConfirmAndJoinClick(button:)),
+            for: .touchUpInside)
+alert.cancelButton
+  .addTarget(self,
+            action: #selector(alertCancelButton(button:)),
+            for: .touchUpInside)
+```
+
+<head>
+  <title>iOS WebinarAlertView</title>
+</head>

@@ -1,0 +1,22 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-plugins.svg
+description: >-
+  Learn how to use and customize the PluginViewController component in Dyte's
+  iOS UiKit with our detailed documentation.
+---
+
+# PluginViewController
+
+A component which lists all available plugins from their preset, and ability to
+enable or disable plugins.
+
+```swift
+let controller = PluginViewController(polls: dyteMobileClient.plugins.all)
+let navigationController = UINavigationController(rootViewController: controller)
+navigationController.modalPresentationStyle = .fullScreen
+present(navigationController, animated: true, completion: nil)
+```
+
+<head>
+  <title>iOS PluginViewController</title>
+</head>

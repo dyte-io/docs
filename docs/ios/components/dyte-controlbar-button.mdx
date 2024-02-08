@@ -1,0 +1,38 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-controlbar-button.svg
+description: >-
+  Learn how to use and customize the DyteControlBarButton component in Dyte's
+  iOS UiKit with our detailed documentation.
+---
+
+# DyteControlBarButton
+
+A skeleton component used for composing buttons.
+
+```swift
+let dyteImage = DyteImage(image: ImageProvider.image(named: "icon_more_tabbar"))
+let moreButton = DyteControlBarButton(image: dyteImage, title: "More")
+```
+
+To setup the controlbar button inside kotlin/Java code do as follows
+
+```swift
+let controlBar =  DyteTabbarBar(delegate: nil)
+let moreImage = DyteImage(image: ImageProvider.image(named: "icon_more_tabbar"))
+let moreButton = DyteControlBarButton(image: moreImage, title: "More")
+moreButton.addTarget(self, action: #selector(clickMore(button:)), for: .touchUpInside)
+let liveImage = DyteImage(image: ImageProvider.image(named: "icon_go_live"))
+let liveButton = DyteControlBarButton(image: liveImage, title: "Go Live")
+let endLiveImage = DyteImage(image: ImageProvider.image(named: "icon_end_live"))
+liveButton.setSelected(image: endLiveImage, title: "End Live")
+liveButton.addTarget(self, action: #selector(clickLive(button:)), for: .touchUpInside)
+controlBar.setButtons([liveButton, moreButton, endCallButton])
+self.view.addSubview(controlBar)
+// In case you want to set constraints programmatically
+controlBar.set(.sameLeadingTrailing(self.view),
+                .bottom(self.view))
+```
+
+<head>
+  <title>iOS DyteControlBarButton</title>
+</head>

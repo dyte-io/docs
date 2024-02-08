@@ -1,0 +1,33 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-leave-meeting.svg
+description: >-
+  Learn how to use and customize the DyteLeaveDialog component in Dyte's
+  iOS UiKit with our detailed documentation.
+---
+
+# DyteLeaveDialog
+
+A component which allows you to leave a meeting or end meeting for all, if you
+have the permission.
+
+To use the component do in kotlin/java as follows:
+
+```swift
+let dialog = DyteLeaveDialog(meeting: self.meeting) { alertAction in
+  if alertAction == .willLeaveMeeting || alertAction == .willEndMeetingForAll {
+      self.showActivityIndicator()
+  } else if alertAction == .didLeaveMeeting || alertAction == .didEndMeetingForAll {
+      self.hideActivityIndicator()
+      if alertAction == .didLeaveMeeting {
+          self.onClick?(self , .didLeaveMeeting)
+      } else if alertAction == .didEndMeetingForAll {
+          self.onClick?(self, .didEndMeetingForAll)
+      }
+  }
+}
+dialog.show(on: self.alertPresentingController)
+```
+
+<head>
+  <title>iOS DyteLeaveMeetingView</title>
+</head>
