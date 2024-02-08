@@ -1,0 +1,28 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-recording-indicator.svg
+description: >-
+  Learn how to use and customize the DyteRecordingView component in Dyte's
+  iOS UiKit with our detailed documentation.
+---
+
+# DyteRecordingView
+
+A component which indicates the recording status of a meeting.
+
+It will not render anything if no recording is taking place.
+
+```swift
+private lazy var recordingView: DyteRecordingView = {
+       let view = DyteRecordingView(
+                      meeting: self.meeting,
+                      title: "Rec",
+                      image: nil,
+                      appearance: AppTheme.shared.recordingViewAppearance)
+        view.isHidden = true
+        return view
+    }()
+```
+
+<head>
+  <title>iOS DyteRecordingView</title>
+</head>

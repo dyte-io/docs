@@ -1,0 +1,35 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-meeting.svg
+description: >-
+  Learn how to use and customize the DyteUIKit component in Dyte's iOS UiKit with
+  our detailed documentation.
+---
+
+# DyteUIKit
+
+A single component which renders an entire meeting UI.
+
+It loads your preset and renders the UI based on it. With this component, you
+don't have to handle all the states, dialogs and other smaller bits of managing
+the application.
+
+```swift
+self.dyteUikit = DyteUiKit.init(meetingInfoV2:
+                  DyteMeetingInfoV2(authToken: authToken,
+                  enableAudio: false,
+                  enableVideo: false,
+                  baseUrl: Constants.BASE_URL_INIT),
+                  flowDelegate: nil)
+let controller =  self.dyteUikit.startMeeting {
+    [weak self] in
+    guard let self = self else {return}
+    self.dismiss(animated: true)
+    self.view.hideActivityIndicator()
+}
+controller.modalPresentationStyle = .fullScreen
+self.present(controller, animated: true)
+```
+
+<head>
+  <title>iOS DyteUIKit</title>
+</head>

@@ -1,0 +1,28 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-button.svg
+description: >-
+  Learn how to use and customize the DyteButton component in Dyte's iOS UiKit with
+  our detailed documentation.
+---
+
+# DyteButton
+
+A button that follows Dyte's Design System.
+
+```swift
+let dyteImage = DyteImage(image:ImageProvider.image(named: "icon_down_arrow"))
+let downloadButton: DyteButton = {
+        let button = DyteButton(style: .iconOnly(icon: dyteImage),
+                      dyteButtonState: .active)
+        button.backgroundColor = dyteSharedTokenColor.background.shade800
+        button.isUserInteractionEnabled = false
+        button.tintColor = .white
+        // Set additional button properties if needed
+        button.selectedStateTintColor = DesignLibrary.shared.color.status.danger
+        return button
+    }()
+```
+
+<head>
+  <title>iOS DyteButton</title>
+</head>

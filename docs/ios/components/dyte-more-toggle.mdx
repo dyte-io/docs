@@ -1,0 +1,31 @@
+---
+description: >-
+  Learn how to use and customize the DyteMoreToggleButton component in Dyte's
+  iOS UiKit with our detailed documentation.
+---
+
+# DyteMoreMenuBottomSheet
+
+A button which toggles visibility of a more menu.
+
+```swift
+var menus = [MenuType]()
+
+if meeting.localUser.permissions.host.canMuteAudio {
+    menus.append(.muteAllAudio)
+}
+
+if meeting.localUser.permissions.host.canMuteVideo {
+    menus.append(.muteAllVideo)
+}
+
+self.bottomSheet = DyteMoreMenuBottomSheet(
+                        menus: menus,
+                        meeting: self.meeting,
+                        presentingViewController: self.presentingViewController)
+self.bottomSheet.show()
+```
+
+<head>
+  <title>iOS DyteMoreToggleButton</title>
+</head>
