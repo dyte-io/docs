@@ -5140,13 +5140,10 @@ components:
           enum:
             - DYTE_BUCKET
             - STORAGE_CONFIG
-            - RTMP_OUT
           default: DYTE_BUCKET
           description: The type of output destination this layer is being exported to.
         storage_config:
           $ref: '#/components/schemas/StorageConfig'
-        rtmp_out_config:
-          $ref: '#/components/schemas/LivestreamingConfig'
   parameters:
     Content-Type:
       name: Content-Type
@@ -5547,6 +5544,30 @@ components:
                 x-stoplight:
                   id: t5mmm348ds7jk
                 description: Maximum seconds this recording should be active for (beta)
+          examples:
+            Example 1:
+              value:
+                meeting_id: string
+                layers:
+                  default:
+                    file_name_prefix: string
+                    outputs:
+                      - type: DYTE_BUCKET
+                      - type: STORAGE_CONFIG
+                        storage_config:
+                          type: aws
+                          secret: string
+                          bucket: string
+                          region: us-east-1
+                          path: string
+                          auth_method: KEY
+                          username: string
+                          password: string
+                          host: string
+                          port: 0
+                          private_key: string
+                max_seconds: string
+      description: For now only "default" layer key is supported.
   responses:
     GetActiveSession:
       description: Active Session Success response
