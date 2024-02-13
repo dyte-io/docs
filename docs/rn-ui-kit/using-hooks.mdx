@@ -27,7 +27,7 @@ components.
 import { useDyteClient } from '@dytesdk/react-native-core';
 
 function App() {
-  const [client, initClient] = useDyteClient();
+  const [meeting, initMeeting] = useDyteClient();
 
   useEffect(() => {
     const init = async () => {
@@ -43,7 +43,7 @@ function App() {
   }, []);
 
   return (
-    <DyteProvider value={client}>
+    <DyteProvider value={meeting}>
       {/* Render your component */}
       <MyComponent />
     </DyteProvider>

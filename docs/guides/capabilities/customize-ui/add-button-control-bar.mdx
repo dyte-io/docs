@@ -40,8 +40,10 @@ import {
 } from '@dytesdk/react-ui-kit'
 import './App.css';
 
+const [meeting, initMeeting] = useDyteClient();
+
 useEffect(() => {
-    initClient({
+    initMeeting({
       authToken: '<auth-token>',
       defaults: {
         audio: false,
@@ -50,14 +52,14 @@ useEffect(() => {
     });
  }, []);
 
-if (!client) return (<div>Loading Dyte Meeting...</div>);
+if (!meeting) return (<div>Loading Dyte Meeting...</div>);
 
 return (
   <div className="dyte-meeting">
-  <DyteProvider value={client}>
-      <DyteParticipantsAudio meeting={client} />
+  <DyteProvider value={meeting}>
+      <DyteParticipantsAudio meeting={meeting} />
       <DyteNotifications
-        meeting={client}
+        meeting={meeting}
         config={{
           config: {
             notifications: ['chat', 'participant_joined', 'participant_left'],
@@ -67,14 +69,14 @@ return (
           },
         }}
       />
-      <DyteHeader meeting={client} />
+      <DyteHeader meeting={meeting} />
       <div className="grid-container">
-        <DyteGrid meeting={client} style={{ height: '100%' }} />
+        <DyteGrid meeting={meeting} style={{ height: '100%' }} />
       </div>
       <div class="controlbar">
-        <DyteMicToggle meeting={client} />
-        <DyteCameraToggle meeting={client} />
-        <DyteSettingsToggle meeting={client} />
+        <DyteMicToggle meeting={meeting} />
+        <DyteCameraToggle meeting={meeting} />
+        <DyteSettingsToggle meeting={meeting} />
       </div>
   </DyteProvider>
   </div>
@@ -147,9 +149,9 @@ In the payload, include the peer's ID and display name.
 
 ```js
 const raiseHand = async () => {
-  await client.participants.broadcastMessage('hand-raise', {
-    id: client.self.id,
-    name: client.self.name,
+  await meeting.participants.broadcastMessage('hand-raise', {
+    id: meeting.self.id,
+    name: meeting.self.name,
   });
   setHandRaised(!handRaised);
 };
@@ -161,8 +163,8 @@ When the event is fired a notification is sent to the user using the `sendNotifi
 
 ```js
 useEffect(() => {
-  if (!client) return;
-  client.participants.on('broadcastedMessage', ({ payload }) => {
+  if (!meeting) return;
+  meeting.participants.on('broadcastedMessage', ({ payload }) => {
     const notificationObj = {
       id: new Date().getTime().toString(),
       message: `Hand Raised by ${payload.name}`,
@@ -172,9 +174,9 @@ useEffect(() => {
   });
 
   return () => {
-    client.participants.removeAllListeners('broadcastedMessage');
+    meeting.participants.removeAllListeners('broadcastedMessage');
   };
-}, [client]);
+}, [meeting]);
 ```
 
 <head>
