@@ -529,7 +529,7 @@ const config = {
           },
           {
             label: 'Support',
-            to: 'https://dyte.io/contact',
+            to: 'https://dyte.io/contact?type=docs',
           },
 
           {
