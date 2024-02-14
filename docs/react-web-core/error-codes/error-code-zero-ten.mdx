@@ -17,11 +17,21 @@ This topic describes web core system error codes 0-16.
 - **Possible reason**: Indicates a problem with the `DyteClient`.
 - **Possible solution**: The `joinRoom()` method is used to join a meeting room in Dyte. Try calling this method on the `DyteClient`:
 
+```bash
+await meeting.joinRoom();
+```
+
+Once the join room process completes, you'll see the `roomJoined` event is emitted on the `meeting.self` namespace.
+
 ## Error code: 0003
 
 - **Error message**: Failed to leave room
 - **Possible reason**: Indicates a problem with the `DyteClient`.
 - **Possible solution**: The `leaveRoom()` method is used to leave a meeting room in Dyte. Try calling this method on the `DyteClient`:
+
+```bash
+await meeting.leaveRoom();
+```
 
 ## Error code: 0501
 
