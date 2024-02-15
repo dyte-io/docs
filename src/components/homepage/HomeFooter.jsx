@@ -4,6 +4,8 @@ import clsx from 'clsx';
 import { Linkedin, Youtube, Github } from '@styled-icons/boxicons-logos';
 import { XIcon } from '@site/src/icons';
 import BrowserOnly from '@docusaurus/BrowserOnly';
+import ThemedImage from '@theme/ThemedImage';
+
 
 
 function MyButton(){
@@ -99,11 +101,11 @@ function Safety({ className }) {
   return (
     <div
       className={clsx(
-        'flex h-24 max-w-[418px] overflow-clip rounded-2xl bg-white',
+        'flex h-24 max-w-[418px] overflow-clip rounded-2xl bg-white dark:bg-[#474747]',
         className
       )}
     >
-      <div className="flex flex-1 place-items-center justify-center rounded-2xl bg-white px-4 py-6 font-jakarta font-bold text-gray-500">
+      <div className="flex flex-1 place-items-center justify-center rounded-2xl bg-white px-4 py-6 font-jakarta font-bold text-gray-500 dark:bg-[#474747] dark:text-[#fff]">
         Your Security,
         <br />
         Our Priority.
@@ -141,7 +143,7 @@ function Status({ className }) {
     <Link
       href="https://status.dyte.io"
       className={clsx(
-        'flex items-center gap-2 rounded-lg border border-transparent p-1 px-2 font-jakarta font-semibold text-gray-500 transition-colors hover:border-gray-400 hover:bg-white hover:no-underline',
+        'flex items-center gap-2 rounded-lg border border-transparent p-1 px-2 font-jakarta font-semibold text-gray-500 transition-colors hover:border-gray-400 hover:bg-white hover:no-underline dark:hover:bg-[#474747]',
         className
       )}
       target="_blank"
@@ -160,14 +162,14 @@ function Status({ className }) {
 function Links({ name, links }) {
   return (
     <div>
-      <h3 className="font-jakarta text-base font-semibold uppercase text-gray-400">
+      <h3 className="font-jakarta text-base font-semibold uppercase text-gray-400 dark:text-[#fff]">
         {name}
       </h3>
       <div className="flex flex-col gap-3">
         {links.map(({ name, href }) => (
           <Link
             href={href}
-            className="text-base text-gray-700 hover:text-primary hover:no-underline"
+            className="text-base text-gray-700 hover:text-primary hover:no-underline dark:text-[#f9f9f9]"
           >
             {name}
           </Link>
@@ -179,10 +181,13 @@ function Links({ name, links }) {
 
 export default function Footer() {
   return (
-    <footer className="bg-[#F4F7FF]">
+    <footer className="bg-[#F4F7FF] dark:bg-[#191919]"> 
       <div className="mx-auto flex w-full max-w-[1080px] flex-col px-6 py-12">
         <div className="mb-12 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <img src="/logo/dyte.svg" alt="Dyte" className="h-9 w-fit lg:h-12" />
+          <ThemedImage  alt="Dyte" className="h-9 w-fit lg:h-12" sources={{
+    light: '/logo/dyte.svg',
+    dark: '/logo/dyte_dark_logo.svg',
+  }} />
 
           <Safety className="hidden lg:flex" />
           <BrowserOnly>
@@ -200,7 +205,7 @@ export default function Footer() {
           <Links name="Compare" links={comparisons} />
         </div>
 
-        <hr className="my-12 !bg-gray-300" />
+        <hr className="my-12 !bg-gray-300 dark:!bg-[#999]" />
 
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between lg:gap-0">
           <BrowserOnly>
@@ -213,26 +218,26 @@ export default function Footer() {
           <div className="flex flex-wrap gap-2 text-sm text-gray-500">
             <Link
               href="https://dyte.io/privacy-policy"
-              className="text-inherit hover:text-black hover:underline"
+              className="text-inherit hover:text-black hover:underline dark:hover:text-[#2160fd] dark:text-[#999]"
             >
               Privacy Policy
             </Link>
             &bull;
             <Link
               href="https://dyte.io/terms-of-service"
-              className="text-inherit hover:text-black hover:underline"
+              className="text-inherit hover:text-black hover:underline dark:hover:text-[#2160fd] dark:text-[#999]"
             >
               Terms of Service
             </Link>
             &bull;
             <Link
               href="https://dyte.io/website-terms-of-use"
-              className="text-inherit hover:text-black hover:underline"
+              className="text-inherit hover:text-black hover:underline dark:hover:text-[#2160fd] dark:text-[#999]"
             >
               Website Terms of Use
             </Link>
             &bull;
-            <span className="text-inherit">
+            <span className="text-inherit dark:text-[#999]">
               &copy; {new Date().getFullYear()} Dyte Inc.
             </span>
           </div>
