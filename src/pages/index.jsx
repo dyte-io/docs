@@ -24,7 +24,7 @@ export default function Homepage() {
       </Head>
       <div>
         <div className="w-full bg-gradient-to-r from-blue-500 to-red-500 p-4 text-center font-medium text-white">
-          Affected by Twilio Video Sunsetting? Migrate to Dyte and get $30,000
+          Affected by Twilio Video Sunsetting? Migrate to Dyte and get upto $30,000
           Credits{' '}
           <Link
             to="https://dyte.io/twilio-video-competitor"
