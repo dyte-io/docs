@@ -55,4 +55,5 @@ ___
 
 <head>
 	<title>React Native UI Kit Interface: Notification</title>
+	<meta name="description" content="Learn about the React Native Notification Interface provided by Dyte. Utilize this interface for efficient handling and customization of notifications in your app.">
 </head>
