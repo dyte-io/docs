@@ -85,7 +85,7 @@ const speech = new DyteGoogleSpeechRecognition({
     meeting, // Dyte meeting object from DyteClient.init
     target: 'hi', // Language that the current user wants to see
     source: 'en-US', // Language that the current user would speak in
-    baseUrl: <backend-url>, // Backend URL from step 2.4
+    baseUrl: <backend-url>, // Backend URL from step 2.2
 });
 
 speech.on('transcription', async (data) => {
