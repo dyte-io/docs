@@ -287,4 +287,5 @@ Return value of emitting the event
 
 <head>
 	<title>React UI Kit Reference</title>
+	<meta name="description" content="Explore the comprehensive React Native Reference documentation by Dyte. Find detailed information and examples for a smooth integration experience.">
 </head>
