@@ -60,4 +60,5 @@ ___
 
 <head>
 	<title>React UI Kit Class: DyteNotificationsAudio</title>
+	<meta name="description" content="Dive into Dyte's React Native Notifications Audio documentation to implement and customize audio notifications seamlessly. Enhance your app's user experience.">
 </head>
