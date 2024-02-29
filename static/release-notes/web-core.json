@@ -1,5 +1,44 @@
 [
   {
+    "version": "1.29.0",
+    "createdAt": "1709190060",
+    "features": [
+      "Added support to get all joined peer info - `participants.getAllPeersInRoom()`"
+    ],
+    "fixes": [
+      "Fixed an issue where participants are now removed from stage on reconnection"
+    ]
+  },
+  {
+    "version": "1.28.0",
+    "createdAt": "1708682940",
+    "features": [
+      "Added support to update participants preset dynamically - `participants.updatePermissions(participantIds, permissions)`"
+    ]
+  },
+  {
+    "version": "1.27.0",
+    "createdAt": "1708146360",
+    "features": [
+      "Added optional `target` support to broadcastMessage - `participants.broadcastMessage(type, payload, target: { presetNames, participantIds })`"
+    ]
+  },
+  {
+    "version": "1.26.3",
+    "createdAt": "1708076100",
+    "fixes": ["Stage change events are now emitted to Dyte Plugins"]
+  },
+  {
+    "version": "1.26.2",
+    "createdAt": "1707916200",
+    "fixes": ["Fixed waitlisted participants metadata"]
+  },
+  {
+    "version": "1.26.1",
+    "createdAt": "1707383100",
+    "fixes": ["Fixed an issue with fetching active transcriptions"]
+  },
+  {
     "version": "1.26.0",
     "createdAt": "1707323400",
     "features": ["The event callbacks now have type information"],
