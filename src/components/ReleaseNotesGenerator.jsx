@@ -32,7 +32,39 @@ const changeTypes = [
   },
 ];
 
-export default function ReleaseNotesGenerator({ noteKey }) {
+function convertHtmlTagsInTextToReactTags(text) {
+  // Regular expression to match all instances of dashed lower case html tags, including self-closing tags
+  const htmlTagRegex = /<\s*\/?\s*([a-z][a-z0-9-]*)(\s[^>]*?)?\s*\/?>/g;
+
+  // Function to convert each html tag to React-like tag name
+  const convertTag = (match, tagName, attributes, offset, string) => {
+    // Convert tagName to React-like tag name
+    let reactTagName = tagName
+      .split('-')
+      .map((part, index) =>
+        index === 0 ? part : part.charAt(0).toUpperCase() + part.slice(1)
+      )
+      .join('');
+
+    reactTagName = reactTagName.charAt(0).toUpperCase() + reactTagName.slice(1);
+
+    // Check if the original tag was self-closing
+    const isSelfClosing = match.trim().endsWith('/>');
+
+    // Reconstruct the tag with the converted tag name
+    const reactTag = `<${match.charAt(1) === '/' ? '/' : ''}${reactTagName}${
+      attributes ? attributes : ''
+    }${isSelfClosing ? ' /' : ''}>`;
+    return reactTag;
+  };
+
+  // Replace each html tag in the text with its React-like version
+  const convertedText = text.replace(htmlTagRegex, convertTag);
+
+  return convertedText;
+}
+
+export default function ReleaseNotesGenerator({ noteKey, tagType }) {
   const [releaseNotes, setReleaseNotes] = useState([]);
 
   useEffect(() => {
@@ -77,13 +109,21 @@ export default function ReleaseNotesGenerator({ noteKey }) {
                       {m[c.name]?.map((f) => (
                         <tr>
                           <td>
-                            {f.split('\n').map((i, key) => {
-                              return (
-                                <ReactMarkdown className="changeline" key={key}>
-                                  {i}
-                                </ReactMarkdown>
-                              );
-                            })}
+                            {(tagType === 'react'
+                              ? convertHtmlTagsInTextToReactTags(f)
+                              : f
+                            )
+                              .split('\n')
+                              .map((i, key) => {
+                                return (
+                                  <ReactMarkdown
+                                    className="changeline"
+                                    key={key}
+                                  >
+                                    {i}
+                                  </ReactMarkdown>
+                                );
+                              })}
                           </td>
                         </tr>
                       ))}
