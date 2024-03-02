@@ -178,3 +178,17 @@ In a `WEBINAR` setup, below events can be used to bring a user on to stage
 <head>
   <title>Web Core Events</title>
 </head>
+
+## Permission Updates
+
+Triggered when permissions are updated dynamically by a privileged user
+
+Subscribe to `chatUpdate`, `pollsUpdate`, `pluginsUpdate` or `*` for any kind of permission updates
+Example:
+
+```ts
+meeting.self.permissions.on('chatUpdate', () => {
+  // Chat permissions are updated
+  // check meeting.self.permissions for updated permissions
+});
+```
