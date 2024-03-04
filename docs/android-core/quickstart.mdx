@@ -17,7 +17,7 @@ import { MavenLatestInstallation } from '@site/src/components/LatestInstallation
 This quickstart shows how to use Dyte's Android Core SDK to add live video and
 audio to your Android applications.
 
-For getting started quickly, you can use our sample code. You can clone and run a sample application from the Android Core samples either in [Kotlin](https://github.com/dyte-io/android-samples/tree/main/samples/android-core-sample-kotlin) or in [Java](https://github.com/dyte-io/android-samples/tree/main/samples/android-core-sample-java).
+To get started quickly, you can use our sample code. You can clone and run a sample application from the Android Core samples, available in both [Kotlin](https://github.com/dyte-io/android-samples/tree/main/samples/android-core-sample-kotlin) and [Java](https://github.com/dyte-io/android-samples/tree/main/samples/android-core-sample-java).
 
 ## Objective
 
@@ -91,14 +91,13 @@ DyteMobileClient dyteClient = DyteMeetingBuilder.build(activity);
 
 ## Step 3: Configure a Dyte meeting
 
-Set the properties in the `DyteMeetingInfoV2` class. You just need to provide the
-participant's `authToken`.
+Configure the following properties in the `DyteMeetingInfoV2` class. You must pass a valid participant `authToken` obtained from the [Add Participant](/api/?v=v2#/operations/add_participant) API.
 
 | Name        | Description                                                                                                                                                                                                                                                                            |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
 | `authToken` | After you've created the meeting, add each participant to the meeting using the [Add Participant API](/api?v=v2#/operations/add_participant) The API response contains the `authToken`. |     |
-| `enableAudio` | You can control the state of audio track by passing `true` or `false` here. |     |
-| `enableVideo` | You can control the state of video track by passing `true` or `false` here. |     |
+| `enableAudio` | Set whether to join the meeting with your Mic ON or OFF by passing `true` or `false`. |     |
+| `enableVideo` | Set whether to join the meeting with your Camera ON or OFF by passing `true` or `false`. |     |
 | `baseUrl` | Base URL of the dyte's enviorment you have created the meeting on. |     |
 
 <Tabs groupId="meeting-props-android-core">
@@ -131,9 +130,7 @@ DyteMeetingInfoV2 meetingInfo = new DyteMeetingInfoV2(
 
 ## Step 4: Initialize the Dyte meeting
 
-To initialize the meeting, call the `init()` method obtained on
-`dyteClient` with the `meetingInfo` argument. This will establish the connection
-with the Dyte meeting server.
+To initialize the meeting, call the `init()` method on the `dyteClient` object with the `meetingInfo` argument. This establishes a connection with the Dyte meeting server.
 
 <Tabs groupId="init-android-core">
   <TabItem value="kotlin" label="Kotlin" default>
