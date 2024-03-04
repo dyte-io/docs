@@ -96,11 +96,11 @@ successfully. Next step is to join the room.
 
 ### Join the room
 
-To join the meeting room, call joinRoom() method on the dyteClient instance as
+To join the meeting room, call join() method on the DyteClient instance as
 shown below.
 
 ```js
-await meeting.joinRoom();
+await meeting.join();
 ```
 
 :::info
@@ -119,7 +119,7 @@ meeting.self.on('roomJoined', () => {
   // run my actions.
 });
 
-await meeting.joinRoom();
+await meeting.join();
 ```
 
 :::
