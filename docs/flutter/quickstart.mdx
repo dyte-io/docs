@@ -80,13 +80,31 @@ platform :ios, '13.0'
 
 ```<Swift>
 /* Attach the permission to use camera & microphone. */
+<key>NSBluetoothPeripheralUsageDescription</key>
+<string>We will use your Bluetooth to access your Bluetooth headphones.</string>
+
+<key>NSBluetoothAlwaysUsageDescription</key>
+<string>We will use your Bluetooth to access your Bluetooth headphones.</string>
 
 <key>NSCameraUsageDescription</key>
 <string>For people to see you during meetings, we need access to your camera.</string>
 
 <key>NSMicrophoneUsageDescription</key>
 <string>For people to hear you during meetings, we need access to your microphone.</string>
+
+<key>NSPhotoLibraryUsageDescription</key>
+<string>For people to share, we need access to your photos.</string>
 ```
+
+3. In iOS, if you are allowing user to download attachments in chat, add the following permissions in your app's Info.plist:
+
+```<Swift>
+<key>LSSupportsOpeningDocumentsInPlace</key>
+<true/>
+<key>UIFileSharingEnabled</key>
+<true/>
+```
+
 
 ## Step 3: Configure a Dyte meeting
 
