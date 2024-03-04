@@ -1,8 +1,6 @@
 ---
 title: Quickstart
-description: >-
-  Get started quickly with Dyte's Flutter integration. Follow our quickstart
-  guide for seamless integration and development.
+description: Quickstart guide for Dyte's Flutter UI Kit.
 sidebar_position: 2
 ---
 
@@ -13,11 +11,11 @@ audio to your Flutter applications.
 
 For getting started quickly, you can use our sample code. You can clone and run
 a sample application from the
-[Flutter UI Kit Sample App GitHub repository](https://github.com/dyte-io/flutter-samples/tree/main/flutter_uikit).
+[Flutter UI Kit Sample App GitHub repository](https://github.com/dyte-io/mobile-samples/tree/main/flutter_uikit).
 
 ## Objective
 
-You'll learn how to:
+You’ll learn how to:
 
 - Install the Dyte SDK
 - Configuring Android & iOS permissions
@@ -28,15 +26,16 @@ You'll learn how to:
 ## Before Getting Started
 
 Make sure you've read the
-[Getting Started with Dyte](/getting-started) topic and
+[Getting Started with Dyte](https://docs.dyte.io/getting-started) topic and
 completed the steps in the
-[Integrate Dyte](/getting-started#integrate-dyte) section.
+[Integrate Dyte](https://docs.dyte.io/getting-started#integrate-dyte) section.
 You must complete the following steps:
 
 - Create a [Dyte Developer Account](https://dev.dyte.io/)
+- Create [Presets](https://dev.dyte.io/roles-presets)
 - Create a
-  [Dyte Meeting](/api/?v=v2#/operations/create_meeting)
-- [Add Participant](/api/?v=v2#/operations/add_participant)
+  [Dyte Meeting](https://docs.dyte.io/api/?v=v2#/operations/create_meeting)
+- [Add Participant](https://docs.dyte.io/api/?v=v2#/operations/add_participant)
   to the meeting
 
 ## Step 1: Install the SDK
@@ -55,17 +54,23 @@ Perform the following steps:
 
 ### Android
 
-Set `compileSdkVersion 33` and `minSdkVersion 23` inside `build.gradle` file at the `<project root>/android/app/build.gradle` file.
+Set `compileSdkVersion 33` and `minSdkVersion 21` inside `build.gradle` file at the `<project root>/android/app/build.gradle` file.
 
 ```kotlin
   defaultConfig {
         ...
 
         compileSdkVersion 33
-        minSdkVersion 23
+        minSdkVersion 21
 
         ...
     }
+```
+
+And change the kotlin version to `1.9.0`
+
+```kotlin
+    ext.kotlin_version = '1.9.0'
 ```
 
 ### iOS
@@ -90,7 +95,7 @@ platform :ios, '13.0'
 
 ## Step 3: Configure a Dyte meeting
 
-To initiate Dyte Meeting for any participant you just need to pass `authToken` as an argument. You can get the `authToken` via the [Add Participant API](/api?v=v2#/operations/add_participant).
+To initiate Dyte Meeting for any participant you just need to pass `authToken` as an argument. You can get the `authToken` via the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant).
 
 After getting the `authToken`, you need to create the `DyteMeetingInfoV2` object as follows:
 
@@ -102,6 +107,7 @@ final meetingInfo = DyteMeetingInfoV2(authToken: '<auth_token>');
 
 The `DyteUIKit` is the main class of the SDK. It is the entry point and the only
 class required to initialize Dyte UI Kit SDK. To initialize it we have to pass `DyteUIKitInfo` object as an argument.
+
 
 ```dart
 
@@ -121,15 +127,15 @@ final uikitInfo = DyteUIKitInfo(
       ),
     );
 
-final uiKit = DyteUIKitBuilder.build(uiKitInfo: uikitInfo);
+final uiKit = DyteUIKitBuilder.build(uiKitInfo: uikitInfo, context: context);
 
 ```
-
 You can learn more about customization of the uikit in the [Design System](/flutter/design-token) section.
 
 ## Step 5: Launch the meeting UI
 
-To launch the meeting UI all you need to do is call the `loadUI()` method of the `DyteUIKit` object which will return a `Widget`. You can push this widget as a page to start the flow of prebuilt Flutter UI Kit.
+To launch the meeting you can simply use the object returned after calling `build` method. The `uikit` above is a widget itself.
+You can push this widget as a page to start the flow of prebuilt Flutter UI Kit.
 
 ```dart
 import 'package:dyte_uikit/dyte_uikit.dart';
@@ -142,7 +148,8 @@ class DyteMeetingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     ...
     // Push this widget as page in your app
-    return uiKit.loadUI();
+    // Earlier it was uikit.loadUI() which is now deprecated,just use uikit.
+    return uiKit;
   }
 }
 
@@ -178,7 +185,3 @@ Voila! You're all done. Here is the pictorial representation of all the configur
   ))}
 </div>
 ````
-
-<head>
-  <title>Flutter Quickstart</title>
-</head>
