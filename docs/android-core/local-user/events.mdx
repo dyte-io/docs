@@ -12,32 +12,16 @@ tags:
 
 ## Local User - Events
 
-You can subscribe to various events on the local user by implementing
-`DyteSelfEventsListener` and passing the object to
-`meeting.addSelfEventsListener(dyteSelfEventsListener)`.
-
-### Room joined
-
-Triggered when the room join event completes and the meeting is ready to
-produce and consume media.
-
-```kotlin
-meeting.addSelfEventsListener(object : DyteSelfEventsListener {
-    override fun onRoomJoined() {
-      super.onRoomJoined()
-    }
-});
-```
+You can subscribe to various events on the local user by implementing `DyteSelfEventsListener` and passing the object to `meeting.addSelfEventsListener(dyteSelfEventsListener)`.
 
 ### Video update
 
-Triggered when the user starts/stops the video using `enableVideo` or
-`disableVideo`.
+Triggered when the user starts/stops the video using `enableVideo()` or
+`disableVideo()`.
 
 ```kotlin
 meeting.addSelfEventsListener(object : DyteSelfEventsListener {
     override fun onVideoUpdate(videoEnabled: Boolean) {
-      super.onVideoUpdate(videoEnabled)
       if (videoEnabled) {
         // video is enabled, and other participants in room can see local user
       } else {
@@ -49,30 +33,17 @@ meeting.addSelfEventsListener(object : DyteSelfEventsListener {
 
 ### Audio update
 
-Triggered when the user starts/stops the audio using `enableAudio` or
-`disableAudio`.
+Triggered when the user starts/stops the audio using `enableAudio()` or
+`disableAudio()`.
 
 ```kotlin
 meeting.addSelfEventsListener(object : DyteSelfEventsListener {
     override fun onAudioUpdate(audioEnabled: Boolean) {
-      super.onAudioUpdate(videoEnabled)
       if (audioEnabled) {
         // audio is enabled, and other participants in room can hear local user
       } else {
         // audio is disabled, and other participants in room can not hear local user.
       }
-    }
-})
-```
-
-### Room disconnected update
-
-Triggered when the user is disconnected due to media or network error.
-
-```kotlin
-meeting.addSelfEventsListener(object : DyteSelfEventsListener {
-    override fun onMeetingRoomDisconnected() {
-      super.onMeetingRoomDisconnected()
     }
 })
 ```
@@ -84,9 +55,7 @@ Triggered whenever there is a change in proximity, indicating if the device is n
 ```kotlin
 meeting.addSelfEventsListener(object : DyteSelfEventsListener {
     override fun onProximityChanged(isNear: Boolean) {
-      super.onProximityChanged(isNear)
-      // isNear
-      // if true, display should be turned off, as user might be speaking through earpiece
+      // if `isNear` is true, display should be turned off, as user might be speaking through earpiece
       // if false, display should be turned on, as user might be looking at display and listening through speaker/earphones.
     }
 })
@@ -107,7 +76,7 @@ You can listen to those changes in `onWaitListStatusUpdate()` callbacks
 ```kotlin
 meeting.addSelfEventsListener(object : DyteSelfEventsListener {
     override fun onWaitListStatusUpdate(waitListStatus: WaitListStatus) {
-      super.onWaitListStatusUpdate(waitListStatus)
+      // handle waitlist status here
     }
 });
 ```
@@ -118,12 +87,50 @@ Manage messages among participants within a room.
 
 ```kotlin
 meeting.addSelfEventsListener(object : DyteSelfEventsListener {
-    override fun onRoomMessage(message: String) {
+    override fun onRoomMessage(type: String, payload: Map<String, *>) {
       // handle the message here
     }
 });
 ```
 
-<head>
-  <title>Android Core Events</title>
-</head>
+### Screenshare callbacks for local user
+
+```kotlin
+meeting.addSelfEventsListener(object : DyteSelfEventsListener {
+    override fun onScreenShareStartFailed(reason: String) {
+      // screenshare failed to start
+    }
+
+    override fun onScreenShareStarted() {
+      // screenshare started presenting in the meeting
+    }
+
+    override fun onScreenShareStopped() {
+      // screenshared stopped by the local user
+    }
+});
+```
+
+### Device permission callbacks once local user is joined in the meeting
+
+```kotlin
+meeting.addSelfEventsListener(object : DyteSelfEventsListener {
+    override fun onMeetingRoomJoinedWithoutCameraPermission() {
+      // local user joined without camera permission 
+    }
+
+    override fun onMeetingRoomJoinedWithoutMicPermission() {
+      // local user joined without microphone permission 
+    }
+});
+```
+
+### When local user is kicked out from the meeting by a remote user
+
+```kotlin
+meeting.addSelfEventsListener(object : DyteSelfEventsListener {
+    override fun onRemovedFromMeeting() {
+        // removed from meeting
+      }
+});
+```
