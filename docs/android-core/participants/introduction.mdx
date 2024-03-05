@@ -127,6 +127,9 @@ val participantToRemove = meeting.participants.joined.first()
 participantToRemove.kick()
 ```
 
-<head>
-  <title>Android Core Introduction</title>
-</head>
+## Broadcast message to all participants
+
+```kotlin
+// broadcast message
+meeting.participants.broadcastMessage(Payload)
+```
