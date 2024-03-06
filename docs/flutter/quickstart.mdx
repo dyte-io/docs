@@ -126,7 +126,12 @@ After getting the `authToken`, you need to create the `DyteMeetingInfoV2` object
 
 
 ```dart
-final meetingInfo = DyteMeetingInfoV2(authToken: '<auth_token>', baseUrl: '', enableAudio: false, enableVideo: false,);
+final meetingInfo = DyteMeetingInfoV2(
+                    authToken: '<authToken>',
+                    baseUrl: 'https://api.dyte.io/v2',      // optional argument, if you want to pass your own baseUrl
+                    enableAudio: false,                     // optional argument, to enable or disable audio in the meeting
+                    enableVideo: false,                     // optional argument, to enable or disable video in the meeting
+                  );
 ```
 
 ## Step 4: Initialize the SDK
