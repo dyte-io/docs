@@ -33,5 +33,5 @@ ___
 
 <head>
 	<title>Angular UI Kit Interface: UIConfig</title>
-	<meta name="description" content="Understand the UIConfig interface in Dyte's Angular UI Kit Reference for detailed information.">
+	<meta name="description" content="Understand the UIConfig interface in Dyte's Angular UI Kit Reference for detailed information."/>
 </head>
