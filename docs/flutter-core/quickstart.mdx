@@ -69,19 +69,6 @@ You'll learn how to:
 
 After importing the package, perform the following steps for Android and iOS.
 
-### For Android
-
-Add the following permissions to the AndroidManifest.xml file.
-
-```dart
-<uses-permission android:name="android.permission.RECORD_AUDIO" />
-<uses-permission android:name="android.permission.CAMERA" />
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.BLUETOOTH" />
-<uses-permission android:name="android.permission.WAKE_LOCK" />
-<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-```
 
 ### For iOS
 
@@ -98,12 +85,16 @@ platform :ios, '13.0'
 ```dart
 <key>NSBluetoothPeripheralUsageDescription</key>
 <string>We will use your Bluetooth to access your Bluetooth headphones.</string>
+
 <key>NSBluetoothAlwaysUsageDescription</key>
 <string>We will use your Bluetooth to access your Bluetooth headphones.</string>
+
 <key>NSCameraUsageDescription</key>
 <string>For people to see you during meetings, we need access to your camera.</string>
+
 <key>NSMicrophoneUsageDescription</key>
 <string>For people to hear you during meetings, we need access to your microphone.</string>
+
 <key>NSPhotoLibraryUsageDescription</key>
 <string>For people to share, we need access to your photos.</string>
 ```
