@@ -287,5 +287,5 @@ Return value of emitting the event
 
 <head>
 	<title>Angular UI Kit Reference</title>
-	<meta name="description" content="Refer to Dyte's Angular UI Kit Reference for detailed information on various components and functionalities.">
+	<meta name="description" content="Refer to Dyte's Angular UI Kit Reference for detailed information on various components and functionalities."/>
 </head>
