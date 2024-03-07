@@ -163,6 +163,17 @@ void onVideoDeviceChanged(DyteVideoDevice videoDevice) {
 
 ```
 
+## Process message within the room
+
+Manage messages within the room using `onRoomMessage(String message)` callback.
+
+```dart
+@override
+void onRoomMessage(String type, Map<String, dynamic> payload) {
+  // triggered when a message is sent within the room.
+}
+```
+
 <head>
   <title>Flutter Core Events</title>
 </head>

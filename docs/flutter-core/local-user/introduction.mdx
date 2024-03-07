@@ -111,6 +111,16 @@ final isVideoEnabled = dyteClient.localUser.videoEnabled;
 dyteClient.localUser.switchCamera();
 ```
 
+## Broadcast Message to all participants
+
+```dart
+// payload is a Map<String, dynamic>
+const payload = {
+  "message": "Hello World",
+};
+dyteClient.broadcastMessage("type", payload);
+```
+
 ## Enable / Disable Screen share
 
 ```dart
