@@ -238,9 +238,9 @@ const comparisons = [
 
 function Safety({ className }) {
   return (
-    <div style={{paddingRight: '16px'}}
+    <div 
       className={clsx(
-        'flex h-24 max-w-[418px] overflow-clip rounded-2xl bg-white dark:bg-[#474747]', 
+        'flex h-24 pr-4 max-w-[418px] overflow-clip rounded-2xl bg-white dark:bg-[#474747]', 
         className
       )}
     >
@@ -252,7 +252,7 @@ function Safety({ className }) {
       <div className="flex flex-1 items-center justify-around px-6">
         <img src="/img/soc-compliant-1.png" alt="SOC Compliant" />
         <img src="/img/vector.png" alt="HIPAA Compliant" />
-        <img style={{width: '65px'}} src="/img/gdpr.png" alt="GDPR compliant" />
+        <img style={{width: '62px'}} src="/img/gdpr.png" alt="GDPR compliant" />
        
       </div>
     </div>
