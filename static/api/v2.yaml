@@ -4920,6 +4920,12 @@ components:
                 - right bottom
               description: Position of the watermark
               default: left top
+        export_file:
+          type: boolean
+          x-stoplight:
+            id: mqrzqrbcbbx99
+          default: true
+          description: Controls wether to export video file seperately
     LivestreamingConfig:
       title: LivestreamingConfig
       x-stoplight:
@@ -4956,6 +4962,12 @@ components:
             - mono
             - stereo
           default: stereo
+        export_file:
+          type: boolean
+          x-stoplight:
+            id: mqrzqrbcbbx99
+          default: true
+          description: Controls wether to export audio file seperately
     DyteBucketConfig:
       title: DyteBucketConfig
       x-stoplight:
