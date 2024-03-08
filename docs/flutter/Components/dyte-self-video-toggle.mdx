@@ -1,0 +1,37 @@
+# DyteSelfVideoToggleButton
+
+A custom Flutter widget designed for toggling video state in a Dyte video conference environment. This widget is part of the Dyte UI Kit and allows users to enable or disable their video during a meeting.
+
+## Usage
+
+Below is an example of how to integrate the `DyteSelfVideoToggleButton` into your Flutter app:
+
+```dart
+DyteSelfVideoToggleButton(
+  dyteMobileClient: yourDyteMobileClientInstance,
+  onVideoToggle: () {
+    // Code to execute after video toggle
+  },
+  iconSize: 24.0,
+  iconColor: Colors.red,
+  showLabel: true,
+)
+```
+
+## Properties
+
+- `dyteMobileClient`: (**Required**) An instance of `DyteMobileClient` to manage video state and events.
+- `onVideoToggle`: (Optional) A callback that is called when the video toggle button is pressed.
+- `iconSize`: (Optional) Size of the icon inside the toggle button. If not specified, a default size is used.
+- `iconColor`: (Optional) Color of the icon inside the toggle button. If not specified, the default color from the design tokens is used.
+- `showLabel`: (Optional) A boolean to show or hide the label next to the icon. Default is `false`.
+- `dyteDesignToken`: (Optional) An instance of `DyteDesignTokens` for customizing the appearance according to the Dyte Design System.
+
+## Design Token
+
+The widget utilizes `DyteDesignTokens` for theming, which allows customization following the Dyte Design System. The `designTokens` can either be passed as a parameter or will default to the global design tokens.
+
+
+## Screenshot
+
+<img src="/static/mobile/flutter/flutter-self-video-toggle.png" width="350px"/>

@@ -40,7 +40,7 @@ class AppComponent {
     const meeting = await DyteClient.init({
       authToken: '<auth-token>',
     });
-    meeting.joinRoom();
+    meeting.join();
     this.dyteMeeting = meeting;
     if (this.meetingComponent) this.meetingComponent.meeting = meeting;
   }
@@ -67,7 +67,7 @@ class AppComponent {
     const meeting = await DyteClient.init({
       authToken: '<auth-token>',
     });
-    meeting.joinRoom();
+    meeting.join();
     this.dyteMeeting = meeting;
     if (!this.meetingComponent) {
       throw Error('Component is empty');

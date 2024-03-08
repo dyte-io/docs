@@ -46,7 +46,7 @@ audio streams. To change this behaviour, use the `audioEnabled` & `videoEnabled`
 parameter
 
 ```dart {4,5}
-final meetingInfo = DyteMeetingInfo(
+final meetingInfo = DyteMeetingInfoV2(
   roomName = MEETING_ROOM_NAME,
   authToken = AUTH_TOKEN,
   audioEnabled = false,
@@ -109,6 +109,16 @@ final isVideoEnabled = dyteClient.localUser.videoEnabled;
 ```dart
 // switch camera
 dyteClient.localUser.switchCamera();
+```
+
+## Broadcast Message to all participants
+
+```dart
+// payload is a Map<String, dynamic>
+const payload = {
+  "message": "Hello World",
+};
+dyteClient.broadcastMessage("type", payload);
 ```
 
 ## Enable / Disable Screen share

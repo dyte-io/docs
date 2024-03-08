@@ -37,6 +37,52 @@ const products = [
     name: 'Pricing',
     href: 'https://dyte.io/pricing',
   },
+  {
+    name: 'Features',
+    isAccordion: true,
+    content: [
+    {
+      name: "Plugins",
+      href: 'https://dyte.io/features/plugin'
+    },
+    {
+      name: 'Breakout Rooms',
+      href: 'https://dyte.io/features/breakout-rooms'
+    },
+    {
+      name: 'Recording',
+      href: 'https://dyte.io/features/recording'
+    },
+    {
+      name: 'UI Kit',
+      href: 'https://dyte.io/features/ui-kit'
+    },
+    {
+      name: 'DevEx',
+      href: 'https://dyte.io/features/devex'
+    },
+    {
+      name: 'Security',
+      href: 'https://dyte.io/features/security'
+    },
+    {
+      name: 'AI',
+      href: 'https://dyte.io/features/dyte-ai'
+    },
+    {
+      name: 'Streaming',
+      href: 'https://dyte.io/features/streaming'
+    },
+    {
+      name: 'UX',
+      href: 'https://dyte.io/features/ux'
+    },
+    {
+      name: 'Interatcive',
+      href: 'https://dyte.io/features/interactive'
+    }
+    ]
+  }
 ];
 
 const developers = [
@@ -59,6 +105,33 @@ const developers = [
   {
     name: 'Guides',
     href: '/guides',
+  },
+  {
+    name: 'Platform',
+    isAccordion: true,
+    content: [
+      
+      {
+        name: 'Flutter',
+        href: 'https://dyte.io/flutter-video-sdk'
+      },
+      {
+        name: 'Android',
+        href: 'https://dyte.io/android-video-sdk'
+      },
+      {
+        name: 'iOS',
+        href: 'https://dyte.io/ios-video-sdk'
+      },
+      {
+        name: 'React',
+        href: 'https://dyte.io/react-video-sdk'
+      },
+      {
+        name: 'React Native',
+        href: 'https://dyte.io/react-native-video-sdk'
+      }
+      ]
   },
   {
     name: 'Migrate from Twilio',
@@ -95,13 +168,79 @@ const comparisons = [
   { name: 'Dyte vs Zoom', href: 'https://dyte.io/zoom-sdk-competitor' },
   { name: 'Dyte vs Twilio', href: 'https://dyte.io/twilio-video-competitor' },
   { name: 'Dyte vs Vonage', href: 'https://dyte.io/vonage-video-alternative' },
+  {
+    name: 'View 14 more',
+    isAccordion: true,
+    content: [
+      {
+        name: 'Zoom vs Agora',
+        href: 'https://dyte.io/zoom-vs-agora'
+      },
+      {
+        name: 'Agora vs Twilio',
+        href: 'https://dyte.io/agora-vs-twilio'
+      },
+      {
+        name: 'Zoom vs Twilio',
+        href: 'https://dyte.io/zoom-vs-twilio'
+      },
+      {
+        name: 'Agora vs Mux',
+        href: 'https://dyte.io/agora-vs-mux'
+      },
+      {
+        name: 'Zoom vs Whereby',
+        href: 'https://dyte.io/zoom-vs-whereby'
+      },
+      {
+        name: 'Tokbox vs Twilio',
+        href: 'https://dyte.io/tokbox-vs-twilio'
+      },
+      {
+        name: 'Tokbox vs Agora',
+        href: 'https://dyte.io/tokbox-vs-agora'
+      },
+      {
+        name: 'AWS Chime vs Twilio',
+        href: 'https://dyte.io/aws-chime-vs-twilio'
+      },
+      {
+        name: 'Tokbox vs Jitsi',
+        href: 'https://dyte.io/tokbox-vs-jitsi'
+      },
+      {
+        name: 'Zoom vs Jitsi',
+        href: 'https://dyte.io/zoom-vs-jitsi'
+      },
+      {
+        name: 'Agora vs Jitsi',
+        href: 'https://dyte.io/agora-vs-jitsi'
+      },
+      {
+        name: 'Whereby vs Jitsi',
+        href: 'https://dyte.io/whereby-vs-jitsi'
+      },
+      {
+        name: 'Livekit vs Jitsi',
+        href: 'https://dyte.io/livekit-vs-jitsi'
+      },
+      {
+        name: '100ms vs Agora',
+        href: 'https://dyte.io/100ms-vs-agora'
+      },
+      {
+        name: 'Twilio Video Alternatives',
+        href: 'https://dyte.io/blog/twilio-video-alternatives/'
+      }
+    ]
+  }
 ];
 
 function Safety({ className }) {
   return (
-    <div
+    <div 
       className={clsx(
-        'flex h-24 max-w-[418px] overflow-clip rounded-2xl bg-white dark:bg-[#474747]',
+        'flex h-24 pr-4 max-w-[418px] overflow-clip rounded-2xl bg-white dark:bg-[#474747]', 
         className
       )}
     >
@@ -112,7 +251,9 @@ function Safety({ className }) {
       </div>
       <div className="flex flex-1 items-center justify-around px-6">
         <img src="/img/soc-compliant-1.png" alt="SOC Compliant" />
-        <img src="/img/vector.png" alt="Compliant" />
+        <img src="/img/vector.png" alt="HIPAA Compliant" />
+        <img style={{width: '62px'}} src="/img/gdpr_docs.png" alt="GDPR compliant" />
+       
       </div>
     </div>
   );
@@ -159,22 +300,47 @@ function Status({ className }) {
   );
 }
 
-function Links({ name, links }) {
+
+
+
+function Links({ name, links, isAccordion }) {
+
+  //To control accordion in footer
+  const [activeAccordion, setActiveAccordion] = useState(null);
+
+  const toggleAccordion = (href) => {
+    setActiveAccordion(prevAccordion => prevAccordion === href ? null : href);
+  };
+
   return (
     <div>
       <h3 className="font-jakarta text-base font-semibold uppercase text-gray-400 dark:text-[#fff]">
         {name}
       </h3>
       <div className="flex flex-col gap-3">
-        {links.map(({ name, href }) => (
+        {links.map(({ name, href, isAccordion, content }) => (
           <Link
             href={href}
             className="text-base text-gray-700 hover:text-primary hover:no-underline dark:text-[#f9f9f9]"
+            onClick={() => isAccordion ? toggleAccordion(href) : null}
           >
             {name}
-          </Link>
+            {isAccordion && activeAccordion === href && (
+            <ul style={{paddingLeft: '1rem', listStyle: 'unset'}}>
+              
+              {content.map((item, index) => (
+                <li key={index}>
+                  <Link href={item.href} className="text-base text-gray-700 hover:text-primary hover:no-underline dark:text-[#f9f9f9]">
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+          </Link> 
         ))}
       </div>
+      
     </div>
   );
 }
@@ -198,11 +364,12 @@ export default function Footer() {
         </div>
 
         <div className="grid grid-cols-2 gap-6 gap-y-12 md:justify-between lg:flex lg:flex-wrap">
-          <Links name="Product" links={products} />
+          <Links name="Product" links={products} />          
           <Links name="Developers" links={developers} />
           <Links name="Usecases" links={usecases} />
           <Links name="Company" links={company} />
           <Links name="Compare" links={comparisons} />
+          
         </div>
 
         <hr className="my-12 !bg-gray-300 dark:!bg-[#999]" />

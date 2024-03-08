@@ -1,0 +1,35 @@
+# DyteSelfAudioToggleButton
+
+A toggle button widget designed for controlling the audio state in the Dyte video conference environment. This widget integrates with the Dyte UI Kit and allows users to enable or disable their microphone audio during a meeting.
+
+## Usage
+
+Here is a basic example of how to use the `DyteSelfAudioToggleButton` in your Flutter app:
+
+```dart
+DyteSelfAudioToggleButton(
+  dyteMobileClient: yourDyteMobileClientInstance,
+  onAudioToggle: () {
+    // Your code to handle toggle
+  },
+  iconSize: 24.0,
+  iconColor: Colors.blue,
+  showLabel: true,
+)
+```
+
+## Properties
+
+- `dyteMobileClient`: (**Required**) An instance of `DyteMobileClient` to manage the audio state and events.
+- `onAudioToggle`: (Optional) A callback that gets called when the audio toggle button is pressed.
+- `iconSize`: (Optional) Size of the icon inside the toggle button. If not specified, the default size is used.
+- `iconColor`: (Optional) Color of the icon inside the toggle button. If not specified, the default color from the design tokens is used.
+- `showLabel`: (Optional) Boolean to show or hide the label next to the icon. Default is `false`.
+
+## Design Token
+
+The widget uses `DyteDesignTokens` for theming, which allows for customization according to the Dyte Design System. The `designToken` can be passed as a parameter or will default to the global design token.
+
+## Screenshot
+
+<img src="/static/mobile/flutter/flutter-self-audio-toggle.png" width="350px"/>
