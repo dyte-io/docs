@@ -26,11 +26,12 @@ The `DyteChatMessage` class has the following properties:
 - `displayName` : Display name of the sender.
 - `read` : Boolean whether the message is read or not.
 - `pluginId` : Plugin ID of the message.
+- `time` : Time at which the message was sent. It returns a `String` in milliseconds since epoch format.
 - `type` : `DyteMessageType` for type of message being sent (whether
   `DyteMessageType.text`, `DyteMessageType.image` or `DyteMessageType.file`).
 
 There are 3 message classes that extends `DyteChatMessage`, and each has some
-extra parameter apart from `DyteChatMessage` ones:
+extra property in addition to `DyteChatMessage` properties:
 
 - `DyteTextMessage`
 - `DyteImageMessage`
@@ -42,14 +43,13 @@ extra parameter apart from `DyteChatMessage` ones:
 
 #### DyteImageMessage:
 
-- `link`: URL to the bucket where the image is stored.
-- `fileUri`: Local path URL of image selected.
-- `fileName`: Name of image selected.
+- `link`: URL of the image sent.
 
 #### DyteFileMessage:
 
 - `name`: Name of the file to be sent.
-- `fileUri`: Local path URL of the file selected.
+- `link`: URL of the file sent.
+- `size`: Size of the file in bytes.
 
 <head>
   <title>Flutter Core Introducing chat</title>

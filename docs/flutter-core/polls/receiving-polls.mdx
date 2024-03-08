@@ -1,0 +1,47 @@
+---
+title: Receiving polls
+description: >-
+  Understand how users can vote on polls in Flutter with Dyte's features. Follow
+  our documentation for effective implementation in your app.
+sidebar_position: 3
+tags:
+  - flutter-core
+  - polls
+  - votes
+---
+
+To be able to receive new poll messages you need to implement a method
+`onPollUpdates()` method from callback `DytePollEventsListener`:
+
+To get poll updates, listen to `onPollUpdates()` callback:
+
+```dart
+
+class PollEventsListeners extends DytePollEventsListener {
+
+  ...
+
+  @override
+  void onPollUpdates(List<DytePollMessage> polls) {
+    /// code to handle polls
+  }
+
+  @override
+  void onNewPoll(DytePollMessage poll) {
+    /// code to handle new poll
+  }
+
+  ...
+}
+
+```
+
+You can subscribe to this events by `addPollEventsListener` method:
+
+```dart
+dyteClient.addPollEventsListener(PollEventsListeners());
+```
+
+<head>
+  <title>Flutter Core listening to polls</title>
+</head>
