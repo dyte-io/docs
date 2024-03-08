@@ -115,5 +115,5 @@ ___
 
 <head>
 	<title>React Native UI Kit Interface: States</title>
-	<meta name="description" content="Understand and implement the React Native States Interface by Dyte. Effectively manage and control states in your React Native application.">
+	<meta name="description" content="Understand and implement the React Native States Interface by Dyte. Effectively manage and control states in your React Native application."/>
 </head>

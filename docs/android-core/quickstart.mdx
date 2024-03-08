@@ -65,6 +65,7 @@ dependencies {
    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
 }
 ```
+
 :::
 
 ## Step 2: Initialize the SDK
@@ -93,12 +94,12 @@ DyteMobileClient dyteClient = DyteMeetingBuilder.build(activity);
 
 Configure the following properties in the `DyteMeetingInfoV2` class. You must pass a valid participant `authToken` obtained from the [Add Participant](/api/?v=v2#/operations/add_participant) API.
 
-| Name        | Description                                                                                                                                                                                                                                                                            |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
-| `authToken` | After you've created the meeting, add each participant to the meeting using the [Add Participant API](/api?v=v2#/operations/add_participant) The API response contains the `authToken`. |     |
-| `enableAudio` | Set whether to join the meeting with your Mic ON or OFF by passing `true` or `false`. |     |
-| `enableVideo` | Set whether to join the meeting with your Camera ON or OFF by passing `true` or `false`. |     |
-| `baseUrl` | Base URL of the dyte's enviorment you have created the meeting on. |     |
+| Name          | Description                                                                                                                                                                             |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+| `authToken`   | After you've created the meeting, add each participant to the meeting using the [Add Participant API](/api?v=v2#/operations/add_participant) The API response contains the `authToken`. |     |
+| `enableAudio` | Set whether to join the meeting with your Mic ON or OFF by passing `true` or `false`.                                                                                                   |     |
+| `enableVideo` | Set whether to join the meeting with your Camera ON or OFF by passing `true` or `false`.                                                                                                |     |
+| `baseUrl`     | Base URL of the dyte's enviorment you have created the meeting on.                                                                                                                      |     |
 
 <Tabs groupId="meeting-props-android-core">
   <TabItem value="kotlin" label="Kotlin" default>
@@ -106,9 +107,9 @@ Configure the following properties in the `DyteMeetingInfoV2` class. You must pa
 ```kotlin
 val meetingInfo =
       DyteMeetingInfoV2(
-        authToken = AUTH_TOKEN, 
-        enableAudio = true, 
-        enableVideo = true, 
+        authToken = AUTH_TOKEN,
+        enableAudio = true,
+        enableVideo = true,
         baseUrl = "dyte.io"
       )
 ```
@@ -159,7 +160,6 @@ dyteClient.init(meetingInfo, () -> {
 
   </TabItem>
 </Tabs>
-
 
 ## Step 5: Go live with your Dyte meeting!
 
@@ -233,9 +233,10 @@ dyteClient.leave(() -> {
   </TabItem>
 </Tabs>
 
-
-
 <head>
   <title>Android Core Quickstart</title>
-  <meta name="description" content="Explore Dyte's Android Core documentation, focusing on core functionalities for building rich video chat applications on Android. /">
+  <meta
+    name="description"
+    content="Explore Dyte's Android Core documentation, focusing on core functionalities for building rich video chat applications on Android."
+  />
 </head>
