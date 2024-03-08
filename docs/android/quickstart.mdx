@@ -13,7 +13,7 @@ import { MavenLatestInstallation } from '@site/src/components/LatestInstallation
 This quickstart shows how to use Dyte's Android UI Kit SDK to add live video and
 audio to your Android applications.
 
-To get started quickly, you can use our sample code available in the [Android UI Kit Sample App GitHub repository](https://github.com/dyte-io/android-samples/tree/main/samples/android-ui-kit-sample-kotlin). 
+To get started quickly, you can use our sample code available in the [Android UI Kit Sample App GitHub repository](https://github.com/dyte-io/android-samples/tree/main/samples/android-ui-kit-sample-kotlin).
 Clone and run the sample application to see the SDK in action.
 
 ## Objective
@@ -73,18 +73,18 @@ dependencies {
 Configure the following properties in the `DyteMeetingInfoV2` class. You must pass a valid participant `authToken`
 obtained from the [Add Participant](/api/?v=v2#/operations/add_participant) API.
 
-| Name        | Description                                                                                                                                                                                                                                                                            |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
-| `authToken` | Authentication token generated using the [Add Participant API](/api/?v=v2#/operations/add_participant) after meeting creation. |     |
-| `enableAudio` | Set whether to join the meeting with your Mic ON (`true`) or OFF (`false`). |     |
-| `enableVideo` | Set whether to join the meeting with your Camera ON (`true`) or OFF (`false`). |     |
-| `baseUrl` | Base URL of the Dyte environment you have created the meeting on. |     |
+| Name          | Description                                                                                                                    |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------ | --- |
+| `authToken`   | Authentication token generated using the [Add Participant API](/api/?v=v2#/operations/add_participant) after meeting creation. |     |
+| `enableAudio` | Set whether to join the meeting with your Mic ON (`true`) or OFF (`false`).                                                    |     |
+| `enableVideo` | Set whether to join the meeting with your Camera ON (`true`) or OFF (`false`).                                                 |     |
+| `baseUrl`     | Base URL of the Dyte environment you have created the meeting on.                                                              |     |
 
 ```kotlin
 val meetingInfo = DyteMeetingInfoV2(
   authToken = "<auth_token>",
-  enableAudio = true, 
-  enableVideo = true, 
+  enableAudio = true,
+  enableVideo = true,
   baseUrl = "dyte.io"
 )
 ```
@@ -118,5 +118,8 @@ dyteUIKit.startMeeting()
 
 <head>
   <title>Android Quickstart</title>
-  <meta name="description" content="Dive into Dyte's Android documentation to integrate video collaboration seamlessly into your Android applications.">
+  <meta
+    name="description"
+    content="Dive into Dyte's Android documentation to integrate video collaboration seamlessly into your Android applications."
+  />
 </head>

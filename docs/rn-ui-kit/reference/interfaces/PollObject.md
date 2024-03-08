@@ -31,5 +31,5 @@ ___
 
 <head>
 	<title>React Native UI Kit Interface: PollObject</title>
-	<meta name="description" content="Explore Dyte's React Native Poll Object Interface documentation to seamlessly integrate and manage polls within your React Native application.">
+	<meta name="description" content="Explore Dyte's React Native Poll Object Interface documentation to seamlessly integrate and manage polls within your React Native application."/>
 </head>
