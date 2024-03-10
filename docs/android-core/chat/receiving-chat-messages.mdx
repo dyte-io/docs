@@ -12,27 +12,21 @@ tags:
 # Receiving chat messages
 
 To be able to receive chat messages you need to implement a method
-`onChatUpdates()` method from callback `DyteMeetingRoomEventsListener`. You can
+`onChatUpdates()` method from callback `DyteChatEventsListener`. You can
 subscribe to this events by calling
-`meeting.addMeetingEventsListener(dyteMeetingRoomEventsListener)`
+`meeting.addChatEventsListener(dyteChatEventsListener)`
 
 ```kotlin
-    meeting.addMeetingRoomEventsListener(object :
-      DyteMeetingRoomEventsListener {
-      override fun onChatUpdates(
-        messages: List<DyteChatMessage>
-      ) {
+    meeting.addChatEventsListener(object :
+      DyteChatEventsListener {
+      override fun onChatUpdates(messages: List<DyteChatMessage>) {
         super.onChatUpdates(messages)
-        // any update in chat messages
+        // to load chat messages
       }
 
       override fun onNewChatMessage(message: DyteChatMessage) {
         super.onNewChatMessage(message)
-        // updates for new chat messages only
+        // when a new chat message is shared in the meeting
       }
     })
 ```
-
-<head>
-  <title>Android Core Receiving chat messages</title>
-</head>

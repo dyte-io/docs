@@ -11,14 +11,11 @@ tags:
 
 # Sending a chat message
 
-As mentioned in [introduction](./introduction), there are 3 types of chat
-messages - text messages, images, and files. There is a method in `meeting.chat`
-to send a message of each type.
+As mentioned in [introduction](./introduction), there are 3 types of chat messages - text messages, images, and files. There is a method in `meeting.chat` to send a message of each type.
 
 ## Send a text message
 
-To send a text message, the `meeting.chat.sendTextMessage()` method can be used.
-This accepts a string `message` and sends it to the room.
+To send a text message, the `meeting.chat.sendTextMessage()` method can be used. This accepts a string `message` and sends it to the room.
 
 ```kotlin
 val message = "Is this the real life?"
@@ -38,17 +35,10 @@ meeting.chat.sendImageMessage(filePath, fileName)
 
 ## Send a file
 
-Sending a file is quite similar to sending an image. The only difference is that
-when you send an image, a preview will be shown in the meeting chat, which is
-not the case for sending files. That being said, an image can be sent as a file
-too using `meeting.chat.sendFileMessage()`.
+Sending a file is quite similar to sending an image. The only difference is that when you send an image, a preview will be shown in the meeting chat, which is not the case for sending files. That being said, an image can be sent as a file too using `meeting.chat.sendFileMessage()`.
 
 ```kotlin
 val filePath = "file_path_of_image"
 val fileName = "file_name"
 meeting.chat.sendFileMessage(filePath, fileName)
 ```
-
-<head>
-  <title>Android Core Sending a chat message</title>
-</head>
