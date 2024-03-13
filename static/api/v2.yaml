@@ -528,8 +528,6 @@ paths:
       description: Returns livestream session details for the given meeting ID. Retreive the meeting ID using the `Create a meeting` API.
       tags:
         - Live streams
-      requestBody:
-        content: {}
       operationId: livestream-session-details
       x-stoplight:
         id: pcm61j4127kyj
@@ -939,9 +937,7 @@ paths:
                                   type: integer
                                   description: Total number of sessions for a specific day
                                 total_session_minutes:
-                                  type:
-                                    - integer
-                                    - number
+                                  type: number
                                   description: Total session minutes for a specific day
                       recording_stats:
                         type: object
@@ -965,9 +961,7 @@ paths:
                                   type: integer
                                   description: Total number of recordings for a specific day
                                 total_recording_minutes:
-                                  type:
-                                    - integer
-                                    - number
+                                  type: integer
                                   description: Total recording minutes for a specific day
           headers: {}
       operationId: get-org-analytics
@@ -4925,7 +4919,7 @@ components:
           x-stoplight:
             id: mqrzqrbcbbx99
           default: true
-          description: Controls wether to export video file seperately
+          description: Controls whether to export video file seperately
     LivestreamingConfig:
       title: LivestreamingConfig
       x-stoplight:
@@ -4967,7 +4961,7 @@ components:
           x-stoplight:
             id: mqrzqrbcbbx99
           default: true
-          description: Controls wether to export audio file seperately
+          description: Controls whether to export video file seperately
     DyteBucketConfig:
       title: DyteBucketConfig
       x-stoplight:
@@ -6179,7 +6173,7 @@ components:
                               user_agent:
                                 type: string
                               webgl_support:
-                                type: 'null'
+                                type: string
                           ip_information:
                             type: object
                             properties:
@@ -6241,9 +6235,11 @@ components:
                             items:
                               type: string
                           start:
-                            type: 'null'
+                            type: string
+                            nullable: true
                           end:
-                            type: 'null'
+                            type: string
+                            nullable: true
                           total_audio_packets:
                             type: integer
                           total_audio_packets_lost:
@@ -6253,13 +6249,13 @@ components:
                           total_video_packets_lost:
                             type: integer
                           first_audio_packet_received:
-                            type: 'null'
+                            type: string
                           first_video_packet_received:
-                            type: 'null'
+                            type: string
                           last_audio_packet_received:
-                            type: 'null'
+                            type: string
                           last_video_packet_received:
-                            type: 'null'
+                            type: string
                           average_quality:
                             type: integer
                           audio_bandwidth:
@@ -6402,7 +6398,7 @@ components:
                                   user_agent:
                                     type: string
                                   webgl_support:
-                                    type: 'null'
+                                    type: string
                               sdk_name:
                                 type: string
                               sdk_version:
@@ -6469,9 +6465,7 @@ components:
                                     jitter:
                                       type: integer
                                     rtt:
-                                      type:
-                                        - integer
-                                        - number
+                                      type: number
                                     packets_sent:
                                       type: integer
                                     bytes_sent:
