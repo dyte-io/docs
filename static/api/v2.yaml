@@ -654,27 +654,17 @@ paths:
                     properties:
                       id:
                         type: string
-                        x-stoplight:
-                          id: 9hdbrcoypcwzd
                         description: The ID of the livestream.
                       name:
                         type: string
-                        x-stoplight:
-                          id: cva5malguw20o
                         description: Name of the livestream.
                       ingest_server:
                         type: string
-                        x-stoplight:
-                          id: lf56wa9w3eb5a
                         description: The server URL to which the RTMP encoder sends the video and audio data.
                       stream_key:
                         type: string
-                        x-stoplight:
-                          id: 51nskgzoid1no
                         description: Unique key for accessing each livestream.
                       status:
-                        x-stoplight:
-                          id: sm10jmhb2hbrd
                         enum:
                           - LIVE
                           - IDLE
@@ -682,30 +672,20 @@ paths:
                           - INVOKED
                       meeting_id:
                         type: string
-                        x-stoplight:
-                          id: 6xxw0hoicncpf
                         description: The ID of the meeting.
                       playback_url:
                         type: string
-                        x-stoplight:
-                          id: w8bj0bvvg7h2d
                         description: The web address that viewers can use to watch the livestream.
                       created_at:
                         type: string
-                        x-stoplight:
-                          id: mxhwbbeeqj9m9
                         format: date-time
                         description: Timestamp the object was created at. The time is returned in ISO format.
                       updated_at:
                         type: string
-                        x-stoplight:
-                          id: aw2rdz6z5q4df
                         format: date-time
                         description: Timestamp the object was updated at. The time is returned in ISO format.
                       disabled:
                         type: string
-                        x-stoplight:
-                          id: 5vqay20n3z0lj
                         description: Specifies if the livestream was disabled.
               examples:
                 Example 1:
@@ -992,12 +972,8 @@ paths:
                 properties:
                   success:
                     type: boolean
-                    x-stoplight:
-                      id: e5non3upkulx5
                   data:
                     $ref: '#/components/schemas/LivestreamBase'
-                    x-stoplight:
-                      id: h3kbfpcf0cvz3
       description: Enables a livestream for the given livestream ID. Retreive the livestream ID using the `Start livestreaming a meeting` API.
       tags:
         - Live streams
@@ -1021,12 +997,8 @@ paths:
                 properties:
                   success:
                     type: boolean
-                    x-stoplight:
-                      id: e5non3upkulx5
                   data:
                     $ref: '#/components/schemas/LivestreamBase'
-                    x-stoplight:
-                      id: h3kbfpcf0cvz3
               examples:
                 Example 1:
                   value:
@@ -3345,8 +3317,6 @@ components:
         - chat_download_url_expiry
     Transcript:
       type: object
-      x-stoplight:
-        id: 9023dd94ef9aa
       properties:
         transcript_download_url:
           type: string
@@ -5769,7 +5739,6 @@ components:
               success:
                 type: boolean
               data:
-                type: object
                 $ref: '#/components/schemas/ChatMessage'
     GetSessionTranscript:
       description: Returns the complete transcript of a session.
@@ -5781,7 +5750,6 @@ components:
               success:
                 type: boolean
               data:
-                type: object
                 $ref: '#/components/schemas/Transcript'
     GetOverallStats:
       description: Returns complete analytics of an organization
