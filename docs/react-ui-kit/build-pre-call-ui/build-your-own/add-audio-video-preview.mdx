@@ -1,0 +1,483 @@
+---
+title: Add audio/video preview screen
+sidebar_position: 3
+---
+
+### Code File: app/types.tsx
+
+```tsx
+import type { States } from "@dytesdk/ui-kit";
+
+export type CustomStates = States & { openMediaPreviewModal: boolean }
+
+export type SetState = (newStates: Partial<CustomStates>) => void;
+```
+
+Here we have added a new custom state `openMediaPreviewModal` to control the `meeting-preview-modal` that we will be building next.
+
+### Code File: app/meeting-precall-ui.tsx
+```tsx
+import { DyteParticipantTile, DyteAvatar, DyteNameTag, DyteAudioVisualizer, DyteMicToggle, DyteCameraToggle, DyteSettingsToggle, DyteButton, DyteControlbarButton, defaultIconPack, registerAddons, DyteIcon } from "@dytesdk/react-ui-kit";
+import type DyteClient from "@dytesdk/web-core";
+import { useEffect, useState } from "react";
+import { CustomStates, SetState } from "./types";
+import MediaPreviewModal from "./media-preview-modal";
+
+export default function PrecallUI({
+    meeting, states, setState
+}: { meeting: DyteClient, states: CustomStates, setState: SetState }
+) {
+    const [participantName, setParticipantName] = useState('');
+
+    useEffect(() => {
+        if (!meeting) {
+            return;
+        }
+        setParticipantName(meeting.self.name);
+    }, [meeting])
+
+    return (
+        <div key="on-setup-screen" className='flex justify-around w-full h-full p-[10%]'>
+            <div className='flex justify-around w-full h-full p-[10%]'>
+                <DyteParticipantTile meeting={meeting} participant={meeting.self}>
+                    <DyteAvatar participant={meeting.self} />
+                    <DyteNameTag participant={meeting.self}>
+                        <DyteAudioVisualizer
+                            participant={meeting.self}
+                            slot="start"
+                        />
+                    </DyteNameTag>
+                    <div id='user-actions' className='absolute flex bottom-2 right-2'>
+                        <DyteMicToggle meeting={meeting} size='sm'></DyteMicToggle>
+                        <DyteCameraToggle meeting={meeting} size='sm'></DyteCameraToggle>
+
+                    </div>
+                    <div className="absolute top-2 right-2">
+                        {/* <DyteSettingsToggle size='sm'></DyteSettingsToggle> */}
+                        <DyteControlbarButton
+                            onClick={() => setState({ openMediaPreviewModal: true })}
+                            icon={defaultIconPack.settings}
+                            label={'Media Preview'}
+                        />
+                    </div>
+                </DyteParticipantTile>
+                <div className='h-1/2 w-1/4 flex flex-col justify-between'>
+                    <div className='flex flex-col items-center'>
+                        <p>Joining as</p>
+                        <div>{participantName}</div>
+                    </div>
+                    <input
+                        hidden={!meeting.self.permissions.canEditDisplayName}
+                        placeholder="Your name"
+                        className='bg-[#141414] rounded-sm border-[#EEEEEE] focus:border-[#2160FD] p-2.5 mb-10'
+                        autoFocus
+                        value={participantName}
+                        onChange={(event) => setParticipantName(event.target.value)}
+                    />
+                    <DyteButton
+                        kind="wide"
+                        size='lg'
+                        style={{ cursor: participantName ? 'pointer' : 'not-allowed' }}
+                        onClick={async () => {
+                            if (participantName) {
+                                if (meeting.self.permissions.canEditDisplayName) {
+                                    await meeting.self.setName(participantName);
+                                }
+                                await meeting.join();
+                            }
+                        }}>
+                        Join
+                    </DyteButton>
+                </div>
+                <MediaPreviewModal open={!!states.openMediaPreviewModal} states={states} setState={setState} meeting={meeting} />
+            </div >
+        </div >
+    )
+}
+```
+In the above code snippet, there are 2 changes.
+
+1. DyteSettingsToggle is replaced by custom button
+```
+<DyteControlbarButton
+    onClick={() => setState({ openMediaPreviewModal: true })}
+    icon={defaultIconPack.settings}
+    label={'Media Preview'}
+/>
+```
+2. We have added the new `MediaPreviewModal` component.
+
+Usage of this new button is to trigger this `MediaPreviewModal` modal to show the audio/video preview.
+
+### Code File: app/media-preview-modal.tsx
+```
+import { DyteDialog, DyteIcon, defaultIconPack } from "@dytesdk/react-ui-kit";
+import { CustomStates, SetState } from "./types";
+import { useState } from "react";
+import DyteClient from "@dytesdk/web-core";
+import AudioPreview from "./audio-preview";
+import VideoPreview from "./video-preview";
+
+export default function MediaPreviewModal({
+    open, states, setState, meeting
+}: { open: boolean, states: CustomStates, setState: SetState, meeting: DyteClient }) {
+    const [activeTab, setActiveTab] = useState<'audio' | 'video'>('video');
+
+    return (
+        <DyteDialog
+            open={open}
+            onDyteDialogClose={() => setState({
+                openMediaPreviewModal: false
+            })}
+        >
+            <div className="flex min-w-[720px] min-h-[480px] bg-[#222222]">
+                <aside className="flex flex-col w-1/3 bg-[#181818]">
+                    <header className="flex justify-center items-center h-[100px]">
+                        <h2>Media Preview</h2>
+                    </header>
+
+                    {meeting.self.permissions.canProduceAudio === 'ALLOWED' &&
+                        <button
+                            type="button"
+                            className={`${activeTab === 'audio' ? 'bg-[#2160FD]' : ''} flex justify-between p-2 rounded`}
+                            onClick={() => setActiveTab('audio')}
+                        >
+                            Audio
+                            <div>
+                                <DyteIcon icon={defaultIconPack.mic_on} />
+                            </div>
+                        </button>
+                    }
+
+                    {meeting.self.permissions.canProduceVideo === 'ALLOWED' && (
+                        <button
+                            type="button"
+                            className={`${activeTab === 'video' ? 'bg-[#2160FD]' : ''} flex justify-between p-2 rounded`}
+                            onClick={() => setActiveTab('video')}
+                        >
+                            Video
+                            <div>
+                                <DyteIcon icon={defaultIconPack.video_on} />
+                            </div>
+                        </button>
+                    )}
+                </aside>
+                <main className="flex flex-col w-2/3">
+                    {activeTab === 'audio' && <AudioPreview meeting={meeting} states={states} setState={setState} />}
+                    {activeTab === 'video' && <VideoPreview meeting={meeting} states={states} setState={setState} />}
+                </main>
+            </div>
+
+        </DyteDialog>
+    )
+}
+```
+
+This component showcases the options to switch between Audio/Video previews.
+
+```tsx
+onDyteDialogClose={() => setState({
+    openMediaPreviewModal: false
+})}
+```
+
+On `onDyteDialogClose`, we are setting `openMediaPreviewModal` as false in states to close the modal.
+
+### Code File: app/audio-preview.tsx
+
+```
+import DyteClient from "@dytesdk/web-core";
+import { CustomStates, SetState } from "./types";
+import { useEffect, useRef, useState } from "react";
+import { DyteAudioVisualizer, DyteButton, DyteIcon, DyteSwitch, defaultIconPack } from "@dytesdk/react-ui-kit";
+
+interface CurrentDevices {
+    audio?: MediaDeviceInfo;
+    speaker?: MediaDeviceInfo;
+}
+
+export default function AudioPreview({
+    meeting, states, setState
+}: { meeting: DyteClient, states: CustomStates, setState: SetState }
+) {
+    const [audioDevices, setAudioDevices] = useState<MediaDeviceInfo[]>([]);
+    const [speakerDevices, setSpeakerDevices] = useState<MediaDeviceInfo[]>([]);
+    const [currentDevices, setCurrentDevices] = useState<CurrentDevices>({});
+    const testAudioEl = useRef<HTMLAudioElement>(null);
+
+    useEffect(() => {
+        if (!meeting) {
+            return;
+        }
+        const deviceListUpdateCallback = async () => {
+            setAudioDevices(await meeting.self.getAudioDevices());
+            setSpeakerDevices(await meeting.self.getSpeakerDevices());
+        }
+        meeting.self.addListener('deviceListUpdate', deviceListUpdateCallback);
+
+        //populate first time values
+        deviceListUpdateCallback();
+        setCurrentDevices({
+            audio: meeting.self.getCurrentDevices().audio,
+            speaker: meeting.self.getCurrentDevices().speaker
+        })
+        return () => {
+            meeting.self.removeListener('deviceListUpdate', deviceListUpdateCallback);
+        }
+    }, [meeting])
+
+    const setDevice = (kind: 'audio' | 'speaker', deviceId: string) => {
+        // if (disableSettingSinkId(this.meeting)) return;
+        const device =
+            kind === 'audio'
+                ? audioDevices.find((d) => d.deviceId === deviceId)
+                : speakerDevices.find((d) => d.deviceId === deviceId);
+
+        setCurrentDevices((oldDevices) => {
+            return {
+                ...oldDevices,
+                [kind]: device,
+            }
+        })
+
+        if (device != null) {
+            meeting.self.setDevice(device);
+            if (device.kind === 'audiooutput') {
+                if ((testAudioEl.current as any)?.setSinkId) {
+                    (testAudioEl.current as any)?.setSinkId(device.deviceId)
+                };
+            }
+        }
+    }
+
+    let unnamedMicCount = 0;
+    let unnamedSpeakerCount = 0;
+
+    const testAudio = () => {
+        testAudioEl?.current?.play();
+    }
+
+    return (
+        <div className="flex flex-col p-4">
+            <audio
+                preload="auto"
+                src="https://assets.dyte.io/ui-kit/speaker-test.mp3"
+                ref={testAudioEl}
+            />
+            {
+                meeting.self.permissions.canProduceAudio === 'ALLOWED' && (
+                    <div>
+                        <label>Microphone</label>
+                        <div>
+                            <select
+                                className="mt-2 w-full text-ellipsis bg-[#1F1F1F] p-2"
+                                onChange={(e) => setDevice('audio', (e.target as HTMLSelectElement).value)}
+                            >
+                                {audioDevices.map(({ deviceId, label }) => (
+                                    <option
+                                        key={deviceId}
+                                        value={deviceId}
+                                        selected={currentDevices.audio?.deviceId === deviceId}
+                                    >
+                                        {label || `Microphone ${++unnamedMicCount}`}
+                                    </option>
+                                ))}
+                            </select>
+                            <DyteAudioVisualizer
+                                participant={meeting?.self}
+                            />
+                        </div>
+                    </div>
+                )
+            }
+
+            <div>
+                {speakerDevices.length > 0 && (
+                    <div>
+                        <label>Speaker Output</label>
+                        <div>
+                            <select
+                                className="mt-2 w-full text-ellipsis bg-[#1F1F1F] p-2"
+                                onChange={(e) => setDevice('speaker', (e.target as HTMLSelectElement).value)}
+                            >
+                                {speakerDevices.map(({ deviceId, label }) => (
+                                    <option
+                                        key={deviceId}
+                                        value={deviceId}
+                                        selected={currentDevices.speaker?.deviceId === deviceId}
+                                    >
+                                        {label || `Speaker ${++unnamedSpeakerCount}`}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
+                )}
+                <DyteButton
+                    className="mt-2 bg-[#1F1F1F]"
+                    onClick={() => testAudio()}
+                    size="lg"
+                >
+                    <DyteIcon icon={defaultIconPack.speaker} slot="start" />
+                    Test
+                </DyteButton>
+            </div>
+        </div>
+    )
+}
+```
+
+To get the list of Media Devices, we can call the following methods on `meeting.self`.
+
+```ts
+await meeting.self.getAudioDevices()
+await meeting.self.getSpeakerDevices()
+```
+
+To use a device, we can do the following.
+```ts
+await meeting.self.setDevice(device);
+```
+
+We use `meeting.self.permissions.canProduceAudio` to figure out the permissions for microphone. Setting Speaker is allowed for all participants.
+
+Some browsers might not give the label of devices till the participant grants access. Therefore we have the device numbering hack using `unnamedMicCount`.
+
+To get the list of currently used devices by Dyte meeting, we can do the following.
+
+```ts
+meeting.self.getCurrentDevices()
+```
+
+We have added a listener on devicelistupdate for cases where device list changes on the fly because of plugging/unplugging a device._createMdxContent
+```ts
+meeting.self.addListener('deviceListUpdate', console.log);
+```
+
+### Code File: app/video-preview.tsx
+```
+import DyteClient from "@dytesdk/web-core";
+import { CustomStates, SetState } from "./types";
+import { useEffect, useRef, useState } from "react";
+import { DyteAudioVisualizer, DyteButton, DyteIcon, DyteParticipantTile, DyteSwitch, defaultIconPack } from "@dytesdk/react-ui-kit";
+
+interface CurrentDevices {
+    video?: MediaDeviceInfo
+}
+
+export default function VideoPreview({
+    meeting, states, setState
+}: { meeting: DyteClient, states: CustomStates, setState: SetState }
+) {
+    const [videoDevices, setVideoDevices] = useState<MediaDeviceInfo[]>([]);
+    const [currentDevices, setCurrentDevices] = useState<CurrentDevices>({});
+
+    useEffect(() => {
+        if (!meeting) {
+            return;
+        }
+        
+        const deviceListUpdateCallback = async () => {
+            setVideoDevices(await meeting.self.getVideoDevices());
+        }
+        meeting.self.addListener('deviceListUpdate', deviceListUpdateCallback);
+
+        //populate first time values
+        deviceListUpdateCallback();
+        setCurrentDevices({
+            video: meeting.self.getCurrentDevices().video
+        })
+        return () => {
+            meeting.self.removeListener('deviceListUpdate', deviceListUpdateCallback);
+        }
+    }, [meeting])
+
+    const setDevice = async (kind: 'video', deviceId: string) => {
+        const device = videoDevices.find((d) => d.deviceId === deviceId);
+        setCurrentDevices((oldDevices) => {
+            return {
+                ...oldDevices,
+                [kind]: device,
+            }
+        })
+
+        if (device != null) {
+            await meeting?.self.setDevice(device);
+        }
+    }
+
+    let unnamedCameraCount = 0;
+
+    return (
+        <div className="flex flex-col p-4">
+            <div>
+                {meeting.self.videoEnabled === true ? (
+                    <DyteParticipantTile
+                        meeting={meeting}
+                        participant={meeting?.self}
+                        states={states}
+                        isPreview />
+                ) : (
+                    <div>
+                        <DyteParticipantTile
+                            meeting={meeting}
+                            participant={meeting?.self}
+                        >
+                            <div>
+                                <DyteIcon
+                                    icon={defaultIconPack.video_off} />
+                                <div>Camera Off</div>
+                            </div>
+                        </DyteParticipantTile>
+                    </div>
+                )}
+            </div>
+            <div>
+                <label>Camera</label>
+                <div>
+                    <select
+                        className="mt-2 w-full text-ellipsis bg-[#1F1F1F] p-2"
+                        onChange={(e) => setDevice('video', (e.target as HTMLSelectElement).value)}
+                    >
+                        {videoDevices.map(({ deviceId, label }) => (
+                            <option key={deviceId} selected={currentDevices?.video?.deviceId === deviceId} value={deviceId}>
+                                {label || `Camera ${++unnamedCameraCount}`}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+            </div>
+        </div >
+    );
+}
+```
+
+To get the list of Media Devices, we can call the following methods on `meeting.self`.
+
+```ts
+await meeting.self.getVideoDevices()
+```
+
+To use a device, we can do the following.
+```ts
+await meeting.self.setDevice(device);
+```
+
+We use `meeting.self.permissions.canProduceVideo` to figure out the permissions for camera.
+
+Some browsers might not give the label of devices till the participant grants access. Therefore we have the device numbering hack using `unnamedCameraCount`.
+
+To get the list of currently used devices by Dyte meeting, we can do the following.
+
+```ts
+meeting.self.getCurrentDevices()
+```
+
+We have added a listener on devicelistupdate for cases where device list changes on the fly because of plugging/unplugging a device._createMdxContent
+```ts
+meeting.self.addListener('deviceListUpdate', console.log);
+```
+
+###  What Next?
+
+Now that you have a way to preview audio/video, let's add the video background changer next.

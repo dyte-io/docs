@@ -1,0 +1,56 @@
+---
+title: UI Kit Prerequisite
+sidebar_position: 3
+---
+
+# Prerequisite
+
+Before you begin, review and understand the
+[Components Basics](/react-ui-kit/basics/components-basics).
+
+The following components are critical for the meeting to function. If you are
+not using `DyteMeeting` and customizing the UI, you will need to render the
+following components.
+
+### DyteParticipantsAudio
+
+This component is required for audio playback. **You will not be able to hear
+audio without this component**.
+
+This component also displays a dialog if the browser throws an auto play error,
+requiring user interaction to allow audio to be played.
+
+```jsx
+<DyteParticipantsAudio meeting={meeting} />
+```
+
+### DyteNotifications
+
+This component is required for receiving notifications. If you don't have this
+component, you won't be notified of events like network disconnection or poor
+network.
+
+```jsx
+<DyteNotifications meeting={meeting} />
+```
+
+### DyteDialogManager
+
+A component which handles all dialog elements in a component. This component is required for the following components to work:
+
+- DyteLeaveButton
+- DyteSettingsToggle
+- DyteBreakoutRoomsToggle
+- DyteMuteAllButton
+
+```jsx
+<DyteDialogManager meeting={meeting} />
+```
+
+These componenets can further be customized to your needs. However, we will not be discussing that in this tutorial to avoid bloating this tutorial.
+
+Now that you are aware of some of the most crucial components, let's go through the default setup screen, that dyte provides, that requires just 1 extra line of code for you to integrate.
+
+<head>
+  <title>React UI Kit Prerequisite</title>
+</head>
