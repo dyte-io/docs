@@ -15,7 +15,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 It all starts with creating a meeting which is needed to start a live video call. After a meeting has been created on Dyte's server, you can now add participants to the meeting. Each participant is given an `authToken` which is necessary for your client side to further interact with the meeting.
 
 :::info
-To learn move about these terms, refer to our [Concepts](./concepts) page.
+To learn more about these terms, refer to our [Concepts](./concepts) page.
 :::
 
 Let's dive into further details.
@@ -31,7 +31,19 @@ There are two ways to go about creating a meeting.
 Dyte meetings do not have a specific date or time associated to them, so you can either create
 them in advance or right when users need to join the meeting.
 
-### Step 2: Add Participants
+### Step 2: Create Presets
+
+A preset is a set of permissions and UI configurations that are applied to participants for different meeting types such as Group Call, Webinar, and Livestream. The presets define how a meeting will appear visually and functional aspects of the meeting. They allow customization options like setting maximum number of participants on-screen, permissions to share screen, enabling poll creation, disabling video and audio, adjusting text color, configuring plugins, etc.
+
+To create or update a preset, please refer to our Developer Portal's [Presets Section](https://dev.dyte.io/presets).
+
+:::tip Note
+A preset can be reused for multiple participants, even across multiple meetings. You don't have to create new presets for each and every meeting/participant.
+
+It is advised to keep preset count minimal.
+:::
+
+### Step 3: Add Participants
 
 Now that you have a meeting, it's time to add participants to the meeting. There are two ways in which you can add participants to a meeting:
 
