@@ -233,6 +233,10 @@ const plugins = [
           return ['/guides/capabilities/embed'];
         }
 
+        if (path.startsWith('/react-ui-kit/basics/integrate')) {
+          return ['/react-ui-kit/basics/components-basics'];
+        }
+
         if (
           path.startsWith(
             '/guides/capabilities/misc/livestreaming-other-platforms'
@@ -241,7 +245,7 @@ const plugins = [
           return ['/guides/capabilities/livestreaming-other-platforms'];
         }
 
-        if (path.startsWith('/guides/capabilities/video')) {
+        if (path.startsWith('/guides/capabilities/video/add-virtual-background')) {
           return [
             '/guides/capabilities/middleware/add-virtual-background',
             '/guides/capabilities/customization/add-virtual-background',
