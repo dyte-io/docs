@@ -130,7 +130,7 @@ class AppComponent {
     const meeting = await DyteClient.init({
       authToken: '<auth-token>',
     });
-    meeting.joinRoom();
+    meeting.join();
     this.dyteMeeting = meeting;
     if (this.meetingComponent) this.meetingComponent.meeting = meeting;
   }
@@ -139,4 +139,5 @@ class AppComponent {
 
 <head>
   <title>Angular UI Kit Quickstart</title>
+  <meta name="description" content="Get started quickly with Dyte's Angular UI Kit by following our step-by-step Quickstart guide."/>
 </head>

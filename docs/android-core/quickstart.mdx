@@ -17,19 +17,17 @@ import { MavenLatestInstallation } from '@site/src/components/LatestInstallation
 This quickstart shows how to use Dyte's Android Core SDK to add live video and
 audio to your Android applications.
 
-For getting started quickly, you can use our sample code. You can clone and run
-a sample application from the
-[Android Core SDK GitHub repository](https://github.com/dyte-io/android-samples/tree/main/samples/android-core-sample-kotlin).
+To get started quickly, you can use our sample code. You can clone and run a sample application from the Android Core samples, available in both [Kotlin](https://github.com/dyte-io/android-samples/tree/main/samples/android-core-sample-kotlin) and [Java](https://github.com/dyte-io/android-samples/tree/main/samples/android-core-sample-java).
 
 ## Objective
 
 You'll learn how to:
 
-- Install the Dyte SDK
-- Initialize the SDK
-- Configure a Dyte meeting
-- Initialize the Dyte meeting
-- And go live with your Dyte meeting
+- [Install the Dyte SDK](#step-1-install-the-sdk-using-maven-central)
+- [Initialize the SDK](#step-2-initialize-the-sdk)
+- [Configure a Dyte meeting](#step-3-configure-a-dyte-meeting)
+- [Initialize the Dyte meeting](#step-4-initialize-the-dyte-meeting)
+- [Go live with your Dyte meeting](#step-5-go-live-with-your-dyte-meeting)
 
 ## Before Getting Started
 
@@ -75,30 +73,68 @@ dependencies {
 The `DyteMobileClient` is the main class of the SDK. It is the entry point and
 the only class required to initialize Dyte SDK.
 
+<Tabs groupId="build-android-core">
+  <TabItem value="kotlin" label="Kotlin" default>
+
 ```kotlin
 val dyteClient = DyteMeetingBuilder.build(activity)
 ```
 
-## Step 3: Set the meeting properties
+  </TabItem>
+  <TabItem value="java" label="Java">
 
-Set the properties in the `DyteMeetingInfoV2` class. You just need to provide the
-participant's `authToken`.
-
-| Name        | Description                                                                                                                                                                                                                                                                            |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
-| `authToken` | After you've created the meeting, add each participant to the meeting using the [Add Participant API](/api?v=v2#/operations/add_participant) (The presetName created earlier must be passed in the body of the Add Participant API request) The API response contains the `authToken`. |     |
-
-```kotlin
-val meetingInfo = DyteMeetingInfoV2(
-                    authToken = "<auth_token>",
-                  )
+```java
+DyteMobileClient dyteClient = DyteMeetingBuilder.build(activity);
 ```
 
-## Step 4: Initialize the connection request
+  </TabItem>
+</Tabs>
 
-To initialize the connection request, call the `init()` method obtained on
-`dyteClient` with the `meetingInfo` argument. This will establish the connection
-with the Dyte meeting server.
+## Step 3: Configure a Dyte meeting
+
+Configure the following properties in the `DyteMeetingInfoV2` class. You must pass a valid participant `authToken` obtained from the [Add Participant](/api/?v=v2#/operations/add_participant) API.
+
+| Name          | Description                                                                                                                                                                             |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+| `authToken`   | After you've created the meeting, add each participant to the meeting using the [Add Participant API](/api?v=v2#/operations/add_participant) The API response contains the `authToken`. |     |
+| `enableAudio` | Set whether to join the meeting with your Mic ON or OFF by passing `true` or `false`.                                                                                                   |     |
+| `enableVideo` | Set whether to join the meeting with your Camera ON or OFF by passing `true` or `false`.                                                                                                |     |
+| `baseUrl`     | Base URL of the dyte's enviorment you have created the meeting on.                                                                                                                      |     |
+
+<Tabs groupId="meeting-props-android-core">
+  <TabItem value="kotlin" label="Kotlin" default>
+
+```kotlin
+val meetingInfo =
+      DyteMeetingInfoV2(
+        authToken = AUTH_TOKEN,
+        enableAudio = true,
+        enableVideo = true,
+        baseUrl = "dyte.io"
+      )
+```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+DyteMeetingInfoV2 meetingInfo = new DyteMeetingInfoV2(
+          MeetingConfig.AUTH_TOKEN, // auth_token
+          true,   // enableAudio
+          true,   // enableVideo
+          "dyte.io" // baseUrl
+          );
+```
+
+  </TabItem>
+</Tabs>
+
+## Step 4: Initialize the Dyte meeting
+
+To initialize the meeting, call the `init()` method on the `dyteClient` object with the `meetingInfo` argument. This establishes a connection with the Dyte meeting server.
+
+<Tabs groupId="init-android-core">
+  <TabItem value="kotlin" label="Kotlin" default>
 
 ```kotlin
 dyteClient.init(meetingInfo, {
@@ -109,7 +145,23 @@ dyteClient.init(meetingInfo, {
 )
 ```
 
-## Step 5: Connect to the meeting
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+dyteClient.init(meetingInfo, () -> {
+        // init complete
+        return null;
+      }, () -> {
+        // init failed
+        return null;
+      });
+```
+
+  </TabItem>
+</Tabs>
+
+## Step 5: Go live with your Dyte meeting!
 
 Now, you have established the connection with the Dyte meeting server
 successfully. Next step is to join the room.
@@ -119,13 +171,33 @@ successfully. Next step is to join the room.
 To join the meeting room, call `joinRoom()` method on the `dyteClient` instance
 as shown below.
 
+<Tabs groupId="join-android-core">
+  <TabItem value="kotlin" label="Kotlin" default>
+
 ```kotlin
 dyteClient.joinRoom({
-  // meeting room joined
-}, {
-  // error in joining the meeting
-})
+    // join complete
+  }, {
+    // join failed
+  }
+)
 ```
+
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+dyteClient.join(() -> {
+        // join complete
+        return null;
+      }, () -> {
+        // join failed
+        return null;
+      });
+```
+
+  </TabItem>
+</Tabs>
 
 ### Leave the room
 
@@ -133,6 +205,9 @@ Once the meeting is over, you can leave the meeting room.
 
 To leave the meeting room, call `leaveRoom()` method on the `dyteClient` as
 shown below.
+
+<Tabs groupId="join-android-core">
+  <TabItem value="kotlin" label="Kotlin" default>
 
 ```kotlin
 dyteClient.leaveRoom({
@@ -142,6 +217,26 @@ dyteClient.leaveRoom({
 })
 ```
 
+  </TabItem>
+  <TabItem value="java" label="Java">
+
+```java
+dyteClient.leave(() -> {
+        // leave complete
+        return null;
+      }, () -> {
+        // leave failed
+        return null;
+      });
+```
+
+  </TabItem>
+</Tabs>
+
 <head>
   <title>Android Core Quickstart</title>
+  <meta
+    name="description"
+    content="Explore Dyte's Android Core documentation, focusing on core functionalities for building rich video chat applications on Android."
+  />
 </head>

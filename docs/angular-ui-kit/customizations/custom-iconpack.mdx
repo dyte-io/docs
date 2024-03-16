@@ -40,7 +40,7 @@ class AppComponent {
     const meeting = await DyteClient.init({
       authToken: '<auth-token>',
     });
-    meeting.joinRoom();
+    meeting.join();
     this.dyteMeeting = meeting;
     if (this.meetingComponent) this.meetingComponent.meeting = meeting;
   }
@@ -67,7 +67,7 @@ class AppComponent {
     const meeting = await DyteClient.init({
       authToken: '<auth-token>',
     });
-    meeting.joinRoom();
+    meeting.join();
     this.dyteMeeting = meeting;
     if (!this.meetingComponent) {
       throw Error('Component is empty');
@@ -149,4 +149,5 @@ Icon Pack object type:
 
 <head>
   <title>Angular UI Kit Customize Meeting Icons</title>
+    <meta name="description" content="Explore the process of customizing the Iconpack in Dyte's Angular UI Kit with our comprehensive documentation."/>
 </head>

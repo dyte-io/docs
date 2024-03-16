@@ -69,9 +69,13 @@ export default function Home() {
     >
       <Head>
         {/* Load styles for Stoplight Elements */}
-        <title></title>
+        <title>API Documentation | Dyte Docs</title>
         <link rel="preload" href="/assets/css/elements.min.css" as="style" />
         <link rel="stylesheet" href="/assets/css/elements.min.css" />
+        <meta
+          name="description"
+          content="Explore the comprehensive API documentation provided by Dyte. Learn how to integrate and leverage Dyte's API."
+        ></meta>
       </Head>
 
       <div className="flex flex-col items-center justify-center gap-4 border-b py-12 text-sm lg:hidden">

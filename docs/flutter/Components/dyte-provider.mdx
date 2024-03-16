@@ -1,0 +1,58 @@
+# DyteProvider
+
+A foundational widget designed to initialize and provide the necessary Dyte environment for a Flutter application. The `DyteProvider` acts as a context wrapper that sets up design tokens, client configurations, and UI Kit information required for Dyte components. It ensures that Dyte functionalities are available and properly initialized throughout the widget tree where it's used.
+
+## Usage
+
+To use `DyteProvider`, wrap the root of your application:
+
+```dart
+DyteProvider(
+  client: dyteMobileClientInstance,
+  uiKitInfo: dyteUIKitInfoInstance,
+  child: MaterialApp(
+    // Your app's home screen or an entry widget
+    home: YourAppHome(),
+  ),
+)
+```
+
+if you don't want to wrap the root of your app inside `DyteProvider`, you can also wrap a specific part of your app where you want to use Dyte components but after adding `DyteProvider` you need a `MaterialApp` widget under it.
+
+
+This approach ensures that all the necessary Dyte setup is done before your app UI starts, allowing you to utilize Dyte features seamlessly within your application.
+
+## Properties
+
+- `child`: (**Required**) The widget below this widget in the tree. This is usually your MaterialApp or your application's home widget.
+- `client`: (**Required**) An instance of `DyteMobileClient`. This represents the Dyte client configuration that includes authentication and other essential settings.
+- `uiKitInfo`: (**Required**) An instance of `DyteUIKitInfo`. This holds information related to the Dyte UI Kit such as design tokens and other UI configurations.
+
+## Notes
+
+Ensure that the `DyteMobileClient` and `DyteUIKitInfo` are properly configured before passing them to the `DyteProvider`. This is crucial for the proper functioning of all Dyte-related components within your application.
+
+## Example
+
+Here is an example of using `DyteProvider` in an application:
+
+```dart
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return DyteProvider(
+      client: DyteMobileClient(
+        // Dyte client configuration
+      ),
+      uiKitInfo: DyteUIKitInfo(
+        // UI Kit information and design tokens
+      ),
+      child: MaterialApp(
+        home: HomeScreen(),
+      ),
+    );
+  }
+}
+```
+
+By wrapping your app with `DyteProvider`, you ensure that all necessary Dyte setups are initialized and available for your app components, allowing you to build a fully functional Dyte-enabled application.

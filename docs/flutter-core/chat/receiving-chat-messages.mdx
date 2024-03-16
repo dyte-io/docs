@@ -21,7 +21,30 @@ class ChatEventsListener with DyteChatEventsListener {
 
   @override
   void onChatUpdates(List<DyteChatMessage> messages) {
-        // your code to handle new chat message
+    messages.map((msg) {
+      switch (msg.type) {
+        case DyteMessageType.text:
+          print((msg as DyteTextMessage).displayName);
+          print((msg).message);
+
+          // Show message/return state to show text message UI.
+
+          break;
+        case DyteMessageType.image:
+          print((msg as DyteImageMessage).displayName);
+          print((msg).link);
+
+          // Show message/return state to show image message UI.
+          break;
+        case DyteMessageType.file:
+          print((msg as DyteFileMessage).name);
+          print((msg).link);
+          print((msg).size);
+          // Show message/return state to show file message UI.
+
+          break;
+      }
+    });
   }
 
   void onNewChatMessage(DyteChatMessage message) {
@@ -41,4 +64,5 @@ Whenever a chat message is received, the `dyteClient.chat.messages` list is auto
 
 <head>
   <title>Flutter Core Receiving chat messages</title>
+  <meta name="description" content="Understand how to receive chat messages in your Flutter app using Dyte's features. Follow our documentation for effective implementation."/>
 </head>

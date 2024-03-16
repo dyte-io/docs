@@ -71,11 +71,11 @@ function Meeting() {
   const { meeting } = useDyteMeeting();
 
   /*
-    use joinRoom() method or the setup screen component
+    use join() method or the setup screen component
     to actually enter the meeting
   */
   useEffect(() => {
-    meeting.joinRoom();
+    meeting.join();
   }, [meeting]);
 
   // show DyteMeeting

@@ -1,8 +1,18 @@
 [
   {
+    "version": "1.36.1",
+    "createdAt": "1709014560",
+    "features": [
+      "Added optional `target` support to broadcastMessage to send messages to selected participants - `participants.broadcastMessage(type, payload, target: { presetNames, participantIds })`",
+      "Added support to update participants preset dynamically - `participants.updatePermissions(participantIds, permissions)`"
+    ]
+  },
+  {
     "version": "1.35.19",
     "createdAt": "1707323400",
-    "features": ["The event callbacks now have type information"],
+    "features": [
+      "All event callbacks now have type information"
+    ],
     "fixes": [
       "Fixed `useDyteClient` hook to support breakout rooms changed meeting",
       "Fixed an issue with livestream where hosts were not able to see participants accepted on stage",
@@ -21,7 +31,9 @@
   {
     "version": "1.35.17",
     "createdAt": "1705912281",
-    "features": ["Stereo audio support"],
+    "features": [
+      "Stereo audio support"
+    ],
     "new_api": [
       "User can now configure media quality configuration include stereo audio on `DyteClient.init`. Checkout the [documentation here](/web-core/advanced/advance#mediaconfiguration)"
     ]
@@ -29,7 +41,9 @@
   {
     "version": "1.35.16",
     "createdAt": "1705890681",
-    "fixes": ["Fix blank Picture-in-Picture stream on PIP resize"],
+    "fixes": [
+      "Fix blank Picture-in-Picture stream on PIP resize"
+    ],
     "perf": [
       "Updated [simulcast](https://en.wikipedia.org/wiki/Simulcast) configuration for better video performance"
     ],
@@ -144,7 +158,9 @@
   {
     "version": "1.15.0",
     "createdAt": 1688083200,
-    "fixes": ["Fixed an edge case around file upload in Chat."],
+    "fixes": [
+      "Fixed an edge case around file upload in Chat."
+    ],
     "features": [
       "Added add support for quoting a chat message while reply for Chat SDK",
       "Chat SDK now shows unread count and last message on channel list.",
@@ -204,7 +220,9 @@
   {
     "version": "1.21.x",
     "createdAt": 1677609000,
-    "fixes": ["Handle WeWork Solistice Camera gracefully"],
+    "fixes": [
+      "Handle WeWork Solistice Camera gracefully"
+    ],
     "features": [
       "Initial support for our upcoming Interactive Livestream product (LL-HLS)",
       "Webcam quality can now be controlled from the preset, allows customer to select a higher base quality in the preset editor (beta)"
@@ -239,7 +257,9 @@
   {
     "version": "1.19.0",
     "createdAt": 1674714600,
-    "fixes": ["Improved permissions check for audio/video/screenshare"],
+    "fixes": [
+      "Improved permissions check for audio/video/screenshare"
+    ],
     "features": [
       "When Tab Sync is enabled, now a `selfTabUpdate` event is fired on the local user when the user switches a plugin"
     ],
