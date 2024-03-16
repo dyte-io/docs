@@ -9,6 +9,7 @@ import { usePrismTheme } from '@docusaurus/theme-common';
 import styles from './styles.module.css';
 import { DyteProvider, useDyteClient } from '@dytesdk/react-web-core';
 import { provideDyteDesignSystem } from '@dytesdk/react-ui-kit';
+import { useColorMode } from '@docusaurus/theme-common';
 
 function Header({ children }) {
   return <div className={clsx(styles.playgroundHeader)}>{children}</div>;
@@ -101,6 +102,7 @@ export default function Playground({ children, transformCode, ...props }) {
   const prismTheme = usePrismTheme();
 
   const [meeting, initMeeting] = useDyteClient();
+  const { colorMode } = useColorMode();
 
   // TODO: Uncomment following block of code after adding mock web-core package
   useEffect(() => {
@@ -133,12 +135,19 @@ export default function Playground({ children, transformCode, ...props }) {
       m.meta.meetingStartedTimestamp = new Date();
       m.participants.setMockParticipantCount(5, 5);
       // m.recording.recordingState = 'RECORDING';
+      const theme = document.getElementsByTagName('html')[0].dataset['theme'];
       provideDyteDesignSystem(document.body, {
-        theme: 'light',
+        theme,
       });
       initInProgress.value = false;
     });
   }, []);
+
+  useEffect(() => {
+    provideDyteDesignSystem(document.body, {
+      theme: colorMode,
+    });
+  }, [colorMode]);
 
   return (
     <div

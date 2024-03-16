@@ -3,125 +3,83 @@ title: Edit user name
 sidebar_position: 2
 ---
 
-A most common use case of pre-call UI is, to give participant, the option, to edit their name, before joining the meeting.
+A common use case of pre-call UI is to give the user a option to set / edit their name.
 
-In this part of tutorial, we will discuss how we can create our own custom pre-call UI, where we can give the option to edit the name to the participant. 
+### Permissions
 
-### Code File: app/meeting-precall-ui.tsx
+Requires `meeting.self.permissions.canEditDisplayName` to be `true`
+
+In the preset editor, ensure `Miscellaneous > Edit Name` is toggled enabled.
+
+<img src="/static/react/preset-edit-name.png" />
+
+### File: CustomMeetingPreview.tsx
+
+Imports
 
 ```tsx
-import { DyteParticipantTile, DyteAvatar, DyteNameTag, DyteAudioVisualizer, DyteMicToggle, DyteCameraToggle, DyteSettingsToggle, DyteButton, DyteControlbarButton, defaultIconPack, registerAddons, DyteIcon } from "@dytesdk/react-ui-kit";
-import type DyteClient from "@dytesdk/web-core";
-import { useEffect, useState } from "react";
-import { CustomStates, SetState } from "./types";
-
-export default function PrecallUI({
-    meeting, states, setState
-}: { meeting: DyteClient, states: CustomStates, setState: SetState }
-) {
-    const [participantName, setParticipantName] = useState('');
-
-    useEffect(() => {
-        if (!meeting) {
-            return;
-        }
-        setParticipantName(meeting.self.name);
-    }, [meeting])
-
-    return (
-        <div key="on-setup-screen" className='flex justify-around w-full h-full p-[10%]'>
-            <div className='flex justify-around w-full h-full p-[10%]'>
-                <DyteParticipantTile meeting={meeting} participant={meeting.self}>
-                    <DyteAvatar participant={meeting.self} />
-                    <DyteNameTag participant={meeting.self}>
-                        <DyteAudioVisualizer
-                            participant={meeting.self}
-                            slot="start"
-                        />
-                    </DyteNameTag>
-                    <div id='user-actions' className='absolute flex bottom-2 right-2'>
-                        <DyteMicToggle meeting={meeting} size='sm'></DyteMicToggle>
-                        <DyteCameraToggle meeting={meeting} size='sm'></DyteCameraToggle>
-                    </div>
-                    <div className="absolute top-2 right-2">
-                        <DyteSettingsToggle size='sm'></DyteSettingsToggle>
-                    </div>
-                </DyteParticipantTile>
-                <div className='h-1/2 w-1/4 flex flex-col justify-between'>
-                    <div className='flex flex-col items-center'>
-                        <p>Joining as</p>
-                        <div>{participantName}</div>
-                    </div>
-                    <input
-                        hidden={!meeting.self.permissions.canEditDisplayName}
-                        placeholder="Your name"
-                        className='bg-[#141414] rounded-sm border-[#EEEEEE] focus:border-[#2160FD] p-2.5 mb-10'
-                        autoFocus
-                        value={participantName}
-                        onChange={(event) => setParticipantName(event.target.value)}
-                    />
-                    <DyteButton
-                        kind="wide"
-                        size='lg'
-                        style={{ cursor: participantName ? 'pointer' : 'not-allowed' }}
-                        onClick={async () => {
-                            if (participantName) {
-                                if(meeting.self.permissions.canEditDisplayName){
-                                  await meeting.self.setName(participantName);
-                                }
-                                await meeting.join();
-                            }
-                        }}>
-                        Join
-                    </DyteButton>
-                </div>
-            </div >
-        </div >
-    )
-}
+import { DyteButton } from '@dytesdk/react-ui-kit';
+import type DyteClient from '@dytesdk/web-core';
+import { useEffect, useState } from 'react';
 ```
 
-We are using `DyteParticipantTile` component to show preview of the participant.
-
-`DyteAvatar` & `DyteNameTag` shows the picture or the initial of the participant.
- 
-`DyteAudioVisualizer` helps in ensuring that the Mic is functional. We are passing slot on `DyteAudioVisualizer` which in turns get set to `DyteParticipantTile` since `DyteParticipantTile` is the parent.
-Learn more about slots on `DyteParticipantTile` [here](/react-ui-kit/components/dyte-participant-tile).
-
-`DyteMicToggle` allows the participant to toggle mic.
-
-`DyteCameraToggle` allows the participant to toggle Camera.
-import { DyteAudioVisualizer } from "@dytesdk/react-ui-kit"
-
-`DyteSettingsToggle` opens a Settings dialogue that let's you preview audio/video and change devices. This requires `DyteDialogManager` to work properly.
-
-This is one of those cases where the event propagation listener (explained in earlier pages) helps maintaing dialog open/close state.
-
-Part of app/page.tsx
-```ts ()
-  document.getElementById('dyte-integration-wrapper')?.addEventListener('dyteStateUpdate', (e: any) => {
-    setState(e.detail);
-  });
-```
-
-We have added a Input element for the participant name. If the user doesn't have permission to edit name, we might NOT want to show the input since the name updation will not take place because of lack of permissions.
+We add a `<input>` element for entering the participant name. We should not show this input if the user doese not have permission to edit name (`permissions.canEditDisplayName`)
 
 `await meeting.self.setName(participantName);` sets the new name for the participant.
 
 At the end, we let user join the meeting using `await meeting.join();`.
 
-This page had most of the page custom built.
+```tsx live
+function CustomMeetingPreview() {
+  const { meeting } = useDyteMeeting();
+  const permissions = useDyteSelector((m) => m.self.permissions);
+  const [participantName, setParticipantName] = useState('');
 
-There are 2 kind of components here that are not yet customised.
+  useEffect(() => {
+    if (!meeting) {
+      return;
+    }
+    setParticipantName(meeting.self.name);
+  }, [meeting]);
 
-1. Buttons/DyteNameTag/DyteAudioVisualizer
-2. DyteSettingsToggle
-
-Since Buttons, DyteNameTag are Atomic in nature and anyways allow changing icons, slots, color and so on, we are not rebuilding these. Respective documentation of these components will be updated with how to customise them further.
-
-DyteSettingsToggle is a huge component, let's customise it next in this tutorial.
-
-
-
-
-
+  return (
+    <div
+      className="bg-secondary-900 flex flex-col items-center justify-center"
+      style={{ minHeight: '400px' }}
+    >
+      <div className="flex w-full items-center justify-around p-[10%]">
+        <div></div>
+        <div className="flex w-1/4 flex-col justify-between">
+          <div className="flex flex-col items-center">
+            <p>Joining as</p>
+          </div>
+          {permissions.canEditDisplayName && (
+            <input
+              placeholder="Your name"
+              className="bg-secondary-1000 focus:border-primary mb-10 rounded-sm border p-2.5"
+              autoFocus
+              value={participantName}
+              onChange={(event) => setParticipantName(event.target.value)}
+            />
+          )}
+          <DyteButton
+            kind="wide"
+            size="lg"
+            style={{ cursor: participantName ? 'pointer' : 'not-allowed' }}
+            onClick={async () => {
+              if (participantName) {
+                if (permissions.canEditDisplayName) {
+                  await meeting.self.setName(participantName);
+                }
+                await meeting.join();
+              }
+            }}
+          >
+            Join
+          </DyteButton>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
