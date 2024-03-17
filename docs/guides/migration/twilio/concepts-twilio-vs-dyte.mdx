@@ -1,7 +1,22 @@
 ---
-title: 'Concepts: Basics'
+title: "\U0001F4A1 Concepts"
 sidebar_position: 1
+slug: concepts-twilio-vs-dyte
+description: >-
+  Explore the concepts of Twilio versus Dyte for effective migration. Follow our
+  guide for a comprehensive comparison and migration strategy.
 ---
+
+:::tip
+
+<div class="banner_txt_wrapper"> 
+Affected by the Twilio Sunset? Migrate to Dyte and get more than just feature parity with interactive plugins, UI Kit, advanced analytics and much more for your use-case. Twilio Video are eligible to receive credits upto $30,000.
+
+<div class="cta_wrapper"> <a href="https://dyte.io/twilio-video-competitor#expert" class="cta_button"> Claim credits upto $30,000 </a>
+ </div>
+ 
+ </div>
+:::
 
 This topic guides you through the standard practices utilized in [Twilio Video API](https://www.twilio.com/docs/video) and illustrates how they correspond with Dyte's API. The main purpose of this tutorial is to support you in migrating an existing application from Twilio to Dyte's video and audio APIs.
 
@@ -35,29 +50,10 @@ It's important to note that the credentials for both Twilio and Dyte are intende
 | Account SID | Organization ID |
 | API Secret  | API Key         |
 
-## Rooms / Meeting
-
-Twilio utilizes Rooms to establish connections between participants, whereas Dyte uses [Meetings](/api#/operations/create_meeting) for the same purpose.
-
-| **Twilio** | **Dyte**   |
-| ---------- | ---------- |
-| Room       | Meeting    |
-| Room SID   | Meeting ID |
-
-## Participant Authentication
-
-In Twilio, helper libraries are used to generate a participant access token.
-
-```ts
-const token = new AccessToken(twilioAccountSid, twilioApiKey, twilioApiSecret, {
-  identity: identity,
-});
-token.addGrant(videoGrant);
-console.log(token.toJwt());
-```
-
-In Dyte, you make a REST API call to [Add Participant API](/api/#/operations/add_participant) which returns `authToken`.
-
-| **Twilio**   | **Dyte**  |
-| ------------ | --------- |
-| Access Token | Authtoken |
+<head>
+  <title>💡 Concepts Guide</title>
+  <meta
+    name="description"
+    content="Explore the concepts of Twilio versus Dyte for effective migration. Follow our guide for a comprehensive comparison and migration strategy."
+  />
+</head>

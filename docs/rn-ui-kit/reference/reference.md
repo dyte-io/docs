@@ -1,6 +1,6 @@
 ---
-id: "reference"
-title: "Reference"
+id: reference
+title: Reference
 custom_edit_url: null
 sidebar_class_name: hideReferenceSidebarLink
 ---
@@ -283,3 +283,9 @@ Send notification which will be displayed in the `<dyte-notifications />` compon
 `boolean`
 
 Return value of emitting the event
+
+
+<head>
+	<title>React Native UI Kit Reference</title>
+	<meta name="description" content="Explore the comprehensive React Native Reference documentation by Dyte. Find detailed information and examples for a smooth integration experience."/>
+</head>

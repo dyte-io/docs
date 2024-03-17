@@ -2,7 +2,11 @@
 title: Events
 description: Local user events guide.
 sidebar_position: 2
-tags: [web-core, local-user, self, self events]
+tags:
+  - web-core
+  - local-user
+  - self
+  - self events
 ---
 
 # Local User - Events
@@ -170,3 +174,21 @@ In a `WEBINAR` setup, below events can be used to bring a user on to stage
 | `peerAcceptedToJoinStage`  | Emitted when the user's request to join the meeting has been accepted                    |
 | `peerStoppedPresenting`    | Emitted when a participant stops presenting in the webinar meeting.                      |
 | `peerStartedPresenting`    | Emitted when a participant starts presenting in the webinar meeting.                     |
+
+<head>
+  <title>Web Core Events</title>
+</head>
+
+## Permission Updates
+
+Triggered when permissions are updated dynamically by a privileged user
+
+Subscribe to `chatUpdate`, `pollsUpdate`, `pluginsUpdate` or `*` for any kind of permission updates
+Example:
+
+```ts
+meeting.self.permissions.on('chatUpdate', () => {
+  // Chat permissions are updated
+  // check meeting.self.permissions for updated permissions
+});
+```

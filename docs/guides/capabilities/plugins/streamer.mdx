@@ -1,0 +1,44 @@
+---
+title: 'Plugin: Streamer'
+---
+
+# Video Player
+
+Streamer allows you to share & watch your favorite videos together. The plugin exposes a few APIs to control the video playback
+
+## Loading a video
+
+You can specify the following parameters:
+
+- `link` : URL to the video you wish to play
+- `loop` : Specify video behavior, if you want to restart the video once it has ended.
+- `hideBack` : Prevents users from closing the video.
+
+Any user can send the parameters to the plugin
+
+```ts
+const id = '20b1dd35-4500-4315-80aa-bbbaa2083f2b';
+const streamerPlugin = meeting.plugins.all.get(id);
+streamerPlugin.on('ready', () => {
+  streamerPlugin.sendData({
+    eventName: 'config',
+    data: {
+      eventName: 'config',
+      link: 'https://www.youtube.com/watch?v=UGl4XZ_zr5w&t=5s',
+      loop: true,
+      hideBack: true,
+    },
+  });
+});
+```
+
+Now whenever the plugin is loaded it will use the specified parameters.
+To open the plugin you can call
+
+```ts
+streamerPlugin.activate();
+```
+
+<head>
+  <title>Plugin: Streamer Guide</title>
+</head>

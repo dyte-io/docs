@@ -8,10 +8,10 @@ Dyte's UI Kit provides all the necessary UI components to allow complete customi
 
 Customizing the meeting icons involve the following steps:
 
-1. Integrate Dyte’s web SDK into your web application
+1. Integrate Dyte's web SDK into your web application
 2. Customize the default icon pack
 
-## Step 1: Integrate Dyte’s web SDK into your web application
+## Step 1: Integrate Dyte's web SDK into your web application
 
 <details open>
     <summary>
@@ -40,7 +40,7 @@ class AppComponent {
     const meeting = await DyteClient.init({
       authToken: '<auth-token>',
     });
-    meeting.joinRoom();
+    meeting.join();
     this.dyteMeeting = meeting;
     if (this.meetingComponent) this.meetingComponent.meeting = meeting;
   }
@@ -67,7 +67,7 @@ class AppComponent {
     const meeting = await DyteClient.init({
       authToken: '<auth-token>',
     });
-    meeting.joinRoom();
+    meeting.join();
     this.dyteMeeting = meeting;
     if (!this.meetingComponent) {
       throw Error('Component is empty');
@@ -146,3 +146,8 @@ Icon Pack object type:
 | `wand`                     | `string` |
 | `warning`                  | `string` |
 | `wifi`                     | `string` |
+
+<head>
+  <title>Angular UI Kit Customize Meeting Icons</title>
+    <meta name="description" content="Explore the process of customizing the Iconpack in Dyte's Angular UI Kit with our comprehensive documentation."/>
+</head>

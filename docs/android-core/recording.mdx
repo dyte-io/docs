@@ -1,8 +1,10 @@
 ---
 title: Recording
-description: Control recordings in a meeting.
+description: Explore the documentation on Android Recording in Dyte Docs.
 sidebar_position: 10
-tags: [mobile-core, recording]
+tags:
+  - mobile-core
+  - recording
 ---
 
 # Recording
@@ -29,6 +31,22 @@ Call `meeting.recording.stop()` to stop the active recording.
 
 ```kotlin
 meeting.recording.stop();
+```
+
+## Pause a recording
+
+Call `meeting.recording.pause()` to pause the active recording.
+
+```kotlin
+meeting.recording.pause();
+```
+
+## Resume a paused recording
+
+Call `meeting.recording.resume()` to resume the paused recording.
+
+```kotlin
+meeting.recording.resume();
 ```
 
 ## Get active recording state
@@ -67,3 +85,8 @@ meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
     }
   })
 ```
+
+<head>
+  <title>Android Core Recording</title>
+  <meta name="description" content="Explore the documentation on Android Recording in Dyte Docs."/>
+</head>

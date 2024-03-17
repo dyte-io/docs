@@ -1,7 +1,11 @@
 ---
 title: Stage management
 sidebar_position: 10
-tags: [flutter-core, stage, livestream, webinar]
+tags:
+  - flutter-core
+  - stage
+  - livestream
+  - webinar
 ---
 
 ## Access the stage APIs
@@ -31,7 +35,7 @@ It can have the following values:
 - DyteStageStatus.onStage : This value indicates that the user is currently on the stage.
 - DyteStageStatus.offStage : This value means that the user is viewing the webinar/livestream but is not on the stage.
 - DyteStageStatus.requestedToJoinStage : The user has a pending request to join stage. This value will be assigned to their status until the host accepts or rejects their request.
-- DyteStageStatus.acceptedToJoinStage : The host has accepted user’s request to join stage. If the host accepts the user's request to join the stage, this value will be assigned to the user's status.
+- DyteStageStatus.acceptedToJoinStage : The host has accepted user's request to join stage. If the host accepts the user's request to join the stage, this value will be assigned to the user's status.
 
 ## Host Controls
 
@@ -41,7 +45,7 @@ These methods are preset dependent, hence if a user's preset doesn't allow certa
 
 :::
 
-Dyte’s stage management APIs allow hosts to receive and manage stage requests as well as leave and join the stage.
+Dyte's stage management APIs allow hosts to receive and manage stage requests as well as leave and join the stage.
 
 ### Join stage
 
@@ -161,5 +165,9 @@ Here are a list of events the stage occurs:
 | **Event**                       | **Description**                                                                                                               |
 | ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | `onStageRequestsUpdated`        | Emitted when stageRequests changes. This event also contain a list of updated requests in the payload as `accessRequests`     |
-| `onStageStatusUpdated`          | Emitted when the user’s stage status changes. It contains the updated stage status in the payload as `stageStatus`.           |
+| `onStageStatusUpdated`          | Emitted when the user's stage status changes. It contains the updated stage status in the payload as `stageStatus`.           |
 | `onParticipantRemovedFromStage` | Emitted when a participant is removed from stage. It contains the participant that is removed in the payload as `participant` |
+
+<head>
+  <title>Flutter Core Stage management</title>
+</head>

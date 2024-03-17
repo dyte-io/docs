@@ -2,7 +2,11 @@
 title: Events
 description: Local user events guide.
 sidebar_position: 2
-tags: [react-web-core, local-user, self, self events]
+tags:
+  - react-web-core
+  - local-user
+  - self
+  - self events
 ---
 
 # Local User - Events
@@ -15,27 +19,24 @@ Trigger an update when the local user joins / leave a room.
 const roomJoined = useDyteSelector((meeting) => meeting.self.roomJoined);
 ```
 
-
 ## Video update
 
 Triggered when the user starts / stops the video using `enableVideo` or
 `disableVideo`
 
 ```ts
-
 const videoEnabled = useDyteSelector((meeting) => meeting.self.videoEnabled);
 const videoTrack = useDyteSelector((meeting) => meeting.self.videoTrack);
 
 useEffect(() => {
   const videoElem = document.getElementById('my-video');
-  if(videoEnabled && videoTrack) {
+  if (videoEnabled && videoTrack) {
     const stream = new MediaStream();
     stream.addTrack(videoTrack);
     videoElem.srcObject = stream;
     videoElem.play();
   }
 }, [videoEnabled, videoTrack]);
-
 ```
 
 ## Audio update
@@ -44,20 +45,18 @@ Triggered when the user starts / stops the audio using `enableAudio` or
 `disableAudio`
 
 ```ts
-
 const audioEnabled = useDyteSelector((meeting) => meeting.self.audioEnabled);
 const audioTrack = useDyteSelector((meeting) => meeting.self.audioTrack);
 
 useEffect(() => {
   const audioElem = document.getElementById('my-audio');
-  if(audioEnabled && audioTrack) {
+  if (audioEnabled && audioTrack) {
     const stream = new MediaStream();
     stream.addTrack(audioTrack);
     audioElem.srcObject = stream;
     audioElem.play();
-  } 
+  }
 }, [audioEnabled, audioTrack]);
-
 ```
 
 ## Screenshare update
@@ -66,8 +65,12 @@ Triggered when the user starts / stops the screen share using
 `enableScreenShare()` or `disableScreenShare()`.
 
 ```ts
-const screenShareEnabled = useDyteSelector((meeting) => meeting.self.screenShareEnabled);
-const screenShareTrack = useDyteSelector((meeting) => meeting.self.screenShareTrack);
+const screenShareEnabled = useDyteSelector(
+  (meeting) => meeting.self.screenShareEnabled
+);
+const screenShareTrack = useDyteSelector(
+  (meeting) => meeting.self.screenShareTrack
+);
 ```
 
 ## Device update
@@ -132,3 +135,21 @@ In a `WEBINAR` setup, below events can be used to bring a user on to stage
 | `peerAcceptedToJoinStage`  | Emitted when the user's request to join the meeting has been accepted                    |
 | `peerStoppedPresenting`    | Emitted when a participant stops presenting in the webinar meeting.                      |
 | `peerStartedPresenting`    | Emitted when a participant starts presenting in the webinar meeting.                     |
+
+## Permission Updates
+
+Triggered when permissions are updated dynamically by a privileged user
+
+Subscribe to `chatUpdate`, `pollsUpdate`, `pluginsUpdate` or `*` for any kind of permission updates
+Example:
+
+```ts
+meeting.self.permissions.on('chatUpdate', () => {
+  // Chat permissions are updated
+  // check meeting.self.permissions for updated permissions
+});
+```
+
+<head>
+  <title>React Web Core Events</title>
+</head>

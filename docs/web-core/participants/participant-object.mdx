@@ -2,7 +2,10 @@
 title: The participant object
 description: The object corresponding to a particular participant.
 sidebar_position: 2
-tags: [web-core, participants, participant]
+tags:
+  - web-core
+  - participants
+  - participant
 ---
 
 # The participant object
@@ -67,7 +70,7 @@ meeting.participants.joined.on(
     // This will be fired on mic toggles for all participants in the meeting
     console.log(
       'The participant with id',
-      participantId,
+      participant.id,
       'has toggled their mic to',
       audioEnabled
     );
@@ -139,3 +142,7 @@ using the `removeFromStage()` method.
 const participant = meeting.participants.joined.get(participantId);
 await participant.removeFromStage();
 ```
+
+<head>
+  <title>Web Core The participant object</title>
+</head>

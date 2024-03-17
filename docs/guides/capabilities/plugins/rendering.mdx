@@ -1,0 +1,102 @@
+---
+sidebar_position: 2
+---
+
+# Rendering
+
+## Usage
+
+### Methods / Properties <div class="header-tag tag-core">Core</div>
+
+Here is an introduction on the basics of rendering plugins in your UI:
+
+<Tabs groupId="framework">
+<TabItem value="js" label="Javascript">
+
+Once a plugin is activated you can render them using an `<iframe>` element
+
+```html
+<iframe id="plugin-view" />
+```
+
+and then pass the iframe to the plugin
+
+```js
+const iframeEl = document.getElementById('plugin-view');
+plugin.addPluginView(this.iframeEl);
+```
+
+A full example might look something like this
+
+```js
+const whiteboard = plugins.find((p) => p.name == 'Whiteboard');
+whiteboard.on('enabled', () => {
+  const iframeEl = document.createElement('iframe');
+  whiteboard.addPluginView(iframeEl);
+  document.body.appendChild(iframeEl);
+});
+```
+
+</TabItem>
+<TabItem value="react" label="React">
+
+- Setup an iframe element
+
+```jsx
+const PluginView = () => {
+  const pluginEl = useRef();
+
+  return <iframe id="plugin-view" ref={pluginEl} />;
+};
+```
+
+- Send reference of iframe to the plugin
+
+```jsx {4-8}
+const PluginView = (activatedPlugin) => {
+  const pluginEl = useRef();
+
+  useEffect(() => {
+    if (activatedPlugin) {
+      activatedPlugin.addPluginView(pluginEl.current);
+    }
+  }, [activatedPlugin]);
+
+  return <iframe id="plugin-view" ref={pluginEl} />;
+};
+```
+
+- Render all activated plugins
+
+```jsx
+const Meeting = () => {
+  const activatedPlugins = useDyteSelector((m) => m.plugins.active);
+  return (
+    {
+      activatedPlugins.toArray()
+        .map((p) => <PluginView activatedPlugin={p} />)
+    }
+  )
+}
+```
+
+</TabItem>
+<TabItem value="flutter" label="Flutter">
+
+Once a plugin is activated, use the `PluginView` widget to get a Platform View which renders the plugin
+
+```dart {4}
+SizedBox(
+    height: context.height,
+        child: InteractiveViewer(
+            child: PluginView(widget.plugin),
+        ),
+    )
+```
+
+</TabItem>
+</Tabs>
+
+<head>
+  <title>Rendering Guide</title>
+</head>

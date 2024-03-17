@@ -1,8 +1,13 @@
 ---
 title: Introduction
-description: Local user setup guide.
+description: >-
+  Begin your journey with Dyte by exploring the basics of local user integration
+  in Android applications.
 sidebar_position: 1
-tags: [mobile-core, local-user, self]
+tags:
+  - mobile-core
+  - local-user
+  - self
 ---
 
 # Introduction - Local User
@@ -30,7 +35,7 @@ Here is a list of properties that local user provides:
 When you join the meeting, the SDK will automatically enable your video and audio streams. If you want to change this behavior, use the `audioEnabled` and `videoEnabled` parameters.
 
 ```kotlin {3,4}
-val meetingInfo = DyteMeetingInfo(
+val meetingInfo = DyteMeetingInfoV2(
       authToken = AUTH_TOKEN,
       audioEnabled = false,
       videoEnabled = true
@@ -92,6 +97,16 @@ meeting.localUser.enableVideo()
 meeting.localUser.videoEnabled
 ```
 
+## Enable / Disable Screen share
+
+```kotlin
+// Enable Screenshare
+meeting.localUser.enableScreenshare();
+
+// Disable Screenshare
+meeting.localUser.disableScreenshare();
+```
+
 ## Switch camera between primary and secondary
 
 ```kotlin
@@ -105,3 +120,8 @@ meeting.localUser.setVideoDevice(videoDevice: DyteVideoDevice)
 // broadcast message
 meeting.localUser.broadcastMessage(Payload)
 ```
+
+<head>
+  <title>Android Core Introduction</title>
+  <meta name="description" content="Begin your journey with Dyte by exploring the basics of local user integration in Android applications."/>
+</head>

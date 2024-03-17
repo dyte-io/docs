@@ -1,5 +1,8 @@
 ---
-tags: [web-core, quickstart, setup]
+tags:
+  - web-core
+  - quickstart
+  - setup
 slug: /
 sidebar_position: 2
 ---
@@ -26,14 +29,8 @@ You'll learn how to:
 
 - Make sure you've read the [Getting Started with Dyte](/getting-started) topic
   and completed the following steps:
+
   - Create a [Dyte Developer Account](https://dev.dyte.io/)
-  - Create [Presets](https://dev.dyte.io/roles-presets). Dyte also includes the
-    following pre-configured presets for group call and webinar. You can simply
-    use the default preset if you don't wish to create one.
-    - webinar_viewer
-    - webinar_presenter
-    - group_call_host
-    - group_call_participant
   - Create a [Dyte Meeting](/api/?v=v2#/operations/create_meeting)
   - [Add Participant](/api/?v=v2#/operations/add_participant) to the meeting
 
@@ -99,11 +96,11 @@ successfully. Next step is to join the room.
 
 ### Join the room
 
-To join the meeting room, call joinRoom() method on the dyteClient instance as
+To join the meeting room, call join() method on the DyteClient instance as
 shown below.
 
 ```js
-await meeting.joinRoom();
+await meeting.join();
 ```
 
 :::info
@@ -122,7 +119,7 @@ meeting.self.on('roomJoined', () => {
   // run my actions.
 });
 
-await meeting.joinRoom();
+await meeting.join();
 ```
 
 :::
@@ -137,3 +134,7 @@ below.
 ```js
 await meeting.leaveRoom();
 ```
+
+<head>
+  <title>Web Core Quickstart</title>
+</head>

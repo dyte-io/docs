@@ -11,7 +11,7 @@ audio to your Flutter applications.
 
 For getting started quickly, you can use our sample code. You can clone and run
 a sample application from the
-[Flutter UI Kit Sample App GitHub repository](https://github.com/dyte-io/mobile-samples/tree/main/flutter_uikit).
+[Flutter UI Kit Sample App GitHub repository](https://github.com/dyte-io/flutter-samples/tree/main/flutter_uikit).
 
 ## Objective
 
@@ -54,17 +54,23 @@ Perform the following steps:
 
 ### Android
 
-Set `compileSdkVersion 33` and `minSdkVersion 23` inside `build.gradle` file at the `<project root>/android/app/build.gradle` file.
+Set `compileSdkVersion 33` and `minSdkVersion 21` inside `build.gradle` file at the `<project root>/android/app/build.gradle` file.
 
 ```kotlin
   defaultConfig {
         ...
 
         compileSdkVersion 33
-        minSdkVersion 23
+        minSdkVersion 21
 
         ...
     }
+```
+
+And change the kotlin version to `1.9.0`
+
+```kotlin
+    ext.kotlin_version = '1.9.0'
 ```
 
 ### iOS
@@ -79,13 +85,31 @@ platform :ios, '13.0'
 
 ```<Swift>
 /* Attach the permission to use camera & microphone. */
+<key>NSBluetoothPeripheralUsageDescription</key>
+<string>We will use your Bluetooth to access your Bluetooth headphones.</string>
+
+<key>NSBluetoothAlwaysUsageDescription</key>
+<string>We will use your Bluetooth to access your Bluetooth headphones.</string>
 
 <key>NSCameraUsageDescription</key>
 <string>For people to see you during meetings, we need access to your camera.</string>
 
 <key>NSMicrophoneUsageDescription</key>
 <string>For people to hear you during meetings, we need access to your microphone.</string>
+
+<key>NSPhotoLibraryUsageDescription</key>
+<string>For people to share, we need access to your photos.</string>
 ```
+
+3. In iOS, if you are allowing user to download attachments in chat, add the following permissions in your app's Info.plist:
+
+```<Swift>
+<key>LSSupportsOpeningDocumentsInPlace</key>
+<true/>
+<key>UIFileSharingEnabled</key>
+<true/>
+```
+
 
 ## Step 3: Configure a Dyte meeting
 
@@ -93,8 +117,21 @@ To initiate Dyte Meeting for any participant you just need to pass `authToken` a
 
 After getting the `authToken`, you need to create the `DyteMeetingInfoV2` object as follows:
 
+| Name        | Description                                                                                                                                                                                                                                                                                                               |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authToken` | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
+| `baseUrl`   | The base URL of the Dyte server. Default value is `https://api.dyte.io/v2`. This is an optional argument.                                                                                                                                                                                                                 |
+| `enableAudio` | A boolean value to enable or disable audio in the meeting. Default value is `true`. This is an optional argument.                                                                                                                                                                                                       |
+| `enableVideo` | A boolean value to enable or disable video in the meeting. Default value is `true`. This is an optional argument.                                                                                                                                                                                                       |
+
+
 ```dart
-final meetingInfo = DyteMeetingInfoV2(authToken: '<auth_token>');
+final meetingInfo = DyteMeetingInfoV2(
+                    authToken: '<authToken>',
+                    baseUrl: 'https://api.dyte.io/v2',      // optional argument, if you want to pass your own baseUrl
+                    enableAudio: false,                     // optional argument, to enable or disable audio in the meeting
+                    enableVideo: false,                     // optional argument, to enable or disable video in the meeting
+                  );
 ```
 
 ## Step 4: Initialize the SDK
@@ -121,14 +158,15 @@ final uikitInfo = DyteUIKitInfo(
       ),
     );
 
-final uiKit = DyteUIKitBuilder.build(uiKitInfo: uikitInfo);
+final uiKit = DyteUIKitBuilder.build(uiKitInfo: uikitInfo, context: context);
 
 ```
 You can learn more about customization of the uikit in the [Design System](/flutter/design-token) section.
 
 ## Step 5: Launch the meeting UI
 
-To launch the meeting UI all you need to do is call the `loadUI()` method of the `DyteUIKit` object which will return a `Widget`. You can push this widget as a page to start the flow of prebuilt Flutter UI Kit.
+To launch the meeting you can simply use the object returned after calling `build` method. The `uikit` above is a widget itself.
+You can push this widget as a page to start the flow of prebuilt Flutter UI Kit.
 
 ```dart
 import 'package:dyte_uikit/dyte_uikit.dart';
@@ -141,7 +179,8 @@ class DyteMeetingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     ...
     // Push this widget as page in your app
-    return uiKit.loadUI();
+    // Earlier it was uikit.loadUI() which is now deprecated,just use uikit.
+    return uiKit;
   }
 }
 
@@ -177,3 +216,9 @@ Voila! You're all done. Here is the pictorial representation of all the configur
   ))}
 </div>
 ````
+
+
+<head>
+  <title>Flutter Quickstart</title>
+  <meta name="description" content="Get started quickly with Dyte's Flutter integration. Follow our quickstart guide for seamless integration and development."/>
+</head>

@@ -1,6 +1,6 @@
 ---
-id: "PollObject"
-title: "Interface: PollObject"
+id: PollObject
+title: 'Interface: PollObject'
 custom_edit_url: null
 ---
 
@@ -27,3 +27,8 @@ ___
 ### question
 
 • **question**: `string`
+
+
+<head>
+	<title>UI Kit Interface: PollObject</title>
+</head>

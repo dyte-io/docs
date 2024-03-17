@@ -1,0 +1,127 @@
+---
+title: Advance
+sidebar_position: 1
+---
+
+## Defaults Configuration
+
+```js
+await DyteClient.init({
+  defaults: {
+    ...
+  }
+})
+```
+
+While initializing DyteClient you can pass configuration overrides, the available options are
+
+```ts
+type DefaultOptions {
+	video?: boolean;
+	audio?: boolean;
+	screenShare?: {
+		displaySurface?: 'window' | 'monitor' | 'browser';
+	};
+	mediaConfiguration?: {
+		video?: VideoQualityConstraints,
+		audio?: AudioQualityConstraints,
+	}
+	isNonPreferredDevice?: (device: MediaDeviceInfo) => boolean;
+	/**
+	 * If true, will automatically switch audio input and output device
+	 * to a new device connected mid call. (In case of disconnection switch
+	 * will happen automatically in both cases)
+	 */
+	autoSwitchAudioDevice?: boolean;
+	recording?: RecordingConfig;
+}
+```
+
+### audio
+
+This optional propery is true by default and defines whether audioTrack would be acquired and enabled on SDK initialization
+
+### video
+
+This optional propery is true by default and defines whether videoTrack would be acquired and enabled on SDK initialization
+
+### screenShare.displaySurface
+
+Specifies the _preferred_ screenshare surface, user will still be shown all possible options but the one configured here will be preselected
+
+### mediaConfiguration
+
+Defines media quality configuration
+
+For audio -
+
+```ts
+{
+	echoCancellation?: boolean, // default true
+	noiseSupression?: boolean, // default true
+	autoGainControl?: boolean, // default true
+	enableStereo?: boolean, // default false
+	enableHighBitrate?: boolean // default false
+}
+```
+
+For applications where audio quality needs to be high and as loseless as possible
+
+```js
+{
+	echoCancellation: false,
+	noiseSupression: false,
+	autoGainControl: false,
+	enableStereo: true,
+	enableHighBitrate: true,
+}
+```
+
+For video -
+
+```ts
+{
+	width: { ideal: number },
+	height: { ideal: number },
+	frameRate?: { ideal: number },
+}
+```
+
+### isNonPreferredDevice
+
+Our SDK will acquire media devices preferring virtual devices to not be selected by default (OBS, iPhone continuity)
+You can override this logic by using your own function to decide the preference
+
+```ts
+defaults: {
+  ...
+  isNonPreferredDevice: (device: MediaDeviceInfo) => {
+    if(device.label.startsWith("Virtual")) {
+      return false
+    }
+  }
+}
+```
+
+### autoSwitchAudioDevice
+
+By default, when a new audio device is plugged in our SDK switches to that device. You can configure that behaviour
+
+### recording
+
+```ts
+{
+	fileNamePrefix?: string;
+	videoConfig?: {
+		height?: number;
+		width?: number;
+		codec?: string;
+	};
+}
+```
+
+Refer to [recording codec guide](/guides/capabilities/recording/configure-codecs#configure-codecs) for info the `codec` parameter
+
+<head>
+  <title>Web Core Advance</title>
+</head>

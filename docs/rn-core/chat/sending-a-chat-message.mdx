@@ -2,7 +2,9 @@
 title: Sending a chat message
 description: Send a chat message in a meeting.
 sidebar_position: 2
-tags: [rn-core, chat]
+tags:
+  - rn-core
+  - chat
 ---
 
 # Sending a chat message
@@ -29,11 +31,15 @@ meeting.
 
 ```ts
 async function onSendImage() {
+  // Get the image uri and create an object with the following fields
+  const res = await DocumentPicker.pickSingle({
+    type: [DocumentPicker.types.images],
+  });
   const image = {
-    uri: image.uri,
-    name: image.name,
-    size: image.size,
-    type: image.type,
+    uri: res.uri,
+    name: res.name,
+    size: res.size,
+    type: res.type,
   };
   await meeting.chat.sendImageMessage(image);
 }
@@ -48,11 +54,15 @@ too using `meeting.chat.sendFileMessage()`.
 
 ```ts
 async function onSendFile() {
+  // Get the file uri and create an object with the following fields
+  const res = await DocumentPicker.pickSingle({
+    type: [DocumentPicker.types.allFiles],
+  });
   const file = {
-    uri: file.uri,
-    name: file.name,
-    size: file.size,
-    type: file.type,
+    uri: res.uri,
+    name: res.name,
+    size: res.size,
+    type: res.type,
   };
   await meeting.chat.sendFileMessage(file);
 }
@@ -80,3 +90,7 @@ Here's how you would use the `sendMessage()` method to send a text message.
 const message = 'Is this just fantasy?';
 await meeting.chat.sendMessage({ type: 'text', message });
 ```
+
+<head>
+  <title>React Native Core Sending a chat message</title>
+</head>

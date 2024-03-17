@@ -1,8 +1,13 @@
 ---
 title: Plugins
-description: Interact with plugins in a meeting.
+description: >-
+  Discover the power of iOS Core Plugins with Dyte Docs. Elevate your app's
+  functionality by integrating plugins seamlessly into your collaboration
+  features.
 sidebar_position: 8
-tags: [mobile-core, plugins]
+tags:
+  - mobile-core
+  - plugins
 ---
 
 # Plugins
@@ -15,7 +20,7 @@ are currently being used in this meeting.
 ## Playing with plugins
 
 Plugins are webviews which can be added in any view. To be able to get webview
-from DytePlugin one needs to first acivate a plugin. To do that all we need to
+from DytePlugin one needs to first activate a plugin. To do that all we need to
 do is call `plugin.active()` which will trigger a callback in
 `onPluginActivated()`. Similarly to deactivate a plugin one can call
 `plugin.deactivate()` and that plugin will be deactivated in the meeting.
@@ -59,3 +64,11 @@ extension MeetingViewModel: DytePluginEventsListener {
   }
 }
 ```
+
+<head>
+  <title>iOS Core Plugins</title>
+  <meta
+    name="description"
+    content="Discover the power of iOS Core Plugins with Dyte Docs. Elevate your app's functionality by integrating plugins seamlessly into your collaboration features."
+  />
+</head>

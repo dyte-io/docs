@@ -1,7 +1,9 @@
 ---
 title: Livestreaming
 sidebar_position: 7
-tags: [flutter-core, livestream]
+tags:
+  - flutter-core
+  - livestream
 ---
 
 ## Introduction
@@ -44,7 +46,7 @@ There can be 6 livestream statuses:
 
 ### Viewer Count
 
-The current viewer count for livestream can be accessed via `viewerCount`peroperty of `DyteLivestreamData` instance.
+The current viewer count for livestream can be accessed via `viewerCount`property of `DyteLivestreamData` instance.
 
 ```dart
 final int? viewerCount = dyteClient.livestream.data.viewerCount;
@@ -111,7 +113,7 @@ Future<Widget> fetchLivestreamView () async {
 
 ## Events
 
-You need to subscrible to LivestreamEventListener to be able to listen livestream events. You can do it as follows:
+You need to subscribe to LivestreamEventListener to be able to listen livestream events. You can do it as follows:
 
 ```dart
 class LivestreamListener implements DyteLivestreamEventsListener{
@@ -137,3 +139,8 @@ Here are a list of events the livestream listener emits:
 | `onLiveStreamEnding`      | Emitted when livestream state is updated to _DyteLivestreamStatus.Ending_                                    |
 | `onLiveStreamEnded`       | Emitted when livestream state is updated to _DyteLivestreamStatus.Ended_                                     |
 | `onLiveStreamErrored`     | Emitted when livestream state is updated to _DyteLivestreamStatus.Errored_                                   |
+
+<head>
+  <title>Flutter Core Livestreaming</title>
+  
+</head>

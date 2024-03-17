@@ -1,8 +1,12 @@
 ---
 title: Design System
-description: Design guide for Flutter UI Kit.
+description: >-
+  Explore design token integration in Flutter with Dyte's documentation. Follow
+  our guide for effective design token implementation in your app.
 sidebar_position: 3
-tags: [Flutter UI Kit, Design System]
+tags:
+  - Flutter UI Kit
+  - Design System
 ---
 
 # Design System
@@ -20,7 +24,8 @@ In the Flutter UI kit, design tokens are shared and managed using `themes`. Them
 Let's understand how you can customize your UI with Dyte's Flutter UI Kit using design tokens.
 
 ### Customize themes with design tokens
-Dyte offers the `DyteDesignToken` class to customize the theme of the UI kit. Pass the `DyteDesignToken` object within the `DyteUIKitInfo` object to customize the theme. 
+
+Dyte offers the `DyteDesignToken` class to customize the theme of the UI kit. Pass the `DyteDesignToken` object within the `DyteUIKitInfo` object to customize the theme.
 
 With `DyteDesignToken`, you can customize the following design properties:
 
@@ -34,13 +39,11 @@ With `DyteDesignToken`, you can customize the following design properties:
 - `success`: The success color of the UI Kit.
 - `warning`: The warning color of the UI Kit.
 
-
 You have two options to customize the UI Kit's theme:
 
 ** Pass a single color. **
 
 You can pass a single color to the `backgroundColor`, `brandColor` parameters. Or you can use a combination of `backgroundColorSwatch` and `brandColor` to customize the theme.
-
 
 ** Use a color swatch. **
 
@@ -60,26 +63,27 @@ final primarySwatch = DyteColorSwatch(
       700: Colors.blue.shade700,
     },
   );
-  ```
+```
+
 ### Customize borders with configuration
+
 To customize the border radius and border width of the UI Kit, you can use the `DyteBorderRadius` and `DyteBorderWidth` enum values in the design token.
 
 Here are the available `DyteBorderRadius` values:
 
-| Token Name | values |
-| --- | --- |
+| Token Name         | values                                         |
+| ------------------ | ---------------------------------------------- |
 | `DyteBorderRadius` | `sharp`, `rounded`, `extraRounded`, `circular` |
 
 Here are the available `DyteBorderWidth` values:
 
-| Token Name | values |
-| --- | --- |
+| Token Name        | values                |
+| ----------------- | --------------------- |
 | `DyteBorderWidth` | `none`, `thin`, `fat` |
 
 ## Example
 
 Here's an example of how you can customize the Flutter UI Kit using the design token:
-
 
 ```dart
 final uikitInfo = DyteUIKitInfo(meetingInfo,
@@ -130,3 +134,8 @@ final uikitInfo = DyteUIKitInfo(meetingInfo,
     />
   ))}
 </div>
+
+<head>
+  <title>Flutter Design System</title>
+  <meta name="description" content="Explore design token integration in Flutter with Dyte's documentation. Follow our guide for effective design token implementation in your app."/>
+</head>

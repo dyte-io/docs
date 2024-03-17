@@ -2,7 +2,10 @@
 title: Introduction
 description: Local user setup guide.
 sidebar_position: 1
-tags: [rn-core, local-user, self]
+tags:
+  - rn-core
+  - local-user
+  - self
 ---
 
 # Introduction - Local User
@@ -38,11 +41,9 @@ Here is a list of properties that local user provides:
 - `mediaPermissions`: The current audio and video permissions given by the local
   user.
 - `audioTrack`: The audio track for the local user.
-- `rawAudioTrack`: The audio track for the local user without any middleware
-  applied on it.
-- `videoTrack`: The video track for the local user without any middleware
-  applied on it.
-- `rawVideoTrack`: The video track for the local user.
+- `rawAudioTrack`: The audio track for the local user without any middleware applied on it.
+- `videoTrack`: The video track for the local user.
+- `rawVideoTrack`: The video track for the local user without any middleware applied on it.
 - `screenShareTracks`: The screen share video and audio tracks for the local
   user.
 - `audioEnabled`: A boolean value indicating if the audio currently enabled.
@@ -126,3 +127,7 @@ await meeting.self.disableScreenShare();
 // Get current status
 meeting.self.screenShareEnabled;
 ```
+
+<head>
+  <title>React Native Core Introduction</title>
+</head>

@@ -4,77 +4,25 @@ slug: /
 image: /static/ui-kit/1.x.x/ui-kit-cover.jpg
 ---
 
-# Introduction to Angular UI Kit
+# Introduction
 
 Dyte's UI Kit is a prebuilt design library of UI components that makes it easy
 to integrate video and voice calls into any app or website within minutes.
 
-## The Anatomy of Angular UI Kit
+## Usage
 
 The UI Kit is a design library of prebuilt UI components built on top of the
 core SDKs. Core SDK handles all the low-level media and network handling parts
-of a meeting and exposes simpler APIs to use. You can create a meeting object
-using the web-core components and pass it to the UI Kit components.
+of a meeting and exposes simpler APIs to use.
 
-Uses a layered design structure, allowing you to start with one prebuilt
-component and slowly add further layers as the needs evolve.
+Uses a layered design structure, allowing you to start with one prebuilt component and slowly go down layers and add custom UI incrementally as your needs evolve.
 
-## How to Use Angular UI Kit?
-
-Dyte's UI Kit offers a couple of ways to get started with your live video and
-voice calling applications.
-
-- **Use prebuilt components**: You can use prebuilt `dyte-meeting` component to
+- **Use prebuilt component**: You can use prebuilt `dyte-meeting` component to
   create your meeting quickly. With this component, you don't have to handle all
-  the states, dialogs, and other aspects of managing the application. This loads
-  your preset and renders the UI based on it. For more information, see
-  [Angular UI Kit Quickstart](/angular-ui-kit/quickstart).
-- **Build your own UI**: Dyte also offers the flexibility to build your own UI
-  using various individual components. This offers limitless customization
-  options, ranging from colors and font to spacing, participant tiles, screen
-  share views, logo, height, width and more, you can tailor the UI to fit your
-  exact needs. See Build your own UI section.
+  the states, dialogs, and other aspects of managing the application. The UI kit
+  also respect your permissions and theming configuration from the preset.
 
-## Components of `dyte-meeting`
-
-The DyteMeeting component can be broken down into 3 major subcomponents:
-
-<img
-  src="/static/ui-kit/1.x.x/grid-comps.png"
-  width="500"
-  height="400"
-  alt="grid-uikit"
-  className="comps-uikit"
-/>
-
-### Dyte Header
-
-Displays information about the meeting, such as the meeting title and the participant count.
-
-### Dyte Grid
-
-The grid displays the video feeds of meeting participants. The grid component in Dyte's UI Kit adjusts the layout of video feeds based on the meeting's participant count, ensuring a smooth meeting experience. It provides a variety of layouts and variants.
-
-### Dyte Control Bar
-
-The control bar displays various controls for the meetings. It can easily be customized to match the look and feel of your web application. Customizing the control bar gives you the flexibility to show or hide controls, add or remove buttons, and make other adjustments to enhance the meeting experience for your users.
-
-## Supported Browser
-
-Here are the browser requirements:
-
-- Chrome (or Chromium based) 74+
-- Firefox 78+
-- Opera 64+
-- Safari 12+
-- Edge 79+
-- iOS (Safari) 12.1+
-- iOS (Non-Safari) 15+
-
-## SDK Size
-
-The entire UI has a small \<500KB bundle size. If you use individual components,
-the size will be even smaller.
+- **Mix and match**: Use some components from our component library, build some custom components yourself. Read the [basics of our component design](/angular-ui-kit/basics/components-basics) and checkout the [gallery of available components](/angular-ui-kit/components)
 
 ## Features
 
@@ -92,3 +40,11 @@ the size will be even smaller.
   easily navigate through the UI without having to move their mouse across the
   screen. For example, closing dialogues with the `Escape` key and navigating
   through visual elements with the `Tab` key.
+
+<head>
+  <title>Angular UI Kit Introduction</title>
+  <meta
+    name="description"
+    content="Discover the UI components available in Dyte's Angular UI Kit with our comprehensive documentation."
+  />
+</head>

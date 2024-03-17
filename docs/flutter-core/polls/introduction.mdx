@@ -1,8 +1,12 @@
 ---
 title: Introduction
-description: Create, receive and interact with polls in a meeting.
+description: >-
+  Get started with Dyte's polling features in Flutter. Follow our documentation
+  for an introduction to polling capabilities in your app.
 sidebar_position: 1
-tags: [flutter-core, polls]
+tags:
+  - flutter-core
+  - polls
 ---
 
 # Introduction
@@ -37,36 +41,7 @@ The `DytePollMessage` class has the following properties:
 - `id` : ID of the voter.
 - `name` : Name of the voter.
 
-## Listening to new polls in a meeting
-
-To be able to receive new poll messages you need to implement a method
-`onPollUpdates()` method from callback `DytePollEventsListener`:
-
-To get poll updates, listen to `onPollUpdates()` callback:
-
-```dart
-
-class PollEventsListeners extends DytePollEventsListener {
-
-  ...
-
-  @override
-  void onPollUpdates(List<DytePollMessage> polls) {
-    /// code to handle polls
-  }
-
-  @override
-  void onNewPoll(DytePollMessage poll) {
-    /// code to handle new poll
-  }
-
-  ...
-}
-
-```
-
-You can subscribe to this events by `addPollEventsListener` method:
-
-```dart
-dyteClient.addPollEventsListener(PollEventsListeners());
-```
+<head>
+  <title>Flutter Core Introduction</title>
+  <meta name="description" content="Get started with Dyte's polling features in Flutter. Follow our documentation for an introduction to polling capabilities in your app."/>
+</head>

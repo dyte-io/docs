@@ -1,8 +1,12 @@
 ---
 title: Recording
-description: Control recordings in a meeting.
+description: >-
+  Delve into the recording capabilities of iOS Core with Dyte Docs. Learn how to
+  seamlessly integrate and enhance your app's recording functionalities.
 sidebar_position: 9
-tags: [mobile-core, recording]
+tags:
+  - mobile-core
+  - recording
 ---
 
 # Recording
@@ -29,6 +33,22 @@ Call `meeting.recording.stop()` to stop the active recording.
 
 ```swift
 meeting.recording.stop()
+```
+
+## Pause a recording
+
+Call `meeting.recording.pause()` to pause the active recording.
+
+```swift
+meeting.recording.pause();
+```
+
+## Resume a paused recording
+
+Call `meeting.recording.resume()` to resume the paused recording.
+
+```swift
+meeting.recording.resume();
 ```
 
 ## Get active recording state
@@ -62,3 +82,11 @@ extension MeetingViewModel: DyteRecordingEventsListener {
   }
 }
 ```
+
+<head>
+  <title>iOS Core Recording</title>
+  <meta
+    name="description"
+    content="Delve into the recording capabilities of iOS Core with Dyte Docs. Learn how to seamlessly integrate and enhance your app's recording functionalities."
+  />
+</head>

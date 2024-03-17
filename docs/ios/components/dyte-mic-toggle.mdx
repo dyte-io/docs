@@ -1,0 +1,21 @@
+---
+description: >-
+  Learn how to use and customize the DyteAudioButtonControlBar component in Dyte's
+  iOS UiKit with our detailed documentation.
+---
+
+# DyteAudioButtonControlBar
+
+A button which toggles your microphone.
+
+```swift
+var buttons = [DyteControlBarButton]()
+if meeting.localUser.permissions.media.canPublishAudio {
+  let micButton = DyteAudioButtonControlBar(meeting: meeting)
+  buttons.append(micButton)
+}
+```
+
+<head>
+  <title>iOS DyteAudioButtonControlBar</title>
+</head>

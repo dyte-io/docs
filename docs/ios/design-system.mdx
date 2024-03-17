@@ -1,0 +1,117 @@
+---
+sidebar_position: 3
+title: Design System
+---
+
+Let's look at how you can customize and brand your UI with Dyte's UI Kit.
+
+1.  `DesignLibrary` is a singleton class that relies on the `DesignLibraryConfiguratorProtocol` to initialize components with specific parameters, like border size, radius, and background color for individual and composite elements.
+
+    For customization, you can set any object that conforms to the `DesignLibraryConfiguratorProtocol` to modify the `DesignLibrary` according to your needs.
+
+```swift
+// create an type which confirms to  DesignLibraryConfiguratorProtocol
+class DesignLibraryConfigurator: DesignLibraryConfiguratorProtocol {
+
+    public let colorBackgroundBase: UIColor = UIColor(hex: "#050505")!
+    public let colorBrandBase: UIColor = UIColor(hex: "#0246FD")!
+
+    public let textColorBackgroundBase: UIColor = UIColor(hex: "#FFFFFF")!
+    public let textColorBrandBase: UIColor = UIColor(hex: "#111111")!
+
+    public let statusDangerColor: UIColor = UIColor(hex: "#FF2D2D")!
+    public let statusSuccessColor: UIColor = UIColor(hex: "#83D017")!
+    public let statusWarningColor: UIColor = UIColor(hex: "#FFCD07")!
+
+    public let cornerRadiusRoundFactor: CGFloat = 4.0
+    public let cornerRadiusExtraRoundFactor: CGFloat = 8.0
+    public let cornerRadiusCircularFactor: CGFloat = 8.0
+
+    public let borderSizeThinFactor: CGFloat =  1.0
+    public let borderSizeFatFactor: CGFloat = 2.0
+
+}
+
+//You can initialise DesignLibrary with below command
+DesignLibrary.shared.setConfigurator(configurator: DesignLibraryConfigurator())
+
+```
+
+DesignLibrary comes with default values for all the mentioned components, and the SDK internally handles their initialization.
+
+2. `AppTheme` is a singleton class that relies on the `AppThemeProtocol` to set corner radius and border size for various components used within `DyteUiKit`. You can customize the `AppTheme` by setting any object that confirms to the `AppThemeProtocol`.
+
+```swift
+class AppThemeConfigurator: AppThemeProtocol {
+    private let cornerRadiusType: CornerRadius.RadiusType? = .rounded
+    private let borderSizeWidthType: BorderSize.Width? = .thin
+
+    var cornerRadiusTypeButton: CornerRadius.RadiusType? {
+        get {
+            return cornerRadiusType
+        }
+    }
+
+    var cornerRadiusTypePaginationView: CornerRadius.RadiusType? {
+        get {
+            return cornerRadiusType
+        }
+    }
+
+    var cornerRadiusTypePeerView: CornerRadius.RadiusType? {
+        get {
+            return cornerRadiusType
+        }
+    }
+
+    var cornerRadiusTypeDropDown: CornerRadius.RadiusType? {
+        get {
+            return cornerRadiusType
+        }
+    }
+
+    var cornerRadiusTypeNameTag: CornerRadius.RadiusType? {
+        get {
+            return cornerRadiusType
+        }
+    }
+
+    var cornerRadiusTypeNameTextField: CornerRadius.RadiusType? {
+        get {
+            return cornerRadiusType
+        }
+    }
+
+    var cornerRadiusTypeCreateView: CornerRadius.RadiusType? {
+        get {
+            return cornerRadiusType
+        }
+    }
+
+    var borderSizeWidthTypeTextField: BorderSize.Width? {
+        get {
+            return borderSizeWidthType
+        }
+    }
+
+    var borderSizeWidthTypeButton: BorderSize.Width? {
+        get {
+            return borderSizeWidthType
+        }
+    }
+
+    var borderSizeWidthTypeDropDown: BorderSize.Width? {
+        get {
+            return borderSizeWidthType
+        }
+    }
+}
+
+//You can initialise AppTheme with below command
+  AppTheme.shared.setUp(theme: AppThemeConfigurator())
+
+```
+
+<head>
+  <title>iOS Design System</title>
+</head>

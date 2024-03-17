@@ -1,8 +1,12 @@
 ---
 title: Quickstart
-description: Quickstart guide for android mobile core.
+description: >-
+  Dive into the core of Flutter development with Dyte. Explore essential
+  documentation to streamline your Flutter app integration.
 sidebar_position: 1
-tags: [flutter-core, quickstart]
+tags:
+  - flutter-core
+  - quickstart
 slug: /
 ---
 
@@ -13,11 +17,11 @@ audio call to your Flutter applications.
 
 For getting started quickly, you can use our sample code. You can clone and run
 a sample application from the
-[Flutter Core SDK GitHub repository](https://github.com/dyte-io/mobile-samples/tree/main/flutter_core).
+[Flutter Core SDK GitHub repository](https://github.com/dyte-io/flutter-samples/tree/main/flutter_core).
 
 ## Objective
 
-You’ll learn how to:
+You'll learn how to:
 
 - Install the Dyte SDK
 - Initialize the SDK
@@ -28,15 +32,14 @@ You’ll learn how to:
 ## Before Getting Started
 
 - Make sure you've read the
-  [Getting Started with Dyte](https://docs.dyte.io/getting-started) topic and
+  [Getting Started with Dyte](/getting-started) topic and
   completed the steps in the
-  [Integrate Dyte](https://docs.dyte.io/getting-started#integrate-dyte) section.
+  [Integrate Dyte](/getting-started#integrate-dyte) section.
   You must complete the following steps:
   - Create a [Dyte Developer Account](https://dev.dyte.io/)
-  - Create [Presets](https://dev.dyte.io/roles-presets)
   - Create a
-    [Dyte Meeting](https://docs.dyte.io/api/?v=v2#/operations/create_meeting)
-  - [Add Participant](https://docs.dyte.io/api/?v=v2#/operations/add_participant)
+    [Dyte Meeting](/api/?v=v2#/operations/create_meeting)
+  - [Add Participant](/api/?v=v2#/operations/add_participant)
     to the meeting
 - Install Flutter on your system
 - (For iOS apps) Install
@@ -66,19 +69,6 @@ You’ll learn how to:
 
 After importing the package, perform the following steps for Android and iOS.
 
-### For Android
-
-Add the following permissions to the AndroidManifest.xml file.
-
-```dart
-<uses-permission android:name="android.permission.RECORD_AUDIO" />
-<uses-permission android:name="android.permission.CAMERA" />
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.BLUETOOTH" />
-<uses-permission android:name="android.permission.WAKE_LOCK" />
-<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-```
 
 ### For iOS
 
@@ -95,12 +85,16 @@ platform :ios, '13.0'
 ```dart
 <key>NSBluetoothPeripheralUsageDescription</key>
 <string>We will use your Bluetooth to access your Bluetooth headphones.</string>
+
 <key>NSBluetoothAlwaysUsageDescription</key>
 <string>We will use your Bluetooth to access your Bluetooth headphones.</string>
+
 <key>NSCameraUsageDescription</key>
 <string>For people to see you during meetings, we need access to your camera.</string>
+
 <key>NSMicrophoneUsageDescription</key>
 <string>For people to hear you during meetings, we need access to your microphone.</string>
+
 <key>NSPhotoLibraryUsageDescription</key>
 <string>For people to share, we need access to your photos.</string>
 ```
@@ -117,7 +111,7 @@ In iOS, if you are allowing user to download attachments in chat, add the follow
 :::tip Note
 
 If you intend to publish your app to the Google Play or App Store, you'll need
-to perform a few additional steps. So if you’re working on release builds and
+to perform a few additional steps. So if you're working on release builds and
 not debug builds, refer to the [Release Builds](#release-builds) section.
 
 :::
@@ -136,13 +130,19 @@ final dyteClient = DyteMobileClient();
 Set the properties in the `DyteMeetingInfo` class. You just need to provide the
 participant's `authToken`.
 
-| Name        | Description                                                                                                                                                                                                                                                                                                                                   |
-| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `authToken` | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
+| Name        | Description                                                                                                                                                                                                                                                                                                               |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authToken` | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
+| `baseUrl`   | The base URL of the Dyte server. Default value is `https://api.dyte.io/v2`. This is an optional argument.                                                                                                                                                                                                                 |
+| `enableAudio` | A boolean value to enable or disable audio in the meeting. Default value is `true`. This is an optional argument.                                                                                                                                                                                                       |
+| `enableVideo` | A boolean value to enable or disable video in the meeting. Default value is `true`. This is an optional argument.                                                                                                                                                                                                       |
 
 ```dart
 final meetingInfo = DyteMeetingInfoV2(
-                    authToken: '<auth_token>',
+                    authToken: '<authToken>',
+                    baseUrl: 'https://api.dyte.io/v2',                    // optional argument, if you want to pass your own baseUrl
+                    enableAudio: false,             // optional argument, to enable or disable audio in the meeting
+                    enableVideo: false,             // optional argument, to enable or disable video in the meeting
                   );
 ```
 
@@ -183,6 +183,12 @@ class RoomStateNotifier implements DyteMeetingRoomEventsListener {
   ...
 }
 
+```
+
+Subscibe to the `DyteMeetingRoomEventsListener` to receive the callbacks for the meeting object.
+
+```dart
+dyteClient.addMeetingRoomEventsListener(RoomStateNotifier());
 ```
 
 ## Step 5: Connect to the meeting
@@ -267,53 +273,8 @@ Successfully exiting the meeting is indicated by `onMeetingRoomLeaveCompleted` c
 ## Release Builds
 
 If you intend to publish your app to the Google Play or App Store, perform the
-following steps after installing the SDKs. So if you’re working on release
+following steps after installing the SDKs. So if you're working on release
 builds and not debug builds, do the following:
-
-### For Android release builds
-
-Perform the following steps, for Android release builds:
-
-1. Create `/android/app/proguard-rules.pro` file.
-
-```dart
-# Keep `Companion` object fields of serializable classes.
-# This avoids serializer lookup through `getDeclaredClasses` as done for named companion objects.
--if @kotlinx.serialization.Serializable class **
--keepclassmembers class <1> {
-   static <1>$Companion Companion;
-}
-
-# Keep `serializer()` on companion objects (both default and named) of serializable classes.
--if @kotlinx.serialization.Serializable class ** {
-   static **$* *;
-}
--keepclassmembers class <2>$<3> {
-   kotlinx.serialization.KSerializer serializer(...);
-}
-
-# keep webrtc classes
--keep class org.webrtc.** { *; }
--dontwarn org.chromium.build.BuildHooksAndroid
-
-# keep ktor classes
--keep class io.ktor.** { *; }
-
-```
-
-2. Add the following to your `android/app/build.gradle` to import the proguard
-   configuration.
-
-```dart
-buildTypes {
-        release {
-            ...
-            ...
-            ...
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-```
 
 ### For iOS release builds
 
@@ -328,3 +289,8 @@ post_install do |installer|
    end
 end
 ```
+
+<head>
+  <title>Flutter Core Quickstart</title>
+  <meta name="description" content="Dive into the core of Flutter development with Dyte. Explore essential documentation to streamline your Flutter app integration."/>
+</head>

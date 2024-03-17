@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Layout from '@theme/Layout';
 
 import HeroSection from '../components/homepage/HeroSection';
@@ -15,7 +15,7 @@ import Link from '@docusaurus/Link';
 export default function Homepage() {
   return (
     <Layout
-      description="Real-time audio & video SDKs, ready to launch 🚀"
+      title="Dyte Documentation"
       wrapperClassName="homepage flex flex-col"
       noFooter
     >
@@ -24,12 +24,13 @@ export default function Homepage() {
       </Head>
       <div>
         <div className="w-full bg-gradient-to-r from-blue-500 to-red-500 p-4 text-center font-medium text-white">
-          Affected by Twilio Video sunsetting? Switch to Dyte with our{' '}
+          Affected by Twilio Video Sunsetting? Migrate to Dyte and get upto $30,000
+          Credits{' '}
           <Link
-            to="/guides/migration/twilio/concepts-twilio-vs-dyte"
+            to="https://dyte.io/twilio-video-competitor"
             className="text-white underline"
           >
-            migration guide.
+            Learn more
           </Link>
         </div>
       </div>

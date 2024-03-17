@@ -1,8 +1,13 @@
 ---
 title: Introduction
-description: Local user setup guide.
+description: >-
+  Learn about the local user concept in Flutter with Dyte's documentation.
+  Follow our guide for a smooth introduction and integration.
 sidebar_position: 1
-tags: [flutter-core, local-user, self]
+tags:
+  - flutter-core
+  - local-user
+  - self
 ---
 
 # Introduction - Local User
@@ -27,6 +32,7 @@ Here is a list of properties that local user provides:
   - `hidden`: if the participant is hidden
 - `audioEnabled`: Boolean value indicating if the audio currently enabled.
 - `videoEnabled`: Boolean value indicating if the video currently enabled.
+- `stageStatus` : Stage status of the local participant.
 
 Local user properties can be fetched via `localUser` getter on the `dyteClient`.
 
@@ -41,7 +47,7 @@ audio streams. To change this behaviour, use the `audioEnabled` & `videoEnabled`
 parameter
 
 ```dart {4,5}
-final meetingInfo = DyteMeetingInfo(
+final meetingInfo = DyteMeetingInfoV2(
   roomName = MEETING_ROOM_NAME,
   authToken = AUTH_TOKEN,
   audioEnabled = false,
@@ -49,7 +55,7 @@ final meetingInfo = DyteMeetingInfo(
 );
 ```
 
-## Turn audio/video tracks after initializing the client
+## Turn on audio/video tracks after initializing the client
 
 If audio and video tracks are disabled during the `DyteMobileClient`
 initialization process. You can setup the audio and video tracks by simply
@@ -64,10 +70,13 @@ dyteClient.localUser.enableVideo();
 
 Change the user's name by calling `setDisplayName` method. The changed name will
 reflect across all participants ONLY if the change happens before joining the
-meeting.
+meeting. This is only possible when the user has the permission to change the name.
 
 ```dart
-dyteClient.localUser.setDisplayName("New Name");
+if(dyteClient.permissions.miscellaneous.canEditDisplayName)
+{
+  dyteClient.localUser.setDisplayName("New Name");
+}
 ```
 
 ## Mute/Unmute microphone
@@ -102,3 +111,18 @@ final isVideoEnabled = dyteClient.localUser.videoEnabled;
 // switch camera
 dyteClient.localUser.switchCamera();
 ```
+
+## Enable / Disable Screen share
+
+```dart
+// Enable Screenshare
+dyteClient.localUser.enableScreenshare();
+
+// Disable Screenshare
+dyteClient.localUser.disableScreenshare();
+```
+
+<head>
+  <title>Flutter Core Introduction</title>
+  <meta name="description" content="Learn about the local user concept in Flutter with Dyte's documentation. Follow our guide for a smooth introduction and integration."/>
+</head>

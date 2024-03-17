@@ -1,0 +1,52 @@
+# Permissions
+
+Permissions for a participant are defined by the preset. However they can updated in meeting by calling `updatePermissions` for remote participants
+
+## Find the target participants
+
+Permissions can be updated for either a single participant or multiple participant at once. Find the `id`s of the participant whose permissions need to be updated
+
+```ts
+const participantIds = meeting.participants.joined
+  .toArray()
+  .filter((e) => {
+    return e.name.startsWith('John');
+  })
+  .map((p) => p.id);
+```
+
+## Update permissions
+
+```ts
+// Allow file upload permissions in public chat
+const newPermissions = { chat: { public: { files: true } } };
+
+meeting.participants.updatePermissions(participantIds, newPermissions);
+```
+
+Allowed values for update permissions objects. Every field is optional
+
+```ts
+interface UpdatedPermissions {
+    polls?: {
+      canCreate?: boolean;
+      canVote?: boolean;
+    };
+    plugins?: {
+      canClose?: boolean;
+      canStart?: boolean;
+    };
+    chat?: {
+      public?: {
+        canSend?: boolean;
+        text?: boolean;
+        files?: boolean;
+      };
+      private?: {
+        canSend?: boolean;
+        text?: boolean;
+        files?: boolean;
+      };;
+    };
+}
+```

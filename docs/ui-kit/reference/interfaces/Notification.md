@@ -1,6 +1,6 @@
 ---
-id: "Notification"
-title: "Interface: Notification"
+id: Notification
+title: 'Interface: Notification'
 custom_edit_url: null
 ---
 
@@ -51,3 +51,8 @@ ___
 ### message
 
 • **message**: `string`
+
+
+<head>
+	<title>UI Kit Interface: Notification</title>
+</head>

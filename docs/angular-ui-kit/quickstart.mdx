@@ -1,5 +1,8 @@
 ---
 sidebar_position: 3
+description: >-
+  Get started quickly with Dyte's Angular UI Kit by following our step-by-step
+  Quickstart guide.
 ---
 
 # Quickstart
@@ -30,23 +33,10 @@ You'll learn how to:
 
 - Make sure you've read the [Getting Started with Dyte](/getting-started) topic
   and completed the following steps:
+
   - Create a [Dyte Developer Account](https://dev.dyte.io/)
-  - Create [Presets](https://dev.dyte.io/roles-presets). Dyte also includes the
-    following pre-configured presets for group call and webinar. You can simply
-    use the default preset if you don't wish to create one.
-    - webinar_viewer
-    - webinar_presenter
-    - group_call_host
-    - group_call_participant
   - Create a [Dyte Meeting](/api/?v=v2#/operations/create_meeting)
   - [Add Participant](/api/?v=v2#/operations/add_participant) to the meeting
-- [Install the Angular CLI](https://angular.io/guide/setup-local#install-the-angular-cli)
-- [Create an Angular workspace](https://angular.io/guide/setup-local#create-a-workspace-and-initial-application)
-  with initial application. If you don't have a project, create one using ng new
-  `<project-name>`, where `<project-name>` is the name of your Angular
-  application.
-- Read the [Introduction to Angular UI Kit](/angular-ui-kit) to understand the
-  UI Kit and its relationship with web core SDKs.
 
 ## Step 1: Install the SDK
 
@@ -140,9 +130,14 @@ class AppComponent {
     const meeting = await DyteClient.init({
       authToken: '<auth-token>',
     });
-    meeting.joinRoom();
+    meeting.join();
     this.dyteMeeting = meeting;
     if (this.meetingComponent) this.meetingComponent.meeting = meeting;
   }
 }
 ```
+
+<head>
+  <title>Angular UI Kit Quickstart</title>
+  <meta name="description" content="Get started quickly with Dyte's Angular UI Kit by following our step-by-step Quickstart guide."/>
+</head>

@@ -26,11 +26,13 @@ function Example() {
   const { meeting } = useDyteMeeting();
 
   return (
-    <Row style={{ flex:1, flexWrap: 'wrap', gap: '12px' }}>
+    <View
+      style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', gap: '12px' }}
+    >
       <DyteNameTag participant={meeting.self} />
       {/* You should also pass the `meeting` object to see the `(you)` text */}
       <DyteNameTag participant={meeting.self} meeting={meeting} />
-    </Row>
+    </View>
   );
 }
 ```
@@ -45,9 +47,11 @@ function Example() {
   const { meeting } = useDyteMeeting();
 
   return (
-    <Row style={{ flex:1, flexWrap: 'wrap', gap: '12px' }}>
+    <View
+      style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', gap: '12px' }}
+    >
       <DyteChat meeting={meeting} />
-    </Row>
+    </View>
   );
 }
 ```
@@ -63,18 +67,14 @@ leave meeting button, there is a confirmation popup on the screen, this state
 reflects only a UI state.
 
 To listen and manipulate these states some components will accept a `states`
-props and a `onDyteStateUpdate` callback prop when the state updates
+props.
 
 ```jsx
 <DyteDialogManager
-    states={{
-        activeLeaveConfirmation: true
-      }}
-    onDyteStateUpdate=((s) => {
-      // check activeLeaveConfirmation to see if the leave dialog has been closed
-    })
-  />
-
+  states={{
+    activeLeaveConfirmation: true,
+  }}
+/>
 ```
 
 ## 3. Component Specific Props
@@ -86,10 +86,18 @@ Here are some examples on `DyteButton` component:
 ### Button variants
 
 ```jsx
-<Row style={{ flex:1, flexWrap: 'wrap', gap: '8px' }}>
+<Row style={{ flex: 1, flexWrap: 'wrap', gap: '8px' }}>
   <DyteButton>Primary button</DyteButton>
   <DyteButton variant="secondary">Secondary button</DyteButton>
   <DyteButton variant="danger">Danger button</DyteButton>
   <DyteButton variant="ghost">Ghost button</DyteButton>
 </Row>
 ```
+
+<head>
+  <title>React Native UI Kit Components Basics</title>
+  <meta
+    name="description"
+    content="Learn the basics of components in React Native with Dyte's comprehensive guide. Understand the fundamental building blocks for React Native applications."
+  />
+</head>

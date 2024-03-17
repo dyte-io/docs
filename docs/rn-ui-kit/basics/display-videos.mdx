@@ -19,12 +19,7 @@ function Meeting() {
 
   function ParticipantTile({ participant, meeting }) {
     return (
-      <DyteParticipantTile
-        participant={participant}
-        style={{
-          maxWidth: '240px',
-        }}
-      >
+      <DyteParticipantTile participant={participant}>
         <DyteNameTag participant={participant} meeting={meeting}>
           <DyteAudioVisualizer participant={participant} />
         </DyteNameTag>
@@ -34,10 +29,11 @@ function Meeting() {
   }
 
   return (
-    <Row
+    <View
       id="grid"
       style={{
         flex: 1,
+        flexDirection: 'row',
         flexWrap: 'wrap',
         alignContent: 'center',
         justifyContent: 'center',
@@ -46,7 +42,7 @@ function Meeting() {
       {activeParticipants.toArray().map((participant) => (
         <ParticipantTile participant={participant} meeting={meeting} />
       ))}
-    </Row>
+    </View>
   );
 }
 ```
@@ -81,19 +77,13 @@ events and data on it's own and passes the following props to it's children.
 These props are passed to it's children which it computes from the UI Config
 which is passed to it. By default it will use the default UI Config.
 
-:::tip
-
-Try editing the `aspectRatio` and `gap` props.
-
-:::
-
 ```jsx
 function Example() {
   const { meeting } = useDyteMeeting();
 
   return (
     <Row style={{ width: '100%', height: '400' }}>
-      <DyteGrid meeting={meeting} aspectRatio="16:9" gap="8" size="sm" />
+      <DyteGrid meeting={meeting} />
     </Row>
   );
 }
@@ -147,10 +137,16 @@ function Example() {
   const participants = new Array(count).fill(meeting.self);
 
   return (
-    <Row>
-      <Row
+    <View
+      style={{
+        flex: 1,
+        flexDirection: 'row',
+      }}
+    >
+      <View
         style={{
-          display: 'flex',
+          flex: 1,
+          flexDirection: 'row',
           flexWrap: 'wrap',
           justifyContent: 'center',
           gap: '12px',
@@ -160,15 +156,19 @@ function Example() {
         <DyteButton variant="danger" onClick={remove}>
           Remove
         </DyteButton>
-      </Row>
-      <Row style={{ width: '100%', height: '400px' }}>
-        <DyteSimpleGrid
-          aspectRatio="16:9"
-          gap="8"
-          participants={participants}
-        />
-      </Row>
-    </Row>
+      </View>
+      <View style={{ flexDirection: 'row', width: '100%', height: '400px' }}>
+        <DyteSimpleGrid participants={participants} />
+      </View>
+    </View>
   );
 }
 ```
+
+<head>
+  <title>React Native UI Kit Render participant videos</title>
+  <meta
+    name="description"
+    content="Dive into displaying videos in React Native with Dyte's guide on fundamental video display concepts. Enhance your React Native app with video capabilities."
+  />
+</head>

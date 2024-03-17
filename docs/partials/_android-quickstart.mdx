@@ -16,9 +16,9 @@ import { MavenLatestInstallation } from '@site/src/components/LatestInstallation
 </span>
 
 You can also checkout our
-[sample code](https://github.com/dyte-io/mobile-samples#samples) for Android. You can clone
+[sample code](https://github.com/dyte-io/android-samples/tree/main/samples/android-ui-kit-sample-kotlin) for Android. You can clone
 and run a sample application from the
-[Android Samples GitHub repository](https://github.com/dyte-io/mobile-samples).
+[Android Samples GitHub repository](https://github.com/dyte-io/android-samples/).
 
 ## Objective
 
@@ -33,29 +33,27 @@ You'll learn how to:
 
 Make sure you've a mechanism to get `authToken` from your server-side, which you would have received as part of [Add Participant](/guides/live-video/build-live-video-app#step-2-add-participants) call.
 
-## Step 1: Install the SDK
+## Step 1: Install the SDK using maven dependency.
 
-1. Install the SDK using maven central dependency.
-
-```python
-  // other dependencies here
-  implementation 'io.dyte:uikit:1.13.0'
-```
-
-2. Add the following permissions to the AndroidManifest.xml file.
-
-```python
-<uses-permission android:name="android.permission.RECORD_AUDIO" />
-<uses-permission android:name="android.permission.CAMERA" />
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.BLUETOOTH" />
-<uses-permission android:name="android.permission.WAKE_LOCK" />
-<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-```
+<MavenLatestInstallation pkg="uikit" />
 
 :::tip Note
+If your app targets to lower versions of android (android api <= 24), Please enable core desugering in your app's build.gradle file like follows.
 
-Release builds (or any other Proguard builds) require an additional setup step, refer to the [Proguard Builds](#proguard-builds) section.
+```
+android {
+  // other configurations
+  compileOptions {
+    // other configurations
+    isCoreLibraryDesugaringEnabled = true
+  }
+}
+
+dependencies {
+   // other dependencies
+   coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
+}
+```
 
 :::
 
@@ -64,9 +62,9 @@ Release builds (or any other Proguard builds) require an additional setup step, 
 Set the properties in the `DyteMeetingInfoV2` class. You just need to provide
 the participant's `authToken`.
 
-| Name        | Description                                                                                                                                                                                                                                                                                                                                   |
-| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `authToken` | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
+| Name        | Description                                                                                                                                                                                                                                                                                                               |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authToken` | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
 
 ```kotlin
 val meetingInfo = DyteMeetingInfoV2(
@@ -99,48 +97,3 @@ dyteUIKit.startMeeting()
 ![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-setup.png)
 ![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-meeting.png)
 ![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/mobile-meeting-options.png)
-
-### Proguard Builds
-
-Perform the following steps, for Android release builds/proguard builds:
-
-1. Create `/android/app/proguard-rules.pro` file.
-
-```python
-# Keep `Companion` object fields of serializable classes.
-# This avoids serializer lookup through `getDeclaredClasses` as done for named companion objects.
--if @kotlinx.serialization.Serializable class **
--keepclassmembers class <1> {
-   static <1>$Companion Companion;
-}
-
-# Keep `serializer()` on companion objects (both default and named) of serializable classes.
--if @kotlinx.serialization.Serializable class ** {
-   static **$* *;
-}
--keepclassmembers class <2>$<3> {
-   kotlinx.serialization.KSerializer serializer(...);
-}
-
-# keep webrtc classes
--keep class org.webrtc.** { *; }
--dontwarn org.chromium.build.BuildHooksAndroid
-
-# keep ktor classes
--keep class io.ktor.** { *; }
-
-```
-
-2. Add the following to your `android/app/build.gradle` to import the proguard
-   configuration.
-
-```python
-buildTypes {
-        release {
-            ...
-            ...
-            ...
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-```

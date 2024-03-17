@@ -1,0 +1,113 @@
+---
+title: Sharing screen on iOS
+sidebar_position: 12
+tags:
+  - ios-core
+---
+
+This document explains how to setup screen sharing on a iOS App using Dyte SDK
+
+:::warning
+
+This guide is being updated, and might not work as expected in its current form
+
+:::
+
+## Overview
+
+1. Add a new Broadcast Upload Extension to your project.
+2. Setup app groups
+3. Have your SampleHandler class initialize DyteBroadcastHandler and proxy a few methods.
+4. Update Info.plist
+
+### Add a new Broadcast Upload Extension to your project.
+
+Add a Broadcast Upload Extension through `File` -> `New` -> `Target`.
+Choose `iOS` -> `Broadcast Upload Extension` and fill out the required information for your extension and click `Finish`.
+
+![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/ios-setup-0.png)
+![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/ios-setup-01.png)
+
+### Setup app groups
+
+Add your extension to an app group by going to your extension's target in the project; in the Signings & Capabilities tab, click the + button in the top left and add App Groups. If you haven't done so already, add App Groups to your main app as well, ensuring that the App Group identifier is the same for both.
+
+![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/ios-setup-03.png)
+![meeting UI screenshot with labeled parts](/static/mobile/0.x.x/ios-setup-1.png)
+
+### Setup SampleHandler
+
+- Edit your SampleHandler class to look something like this.
+
+```swift
+
+
+import ReplayKit
+import DyteiOSCore
+
+class SampleHandler: RPBroadcastSampleHandler {
+
+    let dyteBroadcast: DyteBroadcastHandler  = DyteBroadcastHandler();
+
+    override init() {
+        super.init()
+    }
+    override func broadcastPaused() {
+        dyteBroadcast.broadcastPaused()
+    }
+
+    override func broadcastResumed() {
+        dyteBroadcast.broadcastResumed()
+    }
+
+    override func broadcastFinished() {
+        dyteBroadcast.broadcastFinished()
+    }
+
+    override func broadcastStarted(withSetupInfo setupInfo: [String : NSObject]?) {
+        dyteBroadcast.broadcastStartedWithSetupInfo(setupInfo: setupInfo)
+    }
+
+    override func processSampleBuffer(_ sampleBuffer: CMSampleBuffer, with sampleBufferType: RPSampleBufferType) {
+        let rawPointer = Unmanaged.passUnretained(sampleBuffer).toOpaque()
+        dyteBroadcast.processSampleBuffer(sampleBuffer: rawPointer, withType: Int64(sampleBufferType.rawValue))
+
+    }
+
+}
+
+```
+
+### Modify Info.plist
+
+Make sure **both of them** (App and Extension Info.plist) contains these keys
+
+```
+  <key>RTCAppGroupIdentifier</key>
+	<string>(name of the group)</string>
+	<key>RTCScreenSharingExtension</key>
+	<string>(Bundle Identifier)</string>
+```
+
+![Info.plist screenshot](/static/mobile/0.x.x/ios-setup-info.png)
+
+### Start the Screenshare
+
+Launch the broadcast extension and call the method `enableScreenshare()`
+
+```swift
+
+let screenShareExtensionId = Bundle.main.infoDictionary?["RTCScreenSharingExtension"] as? String;
+let view = RPSystemBroadcastPickerView()
+view.preferredExtension = screenShareExtensionId
+view.showsMicrophoneButton = false
+let selector = NSSelectorFromString("buttonPressed:")
+if view.responds(to: selector) {
+    view.perform(selector, with: nil)
+}
+
+dyteClient.localUser.enableScreenshare()
+```
+
+![screenshot](/static/mobile/0.x.x/ios-setup-app.png)
+![screenshot](/static/mobile/0.x.x/ios-setup-demo.png)

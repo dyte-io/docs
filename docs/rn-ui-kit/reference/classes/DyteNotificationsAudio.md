@@ -1,6 +1,6 @@
 ---
-id: "DyteNotificationsAudio"
-title: "Class: DyteNotificationsAudio"
+id: DyteNotificationsAudio
+title: 'Class: DyteNotificationsAudio'
 custom_edit_url: null
 ---
 
@@ -56,3 +56,8 @@ ___
 #### Returns
 
 `Promise`\<`void`\>
+
+<head>
+	<title>React Native UI Kit Class: DyteNotificationsAudio</title>
+	<meta name="description" content="Dive into Dyte's React Native Notifications Audio documentation to implement and customize audio notifications seamlessly. Enhance your app's user experience."/>
+</head>

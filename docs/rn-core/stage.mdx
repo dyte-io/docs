@@ -1,5 +1,5 @@
 ---
-title: 'Stage Management'
+title: Stage Management
 sidebar_position: 10
 ---
 
@@ -12,7 +12,7 @@ Using Dyte's stage management APIs a user can do actions such as leave and join 
 
 ## Access the stage APIs
 
-The stage module can be accessed under [`meeting.stage`](https://docs.dyte.io/react-web-core/reference/DyteStage) namespace.
+The stage module can be accessed under [`meeting.stage`](/react-web-core/reference/DyteStage) namespace.
 
 ## Properties
 
@@ -23,13 +23,13 @@ The stage module can be accessed under [`meeting.stage`](https://docs.dyte.io/re
 - **ON_STAGE**: This value indicates that the user is currently on the stage and participating in the live stream.
 - **OFF_STAGE**: This value means that the user is viewing the live stream but is not on the stage.
 - **REQUESTED_TO_JOIN_STAGE**: The user has a pending request to join livestream. If the user has made a request to join the stage, this value will be assigned to their status until the host accepts or rejects their request.
-- **ACCEPTED_TO_JOIN_STAGE**: The host has accepted user’s request to join livestream. If the host accepts the user's request to join the stage, this value will be assigned to the user's status.
+- **ACCEPTED_TO_JOIN_STAGE**: The host has accepted user's request to join livestream. If the host accepts the user's request to join the stage, this value will be assigned to the user's status.
 
 A user with permission to join stage directly can only assume `ON_STAGE` and `ACCEPTED_TO_JOIN_STAGE` status values.
 
 ## Host controls
 
-Dyte’s stage management APIs allow hosts to receive and manage stage requests as well as leave and join the stage.
+Dyte's stage management APIs allow hosts to receive and manage stage requests as well as leave and join the stage.
 
 ### Join stage
 
@@ -75,7 +75,7 @@ A privileged user can remove a set of users from stage using the `kick` method
 
 ## Participant controls
 
-Dyte’s stage management APIs allow participants to receive and manage stage requests as well as leave and join the stage.
+Dyte's stage management APIs allow participants to receive and manage stage requests as well as leave and join the stage.
 
 ### Request access
 
@@ -98,7 +98,11 @@ Here is a list of events that the `meeting.stage` module emits:
 | **Event**                  | **Description**                                                                                                                                                                                                                       |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `stageAccessRequestUpdate` | Emitted to the users with the permission `acceptPresentRequests` set to true. When a new request is made or a request is cancelled, this event is triggered. It contains the updated list of stage requests in its payload.           |
-| `stageStatusUpdate`        | Emitted when the user’s stage status changes. It contains the updated stage status in the payload.                                                                                                                                    |
+| `stageStatusUpdate`        | Emitted when the user's stage status changes. It contains the updated stage status in the payload.                                                                                                                                    |
 | `newStageRequest`          | Emitted to the users with the permission `acceptPresentRequests` set to true. This event is triggered when there are new stage requests. It contains the number of stage requests in its payload. For example, to show notifications. |
-| `stageRequestApproved`     | Emitted when a user’s request to join stage has been approved.                                                                                                                                                                        |
-| `stageRequestRejected`     | Emitted when a user’s request to join stage has been rejected.                                                                                                                                                                        |
+| `stageRequestApproved`     | Emitted when a user's request to join stage has been approved.                                                                                                                                                                        |
+| `stageRequestRejected`     | Emitted when a user's request to join stage has been rejected.                                                                                                                                                                        |
+
+<head>
+  <title>React Native Core Stage Management</title>
+</head>

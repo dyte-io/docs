@@ -8,7 +8,8 @@ const code_themes = {
 /** @type {import('@docusaurus/types').Config} */
 const meta = {
   title: 'Dyte Docs',
-  tagline: 'Real-time audio & video SDKs, ready to launch 🚀',
+  tagline:
+    'Explore comprehensive documentation for Dyte, including guides, references, and best practices.',
   url: 'https://docs.dyte.io',
   baseUrl: '/',
   favicon: '/favicon.ico',
@@ -135,7 +136,7 @@ const docs = [
     routeBasePath: '/rn-core',
     versions: {
       current: {
-        label: '0.5.x',
+        label: '0.x.x',
       },
     },
   },
@@ -147,7 +148,7 @@ const docs = [
     routeBasePath: '/android',
     versions: {
       current: {
-        label: '0.14.x',
+        label: '1.x.x',
       },
     },
   },
@@ -167,7 +168,7 @@ const docs = [
     routeBasePath: '/ios',
     versions: {
       current: {
-        label: '1.33.x',
+        label: '1.x.x',
       },
     },
   },
@@ -177,7 +178,7 @@ const docs = [
     routeBasePath: '/react-native',
     versions: {
       current: {
-        label: '1.4.x',
+        label: '1.x.x',
       },
     },
   },
@@ -230,12 +231,12 @@ const plugins = [
           return ['/capabilities/export-chat-dump'];
         }
 
-        if (path.startsWith('/guides/capabilities/audio/transcriptions')) {
-          return ['/guides/capabilities/ai/meeting-transcription'];
-        }
-
         if (path.startsWith('/guides/capabilities/misc/embed')) {
           return ['/guides/capabilities/embed'];
+        }
+
+        if (path.startsWith('/react-ui-kit/basics/integrate')) {
+          return ['/react-ui-kit/basics/components-basics'];
         }
 
         if (
@@ -246,7 +247,7 @@ const plugins = [
           return ['/guides/capabilities/livestreaming-other-platforms'];
         }
 
-        if (path.startsWith('/guides/capabilities/video')) {
+        if (path.startsWith('/guides/capabilities/video/add-virtual-background')) {
           return [
             '/guides/capabilities/middleware/add-virtual-background',
             '/guides/capabilities/customization/add-virtual-background',
@@ -446,7 +447,7 @@ const config = {
   trailingSlash: false,
   themes: ['@docusaurus/theme-live-codeblock'],
   clientModules: [require.resolve('./src/client/define-ui-kit.js')],
-  scripts: [{ src: 'https://cdn.statuspage.io/se-v2.js' }],
+  scripts: [{ src: 'https://cdn.statuspage.io/se-v2.js', async: true }],
 
   presets: [
     [
@@ -467,7 +468,7 @@ const config = {
           ],
         },
         sitemap: {
-          ignorePatterns: ['/tags/**'],
+          ignorePatterns: ['**/tags/**', '/api/*'],
         },
         googleTagManager: {
           containerId: 'GTM-5FDFFSS',
@@ -494,7 +495,7 @@ const config = {
           href: '/',
           src: '/logo/light.svg',
           srcDark: '/logo/dark.svg',
-          alt: 'Dyte Docs',
+          alt: 'Dyte Documentation | Dyte Docs',
           height: '40px',
           width: '101px',
         },
@@ -534,7 +535,7 @@ const config = {
           },
           {
             label: 'Support',
-            to: 'https://dyte.io/contact',
+            to: 'https://dyte.io/contact?type=docs',
           },
 
           {
@@ -560,7 +561,7 @@ const config = {
           href: '/',
           src: '/logo/light.svg',
           srcDark: '/logo/dark.svg',
-          alt: 'Dyte Docs',
+          alt: 'Dyte Documentation | Dyte Docs',
           height: '36px',
         },
         links: [

@@ -30,20 +30,10 @@ You'll learn how to:
 
 - Make sure you've read the [Getting Started with Dyte](/getting-started) topic
   and completed the following steps:
+
   - Create a [Dyte Developer Account](https://dev.dyte.io/)
-  - Create [Presets](https://dev.dyte.io/roles-presets). Dyte also includes the
-    following pre-configured presets for group call and webinar. You can simply
-    use the default preset if you don't wish to create one.
-    - webinar_viewer
-    - webinar_presenter
-    - group_call_host
-    - group_call_participant
   - Create a [Dyte Meeting](/api/?v=v2#/operations/create_meeting)
   - [Add Participant](/api/?v=v2#/operations/add_participant) to the meeting
-- Install [React 16.8](https://reactjs.org/blog/2019/02/06/react-v16.8.0.html)
-  or higher on your device
-- Read the [Introduction to React UI Kit](/react-ui-kit) to understand the UI
-  Kit and its relationship with web core SDKs.
 
 ## Step 1: Install the SDK
 
@@ -74,7 +64,7 @@ packages, try installing them separately.
 | @dytesdk/react-ui-kit   | [![npm version](https://badge.fury.io/js/@dytesdk%2Freact-ui-kit.svg)](https://badge.fury.io/js/@dytesdk%2Freact-ui-kit)     |
 | @dytesdk/react-web-core | [![npm version](https://badge.fury.io/js/@dytesdk%2Freact-web-core.svg)](https://badge.fury.io/js/@dytesdk%2Freact-web-core) |
 
-## Step 2: Get Started with Dyte Prebuilt Components
+## Step 2: Initialise meeting
 
 Here's a series of steps that you need to perform:
 
@@ -114,11 +104,15 @@ export default function App() {
     });
   }, []);
 
-  return <DyteMeeting meeting={meeting} />;
+  return (
+    <DyteProvider value={meeting}>
+      <MyMeetingUI />
+    </DyteProvider>
+  );
 }
 ```
 
-## Example: Using Prebuilt `DyteMeeting` Component
+## Step 3: Use `DyteMeeting` component
 
 In the following example, a meeting is created using the `useDyteMeeting`
 component. `useDyteMeeting` essentially returns the meeting object you passed to
@@ -132,7 +126,7 @@ For more information on the other props of `DyteMeeting`, see
 [DyteMeeting](/react-ui-kit/components/dyte-meeting).
 
 ```jsx live
-function MyMeeting() {
+function MyMeetingUI() {
   const { meeting } = useDyteMeeting();
 
   return (
@@ -142,3 +136,8 @@ function MyMeeting() {
   );
 }
 ```
+
+<head>
+  <title>React UI Kit Quickstart</title>
+  
+</head>

@@ -1,6 +1,10 @@
 ---
 title: Operations on Store
 sidebar_position: 2
+description: >-
+  Learn how to manage stores in Dyte's Plugin SDK Usage documentation.
+  Effectively handle and organize stores for seamless plugin development. Dyte
+  Docs.
 ---
 
 There are two kinds of stores global (realtime) and local (accessible only to
@@ -76,7 +80,7 @@ store.getAll();
 
 ### Subscribe to data change
 
-Attaches an event listener on store key’s to listen for data change on a
+Attaches an event listener on store key's to listen for data change on a
 specific key. **Ideally called just after store is created.**
 
 | Param | Type   | Description        | Default Value | Required |
@@ -98,3 +102,11 @@ Removes all event listeners attached to a store key.
 ```tsx
 store.unsubscribe('key');
 ```
+
+<head>
+  <title>Plugin SDK Operations on Store</title>
+  <meta
+    name="description"
+    content="Learn how to manage stores in Dyte's Plugin SDK Usage documentation. Effectively handle and organize stores for seamless plugin development."
+  />
+</head>

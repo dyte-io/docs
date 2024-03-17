@@ -1,6 +1,6 @@
 ---
-id: "UserPreferences"
-title: "Interface: UserPreferences"
+id: UserPreferences
+title: 'Interface: UserPreferences'
 custom_edit_url: null
 ---
 
@@ -24,3 +24,9 @@ ___
 ### muteNotificationSounds
 
 • `Optional` **muteNotificationSounds**: `boolean`
+
+
+<head>
+	<title>React Native UI Kit Interface: UserPreferences</title>
+	<meta name="description" content="Harness the power of Dyte's React Native UIConfig Interface to customize and tailor the user interface of your React Native application."/>
+</head>

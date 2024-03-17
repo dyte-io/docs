@@ -1,6 +1,6 @@
 ---
-id: "UIConfig"
-title: "Interface: UIConfig"
+id: UIConfig
+title: 'Interface: UIConfig'
 custom_edit_url: null
 ---
 
@@ -29,3 +29,9 @@ ___
 ### styles
 
 • `Optional` **styles**: `UIStyles`
+
+
+<head>
+	<title>Angular UI Kit Interface: UIConfig</title>
+	<meta name="description" content="Understand the UIConfig interface in Dyte's Angular UI Kit Reference for detailed information."/>
+</head>

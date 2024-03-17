@@ -3,7 +3,10 @@ title: Installation
 description: Install rn-core.
 sidebar_position: 1
 slug: /
-tags: [rn-core, installation, setup]
+tags:
+  - rn-core
+  - installation
+  - setup
 ---
 
 # Installation
@@ -23,7 +26,7 @@ import TabItem from '@theme/TabItem';
 Install the SDK using npm.
 
 ```shell
-npm install @dytesdk/react-native-core react-native-webrtc
+npm install @dytesdk/react-native-core @dyteinternals/react-native-webrtc
 ```
 
   </TabItem>
@@ -31,7 +34,7 @@ npm install @dytesdk/react-native-core react-native-webrtc
 Install the SDK using yarn.
 
 ```shell
-yarn add @dytesdk/react-native-core react-native-webrtc
+yarn add @dytesdk/react-native-core @dyteinternals/react-native-webrtc
 ```
 
   </TabItem>
@@ -65,7 +68,7 @@ android.enableDexingArtifactTransform.desugaring=false
 2. Create / append to the file `android/app/proguard-rules.pro`
 
 ```groovy
--keep class org.webrtc.** { *; }
+-keep class io.webrtc.** { *; }
 -dontwarn org.chromium.build.BuildHooksAndroid
 ```
 
@@ -118,3 +121,7 @@ platform :ios, '12.0'
 
   </TabItem>
 </Tabs>
+
+<head>
+  <title>React Native Core Installation</title>
+</head>

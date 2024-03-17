@@ -1,0 +1,84 @@
+---
+sidebar_position: 4
+slug: /basics/integrate
+---
+
+# Customization Prerequisite
+
+:::danger
+
+If you are not using `DyteMeeting` component directly, rendering the following components are critical for the meeting to function.
+
+:::
+
+### DyteParticipantsAudio
+
+This component is required for audio playback. **You will not be able to hear
+audio without this component**.
+
+This component also displays a dialog if the browser throws an auto play error,
+requiring user interaction to allow audio to be played.
+
+```jsx
+<DyteParticipantsAudio meeting={meeting} />
+```
+
+### DyteNotifications
+
+This component is required for receiving notifications. If you don't have this
+component, you won't be notified of events like network disconnection or poor
+network.
+
+```jsx
+<DyteNotifications
+  meeting={meeting}
+  config={{
+    config: {
+      // which notifications to show
+      notifications: ['chat', 'participant_joined', 'participant_left'],
+      // which notifications should have sounds
+      notification_sounds: ['chat', 'participant_joined', 'participant_left'],
+      // maximum number of participant joined sound notifications
+      participant_joined_sound_notification_limit: 10,
+      // maximum number of chat message sound notifications
+      participant_chat_message_sound_notification_limit: 10,
+    },
+  }}
+/>
+```
+
+### DyteDialogManager
+
+A component which handles all dialog elements in a component. This component is required for the following components to work:
+
+- DyteLeaveButton
+- DyteSettingsToggle
+- DyteBreakoutRoomsToggle
+- DyteMuteAllButton
+
+This components depends on the values from `states` object.
+
+```jsx
+function Example() {
+  const [states, setStates] = useState({});
+
+  const setState = (s) => setStates((states) => ({ ...states, ...s }));
+
+  return (
+    <Row>
+      <DyteButton onClick={() => setState({ activeLeaveConfirmation: true })}>
+        Show Leave Confirmation
+      </DyteButton>
+      <DyteDialogManager
+        meeting={meeting}
+        states={states}
+        onDyteStateUpdate={(e) => setState(e.detail)}
+      />
+    </Row>
+  );
+}
+```
+
+<head>
+  <title>React UI Kit Prerequisite</title>
+</head>

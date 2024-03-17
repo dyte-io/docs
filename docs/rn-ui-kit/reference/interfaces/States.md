@@ -1,6 +1,6 @@
 ---
-id: "States"
-title: "Interface: States"
+id: States
+title: 'Interface: States'
 custom_edit_url: null
 ---
 
@@ -111,3 +111,9 @@ ___
 ### sidebar
 
 • `Optional` **sidebar**: ``"chat"`` \| ``"polls"`` \| ``"participants"`` \| ``"plugins"`` \| ``"none"``
+
+
+<head>
+	<title>React Native UI Kit Interface: States</title>
+	<meta name="description" content="Understand and implement the React Native States Interface by Dyte. Effectively manage and control states in your React Native application."/>
+</head>

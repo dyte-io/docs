@@ -1,6 +1,6 @@
 ---
-id: "PollObject"
-title: "Interface: PollObject"
+id: PollObject
+title: 'Interface: PollObject'
 custom_edit_url: null
 ---
 
@@ -27,3 +27,9 @@ ___
 ### question
 
 • **question**: `string`
+
+
+<head>
+	<title>React Native UI Kit Interface: PollObject</title>
+	<meta name="description" content="Explore Dyte's React Native Poll Object Interface documentation to seamlessly integrate and manage polls within your React Native application."/>
+</head>

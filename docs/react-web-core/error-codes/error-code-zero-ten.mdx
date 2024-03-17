@@ -1,5 +1,5 @@
 ---
-title: 'System Error Codes (0-16)'
+title: System Error Codes (0-16)
 sidebar_position: 2
 ---
 
@@ -21,12 +21,6 @@ This topic describes web core system error codes 0-16.
 await meeting.joinRoom();
 ```
 
-If you're using Android, try calling:
-
-```bash
-dyteClient.joinRoom();
-```
-
 Once the join room process completes, you'll see the `roomJoined` event is emitted on the `meeting.self` namespace.
 
 ## Error code: 0003
@@ -36,13 +30,7 @@ Once the join room process completes, you'll see the `roomJoined` event is emitt
 - **Possible solution**: The `leaveRoom()` method is used to leave a meeting room in Dyte. Try calling this method on the `DyteClient`:
 
 ```bash
-meeting.leaveRoom();
-```
-
-If you're using Android, try calling:
-
-```bash
-dyteClient.leaveRoom();
+await meeting.leaveRoom();
 ```
 
 ## Error code: 0501
@@ -88,3 +76,7 @@ dyteClient.leaveRoom();
 - **Error message**: Failed to change device
 - **Possible reason**: Indicates a problem with the device.
 - **Possible solution**: Please [contact us](https://dyte.io/contact) for the help.
+
+<head>
+  <title>React Web Core System Error Codes (0-16)</title>
+</head>

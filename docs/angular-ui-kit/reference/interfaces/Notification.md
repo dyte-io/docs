@@ -1,6 +1,6 @@
 ---
-id: "Notification"
-title: "Interface: Notification"
+id: Notification
+title: 'Interface: Notification'
 custom_edit_url: null
 ---
 
@@ -51,3 +51,9 @@ ___
 ### message
 
 • **message**: `string`
+
+
+<head>
+	<title>Angular UI Kit Interface: Notification</title>
+	<meta name="description" content="Understand the Notification interface in Dyte's Angular UI Kit Reference for comprehensive information."/>
+</head>

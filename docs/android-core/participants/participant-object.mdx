@@ -1,8 +1,13 @@
 ---
 title: The participant object
-description: The object corresponding to a particular participant.
+description: >-
+  Explore the Android Participants Participant Object and its functionalities
+  for effective integration in your application.
 sidebar_position: 2
-tags: [mobile-core, participants, participant]
+tags:
+  - mobile-core
+  - participants
+  - participant
 ---
 
 # The participant object
@@ -55,16 +60,6 @@ dyteParticipant.addParticipantUpdateListener(object : DyteParticipantUpdateListe
         // on video update
       }
 
-      override fun onPinned(participant: DyteMeetingParticipant) {
-        super.onPinned(participant)
-        // when participant is pinned
-      }
-
-      override fun onUnpinned(participant: DyteMeetingParticipant) {
-        super.onUnpinned(participant)
-        // when participant is un-pinned
-      }
-
       override fun onScreenShareStarted(participant: DyteMeetingParticipant) {
         super.onScreenShareStarted(participant)
         // when participant start to screenshare
@@ -105,3 +100,8 @@ participant.pin();
 // to retrieve if current participant is already pinned in a meeting
 participant.isPinned
 ```
+
+<head>
+  <title>Android Core The participant object</title>
+  <meta name="description" content="Explore the Android Participants Participant Object and its functionalities for effective integration in your application."/>
+</head>

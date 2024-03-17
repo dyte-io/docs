@@ -1,6 +1,6 @@
 ---
-title: 'Transcriptions - AWS Transcribe'
-sidebar_position: 2
+title: Transcriptions - AWS Transcribe
+sidebar_position: 3
 sidebar_slug: transcriptions-aws
 ---
 
@@ -95,10 +95,14 @@ awsTranscribe.on('transcription', async (data) => {
 awsTranscribe.transcribe();
 ```
 
-Here you are setting up the DyteAWSTranscribe with the values that the current user would prefer and activating the recognition just afterward using awsTranscribe.transcribe(). Then we are listening to every new transcription using awsTranscribe.on(’transcription’, aJsCallbackFunction)
+Here you are setting up the DyteAWSTranscribe with the values that the current user would prefer and activating the recognition just afterward using awsTranscribe.transcribe(). Then we are listening to every new transcription using awsTranscribe.on('transcription', aJsCallbackFunction)
 
 To see the support languages, please refer to https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html and https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html.
 
 With this, now you would be able to receive the live transcriptions. Feel free to put them in UI as per your need.
 
 If you need a sample of this guide, please refer to https://github.com/dyte-io/aws-transcribe/blob/main/client/demo/index.ts.
+
+<head>
+  <title>Transcriptions - AWS Transcribe Guide</title>
+</head>

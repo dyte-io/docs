@@ -1,6 +1,6 @@
 ---
-id: "UIConfig"
-title: "Interface: UIConfig"
+id: UIConfig
+title: 'Interface: UIConfig'
 custom_edit_url: null
 ---
 
@@ -29,3 +29,9 @@ ___
 ### styles
 
 • `Optional` **styles**: `UIStyles`
+
+
+<head>
+	<title>React Native UI Kit Interface: UIConfig</title>
+	<meta name="description" content="Harness the power of Dyte's React Native UIConfig Interface to customize and tailor the user interface of your React Native application."/>
+</head>

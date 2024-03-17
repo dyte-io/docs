@@ -20,13 +20,15 @@ Dyte provides the `provideDyteDesignSystem()` utility to programmatically
 configure the design system of UI Kit components with a few lines of code.
 
 ```jsx
+import { useDyteMeeting } from '@dytesdk/react-native-core';
+import { DyteMeeting, DyteUIProvider } from '@dytesdk/react-native-ui-kit';
+
 function Example() {
   const { meeting } = useDyteMeeting();
 
   useEffect(() => {
     // provideDyteDesignSystem(designTokens)
     provideDyteDesignSystem({
-      googleFont: 'Lobster',
       // sets light background colors
       theme: 'light',
       colors: {
@@ -39,19 +41,16 @@ function Example() {
           700: '#00655F',
         },
         text: '#071428',
-        'text-on-brand': '#ffffff',
-        'video-bg': '#E5E7EB',
+        textOnBrand: '#ffffff',
+        videoBg: '#E5E7EB',
       },
-      borderRadius: 'extra-rounded',
     });
   }, []);
 
   return (
-    <DyteProvider>
-      <DyteUIProvider style={{ height: '400px' }}>
-        <DyteMeeting meeting={meeting} />
-      </DyteUIProvider>
-    </DyteProvider>
+    <DyteUIProvider>
+      <DyteMeeting meeting={meeting} />
+    </DyteUIProvider>
   );
 }
 ```
@@ -200,3 +199,11 @@ const designTokens = {
   },
 };
 ```
+
+<head>
+  <title>React Native UI Kit Design System</title>
+  <meta
+    name="description"
+    content="Explore Dyte's design system for React Native, providing guidelines and components for consistent and visually appealing UI design."
+  />
+</head>

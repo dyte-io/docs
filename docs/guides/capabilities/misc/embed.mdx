@@ -1,5 +1,5 @@
 ---
-title: 'No code Integration'
+title: No code Integration
 sidebar_position: 5
 ---
 
@@ -13,10 +13,9 @@ You simply need to add a small piece of HTML code to your website or application
 ## Before Getting Started
 
 - Create a [Dyte Developer Account](https://dev.dyte.io/)
-- Create [Presets](https://dev.dyte.io/roles-presets)
 - Create a
-  [Dyte Meeting](https://docs.dyte.io/api/?v=v2#/operations/create_meeting)
-- [Add Participant](https://docs.dyte.io/api/?v=v2#/operations/add_participant)
+  [Dyte Meeting](/api/?v=v2#/operations/create_meeting)
+- [Add Participant](/api/?v=v2#/operations/add_participant)
   to the meeting
 
 ## Embed using an iFrame
@@ -32,11 +31,11 @@ Pass your options with meeting ID auth token in the URL query. Here's an example
 
 ### Query Parameters
 
-| Name             | Required   | Description                                                                                                               |
-| :--------------- | :--------- | :------------------------------------------------------------------------------------------------------------------------ | --- |
-| `authToken`      | `required` | The `token` string you receive when you [add a Participant](/api/#/operations/add_participant) to a meeting.              |
-| `meetingID`      | `required` | The ID of the meeting you receive when you [create a meeting](https://docs.dyte.io/api/?v=v2#/operations/create_meeting). |
-| `endRedirectURL` | `optional` | The URL to which the meeting would be redirected on end of the meeting.                                                   |     |
+| Name             | Required   | Description                                                                                                  |
+| :--------------- | :--------- | :----------------------------------------------------------------------------------------------------------- | --- |
+| `authToken`      | `required` | The `token` string you receive when you [add a Participant](/api/#/operations/add_participant) to a meeting. |
+| `meetingID`      | `required` | The ID of the meeting you receive when you [create a meeting](/api/?v=v2#/operations/create_meeting).        |
+| `endRedirectURL` | `optional` | The URL to which the meeting would be redirected on end of the meeting.                                      |     |
 
 ## Events
 
@@ -53,3 +52,8 @@ function receiveMessage(evt) {
   }
 }
 ```
+
+<head>
+  <title>No code Integration Guide</title>
+  <meta name="description" content="Learn how to embed Dyte's features into your application. Follow our guide for seamless integration and embedding of Dyte capabilities."/>
+</head>

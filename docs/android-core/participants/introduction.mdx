@@ -1,8 +1,13 @@
 ---
 title: Introduction
-description: Events, methods and data pertaining to meeting participants.
+description: >-
+  Get started with participants integration in Android apps with this
+  introductory guide from Dyte documentation.
 sidebar_position: 1
-tags: [mobile-core, participants, participant]
+tags:
+  - mobile-core
+  - participants
+  - participant
 ---
 
 # Introduction - Room participants
@@ -23,7 +28,6 @@ data.
   participant else it is null.
 - `screenshares`: A list that contains all the participants who have shared
   screen in the meeting.
-- `gridInfo`: This object has all data related to pages in the room.
 - `broadcastMessage`: Broadcasts the message to all participants including `self`.
 
 Each participant in each of the `joined`, `waitlisted`, `active` and
@@ -46,21 +50,6 @@ val joinedParticipants = meeting.participants.active;
 Therefore, if you were to make a grid of participants, you'd use the `active`
 list, but to display all participants in the meeting you'd use the `joined`
 list.
-
-## Grid info for the room
-
-Following object can be retrieved from `meeting` object by using
-`meeting.participants.gridInfo`. This object will have necessary information
-regarding pageCount, next page, previos page, current page, etc.
-
-```kotlin
-  val pageCount: Int
-  val currentPageNumber: Int
-  val isNextPagePossible: Boolean,
-  val isPreviousPagePossible: Boolean,
-  val shouldShowPaginator: Boolean,
-  val maxVideoCountPerPage: Int
-```
 
 ## Video update for all participants
 
@@ -137,3 +126,8 @@ meeting.participants.kickAll();
 val participantToRemove = meeting.participants.joined.first()
 participantToRemove.kick()
 ```
+
+<head>
+  <title>Android Core Introduction</title>
+  <meta name="description" content="Get started with participants integration in Android apps with this introductory guide from Dyte documentation."/>
+</head>

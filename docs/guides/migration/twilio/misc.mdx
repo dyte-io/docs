@@ -1,0 +1,68 @@
+---
+title: "\U0001F3D7️ Misc"
+sidebar_position: 4
+---
+
+## Participant Events
+
+- User connection changes, including join, leave, and when the host ends the session.
+- Any participant property change (include audio, video state changes)
+
+**Twilio**
+
+```tsx
+twilioRoom.on('participantConnected', (participant) => {
+  // user joined
+});
+
+twilioVideo.on('participantDisconnected', (participant) => {
+  // user left
+});
+```
+
+**Dyte**
+
+```tsx
+meeting.participants.joined.on('participantJoined', (participant) => {
+  // user joined
+});
+
+meeting.participants.joined.on('participantLeft', (participant) => {
+  // user left
+});
+```
+
+Listen for all changes on participants
+
+```tsx
+meeting.participants.joined.on('participantUpdated', (participant) => {
+  // user updated
+});
+```
+
+## Leaving the Room
+
+**Twilio**
+
+```tsx
+twilioVideo.disconnect();
+```
+
+**Dyte**
+
+```tsx
+meeting.leave();
+```
+
+## Chat
+
+Twilio has a seperate SDK for real time messaging, dyte provides it out of the box part of the same SDK
+
+```tsx
+meeting.chat.messages; // []
+meeting.chat.sendTextMessage('Hello');
+```
+
+<head>
+  <title>🏗️ Misc Guide</title>
+</head>

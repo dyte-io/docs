@@ -1,0 +1,33 @@
+# DyteLeaveButton
+
+A specialized button widget for leaving a Dyte meeting. This widget is designed in accordance with the Dyte UI Kit and facilitates a seamless exit process from a meeting environment.
+
+## Usage
+
+Here is how you can use the `DyteLeaveButton` in your Flutter application:
+
+```dart
+DyteLeaveButton(
+  dyteMobileClient: yourDyteMobileClientInstance,
+  height: 50.0,
+  width: 50.0,
+)
+```
+
+## Properties
+
+- `dyteMobileClient`: (**Required**) An instance of `DyteMobileClient` used to perform the leave meeting operation.
+- `designToken`: (Optional) An instance of `DyteDesignTokens` for customizing the appearance according to the Dyte Design System. If not specified, the widget will default to the global design tokens.
+- `height`: (Optional) The height of the button. If not specified, it defaults to a predefined size based on the design tokens.
+- `width`: (Optional) The width of the button. If not specified, it defaults to a predefined size based on the design tokens.
+
+
+## Features
+
+- **Customizable Size**: The size of the button can be adjusted using the `height` and `width` properties.
+- **Consistent Styling**: Adheres to the Dyte Design System for visual consistency across the Dyte UI Kit.
+- **Leave Dialog**: Upon pressing the button, a confirmation dialog is displayed to the user to prevent accidental meeting exits.
+
+## Screenshot
+
+<img src="/static/mobile/flutter/flutter-leave-meeting.png" width="250px"/>

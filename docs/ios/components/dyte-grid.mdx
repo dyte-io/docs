@@ -1,0 +1,34 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-grid.svg
+description: >-
+  Learn how to use and customize the GridView component in Dyte's iOS UiKit
+  with our detailed documentation.
+---
+
+# GridView
+
+The main grid component which abstracts all the grid handling logic and renders
+it for you.
+
+```swift
+gridView = GridView(showingCurrently: 9, getChildView: {
+            return DyteParticipantTileContainerView()
+        })
+```
+
+To setup the grid inside kotlin/Java code do as follows
+
+```swift
+self.gridView.settingFramesForPluginsActiveInLandscapeMode(visibleItemCount: 7,
+                                                  animation: true) { finish in
+    completion()
+}
+//Get a peerView
+if let peerView = self.gridView.childView(index: index)?.tileView {
+    peerView.pinView(show: show)
+}
+```
+
+<head>
+  <title>iOS DyteGridViewV2</title>
+</head>

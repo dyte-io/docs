@@ -1,0 +1,83 @@
+---
+title: Picture in Picture
+sidebar_position: 3
+sidebar_slug: picture-in-picture-pip
+---
+
+Picture-in-Picture API allows you to render participant's video as a floating tile outside of the current page/app's context.
+
+## Usage
+
+### Initialise <div class="header-tag tag-core">Core</div>
+
+<Tabs groupId='framework' defaultValue="react">
+<TabItem value="javascript" label="Javascript">
+
+#### Check browser support
+
+Use `meeting.participants.pip.isSupported` to check if the browser supports Picture-in-Picture. The property will return a **boolean** value.
+
+Call `meeting.participants.pip.init()` to activate PIP mode. Optionally you can pass height and width the configure the size of the PIP tile
+
+```js
+meeting.participants.pip.init({
+  width: 360,
+  height: 360,
+});
+```
+
+</TabItem>
+<TabItem value="react" label="React">
+
+#### Check browser support
+
+Use `meeting.participants.pip.isSupported` to check if the browser supports Picture-in-Picture. The property will return a **boolean** value.
+
+Call `meeting.participants.pip.init()` to activate PIP mode. Optionally you can pass height and width the configure the size of the PIP tile
+
+```jsx
+const { meeting } = useDyteMeeting();
+
+meeting.participants.pip.init({
+  width: 360,
+  height: 360,
+});
+```
+
+</TabItem>
+</Tabs>
+
+### Enable / Disable <div class="header-tag tag-core">Core</div>
+
+Use `meeting.participants.pip.enable()` to enable PIP mode if disabled or `meeting.participants.pip.disable()` to disable PIP mode if enabled.
+
+## Components
+
+### Toggle Button <div class="header-tag tag-ui">UI Kit</div>
+
+Our UI Kit contains a button that can enable or disable the PIP
+
+<Tabs groupId='framework'>
+<TabItem value="web-components" label="Web Components">
+
+```html
+<dyte-pip-toggle id="pip-toggle" />
+<script>
+  const toggle = document.getElementById('pip-toggle');
+  toggle.meeting = meeting;
+</script>
+```
+
+</TabItem>
+<TabItem value="react" label="React">
+
+```html
+<DytePipToggle meeting="{meeting}" />
+```
+
+</TabItem>
+</Tabs>
+
+<head>
+  <title>Picture in Picture Guide</title>
+</head>
