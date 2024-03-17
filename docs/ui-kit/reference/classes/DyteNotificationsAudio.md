@@ -45,7 +45,7 @@ ___
 
 ### setDevice
 
-▸ **setDevice**(`id`): `Promise`<`void`\>
+▸ **setDevice**(`id`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -55,7 +55,7 @@ ___
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 
 <head>

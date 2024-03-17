@@ -35,11 +35,11 @@ executed for every user.
 
 :::
 
-| Param           | Type    | Description                      | Default Value    | Required |
-| --------------- | ------- | -------------------------------- | ---------------- | -------- |
-| key             | string  | Name of the store.               | -                | true     |
-| options         | Options | The options object               | { local: false } | false    |
-| `options.local` | boolean | Creates a local store when true. | false            | false    |
+| Param           | Type    | Description                      | Default Value      | Required |
+| --------------- | ------- | -------------------------------- | ------------------ | -------- |
+| key             | string  | Name of the store.               | -                  | true     |
+| options         | Options | The options object               | \{ local: false \} | false    |
+| `options.local` | boolean | Creates a local store when true. | false              | false    |
 
 ```tsx
 type Options = {
@@ -69,11 +69,11 @@ await plugin.stores.populate('myStore');
 
 You can delete a store using the store name.
 
-| Param           | Type    | Description                      | Default Value    | Required |
-| --------------- | ------- | -------------------------------- | ---------------- | -------- |
-| key             | string  | Name of the store.               | -                | true     |
-| options         | Options | The options object               | { local: false } | false    |
-| `options.local` | boolean | Deletes a local store when true. | false            | false    |
+| Param           | Type    | Description                      | Default Value      | Required |
+| --------------- | ------- | -------------------------------- | ------------------ | -------- |
+| key             | string  | Name of the store.               | -                  | true     |
+| options         | Options | The options object               | \{ local: false \} | false    |
+| `options.local` | boolean | Deletes a local store when true. | false              | false    |
 
 ```tsx
 // delete a global store
@@ -87,11 +87,11 @@ plugin.stores.delete('myLocalStore', { local: true });
 
 You can fetch a global store using the store name.
 
-| Param           | Type    | Description                   | Default Value    | Required |
-| --------------- | ------- | ----------------------------- | ---------------- | -------- |
-| key             | string  | Name of the store.            | -                | true     |
-| options         | Options | The options object            | { local: false } | false    |
-| `options.local` | boolean | Gets a local store when true. | false            | false    |
+| Param           | Type    | Description                   | Default Value      | Required |
+| --------------- | ------- | ----------------------------- | ------------------ | -------- |
+| key             | string  | Name of the store.            | -                  | true     |
+| options         | Options | The options object            | \{ local: false \} | false    |
+| `options.local` | boolean | Gets a local store when true. | false              | false    |
 
 ```tsx
 // get a global store

@@ -13,7 +13,7 @@ import { MavenLatestInstallation } from '@site/src/components/LatestInstallation
 This quickstart shows how to use Dyte's Android UI Kit SDK to add live video and
 audio to your Android applications.
 
-To get started quickly, you can use our sample code. Simply clone and run a sample application 
+To get started quickly, you can use our sample code. Simply clone and run a sample application
 from the Android UIKit samples, available in both [Kotlin](https://github.com/dyte-io/android-samples/tree/main/samples/android-ui-kit-sample-kotlin) and [Java](https://github.com/dyte-io/android-samples/tree/main/samples/android-uikit-sample-java).
 
 ## Objective
@@ -45,7 +45,7 @@ You must complete the following steps:
 <MavenLatestInstallation pkg="uikit" />
 
 :::tip Note
-If your app targets to lower versions of android (android api <= 24), Please enable core desugering in your app's build.gradle file like follows.
+If your app targets to lower versions of android (android api \<= 24), Please enable core desugering in your app's build.gradle file like follows.
 
 ```
 android {
@@ -83,26 +83,28 @@ obtained from the [Add Participant](/api/?v=v2#/operations/add_participant) API.
 <Tabs groupId="dyte-android-uikit">
   <TabItem value="kotlin" label="Kotlin" default>
 
-  ```kotlin
-  val meetingInfo = DyteMeetingInfoV2(
-    authToken = "<auth_token>",
-    enableAudio = true,
-    enableVideo = true,
-    baseUrl = "dyte.io"
-  )
-  ```
+```kotlin
+val meetingInfo = DyteMeetingInfoV2(
+  authToken = "<auth_token>",
+  enableAudio = true,
+  enableVideo = true,
+  baseUrl = "dyte.io"
+)
+```
+
   </TabItem>
 
   <TabItem value="java" label="Java">
 
-  ```java
-  DyteMeetingInfoV2 meetingInfo = new DyteMeetingInfoV2(
-    "<auth_token>",
-    true, // enableAudio
-    true, // enableVideo
-    "dyte.io"
-  );
-  ```
+```java
+DyteMeetingInfoV2 meetingInfo = new DyteMeetingInfoV2(
+  "<auth_token>",
+  true, // enableAudio
+  true, // enableVideo
+  "dyte.io"
+);
+```
+
   </TabItem>
 </Tabs>
 
@@ -113,21 +115,23 @@ Initialize the DyteUIKit with the `DyteUIKitBuilder` class, using the `meetingIn
 <Tabs groupId="dyte-android-uikit">
   <TabItem value="kotlin" label="Kotlin" default>
 
-  ```kotlin
-  val dyteUIKitInfo = DyteUIKitInfo(
-    activity = this,
-    dyteMeetingInfo = meetingInfo
-  )
-  val dyteUIKit = DyteUIKitBuilder.build(dyteUIKitInfo)
-  ```
+```kotlin
+val dyteUIKitInfo = DyteUIKitInfo(
+  activity = this,
+  dyteMeetingInfo = meetingInfo
+)
+val dyteUIKit = DyteUIKitBuilder.build(dyteUIKitInfo)
+```
+
   </TabItem>
 
   <TabItem value="java" label="Java">
 
-  ```java
-  DyteUIKitInfo dyteUIKitInfo = new DyteUIKitInfo(this, meetingInfo);
-  DyteUIKit dyteUIKit = DyteUIKitBuilder.build(dyteUIKitInfo);
-  ```
+```java
+DyteUIKitInfo dyteUIKitInfo = new DyteUIKitInfo(this, meetingInfo);
+DyteUIKit dyteUIKit = DyteUIKitBuilder.build(dyteUIKitInfo);
+```
+
   </TabItem>
 </Tabs>
 
@@ -139,16 +143,18 @@ care of everything for you.
 <Tabs groupId="dyte-android-uikit">
   <TabItem value="kotlin" label="Kotlin" default>
 
-  ```kotlin
-  dyteUIKit.startMeeting()
-  ```
+```kotlin
+dyteUIKit.startMeeting()
+```
+
   </TabItem>
 
   <TabItem value="java" label="Java">
 
-  ```java
-  dyteUIKit.startMeeting();
-  ```
+```java
+dyteUIKit.startMeeting();
+```
+
   </TabItem>
 </Tabs>
 

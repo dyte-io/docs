@@ -65,7 +65,7 @@ and stop recording etc. it should be done after the `roomJoined` event is fired.
 
 For example:
 
-```js
+```ts
 meeting.self.on('roomJoined', () => {
   console.log('User has joined the room', meeting.self.roomJoined);
   // run my actions.
