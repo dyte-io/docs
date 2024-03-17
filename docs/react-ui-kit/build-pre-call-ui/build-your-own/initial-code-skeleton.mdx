@@ -3,6 +3,8 @@ title: Basic structure
 sidebar_position: 1
 ---
 
+import CodeRunner from '@site/src/components/CodeRunner/CodeRunner';
+
 ## What are we building?
 
 We are deconstructing the default setup screen.
@@ -58,13 +60,18 @@ function MyMeeting() {
 
 ### File: CustomMeetingPreview.tsx
 
-```tsx live
-function CustomMeetingPreview() {
-  const { meeting } = useDyteMeeting();
+<CodeRunner 
+highlight={[{start: 13, end: 13}, {start: 19, end: 19}]}
+hide={[{start: 1, end: 3}]}
+file={`
+import { useDyteMeeting } from "@dytesdk/react-web-core";
+import { DyteButton } from "@dytesdk/react-ui-kit";
 
+export default function CustomMeetingPreview() {
+  const { meeting } = useDyteMeeting();
   return (
     <div
-      className="bg-secondary-900 flex flex-col items-center justify-center"
+      className="flex flex-col items-center justify-center bg-secondary-900"
       style={{ minHeight: '400px' }}
     >
       <div className="flex flex-col items-center">
@@ -82,4 +89,4 @@ function CustomMeetingPreview() {
     </div>
   );
 }
-```
+`} />
