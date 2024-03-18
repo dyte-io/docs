@@ -1,0 +1,397 @@
+---
+id: fetch-all-livestreams
+title: "Fetch all livestreams"
+description: "Returns details of livestreams associated with the given organization ID. It includes livestreams created by your organization and Dyte meetings that are livestreamed by your organization. If you only want details of livestreams created by your organization and not Dyte meetings, you can use the `exclude_meetings` query parameter."
+sidebar_label: "Fetch all livestreams"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: guides/apiv2/dyte-rest-apis
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Fetch all livestreams"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/livestreams"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns details of livestreams associated with the given organization ID. It includes livestreams created by your organization and Dyte meetings that are livestreamed by your organization. If you only want details of livestreams created by your organization and not Dyte meetings, you can use the `exclude_meetings` query parameter.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Query Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"schema":{"type":"boolean","default":false},"in":"query","name":"exclude_meetings","description":"Exclude the Dyte meetings that are livestreamed."}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"schema":{"type":"integer"},"in":"query","name":"per_page","description":"Number of results per page."}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"schema":{"type":"integer"},"in":"query","name":"page_no","description":"The page number from which you want your page search results to be displayed."}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"schema":{"type":"string","enum":["LIVE","IDLE","ERRORED","INVOKED"]},"in":"query","name":"status","description":"Specifies the status of the operation."}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"schema":{"type":"string","format":"date-time"},"in":"query","name":"start_time","description":"Specify the start time range in ISO format to access the live stream."}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"schema":{"type":"string","format":"date-time"},"in":"query","name":"end_time","description":"Specify the end time range in ISO format to access the live stream."}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"schema":{"type":"string","enum":["ASC","DSC"]},"in":"query","name":"sort_order","description":"Specifies the sorting order for the results."}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          OK
+          
+          
+        </div><details
+          style={{"textAlign":"left","marginBottom":"1rem"}}
+          className={"openapi-markdown__details"}
+          data-collaposed={true}
+          open={false}
+        >
+          <summary
+            style={{}}
+          >
+            <strong>
+              Response Headers
+            </strong>
+          </summary><ul
+            style={{"marginLeft":"1rem"}}
+          >
+            
+          </ul>
+        </details><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"success"}
+                        required={false}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                data
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <SchemaItem
+                              collapsible={false}
+                              name={"status"}
+                              required={false}
+                              schemaName={""}
+                              qualifierMessage={"**Possible values:** [`LIVE`, `IDLE`, `ERRORED`, `INVOKED`]"}
+                              schema={{"x-stoplight":{"id":"oe3trqljjekgt"},"enum":["LIVE","IDLE","ERRORED","INVOKED"]}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"id"}
+                              required={false}
+                              schemaName={"uuid"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","x-stoplight":{"id":"0ye8a9cpfilt4"},"description":"The ID of the livestream.","format":"uuid","example":"3fd739f4-3c41-456e-bfba-6ebd51e16d2d"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"name"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","x-stoplight":{"id":"k2l2a3mgv7dw3"},"description":"Name of the livestream.","example":"test"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"ingest_server"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","x-stoplight":{"id":"vvuyzsx4xwool"},"description":"The server URL to which the RTMP encoder sends the video and audio data.","example":"rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"stream_key"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","x-stoplight":{"id":"gzscy47k5fvz9"},"description":"Unique key for accessing each livestream.","example":"sk_ap-south-1_fiETVh5SNa3V_MAs0NlNCkJqTokqrMbrdWyA2naII25"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"playback_url"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","x-stoplight":{"id":"aqtss2w1ubei3"},"description":"The web address that viewers can use to watch the livestream.","example":"https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.mA2dNqrBulpi.m3u8"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"meeting_id"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","x-stoplight":{"id":"q5srp28fax71d"},"description":"ID of the meeting."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"created_at"}
+                              required={false}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","x-stoplight":{"id":"yx17eqgil0wnx"},"format":"date-time","description":"Timestamp the object was created at. The time is returned in ISO format.","example":"2023-07-15T11:48:34.753Z"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"updated_at"}
+                              required={false}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","x-stoplight":{"id":"jruccp4ohxszr"},"format":"date-time","description":"Timestamp the object was updated at. The time is returned in ISO format.","example":"2023-07-15T11:48:34.753Z"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"disabled"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","x-stoplight":{"id":"hd1567rcnmmll"},"description":"Specifies if the livestream was disabled."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={true}
+                              className={"schemaItem"}
+                            >
+                              <details
+                                style={{}}
+                                className={"openapi-markdown__details"}
+                              >
+                                <summary
+                                  style={{}}
+                                >
+                                  <span
+                                    className={"openapi-schema__container"}
+                                  >
+                                    <strong
+                                      className={"openapi-schema__property"}
+                                    >
+                                      paging
+                                    </strong><span
+                                      className={"openapi-schema__name"}
+                                    >
+                                       object
+                                    </span>
+                                  </span>
+                                </summary><div
+                                  style={{"marginLeft":"1rem"}}
+                                >
+                                  <SchemaItem
+                                    collapsible={false}
+                                    name={"total_count"}
+                                    required={false}
+                                    schemaName={"integer"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"integer","x-stoplight":{"id":"kmdvztss5e36c"},"example":1}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"start_offset"}
+                                    required={false}
+                                    schemaName={"integer"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"integer","x-stoplight":{"id":"pw88aeivpxy5c"},"example":1}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"end_offset"}
+                                    required={false}
+                                    schemaName={"integer"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"integer","x-stoplight":{"id":"wr112fr83t6uy"},"example":1}}
+                                  >
+                                    
+                                  </SchemaItem>
+                                </div>
+                              </details>
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"data\": {\n    \"id\": \"3fd739f4-3c41-456e-bfba-6ebd51e16d2d\",\n    \"name\": \"test\",\n    \"ingest_server\": \"rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/\",\n    \"stream_key\": \"sk_ap-south-1_fiETVh5SNa3V_MAs0NlNCkJqTokqrMbrdWyA2naII25\",\n    \"playback_url\": \"https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.mA2dNqrBulpi.m3u8\",\n    \"meeting_id\": \"string\",\n    \"created_at\": \"2023-07-15T11:48:34.753Z\",\n    \"updated_at\": \"2023-07-15T11:48:34.753Z\",\n    \"disabled\": \"string\",\n    \"paging\": {\n      \"total_count\": 1,\n      \"start_offset\": 1,\n      \"end_offset\": 1\n    }\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem><TabItem
+                  label={"example-0"}
+                  value={"example-0"}
+                >
+                  <Markdown>
+                     Get All Live streams Of An Org Staging Success
+                  </Markdown><ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"data\": [\n    {\n      \"id\": \"3fd739f4-3c41-456e-bfba-6ebd51e16d2c\",\n      \"name\": null,\n      \"ingest_server\": \"rtmps://1ab802dd26b0.global-contribute.live-video.net:344/app/\",\n      \"stream_key\": \"sk_ap-south-1_fiETVh5SNa3V_ABs0NlNCkJqTokqrMbrdWyA1bcII32\",\n      \"status\": \"IDLE\",\n      \"meeting_id\": null,\n      \"playback_url\": \"https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.811208621215.channel.mA2dNqrBulpi.m3u8\",\n      \"created_at\": \"2023-07-15T11:48:34.753Z\",\n      \"updated_at\": \"2023-07-15T11:48:34.753Z\",\n      \"disabled\": false\n    }\n  ],\n  \"paging\": {\n    \"total_count\": 1,\n    \"start_offset\": 1,\n    \"end_offset\": 1\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

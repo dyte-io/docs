@@ -1,0 +1,368 @@
+---
+id: get-v-2-livestreamsession-session-meeting-id-active-livestream
+title: "Fetch livestream session details using a session ID"
+description: "Returns livestream session details for the given session ID. Retreive the session ID using the `Fetch all sessions of an organization` API."
+sidebar_label: "Fetch livestream session details using a session ID"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: guides/apiv2/dyte-rest-apis
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Fetch livestream session details using a session ID"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/sessions/{session_id}/livestream-sessions"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns livestream session details for the given session ID. Retreive the session ID using the `Fetch all sessions of an organization` API.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Path Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"schema":{"type":"string"},"name":"session_id","in":"path","required":true}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Query Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"schema":{"type":"number"},"in":"query","name":"per_page","description":"Number of results per page."}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"schema":{"type":"number"},"in":"query","name":"page_no","description":"The page number from which you want your page search results to be displayed."}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          OK
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"success"}
+                        required={false}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                data
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <SchemaItem
+                              collapsible={false}
+                              name={"err_message"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={"**Possible values:** [`LIVE`, `IDLE`, `ERRORED`, `INVOKED`]"}
+                              schema={{"type":"string","enum":["LIVE","IDLE","ERRORED","INVOKED"],"x-stoplight":{"id":"ajlcjgry8wag1"}}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"invoked_time"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Name of the livestream.","x-stoplight":{"id":"8w0e379jakl1c"},"nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"livestream_id"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","x-stoplight":{"id":"umdhjls9fzu2u"},"description":"The ID of the livestream."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"created_at"}
+                              required={false}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Timestamp the object was created at. The time is returned in ISO format.","format":"date-time"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"updated_at"}
+                              required={false}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Timestamp the object was updated at. The time is returned in ISO format.","format":"date-time"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"id"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"The livestream session ID."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"stopped_time"}
+                              required={false}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Specifies if the livestream was disabled.","x-stoplight":{"id":"fz5e8qwwjdvbv"},"format":"date-time"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"ingest_seconds"}
+                              required={false}
+                              schemaName={"number"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"number","x-stoplight":{"id":"m436v28et0h4b"},"description":"The time duration for which the input was given or the meeting was streamed."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"viewer_seconds"}
+                              required={false}
+                              schemaName={"number"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"number","x-stoplight":{"id":"gt6682qreyibs"},"description":"The total view time for which the viewers watched the stream."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={true}
+                              className={"schemaItem"}
+                            >
+                              <details
+                                style={{}}
+                                className={"openapi-markdown__details"}
+                              >
+                                <summary
+                                  style={{}}
+                                >
+                                  <span
+                                    className={"openapi-schema__container"}
+                                  >
+                                    <strong
+                                      className={"openapi-schema__property"}
+                                    >
+                                      paging
+                                    </strong><span
+                                      className={"openapi-schema__name"}
+                                    >
+                                       object
+                                    </span>
+                                  </span>
+                                </summary><div
+                                  style={{"marginLeft":"1rem"}}
+                                >
+                                  <SchemaItem
+                                    collapsible={false}
+                                    name={"total_count"}
+                                    required={false}
+                                    schemaName={"number"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"number","x-stoplight":{"id":"fn1g7l6m26trp"}}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"start_offset"}
+                                    required={false}
+                                    schemaName={"number"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"number","x-stoplight":{"id":"o90qti19q4w05"}}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"end_offset"}
+                                    required={false}
+                                    schemaName={"number"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"number","x-stoplight":{"id":"zf67fjkaz5zqg"}}}
+                                  >
+                                    
+                                  </SchemaItem>
+                                </div>
+                              </details>
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"data\": {\n    \"err_message\": \"LIVE\",\n    \"invoked_time\": \"string\",\n    \"livestream_id\": \"string\",\n    \"created_at\": \"2024-03-18T01:15:30.854Z\",\n    \"updated_at\": \"2024-03-18T01:15:30.854Z\",\n    \"id\": \"string\",\n    \"stopped_time\": \"2024-03-18T01:15:30.855Z\",\n    \"ingest_seconds\": 0,\n    \"viewer_seconds\": 0,\n    \"paging\": {\n      \"total_count\": 0,\n      \"start_offset\": 0,\n      \"end_offset\": 0\n    }\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem><TabItem
+                  label={"example-1"}
+                  value={"example-1"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"data\": {\n    \"data\": [\n      {\n        \"id\": \"cf55a850-c3fd-46b5-b5d2-25b3b9aa1686\",\n        \"livestream_id\": \"b60ef3da-fbbb-441b-9168-8235b0035123\",\n        \"err_message\": null,\n        \"invoked_time\": null,\n        \"started_time\": \"2023-07-15T07:08:39.000Z\",\n        \"stopped_time\": \"2023-07-15T07:10:45.000Z\",\n        \"created_at\": \"2023-07-15T07:08:40.742Z\",\n        \"updated_at\": \"2023-07-15T07:11:47.274Z\",\n        \"ingest_seconds\": 118,\n        \"viewer_seconds\": 116.11599994199997\n      }\n    ],\n    \"paging\": {\n      \"total_count\": 1,\n      \"start_offset\": 1,\n      \"end_offset\": 1\n    }\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

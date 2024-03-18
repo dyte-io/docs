@@ -1,0 +1,396 @@
+---
+id: get-session-participants
+title: "Fetch participants list of a session"
+description: "Returns a list of participants for the given session ID."
+sidebar_label: "Fetch participants list of a session"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: guides/apiv2/dyte-rest-apis
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Fetch participants list of a session"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/sessions/{session_id}/participants"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns a list of participants for the given session ID.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Path Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"schema":{"type":"string"},"name":"session_id","in":"path","required":true,"description":"ID of the session"}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Query Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"name":"search","in":"query","required":false,"schema":{"type":"string"},"description":"The search query string. You can search using the meeting ID or title."}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"page_no","in":"query","required":false,"schema":{"type":"number","minimum":0},"description":"The page number from which you want your page search results to be displayed.","allowEmptyValue":true}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"per_page","in":"query","required":false,"schema":{"type":"number","minimum":0},"description":"Number of results per page","allowEmptyValue":true}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"sort_order","in":"query","required":false,"schema":{"type":"string","enum":["ASC","DESC"]}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"sort_by","in":"query","schema":{"type":"string","enum":["joinedAt","duration"]}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"include_peer_events","in":"query","description":"if true, response includes all the peer events of participants","schema":{"type":"boolean"}}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          Get participants list of a particular session
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"success"}
+                        required={false}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                data
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <SchemaItem
+                              collapsible={true}
+                              className={"schemaItem"}
+                            >
+                              <details
+                                style={{}}
+                                className={"openapi-markdown__details"}
+                              >
+                                <summary
+                                  style={{}}
+                                >
+                                  <span
+                                    className={"openapi-schema__container"}
+                                  >
+                                    <strong
+                                      className={"openapi-schema__property"}
+                                    >
+                                      participants
+                                    </strong><span
+                                      className={"openapi-schema__name"}
+                                    >
+                                       object[]
+                                    </span>
+                                  </span>
+                                </summary><div
+                                  style={{"marginLeft":"1rem"}}
+                                >
+                                  <li>
+                                    <div
+                                      style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}
+                                    >
+                                      Array [
+                                    </div>
+                                  </li><SchemaItem
+                                    collapsible={false}
+                                    name={"id"}
+                                    required={false}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","description":"Participant ID. This maps to the corresponding peerId."}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"user_id"}
+                                    required={false}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","description":"User id for this participant."}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"custom_participant_id"}
+                                    required={false}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","description":"ID passed by client to create this participant."}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"display_name"}
+                                    required={false}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","description":"Display name of participant when joining the session."}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"preset_name"}
+                                    required={false}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","description":"Name of the preset associated with the participant."}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"joined_at"}
+                                    required={false}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","description":"timestamp at which participant joined the session."}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"left_at"}
+                                    required={false}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","description":"timestamp at which participant left the session."}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"duration"}
+                                    required={false}
+                                    schemaName={"number"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"number","description":"number of minutes for which the participant was in the session."}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"created_at"}
+                                    required={false}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","description":"timestamp when this participant was created."}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"updated_at"}
+                                    required={false}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","description":"timestamp when this participant's data was last updated."}}
+                                  >
+                                    
+                                  </SchemaItem><li>
+                                    <div
+                                      style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}
+                                    >
+                                      ]
+                                    </div>
+                                  </li>
+                                </div>
+                              </details>
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"data\": {\n    \"participants\": [\n      {\n        \"id\": \"string\",\n        \"user_id\": \"string\",\n        \"custom_participant_id\": \"string\",\n        \"display_name\": \"string\",\n        \"preset_name\": \"string\",\n        \"joined_at\": \"string\",\n        \"left_at\": \"string\",\n        \"duration\": 0,\n        \"created_at\": \"string\",\n        \"updated_at\": \"string\"\n      }\n    ]\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem><TabItem
+                  label={"ParticipantListSuccess"}
+                  value={"ParticipantListSuccess"}
+                >
+                  <Markdown>
+                     success response for session's participants list
+                  </Markdown><ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"data\": {\n    \"participants\": [\n      {\n        \"id\": \"005f4e0c-4d08-4d4e-a391-a76be75cd296\",\n        \"user_id\": \"0a08343d-a9dc-45f0-9feb-6a64afcc4f81\",\n        \"custom_participant_id\": \"83qi0i\",\n        \"display_name\": \"Mark\",\n        \"preset_name\": \"webinar_participant\",\n        \"joined_at\": \"2023-02-01T10:51:08.030Z\",\n        \"left_at\": \"2023-02-01T10:56:56.612Z\",\n        \"duration\": 5.8097,\n        \"created_at\": \"2023-02-01T10:51:08.039Z\",\n        \"updated_at\": \"2023-02-01T10:56:56.618Z\"\n      },\n      {\n        \"id\": \"51fdf95f-d893-471a-922b-7db7adb14453\",\n        \"user_id\": \"85e7f0fd-7c16-45e9-9d68-f17ef007c4eb\",\n        \"custom_participant_id\": \"3uggr\",\n        \"display_name\": \"Henry\",\n        \"preset_name\": \"webinar_participant\",\n        \"joined_at\": \"2023-02-01T10:50:36.846Z\\\"\",\n        \"left_at\": \"2023-02-01T10:57:32.424Z\",\n        \"duration\": 6.9263,\n        \"created_at\": \"2023-02-01T10:50:36.853Z\",\n        \"updated_at\": \"2023-02-01T10:57:32.431Z\"\n      }\n    ],\n    \"paging\": {\n      \"total_count\": 123,\n      \"start_offset\": 1,\n      \"end_offset\": 2\n    }\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem><TabItem
+                  label={"ParticipantListWithPeerStatsSuccess"}
+                  value={"ParticipantListWithPeerStatsSuccess"}
+                >
+                  <Markdown>
+                     success response for sessions participants list with peer events
+                  </Markdown><ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"data\": {\n    \"participants\": [\n      {\n        \"id\": \"005f4e0c-4d08-4d4e-a391-a76be75cd296\",\n        \"user_id\": \"0a08343d-a9dc-45f0-9feb-6a64afcc4f81\",\n        \"custom_participant_id\": \"83qi0i\",\n        \"display_name\": \"Mark\",\n        \"preset_name\": \"webinar_participant\",\n        \"joined_at\": \"2023-02-01T10:51:08.030Z\",\n        \"left_at\": \"2023-02-01T10:56:56.612Z\",\n        \"duration\": 5.8097,\n        \"created_at\": \"2023-02-01T10:51:08.039Z\",\n        \"updated_at\": \"2023-02-01T10:56:56.618Z\",\n        \"peer_events\": [\n          {\n            \"id\": \"94af3bac-f30b-40b9-ab45-4b9e6eff191a\",\n            \"peer_id\": \"79d87ca5-7e47-452a-b3c1-b6842ad84bf5\",\n            \"event_name\": \"PEER_JOINING\",\n            \"created_at\": \"2023-02-01T10:51:50.786Z\",\n            \"updated_at\": \"2023-02-01T10:51:50.792Z\"\n          },\n          {\n            \"id\": \"94af3bac-f30b-40b9-ab45-4b9e6eff191b\",\n            \"peer_id\": \"79d87ca5-7e47-452a-b3c1-b6842ad84bf5\",\n            \"event_name\": \"PEER_LEAVING\",\n            \"created_at\": \"2023-02-01T10:56:50.786Z\",\n            \"updated_at\": \"2023-02-01T10:56:50.792Z\"\n          }\n        ]\n      },\n      {\n        \"id\": \"51fdf95f-d893-471a-922b-7db7adb14453\",\n        \"user_id\": \"85e7f0fd-7c16-45e9-9d68-f17ef007c4eb\",\n        \"custom_participant_id\": \"3uggr\",\n        \"display_name\": \"Henry\",\n        \"preset_name\": \"webinar_participant\",\n        \"joined_at\": \"2023-02-01T10:50:36.846Z\\\"\",\n        \"left_at\": \"2023-02-01T10:57:32.424Z\",\n        \"duration\": 6.9263,\n        \"created_at\": \"2023-02-01T10:50:36.853Z\",\n        \"updated_at\": \"2023-02-01T10:57:32.431Z\",\n        \"peer_events\": [\n          {\n            \"id\": \"94af3bac-f30b-40b9-ab45-4b9e6eff191a\",\n            \"peer_id\": \"51fdf95f-d893-471a-922b-7db7adb14453\",\n            \"event_name\": \"PEER_JOINING\",\n            \"created_at\": \"2023-02-01T10:51:50.786Z\",\n            \"updated_at\": \"2023-02-01T10:51:50.792Z\"\n          },\n          {\n            \"id\": \"94af3bac-f30b-40b9-ab45-4b9e6eff191b\",\n            \"peer_id\": \"51fdf95f-d893-471a-922b-7db7adb14453\",\n            \"event_name\": \"PEER_LEAVING\",\n            \"created_at\": \"2023-02-01T10:56:50.786Z\",\n            \"updated_at\": \"2023-02-01T10:56:50.792Z\"\n          }\n        ]\n      }\n    ],\n    \"paging\": {\n      \"total_count\": 123,\n      \"start_offset\": 1,\n      \"end_offset\": 2\n    }\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

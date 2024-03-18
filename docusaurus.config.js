@@ -219,9 +219,27 @@ const { webpackPlugin } = require('./plugins/webpack-plugin.cjs');
 const tailwindPlugin = require('./plugins/tailwind-plugin.cjs');
 const docs_plugins = docs.map((doc) => create_doc_plugin(doc));
 
+const api_gen_plugin = [
+  'docusaurus-plugin-openapi-docs',
+  {
+    id: "api", // plugin id
+    docsPluginId: "@docusaurus/preset-classic", // id of plugin-content-docs or preset for rendering docs
+    config: {
+      v2: { // the <id> referenced when running CLI commands
+        specPath: "static/api/v2.yaml", // path to OpenAPI spec, URLs supported
+        outputDir: "docs/guides/apiv2/", // output directory for generated files
+        sidebarOptions: { // optional, instructs plugin to generate sidebar.js
+          groupPathsBy: "tagGroup", // group sidebar items by operation "tag"
+        },
+      },
+    }
+  },
+];
+
 const plugins = [
   tailwindPlugin,
   ...docs_plugins,
+  api_gen_plugin,
   webpackPlugin,
   [
     '@docusaurus/plugin-client-redirects',
@@ -445,7 +463,7 @@ const config = {
   plugins,
 
   trailingSlash: false,
-  themes: ['@docusaurus/theme-live-codeblock'],
+  themes: ['@docusaurus/theme-live-codeblock', 'docusaurus-theme-openapi-docs'],
   clientModules: [require.resolve('./src/client/define-ui-kit.js')],
   scripts: [{ src: 'https://cdn.statuspage.io/se-v2.js', async: true }],
 
@@ -457,6 +475,8 @@ const config = {
         docs: {
           path: 'docs/guides',
           id: 'guides',
+          docRootComponent: "@theme/DocRoot",
+          docItemComponent: "@theme/ApiItem",
           routeBasePath: '/guides',
           ...defaultSettings,
         },

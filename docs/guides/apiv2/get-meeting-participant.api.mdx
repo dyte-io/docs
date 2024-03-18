@@ -1,0 +1,404 @@
+---
+id: get-meeting-participant
+title: "Fetch a participant's detail"
+description: "Returns a participant details for the given meeting and participant ID."
+sidebar_label: "Fetch a participant's detail"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1V11v27gS/SuE+3AbwLLTbNvd65eL7CbtBmibIHYRXNRGQ0u0xUYSVZKy43X83/cMKVmS7bTBtgsUsSoOz3zPHK07ls9NZ/Cp814IKzM8T7odLUyuMiNwsO6cHB/TTyRMqGVupco6g86wCENhDKskO91OqDIrMkuyPM8TGXKS7X8xdGHdMWEsUu5Ok+RyBpXrjpU2EUB7KzKhZViCXteY94GxCljz2OHKCMKv5ycy+vW1VL8si2Vn0+3YVU4gavpFhBaXcq1yoa305hsPSo+l4FSpRPAMkpGY8SIBtNWF6D7iorHcFoapGbOxYATtHCPNEbe8Aby1oA10BikEyhY6ExGbrnZxNhTwr4XUIqJEVAZPNt195LZvW/1lHK84jkKZ88w+Ejz1NYlfvDRffstP5KtDwWubfi1yZBhZNYyzvEbv7ZlC6FtzjdUopT20i7MqijtQM6VTDiM7RQEcWJXxVHwf7wOkHkHMiiThUwoKpRaIuQyRgIOgtXYt93R8vH7HrCLvPcBT9YUFgp9+boh9fkqITlmRya9FC58hbnPqEG7r+gkTKUg1uUYpsp+fFrMrJ8xchwINru15Q9ZrQco+c/vNgKH+RGBlKvbU3MQiA7JE37jKYktuWInaYyOopGtMmroxZMYuhpfMgzsrijz6F6woUZ9oxU5zIoeP5badiFYMW65MdjFdF082eE8nrw6N2zdcJlR8/2Tc/sh4/P48JEeEcT2wnaYznhjqAaG10odMaHofqojcSQHN54K2T9tAd15jZEU6FXrPuD9Ho6vKMrpRmedMcMVUKfhuh5zTFVaKM382hSBbxhwVhJizpVbZnIrjsdld+T7ZBcfJztJz6rYrb+Mxt9vhgob2HEWV+vXcLLoD05qKeGdUwwOL6jFU0i4kc7lAV5R4jGfRzqxxs51rFLEV2rg9vVdMB2Zna3J3KnNdX0gyLuc2/sZGKC/02P9VwUKesZmwYdw8ojFYGHpw8891F1ytTk+vLnqt0vKD+HHja2P3GrlpcBvwaSvtgBM787x2hEfRTsKcJ5sJlayNVVkALikwaNDplx6b/rqO8qbfQMBJ26UNbhuhF1U+C50AKLY2N4N+n+eyF62s6EnVX5zs5QgvFlxL2m7UkBuyzIgQy9KuHNppATO1/MvTmcGnSVNiSNH3nbwjt80H2UEGOkkaQNzIkNLzu+Ba6G9JeoH9HacWEjPAH2PH3aHgqfzbcV7GisVYCOi1VBqDu75JtAiVjlwxflCoMUt977YILZIsWSF7YlYk24667W+vmFumVWGFcTPnUs9/1AeOoJUeqCkamXbUTKuUnSFj7I93F25FyWymSAdl2N93iaxGjZO9Ph+OqLbMnq5nz9g1NdM7mUqqp3E2ztyLhF5g4ucilDPPO1J+L9MiZX4OU/GXG8Cw52/PR112dTmkvx/xB+E5O393Pjo/QuQRM+16IuV3gtYsLyeRW8HIgVTYyW5jr9A94j4UgjpDbw3pOgPgQaWSzdxgoxGmy9FHEm4XvDz5b3Mf+G1/6ASmRLQ8hakSLbytKcehVQoP2ar2smG5N9oNAPLh+bhTG0th7Bz1KJQ3wtGtVcMVGO01XVzRANC0VxOxEIm78KyVEGJ8EDv1YnROrtRYwMFBrJKI6tORO8vw0XaMaCeJK2+WygxF6R5rjT12OsOIb8h24dpeeAgzQ/ApzNxTACLEiAkcV4V2NUVikcgk8SoykRpnwOoiovOKc5auRypFOXu3u2hGiUmZgniUeYA9HhntgaCHSRF5ekZ3ty67eD2wD9tqvK7y9IBHA/NgMJ5HlKAbpFot8b+h9+8P8u+6Yn5LKr3RNpbnrgBxF/hBUP8jdS5iD+zKh9M/lCF+qIvsocrlkKd5IqrMzVSSqCWNf+PeM+hbmkZteyqwnS7NZADWeXx7e0tzZJyRsv6L3guncIRifU+JqYIwztAXehVwyvOAvRxn94HIFmoVUPm4xIhowGixjTMiqAM2wo5jx6/ZUORw8+SEHf82+OVk8OoVe/t+NM78Fhkwh+LsqJy8iVfsTLnNN6QabFTw/9oDhVx3lNsvVqomMOcFESvyNxN2qfSdn3JTDNaULiioTRSnGuDEcBAmcE3KOCaRwMw12xalXpcUsAJpnKLQCupjjPrwzjGe0MoFNlPXYaLVqw3upqQrOXQcZ1Nl3QjDUzGvCs/PEjjoyVOzDWOR5KbtDKygqU8KKLWlPpfBgxDgzXQdvROiguGSiwFtX/KPoBzv5tbCF3Qr6GaMcAzGWcA+/a6p/t4oVDw7dRKT59WKXy6XPdQTNArbQ0SxsMre6IcrdM48UaC7etWfEkgwI5DAqzly4Gdnl8NSb43Kl6bHU/6XyhymiaVIon4UKVPeDUpf6MPE49yIaYDVA8qRzdvmzYW4M1Dsfnv47RPfDqQJlo07AaZQgH4JrAoQykDa/hH2GT5/BNFnrMCS07m1mCtjMb0br984QtbiAf8xJUXe3Yvr+hvrJ1LrkgZYcW/7eYIJ6L50iZCtS4b3qWLPtKkHLSbdJHl0uMNcwbtiuEwQ6zVolPiok82GXqMzNLG1SU3mHHeLpKHnqPxo+0YEnl+X/XrEfj5rPxiU8iUGmqOgSSE8G70Tq/YXBrH8H3TkJ7P3f+TRTjI3E9yIBUaedqnyQqfYwLltXN/7+G99OYCSoRP+Bq08oOY=
+sidebar_class_name: "get api-method"
+info_path: guides/apiv2/dyte-rest-apis
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Fetch a participant's detail"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/meetings/{meeting_id}/participants/{participant_id}"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns a participant details for the given meeting and participant ID.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Path Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"schema":{"type":"string","format":"uuid"},"name":"meeting_id","in":"path","description":"ID of the meeting. You can fetch the meeting ID using the create a meeting API.","required":true}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"schema":{"type":"string"},"name":"participant_id","in":"path","required":true,"description":"ID of the participant. You can fetch the participant ID using the add a participant API."}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          Success response
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"success"}
+                        required={true}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean","default":true,"description":"Success status of the operation"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                data
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span><span
+                                className={"openapi-schema__divider"}
+                              >
+                                
+                              </span><span
+                                className={"openapi-schema__required"}
+                              >
+                                required
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <div
+                              style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                            >
+                              
+                              
+                              Data returned by the operation
+                              
+                              
+                            </div><SchemaItem
+                              collapsible={false}
+                              name={"id"}
+                              required={true}
+                              schemaName={"uuid"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"ID of the participant.","format":"uuid"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"name"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Name of the participant.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"picture"}
+                              required={false}
+                              schemaName={"uri"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"uri","description":"URL to a picture of the participant.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"custom_participant_id"}
+                              required={true}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"A unique participant ID generated by the client."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"preset_name"}
+                              required={true}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Preset applied to the participant."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"created_at"}
+                              required={true}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time","description":"When this object was created. The time is returned in ISO format."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"updated_at"}
+                              required={true}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time","description":"When this object was updated. The time is returned in ISO format."}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"data\": {\n    \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"name\": \"string\",\n    \"picture\": \"string\",\n    \"custom_participant_id\": \"string\",\n    \"preset_name\": \"string\",\n    \"created_at\": \"2024-03-18T01:15:30.906Z\",\n    \"updated_at\": \"2024-03-18T01:15:30.906Z\"\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"500"}
+        value={"500"}
+      >
+        <div>
+          
+          
+          Failure response
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"success"}
+                        required={true}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean","description":"Success status of the request.","default":false}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                error
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span><span
+                                className={"openapi-schema__divider"}
+                              >
+                                
+                              </span><span
+                                className={"openapi-schema__required"}
+                              >
+                                required
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <SchemaItem
+                              collapsible={false}
+                              name={"code"}
+                              required={true}
+                              schemaName={"number"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"number","description":"HTTP status code of the error."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"message"}
+                              required={true}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Error message describing what went wrong."}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": false,\n  \"error\": {\n    \"code\": 0,\n    \"message\": \"string\"\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

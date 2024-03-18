@@ -1,0 +1,1018 @@
+---
+id: update-meeting
+title: "Update a meeting"
+description: "Updates a meeting in an organization for the given meeting ID."
+sidebar_label: "Update a meeting"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "patch api-method"
+info_path: guides/apiv2/dyte-rest-apis
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Update a meeting"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"patch"}
+  path={"/meetings/{meeting_id}"}
+>
+  
+</MethodEndpoint>
+
+
+
+Updates a meeting in an organization for the given meeting ID.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Path Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"schema":{"type":"string","format":"uuid"},"name":"meeting_id","in":"path","description":"ID of the meeting. Fetch the meeting ID using the create a meeting API.","required":true}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><MimeTabs
+  className={"openapi-tabs__mime"}
+>
+  <TabItem
+    label={"application/json"}
+    value={"application/json-schema"}
+  >
+    <details
+      style={{}}
+      className={"openapi-markdown__details mime"}
+      data-collapsed={false}
+      open={true}
+    >
+      <summary
+        style={{}}
+        className={"openapi-markdown__details-summary-mime"}
+      >
+        <h3
+          className={"openapi-markdown__details-summary-header-body"}
+        >
+          Body
+        </h3>
+      </summary><div
+        style={{"textAlign":"left","marginLeft":"1rem"}}
+      >
+        <div
+          style={{"marginTop":"1rem","marginBottom":"1rem"}}
+        >
+          
+          
+          Create meeting body
+          
+          
+        </div>
+      </div><ul
+        style={{"marginLeft":"1rem"}}
+      >
+        <SchemaItem
+          collapsible={false}
+          name={"title"}
+          required={false}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"Title of the meeting"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"preferred_region"}
+          required={false}
+          schemaName={"string"}
+          qualifierMessage={"**Possible values:** [`ap-south-1`, `ap-southeast-1`, `us-east-1`, `eu-central-1`]"}
+          schema={{"type":"string","enum":["ap-south-1","ap-southeast-1","us-east-1","eu-central-1"],"description":"The region in which this meeting should be created."}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"record_on_start"}
+          required={false}
+          schemaName={"boolean"}
+          qualifierMessage={undefined}
+          schema={{"type":"boolean","default":false,"description":"Specifies if the meeting should start getting recorded as soon as someone joins the meeting."}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"live_stream_on_start"}
+          required={false}
+          schemaName={"boolean"}
+          qualifierMessage={undefined}
+          schema={{"type":"boolean","default":false,"description":"Specifies if the meeting should start getting livestreamed on start."}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"status"}
+          required={false}
+          schemaName={"string"}
+          qualifierMessage={"**Possible values:** [`ACTIVE`, `INACTIVE`]"}
+          schema={{"type":"string","enum":["ACTIVE","INACTIVE"],"example":"INACTIVE","description":"Whether the meeting is `ACTIVE` or `INACTIVE`. Users will not be able to join an `INACTIVE` meeting."}}
+        >
+          
+        </SchemaItem>
+      </ul>
+    </details>
+  </TabItem>
+</MimeTabs><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          Success Response
+          
+          
+        </div><details
+          style={{"textAlign":"left","marginBottom":"1rem"}}
+          className={"openapi-markdown__details"}
+          data-collaposed={true}
+          open={false}
+        >
+          <summary
+            style={{}}
+          >
+            <strong>
+              Response Headers
+            </strong>
+          </summary><ul
+            style={{"marginLeft":"1rem"}}
+          >
+            
+          </ul>
+        </details><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"success"}
+                        required={true}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean","default":true,"description":"Success status of the operation"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                data
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <div
+                              style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                            >
+                              
+                              
+                              Data returned by the operation
+                              
+                              
+                            </div><SchemaItem
+                              collapsible={false}
+                              name={"id"}
+                              required={true}
+                              schemaName={"uuid"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"uuid","description":"ID of the meeting.","readOnly":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"title"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Title of the meeting."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"preferred_region"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={"**Possible values:** [`ap-south-1`, `ap-southeast-1`, `us-east-1`, `eu-central-1`]"}
+                              schema={{"type":"string","enum":["ap-south-1","ap-southeast-1","us-east-1","eu-central-1"],"description":"The region in which this meeting should be created.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"created_at"}
+                              required={true}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time","description":"Timestamp the object was created at. The time is returned in ISO format.","readOnly":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"record_on_start"}
+                              required={false}
+                              schemaName={"boolean"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"boolean","description":"Specifies if the meeting should start getting recorded as soon as someone joins the meeting."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"updated_at"}
+                              required={true}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time","description":"Timestamp the object was updated at. The time is returned in ISO format.","readOnly":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"live_stream_on_start"}
+                              required={false}
+                              schemaName={"boolean"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"boolean","description":"Specifies if the meeting should start getting livestreamed on start."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"status"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={"**Possible values:** [`ACTIVE`, `INACTIVE`]"}
+                              schema={{"type":"string","enum":["ACTIVE","INACTIVE"],"description":"Whether the meeting is `ACTIVE` or `INACTIVE`. Users will not be able to join an `INACTIVE` meeting."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={true}
+                              className={"schemaItem"}
+                            >
+                              <details
+                                style={{}}
+                                className={"openapi-markdown__details"}
+                              >
+                                <summary
+                                  style={{}}
+                                >
+                                  <span
+                                    className={"openapi-schema__container"}
+                                  >
+                                    <strong
+                                      className={"openapi-schema__property"}
+                                    >
+                                      recording_config
+                                    </strong><span
+                                      className={"openapi-schema__name"}
+                                    >
+                                       object
+                                    </span>
+                                  </span>
+                                </summary><div
+                                  style={{"marginLeft":"1rem"}}
+                                >
+                                  <div
+                                    style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                                  >
+                                    
+                                    
+                                    Recording Configurations to be used for this meeting. This level of configs takes higher preference over organization level configs on the Dyte developer portal.
+                                    
+                                    
+                                    
+                                  </div><SchemaItem
+                                    collapsible={false}
+                                    name={"max_seconds"}
+                                    required={false}
+                                    schemaName={"number"}
+                                    qualifierMessage={"**Possible values:** `>= 60` and `<= 86400`"}
+                                    schema={{"type":"number","minimum":60,"maximum":86400,"description":"Specifies the maximum duration for recording in seconds, ranging from a minimum of 60 seconds to a maximum of 24 hours."}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"file_name_prefix"}
+                                    required={false}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","description":"Adds a prefix to the beginning of the file name of the recording."}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={true}
+                                    className={"schemaItem"}
+                                  >
+                                    <details
+                                      style={{}}
+                                      className={"openapi-markdown__details"}
+                                    >
+                                      <summary
+                                        style={{}}
+                                      >
+                                        <span
+                                          className={"openapi-schema__container"}
+                                        >
+                                          <strong
+                                            className={"openapi-schema__property"}
+                                          >
+                                            video_config
+                                          </strong><span
+                                            className={"openapi-schema__name"}
+                                          >
+                                             object
+                                          </span>
+                                        </span>
+                                      </summary><div
+                                        style={{"marginLeft":"1rem"}}
+                                      >
+                                        <SchemaItem
+                                          collapsible={false}
+                                          name={"codec"}
+                                          required={false}
+                                          schemaName={"string"}
+                                          qualifierMessage={"**Possible values:** [`H264`, `VP8`]"}
+                                          schema={{"type":"string","enum":["H264","VP8"],"default":"H264","description":"Codec using which the recording will be encoded."}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"width"}
+                                          required={false}
+                                          schemaName={"integer"}
+                                          qualifierMessage={"**Possible values:** `>= 1` and `<= 1920`"}
+                                          schema={{"type":"integer","description":"Width of the recording video in pixels","minimum":1,"maximum":1920,"example":1280,"default":1280}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"height"}
+                                          required={false}
+                                          schemaName={"integer"}
+                                          qualifierMessage={"**Possible values:** `>= 1` and `<= 1920`"}
+                                          schema={{"type":"integer","description":"Height of the recording video in pixels","minimum":1,"maximum":1920,"example":720,"default":720}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={true}
+                                          className={"schemaItem"}
+                                        >
+                                          <details
+                                            style={{}}
+                                            className={"openapi-markdown__details"}
+                                          >
+                                            <summary
+                                              style={{}}
+                                            >
+                                              <span
+                                                className={"openapi-schema__container"}
+                                              >
+                                                <strong
+                                                  className={"openapi-schema__property"}
+                                                >
+                                                  watermark
+                                                </strong><span
+                                                  className={"openapi-schema__name"}
+                                                >
+                                                   object
+                                                </span>
+                                              </span>
+                                            </summary><div
+                                              style={{"marginLeft":"1rem"}}
+                                            >
+                                              <div
+                                                style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                                              >
+                                                
+                                                
+                                                Watermark to be added to the recording
+                                                
+                                                
+                                              </div><SchemaItem
+                                                collapsible={false}
+                                                name={"url"}
+                                                required={false}
+                                                schemaName={"uri"}
+                                                qualifierMessage={undefined}
+                                                schema={{"type":"string","format":"uri","description":"URL of the watermark image"}}
+                                              >
+                                                
+                                              </SchemaItem><SchemaItem
+                                                collapsible={true}
+                                                className={"schemaItem"}
+                                              >
+                                                <details
+                                                  style={{}}
+                                                  className={"openapi-markdown__details"}
+                                                >
+                                                  <summary
+                                                    style={{}}
+                                                  >
+                                                    <span
+                                                      className={"openapi-schema__container"}
+                                                    >
+                                                      <strong
+                                                        className={"openapi-schema__property"}
+                                                      >
+                                                        size
+                                                      </strong><span
+                                                        className={"openapi-schema__name"}
+                                                      >
+                                                         object
+                                                      </span>
+                                                    </span>
+                                                  </summary><div
+                                                    style={{"marginLeft":"1rem"}}
+                                                  >
+                                                    <div
+                                                      style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                                                    >
+                                                      
+                                                      
+                                                      Size of the watermark
+                                                      
+                                                      
+                                                    </div><SchemaItem
+                                                      collapsible={false}
+                                                      name={"width"}
+                                                      required={false}
+                                                      schemaName={"integer"}
+                                                      qualifierMessage={"**Possible values:** `>= 1`"}
+                                                      schema={{"type":"integer","description":"Width of the watermark in px","minimum":1}}
+                                                    >
+                                                      
+                                                    </SchemaItem><SchemaItem
+                                                      collapsible={false}
+                                                      name={"height"}
+                                                      required={false}
+                                                      schemaName={"integer"}
+                                                      qualifierMessage={"**Possible values:** `>= 1`"}
+                                                      schema={{"type":"integer","description":"Height of the watermark in px","minimum":1}}
+                                                    >
+                                                      
+                                                    </SchemaItem>
+                                                  </div>
+                                                </details>
+                                              </SchemaItem><SchemaItem
+                                                collapsible={false}
+                                                name={"position"}
+                                                required={false}
+                                                schemaName={"string"}
+                                                qualifierMessage={"**Possible values:** [`left top`, `right top`, `left bottom`, `right bottom`]"}
+                                                schema={{"type":"string","enum":["left top","right top","left bottom","right bottom"],"description":"Position of the watermark","default":"left top"}}
+                                              >
+                                                
+                                              </SchemaItem>
+                                            </div>
+                                          </details>
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"export_file"}
+                                          required={false}
+                                          schemaName={"boolean"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"boolean","default":true,"description":"Controls whether to export video file seperately"}}
+                                        >
+                                          
+                                        </SchemaItem>
+                                      </div>
+                                    </details>
+                                  </SchemaItem><SchemaItem
+                                    collapsible={true}
+                                    className={"schemaItem"}
+                                  >
+                                    <details
+                                      style={{}}
+                                      className={"openapi-markdown__details"}
+                                    >
+                                      <summary
+                                        style={{}}
+                                      >
+                                        <span
+                                          className={"openapi-schema__container"}
+                                        >
+                                          <strong
+                                            className={"openapi-schema__property"}
+                                          >
+                                            audio_config
+                                          </strong><span
+                                            className={"openapi-schema__name"}
+                                          >
+                                             object
+                                          </span>
+                                        </span>
+                                      </summary><div
+                                        style={{"marginLeft":"1rem"}}
+                                      >
+                                        <div
+                                          style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                                        >
+                                          
+                                          
+                                          Object containing configuration regarding the audio that is being recorded.
+                                          
+                                          
+                                        </div><SchemaItem
+                                          collapsible={false}
+                                          name={"codec"}
+                                          required={false}
+                                          schemaName={"string"}
+                                          qualifierMessage={"**Possible values:** [`MP3`, `AAC`]"}
+                                          schema={{"type":"string","description":"Codec using which the recording will be encoded. If VP8/VP9 is selected for videoConfig, changing audioConfig is not allowed. In this case, the codec in the audioConfig is automatically set to vorbis.","enum":["MP3","AAC"],"default":"AAC"}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"channel"}
+                                          required={false}
+                                          schemaName={"string"}
+                                          qualifierMessage={"**Possible values:** [`mono`, `stereo`]"}
+                                          schema={{"type":"string","description":"Audio signal pathway within an audio file that carries a specific sound source.","enum":["mono","stereo"],"default":"stereo"}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"export_file"}
+                                          required={false}
+                                          schemaName={"boolean"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"boolean","default":true,"description":"Controls whether to export video file seperately"}}
+                                        >
+                                          
+                                        </SchemaItem>
+                                      </div>
+                                    </details>
+                                  </SchemaItem><SchemaItem
+                                    collapsible={true}
+                                    className={"schemaItem"}
+                                  >
+                                    <details
+                                      style={{}}
+                                      className={"openapi-markdown__details"}
+                                    >
+                                      <summary
+                                        style={{}}
+                                      >
+                                        <span
+                                          className={"openapi-schema__container"}
+                                        >
+                                          <strong
+                                            className={"openapi-schema__property"}
+                                          >
+                                            storage_config
+                                          </strong><span
+                                            className={"openapi-schema__name"}
+                                          >
+                                             object
+                                          </span><span
+                                            className={"openapi-schema__divider"}
+                                          >
+                                            
+                                          </span><span
+                                            className={"openapi-schema__nullable"}
+                                          >
+                                            nullable
+                                          </span>
+                                        </span>
+                                      </summary><div
+                                        style={{"marginLeft":"1rem"}}
+                                      >
+                                        <SchemaItem
+                                          collapsible={false}
+                                          name={"type"}
+                                          required={true}
+                                          schemaName={"string"}
+                                          qualifierMessage={"**Possible values:** [`aws`, `azure`, `digitalocean`, `gcs`, `sftp`]"}
+                                          schema={{"type":"string","enum":["aws","azure","digitalocean","gcs","sftp"],"description":"Type of storage media."}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"secret"}
+                                          required={false}
+                                          schemaName={"string"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"string","description":"Secret key of the storage medium. Similar to `access_key`, it is only writeable by clients, not readable."}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"bucket"}
+                                          required={false}
+                                          schemaName={"string"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"string","description":"Name of the storage medium's bucket."}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"region"}
+                                          required={false}
+                                          schemaName={"string"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"string","description":"Region of the storage medium.","example":"us-east-1"}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"path"}
+                                          required={false}
+                                          schemaName={"string"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"string","description":"Path relative to the bucket root at which the recording will be placed."}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"auth_method"}
+                                          required={false}
+                                          schemaName={""}
+                                          qualifierMessage={"**Possible values:** [`KEY`, `PASSWORD`]"}
+                                          schema={{"enum":["KEY","PASSWORD"],"description":"Authentication method used for \"sftp\" type storage medium\n"}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"username"}
+                                          required={false}
+                                          schemaName={"string"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"string","description":"SSH destination server username for SFTP type storage medium"}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"password"}
+                                          required={false}
+                                          schemaName={"string"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"string","description":"SSH destination server password for SFTP type storage medium when auth_method is \"PASSWORD\". If auth_method is \"KEY\", this specifies the password for the ssh private key."}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"host"}
+                                          required={false}
+                                          schemaName={"string"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"string","description":"SSH destination server host for SFTP type storage medium"}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"port"}
+                                          required={false}
+                                          schemaName={"number"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"number","description":"SSH destination server port for SFTP type storage medium"}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"private_key"}
+                                          required={false}
+                                          schemaName={"string"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"string","description":"Private key used to login to destination SSH server for SFTP type storage medium, when auth_method used is \"KEY\""}}
+                                        >
+                                          
+                                        </SchemaItem>
+                                      </div>
+                                    </details>
+                                  </SchemaItem><SchemaItem
+                                    collapsible={true}
+                                    className={"schemaItem"}
+                                  >
+                                    <details
+                                      style={{}}
+                                      className={"openapi-markdown__details"}
+                                    >
+                                      <summary
+                                        style={{}}
+                                      >
+                                        <span
+                                          className={"openapi-schema__container"}
+                                        >
+                                          <strong
+                                            className={"openapi-schema__property"}
+                                          >
+                                            dyte_bucket_config
+                                          </strong><span
+                                            className={"openapi-schema__name"}
+                                          >
+                                             object
+                                          </span>
+                                        </span>
+                                      </summary><div
+                                        style={{"marginLeft":"1rem"}}
+                                      >
+                                        <SchemaItem
+                                          collapsible={false}
+                                          name={"enabled"}
+                                          required={true}
+                                          schemaName={"boolean"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"boolean","description":"Controls whether recordings are uploaded to Dyte's bucket. If set to false, `download_url`, `audio_download_url`, `download_url_expiry` won't be generated for a recording."}}
+                                        >
+                                          
+                                        </SchemaItem>
+                                      </div>
+                                    </details>
+                                  </SchemaItem><SchemaItem
+                                    collapsible={true}
+                                    className={"schemaItem"}
+                                  >
+                                    <details
+                                      style={{}}
+                                      className={"openapi-markdown__details"}
+                                    >
+                                      <summary
+                                        style={{}}
+                                      >
+                                        <span
+                                          className={"openapi-schema__container"}
+                                        >
+                                          <strong
+                                            className={"openapi-schema__property"}
+                                          >
+                                            live_streaming_config
+                                          </strong><span
+                                            className={"openapi-schema__name"}
+                                          >
+                                             object
+                                          </span>
+                                        </span>
+                                      </summary><div
+                                        style={{"marginLeft":"1rem"}}
+                                      >
+                                        <SchemaItem
+                                          collapsible={false}
+                                          name={"rtmp_url"}
+                                          required={false}
+                                          schemaName={"uri"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"string","format":"uri","example":"rtmp://a.rtmp.youtube.com/live2","description":"RTMP URL to stream to"}}
+                                        >
+                                          
+                                        </SchemaItem>
+                                      </div>
+                                    </details>
+                                  </SchemaItem>
+                                </div>
+                              </details>
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"data\": {\n    \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"title\": \"string\",\n    \"preferred_region\": \"ap-south-1\",\n    \"created_at\": \"2024-03-18T01:20:25.298Z\",\n    \"record_on_start\": true,\n    \"updated_at\": \"2024-03-18T01:20:25.298Z\",\n    \"live_stream_on_start\": true,\n    \"status\": \"ACTIVE\",\n    \"recording_config\": {\n      \"max_seconds\": 0,\n      \"file_name_prefix\": \"string\",\n      \"video_config\": {\n        \"codec\": \"H264\",\n        \"width\": 1280,\n        \"height\": 720,\n        \"watermark\": {\n          \"url\": \"string\",\n          \"size\": {\n            \"width\": 0,\n            \"height\": 0\n          },\n          \"position\": \"left top\"\n        },\n        \"export_file\": true\n      },\n      \"audio_config\": {\n        \"codec\": \"AAC\",\n        \"channel\": \"stereo\",\n        \"export_file\": true\n      },\n      \"storage_config\": {\n        \"type\": \"aws\",\n        \"secret\": \"string\",\n        \"bucket\": \"string\",\n        \"region\": \"us-east-1\",\n        \"path\": \"string\",\n        \"username\": \"string\",\n        \"password\": \"string\",\n        \"host\": \"string\",\n        \"port\": 0,\n        \"private_key\": \"string\"\n      },\n      \"dyte_bucket_config\": {\n        \"enabled\": true\n      },\n      \"live_streaming_config\": {\n        \"rtmp_url\": \"rtmp://a.rtmp.youtube.com/live2\"\n      }\n    }\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"500"}
+        value={"500"}
+      >
+        <div>
+          
+          
+          Failure response
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"success"}
+                        required={true}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean","description":"Success status of the request.","default":false}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                error
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span><span
+                                className={"openapi-schema__divider"}
+                              >
+                                
+                              </span><span
+                                className={"openapi-schema__required"}
+                              >
+                                required
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <SchemaItem
+                              collapsible={false}
+                              name={"code"}
+                              required={true}
+                              schemaName={"number"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"number","description":"HTTP status code of the error."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"message"}
+                              required={true}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Error message describing what went wrong."}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": false,\n  \"error\": {\n    \"code\": 0,\n    \"message\": \"string\"\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

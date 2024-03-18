@@ -1,0 +1,479 @@
+---
+id: get-org-analytics
+title: "Fetch day-wise session and recording analytics data for an organization"
+description: "Returns day-wise session and recording analytics data of an organization for the specified time range start_date to end_date. If start_date and end_date are not provided, the default time range is set from 30 days ago to the current date."
+sidebar_label: "Fetch day-wise session and recording analytics data for an organization"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: guides/apiv2/dyte-rest-apis
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Fetch day-wise session and recording analytics data for an organization"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/analytics/daywise"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns day-wise session and recording analytics data of an organization for the specified time range start_date to end_date. If start_date and end_date are not provided, the default time range is set from 30 days ago to the current date.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Query Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"name":"start_date","in":"query","schema":{"type":"string"},"example":"2022-09-01","description":"start date in YYYY-MM-DD format"}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"end_date","in":"query","schema":{"type":"string"},"example":"2022-09-22","description":"end date in YYYY-MM-DD format"}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          OK
+          
+          
+        </div><details
+          style={{"textAlign":"left","marginBottom":"1rem"}}
+          className={"openapi-markdown__details"}
+          data-collaposed={true}
+          open={false}
+        >
+          <summary
+            style={{}}
+          >
+            <strong>
+              Response Headers
+            </strong>
+          </summary><ul
+            style={{"marginLeft":"1rem"}}
+          >
+            
+          </ul>
+        </details><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"success"}
+                        required={false}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                data
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <SchemaItem
+                              collapsible={true}
+                              className={"schemaItem"}
+                            >
+                              <details
+                                style={{}}
+                                className={"openapi-markdown__details"}
+                              >
+                                <summary
+                                  style={{}}
+                                >
+                                  <span
+                                    className={"openapi-schema__container"}
+                                  >
+                                    <strong
+                                      className={"openapi-schema__property"}
+                                    >
+                                      session_stats
+                                    </strong><span
+                                      className={"openapi-schema__name"}
+                                    >
+                                       object
+                                    </span>
+                                  </span>
+                                </summary><div
+                                  style={{"marginLeft":"1rem"}}
+                                >
+                                  <div
+                                    style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                                  >
+                                    
+                                    
+                                    Session statistics of an organization during the range specified
+                                    
+                                    
+                                  </div><SchemaItem
+                                    collapsible={false}
+                                    name={"sessions_count"}
+                                    required={false}
+                                    schemaName={"integer"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"integer","description":"Total number of sessions during the range specified"}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"sessions_minutes_consumed"}
+                                    required={false}
+                                    schemaName={"number"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"number","description":"Total session minutes during the range specified"}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={true}
+                                    className={"schemaItem"}
+                                  >
+                                    <details
+                                      style={{}}
+                                      className={"openapi-markdown__details"}
+                                    >
+                                      <summary
+                                        style={{}}
+                                      >
+                                        <span
+                                          className={"openapi-schema__container"}
+                                        >
+                                          <strong
+                                            className={"openapi-schema__property"}
+                                          >
+                                            day_stats
+                                          </strong><span
+                                            className={"openapi-schema__name"}
+                                          >
+                                             object[]
+                                          </span>
+                                        </span>
+                                      </summary><div
+                                        style={{"marginLeft":"1rem"}}
+                                      >
+                                        <div
+                                          style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                                        >
+                                          
+                                          
+                                          Day wise session stats
+                                          
+                                          
+                                        </div><li>
+                                          <div
+                                            style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}
+                                          >
+                                            Array [
+                                          </div>
+                                        </li><SchemaItem
+                                          collapsible={false}
+                                          name={"day"}
+                                          required={false}
+                                          schemaName={"string"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"string"}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"total_sessions"}
+                                          required={false}
+                                          schemaName={"integer"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"integer","description":"Total number of sessions for a specific day"}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"total_session_minutes"}
+                                          required={false}
+                                          schemaName={"number"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"number","description":"Total session minutes for a specific day"}}
+                                        >
+                                          
+                                        </SchemaItem><li>
+                                          <div
+                                            style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}
+                                          >
+                                            ]
+                                          </div>
+                                        </li>
+                                      </div>
+                                    </details>
+                                  </SchemaItem>
+                                </div>
+                              </details>
+                            </SchemaItem><SchemaItem
+                              collapsible={true}
+                              className={"schemaItem"}
+                            >
+                              <details
+                                style={{}}
+                                className={"openapi-markdown__details"}
+                              >
+                                <summary
+                                  style={{}}
+                                >
+                                  <span
+                                    className={"openapi-schema__container"}
+                                  >
+                                    <strong
+                                      className={"openapi-schema__property"}
+                                    >
+                                      recording_stats
+                                    </strong><span
+                                      className={"openapi-schema__name"}
+                                    >
+                                       object
+                                    </span>
+                                  </span>
+                                </summary><div
+                                  style={{"marginLeft":"1rem"}}
+                                >
+                                  <div
+                                    style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                                  >
+                                    
+                                    
+                                    Recording statistics of an organization during the range specified
+                                    
+                                    
+                                  </div><SchemaItem
+                                    collapsible={false}
+                                    name={"recording_count"}
+                                    required={false}
+                                    schemaName={"integer"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"integer","description":"Total number of recordings during the range specified"}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"recording_minutes_consumed"}
+                                    required={false}
+                                    schemaName={"number"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"number","description":"Total recording minutes during the range specified"}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={true}
+                                    className={"schemaItem"}
+                                  >
+                                    <details
+                                      style={{}}
+                                      className={"openapi-markdown__details"}
+                                    >
+                                      <summary
+                                        style={{}}
+                                      >
+                                        <span
+                                          className={"openapi-schema__container"}
+                                        >
+                                          <strong
+                                            className={"openapi-schema__property"}
+                                          >
+                                            day_stats
+                                          </strong><span
+                                            className={"openapi-schema__name"}
+                                          >
+                                             object[]
+                                          </span>
+                                        </span>
+                                      </summary><div
+                                        style={{"marginLeft":"1rem"}}
+                                      >
+                                        <div
+                                          style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                                        >
+                                          
+                                          
+                                          Day wise recording stats
+                                          
+                                          
+                                        </div><li>
+                                          <div
+                                            style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}
+                                          >
+                                            Array [
+                                          </div>
+                                        </li><SchemaItem
+                                          collapsible={false}
+                                          name={"day"}
+                                          required={false}
+                                          schemaName={"string"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"string"}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"total_recordings"}
+                                          required={false}
+                                          schemaName={"integer"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"integer","description":"Total number of recordings for a specific day"}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"total_recording_minutes"}
+                                          required={false}
+                                          schemaName={"integer"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"integer","description":"Total recording minutes for a specific day"}}
+                                        >
+                                          
+                                        </SchemaItem><li>
+                                          <div
+                                            style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}
+                                          >
+                                            ]
+                                          </div>
+                                        </li>
+                                      </div>
+                                    </details>
+                                  </SchemaItem>
+                                </div>
+                              </details>
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"data\": {\n    \"session_stats\": {\n      \"sessions_count\": 0,\n      \"sessions_minutes_consumed\": 0,\n      \"day_stats\": [\n        {\n          \"day\": \"string\",\n          \"total_sessions\": 0,\n          \"total_session_minutes\": 0\n        }\n      ]\n    },\n    \"recording_stats\": {\n      \"recording_count\": 0,\n      \"recording_minutes_consumed\": 0,\n      \"day_stats\": [\n        {\n          \"day\": \"string\",\n          \"total_recordings\": 0,\n          \"total_recording_minutes\": 0\n        }\n      ]\n    }\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

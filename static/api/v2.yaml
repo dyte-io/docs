@@ -1,6 +1,4 @@
 openapi: 3.0.0
-x-stoplight:
-  id: f49d2395cc273
 servers:
   - url: 'https://api.dyte.io/v2'
     description: ''
@@ -111,8 +109,6 @@ paths:
                         description: The web address that viewers can use to watch the livestream.
                       disabled:
                         type: boolean
-                        x-stoplight:
-                          id: agr64mp2vma62
                         description: Specifies if the livestream was disabled.
               examples:
                 example-1:
@@ -196,8 +192,6 @@ paths:
                     type: object
                     properties:
                       status:
-                        x-stoplight:
-                          id: oe3trqljjekgt
                         enum:
                           - LIVE
                           - IDLE
@@ -205,78 +199,52 @@ paths:
                           - INVOKED
                       id:
                         type: string
-                        x-stoplight:
-                          id: 0ye8a9cpfilt4
                         description: The ID of the livestream.
                         format: uuid
                         example: 3fd739f4-3c41-456e-bfba-6ebd51e16d2d
                       name:
                         type: string
-                        x-stoplight:
-                          id: k2l2a3mgv7dw3
                         description: Name of the livestream.
                         example: test
                       ingest_server:
                         type: string
-                        x-stoplight:
-                          id: vvuyzsx4xwool
                         description: The server URL to which the RTMP encoder sends the video and audio data.
                         example: 'rtmps://2ec802dd47b0.global-contribute.live-video.net:443/app/'
                       stream_key:
                         type: string
-                        x-stoplight:
-                          id: gzscy47k5fvz9
                         description: Unique key for accessing each livestream.
                         example: sk_ap-south-1_fiETVh5SNa3V_MAs0NlNCkJqTokqrMbrdWyA2naII25
                       playback_url:
                         type: string
-                        x-stoplight:
-                          id: aqtss2w1ubei3
                         description: The web address that viewers can use to watch the livestream.
                         example: 'https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.944908621410.channel.mA2dNqrBulpi.m3u8'
                       meeting_id:
                         type: string
-                        x-stoplight:
-                          id: q5srp28fax71d
                         description: ID of the meeting.
                       created_at:
                         type: string
-                        x-stoplight:
-                          id: yx17eqgil0wnx
                         format: date-time
                         description: Timestamp the object was created at. The time is returned in ISO format.
                         example: '2023-07-15T11:48:34.753Z'
                       updated_at:
                         type: string
-                        x-stoplight:
-                          id: jruccp4ohxszr
                         format: date-time
                         description: Timestamp the object was updated at. The time is returned in ISO format.
                         example: '2023-07-15T11:48:34.753Z'
                       disabled:
                         type: string
-                        x-stoplight:
-                          id: hd1567rcnmmll
                         description: Specifies if the livestream was disabled.
                       paging:
                         type: object
-                        x-stoplight:
-                          id: se6iy5mh0ye2i
                         properties:
                           total_count:
                             type: integer
-                            x-stoplight:
-                              id: kmdvztss5e36c
                             example: 1
                           start_offset:
                             type: integer
-                            x-stoplight:
-                              id: pw88aeivpxy5c
                             example: 1
                           end_offset:
                             type: integer
-                            x-stoplight:
-                              id: wr112fr83t6uy
                             example: 1
               examples:
                 example-0:
@@ -392,14 +360,10 @@ paths:
                               description: The ID of the meeting that was livestreamed.
                             created_at:
                               type: string
-                              x-stoplight:
-                                id: 2ursflc0yjudg
                               format: date-time
                               description: The timestamp at which the livestream was created. The time is returned in ISO format.
                             updated_at:
                               type: string
-                              x-stoplight:
-                                id: fbm89kkhekzuk
                               format: date-time
                               description: The timestamp at which the livestream was updated. The time is returned in ISO format.
                             ingest_server:
@@ -416,82 +380,52 @@ paths:
                               description: The web address that viewers can use to watch the livestream.
                             disabled:
                               type: boolean
-                              x-stoplight:
-                                id: ek0x3argsduzr
                               description: Specifies if the livestream was disabled.
                       sessions:
                         type: object
-                        x-stoplight:
-                          id: s8nlnnhrluzpj
                         properties:
                           id:
                             type: string
-                            x-stoplight:
-                              id: u025nkbx2xmg4
                             description: The ID of the livestream session.
                           livestream_id:
                             type: string
-                            x-stoplight:
-                              id: k7cjavgfzthe1
                             description: The ID of the livestream.
                           err_message:
                             type: string
-                            x-stoplight:
-                              id: 8mw67artca1ac
                           invoked_time:
                             type: string
-                            x-stoplight:
-                              id: fqsjh126jnr7f
                             format: date-time
                             description: The time at which the livestream was invoked.
                           started_time:
                             type: string
-                            x-stoplight:
-                              id: 8dldpat32z1ig
                             format: date-time
                             description: The time at which the livestream was started.
                           stopped_time:
                             type: string
-                            x-stoplight:
-                              id: zitn99bcmdq0f
                             format: date-time
                             description: The time at which the livestream was stopped.
                           created_at:
                             type: string
-                            x-stoplight:
-                              id: nfeotj6ehmynf
                             description: The timestamp at which the livestream was created. The time is returned in ISO format.
                             format: date-time
                           updated_at:
                             type: string
-                            x-stoplight:
-                              id: 7apkv2lysdpsz
                             description: The timestamp at which the livestream was updated. The time is returned in ISO format.
                             format: date-time
                           ingest_seconds:
                             type: string
-                            x-stoplight:
-                              id: 0fu4ifbczmh09
                             description: The time duration for which the input was given or the meeting was streamed.
                       paging:
                         type: object
-                        x-stoplight:
-                          id: rqq4vdz2o9uj4
                         properties:
                           total_count:
                             type: integer
-                            x-stoplight:
-                              id: tdmcuu6ilrcih
                             example: 1
                           start_offset:
                             type: integer
-                            x-stoplight:
-                              id: 7kou64ollx7is
                             example: 1
                           end_offset:
                             type: integer
-                            x-stoplight:
-                              id: 7rfzlb0l97o87
                             example: 1
               examples:
                 example-0:
@@ -529,8 +463,6 @@ paths:
       tags:
         - Live streams
       operationId: livestream-session-details
-      x-stoplight:
-        id: pcm61j4127kyj
     parameters:
       - schema:
           type: string
@@ -617,8 +549,6 @@ paths:
       tags:
         - Live streams
       operationId: start-livestreaming
-      x-stoplight:
-        id: fz9rp69zguhn9
     parameters:
       - schema:
           type: string
@@ -649,8 +579,6 @@ paths:
                     type: boolean
                   data:
                     type: object
-                    x-stoplight:
-                      id: tkq6d7y5za34s
                     properties:
                       id:
                         type: string
@@ -734,27 +662,17 @@ paths:
                 properties:
                   success:
                     type: boolean
-                    x-stoplight:
-                      id: x17mrgl1g9bf5
                   data:
                     type: object
-                    x-stoplight:
-                      id: ld0etwu7u7pdk
                     properties:
                       count:
                         type: integer
-                        x-stoplight:
-                          id: 5pe2xf0w6dnkp
                         description: Count of total livestreams.
                       total_ingest_seconds:
                         type: integer
-                        x-stoplight:
-                          id: 7cbckohgd5uew
                         description: Total time duration for which the input was given or the meeting was streamed.
                       total_viewer_seconds:
                         type: integer
-                        x-stoplight:
-                          id: 7b4e77ziz71wu
                         description: Total view time for which the viewers watched the stream.
               examples:
                 Example 1:
@@ -797,32 +715,20 @@ paths:
                 properties:
                   success:
                     type: boolean
-                    x-stoplight:
-                      id: jcscopi2ycxju
                   data:
                     type: object
-                    x-stoplight:
-                      id: 9olhjvthhbcb9
                     properties:
                       date:
                         type: string
-                        x-stoplight:
-                          id: mtmh7ceclnudo
                         description: 'The livestream timestamp, provided in ISO format.'
                       count:
                         type: string
-                        x-stoplight:
-                          id: z9sa35x2hhyq2
                         description: Count of total livestreams.
                       total_ingest_seconds:
                         type: string
-                        x-stoplight:
-                          id: ms15h83p1repq
                         description: Total time duration for which the input was given or the meeting was streamed.
                       total_viewer_seconds:
                         type: string
-                        x-stoplight:
-                          id: rtxhta3yyu9yd
                         description: Total view time for which the viewers watched the stream.
               examples:
                 Example 1:
@@ -1048,18 +954,12 @@ paths:
                           - IDLE
                           - ERRORED
                           - INVOKED
-                        x-stoplight:
-                          id: ajlcjgry8wag1
                       invoked_time:
                         type: string
                         description: Name of the livestream.
-                        x-stoplight:
-                          id: 8w0e379jakl1c
                         nullable: true
                       livestream_id:
                         type: string
-                        x-stoplight:
-                          id: umdhjls9fzu2u
                         description: The ID of the livestream.
                       created_at:
                         type: string
@@ -1075,36 +975,22 @@ paths:
                       stopped_time:
                         type: string
                         description: Specifies if the livestream was disabled.
-                        x-stoplight:
-                          id: fz5e8qwwjdvbv
                         format: date-time
                       ingest_seconds:
                         type: number
-                        x-stoplight:
-                          id: m436v28et0h4b
                         description: The time duration for which the input was given or the meeting was streamed.
                       viewer_seconds:
                         type: number
-                        x-stoplight:
-                          id: gt6682qreyibs
                         description: The total view time for which the viewers watched the stream.
                       paging:
                         type: object
-                        x-stoplight:
-                          id: licc3tlfn4zqs
                         properties:
                           total_count:
                             type: number
-                            x-stoplight:
-                              id: fn1g7l6m26trp
                           start_offset:
                             type: number
-                            x-stoplight:
-                              id: o90qti19q4w05
                           end_offset:
                             type: number
-                            x-stoplight:
-                              id: zf67fjkaz5zqg
               examples:
                 example-1:
                   value:
@@ -1200,8 +1086,6 @@ paths:
                         description: The web address that viewers can use to watch the livestream.
                       disabled:
                         type: string
-                        x-stoplight:
-                          id: p5vbni7rp58hd
                         description: Specifies if the livestream was disabled.
               examples:
                 example-1:
@@ -1246,45 +1130,31 @@ paths:
                     properties:
                       livestream_id:
                         type: string
-                        x-stoplight:
-                          id: z7kmz0pjqgovc
                       created_at:
                         type: string
                         description: Timestamp the object was created at. The time is returned in ISO format.
                         format: date-time
                       updated_at:
                         type: string
-                        x-stoplight:
-                          id: 2zf2eriza9alu
                         description: Timestamp the object was updated at. The time is returned in ISO format.
                       err_message:
                         type: string
                         description: The server URL to which the RTMP encoder sends the video and audio data.
-                        x-stoplight:
-                          id: 5itonc9euk07e
                       id:
                         type: string
                         description: The livestream ID.
                       started_time:
                         type: string
                         description: Unique key for accessing each livestream.
-                        x-stoplight:
-                          id: hjv81ynruiaps
                       stopped_time:
                         type: string
                         description: The web address that viewers can use to watch the livestream.
-                        x-stoplight:
-                          id: cif4ymldivkid
                       ingest_seconds:
                         type: integer
                         description: Name of the livestream.
-                        x-stoplight:
-                          id: quuqyvb6c22du
                       viewer_seconds:
                         type: integer
                         description: Specifies if the livestream was disabled.
-                        x-stoplight:
-                          id: ss840fa42f2dj
               examples:
                 example-1:
                   value:
@@ -1330,31 +1200,19 @@ paths:
                     properties:
                       livestream:
                         type: object
-                        x-stoplight:
-                          id: z1n8zof1y1d7f
                         properties:
                           id:
                             type: string
-                            x-stoplight:
-                              id: obdwjc45i6hiu
                           name:
                             type: string
-                            x-stoplight:
-                              id: pck3pj9rslvyb
                             description: Name of the livestream.
                           ingest_server:
                             type: string
-                            x-stoplight:
-                              id: km7t1lrhq7wu5
                             description: The server URL to which the RTMP encoder sends the video and audio data.
                           stream_key:
                             type: string
-                            x-stoplight:
-                              id: lk2vyiyj0w81i
                             description: Unique key for accessing each livestream.
                           status:
-                            x-stoplight:
-                              id: xylo1jluliuf8
                             enum:
                               - LIVE
                               - IDLE
@@ -1362,87 +1220,55 @@ paths:
                               - INVOKED
                           meeting_id:
                             type: string
-                            x-stoplight:
-                              id: y3r1tm75cfi4a
                             description: ID of the meeting.
                           playback_url:
                             type: string
-                            x-stoplight:
-                              id: 53eq0tpog5ib2
                             description: The web address that viewers can use to watch the livestream.
                           created_at:
                             type: string
-                            x-stoplight:
-                              id: nckmepbq06ldp
                             format: date-time
                             description: Timestamp the object was created at. The time is returned in ISO format.
                           updated_at:
                             type: string
-                            x-stoplight:
-                              id: 5y596dwsxaeue
                             format: date-time
                             description: Timestamp the object was updated at. The time is returned in ISO format.
                           disabled:
                             type: string
-                            x-stoplight:
-                              id: 97k85uncuiij7
                             description: Specifies if the livestream was disabled.
                       session:
                         type: object
-                        x-stoplight:
-                          id: otdg6an2qn65t
                         properties:
                           id:
                             type: string
-                            x-stoplight:
-                              id: 8fqik84h9x7l8
                           livestream_id:
                             type: string
-                            x-stoplight:
-                              id: keu70ty635eby
                           err_message:
                             type: string
-                            x-stoplight:
-                              id: a4qlsa10bl1a5
                           invoked_time:
                             type: string
-                            x-stoplight:
-                              id: sy8qrnkspmp1x
                             format: date-time
                             description: Timestamp the object was invoked. The time is returned in ISO format.
                           started_time:
                             type: string
-                            x-stoplight:
-                              id: n07o9ogpxkeiz
                             format: date-time
                             description: Timestamp the object was started. The time is returned in ISO format.
                           stopped_time:
                             type: string
-                            x-stoplight:
-                              id: o4z48ppd6k294
                             format: date-time
                             description: Timestamp the object was stopped. The time is returned in ISO format.
                           created_at:
                             type: string
-                            x-stoplight:
-                              id: s7f3gaqqsrmtk
                             format: date-time
                             description: Timestamp the object was created at. The time is returned in ISO format.
                           updated_at:
                             type: string
-                            x-stoplight:
-                              id: 9zx76nxrx2yft
                             format: date-time
                             description: Timestamp the object was updated at. The time is returned in ISO format.
                           ingest_seconds:
                             type: string
-                            x-stoplight:
-                              id: 8n412l8lqc3z7
                             description: The time duration for which the input was given or the meeting was streamed.
                           viewer_seconds:
                             type: string
-                            x-stoplight:
-                              id: gzpj7k9nx650f
                             description: The total view time for which the viewers watched the stream.
               examples:
                 example-1:
@@ -1573,23 +1399,15 @@ paths:
                             description: The total view time for which the viewers watched the stream.
                       paging:
                         type: object
-                        x-stoplight:
-                          id: 5voo3tsec17pj
                         properties:
                           total_count:
                             type: integer
-                            x-stoplight:
-                              id: ueiu1cvwn51tn
                             example: 1
                           start_offset:
                             type: integer
-                            x-stoplight:
-                              id: lsf93fojv1tlo
                             example: 1
                           end_offset:
                             type: integer
-                            x-stoplight:
-                              id: q0ya8kcvei9nc
                             example: 1
               examples:
                 example-1:
@@ -1873,8 +1691,6 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/GetSessionTranscript'
-      x-stoplight:
-        id: h9a6ubd8g7l7b
     parameters:
       - schema:
           type: string
@@ -2662,8 +2478,6 @@ paths:
         '200':
           $ref: '#/components/responses/GetParticipantDataFromPeerId'
       operationId: GetParticipantDataFromPeerId
-      x-stoplight:
-        id: b693pckykbu4q
       description: Returns details of the given peer ID along with call statistics for the given session ID.
       parameters:
         - schema:
@@ -2684,8 +2498,6 @@ paths:
       responses:
         '200':
           description: OK
-      x-stoplight:
-        id: rc8el9mk4wa8s
       requestBody:
         $ref: '#/components/requestBodies/StartTrackRecordingBody'
       tags:
@@ -2860,8 +2672,6 @@ components:
           $ref: '#/components/schemas/LivestreamBaseWithoutCreds'
     LivestreamSessionBase:
       title: LivestreamSessionBase
-      x-stoplight:
-        id: s4a01bosmpn5x
       type: object
       properties:
         id:
@@ -2876,8 +2686,6 @@ components:
           description: The timestamp at which the API was called or invoked. The time is returned in ISO format.
         error_message:
           type: string
-          x-stoplight:
-            id: 2u1jx283ldmso
         started_time:
           type: string
           format: date-time
@@ -2902,8 +2710,6 @@ components:
           description: The total view time for which the viewers watched the stream.
     LivestreamAnalytics:
       title: LivestreamAnalytics
-      x-stoplight:
-        id: 8kpmfujzowg1i
       type: object
       properties:
         id:
@@ -2934,8 +2740,6 @@ components:
           format: date-time
     AnalyticsResponse:
       title: AnalyticsResponse
-      x-stoplight:
-        id: gtm41ommpwbn1
       type: object
       properties:
         success:
@@ -2953,8 +2757,6 @@ components:
               $ref: '#/components/schemas/AnalyticsResponseTotalStats'
     PaginationBase:
       title: PaginationBase
-      x-stoplight:
-        id: e0iqmp3b8yibp
       type: object
       properties:
         total_count:
@@ -2965,8 +2767,6 @@ components:
           type: number
     AnalyticsResponseTotalStats:
       title: AnalyticsResponseTotalStats
-      x-stoplight:
-        id: lno8y9ekd7e0s
       type: object
       properties:
         total_viewer_count:
@@ -3030,8 +2830,6 @@ components:
           description: Specifies if the livestream was disabled.
         org_id:
           type: string
-          x-stoplight:
-            id: 6f6cyezsk3ew6
     Webhook:
       type: object
       properties:
@@ -3083,8 +2881,6 @@ components:
           description: Timestamp when this webhook was updated
         enabled:
           type: boolean
-          x-stoplight:
-            id: l3hofopunopq2
           description: Set to true if the webhook is active
       required:
         - id
@@ -3178,8 +2974,6 @@ components:
               - livestreaming.statusUpdate
         enabled:
           type: boolean
-          x-stoplight:
-            id: sdmlx3dxq7xtq
           description: Set whether or not the webhook should be active when created
           default: true
       required:
@@ -3211,8 +3005,6 @@ components:
               - livestreaming.statusUpdate
         enabled:
           type: boolean
-          x-stoplight:
-            id: 3gh3gj4jpz7fh
           default: true
     ActiveSession:
       type: object
@@ -3788,8 +3580,6 @@ components:
           readOnly: true
         title:
           type: string
-          x-stoplight:
-            id: ehrqyjfdcvmjy
           description: Title of the meeting.
         preferred_region:
           type: string
@@ -3818,8 +3608,6 @@ components:
           description: Specifies if the meeting should start getting livestreamed on start.
         status:
           type: string
-          x-stoplight:
-            id: 7iltdkj13psqq
           enum:
             - ACTIVE
             - INACTIVE
@@ -3830,8 +3618,6 @@ components:
         - updated_at
     PagingResponse:
       title: PagingResponse
-      x-stoplight:
-        id: xogzxduy48b20
       type: object
       properties:
         success:
@@ -3863,8 +3649,6 @@ components:
         - paging
     GenericSuccessResponse:
       title: GenericSuccessResponse
-      x-stoplight:
-        id: 6g2id76io3wuw
       type: object
       properties:
         success:
@@ -3878,8 +3662,6 @@ components:
         - success
     Participant:
       title: Participant
-      x-stoplight:
-        id: oqlh14sj8p2i5
       type: object
       description: Represents a participant.
       properties:
@@ -3918,8 +3700,6 @@ components:
         - updated_at
     Recording:
       title: Recording
-      x-stoplight:
-        id: 25dzhno3e2es1
       type: object
       properties:
         id:
@@ -3942,8 +3722,6 @@ components:
         audio_download_url:
           type: string
           format: uri
-          x-stoplight:
-            id: h5tzcaeuye8fk
           description: 'If the audio_config is passed, the URL for downloading the audio recording is returned.'
           nullable: true
           readOnly: true
@@ -3987,8 +3765,6 @@ components:
           nullable: true
         recording_duration:
           type: integer
-          x-stoplight:
-            id: prsgxotoknc3l
           description: Total recording time in seconds.
       required:
         - id
@@ -4004,8 +3780,6 @@ components:
         - stopped_time
     StorageConfig:
       title: StorageConfig
-      x-stoplight:
-        id: tt67la5u5qhyv
       type: object
       nullable: true
       properties:
@@ -4028,8 +3802,6 @@ components:
         secret:
           type: string
           description: 'Secret key of the storage medium. Similar to `access_key`, it is only writeable by clients, not readable.'
-          x-stoplight:
-            id: 35o598ur3dm2s
         bucket:
           type: string
           description: Name of the storage medium's bucket.
@@ -4041,8 +3813,6 @@ components:
           type: string
           description: Path relative to the bucket root at which the recording will be placed.
         auth_method:
-          x-stoplight:
-            id: uklpv4sdxai0a
           enum:
             - KEY
             - PASSWORD
@@ -4050,35 +3820,23 @@ components:
             Authentication method used for "sftp" type storage medium
         username:
           type: string
-          x-stoplight:
-            id: bzea0pjriano5
           description: SSH destination server username for SFTP type storage medium
         password:
           type: string
-          x-stoplight:
-            id: nyi2j6m4lnwhg
           description: 'SSH destination server password for SFTP type storage medium when auth_method is "PASSWORD". If auth_method is "KEY", this specifies the password for the ssh private key.'
         host:
           type: string
-          x-stoplight:
-            id: y9c66jxovb285
           description: SSH destination server host for SFTP type storage medium
         port:
           type: number
-          x-stoplight:
-            id: y5h441zp02ino
           description: SSH destination server port for SFTP type storage medium
         private_key:
           type: string
-          x-stoplight:
-            id: h105s3bbsxb2k
           description: 'Private key used to login to destination SSH server for SFTP type storage medium, when auth_method used is "KEY"'
       required:
         - type
     PresetListItem:
       title: PresetListItem
-      x-stoplight:
-        id: 92m0mrllbxmgq
       type: object
       description: Returned by Get All Presets route
       properties:
@@ -4099,8 +3857,6 @@ components:
           description: Timestamp this preset was last updated
     Preset:
       title: Preset
-      x-stoplight:
-        id: xntgc715hdevf
       type: object
       properties:
         name:
@@ -4520,8 +4276,6 @@ components:
         - ui
     UpdatePreset:
       title: UpdatePreset
-      x-stoplight:
-        id: ou6jhovc20ofp
       type: object
       properties:
         name:
@@ -4830,8 +4584,6 @@ components:
               type: object
     VideoConfig:
       title: VideoConfig
-      x-stoplight:
-        id: s67pizzbk2z0p
       type: object
       properties:
         codec:
@@ -4886,14 +4638,10 @@ components:
               default: left top
         export_file:
           type: boolean
-          x-stoplight:
-            id: mqrzqrbcbbx99
           default: true
           description: Controls whether to export video file seperately
     LivestreamingConfig:
       title: LivestreamingConfig
-      x-stoplight:
-        id: xtf0df61t74aj
       type: object
       properties:
         rtmp_url:
@@ -4903,15 +4651,11 @@ components:
           description: RTMP URL to stream to
     AudioConfig:
       title: AudioConfig
-      x-stoplight:
-        id: lokrgru2gznbx
       type: object
       description: Object containing configuration regarding the audio that is being recorded.
       properties:
         codec:
           type: string
-          x-stoplight:
-            id: 8cvrd9bmm81ne
           description: 'Codec using which the recording will be encoded. If VP8/VP9 is selected for videoConfig, changing audioConfig is not allowed. In this case, the codec in the audioConfig is automatically set to vorbis.'
           enum:
             - MP3
@@ -4919,8 +4663,6 @@ components:
           default: AAC
         channel:
           type: string
-          x-stoplight:
-            id: p92vx222riq0s
           description: Audio signal pathway within an audio file that carries a specific sound source.
           enum:
             - mono
@@ -4928,33 +4670,23 @@ components:
           default: stereo
         export_file:
           type: boolean
-          x-stoplight:
-            id: mqrzqrbcbbx99
           default: true
           description: Controls whether to export video file seperately
     DyteBucketConfig:
       title: DyteBucketConfig
-      x-stoplight:
-        id: nda2arv28bpxt
       type: object
       properties:
         enabled:
           type: boolean
-          x-stoplight:
-            id: k1f2cjsd28631
           description: "Controls whether recordings are uploaded to Dyte's bucket. If set to false, `download_url`, `audio_download_url`, `download_url_expiry` won't be generated for a recording."
       required:
         - enabled
     startReason:
       title: startReason
-      x-stoplight:
-        id: uk66wrtnrqcnr
       type: object
       properties:
         reason:
           type: string
-          x-stoplight:
-            id: dn2j1jzggz3tg
           enum:
             - API_CALL
             - RECORD_ON_START
@@ -4964,40 +4696,28 @@ components:
             If the recording is initiated using the "RECORD_ON_START" parameter, the user details will not be populated.
         caller:
           type: object
-          x-stoplight:
-            id: ap08qalkux1vp
           properties:
             type:
               type: string
-              x-stoplight:
-                id: fxgon7ps3760x
               enum:
                 - ORGANIZATION
                 - USER
               description: 'The type can be an organization or a user. If the type is `user`, then only the `user_Id` and `name` are returned.'
             user_Id:
               type: string
-              x-stoplight:
-                id: ofr7xxueb7d7b
               format: uuid
               description: The user ID of the person who started the recording.
               example: d61f6956-e68f-4375-bf10-c38a704d1bec
             name:
               type: string
-              x-stoplight:
-                id: 2q0sigi7zuva4
               description: Name of the user who started the recording.
               example: Dyte_test
     stopReason:
       title: stopReason
-      x-stoplight:
-        id: 8g2hjugvbfd1i
       type: object
       properties:
         reason:
           type: string
-          x-stoplight:
-            id: tjp04tusymaft
           enum:
             - API_CALL
             - INTERNAL_ERROR
@@ -5005,77 +4725,53 @@ components:
           description: Specifies the reason why the recording stopped.
         caller:
           type: object
-          x-stoplight:
-            id: 8pji3iqxzke6z
           properties:
             type:
               type: string
-              x-stoplight:
-                id: n54oq8jwz6hbv
               enum:
                 - ORGANIZATION
                 - USER
               description: 'The type can be an organization or a user. If the type is `user`, then only the `user_Id` and `name` are returned.'
             user_Id:
               type: string
-              x-stoplight:
-                id: nhq76tz89qbnd
               description: The user ID of the person who stopped the recording.
               format: uuid
               example: d61f6956-e68f-4375-bf10-c38a704d1bec
             name:
               type: string
-              x-stoplight:
-                id: fylgc8uhbqf1v
               description: Name of the user who stopped the recording.
               example: Dyte_test
     InteractiveConfig:
       title: InteractiveConfig
-      x-stoplight:
-        id: k4wu4coh0k0wj
       type: object
       description: 'Allows you to add timed metadata to your recordings, which are digital markers inserted into a video file to provide contextual information at specific points in the content range. The ID3 tags containing this information are available to clients on the playback timeline in HLS format. The output files are generated in a compressed .tar format.'
       properties:
         type:
           type: string
-          x-stoplight:
-            id: 8jh42ug6apgau
           enum:
             - ID3
           description: The metadata is presented in the form of ID3 tags.
     FetchLivestream:
       title: FetchLivestream
-      x-stoplight:
-        id: 13sdmzd5ericg
       type: object
       properties:
         id:
           type: string
-          x-stoplight:
-            id: mdvyrq30j0rw4
         name:
           type: string
-          x-stoplight:
-            id: 0b5t8sncdhv1c
     RecordingConfig:
       title: RecordingConfig
-      x-stoplight:
-        id: yyo7jv040qf6o
       type: object
       description: |
         Recording Configurations to be used for this meeting. This level of configs takes higher preference over organization level configs on the Dyte developer portal.
       properties:
         max_seconds:
           type: number
-          x-stoplight:
-            id: io98gvoqjyarx
           minimum: 60
           maximum: 86400
           description: 'Specifies the maximum duration for recording in seconds, ranging from a minimum of 60 seconds to a maximum of 24 hours.'
         file_name_prefix:
           type: string
-          x-stoplight:
-            id: gvy18dsipftrc
           description: Adds a prefix to the beginning of the file name of the recording.
         video_config:
           $ref: '#/components/schemas/VideoConfig'
@@ -5089,30 +4785,20 @@ components:
           $ref: '#/components/schemas/LivestreamingConfig'
     TrackConfigLayer:
       title: TrackLayerConfig
-      x-stoplight:
-        id: 6m0irpwsm5l0m
       type: object
       properties:
         file_name_prefix:
           type: string
-          x-stoplight:
-            id: q3raplgytmxxh
           description: A file name prefix to apply for files generated from this layer
         outputs:
-          x-stoplight:
-            id: pzqzlzca74iaw
           type: array
           items:
             $ref: '#/components/schemas/TrackLayerOutput'
     TrackLayerOutput:
       title: TrackLayerOutput
-      x-stoplight:
-        id: 5bjn4llxqxyna
       type: object
       properties:
         type:
-          x-stoplight:
-            id: ho62tlyy3z8kb
           enum:
             - DYTE_BUCKET
             - STORAGE_CONFIG
@@ -5384,8 +5070,6 @@ components:
                 description: Specifies if the meeting should start getting livestreamed on start.
               status:
                 type: string
-                x-stoplight:
-                  id: 5hu6kyh2s2c8y
                 enum:
                   - ACTIVE
                   - INACTIVE
@@ -5450,8 +5134,6 @@ components:
                 description: ID of the meeting to record.
               max_seconds:
                 type: integer
-                x-stoplight:
-                  id: k7f6838dflqlz
                 description: 'Specifies the maximum duration for recording in seconds, ranging from a minimum of 60 seconds to a maximum of 24 hours.'
                 minimum: 60
                 maximum: 86400
@@ -5465,13 +5147,9 @@ components:
                 $ref: '#/components/schemas/LivestreamingConfig'
               file_name_prefix:
                 type: string
-                x-stoplight:
-                  id: 7456eveh34y08
                 description: Update the recording file name.
               url:
                 type: string
-                x-stoplight:
-                  id: kctff4maz6g44
                 format: uri
                 description: Pass a custom url to record arbitary screen
               dyte_bucket_config:
@@ -5480,8 +5158,6 @@ components:
                 $ref: '#/components/schemas/InteractiveConfig'
               allow_multiple_recordings:
                 type: boolean
-                x-stoplight:
-                  id: uvipu7wzh6eet
                 default: false
                 description: 'By default, a meeting allows only one recording to run at a time. Enabling the `allow_multiple_recordings` parameter to true allows you to initiate multiple recordings concurrently in the same meeting. This allows you to record separate videos of the same meeting with different configurations, such as portrait mode or landscape mode.'
             required:
@@ -5506,19 +5182,13 @@ components:
             properties:
               meeting_id:
                 type: string
-                x-stoplight:
-                  id: 6sv1wqhnxgkwu
                 description: ID of the meeting to record.
               layers:
                 type: object
-                x-stoplight:
-                  id: e9mwa0fkn9gt2
                 additionalProperties:
                   $ref: '#/components/schemas/TrackConfigLayer'
               max_seconds:
                 type: string
-                x-stoplight:
-                  id: t5mmm348ds7jk
                 description: Maximum seconds this recording should be active for (beta)
           examples:
             Example 1:
@@ -5792,12 +5462,8 @@ components:
                   - properties:
                       data:
                         $ref: '#/components/schemas/Meeting'
-                  - x-stoplight:
-                      id: 2rhsz8bxmgily
-                    properties:
+                  - properties:
                       data:
-                        x-stoplight:
-                          id: u1ivkl42i7ksx
                         type: object
                         properties:
                           recording_config:

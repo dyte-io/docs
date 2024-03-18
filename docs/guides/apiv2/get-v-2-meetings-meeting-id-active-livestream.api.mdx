@@ -1,0 +1,291 @@
+---
+id: get-v-2-meetings-meeting-id-active-livestream
+title: "Fetch active livestreams for a meeting"
+description: "Returns details of all active livestreams for the given meeting ID."
+sidebar_label: "Fetch active livestreams for a meeting"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: guides/apiv2/dyte-rest-apis
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Fetch active livestreams for a meeting"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/meetings/{meeting_id}/active-livestream"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns details of all active livestreams for the given meeting ID.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Path Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"schema":{"type":"string","format":"uuid"},"name":"meeting_id","in":"path","required":true,"description":"ID of the meeting"}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          OK
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"success"}
+                        required={false}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                data
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <SchemaItem
+                              collapsible={false}
+                              name={"status"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={"**Possible values:** [`LIVE`, `IDLE`, `ERRORED`, `INVOKED`]"}
+                              schema={{"type":"string","enum":["LIVE","IDLE","ERRORED","INVOKED"]}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"name"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Name of the livestream.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"meeting_id"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"created_at"}
+                              required={false}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Timestamp the object was created at. The time is returned in ISO format.","format":"date-time"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"updated_at"}
+                              required={false}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Timestamp the object was updated at. The time is returned in ISO format.","format":"date-time"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"ingest_server"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"The server URL to which the RTMP encoder sends the video and audio data."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"id"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"The livestream ID."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"stream_key"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Unique key for accessing each livestream."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"playback_url"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"The web address that viewers can use to watch the livestream."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"disabled"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","x-stoplight":{"id":"p5vbni7rp58hd"},"description":"Specifies if the livestream was disabled."}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"data\": {\n    \"status\": \"LIVE\",\n    \"name\": \"string\",\n    \"meeting_id\": \"string\",\n    \"created_at\": \"2024-03-18T01:15:30.855Z\",\n    \"updated_at\": \"2024-03-18T01:15:30.855Z\",\n    \"ingest_server\": \"string\",\n    \"id\": \"string\",\n    \"stream_key\": \"string\",\n    \"playback_url\": \"string\",\n    \"disabled\": \"string\"\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem><TabItem
+                  label={"example-1"}
+                  value={"example-1"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"data\": {\n    \"id\": \"61e03cb4-d4da-42ad-9169-f53360f4f4b4\",\n    \"name\": null,\n    \"status\": \"LIVE\",\n    \"meeting_id\": \"bbb03399-24e3-4b0c-90ec-172e97e636be\",\n    \"playback_url\": \"https://2ec802dd47b0.ap-south-1.playback.live-video.net/api/video/v1/ap-south-1.811208621410.channel.9Ztr6yk4vndX.a1c3\",\n    \"created_at\": \"2023-07-15T11:58:08.404Z\",\n    \"updated_at\": \"2023-07-15T11:58:24.278Z\",\n    \"disabled\": false\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      
