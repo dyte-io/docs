@@ -1,0 +1,198 @@
+---
+title: Host Actions & Permissions
+description: >-
+  Understand the host actions you can perform as per preset permissions set in Developer Portal & integration in Dyte's Flutter SDK.
+sidebar_position: 13
+tags:
+  - flutter-core
+  - permissions
+  - host actions
+---
+
+# Host Actions & Permissions
+
+Based on your peer preset permissions you can perform certain host actions in Dyte's Flutter SDK. As you follow through this page, you'll know what the host actions are and how to implement it based on permissions.
+
+## Permissions
+
+Permissions are set in the Developer Portal. Based on the permissions set, you can perform certain host actions. To access permissions, use `dyteClient.permissions` method. The permissions are as follows:
+
+### Media Permissions
+
+Media permissions (audio, video and screenshare) can be accessed using `dyteClient.permissions.media`. You can get audio, video and screenshare permissions. Audio and screenshare permissions are of `DyteMediaPermission` type & video permissions are of `DyteVideoPermissions` type.
+
+`DyteMediaPermission` is a enum & can have 3 values:
+
+- `DyteMediaPermission.allowed` : If the user is allowed to access the media.
+- `DyteMediaPermission.canRequest` : If the user can request access to the media. Ex: If a user is off stage but can request to come on stage in case of webinar.
+- `DyteMediaPermission.notAllowed` : If the user is not allowed to access the media.
+
+`DyteVideoPermissions` have 3 properties:
+
+- `permission`: It is of `DyteMediaPermission` type & stores the video permission.
+- `frameRate` : It is of type `int` & stores the frame rate of the video.
+- `quality` : It is of type `string` and stores the quality of the video.
+
+```dart
+
+// To get audio permission
+final DyteMediaPermission audioPermission = dyteClient.permissions.media.audio;
+
+// To get video details
+final DyteVideoPermissions videoPermission = dyteClient.permissions.media.video;
+
+// To get screenshare permission
+final DyteMediaPermission screensharePermission = dyteClient.permissions.media.screenshare;
+```
+
+### Waiting Room Permissions
+
+Waiting room permissions are of type `WaitingRoomPermissions` contains 2 properties:
+
+- `canAcceptRequests`: It is of type `bool` & tells if the user can accept/reject waiting requests of participants present in waiting room.
+- `type`: It is of enum type `WaitingRoomType` and is useful to know where client can directly enter meeting room or need permission from host.
+
+`WaitingRoomType` can have 4 values:
+
+- `WaitingRoomType.skip` : If the user can directly enter the meeting room.
+- `WaitingRoomType.onAccept` : If the user needs permission from host to enter the meeting room.
+- `WaitingRoomType.skipOnAccept` : If the user needs permission from host just the first time while trying to join meeting room.
+- `WaitingRoomType.skipOnPriviligedUserEntry` : If the user can enter once there's a privileged user is present in the room.
+
+```dart
+final WaitingRoomPermissions waitingRoomPermissions = dyteClient.permissions.waitingRoom;
+```
+
+### Chat Permissions
+
+Chat permissions are of type `ChatPermissions` contains 2 properties:
+
+- `canSendText`: It is of type `bool` & tells if the user can send messages in the chat.
+- `canSendFiles`: It is of type `bool` & tells if the user can send images/files in the chat.
+
+```dart
+final ChatPermissions chatPermissions = dyteClient.permissions.chat;
+```
+
+### Host Permissions
+
+Host permissions are of type `HostPermissions` contains 5 properties:
+
+- `canMuteAudio`: It is of type `bool` & tells if the user can mute audio of other participants in the room.
+- `canDisableVideo`: It is of type `bool` & tells if the user can disable other participant's video.
+- `canKickParticipant`: It is of type `bool` & tells if the user can kick other participants from the room.
+- `canPinParticipant`: It is of type `bool` & tells if the user can pin other participants in the room.
+- `canTriggerRecording`: It is of type `bool` & tells if the user can trigger recording in the room.
+
+```dart
+final HostPermissions hostPermissions = dyteClient.permissions.host;
+```
+
+### Poll Permissions
+
+Poll permissions are of type `PollPermissions` contains 3 properties:
+
+- `canCreate`: It is of type `bool` & tells if the user can create polls in the meeting room.
+- `canVote`: It is of type `bool` & tells if the user can vote in the polls.
+- `canView`: It is of type `bool` & tells if the user can view the polls.
+
+```dart
+final PollPermissions pollPermissions = dyteClient.permissions.poll;
+```
+
+### Plugin Permissions
+
+Plugin permissions are of type `PluginPermissions` contains 2 properties:
+
+- `canLaunch`: It is of type `bool` & tells if the user can launch plugins in the meeting room.
+- `canClose`: It is of type `bool` & tells if the user can close plugins in the meeting room.
+
+```dart
+final PluginPermissions pluginPermissions = dyteClient.permissions.plugin;
+```
+
+### Livestream Permissions
+
+Livestream permissions are of type `LivestreamPermissions` contains the following property:
+
+- `canLivestream`: It is of type `bool` & tells if the user can start/stop livestreaming.
+
+```dart
+final LivestreamPermissions livestreamPermissions = dyteClient.permissions.livestream;
+```
+
+### Miscellaneous Permissions
+
+Miscellaneous permissions are of type `MiscellaneousPermissions` with following property:
+
+- `canEditDisplayName`: It is of type `bool` & tells if the user can edit their display name.
+
+## Host Actions
+
+A peer can execute following actions if their preset allows it. To access preset permissions, see the permissions section [above](#permissions):
+
+### Pin/Unpin participant
+
+You can pin & unpin a participant in a meeting room. Use `pinParticipant(participant)` and `unpinParticipant()` method to pin & unpin the `participant` respectively. The `participant` is of `DyteMeetingParticipant`type.
+
+```dart
+
+// Pin the `participant`
+dyteClient.hostActions.pinParticipant(participant);
+
+// Unpin pinned participant
+dyteClient.hostActions.unpinParticipant();
+```
+
+### Kick participant(s)
+
+You can kick a participant or kick all participants from a meeting using `kickParticipant(participant)` and `kickAll()` method respectively. The `participant` is of `DyteMeetingParticipant` type.
+
+```dart
+
+// Kick the `participant`
+dyteClient.hostActions.kickParticipant(participant);
+
+// Kick all participants
+dyteClient.hostActions.kickAll();
+```
+
+### Accept/Reject waitlisted request
+
+You can accept or reject a waitlisted request using `acceptWaitlistedParticipant(participant)` and `rejectWaitlistedParticipant(participant)` method respectively. The `participant` is of `DyteMeetingParticipant` type.
+
+```dart
+
+// Accept the waitlisted `waitlistedParticipant`
+dyteClient.hostActions.acceptWaitlistedParticipant(waitlistedParticipant);
+
+// Reject the waitlisted `waitlistedParticipant`
+dyteClient.hostActions.rejectWaitlistedParticipant(waitlistedParticipant);
+```
+
+### Mute participant(s) audio
+
+You can mute a participant's audio or mute all participants' audio using `disableParticipantAudio(participant)` and `muteAllAudios()` method respectively. The `participant` is of `DyteMeetingParticipant` type.
+
+```dart
+
+// Mute the `participant` audio
+dyteClient.hostActions.disableParticipantAudio(participant);
+
+// Mute all participants' audio
+dyteClient.hostActions.muteAllAudios();
+
+```
+
+### Disable participant(s) video
+
+You can disable a participant's video or disable all participants' video using `disableParticipantVideo(participant)` and `disableAllVideos()` method respectively. The `participant` is of `DyteMeetingParticipant` type.
+
+```dart
+
+// Disable the `participant` video
+dyteClient.hostActions.disableParticipantVideo(participant);
+
+// Disable all participants' video
+dyteClient.hostActions.disableAllVideos();
+```

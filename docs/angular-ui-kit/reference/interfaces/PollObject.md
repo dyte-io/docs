@@ -31,4 +31,5 @@ ___
 
 <head>
 	<title>Angular UI Kit Interface: PollObject</title>
+	<meta name="description" content="Learn about the Poll Object interface in Dyte's Angular UI Kit Reference for detailed information."/>
 </head>

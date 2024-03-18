@@ -69,19 +69,6 @@ You'll learn how to:
 
 After importing the package, perform the following steps for Android and iOS.
 
-### For Android
-
-Add the following permissions to the AndroidManifest.xml file.
-
-```dart
-<uses-permission android:name="android.permission.RECORD_AUDIO" />
-<uses-permission android:name="android.permission.CAMERA" />
-<uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.BLUETOOTH" />
-<uses-permission android:name="android.permission.WAKE_LOCK" />
-<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-```
 
 ### For iOS
 
@@ -98,12 +85,16 @@ platform :ios, '13.0'
 ```dart
 <key>NSBluetoothPeripheralUsageDescription</key>
 <string>We will use your Bluetooth to access your Bluetooth headphones.</string>
+
 <key>NSBluetoothAlwaysUsageDescription</key>
 <string>We will use your Bluetooth to access your Bluetooth headphones.</string>
+
 <key>NSCameraUsageDescription</key>
 <string>For people to see you during meetings, we need access to your camera.</string>
+
 <key>NSMicrophoneUsageDescription</key>
 <string>For people to hear you during meetings, we need access to your microphone.</string>
+
 <key>NSPhotoLibraryUsageDescription</key>
 <string>For people to share, we need access to your photos.</string>
 ```
@@ -142,10 +133,16 @@ participant's `authToken`.
 | Name        | Description                                                                                                                                                                                                                                                                                                               |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `authToken` | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
+| `baseUrl`   | The base URL of the Dyte server. Default value is `https://api.dyte.io/v2`. This is an optional argument.                                                                                                                                                                                                                 |
+| `enableAudio` | A boolean value to enable or disable audio in the meeting. Default value is `true`. This is an optional argument.                                                                                                                                                                                                       |
+| `enableVideo` | A boolean value to enable or disable video in the meeting. Default value is `true`. This is an optional argument.                                                                                                                                                                                                       |
 
 ```dart
 final meetingInfo = DyteMeetingInfoV2(
-                    authToken: '<auth_token>',
+                    authToken: '<authToken>',
+                    baseUrl: 'https://api.dyte.io/v2',                    // optional argument, if you want to pass your own baseUrl
+                    enableAudio: false,             // optional argument, to enable or disable audio in the meeting
+                    enableVideo: false,             // optional argument, to enable or disable video in the meeting
                   );
 ```
 
@@ -279,51 +276,6 @@ If you intend to publish your app to the Google Play or App Store, perform the
 following steps after installing the SDKs. So if you're working on release
 builds and not debug builds, do the following:
 
-### For Android release builds
-
-Perform the following steps, for Android release builds:
-
-1. Create `/android/app/proguard-rules.pro` file.
-
-```dart
-# Keep `Companion` object fields of serializable classes.
-# This avoids serializer lookup through `getDeclaredClasses` as done for named companion objects.
--if @kotlinx.serialization.Serializable class **
--keepclassmembers class <1> {
-   static <1>$Companion Companion;
-}
-
-# Keep `serializer()` on companion objects (both default and named) of serializable classes.
--if @kotlinx.serialization.Serializable class ** {
-   static **$* *;
-}
--keepclassmembers class <2>$<3> {
-   kotlinx.serialization.KSerializer serializer(...);
-}
-
-# keep webrtc classes
--keep class org.webrtc.** { *; }
--dontwarn org.chromium.build.BuildHooksAndroid
-
-# keep ktor classes
--keep class io.ktor.** { *; }
-
-```
-
-2. Add the following to your `android/app/build.gradle` to import the proguard
-   configuration.
-
-```dart
-buildTypes {
-        release {
-            ...
-            ...
-            ...
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-```
-
 ### For iOS release builds
 
 Disable `BITCODE` in your Podfile.
@@ -340,4 +292,5 @@ end
 
 <head>
   <title>Flutter Core Quickstart</title>
+  <meta name="description" content="Dive into the core of Flutter development with Dyte. Explore essential documentation to streamline your Flutter app integration."/>
 </head>

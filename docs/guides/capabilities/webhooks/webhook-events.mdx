@@ -275,6 +275,8 @@ values={[
   "event": "recording.statusUpdate",
   "recording": {
     "id": "6c81b7c4-4465-4e16-a36f-21b501d619bc",
+    "organizationId": "c94c437b-592a-4a39-b9e2-47ef1451e43b",
+    "roomUUID": "56b81d16-5d4e-45ed-85b4-056587b00aa0",
     "recordingId": "6c81b7c4-4465-4e16-a36f-21b501d619bc",
     "startedTime": "2022-12-13 07:08:39.051621Z",
     "stoppedTime": "2022-12-13 07:09:45.865627Z",
@@ -331,7 +333,9 @@ values={[
     "organizationId": "c94c437b-592a-4a39-b9e2-47ef1451e43b",
     "outputFileName": "missxh-vxtest_1681447566346.mp4",
     "audioDownloadUrl": "https://dyte-recordings-test.s3.ap-south-1.amazonaws.com/c94c437b-592a-4a39-b9e2-47ef1451e43b/test.mp3",
-    "downloadUrlExpiry": "2023-04-21 04:46:55.608944Z"
+    "downloadUrlExpiry": "2023-04-21 04:46:55.608944Z",
+    "stopReason": "{'reason':'ALL_PEERS_LEFT','caller':{'type':'INTERNAL'}}",
+    "recordingDuration": 0
   }
 }
 ```
@@ -343,7 +347,7 @@ values={[
 ### `livestreaming.statusUpdate`
 
 This event is triggered when a livestream's status changes. Possible values for
-`status` are `LIVE` and `OFFLINE`.
+`status` are `LIVE`, `OFFLINE` and `IDLE`.
 
 <Tabs>
 
@@ -371,8 +375,21 @@ This event is triggered when a livestream's status changes. Possible values for
 
 </TabItem>
 
+<TabItem value="IDLE" label="IDLE">
+
+```json
+{
+  "event": "livestreaming.statusUpdate",
+  "streamId": "d231d346-c422-43a6-a324-c0d65b79c8a7",
+  "status": "IDLE"
+}
+```
+
+</TabItem>
+
 </Tabs>
 
 <head>
   <title>Webhook Events List Guide</title>
+  <meta name="description" content="Explore various webhook events and their implementation with Dyte's capabilities. Follow our guide for effective event handling."/>
 </head>

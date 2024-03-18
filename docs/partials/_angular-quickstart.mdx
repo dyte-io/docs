@@ -142,7 +142,7 @@ class AppComponent {
     const meeting = await DyteClient.init({
       authToken: '<auth-token>',
     });
-    meeting.joinRoom();
+    meeting.join();
     this.dyteMeeting = meeting;
 
     if (this.meetingComponent) this.meetingComponent.meeting = meeting;
@@ -152,7 +152,7 @@ class AppComponent {
 
 ### Build your own UI
 
-If you want more customizations, pick the components that are needed and build the UI that suits your need using low level APIs that our core SDK offers [here](/web-core/introduction).
+If you want more customizations, pick the components that are needed and build the UI that suits your need using low level APIs that our core SDK offers [here](/web-core/).
 
 #### Add Dyte Meeting to the Template File
 
@@ -181,7 +181,7 @@ class AppComponent {
       authToken: '<auth-token>',
     });
 
-    meeting.joinRoom();
+    meeting.join();
     this.dyteMeeting = meeting;
     const elements = document.getElementsByClassName('dyte-el');
     for (i = 0; i < elements.length; i++) {

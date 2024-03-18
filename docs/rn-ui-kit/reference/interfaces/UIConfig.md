@@ -33,4 +33,5 @@ ___
 
 <head>
 	<title>React Native UI Kit Interface: UIConfig</title>
+	<meta name="description" content="Harness the power of Dyte's React Native UIConfig Interface to customize and tailor the user interface of your React Native application."/>
 </head>

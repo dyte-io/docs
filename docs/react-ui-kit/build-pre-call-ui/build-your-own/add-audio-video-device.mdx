@@ -1,0 +1,81 @@
+---
+title: Audio/video - Device Selection
+sidebar_position: 4
+---
+
+To let the user choose between multiple available input / output devices, you can use the `<DyteSettings >` component
+
+```tsx
+function DeviceSettings({ open, onClose }) {
+  const { meeting } = useDyteMeeting();
+  return (
+    <SomeDialogComponent open={open} onClose={onClose}>
+      <DyteSettings meeting={meeting} />
+    </SomeDialogComponent>
+  );
+}
+```
+
+If you added `DyteDialogManager` as suggested in the [Basic Structure](/react-ui-kit/build-pre-call-ui/build-your-own/initial-code-skeleton#file-meetingtsx) guide, you can also use `<DyteSettingsToggle>` component to trigger the inbuilt Dialog.
+
+Extending the last code sample with device selector.
+
+```tsx live showLineNumbers
+function CustomMeetingPreview() {
+  const { meeting } = useDyteMeeting();
+
+  return (
+    <div
+      className="bg-secondary-900 flex flex-col items-center justify-center"
+      style={{ minHeight: '400px' }}
+    >
+      {/* Do not re-add this, if already added in the parent component */}
+      <DyteDialogManager meeting={meeting} />
+      <div className="flex w-full items-center justify-around p-[10%]">
+        <div className="relative">
+          <DyteParticipantTile meeting={meeting} participant={meeting.self}>
+            <DyteAvatar participant={meeting.self} />
+            <DyteNameTag participant={meeting.self}>
+              <DyteAudioVisualizer participant={meeting.self} slot="start" />
+            </DyteNameTag>
+            <div
+              className="absolute flex"
+              style={{
+                top: '8px',
+                right: '8px',
+              }}
+            >
+              <DyteSettingsToggle meeting={meeting} size="sm" />
+            </div>
+            <div
+              id="user-actions"
+              className="absolute flex"
+              style={{
+                bottom: '8px',
+                right: '8px',
+              }}
+            >
+              <DyteMicToggle meeting={meeting} size="sm" />
+              <DyteCameraToggle meeting={meeting} size="sm" />
+            </div>
+          </DyteParticipantTile>
+        </div>
+        <div className="flex w-1/4 flex-col justify-between">
+          <div className="flex flex-col items-center">
+            <p>Joining as {meeting.self.name}</p>
+          </div>
+          <DyteButton
+            kind="wide"
+            size="lg"
+            onClick={async () => {
+              await meeting.join();
+            }}
+          >
+            Join
+          </DyteButton>
+        </div>
+      </div>
+    </div>
+  );
+}
+```

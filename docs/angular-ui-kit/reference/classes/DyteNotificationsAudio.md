@@ -45,7 +45,7 @@ ___
 
 ### setDevice
 
-▸ **setDevice**(`id`): `Promise`<`void`\>
+▸ **setDevice**(`id`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -55,9 +55,9 @@ ___
 
 #### Returns
 
-`Promise`<`void`\>
-
+`Promise`\<`void`\>
 
 <head>
 	<title>Angular UI Kit Class: DyteNotificationsAudio</title>
+	<meta name="description" content="Explore the Notifications Audio class in Dyte's Angular UI Kit Reference for detailed information."/>
 </head>

@@ -43,7 +43,7 @@ class AppComponent {
     const meeting = await DyteClient.init({
       authToken: '<auth-token>',
     });
-    meeting.joinRoom();
+    meeting.join();
     this.dyteMeeting = meeting;
     if (this.meetingComponent) this.meetingComponent.meeting = meeting;
   }
@@ -81,7 +81,7 @@ class AppComponent {
     const meeting = await DyteClient.init({
       authToken: '<auth-token>',
     });
-    meeting.joinRoom();
+    meeting.join();
     this.dyteMeeting = meeting;
     if (this.meetingComponent) this.meetingComponent.meeting = meeting;
   }
@@ -392,4 +392,5 @@ Here is the default language pack offered by Dyte:
 
 <head>
   <title>Angular UI Kit Customize Meeting Locale</title>
+  <meta name="description" content="Learn how to customize the locale settings in Dyte's Angular UI Kit with our comprehensive documentation."/>
 </head>

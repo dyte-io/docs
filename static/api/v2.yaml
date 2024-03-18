@@ -528,8 +528,6 @@ paths:
       description: Returns livestream session details for the given meeting ID. Retreive the meeting ID using the `Create a meeting` API.
       tags:
         - Live streams
-      requestBody:
-        content: {}
       operationId: livestream-session-details
       x-stoplight:
         id: pcm61j4127kyj
@@ -656,27 +654,17 @@ paths:
                     properties:
                       id:
                         type: string
-                        x-stoplight:
-                          id: 9hdbrcoypcwzd
                         description: The ID of the livestream.
                       name:
                         type: string
-                        x-stoplight:
-                          id: cva5malguw20o
                         description: Name of the livestream.
                       ingest_server:
                         type: string
-                        x-stoplight:
-                          id: lf56wa9w3eb5a
                         description: The server URL to which the RTMP encoder sends the video and audio data.
                       stream_key:
                         type: string
-                        x-stoplight:
-                          id: 51nskgzoid1no
                         description: Unique key for accessing each livestream.
                       status:
-                        x-stoplight:
-                          id: sm10jmhb2hbrd
                         enum:
                           - LIVE
                           - IDLE
@@ -684,30 +672,20 @@ paths:
                           - INVOKED
                       meeting_id:
                         type: string
-                        x-stoplight:
-                          id: 6xxw0hoicncpf
                         description: The ID of the meeting.
                       playback_url:
                         type: string
-                        x-stoplight:
-                          id: w8bj0bvvg7h2d
                         description: The web address that viewers can use to watch the livestream.
                       created_at:
                         type: string
-                        x-stoplight:
-                          id: mxhwbbeeqj9m9
                         format: date-time
                         description: Timestamp the object was created at. The time is returned in ISO format.
                       updated_at:
                         type: string
-                        x-stoplight:
-                          id: aw2rdz6z5q4df
                         format: date-time
                         description: Timestamp the object was updated at. The time is returned in ISO format.
                       disabled:
                         type: string
-                        x-stoplight:
-                          id: 5vqay20n3z0lj
                         description: Specifies if the livestream was disabled.
               examples:
                 Example 1:
@@ -939,9 +917,7 @@ paths:
                                   type: integer
                                   description: Total number of sessions for a specific day
                                 total_session_minutes:
-                                  type:
-                                    - integer
-                                    - number
+                                  type: number
                                   description: Total session minutes for a specific day
                       recording_stats:
                         type: object
@@ -965,9 +941,7 @@ paths:
                                   type: integer
                                   description: Total number of recordings for a specific day
                                 total_recording_minutes:
-                                  type:
-                                    - integer
-                                    - number
+                                  type: integer
                                   description: Total recording minutes for a specific day
           headers: {}
       operationId: get-org-analytics
@@ -998,12 +972,8 @@ paths:
                 properties:
                   success:
                     type: boolean
-                    x-stoplight:
-                      id: e5non3upkulx5
                   data:
                     $ref: '#/components/schemas/LivestreamBase'
-                    x-stoplight:
-                      id: h3kbfpcf0cvz3
       description: Enables a livestream for the given livestream ID. Retreive the livestream ID using the `Start livestreaming a meeting` API.
       tags:
         - Live streams
@@ -1027,12 +997,8 @@ paths:
                 properties:
                   success:
                     type: boolean
-                    x-stoplight:
-                      id: e5non3upkulx5
                   data:
                     $ref: '#/components/schemas/LivestreamBase'
-                    x-stoplight:
-                      id: h3kbfpcf0cvz3
               examples:
                 Example 1:
                   value:
@@ -1877,7 +1843,7 @@ paths:
         > #### NOTE
         >
         > This API is in beta and is disabled by default. [Contact us](https://dyte.io/contact) to enable it
-        > for your organization.                        
+        > for your organization.
       operationId: GetSessionChat
       tags:
         - Sessions
@@ -2532,7 +2498,7 @@ paths:
           in: query
           name: expired
           required: false
-          description: 'If passed, only shows expired/non-expired recordings on Dyte''s bucket'
+          description: "If passed, only shows expired/non-expired recordings on Dyte's bucket"
         - $ref: '#/components/parameters/search'
         - $ref: '#/components/parameters/recordingSortBy'
         - $ref: '#/components/parameters/sortOrder'
@@ -2731,7 +2697,7 @@ paths:
         > This API is in beta. [Contact us](https://dyte.io/contact) if you face
         > any issues.
 
-        Starts a track recording in a meeting. Track recordings consist of "layers". Layers are used to map audio/video tracks in a meeting to output destinations. More information about track recordings is available in the [Track Recordings Guide Page](https://docs.dyte.io/guides/capabilities/recording/recording-overview). 
+        Starts a track recording in a meeting. Track recordings consist of "layers". Layers are used to map audio/video tracks in a meeting to output destinations. More information about track recordings is available in the [Track Recordings Guide Page](https://docs.dyte.io/guides/capabilities/recording/recording-overview).
 components:
   schemas:
     LivestreamWithSessions:
@@ -3351,8 +3317,6 @@ components:
         - chat_download_url_expiry
     Transcript:
       type: object
-      x-stoplight:
-        id: 9023dd94ef9aa
       properties:
         transcript_download_url:
           type: string
@@ -4920,6 +4884,12 @@ components:
                 - right bottom
               description: Position of the watermark
               default: left top
+        export_file:
+          type: boolean
+          x-stoplight:
+            id: mqrzqrbcbbx99
+          default: true
+          description: Controls whether to export video file seperately
     LivestreamingConfig:
       title: LivestreamingConfig
       x-stoplight:
@@ -4956,6 +4926,12 @@ components:
             - mono
             - stereo
           default: stereo
+        export_file:
+          type: boolean
+          x-stoplight:
+            id: mqrzqrbcbbx99
+          default: true
+          description: Controls whether to export video file seperately
     DyteBucketConfig:
       title: DyteBucketConfig
       x-stoplight:
@@ -4966,7 +4942,7 @@ components:
           type: boolean
           x-stoplight:
             id: k1f2cjsd28631
-          description: 'Controls whether recordings are uploaded to Dyte''s bucket. If set to false, `download_url`, `audio_download_url`, `download_url_expiry` won''t be generated for a recording.'
+          description: "Controls whether recordings are uploaded to Dyte's bucket. If set to false, `download_url`, `audio_download_url`, `download_url_expiry` won't be generated for a recording."
       required:
         - enabled
     startReason:
@@ -5327,7 +5303,7 @@ components:
             properties:
               allow_unmute:
                 type: boolean
-                description: 'if false, participants won''t be able to unmute themselves after they are muted'
+                description: "if false, participants won't be able to unmute themselves after they are muted"
     CreatePollBody:
       description: Request body for creating a new poll
       content:
@@ -5763,7 +5739,6 @@ components:
               success:
                 type: boolean
               data:
-                type: object
                 $ref: '#/components/schemas/ChatMessage'
     GetSessionTranscript:
       description: Returns the complete transcript of a session.
@@ -5775,7 +5750,6 @@ components:
               success:
                 type: boolean
               data:
-                type: object
                 $ref: '#/components/schemas/Transcript'
     GetOverallStats:
       description: Returns complete analytics of an organization
@@ -6167,7 +6141,7 @@ components:
                               user_agent:
                                 type: string
                               webgl_support:
-                                type: 'null'
+                                type: string
                           ip_information:
                             type: object
                             properties:
@@ -6229,9 +6203,11 @@ components:
                             items:
                               type: string
                           start:
-                            type: 'null'
+                            type: string
+                            nullable: true
                           end:
-                            type: 'null'
+                            type: string
+                            nullable: true
                           total_audio_packets:
                             type: integer
                           total_audio_packets_lost:
@@ -6241,13 +6217,13 @@ components:
                           total_video_packets_lost:
                             type: integer
                           first_audio_packet_received:
-                            type: 'null'
+                            type: string
                           first_video_packet_received:
-                            type: 'null'
+                            type: string
                           last_audio_packet_received:
-                            type: 'null'
+                            type: string
                           last_video_packet_received:
-                            type: 'null'
+                            type: string
                           average_quality:
                             type: integer
                           audio_bandwidth:
@@ -6390,7 +6366,7 @@ components:
                                   user_agent:
                                     type: string
                                   webgl_support:
-                                    type: 'null'
+                                    type: string
                               sdk_name:
                                 type: string
                               sdk_version:
@@ -6457,9 +6433,7 @@ components:
                                     jitter:
                                       type: integer
                                     rtt:
-                                      type:
-                                        - integer
-                                        - number
+                                      type: number
                                     packets_sent:
                                       type: integer
                                     bytes_sent:

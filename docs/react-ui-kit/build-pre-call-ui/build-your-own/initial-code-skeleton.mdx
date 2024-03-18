@@ -1,0 +1,92 @@
+---
+title: Basic structure
+sidebar_position: 1
+---
+
+import CodeRunner from '@site/src/components/CodeRunner/CodeRunner';
+
+## What are we building?
+
+We are deconstructing the default setup screen.
+
+At the end of this group of docs, we should have the following screen built using low level components.
+
+<img
+  src="/static/guides/build-pre-call-ui/skeleton-page/meeting-precall.png"
+  width="1280"
+  height="720"
+  alt="Meeting Precall post skeleton changes"
+  className="mb-4"
+/>
+
+Let's put a basic skeleton and the initial boilerplate code.
+
+### File: Meeting.tsx
+
+```tsx
+import { DyteSetupScreen } from '@dytesdk/react-ui-kit';
+import type DyteClient from '@dytesdk/web-core';
+import { useEffect, useState } from 'react';
+import { CustomStates, SetState } from './types';
+import CustomMeetingPreview from './CustomMeetingPreview';
+
+function MyMeeting() {
+  const { meeting } = useDyteMeeting();
+  const roomState = useDyteSelector((m) => m.self.roomState);
+
+  return (
+    <div style={{ height: '480px' }}>
+      {/* Our custom pre-call UI */}
+      {roomState === 'init' && <CustomMeetingPreview />}
+
+      {/* Essential components to play audio, show notifications etc */}
+      <DyteParticipantsAudio meeting={meeting} />
+      <DyteNotifications meeting={meeting} />
+      <DyteDialogManager meeting={meeting} />
+
+      {/* 
+
+      For the sake of simplicty, the next couple of pages 
+        will only talk about CustomMeetingPreview 
+      
+      {roomState === 'joined' && <CustomInMeetingUI />}
+      {roomState === 'ended' && <CustomPostMeetingUI />)}
+      
+      */}
+    </div>
+  );
+}
+```
+
+### File: CustomMeetingPreview.tsx
+
+<CodeRunner 
+highlight={[{start: 13, end: 13}, {start: 19, end: 19}]}
+hide={[{start: 1, end: 3}]}
+file={`
+import { useDyteMeeting } from "@dytesdk/react-web-core";
+import { DyteButton } from "@dytesdk/react-ui-kit";
+
+export default function CustomMeetingPreview() {
+  const { meeting } = useDyteMeeting();
+  return (
+    <div
+      className="flex flex-col items-center justify-center bg-white dark:bg-black"
+      style={{ minHeight: '400px' }}
+    >
+      <div className="flex flex-col items-center">
+        <p>Joining as {meeting.self.name}</p>
+      </div>
+      <DyteButton
+        size="lg"
+        onClick={async () => {
+          // Call join() to enter the meeting
+          await meeting.join();
+        }}
+      >
+        Join
+      </DyteButton>
+    </div>
+  );
+}
+`} />

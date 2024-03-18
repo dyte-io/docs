@@ -32,6 +32,7 @@ Here is a list of properties that local user provides:
   - `hidden`: if the participant is hidden
 - `audioEnabled`: Boolean value indicating if the audio currently enabled.
 - `videoEnabled`: Boolean value indicating if the video currently enabled.
+- `stageStatus` : Stage status of the local participant.
 
 Local user properties can be fetched via `localUser` getter on the `dyteClient`.
 
@@ -54,7 +55,7 @@ final meetingInfo = DyteMeetingInfoV2(
 );
 ```
 
-## Turn audio/video tracks after initializing the client
+## Turn on audio/video tracks after initializing the client
 
 If audio and video tracks are disabled during the `DyteMobileClient`
 initialization process. You can setup the audio and video tracks by simply
@@ -121,7 +122,7 @@ dyteClient.localUser.enableScreenshare();
 dyteClient.localUser.disableScreenshare();
 ```
 
-
 <head>
   <title>Flutter Core Introduction</title>
+  <meta name="description" content="Learn about the local user concept in Flutter with Dyte's documentation. Follow our guide for a smooth introduction and integration."/>
 </head>

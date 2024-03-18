@@ -122,7 +122,7 @@ export const HTMLUIKitUtilsInstallation = ({
       {`<head>
   <script type="module">
     import {
-      ${modules.join(',\n    ')}
+      ${modules.join(', ')}
     } from 'https://cdn.jsdelivr.net/npm/@dytesdk/ui-kit${uikitVersion}/dist/esm/index.js';
   </script>
 </head>`}

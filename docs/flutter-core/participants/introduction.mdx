@@ -59,6 +59,17 @@ is returned with `onGridUpdated` event. It contains the following properties:
 - `isNextPagePossible`: bool, if the next page of participants is available.
 - `isPreviousPagePossible`: bool, if previous page of participants is available.
 
+## Video view
+
+To access the video view of a participant, create an object of the `VideoView` class.
+
+```dart
+// To show the video of a participant
+final videoView = VideoView(meetingParticipant: participant);
+// To get video view for a local user
+final selfVideoView = VideoView(isSelfTrue: true);
+```
+
 ## Move between pages in paginated mode
 
 The `setPage(int pageNumber)` method allows you to switch between pages of
@@ -71,6 +82,16 @@ _Note: Indexing of page starts from 0_
 dyteClient.setPage(1);
 ```
 
+## Broadcast Message to all participants
+
+```dart
+// payload is a Map<String, dynamic>
+const payload = {
+  "message": "Hello World",
+};
+dyteClient.broadcastMessage("type", payload);
+```
+
 ## Video update for all participants
 
 Triggered when any participant of the meeting enable/disable it's video. It also passes the participant details who has updated it's video status.
@@ -80,7 +101,7 @@ class ParticipantNotifier implements DyteParticipantEventsListener{
 
   ...
   @override
-  void videoUpdate(
+  void onVideoUpdate(
     bool videoEnabled,
     DyteJoinedMeetingParticipant participant,
   ) {
@@ -102,7 +123,7 @@ class ParticipantNotifier implements DyteParticipantEventsListener{
 
   ...
   @override
-  void audioUpdate(
+  void onAudioUpdate(
     bool audioEnabled,
     DyteJoinedMeetingParticipant participant,
   ) {
@@ -115,4 +136,5 @@ class ParticipantNotifier implements DyteParticipantEventsListener{
 
 <head>
   <title>Flutter Core Introduction</title>
+  <meta name="description" content="Learn about participants in Flutter and how to integrate participant features with Dyte's documentation. Follow our guide for a smooth introduction."/>
 </head>

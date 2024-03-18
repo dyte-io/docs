@@ -32,7 +32,7 @@ const SectionsMenu = forwardRef(
                   disabled={disabled}
                 >
                   <Select.ItemText>
-                    <div className="item-text">
+                    <div className="item-text text-text-400">
                       {Icon && <Icon />}
                       <span>{name}</span>
                     </div>

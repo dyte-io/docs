@@ -28,4 +28,5 @@ ___
 
 <head>
 	<title>Angular UI Kit Interface: UserPreferences</title>
+	<meta name="description" content="Learn about the User Preferences interface in Dyte's Angular UI Kit Reference for comprehensive information."/>
 </head>

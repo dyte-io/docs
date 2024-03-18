@@ -45,7 +45,7 @@ ___
 
 ### setDevice
 
-▸ **setDevice**(`id`): `Promise`<`void`\>
+▸ **setDevice**(`id`): `Promise`\<`void`\>
 
 #### Parameters
 
@@ -55,9 +55,9 @@ ___
 
 #### Returns
 
-`Promise`<`void`\>
-
+`Promise`\<`void`\>
 
 <head>
 	<title>React Native UI Kit Class: DyteNotificationsAudio</title>
+	<meta name="description" content="Dive into Dyte's React Native Notifications Audio documentation to implement and customize audio notifications seamlessly. Enhance your app's user experience."/>
 </head>

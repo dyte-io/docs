@@ -1,0 +1,33 @@
+# DyteJoinButton
+
+A button widget specifically designed for joining a Dyte meeting room. This widget encapsulates functionality related to the meeting room joining process, providing visual feedback to the user based on the current state of the joining process.
+
+## Usage
+
+Here is a basic example of how to use the `DyteJoinButton` in your Flutter app:
+
+```dart
+DyteJoinButton(
+  dyteMobileClient = yourDyteMobileClientInstance,
+  onMeetingJoined = () {
+    // Your code to execute after joining the meeting
+  },
+  height = 50.0,
+  width = 200.0,
+  isDisabled = false,
+)
+```
+
+## Properties
+
+- `dyteMobileClient`: (**Required**) An instance of `DyteMobileClient` to manage meeting room events.
+- `onMeetingJoined`: (Optional) A callback that gets called when the meeting room is successfully joined.
+- `dyteDesignToken`: (Optional) An instance of `DyteDesignTokens` for customizing the button's appearance according to the Dyte Design System.
+- `height`: (Optional) The height of the button. If not specified, it defaults to the height defined by the button style.
+- `width`: (Optional) The width of the button. If not specified, it defaults to the width defined by the button style.
+- `isDisabled`: (Optional) A boolean that disables the button when set to `true`. Default is `false`.
+
+
+## Screenshot
+
+<img src="/static/mobile/flutter/flutter-join-button.png" width="350px"/>
