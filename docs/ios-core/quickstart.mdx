@@ -140,12 +140,12 @@ meeting.addLiveStreamEventsListener(liveStreamEventsListener: self)
 
 Add `authToken` that you got from the REST API to constructor of DyteMeetingInfoV2 - [Add Participant API](/api#/operations/addParticipant)
 
-| Name          | Description                                                                                                                                                                             |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
-| `authToken`   | After you've created the meeting, add each participant to the meeting using the [Add Participant API](/api?v=v2#/operations/add_participant) The API response contains the `authToken`. |     |
-| `enableAudio` | Set whether to join the meeting with your Mic ON or OFF by passing `true` or `false`.                                                                                                   |     |
-| `enableVideo` | Set whether to join the meeting with your Camera ON or OFF by passing `true` or `false`.                                                                                                |     |
-| `baseUrl`     | Base URL of the dyte's enviorment you have created the meeting on.                                                                                                                      |     |
+| Name          | Description |
+| ------------- | ---------------------------------------------------------------- |
+| `authToken`   | After you've created the meeting, add each participant to the meeting using the [Add Participant API](/api?v=v2#/operations/add_participant) The API response contains the `authToken`. |     
+| `enableAudio` | Set whether to join the meeting with your Mic ON or OFF by passing `true` or `false`.|     
+| `enableVideo` | Set whether to join the meeting with your Camera ON or OFF by passing `true` or `false`.|     
+| `baseUrl`     | Base URL of the dyte's enviorment you have created the meeting on. |     
 
 ```swift
 let meetingInfo = DyteMeetingInfoV2(authToken: authToken,
