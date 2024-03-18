@@ -13,9 +13,9 @@ easy to integrate video and voice calls into any app or website within minutes.
 
 The UI Kit is a design library of prebuilt UI components built on top of the
 core SDKs. Core SDK handles all the low-level media and network handling parts
-of a meeting and exposes simpler APIs to use.
+of a meeting and exposes APIs that the UI Kit uses.
 
-Uses a layered design structure, allowing you to start with one prebuilt component and slowly go down layers and add custom UI incrementally as your needs evolve.
+The library uses a layered design structure allowing you to start with a prebuilt component and slowly go down layers and add custom UI incrementally as your needs evolve.
 
 - **Use prebuilt component**: You can use prebuilt `<DyteMeeting />` component to
   create your meeting quickly. With this component, you don't have to handle all
@@ -24,29 +24,6 @@ Uses a layered design structure, allowing you to start with one prebuilt compone
 
 - **Mix and match**: Use some components from our component library, build some custom components yourself. Read the [basics of our component design](/react-ui-kit/basics/integrate) and checkout the [gallery of available components](/react-ui-kit/components)
 
-## Features
-
-- Dyte UI Kit is built using
-  [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components). Web Components are a built-in browser specification that enables you to develop reusable custom elements without relying on any third-party frameworks. Web components provides the following advantages:
-  - **Encapsulation**: Web components utilize [Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM), which provides DOM and style encapsulation, isolating the styling of each component. This ensures that the CSS on your page does not interfere with Dyte's component styling and vice versa.
-  - **Fast**: DOM updates are very heavy, that is why React offers [Virtual DOM](https://reactjs.org/docs/faq-internals.html) to offer iterative updates. We also use our own Virtual DOM, but combing with Shadow DOM is even faster because styles are scoped. The browser can make assumptions about new changes to affect only one component and therefore it only needs to repaint that component.
-  - **Third-party dependencies**: There are almost no third-party dependencies, giving you complete code ownership.
-  - **Small bundle size**: The UI kit adds only 300KB (without gzipping) to your bundle size and includes everything from the meeting UI, chat, polls, emojis, plugins, host controls, and so on.
-- Dyte's React UI Kit also provides multiple
-  [Hooks](https://beta.reactjs.org/reference/react). Hooks let you use different
-  React features from your components. This provides seamless developer
-  experience when integrating Dyte's UI Kit in your React project. You can
-  simply import the package from `@dytesdk/react-web-core`, which is a hooks
-  wrapper on `@dytesdk/web-core`. For more information, see
-  [Use Web Core Hooks](/react-ui-kit/using-hooks).
-- Each component uses design tokens in conjunction with CSS variables for
-  styling. This makes the customization super simple and easy. Other than the
-  design tokens, we've also attempted to improve the customization options, with
-  features like Internationalisation (i18n) and Icon Packs Support.
-- In addition, we've also focused on accessibility (a11y) so that users can
-  easily navigate through the UI without having to move their mouse across the
-  screen. For example, closing dialogues with the `Escape` key and navigating
-  through visual elements with the `Tab` key.
 
 <head>
   <title>React UI Kit Introduction</title>

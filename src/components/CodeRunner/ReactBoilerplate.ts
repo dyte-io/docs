@@ -36,13 +36,16 @@ export default function App() {
       document.getElementsByTagName("html")[0].classList.remove("dark");
       document.getElementsByTagName("html")[0].classList.remove("light");
       document.getElementsByTagName("html")[0].classList.add("${colorMode}");
+
+      HTMLAudioElement.prototype.play = function() {};
       window.tailwind.config.darkMode = 'selector';
     });
   }, []);
 
 
-  return (
+  return (<div className="bg-white dark:bg-black">
     <DyteProvider value={meeting}><Custom /></DyteProvider>
+    </div>
   );
 }`;
 

@@ -8,23 +8,11 @@ This quickstart shows how to use Dyte's UI Kit prebuilt components to add live
 video and audio to your React application with minimal coding and a variety of
 meeting UI customization options.
 
-Dyte also offers the flexibility to build your own UI using various individual
-components. This offers limitless customization options to tailor the UI to fit
-your requirements. For more information, see the Build your own UI section.
-
 For getting started quickly, you can use our
 [sample code](https://github.com/dyte-io/react-samples). You can clone and run a
 sample application from the
 [React UI Kit GitHub repository](https://github.com/dyte-io/react-samples).
 
-## Objective
-
-You'll learn how to:
-
-- Install the Dyte SDK
-- Initialize Dyte Client
-- Pass the meeting object to UI Kit
-- Go live!
 
 ## Before Getting Started
 
@@ -125,17 +113,26 @@ states, dialogs, and other smaller bits of managing the application.
 For more information on the other props of `DyteMeeting`, see
 [DyteMeeting](/react-ui-kit/components/dyte-meeting).
 
-```jsx live
-function MyMeetingUI() {
+import CodeRunner from '@site/src/components/CodeRunner/CodeRunner';
+
+
+<CodeRunner 
+highlight={[{start: 10, end: 10}]}
+hide={[{start:1, end: 3}]}
+file={`
+import { DyteMeeting } from '@dytesdk/react-ui-kit';
+import { useDyteMeeting } from '@dytesdk/react-web-core';
+
+export default function MyMeetingUI() {
   const { meeting } = useDyteMeeting();
 
   return (
     <div style={{ height: '480px' }}>
-      <DyteMeeting mode="fill" meeting={meeting} />
+      <DyteMeeting mode="fill" meeting={meeting} showSetupScreen={false} />
     </div>
   );
 }
-```
+`} />
 
 <head>
   <title>React UI Kit Quickstart</title>

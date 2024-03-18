@@ -13,23 +13,10 @@ This quickstart shows how to use Dyte's UI Kit prebuilt components to add live
 video and audio to your web applications with minimal coding and a variety of
 meeting UI customization options.
 
-Dyte also offers the flexibility to build your own UI using various individual
-components. This offers limitless customization options to tailor the UI to fit
-your requirements. For more information, see the Build your own UI section.
-
 For getting started quickly, you can use our
 [sample code](https://github.com/dyte-io/html-samples#samples). You can clone
 and run a sample application from the
 [HTML UI Kit GitHub repository](https://github.com/dyte-io/html-samples).
-
-## Objective
-
-You'll learn how to:
-
-- Install the Dyte SDK
-- Initialize Dyte Client
-- Pass the meeting object to UI Kit
-- Go live!
 
 ## Before Getting Started
 
@@ -109,28 +96,45 @@ Here's a series of steps that you need to perform:
    them to communicate with one another. Once the UI Kit has the meeting object,
    it can join and leave meetings, and so on.
 
-```html
+import CodeRunner from '@site/src/components/CodeRunner/CodeRunner';
+
+
+<CodeRunner 
+highlight={[{start: 11, end: 11}]}
+hide={[{start:1, end: 9}]}
+framework='static'
+file={`<head>
+  <script type="module">
+      import { defineCustomElements } from 'https://cdn.jsdelivr.net/npm/@dytesdk/ui-kit@latest/loader/index.es2017.js';
+      defineCustomElements();
+  </script>
+  <!-- Import Web Core via CDN too -->
+  <!-- <script src="https://cdn.dyte.in/core/dyte.js"></script> -->
+</head>
 <body>
   <dyte-meeting id="my-meeting"></dyte-meeting>
-
   <script>
     const init = async () => {
       const meeting = await DyteClient.init({
-        authToken: '',
+        // Add your own auth token here
+        authToken: yourAuthToken,
         defaults: {
-          audio: true,
-          video: true,
+          audio: false,
+          video: false,
         },
       });
 
+      document.getElementById('my-meeting').showSetupScreen = false;
       document.getElementById('my-meeting').meeting = meeting;
     };
 
-    init();
+  init();
   </script>
 </body>
-```
+`}
+/>
 
 <head>
   <title>UI Kit Quickstart</title>
 </head>
+

@@ -7,7 +7,9 @@ import {
 } from '@codesandbox/sandpack-react';
 import React, { useState, useEffect } from 'react';
 import ReactBoilerplate from './ReactBoilerplate';
+import AngularBoilerplate from './AngularBoilerplate';
 import { useColorMode } from '@docusaurus/theme-common';
+import { atomDark, aquaBlue } from "@codesandbox/sandpack-themes";
 
 type FrameworkType = 'react-ts' | 'angular';
 type HighlightLines = {
@@ -26,6 +28,7 @@ type GetFilesReturn = {
   files: { [key: string]: string },
   activeFile: string,
   visibleFiles: string[],
+  scripts: string[],
 }
 const getFiles = (framework: FrameworkType, colorMode: string, customFile: string, files: { [key: string]: string } = {}): GetFilesReturn => {
   if (framework == 'react-ts') {
@@ -35,31 +38,33 @@ const getFiles = (framework: FrameworkType, colorMode: string, customFile: strin
         '/meeting.tsx': customFile,
       },
       activeFile: '/meeting.tsx',
-      visibleFiles: ['/meeting.tsx', ...Object.keys(files)]
+      visibleFiles: ['/meeting.tsx', ...Object.keys(files)],
+      scripts: [],
+    };
+  }
+  if(framework == 'angular'){
+    return {
+      files: { 
+        '/src/app/app.component.html': `<dyte-meeting #meeting show-setup-screen="true"></dyte-meeting>`,
+        '/src/app/app.component.ts': customFile,
+        '/src/app/app.module.ts': AngularBoilerplate,
+      },
+      activeFile: '/src/app/app.component.ts',
+      visibleFiles: ['/src/app/app.module.ts', '/src/app/app.component.ts','/src/app/app.component.html', ...Object.keys(files)],
+      scripts: [],
     };
   }
   return {
-    files: { 
-      '/src/app/app.component.html': `<dyte-meeting #meeting show-setup-screen="true"></dyte-meeting>`,
-    '/src/app/app.component.ts': customFile,
-    '/src/app/app.module.ts':`import { NgModule } from '@angular/core';
-    import { BrowserModule } from '@angular/platform-browser';
-    
-    import { AppComponent } from './app.component';
-    
-    import { DyteComponentsModule } from '@dytesdk/angular-ui-kit';
-    
-    @NgModule({
-      declarations: [AppComponent],
-      imports: [BrowserModule, DyteComponentsModule],
-      providers: [],
-      bootstrap: [AppComponent],
-    })
-    export class AppModule {}`
+    activeFile: '/index.html',
+    visibleFiles: ['/index.html'],
+    files: {
+      '/index.html': customFile
     },
-    activeFile: '/src/app/app.component.ts',
-    visibleFiles: ['/src/app/app.module.ts', '/src/app/app.component.ts','/src/app/app.component.html', ...Object.keys(files)]
-  };
+    scripts: [
+      'https://cdn.jsdelivr.net/npm/@dytesdk/web-core@1.31.0-stripped.2/dist/index.iife.js',
+      'https://assets.dyte.io/docs/web.js'
+    ]
+  }
 };
 
 const getDeps = (framework: FrameworkType): { [key: string]: string } => {
@@ -67,11 +72,13 @@ const getDeps = (framework: FrameworkType): { [key: string]: string } => {
     return {
       '@dytesdk/react-ui-kit': '1.66.0',
       '@dytesdk/react-web-core': '1.36.4-stripped.1',
+      '@dytesdk/web-core': '1.31.0-stripped.2',
     };
   }
   if (framework == 'angular') {
     return {
       '@dytesdk/angular-ui-kit': '1.66.0',
+      '@dytesdk/web-core': '1.31.0-stripped.2',
     }
   }
   return {};
@@ -91,6 +98,11 @@ const buildDecorators = (lines: HighlightLines[], hide: HighlightLines[]) => {
   });
   return cols;
 };
+
+const getTheme = (theme: string) => {
+  if(theme === 'light') return aquaBlue;
+  else return atomDark;
+}
 
 export default function CodeRunner({
   file,
@@ -127,15 +139,14 @@ export default function CodeRunner({
       template={framework}
       customSetup={{
         dependencies: {
-          '@dytesdk/web-core': '1.31.0-stripped.2',
           ...deps,
         },
       }}
-      theme={colorMode}
+      theme={getTheme(colorMode)}
       options={{
         activeFile: filesObj.activeFile,
         visibleFiles: filesObj.visibleFiles,
-        externalResources: ['https://cdn.tailwindcss.com'],
+        externalResources: ['https://assets.dyte.io/docs/tailwind.js', ...filesObj.scripts],
       }}
       files={filesObj.files}
     >
@@ -167,6 +178,7 @@ export default function CodeRunner({
                 flexShrink: 1,
                 flexBasis: 'max-content',
                 maxHeight: '500px',
+                overflow: 'scroll'
               }}
             />
           ) : (
@@ -184,8 +196,9 @@ export default function CodeRunner({
           )}
         </div>
         <SandpackPreview
+          showOpenInCodeSandbox={false}
           className="border-t-2 border-t-secondary-700"
-          style={{ flex: 1, minHeight: '400px' }}
+          style={{ flex: 1, minHeight: '480px' }}
         />
       </div>
     </SandpackProvider>

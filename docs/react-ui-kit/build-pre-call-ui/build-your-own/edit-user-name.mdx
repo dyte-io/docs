@@ -6,7 +6,6 @@ sidebar_position: 2
 import CodeRunner from '@site/src/components/CodeRunner/CodeRunner';
 
 A common use case of pre-call UI is to give the user a option to set / edit their name.
-<div autofocus/>
 
 ### Permissions
 
@@ -46,7 +45,7 @@ export default function CustomMeetingPreview() {
 
   return (
     <div
-      className="flex flex-col items-center justify-center bg-secondary-900"
+      className="flex flex-col items-center justify-center bg-white dark:bg-black"
       style={{ minHeight: "400px" }}
     >
       <div className="flex w-full items-center justify-around p-[10%]">
@@ -58,7 +57,7 @@ export default function CustomMeetingPreview() {
           {permissions.canEditDisplayName && (
             <input
               placeholder="Your name"
-              className="mb-10 rounded-sm border bg-secondary-1000 p-2.5 focus:border-primary"
+              className="mb-10 rounded-sm border p-2.5 focus:border-blue-500"
               value={participantName}
               onChange={(event) => setParticipantName(event.target.value)}
             />
