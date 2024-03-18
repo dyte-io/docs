@@ -36,18 +36,11 @@ subscribe to this events by calling
     meeting.addMeetingRoomEventsListener(object :
       DyteMeetingRoomEventsListener {
       override fun onNewPoll(poll: DytePollMessage) {
-        super.onNewPoll(poll)
         // code to handle new poll
       }
 
       override fun onPollUpdates(pollMessages: List<DytePollMessage>) {
-        super.onPollUpdates(pollMessages)
         // code to handle polls and their vote updates.
       }
     })
 ```
-
-<head>
-  <title>Android Core Introduction</title>
-  <meta name="description" content="Learn the fundamentals of integrating polls into your Android application with Dyte's Polls Introduction guide."/>
-</head>

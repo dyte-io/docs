@@ -9,19 +9,19 @@ tags:
   - stage
 ---
 
-# Manage Stage in Dyte's Group Call Meeting
+# Manage Stage in Dyte's Meeting
 
-In a group call, both hosts and participants can manage the stage. This allows for seamless control and organization of the session.
+In a meeting, both hosts and participants can manage the stage. This allows for seamless control and organization of the session.
 
 ## Host stage management
 
-In Dyte's group call platform, hosts have the capability to request participants to join the stage. When a host sends a request to a participant, the participant will receive a callback in the `DyteStageEventListener#onPresentRequestReceived()` method. The participant can then choose to accept or decline the request using specific functions.
+In Dyte's meeting platform, hosts have the capability to request participants to join the stage. When a host sends a request to a participant, the participant will receive a callback in the `DyteStageEventListener#onPresentRequestReceived()` method. The participant can then choose to accept or decline the request using specific functions.
 
 ```kotlin
-meeting.addStageEventsListener(object : DyteStageEventsListener {
+meeting.addStageEventsListener(object : DyteStageEventListener {
   ...
   override fun onPresentRequestReceived() {
-    // when host requests this user to join stage. Here one should give choice to either accept the request or decline it.
+    // when host requests any user to join stage, that user received this callback
   }
   ...
 })
@@ -97,6 +97,8 @@ To accept a request to join the stage, call the following function, where `ids` 
 
 ```kotlin
 meeting.stage.grantAccess(ids: List<String>)
+// to deny all stage requests
+meeting.stage.grantAccessAll()
 ```
 
 ### Reject stage requests
@@ -105,6 +107,8 @@ To reject a request, call the following function:
 
 ```kotlin
 meeting.stage.denyAccess(ids: List<String>)
+// to deny all stage requests
+meeting.stage.denyAccessAll()
 ```
 
 :::note
@@ -118,8 +122,3 @@ To withdraw a request to join the stage, call the following function:
 ```kotlin
 meeting.stage.cancelRequestAccess()
 ```
-
-<head>
-  <title>Android Core Manage Stage in Dyte's Group Call Meeting</title>
-  <meta name="description" content="Effectively manage the stage in your Android application with Dyte's documentation on stage management."/>
-</head>

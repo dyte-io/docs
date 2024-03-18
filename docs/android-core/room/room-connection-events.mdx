@@ -28,7 +28,7 @@ When the local user starts connecting to the meeting room during initialization,
 ```kotlin
 meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
     override fun onConnectingToMeetingRoom() {
-      super.onConnectingToMeetingRoom()
+      // connecting to meeting room
     }
 });
 ```
@@ -40,43 +40,7 @@ When the local user connects to the meeting room after initialization, this even
 ```kotlin
 meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
     override fun onConnectedToMeetingRoom() {
-      super.onConnectedToMeetingRoom()
-    }
-});
-```
-
-### Disconnected from room
-
-When the local user disconnects while leaving the meeting room, this event is triggered.
-
-```kotlin
-meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
-    override fun onDisconnectedFromMeetingRoom() {
-      super.onDisconnectedFromMeetingRoom()
-    }
-});
-```
-
-### Reconnecting to room
-
-When the Dyte SDK detects a connection drop and attempts to reconnect to the meeting room, this event is triggered.
-
-```kotlin
-meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
-    override fun onReconnectingToMeetingRoom() {
-      super.onReconnectingToMeetingRoom()
-    }
-});
-```
-
-### Reconnected to room
-
-When the local user successfully reconnects to the meeting room, this event is triggered.
-
-```kotlin
-meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
-    override fun onReconnectedToMeetingRoom() {
-      super.onReconnectedToMeetingRoom()
+      // triggered once connected to meeting room
     }
 });
 ```
@@ -89,7 +53,43 @@ because of internet connection issues.
 ```kotlin
 meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
     override fun onMeetingRoomConnectionFailed() {
-      super.onMeetingRoomConnectionFailed()
+      // triggered once connection to the room is failed
+    }
+});
+```
+
+### Disconnected from room
+
+When the local user disconnects while leaving the meeting room, this event is triggered.
+
+```kotlin
+meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
+    override fun onDisconnectedFromMeetingRoom() {
+      // triggered once disconnected from meeting room
+    }
+});
+```
+
+### Reconnecting to room
+
+When the Dyte SDK detects a connection drop and attempts to reconnect to the meeting room, this event is triggered.
+
+```kotlin
+meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
+    override fun onReconnectingToMeetingRoom() {
+      // triggered when reconnection is starting to the room
+    }
+});
+```
+
+### Reconnected to room
+
+When the local user successfully reconnects to the meeting room, this event is triggered.
+
+```kotlin
+meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
+    override fun onReconnectedToMeetingRoom() {
+      // triggered once reconnection to the room is complete
     }
 });
 ```
@@ -102,7 +102,7 @@ internet connection goes down for an extended period of time and the Dyte SDK is
 ```kotlin
 meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
     override fun onMeetingRoomReconnectionFailed() {
-      super.onMeetingRoomReconnectionFailed()
+      // triggered once re-connection to the room is failed
     }
 });
 ```

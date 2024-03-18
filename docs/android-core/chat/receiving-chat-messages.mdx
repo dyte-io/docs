@@ -20,12 +20,10 @@ subscribe to this events by calling
     meeting.addChatEventsListener(object :
       DyteChatEventsListener {
       override fun onChatUpdates(messages: List<DyteChatMessage>) {
-        super.onChatUpdates(messages)
         // to load chat messages
       }
 
       override fun onNewChatMessage(message: DyteChatMessage) {
-        super.onNewChatMessage(message)
         // when a new chat message is shared in the meeting
       }
     })
