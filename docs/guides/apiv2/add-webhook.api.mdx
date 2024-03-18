@@ -1,0 +1,522 @@
+---
+id: add-webhook
+title: "Add a webhook"
+description: "Adds a new webhook to an organization."
+sidebar_label: "Add a webhook"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: guides/apiv2/dyte-rest-apis
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Add a webhook"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/webhooks"}
+>
+  
+</MethodEndpoint>
+
+
+
+Adds a new webhook to an organization.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<MimeTabs
+  className={"openapi-tabs__mime"}
+>
+  <TabItem
+    label={"application/json"}
+    value={"application/json-schema"}
+  >
+    <details
+      style={{}}
+      className={"openapi-markdown__details mime"}
+      data-collapsed={false}
+      open={true}
+    >
+      <summary
+        style={{}}
+        className={"openapi-markdown__details-summary-mime"}
+      >
+        <h3
+          className={"openapi-markdown__details-summary-header-body"}
+        >
+          Body
+        </h3><strong
+          className={"openapi-schema__required"}
+        >
+          required
+        </strong>
+      </summary><div
+        style={{"textAlign":"left","marginLeft":"1rem"}}
+      >
+        
+      </div><ul
+        style={{"marginLeft":"1rem"}}
+      >
+        <SchemaItem
+          collapsible={false}
+          name={"name"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","example":"All events webhook","description":"Name of the webhook"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"url"}
+          required={true}
+          schemaName={"uri"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","format":"uri","example":"https://webhook.site/b23a5bbd-c7b0-4ced-a9e2-78ae7889897e","description":"URL this webhook will send events to"}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"events"}
+          required={true}
+          schemaName={"string[]"}
+          qualifierMessage={"**Possible values:** [`meeting.started`, `meeting.ended`, `meeting.participantJoined`, `meeting.participantLeft`, `meeting.chatSynced`, `recording.statusUpdate`, `livestreaming.statusUpdate`]"}
+          schema={{"type":"array","example":["meeting.started","meeting.ended","meeting.participantJoined","meeting.participantLeft","meeting.chatSynced","recording.statusUpdate","livestreaming.statusUpdate"],"description":"Events that this webhook will get triggered by","items":{"type":"string","enum":["meeting.started","meeting.ended","meeting.participantJoined","meeting.participantLeft","meeting.chatSynced","recording.statusUpdate","livestreaming.statusUpdate"]}}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"enabled"}
+          required={false}
+          schemaName={"boolean"}
+          qualifierMessage={undefined}
+          schema={{"type":"boolean","x-stoplight":{"id":"sdmlx3dxq7xtq"},"description":"Set whether or not the webhook should be active when created","default":true}}
+        >
+          
+        </SchemaItem>
+      </ul>
+    </details>
+  </TabItem>
+</MimeTabs><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"201"}
+        value={"201"}
+      >
+        <div>
+          
+          
+          Webhook registered successfully
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"success"}
+                        required={true}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean","example":true}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                data
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span><span
+                                className={"openapi-schema__divider"}
+                              >
+                                
+                              </span><span
+                                className={"openapi-schema__required"}
+                              >
+                                required
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <SchemaItem
+                              collapsible={false}
+                              name={"id"}
+                              required={true}
+                              schemaName={"uuid"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"uuid","example":"0d1f069d-43bb-489a-ad8c-7eb95592ba8e","description":"ID of the webhook","readOnly":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"name"}
+                              required={true}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","example":"All events webhook","description":"Name of the webhook"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"url"}
+                              required={true}
+                              schemaName={"uri"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"uri","example":"https://webhook.site/b23a5bbd-c7b0-4ced-a9e2-78ae7889897e","description":"URL the webhook will send events to"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"events"}
+                              required={true}
+                              schemaName={"string[]"}
+                              qualifierMessage={"**Possible values:** [`meeting.started`, `meeting.ended`, `meeting.participantJoined`, `meeting.participantLeft`, `meeting.chatSynced`, `recording.statusUpdate`, `livestreaming.statusUpdate`]"}
+                              schema={{"type":"array","example":["meeting.started","meeting.ended","meeting.participantJoined","meeting.participantLeft","meeting.chatSynced","recording.statusUpdate","livestreaming.statusUpdate"],"description":"Events this webhook will send updates for","items":{"type":"string","enum":["meeting.started","meeting.ended","meeting.participantJoined","meeting.participantLeft","meeting.chatSynced","recording.statusUpdate","livestreaming.statusUpdate"]}}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"created_at"}
+                              required={true}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time","example":"2022-05-28T07:01:53.075Z","description":"Timestamp when this webhook was created"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"updated_at"}
+                              required={true}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time","example":"2022-05-28T07:01:53.075Z","description":"Timestamp when this webhook was updated"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"enabled"}
+                              required={true}
+                              schemaName={"boolean"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"boolean","x-stoplight":{"id":"l3hofopunopq2"},"description":"Set to true if the webhook is active"}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"data\": {\n    \"id\": \"0d1f069d-43bb-489a-ad8c-7eb95592ba8e\",\n    \"name\": \"All events webhook\",\n    \"url\": \"https://webhook.site/b23a5bbd-c7b0-4ced-a9e2-78ae7889897e\",\n    \"events\": [\n      \"meeting.started\",\n      \"meeting.ended\",\n      \"meeting.participantJoined\",\n      \"meeting.participantLeft\",\n      \"meeting.chatSynced\",\n      \"recording.statusUpdate\",\n      \"livestreaming.statusUpdate\"\n    ],\n    \"created_at\": \"2022-05-28T07:01:53.075Z\",\n    \"updated_at\": \"2022-05-28T07:01:53.075Z\",\n    \"enabled\": true\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"400"}
+        value={"400"}
+      >
+        <div>
+          
+          
+          Error - malformed request
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"success"}
+                        required={true}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean","example":false,"description":"Whether the operation succeeded or not"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                error
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span><span
+                                className={"openapi-schema__divider"}
+                              >
+                                
+                              </span><span
+                                className={"openapi-schema__required"}
+                              >
+                                required
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <div
+                              style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                            >
+                              
+                              
+                              Object containing details of the error that occurred
+                              
+                              
+                            </div><SchemaItem
+                              collapsible={false}
+                              name={"code"}
+                              required={true}
+                              schemaName={"number"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"number","example":404,"description":"Error code"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"message"}
+                              required={true}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","example":"Error: resource not found","description":"Error message"}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": false,\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"Error: resource not found\"\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem><TabItem
+                  label={"Example"}
+                  value={"Example"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  success: false,\n  error: { code: 400, message: 'BAD_REQUEST: \"name\" is required' }\n}\n"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"401"}
+        value={"401"}
+      >
+        <div>
+          
+          
+          Invalid credentials
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      any
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example"}
+                  value={"Example"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  message: \"Unauthorized\"\n}\n"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

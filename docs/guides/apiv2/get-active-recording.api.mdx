@@ -1,0 +1,444 @@
+---
+id: get-active-recording
+title: "Fetch active recording"
+description: "Returns the active recording details for the given meeting ID."
+sidebar_label: "Fetch active recording"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: guides/apiv2/dyte-rest-apis
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Fetch active recording"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/recordings/active-recording/{meeting_id}"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns the active recording details for the given meeting ID.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Path Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"schema":{"type":"string"},"name":"meeting_id","in":"path","required":true,"description":"ID of the meeting"}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          Success response
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"success"}
+                        required={true}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean","default":true,"description":"Success status of the operation"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                data
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span><span
+                                className={"openapi-schema__divider"}
+                              >
+                                
+                              </span><span
+                                className={"openapi-schema__required"}
+                              >
+                                required
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <div
+                              style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                            >
+                              
+                              
+                              Data returned by the operation
+                              
+                              
+                            </div><SchemaItem
+                              collapsible={false}
+                              name={"id"}
+                              required={true}
+                              schemaName={"uuid"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"ID of the recording","format":"uuid","readOnly":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"download_url"}
+                              required={true}
+                              schemaName={"uri"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"uri","description":"URL where the recording can be downloaded.","nullable":true,"readOnly":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"download_url_expiry"}
+                              required={true}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time","description":"Timestamp when the download URL expires.","nullable":true,"readOnly":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"audio_download_url"}
+                              required={true}
+                              schemaName={"uri"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"uri","x-stoplight":{"id":"h5tzcaeuye8fk"},"description":"If the audio_config is passed, the URL for downloading the audio recording is returned.","nullable":true,"readOnly":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"file_size"}
+                              required={true}
+                              schemaName={"number"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"number","description":"File size of the recording, in bytes.","nullable":true,"readOnly":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"session_id"}
+                              required={true}
+                              schemaName={"uuid"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"uuid","description":"ID of the meeting session this recording is for.","nullable":true,"readOnly":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"output_file_name"}
+                              required={true}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"File name of the recording."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"status"}
+                              required={true}
+                              schemaName={"string"}
+                              qualifierMessage={"**Possible values:** [`INVOKED`, `RECORDING`, `UPLOADING`, `UPLOADED`, `ERRORED`, `PAUSED`]"}
+                              schema={{"type":"string","enum":["INVOKED","RECORDING","UPLOADING","UPLOADED","ERRORED","PAUSED"],"description":"Current status of the recording."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"invoked_time"}
+                              required={true}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Timestamp when this recording was invoked.","format":"date-time"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"started_time"}
+                              required={true}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time","description":"Timestamp when this recording actually started after being invoked. Usually a few seconds after `invoked_time`.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"stopped_time"}
+                              required={true}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time","description":"Timestamp when this recording was stopped. Optional; is present only when the recording has actually been stopped.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"recording_duration"}
+                              required={false}
+                              schemaName={"integer"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"integer","x-stoplight":{"id":"prsgxotoknc3l"},"description":"Total recording time in seconds."}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"data\": {\n    \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"download_url\": \"string\",\n    \"download_url_expiry\": \"2024-03-18T01:15:30.927Z\",\n    \"audio_download_url\": \"string\",\n    \"file_size\": 0,\n    \"session_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"output_file_name\": \"string\",\n    \"status\": \"INVOKED\",\n    \"invoked_time\": \"2024-03-18T01:15:30.927Z\",\n    \"started_time\": \"2024-03-18T01:15:30.927Z\",\n    \"stopped_time\": \"2024-03-18T01:15:30.927Z\",\n    \"recording_duration\": 0\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"404"}
+        value={"404"}
+      >
+        <div>
+          
+          
+          Failure response
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"success"}
+                        required={true}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean","description":"Success status of the request.","default":false}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                error
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span><span
+                                className={"openapi-schema__divider"}
+                              >
+                                
+                              </span><span
+                                className={"openapi-schema__required"}
+                              >
+                                required
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <SchemaItem
+                              collapsible={false}
+                              name={"code"}
+                              required={true}
+                              schemaName={"number"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"number","description":"HTTP status code of the error."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"message"}
+                              required={true}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Error message describing what went wrong."}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": false,\n  \"error\": {\n    \"code\": 0,\n    \"message\": \"string\"\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

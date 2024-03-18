@@ -1,0 +1,636 @@
+---
+id: get-one-recording
+title: "Fetch details of a recording"
+description: "Returns details of a recording for the given recording ID."
+sidebar_label: "Fetch details of a recording"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: guides/apiv2/dyte-rest-apis
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Fetch details of a recording"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/recordings/{recording_id}"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns details of a recording for the given recording ID.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Path Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"schema":{"type":"string"},"name":"recording_id","in":"path","required":true,"description":"ID of the recording"}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          Success response
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"success"}
+                        required={true}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean","default":true,"description":"Success status of the operation"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                data
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <div
+                              style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                            >
+                              
+                              
+                              Data returned by the operation
+                              
+                              
+                            </div><SchemaItem
+                              collapsible={false}
+                              name={"id"}
+                              required={true}
+                              schemaName={"uuid"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"ID of the recording","format":"uuid","readOnly":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"download_url"}
+                              required={true}
+                              schemaName={"uri"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"uri","description":"URL where the recording can be downloaded.","nullable":true,"readOnly":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"download_url_expiry"}
+                              required={true}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time","description":"Timestamp when the download URL expires.","nullable":true,"readOnly":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"audio_download_url"}
+                              required={true}
+                              schemaName={"uri"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"uri","x-stoplight":{"id":"h5tzcaeuye8fk"},"description":"If the audio_config is passed, the URL for downloading the audio recording is returned.","nullable":true,"readOnly":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"file_size"}
+                              required={true}
+                              schemaName={"number"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"number","description":"File size of the recording, in bytes.","nullable":true,"readOnly":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"session_id"}
+                              required={true}
+                              schemaName={"uuid"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"uuid","description":"ID of the meeting session this recording is for.","nullable":true,"readOnly":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"output_file_name"}
+                              required={true}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"File name of the recording."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"status"}
+                              required={true}
+                              schemaName={"string"}
+                              qualifierMessage={"**Possible values:** [`INVOKED`, `RECORDING`, `UPLOADING`, `UPLOADED`, `ERRORED`, `PAUSED`]"}
+                              schema={{"type":"string","enum":["INVOKED","RECORDING","UPLOADING","UPLOADED","ERRORED","PAUSED"],"description":"Current status of the recording."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"invoked_time"}
+                              required={true}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Timestamp when this recording was invoked.","format":"date-time"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"started_time"}
+                              required={true}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time","description":"Timestamp when this recording actually started after being invoked. Usually a few seconds after `invoked_time`.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"stopped_time"}
+                              required={true}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time","description":"Timestamp when this recording was stopped. Optional; is present only when the recording has actually been stopped.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"recording_duration"}
+                              required={false}
+                              schemaName={"integer"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"integer","x-stoplight":{"id":"prsgxotoknc3l"},"description":"Total recording time in seconds."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={true}
+                              className={"schemaItem"}
+                            >
+                              <details
+                                style={{}}
+                                className={"openapi-markdown__details"}
+                              >
+                                <summary
+                                  style={{}}
+                                >
+                                  <span
+                                    className={"openapi-schema__container"}
+                                  >
+                                    <strong
+                                      className={"openapi-schema__property"}
+                                    >
+                                      storage_config
+                                    </strong><span
+                                      className={"openapi-schema__name"}
+                                    >
+                                       object
+                                    </span><span
+                                      className={"openapi-schema__divider"}
+                                    >
+                                      
+                                    </span><span
+                                      className={"openapi-schema__nullable"}
+                                    >
+                                      nullable
+                                    </span>
+                                  </span>
+                                </summary><div
+                                  style={{"marginLeft":"1rem"}}
+                                >
+                                  <SchemaItem
+                                    collapsible={false}
+                                    name={"type"}
+                                    required={true}
+                                    schemaName={"string"}
+                                    qualifierMessage={"**Possible values:** [`aws`, `azure`, `digitalocean`, `gcs`, `sftp`]"}
+                                    schema={{"type":"string","enum":["aws","azure","digitalocean","gcs","sftp"],"description":"Type of storage media."}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"secret"}
+                                    required={false}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","description":"Secret key of the storage medium. Similar to `access_key`, it is only writeable by clients, not readable.","x-stoplight":{"id":"35o598ur3dm2s"}}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"bucket"}
+                                    required={false}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","description":"Name of the storage medium's bucket."}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"region"}
+                                    required={false}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","description":"Region of the storage medium.","example":"us-east-1"}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"path"}
+                                    required={false}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","description":"Path relative to the bucket root at which the recording will be placed."}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"auth_method"}
+                                    required={false}
+                                    schemaName={""}
+                                    qualifierMessage={"**Possible values:** [`KEY`, `PASSWORD`]"}
+                                    schema={{"x-stoplight":{"id":"uklpv4sdxai0a"},"enum":["KEY","PASSWORD"],"description":"Authentication method used for \"sftp\" type storage medium\n"}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"username"}
+                                    required={false}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","x-stoplight":{"id":"bzea0pjriano5"},"description":"SSH destination server username for SFTP type storage medium"}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"password"}
+                                    required={false}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","x-stoplight":{"id":"nyi2j6m4lnwhg"},"description":"SSH destination server password for SFTP type storage medium when auth_method is \"PASSWORD\". If auth_method is \"KEY\", this specifies the password for the ssh private key."}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"host"}
+                                    required={false}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","x-stoplight":{"id":"y9c66jxovb285"},"description":"SSH destination server host for SFTP type storage medium"}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"port"}
+                                    required={false}
+                                    schemaName={"number"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"number","x-stoplight":{"id":"y5h441zp02ino"},"description":"SSH destination server port for SFTP type storage medium"}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"private_key"}
+                                    required={false}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","x-stoplight":{"id":"h105s3bbsxb2k"},"description":"Private key used to login to destination SSH server for SFTP type storage medium, when auth_method used is \"KEY\""}}
+                                  >
+                                    
+                                  </SchemaItem>
+                                </div>
+                              </details>
+                            </SchemaItem><SchemaItem
+                              collapsible={true}
+                              className={"schemaItem"}
+                            >
+                              <details
+                                style={{}}
+                                className={"openapi-markdown__details"}
+                              >
+                                <summary
+                                  style={{}}
+                                >
+                                  <span
+                                    className={"openapi-schema__container"}
+                                  >
+                                    <strong
+                                      className={"openapi-schema__property"}
+                                    >
+                                      start_reason
+                                    </strong><span
+                                      className={"openapi-schema__name"}
+                                    >
+                                       object
+                                    </span>
+                                  </span>
+                                </summary><div
+                                  style={{"marginLeft":"1rem"}}
+                                >
+                                  <SchemaItem
+                                    collapsible={false}
+                                    name={"reason"}
+                                    required={false}
+                                    schemaName={"string"}
+                                    qualifierMessage={"**Possible values:** [`API_CALL`, `RECORD_ON_START`]"}
+                                    schema={{"type":"string","x-stoplight":{"id":"dn2j1jzggz3tg"},"enum":["API_CALL","RECORD_ON_START"],"description":"Specifies if the recording was started using the \"Start a Recording\"API or using the parameter RECORD_ON_START in the \"Create a meeting\" API. \n\nIf the recording is initiated using the \"RECORD_ON_START\" parameter, the user details will not be populated."}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={true}
+                                    className={"schemaItem"}
+                                  >
+                                    <details
+                                      style={{}}
+                                      className={"openapi-markdown__details"}
+                                    >
+                                      <summary
+                                        style={{}}
+                                      >
+                                        <span
+                                          className={"openapi-schema__container"}
+                                        >
+                                          <strong
+                                            className={"openapi-schema__property"}
+                                          >
+                                            caller
+                                          </strong><span
+                                            className={"openapi-schema__name"}
+                                          >
+                                             object
+                                          </span>
+                                        </span>
+                                      </summary><div
+                                        style={{"marginLeft":"1rem"}}
+                                      >
+                                        <SchemaItem
+                                          collapsible={false}
+                                          name={"type"}
+                                          required={false}
+                                          schemaName={"string"}
+                                          qualifierMessage={"**Possible values:** [`ORGANIZATION`, `USER`]"}
+                                          schema={{"type":"string","x-stoplight":{"id":"fxgon7ps3760x"},"enum":["ORGANIZATION","USER"],"description":"The type can be an organization or a user. If the type is `user`, then only the `user_Id` and `name` are returned."}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"user_Id"}
+                                          required={false}
+                                          schemaName={"uuid"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"string","x-stoplight":{"id":"ofr7xxueb7d7b"},"format":"uuid","description":"The user ID of the person who started the recording.","example":"d61f6956-e68f-4375-bf10-c38a704d1bec"}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"name"}
+                                          required={false}
+                                          schemaName={"string"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"string","x-stoplight":{"id":"2q0sigi7zuva4"},"description":"Name of the user who started the recording.","example":"Dyte_test"}}
+                                        >
+                                          
+                                        </SchemaItem>
+                                      </div>
+                                    </details>
+                                  </SchemaItem>
+                                </div>
+                              </details>
+                            </SchemaItem><SchemaItem
+                              collapsible={true}
+                              className={"schemaItem"}
+                            >
+                              <details
+                                style={{}}
+                                className={"openapi-markdown__details"}
+                              >
+                                <summary
+                                  style={{}}
+                                >
+                                  <span
+                                    className={"openapi-schema__container"}
+                                  >
+                                    <strong
+                                      className={"openapi-schema__property"}
+                                    >
+                                      stop_reason
+                                    </strong><span
+                                      className={"openapi-schema__name"}
+                                    >
+                                       object
+                                    </span>
+                                  </span>
+                                </summary><div
+                                  style={{"marginLeft":"1rem"}}
+                                >
+                                  <SchemaItem
+                                    collapsible={false}
+                                    name={"reason"}
+                                    required={false}
+                                    schemaName={"string"}
+                                    qualifierMessage={"**Possible values:** [`API_CALL`, `INTERNAL_ERROR`, `ALL_PEERS_LEFT`]"}
+                                    schema={{"type":"string","x-stoplight":{"id":"tjp04tusymaft"},"enum":["API_CALL","INTERNAL_ERROR","ALL_PEERS_LEFT"],"description":"Specifies the reason why the recording stopped."}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={true}
+                                    className={"schemaItem"}
+                                  >
+                                    <details
+                                      style={{}}
+                                      className={"openapi-markdown__details"}
+                                    >
+                                      <summary
+                                        style={{}}
+                                      >
+                                        <span
+                                          className={"openapi-schema__container"}
+                                        >
+                                          <strong
+                                            className={"openapi-schema__property"}
+                                          >
+                                            caller
+                                          </strong><span
+                                            className={"openapi-schema__name"}
+                                          >
+                                             object
+                                          </span>
+                                        </span>
+                                      </summary><div
+                                        style={{"marginLeft":"1rem"}}
+                                      >
+                                        <SchemaItem
+                                          collapsible={false}
+                                          name={"type"}
+                                          required={false}
+                                          schemaName={"string"}
+                                          qualifierMessage={"**Possible values:** [`ORGANIZATION`, `USER`]"}
+                                          schema={{"type":"string","x-stoplight":{"id":"n54oq8jwz6hbv"},"enum":["ORGANIZATION","USER"],"description":"The type can be an organization or a user. If the type is `user`, then only the `user_Id` and `name` are returned."}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"user_Id"}
+                                          required={false}
+                                          schemaName={"uuid"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"string","x-stoplight":{"id":"nhq76tz89qbnd"},"description":"The user ID of the person who stopped the recording.","format":"uuid","example":"d61f6956-e68f-4375-bf10-c38a704d1bec"}}
+                                        >
+                                          
+                                        </SchemaItem><SchemaItem
+                                          collapsible={false}
+                                          name={"name"}
+                                          required={false}
+                                          schemaName={"string"}
+                                          qualifierMessage={undefined}
+                                          schema={{"type":"string","x-stoplight":{"id":"fylgc8uhbqf1v"},"description":"Name of the user who stopped the recording.","example":"Dyte_test"}}
+                                        >
+                                          
+                                        </SchemaItem>
+                                      </div>
+                                    </details>
+                                  </SchemaItem>
+                                </div>
+                              </details>
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"data\": {\n    \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"download_url\": \"string\",\n    \"download_url_expiry\": \"2024-03-18T01:15:30.930Z\",\n    \"audio_download_url\": \"string\",\n    \"file_size\": 0,\n    \"session_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"output_file_name\": \"string\",\n    \"status\": \"INVOKED\",\n    \"invoked_time\": \"2024-03-18T01:15:30.930Z\",\n    \"started_time\": \"2024-03-18T01:15:30.930Z\",\n    \"stopped_time\": \"2024-03-18T01:15:30.930Z\",\n    \"recording_duration\": 0,\n    \"storage_config\": {\n      \"type\": \"aws\",\n      \"secret\": \"string\",\n      \"bucket\": \"string\",\n      \"region\": \"us-east-1\",\n      \"path\": \"string\",\n      \"username\": \"string\",\n      \"password\": \"string\",\n      \"host\": \"string\",\n      \"port\": 0,\n      \"private_key\": \"string\"\n    },\n    \"start_reason\": {\n      \"reason\": \"API_CALL\",\n      \"caller\": {\n        \"type\": \"ORGANIZATION\",\n        \"user_Id\": \"d61f6956-e68f-4375-bf10-c38a704d1bec\",\n        \"name\": \"Dyte_test\"\n      }\n    },\n    \"stop_reason\": {\n      \"reason\": \"API_CALL\",\n      \"caller\": {\n        \"type\": \"ORGANIZATION\",\n        \"user_Id\": \"d61f6956-e68f-4375-bf10-c38a704d1bec\",\n        \"name\": \"Dyte_test\"\n      }\n    }\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

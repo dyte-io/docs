@@ -1,0 +1,404 @@
+---
+id: get-sessions
+title: "Fetch all sessions of an organization"
+description: "Returns details of all sessions of an organization."
+sidebar_label: "Fetch all sessions of an organization"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: guides/apiv2/dyte-rest-apis
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Fetch all sessions of an organization"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/sessions"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns details of all sessions of an organization.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Query Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"name":"page_no","in":"query","required":false,"schema":{"type":"number","minimum":0},"description":"The page number from which you want your page search results to be displayed.","allowEmptyValue":true}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"per_page","in":"query","required":false,"schema":{"type":"number","minimum":0},"description":"Number of results per page","allowEmptyValue":true}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"sort_by","in":"query","required":false,"schema":{"type":"string","enum":["minutesConsumed","createdAt"]}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"sort_order","in":"query","required":false,"schema":{"type":"string","enum":["ASC","DESC"]}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"start_time","in":"query","required":false,"schema":{"type":"string","format":"date-time"},"description":"The start time range for which you want to retrieve the meetings. The time must be specified in ISO format."}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"end_time","in":"query","required":false,"schema":{"type":"string","format":"date-time"},"description":"The end time range for which you want to retrieve the meetings. The time must be specified in ISO format."}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"participants","in":"query","required":false,"schema":{"type":"string"},"example":"1:10"}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"status","in":"query","required":false,"schema":{"type":"string","enum":["LIVE","ENDED"]}}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"schema":{"type":"string"},"in":"query","name":"search","description":"Search string that matches sessions based on meeting title, meeting ID, and session ID"}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"schema":{"type":"string"},"in":"query","name":"associated_id","description":"ID of the meeting that sessions should be associated with"}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          Get all sessions success response
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"success"}
+                        required={false}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean"}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                data
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <SchemaItem
+                              collapsible={true}
+                              className={"schemaItem"}
+                            >
+                              <details
+                                style={{}}
+                                className={"openapi-markdown__details"}
+                              >
+                                <summary
+                                  style={{}}
+                                >
+                                  <span
+                                    className={"openapi-schema__container"}
+                                  >
+                                    <strong
+                                      className={"openapi-schema__property"}
+                                    >
+                                      sessions
+                                    </strong><span
+                                      className={"openapi-schema__name"}
+                                    >
+                                       object[]
+                                    </span>
+                                  </span>
+                                </summary><div
+                                  style={{"marginLeft":"1rem"}}
+                                >
+                                  <li>
+                                    <div
+                                      style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}
+                                    >
+                                      Array [
+                                    </div>
+                                  </li><SchemaItem
+                                    collapsible={false}
+                                    name={"id"}
+                                    required={true}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","description":"ID of the session","readOnly":true}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"associated_id"}
+                                    required={true}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","description":"ID of the meeting this session is associated with. In the case of V2 meetings, it is always a UUID. In V1 meetings, it is a room name of the form `abcdef-ghijkl`"}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"meeting_display_name"}
+                                    required={true}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","description":"Title of the meeting this session belongs to"}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"type"}
+                                    required={true}
+                                    schemaName={"string"}
+                                    qualifierMessage={"**Possible values:** [`meeting`, `livestream`, `participant`]"}
+                                    schema={{"type":"string","description":"type of session","enum":["meeting","livestream","participant"]}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"status"}
+                                    required={true}
+                                    schemaName={"string"}
+                                    qualifierMessage={"**Possible values:** [`LIVE`, `ENDED`]"}
+                                    schema={{"type":"string","description":"current status of session","enum":["LIVE","ENDED"]}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"live_participants"}
+                                    required={true}
+                                    schemaName={"number"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"number","description":"number of participants currently in the session"}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"max_concurrent_participants"}
+                                    required={true}
+                                    schemaName={"number"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"number","description":"number of maximum participants that were in the session"}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"minutes_consumed"}
+                                    required={true}
+                                    schemaName={"number"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"number","description":"number of minutes consumed since the session started"}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"organization_id"}
+                                    required={true}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","description":"Organization id that hosted this session"}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"started_at"}
+                                    required={true}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","description":"timestamp when session started"}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"created_at"}
+                                    required={true}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","description":"timestamp when session created"}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"updated_at"}
+                                    required={true}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","description":"timestamp when session was last updated"}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"ended_at"}
+                                    required={false}
+                                    schemaName={"string"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"string","description":"timestamp when session ended"}}
+                                  >
+                                    
+                                  </SchemaItem><SchemaItem
+                                    collapsible={false}
+                                    name={"meta"}
+                                    required={false}
+                                    schemaName={"object"}
+                                    qualifierMessage={undefined}
+                                    schema={{"type":"object","description":"Any meta data about session."}}
+                                  >
+                                    
+                                  </SchemaItem><li>
+                                    <div
+                                      style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}
+                                    >
+                                      ]
+                                    </div>
+                                  </li>
+                                </div>
+                              </details>
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"data\": {\n    \"sessions\": [\n      {\n        \"id\": \"string\",\n        \"associated_id\": \"string\",\n        \"meeting_display_name\": \"string\",\n        \"type\": \"meeting\",\n        \"status\": \"LIVE\",\n        \"live_participants\": 0,\n        \"max_concurrent_participants\": 0,\n        \"minutes_consumed\": 0,\n        \"organization_id\": \"string\",\n        \"started_at\": \"string\",\n        \"created_at\": \"string\",\n        \"updated_at\": \"string\",\n        \"ended_at\": \"string\",\n        \"meta\": {}\n      }\n    ]\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

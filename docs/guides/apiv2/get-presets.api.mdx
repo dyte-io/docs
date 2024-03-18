@@ -1,0 +1,317 @@
+---
+id: get-presets
+title: "Fetch all presets"
+description: "Fetches all the presets belonging to an organization."
+sidebar_label: "Fetch all presets"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: guides/apiv2/dyte-rest-apis
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Fetch all presets"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/presets"}
+>
+  
+</MethodEndpoint>
+
+
+
+Fetches all the presets belonging to an organization.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Query Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"name":"per_page","in":"query","required":false,"schema":{"type":"number","minimum":0},"description":"Number of results per page","allowEmptyValue":true}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"page_no","in":"query","required":false,"schema":{"type":"number","minimum":0},"description":"The page number from which you want your page search results to be displayed.","allowEmptyValue":true}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          Example response
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"success"}
+                        required={true}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean","example":true}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                data
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object[]
+                              </span><span
+                                className={"openapi-schema__divider"}
+                              >
+                                
+                              </span><span
+                                className={"openapi-schema__required"}
+                              >
+                                required
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <li>
+                              <div
+                                style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}
+                              >
+                                Array [
+                              </div>
+                            </li><SchemaItem
+                              collapsible={false}
+                              name={"id"}
+                              required={false}
+                              schemaName={"uuid"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"uuid","description":"ID of the preset"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"name"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"Name of the preset"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"created_at"}
+                              required={false}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time","description":"Timestamp this preset was created at"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"updated_at"}
+                              required={false}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time","description":"Timestamp this preset was last updated"}}
+                            >
+                              
+                            </SchemaItem><li>
+                              <div
+                                style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}
+                              >
+                                ]
+                              </div>
+                            </li>
+                          </div>
+                        </details>
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                paging
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span><span
+                                className={"openapi-schema__divider"}
+                              >
+                                
+                              </span><span
+                                className={"openapi-schema__required"}
+                              >
+                                required
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <SchemaItem
+                              collapsible={false}
+                              name={"total_count"}
+                              required={true}
+                              schemaName={"number"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"number","example":30,"minimum":0}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"start_offset"}
+                              required={true}
+                              schemaName={"number"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"number","example":1}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"end_offset"}
+                              required={true}
+                              schemaName={"number"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"number","example":30}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"data\": [\n    {\n      \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n      \"name\": \"string\",\n      \"created_at\": \"2024-03-18T01:15:30.937Z\",\n      \"updated_at\": \"2024-03-18T01:15:30.937Z\"\n    }\n  ],\n  \"paging\": {\n    \"total_count\": 30,\n    \"start_offset\": 1,\n    \"end_offset\": 30\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

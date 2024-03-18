@@ -1,0 +1,416 @@
+---
+id: start-track-recording-for-a-meeting
+title: ""
+description: "<!-- theme: warning -->"
+sidebar_label: "Start Track Recording"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: guides/apiv2/dyte-rest-apis
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={""}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/recordings/track"}
+>
+  
+</MethodEndpoint>
+
+
+
+&lt;!-- theme: warning --&gt;
+> #### NOTE
+>
+> This API is in beta. [Contact us](https://dyte.io/contact) if you face
+> any issues.
+
+Starts a track recording in a meeting. Track recordings consist of "layers". Layers are used to map audio/video tracks in a meeting to output destinations. More information about track recordings is available in the [Track Recordings Guide Page](https://docs.dyte.io/guides/capabilities/recording/recording-overview).
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<MimeTabs
+  className={"openapi-tabs__mime"}
+>
+  <TabItem
+    label={"application/json"}
+    value={"application/json-schema"}
+  >
+    <details
+      style={{}}
+      className={"openapi-markdown__details mime"}
+      data-collapsed={false}
+      open={true}
+    >
+      <summary
+        style={{}}
+        className={"openapi-markdown__details-summary-mime"}
+      >
+        <h3
+          className={"openapi-markdown__details-summary-header-body"}
+        >
+          Body
+        </h3>
+      </summary><div
+        style={{"textAlign":"left","marginLeft":"1rem"}}
+      >
+        <div
+          style={{"marginTop":"1rem","marginBottom":"1rem"}}
+        >
+          
+          
+          For now only "default" layer key is supported.
+          
+          
+        </div>
+      </div><ul
+        style={{"marginLeft":"1rem"}}
+      >
+        <SchemaItem
+          collapsible={false}
+          name={"meeting_id"}
+          required={false}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","x-stoplight":{"id":"6sv1wqhnxgkwu"},"description":"ID of the meeting to record."}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={true}
+          className={"schemaItem"}
+        >
+          <details
+            style={{}}
+            className={"openapi-markdown__details"}
+          >
+            <summary
+              style={{}}
+            >
+              <span
+                className={"openapi-schema__container"}
+              >
+                <strong
+                  className={"openapi-schema__property"}
+                >
+                  layers
+                </strong><span
+                  className={"openapi-schema__name"}
+                >
+                   object
+                </span><span
+                  className={"openapi-schema__divider"}
+                >
+                  
+                </span><span
+                  className={"openapi-schema__required"}
+                >
+                  required
+                </span>
+              </span>
+            </summary><div
+              style={{"marginLeft":"1rem"}}
+            >
+              <SchemaItem
+                collapsible={true}
+                className={"schemaItem"}
+              >
+                <details
+                  style={{}}
+                  className={"openapi-markdown__details"}
+                >
+                  <summary
+                    style={{}}
+                  >
+                    <span
+                      className={"openapi-schema__container"}
+                    >
+                      <strong
+                        className={"openapi-schema__property"}
+                      >
+                        property name*
+                      </strong><span
+                        className={"openapi-schema__name"}
+                      >
+                         TrackLayerConfig
+                      </span>
+                    </span>
+                  </summary><div
+                    style={{"marginLeft":"1rem"}}
+                  >
+                    <SchemaItem
+                      collapsible={false}
+                      name={"file_name_prefix"}
+                      required={false}
+                      schemaName={"string"}
+                      qualifierMessage={undefined}
+                      schema={{"type":"string","x-stoplight":{"id":"q3raplgytmxxh"},"description":"A file name prefix to apply for files generated from this layer"}}
+                    >
+                      
+                    </SchemaItem><SchemaItem
+                      collapsible={true}
+                      className={"schemaItem"}
+                    >
+                      <details
+                        style={{}}
+                        className={"openapi-markdown__details"}
+                      >
+                        <summary
+                          style={{}}
+                        >
+                          <span
+                            className={"openapi-schema__container"}
+                          >
+                            <strong
+                              className={"openapi-schema__property"}
+                            >
+                              outputs
+                            </strong><span
+                              className={"openapi-schema__name"}
+                            >
+                               object[]
+                            </span>
+                          </span>
+                        </summary><div
+                          style={{"marginLeft":"1rem"}}
+                        >
+                          <li>
+                            <div
+                              style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}
+                            >
+                              Array [
+                            </div>
+                          </li><SchemaItem
+                            collapsible={false}
+                            name={"type"}
+                            required={false}
+                            schemaName={""}
+                            qualifierMessage={"**Possible values:** [`DYTE_BUCKET`, `STORAGE_CONFIG`]"}
+                            schema={{"x-stoplight":{"id":"ho62tlyy3z8kb"},"enum":["DYTE_BUCKET","STORAGE_CONFIG"],"default":"DYTE_BUCKET","description":"The type of output destination this layer is being exported to."}}
+                          >
+                            
+                          </SchemaItem><SchemaItem
+                            collapsible={true}
+                            className={"schemaItem"}
+                          >
+                            <details
+                              style={{}}
+                              className={"openapi-markdown__details"}
+                            >
+                              <summary
+                                style={{}}
+                              >
+                                <span
+                                  className={"openapi-schema__container"}
+                                >
+                                  <strong
+                                    className={"openapi-schema__property"}
+                                  >
+                                    storage_config
+                                  </strong><span
+                                    className={"openapi-schema__name"}
+                                  >
+                                     object
+                                  </span><span
+                                    className={"openapi-schema__divider"}
+                                  >
+                                    
+                                  </span><span
+                                    className={"openapi-schema__nullable"}
+                                  >
+                                    nullable
+                                  </span>
+                                </span>
+                              </summary><div
+                                style={{"marginLeft":"1rem"}}
+                              >
+                                <SchemaItem
+                                  collapsible={false}
+                                  name={"type"}
+                                  required={true}
+                                  schemaName={"string"}
+                                  qualifierMessage={"**Possible values:** [`aws`, `azure`, `digitalocean`, `gcs`, `sftp`]"}
+                                  schema={{"type":"string","enum":["aws","azure","digitalocean","gcs","sftp"],"description":"Type of storage media."}}
+                                >
+                                  
+                                </SchemaItem><SchemaItem
+                                  collapsible={false}
+                                  name={"access_key"}
+                                  required={false}
+                                  schemaName={"string"}
+                                  qualifierMessage={undefined}
+                                  schema={{"type":"string","description":"Access key of the storage medium. Access key is not required for the `gcs` storage media type.\n\nNote that this field is not readable by clients, only writeable.","writeOnly":true}}
+                                >
+                                  
+                                </SchemaItem><SchemaItem
+                                  collapsible={false}
+                                  name={"secret"}
+                                  required={false}
+                                  schemaName={"string"}
+                                  qualifierMessage={undefined}
+                                  schema={{"type":"string","description":"Secret key of the storage medium. Similar to `access_key`, it is only writeable by clients, not readable.","x-stoplight":{"id":"35o598ur3dm2s"}}}
+                                >
+                                  
+                                </SchemaItem><SchemaItem
+                                  collapsible={false}
+                                  name={"bucket"}
+                                  required={false}
+                                  schemaName={"string"}
+                                  qualifierMessage={undefined}
+                                  schema={{"type":"string","description":"Name of the storage medium's bucket."}}
+                                >
+                                  
+                                </SchemaItem><SchemaItem
+                                  collapsible={false}
+                                  name={"region"}
+                                  required={false}
+                                  schemaName={"string"}
+                                  qualifierMessage={undefined}
+                                  schema={{"type":"string","description":"Region of the storage medium.","example":"us-east-1"}}
+                                >
+                                  
+                                </SchemaItem><SchemaItem
+                                  collapsible={false}
+                                  name={"path"}
+                                  required={false}
+                                  schemaName={"string"}
+                                  qualifierMessage={undefined}
+                                  schema={{"type":"string","description":"Path relative to the bucket root at which the recording will be placed."}}
+                                >
+                                  
+                                </SchemaItem><SchemaItem
+                                  collapsible={false}
+                                  name={"auth_method"}
+                                  required={false}
+                                  schemaName={""}
+                                  qualifierMessage={"**Possible values:** [`KEY`, `PASSWORD`]"}
+                                  schema={{"x-stoplight":{"id":"uklpv4sdxai0a"},"enum":["KEY","PASSWORD"],"description":"Authentication method used for \"sftp\" type storage medium\n"}}
+                                >
+                                  
+                                </SchemaItem><SchemaItem
+                                  collapsible={false}
+                                  name={"username"}
+                                  required={false}
+                                  schemaName={"string"}
+                                  qualifierMessage={undefined}
+                                  schema={{"type":"string","x-stoplight":{"id":"bzea0pjriano5"},"description":"SSH destination server username for SFTP type storage medium"}}
+                                >
+                                  
+                                </SchemaItem><SchemaItem
+                                  collapsible={false}
+                                  name={"password"}
+                                  required={false}
+                                  schemaName={"string"}
+                                  qualifierMessage={undefined}
+                                  schema={{"type":"string","x-stoplight":{"id":"nyi2j6m4lnwhg"},"description":"SSH destination server password for SFTP type storage medium when auth_method is \"PASSWORD\". If auth_method is \"KEY\", this specifies the password for the ssh private key."}}
+                                >
+                                  
+                                </SchemaItem><SchemaItem
+                                  collapsible={false}
+                                  name={"host"}
+                                  required={false}
+                                  schemaName={"string"}
+                                  qualifierMessage={undefined}
+                                  schema={{"type":"string","x-stoplight":{"id":"y9c66jxovb285"},"description":"SSH destination server host for SFTP type storage medium"}}
+                                >
+                                  
+                                </SchemaItem><SchemaItem
+                                  collapsible={false}
+                                  name={"port"}
+                                  required={false}
+                                  schemaName={"number"}
+                                  qualifierMessage={undefined}
+                                  schema={{"type":"number","x-stoplight":{"id":"y5h441zp02ino"},"description":"SSH destination server port for SFTP type storage medium"}}
+                                >
+                                  
+                                </SchemaItem><SchemaItem
+                                  collapsible={false}
+                                  name={"private_key"}
+                                  required={false}
+                                  schemaName={"string"}
+                                  qualifierMessage={undefined}
+                                  schema={{"type":"string","x-stoplight":{"id":"h105s3bbsxb2k"},"description":"Private key used to login to destination SSH server for SFTP type storage medium, when auth_method used is \"KEY\""}}
+                                >
+                                  
+                                </SchemaItem>
+                              </div>
+                            </details>
+                          </SchemaItem><li>
+                            <div
+                              style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}
+                            >
+                              ]
+                            </div>
+                          </li>
+                        </div>
+                      </details>
+                    </SchemaItem>
+                  </div>
+                </details>
+              </SchemaItem>
+            </div>
+          </details>
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"max_seconds"}
+          required={false}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","x-stoplight":{"id":"t5mmm348ds7jk"},"description":"Maximum seconds this recording should be active for (beta)"}}
+        >
+          
+        </SchemaItem>
+      </ul>
+    </details>
+  </TabItem>
+</MimeTabs><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          OK
+          
+          
+        </div><div>
+          
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

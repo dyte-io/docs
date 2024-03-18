@@ -1,0 +1,368 @@
+---
+id: get-all-meetings
+title: "Fetch all meetings for an organization"
+description: "Returns all meetings for the given organization ID."
+sidebar_label: "Fetch all meetings for an organization"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: guides/apiv2/dyte-rest-apis
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import Heading from "@theme/Heading";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Fetch all meetings for an organization"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/meetings"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns all meetings for the given organization ID.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Query Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"name":"page_no","in":"query","required":false,"schema":{"type":"number","minimum":0},"description":"The page number from which you want your page search results to be displayed.","allowEmptyValue":true}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"per_page","in":"query","required":false,"schema":{"type":"number","minimum":0},"description":"Number of results per page","allowEmptyValue":true}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"start_time","in":"query","required":false,"schema":{"type":"string","format":"date-time"},"description":"The start time range for which you want to retrieve the meetings. The time must be specified in ISO format."}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"end_time","in":"query","required":false,"schema":{"type":"string","format":"date-time"},"description":"The end time range for which you want to retrieve the meetings. The time must be specified in ISO format."}}
+      >
+        
+      </ParamsItem><ParamsItem
+        className={"paramsItem"}
+        param={{"name":"search","in":"query","required":false,"schema":{"type":"string"},"description":"The search query string. You can search using the meeting ID or title."}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          Success response
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={false}
+                        name={"success"}
+                        required={true}
+                        schemaName={"boolean"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"boolean","example":true}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                data
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object[]
+                              </span><span
+                                className={"openapi-schema__divider"}
+                              >
+                                
+                              </span><span
+                                className={"openapi-schema__required"}
+                              >
+                                required
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <li>
+                              <div
+                                style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}
+                              >
+                                Array [
+                              </div>
+                            </li><SchemaItem
+                              collapsible={false}
+                              name={"id"}
+                              required={true}
+                              schemaName={"uuid"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"uuid","description":"ID of the meeting.","readOnly":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"title"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","x-stoplight":{"id":"ehrqyjfdcvmjy"},"description":"Title of the meeting."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"preferred_region"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={"**Possible values:** [`ap-south-1`, `ap-southeast-1`, `us-east-1`, `eu-central-1`]"}
+                              schema={{"type":"string","enum":["ap-south-1","ap-southeast-1","us-east-1","eu-central-1"],"description":"The region in which this meeting should be created.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"created_at"}
+                              required={true}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time","description":"Timestamp the object was created at. The time is returned in ISO format.","readOnly":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"record_on_start"}
+                              required={false}
+                              schemaName={"boolean"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"boolean","description":"Specifies if the meeting should start getting recorded as soon as someone joins the meeting."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"updated_at"}
+                              required={true}
+                              schemaName={"date-time"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","format":"date-time","description":"Timestamp the object was updated at. The time is returned in ISO format.","readOnly":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"live_stream_on_start"}
+                              required={false}
+                              schemaName={"boolean"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"boolean","description":"Specifies if the meeting should start getting livestreamed on start."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"status"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={"**Possible values:** [`ACTIVE`, `INACTIVE`]"}
+                              schema={{"type":"string","x-stoplight":{"id":"7iltdkj13psqq"},"enum":["ACTIVE","INACTIVE"],"description":"Whether the meeting is `ACTIVE` or `INACTIVE`. Users will not be able to join an `INACTIVE` meeting."}}
+                            >
+                              
+                            </SchemaItem><li>
+                              <div
+                                style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}
+                              >
+                                ]
+                              </div>
+                            </li>
+                          </div>
+                        </details>
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                paging
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span><span
+                                className={"openapi-schema__divider"}
+                              >
+                                
+                              </span><span
+                                className={"openapi-schema__required"}
+                              >
+                                required
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <SchemaItem
+                              collapsible={false}
+                              name={"total_count"}
+                              required={true}
+                              schemaName={"number"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"number","example":30,"minimum":0}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"start_offset"}
+                              required={true}
+                              schemaName={"number"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"number","example":1}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"end_offset"}
+                              required={true}
+                              schemaName={"number"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"number","example":30}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"success\": true,\n  \"data\": [\n    {\n      \"id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n      \"title\": \"string\",\n      \"preferred_region\": \"ap-south-1\",\n      \"created_at\": \"2024-03-18T01:15:30.895Z\",\n      \"record_on_start\": true,\n      \"updated_at\": \"2024-03-18T01:15:30.895Z\",\n      \"live_stream_on_start\": true,\n      \"status\": \"ACTIVE\"\n    }\n  ],\n  \"paging\": {\n    \"total_count\": 30,\n    \"start_offset\": 1,\n    \"end_offset\": 30\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      
