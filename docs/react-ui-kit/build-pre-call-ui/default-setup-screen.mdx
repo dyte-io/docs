@@ -27,7 +27,7 @@ export default function MyMeeting() {
   const roomState = useDyteSelector((m) => m.self.roomState);
 
   return (
-    <div style={{ height: '400px' }} className="bg-white dark:bg-black">
+    <div className="flex w-full h-full">
       {roomState === 'init' && <DyteSetupScreen meeting={meeting} />}
       {roomState === 'joined' && <center>Custom in-meeting UI</center>}
       {roomState === 'ended' && <center>Custom post-meeting UI</center>}

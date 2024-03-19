@@ -61,7 +61,7 @@ function MyMeeting() {
 ### File: CustomMeetingPreview.tsx
 
 <CodeRunner 
-highlight={[{start: 13, end: 13}, {start: 19, end: 19}]}
+highlight={[{start: 12, end: 12}, {start: 18, end: 18}]}
 hide={[{start: 1, end: 3}]}
 file={`
 import { useDyteMeeting } from "@dytesdk/react-web-core";
@@ -71,8 +71,7 @@ export default function CustomMeetingPreview() {
   const { meeting } = useDyteMeeting();
   return (
     <div
-      className="flex flex-col items-center justify-center bg-white dark:bg-black"
-      style={{ minHeight: '400px' }}
+      className="flex flex-col items-center justify-center"
     >
       <div className="flex flex-col items-center">
         <p>Joining as {meeting.self.name}</p>

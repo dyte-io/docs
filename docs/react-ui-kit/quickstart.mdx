@@ -117,7 +117,7 @@ import CodeRunner from '@site/src/components/CodeRunner/CodeRunner';
 
 
 <CodeRunner 
-highlight={[{start: 10, end: 10}]}
+highlight={[{start: 9, end: 9}]}
 hide={[{start:1, end: 3}]}
 file={`
 import { DyteMeeting } from '@dytesdk/react-ui-kit';
@@ -127,10 +127,8 @@ export default function MyMeetingUI() {
   const { meeting } = useDyteMeeting();
 
   return (
-    <div style={{ height: '480px' }}>
-      <DyteMeeting mode="fill" meeting={meeting} showSetupScreen={false} />
-    </div>
-  );
+    <DyteMeeting mode="fill" meeting={meeting} showSetupScreen={false} />
+    );
 }
 `} />
 

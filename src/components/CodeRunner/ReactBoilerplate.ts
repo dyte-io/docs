@@ -43,7 +43,7 @@ export default function App() {
   }, []);
 
 
-  return (<div className="bg-white dark:bg-black">
+  return (<div className="bg-white dark:bg-black flex justify-center items-center w-full h-screen">
     <DyteProvider value={meeting}><Custom /></DyteProvider>
     </div>
   );

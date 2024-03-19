@@ -22,8 +22,11 @@ type CodeRunnerProps = {
   framework?: FrameworkType,
   entry?: string,
   highlight?: HighlightLines[],
+  additionalDecorators?: any[],
   hide?: HighlightLines[],
+  minHeight?: string
 };
+
 type GetFilesReturn = {
   files: { [key: string]: string },
   activeFile: string,
@@ -110,7 +113,9 @@ export default function CodeRunner({
   framework = 'react-ts',
   entry,
   highlight = [],
+  additionalDecorators = [],
   hide = [],
+  minHeight = '480px'
 }: CodeRunnerProps) {
   const { colorMode } = useColorMode();
 
@@ -118,7 +123,7 @@ export default function CodeRunner({
 ;
   const deps = getDeps(framework);
 
-  const decorators = buildDecorators(highlight, hide);
+  const decorators = [...additionalDecorators, ...buildDecorators(highlight, hide)];
 
   const [editMode, setEditMode] = useState(decorators.length === 0);
 
@@ -163,7 +168,7 @@ export default function CodeRunner({
           />
         </svg>
       </div>
-      <div className="flex flex-col rounded-sm border border-secondary-700">
+      <div className="flex flex-col rounded-sm border border-secondary-700 mb-4">
         <div onClick={(e) => {
           e.stopPropagation();
           setEditMode(true)
@@ -198,7 +203,7 @@ export default function CodeRunner({
         <SandpackPreview
           showOpenInCodeSandbox={false}
           className="border-t-2 border-t-secondary-700"
-          style={{ flex: 1, minHeight: '480px' }}
+          style={{ flex: 1, minHeight }}
         />
       </div>
     </SandpackProvider>

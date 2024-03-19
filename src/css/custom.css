@@ -1285,6 +1285,35 @@ h2.anchor > code {
   border-radius: 4px;
 }
 
+.code-viewer .tooltip {
+  border: 1px solid #1ea7fd55;
+  border-radius: 2px;
+  background: #1ea7fd2b;
+  padding: 3px 6px 3px 6px;
+  margin-left: 6px;
+  position: relative;
+  cursor: pointer;
+}
+
+.code-viewer .tooltip:before {
+  content: attr(data-text);
+  @apply bg-yellow-500;
+  position: absolute;
+  border-radius: 2px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 6px;
+  padding-right: 6px;
+  font-weight: bold;
+  display: block;
+  left: 8px;
+  top: -24px;
+  font-size: 11px;
+  text-align: center;
+  color: white;
+  line-height: 17px;
+}
+
 .code-viewer .hide {
   opacity: 0.5;
 }
