@@ -1288,3 +1288,21 @@ h2.anchor > code {
 .code-viewer .hide {
   opacity: 0.5;
 }
+
+
+.simulator {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+.simulator::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.simulator .book-now {
+  @apply inline-flex h-9 items-center justify-center whitespace-nowrap rounded-md bg-primary px-3 text-sm font-medium text-white transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:bg-secondary-700;
+}
+
+.mobile-simulator {
+  max-width: unset !important;
+}
