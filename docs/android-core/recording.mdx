@@ -9,8 +9,7 @@ tags:
 
 # Recording
 
-The `meeting.recording` object can be used start and stop recordings in a
-meeting. You can also get the current status of a recording using this API.
+The `meeting.recording` object can be used start and stop recordings in a meeting. You can also get the current status of a recording using this API.
 
 The `meeting.recording` object has the following properties:
 
@@ -57,36 +56,32 @@ the recording. The valid states are `IDLE`, `STARTING`, `RECORDING`, and
 
 ## Listen to recording state changes
 
-The changes to `meeting.recording.recordingState` can be listened by
-implementing `onMeetingRecordingStateUpdated` from
-`DyteMeetingRoomEventsListener`. You can attach this observer by calling
-`meeting.addMeetingRoomEventsListener(listener)`.
+The changes to `meeting.recording.recordingState` can be listened by implementing `onMeetingRecordingStateUpdated` from `DyteRecordingEventsListener`. You can attach this observer by calling `meeting.addRecordingEventsListener(listener)`.
 
 ```kotlin
-meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
+meeting.addRecordingEventsListener(object : DyteRecordingEventsListener {
     override fun onMeetingRecordingStarted() {
-      super.onMeetingRecordingStarted()
       // on recording started
     }
 
     override fun onMeetingRecordingEnded() {
-      super.onMeetingRecordingEnded()
       // on recording ended
     }
 
     override fun onMeetingRecordingStateUpdated(state: DyteRecordingState) {
-      super.onMeetingRecordingStateUpdated(state)
       // on recording state update
     }
 
     override fun onMeetingRecordingStopError(e: Exception) {
-      super.onMeetingRecordingStopError(e)
       // when local user tried to end recording but it fails
+    }
+
+    override fun onMeetingRecordingPauseError(e: Exception) {
+      // error in pausing the active recording
+    }
+
+    override fun onMeetingRecordingResumeError(e: Exception) {
+      // error in resuming a paused recording
     }
   })
 ```
-
-<head>
-  <title>Android Core Recording</title>
-  <meta name="description" content="Explore the documentation on Android Recording in Dyte Docs."/>
-</head>
