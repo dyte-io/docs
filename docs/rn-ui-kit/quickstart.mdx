@@ -12,14 +12,6 @@ Dyte also offers the flexibility to build your own UI using various individual
 components. This offers limitless customization options to tailor the UI to fit
 your requirements. For more information, see the Build your own UI section.
 
-## Objective
-
-You'll learn how to:
-
-- Install the Dyte SDK
-- Initialize Dyte Client
-- Pass the meeting object to UI Kit
-- Go live!
 
 ## Before Getting Started
 
@@ -33,6 +25,18 @@ You'll learn how to:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+
+## Step 1: Installation
+
+Since the UI Kit uses the Dyte Core SDK, you must install the
+`@dytesdk/react-native-core` package along with the `@dytesdk/react-native-ui-kit`.
+
+|                              |                                                                                                                                        |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| @dytesdk/react-native-ui-kit | [![npm version](https://badge.fury.io/js/@dytesdk%2Freact-native-ui-kit.svg)](https://badge.fury.io/js/@dytesdk%2Freact-native-ui-kit) |
+| @dytesdk/react-native-core   | [![npm version](https://badge.fury.io/js/@dytesdk%2Freact-native-core.svg)](https://badge.fury.io/js/@dytesdk%2Freact-native-core)     |
+
+
 <Tabs
   groupId="rn-sdk"
   defaultValue="react-native"
@@ -44,32 +48,29 @@ import TabItem from '@theme/TabItem';
 
 <TabItem value="react-native">
 
-## React Native
 
-## Step 1: Install the SDK
-
-Since the UI Kit is built on top of the Core SDK, you must install the
-`react-native-core` package along with the `react-native-ui-kit`.
-
-`react-native-core` consists of hooks which makes it easy to use.
-
-You can install the package using npm or Yarn.
-
-```bash npm2yarn
+```bash
 npm install @dytesdk/react-native-ui-kit @dytesdk/react-native-core
 ```
 
-Install the required dependencies
+Install the required **native** dependencies
 
-```bash npm2yarn
+```bash
 npm install @dyteinternals/react-native-webrtc react-native-document-picker react-native-file-viewer react-native-fs react-native-safe-area-context react-native-sound-player react-native-svg react-native-webview
 ```
 
+<details>
+    <summary>
+        **Additional steps for interactive livestream product**
+      </summary>
 Install the following dependencies only if you need livestream.
 
-```bash npm2yarn
-npm install react-native-gradle-plugin amazon-ivs-react-native-player
+```bash
+npm install amazon-ivs-react-native-player
 ```
+</details>
+
+<br />
 
 <Tabs
   groupId="mobile-pm"
@@ -151,156 +152,45 @@ platform :ios, '12.0'
   </TabItem>
 </Tabs>
 
-:::tip Import Errors
-
-If you get errors when importing the `react-native-ui-kit` and `react-native-core`
-packages, try installing them separately.
-
-:::
-
-### Version
-
-|                              |                                                                                                                                        |
-| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| @dytesdk/react-native-ui-kit | [![npm version](https://badge.fury.io/js/@dytesdk%2Freact-native-ui-kit.svg)](https://badge.fury.io/js/@dytesdk%2Freact-native-ui-kit) |
-| @dytesdk/react-native-core   | [![npm version](https://badge.fury.io/js/@dytesdk%2Freact-native-core.svg)](https://badge.fury.io/js/@dytesdk%2Freact-native-core)     |
-
-## Step 2: Get Started with Dyte Prebuilt Components
-
-Here's a series of steps that you need to perform:
-
-1. Set up `DyteProvider`. You need it to import the `DyteProvider` from the
-   `dytesdk/react-native-core`. DyteProvider basically is a hook wrapper on
-   dytesdk/web-core. This provides a meeting object to child components.
-2. Set up `DyteUIProvider`. You need it to import the `DyteUIProvider` from the
-   `dytesdk/react-native-ui-kit`. This provides dyte design system to child components.
-3. Initialize the Dyte client. Use the `useDyteClient()` hook and `initMeeting`
-   to initialize a client.
-4. Call the `init()` method and pass the `authToken`:
-
-|             |                                                                                                                                                                                   |
-| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `authToken` | After you've created the meeting, add each participant to the meeting using the [Add Participant API](/api#/operations/add_participant). The API response contains the authToken. |
-
-4. Pass the meeting object to UI Kit, which will use it to retrieve meeting
-   information and display it on the user interface.
-
-   The meeting object serves as the link between web-core and UI Kit, allowing
-   them to communicate with one another. Once the UI Kit has the meeting object,
-   it can join and leave meetings, and so on.
-
-```jsx
-import React, { useEffect } from 'react';
-import { DyteProvider, useDyteClient } from '@dytesdk/react-native-core';
-import { DyteUIProvider, DyteMeeting } from '@dytesdk/react-native-ui-kit';
-
-export default function App() {
-  const [meeting, initMeeting] = useDyteClient();
-
-  useEffect(() => {
-    const init = async () => {
-      initMeeting({
-        authToken: '<auth-token>',
-        defaults: {
-          audio: true,
-          video: true,
-        },
-      });
-    };
-    init();
-  }, []);
-  useEffect(() => {
-    meeting?.self.addListener('roomLeft', () => console.log('Meeting ended'));
-    return () => {
-      meeting?.self.removeListener('roomLeft', () =>
-        console.log('Meeting ended')
-      );
-    };
-  }, [meeting]);
-  return (
-    <DyteProvider value={meeting}>
-      <DyteUIProvider>
-        <DyteMeeting meeting={meeting} />
-      </DyteUIProvider>
-    </DyteProvider>
-  );
-}
-```
-
-## Example: Using Prebuilt `DyteMeeting` Component
-
-In the following example, a meeting is created using the `useDyteMeeting`
-component. `useDyteMeeting` essentially returns the meeting object you passed to
-the `DyteProvider`.
-
-`DyteMeeting` renders the entire meeting UI. It loads your preset and renders
-the UI based on it. With this component, you don't have to handle all the
-states, dialogs, and other smaller bits of managing the application.
-
-For more information on the other props of `DyteMeeting`, see
-[DyteMeeting](/react-native/components/dyte-meeting).
-
-```jsx
-function MyMeeting() {
-  const { meeting } = useDyteMeeting();
-
-  return (
-    <DyteUIProvider>
-      <DyteMeeting meeting={meeting} />
-    </DyteUIProvider>
-  );
-}
-```
-
 </TabItem>
 <TabItem value="expo">
 
-## Expo
 
-## Step 1: Install the SDK
-
-Since the UI Kit is built on top of the Core SDK, you must install the
-`react-native-core` package along with the `react-native-ui-kit`.
-
-`react-native-core` consists of hooks which makes it easy to use.
-
-- Install expo's config-plugins
-
-```bash
-npx expo install @expo/config-plugins
-```
-
-- You can install these dyte packages using expo.
 
 ```bash
 npx expo install @dytesdk/react-native-ui-kit @dytesdk/react-native-core
 ```
 
-- Install the required dependencies
+Install the required **native** dependencies
 
 ```bash
 npx expo install @dyteinternals/react-native-webrtc react-native-document-picker react-native-file-viewer react-native-fs react-native-safe-area-context react-native-sound-player react-native-svg react-native-webview lodash.merge
 ```
 
-- <code>Optional</code>: Install the following dependencies only if you need
-  livestream.
+Install expo's config-plugins if it is not installed already
 
 ```bash
-npx expo install react-native-gradle-plugin amazon-ivs-react-native-player
+npx expo install @expo/config-plugins
 ```
 
-### Version
+<details>
+    <summary>
+        **Additional steps for interactive livestream product**
+      </summary>
+Install the following dependencies only if you need livestream.
 
-|                              |                                                                                                                                        |
-| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| @dytesdk/react-native-ui-kit | [![npm version](https://badge.fury.io/js/@dytesdk%2Freact-native-ui-kit.svg)](https://badge.fury.io/js/@dytesdk%2Freact-native-ui-kit) |
-| @dytesdk/react-native-core   | [![npm version](https://badge.fury.io/js/@dytesdk%2Freact-native-core.svg)](https://badge.fury.io/js/@dytesdk%2Freact-native-core)     |
-
-## Configure Expo Config Plugins
-
-In <code>app.json</code>, add these to plugins:
-
+```bash
+npx expo install amazon-ivs-react-native-player
 ```
+</details>
+
+<br />
+<h2> Configure Expo Config Plugins </h2>
+<br />
+
+In `app.json`, add these to plugins:
+
+```json
 {
   expo: {
     ...
@@ -313,38 +203,26 @@ In <code>app.json</code>, add these to plugins:
 }
 ```
 
-## Setup Native Modules with Config Plugins in Expo
+<br />
+<h2> Setup Native Modules with Config Plugins in Expo </h2>
+<br />
 
 ```bash
 npx expo prebuild
 ```
 
-## Run the app with Expo
 
-<Tabs
-  groupId="mobile-pm"
-  defaultValue="android"
-  values={[
-    { label: 'Android', value: 'android' },
-    { label: 'iOS', value: 'ios' },
-  ]}
->
-  <TabItem value="android">```bash npx expo run android ```</TabItem>
-  <TabItem value="ios">```bash npx expo run ios ```</TabItem>
+</TabItem>
 </Tabs>
 
 ## Step 2: Get Started with Dyte Prebuilt Components
 
 Here's a series of steps that you need to perform:
 
-1. Set up `DyteProvider`. You need it to import the `DyteProvider` from the
-   `dytesdk/react-native-core`. DyteProvider basically is a hook wrapper on
-   dytesdk/web-core. This provides a meeting object to child components.
-2. Set up `DyteUIProvider`. You need it to import the `DyteUIProvider` from the
-   `dytesdk/react-native-ui-kit`. This provides dyte design system to child components.
+1. Set up `DyteProvider`. This provides the context that provides meeting object and other data to all the child components.
+2. Set up `DyteUIProvider`. This provides design system to child components.
 3. Initialize the Dyte client. Use the `useDyteClient()` hook and `initMeeting`
    to initialize a client.
-4. Call the `init()` method and pass the `authToken`:
 
 |             |                                                                                                                                                                                   |
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -353,9 +231,8 @@ Here's a series of steps that you need to perform:
 4. Pass the meeting object to UI Kit, which will use it to retrieve meeting
    information and display it on the user interface.
 
-   The meeting object serves as the link between web-core and UI Kit, allowing
-   them to communicate with one another. Once the UI Kit has the meeting object,
-   it can join and leave meetings, and so on.
+
+<br />
 
 ```jsx
 import React, { useEffect } from 'react';
@@ -377,18 +254,11 @@ export default function App() {
     };
     init();
   }, []);
-  useEffect(() => {
-    meeting?.self.addListener('roomLeft', () => console.log('Meeting ended'));
-    return () => {
-      meeting?.self.removeListener('roomLeft', () =>
-        console.log('Meeting ended')
-      );
-    };
-  }, [meeting]);
+
   return (
     <DyteProvider value={meeting}>
       <DyteUIProvider>
-        <DyteMeeting meeting={meeting} />
+        <YourCustomMeetingComponent />
       </DyteUIProvider>
     </DyteProvider>
   );
@@ -409,19 +279,16 @@ For more information on the other props of `DyteMeeting`, see
 [DyteMeeting](/react-native/components/dyte-meeting).
 
 ```jsx
-function MyMeeting() {
+function YourCustomMeetingComponent() {
   const { meeting } = useDyteMeeting();
 
   return (
-    <DyteUIProvider>
-      <DyteMeeting meeting={meeting} />
-    </DyteUIProvider>
+    <DyteMeeting meeting={meeting} />
   );
 }
 ```
 
-</TabItem>
-</Tabs>
+
 <head>
   <title>React Native UI Kit Quickstart</title>
   <meta

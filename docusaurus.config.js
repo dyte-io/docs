@@ -634,6 +634,8 @@ const config = {
           'java',
           'swift',
           'objectivec',
+          'json',
+          'bash'
         ],
         magicComments: [
           {
