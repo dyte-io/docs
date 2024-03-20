@@ -12,11 +12,7 @@ tags:
 
 # The participant object
 
-The `participant` object consists of all the information related to a particular
-participant. For instance, it contains a participants video/audio/screenshare
-stream, and the participant's name. It also contains state variables that
-indicate whether a participant's camera is on or off, and whether they are muted
-or unmuted.
+The `participant` object consists of all the information related to a particular participant. For instance, it contains a participants video/audio/screenshare stream, and the participant's name. It also contains state variables that indicate whether a participant's camera is on or off, and whether they are muted or unmuted.
 
 The participant object has the following properties.
 
@@ -33,6 +29,7 @@ The participant object has the following properties.
 - `audioEnabled`: Set to true if the participant is unmuted.
 - `isPinned`: True if current user is pinned in the meeting room.
 - `presetName`: Name of the preset associated with the participant.
+- `stageStatus`: Status of stage for the participant
 
 ## To get Video view of a given participant
 
@@ -51,23 +48,35 @@ participant object.
 ```kotlin
 dyteParticipant.addParticipantUpdateListener(object : DyteParticipantUpdateListener {
       override fun onAudioUpdate(participant: DyteMeetingParticipant, isEnabled: Boolean) {
-        super.onAudioUpdate(participant, isEnabled)
         // on audio update
       }
 
       override fun onVideoUpdate(participant: DyteMeetingParticipant, isEnabled: Boolean) {
-        super.onVideoUpdate(participant, isEnabled)
         // on video update
       }
 
       override fun onScreenShareStarted(participant: DyteMeetingParticipant) {
-        super.onScreenShareStarted(participant)
         // when participant start to screenshare
       }
 
       override fun onScreenShareEnded(participant: DyteMeetingParticipant) {
-        super.onScreenShareEnded(participant)
         // when participant stops screenshare
+      }
+
+      override fun onPinned() {
+        // when participant is pinned
+      }
+
+      override fun onUnpinned() {
+        // when participant is unpinned
+      }
+
+      override fun onSetAsActiveSpeaker() {
+        // when participant set to active speaker
+      }
+
+      override fun onRemovedAsActiveSpeaker() {
+        // when participant is no longer active speaker
       }
     })
 ```

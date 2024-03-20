@@ -12,82 +12,57 @@ tags:
 
 # Introduction - Room participants
 
-The data regarding all meeting participants is stored under
-`meeting.participants`. Use the methods and events to consume the participants
-data.
+The data regarding all meeting participants is stored under `meeting.participants`. Use the methods and events to consume the participants data.
 
 ## Room participants object
 
-- `joined`: A list that contains all the participants who have joined the
-  meeting.
-- `waitlisted`: A list that contains all the participants waiting to join the
-  meeting.
-- `active`: A list that contains all the participants except the local user who
-  are supposed to be on the screen at the moment
-- `pinned`: A nullable participant object. If any participant is pinned is that
-  participant else it is null.
-- `screenshares`: A list that contains all the participants who have shared
-  screen in the meeting.
+- `joined`: A list that contains all the participants who have joined the meeting.
+- `active`: A list that contains all the participants for the current page in the meeting. Its a subset of `joined` array.
+- `screenShares`: A list that contains all the participants who have shared screen in the meeting.
+- `waitlisted`: A list that contains all the participants waiting to join the meeting.
 - `broadcastMessage`: Broadcasts the message to all participants including `self`.
+- `pinned`: A nullable participant object represeting the participant who is pinned else it is set to null.
+- `activeSpeaker`: A nullable participant object represting latest active speaker in the meeting. 
+- `maxNumberOnScreen`: A int showing the maximum number of people set for this meeting.
+- `currentPageNumber`: A int showing the current page in this meeting. Participants from this page are filled in the `active` list.
+- `pageCount`: A int showing total number of pages available in the meeting.
+- `canGoNextPage`: A boolean indicating if next page of joined  participants is available to show.
+- `canGoPreviousPage`: A boolean indicating if previous page of joined  participants is available to show.
 
-Each participant in each of the `joined`, `waitlisted`, `active` and
-`screenshares` list is of type `DyteMeetingParticipant`.
-
-For example, to get all the participants who joined the meeting:
+Each participant in the `joined`, `waitlisted`, `active` and
+`screenShares` is type list containing objects of `DyteMeetingParticipant`.
 
 ```kotlin
-// get all joined participants
-val joinedParticipants = meeting.participants.joined;
+// all joined participants in the meeting
+val joined = meeting.participants.joined
+
+// all active participants in the meeting.
+// this should be used to show participants on the screen
+val active = meeting.participants.active
+
+// participants who are in the waiting room
+val waitlisted = meeting.participants.waitlisted
+
+// participants who have shared screen
+val screenShares = meeting.participants.screenShares
+
+// latest active speaker in the meeting
+val activeSpeaker = meeting.participants.activeSpeaker
 ```
 
-For example, to get all the active participants in the meeting:
+Similarely you can access the pagination related information like follows: 
 
 ```kotlin
-// get all active participants
-val joinedParticipants = meeting.participants.active;
-```
-
-Therefore, if you were to make a grid of participants, you'd use the `active`
-list, but to display all participants in the meeting you'd use the `joined`
-list.
-
-## Video update for all participants
-
-Triggered when the user starts / stops the video using `enableVideo` or
-`disableVideo`
-
-```kotlin
-meeting.self.addParticipantEventsListener(object : DyteParticipantEventsListener {
-     override fun videoUpdate(videoEnabled: Boolean, participant: DyteMeetingParticipant) {
-      super.videoUpdate(videoEnabled, participant)
-      if (videoEnabled) {
-        // video is enabled, and other participants in room can see local user
-      } else {
-        // video is disabled, and other participants in room can not see local user.
-      }
-    }
-})
-```
-
-## Audio update for all participants
-
-```kotlin
-meeting.self.addParticipantEventsListener(object : DyteParticipantEventsListener {
-    override fun audioUpdate(audioEnabled: Boolean, participant: DyteMeetingParticipant) {
-      super.audioUpdate(audioEnabled, participant)
-      if (audioEnabled) {
-        // audio is enabled, and other participants in room can hear local user
-      } else {
-        // audio is disabled, and other participants in room can not hear local user.
-      }
-    }
-})
+val maxNumberOnScreen = meeting.participants.maxNumberOnScreen
+val currentPageNumber = meeting.participants.currentPageNumber
+val pageCount = meeting.participants.pageCount
+val canGoNextPage = meeting.participants.canGoNextPage
+val canGoPreviousPage = meeting.participants.canGoPreviousPage
 ```
 
 ## Move between pages in paginated mode
 
-The `setPage(pageNumber: Int)` method allows you to switch between pages of
-participants present in the meeting.
+The `setPage(pageNumber: Int)` method allows you to switch between pages of participants present in the meeting.
 
 ```kotlin
 // switch to 1st page
@@ -96,9 +71,7 @@ meeting.participants.setPage(1)
 
 ## Host control methods
 
-The `meeting.participants` object has host control methods that allow you to
-disable the audio and video streams of other users in the meeting (given that
-the user preset has the right permissions).
+The `meeting.participants` object has host control methods that allow you to disable the audio and video streams of other users in the meeting (given that the user preset has the right permissions).
 
 ```kotlin
 // mute all participants
@@ -116,6 +89,12 @@ val participantToUpdate = meeting.participants.joined.first()
 participantToUpdate.disableVideo()
 ```
 
+Operations related to waiting room
+```kotlin
+// to accept all waiting room requests for participants in `waitlisted` list
+meeting.participants.acceptAllWaitingRequests()
+```
+
 To remove all participants from a meeting, you can call the `kickAll()` method.
 
 ```kotlin
@@ -127,7 +106,9 @@ val participantToRemove = meeting.participants.joined.first()
 participantToRemove.kick()
 ```
 
-<head>
-  <title>Android Core Introduction</title>
-  <meta name="description" content="Get started with participants integration in Android apps with this introductory guide from Dyte documentation."/>
-</head>
+## Broadcast message to all participants
+
+```kotlin
+// broadcast message
+meeting.participants.broadcastMessage(type, payload)
+```

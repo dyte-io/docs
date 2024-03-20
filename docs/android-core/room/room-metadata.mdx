@@ -13,10 +13,11 @@ tags:
 
 All metadata pertaining to a meeting is stored in `meeting.meta`. This includes:
 
-- `roomName`: The name of the room the current participant is connected to.
-- `roomType`: Indicates the meeting is a group-call or a webinar.
+- `meetingName`: The name of the room the current participant is connected to.
+- `meetingType`: Indicates the meeting is a group-call or a webinar.
 - `meetingTitle`: The title of the meeting.
 - `meetingStartedTimestamp`: The timestamp when the meeting started.
+- `meetingState`: The state of the meeting.
 
 For example, if you want to get the name of the room the current participant is
 connected to, you can do so by doing:
@@ -24,8 +25,3 @@ connected to, you can do so by doing:
 ```kotlin
 val roomName = meeting.meta.roomName
 ```
-
-<head>
-  <title>Android Core Room Metadata</title>
-  <meta name="description" content="Learn about managing room metadata in your Android application using Dyte Docs."/>
-</head>
