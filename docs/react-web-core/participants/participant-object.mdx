@@ -1,5 +1,5 @@
 ---
-title: The participant object
+title: Participant object
 description: The object corresponding to a particular participant.
 sidebar_position: 2
 tags:
@@ -8,7 +8,7 @@ tags:
   - participant
 ---
 
-# The participant object
+# Participant object
 
 The `participant` object consists of all the information related to a particular
 participant. For instance, it contains a participants video/audio/screenshare
@@ -19,25 +19,25 @@ a detailed reference.
 
 The participant object has the following properties.
 
+**Media**:
+
+- `videoEnabled`: Set to true if the participant's camera is on.
+- `audioEnabled`: Set to true if the participant is unmuted.
+- `screenShareEnabled`: Set to true if the participant is sharing their screen.
+- `videoTrack`: The video track of the participant.
+- `audioTrack`: The audio track of the participant.
+- `screenShareTracks`: The video and audio (if any) track of the participant's
+  screen share stream.
+
+**Metadata**:
 - `id`: The `participantId` of the participant (aka `peerId`).
 - `userId`: The `userId` of the participant.
 - `name`: The participant's name.
 - `picture`: The participant's picture (if any).
 - `clientSpecificId`: An arbitrary ID that can be set to identify the
   participant.
-- `device`: Information about the device used by the participant.
-- `videoTrack`: The video track of the participant.
-- `audioTrack`: The audio track of the participant.
-- `screenShareTracks`: The video and audio (if any) track of the participant's
-  screen share stream.
-- `videoEnabled`: Set to true if the participant's camera is on.
-- `audioEnabled`: Set to true if the participant is unmuted.
-- `screenShareEnabled`: Set to true if the participant is sharing their screen.
-- `supportsRemoteControl`: Set to true if the participant is using an SDK that
-  supports remote control.
 - `isPinned`: Set to true if the participant is pinned.
 - `presetName`: Name of the preset associated with the participant.
-- `webinarStageStatus`: Represents the participants current webinar status.
 
 The participant object is an event emitter, so you can set listeners on this
 object for events such as video and audio updates. For instance, to fire a
@@ -111,36 +111,6 @@ await participant.pin();
 
 // Unpin a participant in the meeting.
 await participant.unpin();
-```
-
-## Webinar methods
-
-The host can accept a user's request to join the webinar using
-`acceptJoinStageRequest()`.
-
-```ts
-meeting.participants.joined.on('peerRequestToJoinStage', (p) => {
-  const participant = meeting.participants.joined.get(p.id);
-  await participant.acceptJoinStageRequest();
-});
-```
-
-The host can reject a user's request to join the webinar using
-`rejectRequestToJoinStage()`.
-
-```ts
-meeting.participants.joined.on('peerRequestToJoinStage', (p) => {
-  const participant = meeting.participants.joined.get(p.id);
-  await participant.rejectRequestToJoinStage();
-});
-```
-
-The host has the option of removing a user from the webinar. It can be done
-using the `removeFromStage()` method.
-
-```ts
-const participant = meeting.participants.joined.get(participantId);
-await participant.removeFromStage();
 ```
 
 <head>

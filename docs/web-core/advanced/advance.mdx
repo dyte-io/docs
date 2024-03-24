@@ -37,17 +37,31 @@ type DefaultOptions {
 }
 ```
 
-### audio
+### audio, video
 
-This optional propery is true by default and defines whether audioTrack would be acquired and enabled on SDK initialization
+This optional propery is true by default and defines whether audio or video would be acquired and enabled on SDK initialization
 
-### video
+** Change default audio / video settings (())
 
-This optional propery is true by default and defines whether videoTrack would be acquired and enabled on SDK initialization
+By default as soon as you join the meeting the SDK will produce your video and
+audio streams.
 
+```ts {5}
+const meeting = await DyteClient.init({
+  authToken,
+  defaults: {
+    audio: false, // Disable user's audio by default
+    video: true, // Enable user's video by default
+  },
+});
+```
 ### screenShare.displaySurface
 
 Specifies the _preferred_ screenshare surface, user will still be shown all possible options but the one configured here will be preselected
+
+Allowed values: `window`, `monitor`, `browser`
+
+[https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints#displaysurface](https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints#displaysurface)
 
 ### mediaConfiguration
 
