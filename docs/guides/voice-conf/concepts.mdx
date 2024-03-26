@@ -1,6 +1,6 @@
 ---
 title: Concepts
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 We highly recommend that you go through this page to understand the basics of Dyte and to optimally use it in your applications. This page is divided into two sections **Basic Concepts** and **Architecture**.
@@ -34,7 +34,8 @@ An example from the Developer Portal displaying meeting details.
 
 ### Session
 
-In Dyte, a meeting is a communication channel, and each instance of that channel is called a session. A session represents an ongoing meeting within that communication channel. Like meetings, you can get fetch the details of a session via Developer Portal or using the [APIs](/api#/operations/GetSessions).
+In Dyte, a meeting is a communication channel, and each instance of that channel is called a session. A session represents an ongoing meeting or a meeting that happened. Like meetings, you can get fetch the details of a session via Developer Portal or using the [APIs](/api#/operations/GetSessions).
+After a minute of all participants leaving, the session is ended and any participants that join after that will result in the creation of a new session.
 
 An example from the Developer Portal displaying session details.
 
@@ -54,7 +55,7 @@ A preset is a set of permissions and UI configurations that are applied to parti
 
 Anyone who joins the `meeting`, including actual users and machine users. You can add participants using the [Add Participant API](/api#/operations/add_participant). Participants will have permissions for the meeting depending on the selected preset. The `presetName` must be passed in the body of the Add Participant API request.
 
-## Architecture
+## Components
 
 Now that you are familiar with the terminology of basic concepts on Dyte, we can take a look at how different offerings from Dyte come together. The key offerings are the REST API, core SDK , UIKit and a Developer Portal. Each of these serve different purposes and belong in different blocks of your application.
 
@@ -75,17 +76,17 @@ You can also use Developer Portal to create meetings, presets, setup storage for
 
 ### REST API
 
-Once you have grabbed your API key, we can begin to take a look at your server side. To enable live video on your platform, all you have to do is call Dyte's REST API from your server and it does all the heavy lifting for you. We have endpoints for all your needs. We give you granular control over what all you can do through our infrastructure. On your server, all you need to worry about is how and when to make an API call to Dyte's server and make use of the data or functionality you need. You can check out all the endpoints that are available to you [here](/api/)
+The REST APIs help **your server** orchestrate the meetings, the participants in them, the recordings etc. You can also observe your meetings and all the associated data with them.
 
 ### Core SDK
 
-That's all for the server, now let's move to the client side which will majorly define how your user interacts with the services. In video calls, there are a number of interactions that the user needs to perform. These interactions can become really complex with things like handling audio/video permissions, but Dyte's SDK makes it really simple for you. It abstracts away all these tiresome details through a thin layer of abstraction that is our **Core SDK**. You still get granular control without having to worry about messy implementation details.
+The Core SDK provides all the client side business logic, handles media and networking and provides easy to use APIs to let you program the experience.
 
-To connect with the meetings from the client, you need to initialise the Core SDK. This requires the `authToken` which is unique to every participant in a meeting. Your client needs to connect with the meetings. The `authToken`is returned from the [Add Participant API](/api#/operations/add_participant). The Core SDK itself does not provide any UI components but instead is a data-only API layer.
+Initializing the Core SDK requires an `authToken` which is unique to every participant in a meeting. The `authToken`is returned from the [Add Participant API](/api#/operations/add_participant). The Core SDK itself does not provide any UI components and is a data-only API.
 
-### UIKit
+### UI Kit
 
-We have separated the load of building user interactions from the UI components. You can simply use the Core SDK to enable components to perform actions around the meetings and extend your existing UI libraries. But to make your life easier, we offer a UIKit that can be easily integrated with your application including your branding! The UIKit provides multiple kinds of UI components which follow the atomic design principles. You can choose from a variety of basic components like buttons to very advanced components like meeting pages. Our UIKit is built on top of the Core SDK and it cannot function in isolation! Make sure you grab both the UIKit and the Core SDK when you choose to work with our UIKit. To learn more about how to work with UIKit you can head [here](/guides/capabilities/customize-ui/use-ui-kit-components).
+We provide a library of UI components that makes it easy to integrate video and voice calls into any app or website within minutes. You can either use it as a prebuilt setup where a single component provides you the entire functionality or you can mix and match - use some components from our library and build some of them on your own.
 
 <head>
   <title>Concepts Guide</title>
