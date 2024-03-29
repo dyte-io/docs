@@ -42,6 +42,7 @@ export function Card({
   description,
   to,
   tag,
+  className,
 }: PropsWithChildren<{
   id?: string;
   icon?: JSX.Element;
@@ -53,9 +54,10 @@ export function Card({
     color: string;
     description: string;
   };
+  className?: string;
 }>) {
   return (
-    <Link to={to} className="homepage-card">
+    <Link to={to} className={clsx("homepage-card",className)}>
       {icon && <div className="icon">{icon}</div>}
       <div className="card-content">
         <div className="title" id={id && paramCase(title)}>

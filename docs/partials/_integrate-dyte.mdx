@@ -16,14 +16,14 @@ It all starts with creating a meeting which is needed to start a live video call
 
 Let's dive into further details.
 
-### Step 1: Create a meeting
+### Create a meeting
 
 Create a Dyte meeting using the [Create Meeting API](/api#/operations/create_meeting). The API returns a unique identifier for your meeting which you will be using later.
 
 Dyte meetings do not have a specific date or time associated to them, so you can either create
 them in advance or right when users need to join the meeting.
 
-### Step 2: Add Participants
+### Add Participants
 
 Now that you have a meeting, it's time to add participants to the meeting. Call the [Add Participant API](/api#/operations/add_participant) with the unique identifier of your meeting. To specify the preset that your participant should use, remember to pass the `preset_name` parameter as well.
 
@@ -31,7 +31,7 @@ On successfully creating a participant, you will receive an authorization token 
 
 <span>{props.savePresetInfo}</span>
 
-## What's Next?
+### What's Next?
 
 Now, you can move now to integrating dyte on your client side or you can learn more about the different [REST APIs](/api/) that Dyte provides and how you can utilise them.
 

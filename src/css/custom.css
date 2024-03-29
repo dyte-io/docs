@@ -1317,3 +1317,28 @@ h2.anchor > code {
 .code-viewer .hide {
   opacity: 0.5;
 }
+
+.chat_sidebar_header {
+  display: none;
+}
+
+.custom-list .container ul {
+  list-style-type: none !important;
+}
+
+.custom-list .container li p:first-child  {
+  @apply flex items-center gap-2;
+}
+.custom-list .container li p:nth-child(2) {
+  @apply ml-4;
+}
+
+.custom-list .container li p:first-child::before {
+  content: "";
+  @apply h-3 w-3 rounded-full bg-gray-300 group-hover:bg-gray-400 block float-left;
+
+}
+
+.custom-list .container ul {
+  @apply pl-4;
+}
