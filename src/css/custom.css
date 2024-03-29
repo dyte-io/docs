@@ -1342,3 +1342,62 @@ h2.anchor > code {
 .custom-list .container ul {
   @apply pl-4;
 }
+
+.interactive-onboarding header {
+  display: none;
+}
+.interactive-onboarding .row > .col {
+  max-width: unset !important;
+}
+
+.interactive-onboarding div.container {
+  max-width: unset !important;
+  margin: 0;
+  padding:0 !important;
+}
+.interactive-onboarding footer {
+  display: none;
+}
+
+.interactive-onboarding .pagination-nav {
+  display: none;
+}
+
+.interactive-onboarding {
+  .theme-doc-markdown {
+    margin-top: 0px;
+  }
+  .theme-doc-breadcrumbs{
+    display: none;
+  }
+  .simulator {
+    width: 250px;
+    height: 450px;
+    margin: auto;
+    @apply border-text-400 border-[10px];
+    overflow: scroll;
+    border-radius: 36px;
+  }
+  .row {
+    @apply h-full relative;
+  }
+  
+  .simulator {
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+  }
+  .simulator::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+  
+  .simulator .book-now {
+    @apply inline-flex h-9 items-center justify-center whitespace-nowrap rounded-md px-3 text-sm font-medium text-white transition-colors hover:bg-blue-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:bg-gray-400;
+  }
+  
+  .btn {
+    @apply text-xs bg-blue-600 text-white px-1 py-0.5 rounded-md;
+    &:hover {
+      @apply bg-blue-500;
+    }
+  }
+}
