@@ -6,7 +6,7 @@ sidebar_position: 3
 We highly recommend that you go through this page to understand the basics of Dyte and to optimally use it in your applications. This page is divided into two sections **Basic Concepts** and **Architecture**.
 
 - [Basic Concepts](#basic-concepts) section takes you through Dyte's key terminology to give you an understanding of what purpose they serve
-- [Architecture](#architecture) walks you through the different components of Dyte and how the pieces fit in with your existing application
+- [Components](#components) walks you through the different components of Dyte and how the pieces fit in with your existing application
 
 ## Basic Concepts
 
@@ -60,12 +60,6 @@ To create a preset, please refer to our Developer Portal's [Presets Section](htt
   alt="preset-editor"
   className="preset-editor-preview"
 />
-
-### Participant
-
-Anyone who joins the `meeting`, including actual users and machine users. You can add participants using the [Add Participant API](/api#/operations/add_participant). Participants will have permissions for the meeting depending on the selected preset. The `presetName` must be passed in the body of the Add Participant API request.
-
-The [Add Participant API](/api#/operations/add_participant) responds with a JWT authentication token for the participant. This token usually gets referred as "authToken" in this documentation. This "authToken" is required to initialize a Dyte meeting.
 
 ## Components
 
