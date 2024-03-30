@@ -1,5 +1,28 @@
 [
   {
+    "version": "1.36.4",
+    "createdAt": "1711504507",
+    "features": [
+      "Added `meeting.meta.sessionId` property",
+      "Allow moving participants to a breakout room with a different preset with `meeting.connectedMeetings.moveParticipantsWithCustomPreset()`"
+    ],
+    "fixes": [
+      "Fixed support for non standard iOS in app browsers (eg. Google Search App)",
+      "Allow joining the meeting with an empty name"
+    ]
+  },
+  {
+    "version": "1.36.3",
+    "createdAt": "1709952907",
+    "features": [
+      "New method to fetch permissions of the remote participant - `participant.getPermissions()`",
+    ],
+    "fixes": [
+      "Reacquire a different microphone if the microphone in use is disconnected",
+      "Add locks around methods to toggle media to prevent concurrent executions"
+    ]
+  },
+  {
     "version": "1.36.1",
     "createdAt": "1709014560",
     "features": [
