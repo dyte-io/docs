@@ -1395,9 +1395,13 @@ h2.anchor > code {
   }
   
   .btn {
-    @apply text-xs bg-blue-600 text-white px-1 py-0.5 rounded-md;
+    @apply text-xs bg-blue-600 text-white p-1.5 rounded-md;
     &:hover {
-      @apply bg-blue-500;
+      @apply bg-blue-500 cursor-pointer;
     }
+  }
+  .large-phone .simulator {
+    width: 300px;
+    height: 550px;
   }
 }
