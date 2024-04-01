@@ -16,7 +16,7 @@ stateDiagram-v2
 
 This diagram only represents the waiting room related states, the `roomState` property also transitions through other states
 
-Each of these events generate their own events
+Each of these state changes generate their own events.
 
 - **joined**
 
@@ -30,7 +30,7 @@ meeting.self.on('roomJoined', () => {
 
 ```ts
 meeting.self.on('waitlisted', () => {
-  // local user is in the meeting
+  // local user is waitlisted
 })
 ```
 
