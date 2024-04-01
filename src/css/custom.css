@@ -1326,7 +1326,7 @@ h2.anchor > code {
   list-style-type: none !important;
 }
 
-.custom-list .container li p:first-child  {
+.custom-list .container li p:first-child {
   @apply flex items-center gap-2;
 }
 .custom-list .container li p:nth-child(2) {
@@ -1334,9 +1334,8 @@ h2.anchor > code {
 }
 
 .custom-list .container li p:first-child::before {
-  content: "";
-  @apply h-3 w-3 rounded-full bg-gray-300 group-hover:bg-gray-400 block float-left;
-
+  content: '';
+  @apply float-left block h-3 w-3 rounded-full bg-gray-300 group-hover:bg-gray-400;
 }
 
 .custom-list .container ul {

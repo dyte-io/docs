@@ -128,7 +128,7 @@ export default function ResourcesSection() {
   };
 
   return (
-    <section className="no-underline-links my-20 px-6">
+    <section className="no-underline-links my-20 px-6 ">
       <div className="mx-auto max-w-5xl">
         <div className="flex items-center justify-between">
           <div>
@@ -177,7 +177,7 @@ export default function ResourcesSection() {
         </div>
 
         <div className="relative flex flex-col">
-          <div className="no-underline-links grid grid-cols-3 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="no-underline-links grid grid-cols-3 gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {currentResources.map((resource, idx) => {
               return <Resource {...resource} key={idx} />;
             })}
