@@ -1238,6 +1238,11 @@ html[data-theme='dark'] .video_sidebar_header > div > a::before {
   @apply ml-2 bg-red-500 text-white;
 }
 
+.tag-orange {
+  @apply bg-orange-500 text-white/95 text-sm rounded-md py-0.5 px-1 font-semibold;
+}
+
+
 .table-of-contents .header-tag {
   @apply mt-0 rounded-sm py-0.5 text-[0.5rem];
 }
@@ -1417,3 +1422,16 @@ h2.anchor > code, h3.anchor > code {
   @apply mx-2;
 }
 
+
+.pre-call-docs {
+  @apply mb-3;
+}
+
+.top-border::before {
+  content: "By module";
+  @apply relative -top-3 bg-secondary-700 px-2 py-1 rounded-md text-xs;
+}
+
+.top-border {
+  @apply border-t;
+}
