@@ -1,6 +1,6 @@
 ---
-title: Publish Recorded File to Your Cloud Provider
-sidebar_position: 10
+title: Upload Recording to Your Cloud
+sidebar_position: 4
 description: >-
   Explore how to set up custom cloud storage for Dyte's recording. Follow our
   guide for effective configuration and integration.
@@ -22,6 +22,33 @@ Ensure that the cloud keys you provide to Dyte APIs have only limited access.
 ## Set storage configuration
 
 You can configure storage configs for Dyte Recordings in the following ways:
+
+### Set Storage Configuration Details Using Developer Portal
+
+You can specify storage configuration details using Developer Portal for all meetings.
+
+1. In the Developer Portal, go to Recordings.
+2. Click **Setup Storage**.
+3. Specify the details for your cloud provider. We support transferring
+   recordings to AWS, Azure, DigitalOcean, and Google Cloud Storage (GCS) buckets.
+
+<img
+  src="/static/guides/recording-storage.png"
+  width="600"
+  height="300"
+  alt="recording-storage"
+  className="record-storage"
+/>
+<br />
+
+:::info note
+
+If you have specified storage configuration in the
+[Start Recording](/api/?v=v2#/operations/start_recording) APIs, it will take
+precedence and override the storage details configured in the Developer Portal.
+
+:::
+
 
 ### Using the `storage_config` option in the Start Recording API
 
@@ -47,31 +74,6 @@ curl --request POST \
 }'
 ```
 
-### Set Storage Configuration Details Using Developer Portal
-
-You can also specify storage configuration details using Developer Portal.
-
-1. In the Developer Portal, go to Recordings.
-2. Click **Setup Storage**.
-3. Specify the details for your cloud provider. We support transferring
-   recordings to AWS, Azure, DigitalOcean, and Google Cloud Storage (GCS) buckets.
-
-<img
-  src="/static/guides/recording-storage.png"
-  width="600"
-  height="300"
-  alt="recording-storage"
-  className="record-storage"
-/>
-<br />
-
-:::info note
-
-If you have specified storage configuration in the
-[Start Recording](/api/?v=v2#/operations/start_recording) APIs, it will take
-precedence and override the storage details configured in the Developer Portal.
-
-:::
 
 ## Supported Cloud Providers
 

@@ -6,12 +6,6 @@ description: >-
   for an in-depth understanding of recording features.
 ---
 
-Recording a meeting means storing a video and audio call of a meeting to a file
-that can be viewed at a later point. When recording a meeting, it is common
-practice to record all of the participants and interactions that occur. This can
-be challenging in a multi-user application where users can join, leave, and turn
-their cameras on and off at any time.
-
 Dyte records the audio and video of multiple users in a meeting, as well as
 interactions with Dyte plugins, in a single file using composite recording mode.
 
@@ -54,51 +48,18 @@ we currently support the
    the [Developer Portal](https://dev.dyte.io/) or the
    [Start recording a meeting API](/api/?v=v2#/operations/start_recording).
 
-## Benefits of using Dyte recordings
-
-The following are some of the major benefits of using Dyte for recording your
-meetings:
-
-- **Reliable**: Even if your third-party cloud storage fails, your recording
-  files are automatically stored on Dyte's cloud server.
-- **Secure**: Security features include end-to-end encryption for voice and
-  video calls, data transmission, and storage.
-- **Compatible**: Supports third-party cloud storage providers such as Amazon
-  S3, Microsoft Azure, and DigitalOcean.
-- **Easy-to-use**: Simple implementation and use with RESTful API calls that
-  enable you to start, stop, and query the recording.
-- **Customizable**: Other customizations, such as changing video's dimensions
-  and adding a watermark image on top of the recording, are also supported.
-
 ## Workflow
 
 A typical workflow for recording a meeting involves the following steps:
 
 1. Start a recording using the
-   [POST endpoint](/api/?v=v2#/operations/start_recording).
+   [POST endpoint](/api/?v=v2#/operations/start_recording) or client side SDK / UI.
 2. Stop the recording using the
-   [PUT endpoint](/api/?v=v2#/operations/stop_recording).
+   [PUT endpoint](/api/?v=v2#/operations/stop_recording) or client side SDK / UI..
 3. Fetch the download URL for downloading the recording using the
-   [GET endpoint](/api/?v=v2#/operations/get_one_recording) or from the
+   [GET endpoint](/api/?v=v2#/operations/get_one_recording), webhook or from the
    Developer Portal.
 
-## Recording states
-
-The recording of a meeting can have the following states:
-
-| Name      | Description                                                                                                                                                                                                                                         |
-| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| INVOKED   | Our backend servers have received the recording request, and the master is looking for a ready worker to assign the recording job.                                                                                                                  |
-| RECORDING | The meeting is currently being recorded by a worker; note that this will also hold true if the meeting is being live streamed.                                                                                                                      |
-| UPLOADING | The recording has been stopped and the file is being uploaded to the cloud storage. If you have not specified storage details, then the files will be uploaded only to Dyte's server. Any RTMP and livestreaming link will also stop at this stage. |
-| UPLOADED  | The recording file upload is complete and the status webhook is also triggered.                                                                                                                                                                     |
-| ERRORED   | There was an irrecoverable error while recording the meeting and the file will not be available.                                                                                                                                                    |
-
-You can receive notifications of recording status in any of the following ways:
-
-- **Webhook**: Utilize the [`recording.statusUpdate`](/guides/capabilities/webhooks/webhook-events#recordingstatusupdate) webhook to receive real-time updates about the status of your recordings.
-- **API**: Use the [Fetch active recording API](/api?v=v2#/operations/get_active_recording) to retrieve the status of your recordings programmatically.
-- **Developer Portal**: Access the [Developer Portal](https://dev.dyte.io/) to view the status of your recordings.
 
 <head>
   <title>Recording Overview Guide</title>

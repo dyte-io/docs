@@ -244,7 +244,7 @@ const plugins = [
             '/guides/capabilities/misc/livestreaming-other-platforms'
           )
         ) {
-          return ['/guides/capabilities/livestreaming-other-platforms'];
+          return ['/guides/capabilities/livestreaming-other-platforms', '/guides/capabilities/recording/livestream-recording'];
         }
 
         if (path.startsWith('/guides/capabilities/video/add-virtual-background')) {
