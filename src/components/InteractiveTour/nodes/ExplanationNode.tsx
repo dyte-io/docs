@@ -61,7 +61,7 @@ export default function ExplanationNode() {
                   </span>
                 </div>
                 <div className="relative flex flex-col markdown-body">
-                  <Markdown className="text-wrap p-3 pb-0 text-xs text-zinc-700 dark:text-white pr-3">
+                  <Markdown className="text-wrap p-3 pb-0 text-xs text-zinc-700 dark:text-white pr-3" linkTarget="_blank">
                     {desc}
                   </Markdown>
                   <div className="flex justify-end p-2">
