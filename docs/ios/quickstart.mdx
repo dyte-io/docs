@@ -15,16 +15,16 @@ audio to your iOS applications.
 
 For getting started quickly, you can use our sample code. You can clone and run
 a sample application from the
-[iOS UI Kit Sample App GitHub repository](https://github.com/dyte-io/ios-samples/tree/main/).
+[iOS UI Kit Sample App GitHub repository](https://github.com/dyte-io/ios-samples/tree/main/DyteSwiftUI-UiKit).
 
 ## Objective
 
 You'll learn how to:
 
-- [Install the Dyte SDK](#step-1-install\-the-sdk)
-- [Configure a Dyte meeting](#step-2-configure-a-dyte-meeting)
-- [Initialize the SDK](#step-3-initialize-the-sdk)
-- [Launch the meeting UI](#step-4-launch-the-meeting-ui)
+- Install the Dyte SDK
+- Initialize the SDK
+- Configure a Dyte meeting
+- Launch the meeting UI
 
 ## Before Getting Started
 
@@ -41,8 +41,6 @@ You must complete the following steps:
   to the meeting. This API returns the authentication token that is required to initialize your frontend SDKs.
 
 ## Step 1: Install the SDK
-<Tabs>
-<TabItem value="cocoa_pod" label="CocoaPods" default="cocoa_pod"> 
 
 - ### **CocoaPods**
 
@@ -56,17 +54,10 @@ You must complete the following steps:
 pod install
 ```
 
-</TabItem>
-<TabItem value="spm" label="Swift Package Manager"> 
-
 - ### **Swift Package Manager**
   Add `DyteUiKit` SDK through Swift Package Manager in Xcode. Use https://github.com/dyte-in/ios-uikit-framework.git as the package source.
 
-</TabItem>
-</Tabs>
-
-
-Add the necessary fonts and permission entries in the `info.plist` file. You can customize the strings shown in the permission pop-ups to match your audience preferences.
+3. Add the necessary fonts and permission entries in the `info.plist` file. You can customize the strings shown in the permission pop-ups to match your audience preferences.
 
 ```xml
 <key>NSBluetoothPeripheralUsageDescription</key>
@@ -93,44 +84,9 @@ It's important to note that the use of background modes should be justified and 
 
 Sources: Apple Developer Documentation: [Declaring Your App's Supported Background Tasks](https://developer.apple.com/documentation/bundleresources/information_property_list/uibackgroundmodes)
 
+## Step 2: Configure a Dyte meeting and Launch UI
 
-## Step 2: Configure a Dyte meeting
-
-Configure the following properties in the `DyteMeetingInfoV2` class. You must pass a valid participant `authToken`
-obtained from the [Add Participant](/api/?v=v2#/operations/add_participant) API.
-
-| Name          | Description                                                                                                                    |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------ | --- |
-| `authToken`   | Authentication token generated using the [Add Participant API](/api/?v=v2#/operations/add_participant) after meeting creation. |     |
-| `enableAudio` | Set whether to join the meeting with your Mic ON (`true`) or OFF (`false`).                                                    |     |
-| `enableVideo` | Set whether to join the meeting with your Camera ON (`true`) or OFF (`false`).                                                 |     |
-| `baseUrl`     | Base URL of the Dyte environment you have created the meeting on.                                                              |     |
-
-```swift 
- let meetingInfo = DyteMeetingInfoV2(authToken: "<authToken>",
-                                     enableAudio: true, 
-                                     enableVideo: true, 
-                                     baseUrl: "dyte.io")
- ```
-
-## Step 3: Initialize the SDK
-
-To set the initialization properties in the `DyteUiKit` class, simply initialize `DyteMeetingInfoV2` mention in the step 2
-
-```swift
-
-      let meetingInfo = DyteMeetingInfoV2(authToken: "<authToken>",
-                                     enableAudio: true, 
-                                     enableVideo: true, 
-                                     baseUrl: "dyte.io")
-
-      let dyteUikit = DyteUiKit(meetingInfoV2: meetingInfo)
-
-```
-
-## Step 4: Launch the meeting UI
-
-Follow the step 2 and step 3 to initialize MeetingObject using `DyteUIKit` class. Use the startMeeting method on DyteUIKit object you get in step 3 to launch UI
+To set the initialization properties in the `DyteUiKit` class, simply initialize `DyteMeetingInfoV2` and provide the participant's `authToken`. You can get the authToken via the [Add Participant API](/api/#/operations/add_participant).
 
 Try this in `viewDidAppear()`
 
@@ -147,11 +103,7 @@ class ViewController: UIViewController {
 
    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let meetingInfo = DyteMeetingInfoV2(authToken: "<authToken>",
-                                     enableAudio: true, 
-                                     enableVideo: true, 
-                                     baseUrl: "dyte.io")
-        dyteUikit = DyteUiKit(meetingInfoV2: meetingInfo)
+        dyteUikit = DyteUiKit(meetingInfoV2: DyteMeetingInfoV2(authToken: authToken, enableAudio: true, enableVideo: true, baseUrl: Constants.BASE_URL))
         let controller = dyteUikit.startMeeting {
             [weak self] in
             guard let self = self else {return}
