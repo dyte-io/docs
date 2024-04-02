@@ -64,12 +64,12 @@ nameAtom.addTextChangedListener(
     }
 
     override fun afterTextChanged(s: Editable?) {
-      meeting.self.name = s?.toString()
+      meeting.self.setDisplayName(s?.toString()) 
     }
   }
 )
 ```
 
-`meeting.self.name = participantName` sets the new name for the participant.
+`meeting.self.setDisplayName(participantName)` sets the new name for the participant.
 
-At the end, we let user join the meeting using `await meeting.join();`.
+At the end, we let user join the meeting using `meeting.join();`.
