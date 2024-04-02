@@ -1,20 +1,29 @@
 ---
 description: >-
-  Learn how to use and customize the CreatePollsViewController component in
+  Learn how to use and customize the DyteCreatePollsViewController component in
   Dyte's iOS UiKit with our detailed documentation.
 ---
 
-# CreatePollsViewController
+# DyteCreatePollsViewController
+## Overview
+A view controller used to create and publish a poll.
 
-A component that lets you create a poll.
-
-To show CreatePollsViewController do in iOS as follows:
+### Topics:
+### Creating a DyteCreatePollsViewController. 
 
 ```swift
-let controller = CreatePollsViewController(dyteMobileClient: dyteMobileClient)
+ init(meeting: DyteMobileClient)
+```
+#### Parameters:
+**meeting:** Current ongoing meeting object. 
+
+### To show DyteCreatePollsViewController do in iOS as follows:
+
+```swift
+let controller = DyteCreatePollsViewController(dyteMobileClient: dyteMobileClient)
 self.present(controller, animated: true)
 ```
 
 <head>
-  <title>iOS CreatePollsViewController</title>
+  <title>iOS DyteCreatePollsViewController</title>
 </head>
