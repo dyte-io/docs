@@ -1234,6 +1234,10 @@ html[data-theme='dark'] .video_sidebar_header > div > a::before {
   @apply bg-fuchsia-400 text-white;
 }
 
+.header-tag.tag-danger {
+  @apply ml-2 bg-red-500 text-white;
+}
+
 .table-of-contents .header-tag {
   @apply mt-0 rounded-sm py-0.5 text-[0.5rem];
 }
@@ -1404,3 +1408,12 @@ h2.anchor > code {
     height: 550px;
   }
 }
+
+h2.anchor, h3.anchor {
+  text-wrap: nowrap;
+}
+
+h2.anchor > code, h3.anchor > code {
+  @apply mx-2;
+}
+
