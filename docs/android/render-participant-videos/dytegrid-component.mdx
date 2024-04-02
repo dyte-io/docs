@@ -3,17 +3,49 @@ title: Using DyteGridView
 sidebar_position: 1
 ---
 
-Dyte provides a default pre-call preview UI, also known as setup screen as part of our UI components.
+The [DyteGridView](/android/components/dyte-grid) is a custom Android View provided by Dyte's Android UI Kit, designed to simplify 
+the rendering of participant videos in a meeting. It abstracts the grid handling logic, making it easy to 
+display videos in a grid layout.
 
-To use the default pre-built setup screen you can use `DyteSetupFragment` from our components.
+To render participant videos using `DyteGridView`, follow these steps:
 
-```kotlin
-fragmentManager
-  .beginTransaction()
-  .add(id.fragmentContainer, DyteSetupFragment(), "TAG")
-  .commit()
+1. **Add DyteGridView to your layout**:
+
+```xml
+<dyte.io.uikit.view.dytegrid.DyteGridViewV2
+        android:id="@+id/dyte_grid_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 ```
 
-If you want to break down the above for a custom UI but still want to reuse the default setup screen, use the following component.
+2. **Activate DyteGridView**: In your fragment or activity class, activate the `DyteGridViewV2` by calling the 
+`activate` method with an instance of `DyteMobileClient`.
 
-If you want to build a custom pre-call UI, let's go to the next page to start building one.
+```kotlin
+class MeetingFragment : Fragment() {
+    private lateinit var gridView: DyteGridViewV2
+    private val meeting: DyteMobileClient by lazy { DyteUIKitBuilder.meeting }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        gridView = view.findViewById(R.id.dyte_grid_view)
+        gridView.activate(meeting)
+    }
+}
+```
+
+After activation, the DyteGridView will automatically render the videos of the participants present in the meeting.
+
+<img
+  src="/static/mobile/android-ui-kit/render-participant-videos/render-videos-dytegrid.png"
+  width="252"
+  height="560"
+  alt="Meeting Precall post skeleton changes"
+  className="mb-10"
+/>
+
+## Building Your Own UI
+
+While DyteGridView provides a convenient way to render participant videos, you may want to customize the UI further. 
+In the next section, we will explore how to build your own UI to render participant videos according to your application's specific requirements.
