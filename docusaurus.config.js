@@ -445,10 +445,12 @@ const config = {
   plugins,
 
   trailingSlash: false,
-  themes: ['@docusaurus/theme-live-codeblock'],
+  themes: ['@docusaurus/theme-live-codeblock','@docusaurus/theme-mermaid'],
   clientModules: [require.resolve('./src/client/define-ui-kit.js')],
   scripts: [{ src: 'https://cdn.statuspage.io/se-v2.js', async: true }],
-
+  markdown: {
+    mermaid: true,
+  },
   presets: [
     [
       '@docusaurus/preset-classic',

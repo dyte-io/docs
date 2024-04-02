@@ -31,9 +31,7 @@ Here is a list of properties that local user provides:
 - `mediaPermissions`: The current audio and video permissions given by the local
   user.
 - `audioTrack`: The audio track for the local user.
-- `rawAudioTrack`: The audio track for the local user without any middleware applied on it.
 - `videoTrack`: The video track for the local user.
-- `rawVideoTrack`: The video track for the local user without any middleware applied on it.
 - `screenShareTracks`: The screen share video and audio tracks for the local
   user.
 - `audioEnabled`: A boolean value indicating if the audio currently enabled.
@@ -43,21 +41,34 @@ Here is a list of properties that local user provides:
 
 **States**:
 
-- `waitlistStatus`: Indicates if the local user has been waitlisted or not. It
-  can take the following values: 
-  
-  ```ts
-  "accepted" | "waiting" | "rejected" | "none"
-  ```
-
-- `roomJoined`: A boolean value indicating if the local user is in the meeting
+- `isPinned`: A <span className="tag-orange">boolean</span> value indicating if the local user is pinned or not.
+- `roomJoined`: A <span className="tag-orange">boolean</span> value indicating if the local user is in the meeting
 - `roomState`: Indicates the state of the user in the meeting. It
   can take the following values:
   
    ```ts
    "init" | "joined" | "waitlisted" | "rejected" | "kicked" | "left" | "ended"
    ```
-- `isPinned`: A boolean value indicating if the local user is pinned or not.
+
+```mermaid
+stateDiagram-v2
+    direction LR
+    classDef END fill:#ef4444,color:#fff,stroke:#ef4444;
+
+    [*] --> init
+    init --> joined
+    init --> waitlisted
+    waitlisted --> joined
+    waitlisted --> rejected
+    joined --> kicked
+    joined --> left
+    joined --> ended
+
+    class kicked,left,ended,rejected END
+```
+
+<br />
+
 
 
 ## Change the name of the local user
@@ -85,6 +96,16 @@ await meeting.self.enableAudio();
 meeting.self.audioEnabled;
 ```
 
+```mermaid
+flowchart LR
+    classDef basic fill:white;
+
+    eam("enableAudio()") --> success("Emits <code>audioUpdate</code> event on <code>self</code>")
+    eam -. possibly .-> indirect("Update <code>mediaPermissions.audio</code> with <code>mediaPermissionUpdate</code> event")
+
+    class eam basic;
+```
+
 ### Enable/Disable camera
 
 ```ts
@@ -96,6 +117,16 @@ await meeting.self.enableVideo();
 
 // Get current status
 meeting.self.videoEnabled;
+```
+
+```mermaid
+flowchart LR
+    classDef basic fill:white;
+
+    eam("enableVideo()") --> success("Emits <code>videoUpdate</code> event on <code>self</code>")
+    eam -. possibly .-> indirect("Update <code>mediaPermissions.video</code> with <code>mediaPermissionUpdate</code> event")
+
+    class eam basic;
 ```
 
 ### Enable / Disable Screen share
