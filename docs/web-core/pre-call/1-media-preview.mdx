@@ -27,9 +27,19 @@ await meeting.self.disableAudio();
 await meeting.self.enableAudio();
 ```
 
-  **Event**
+```mermaid
+flowchart LR
+    classDef basic fill:white;
 
-  Anytime there is an update in audio state you will get a `audioUpdate` event
+    eam("enableAudio()") --> success("Emits <code>audioUpdate</code> event on <code>self</code>")
+    eam -. possibly .-> indirect("Update <code>mediaPermissions.audio</code> with <code>mediaPermissionUpdate</code> event")
+
+    class eam basic;
+```
+
+<br />
+
+Anytime there is an update in audio state you will get a `audioUpdate` event
 
 ```ts
 
@@ -49,7 +59,16 @@ await meeting.self.disableVideo();
 await meeting.self.enableVideo();
 ```
 
-**Event**
+```mermaid
+flowchart LR
+    classDef basic fill:white;
+
+    eam("enableVideo()") --> success("Emits <code>videoUpdate</code> event on <code>self</code>")
+    eam -. possibly .-> indirect("Update <code>mediaPermissions.audio</code> with <code>mediaPermissionUpdate</code> event")
+
+    class eam basic;
+```
+<br />
 
 ```ts
 meeting.self.on('videoUpdate', ({ videoEnabled, videoTrack })=> {
