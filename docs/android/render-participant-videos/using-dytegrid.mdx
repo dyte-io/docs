@@ -23,6 +23,9 @@ To render participant videos using `DyteGridView`, follow these steps:
 `activate` method with an instance of `DyteMobileClient`.
 
 ```kotlin
+import dyte.io.uikit.view.dytegrid.DyteGridViewV2
+import io.dyte.core.DyteMobileClient
+
 class MeetingFragment : Fragment() {
     private lateinit var gridView: DyteGridViewV2
     private val meeting: DyteMobileClient by lazy { DyteUIKitBuilder.meeting }
