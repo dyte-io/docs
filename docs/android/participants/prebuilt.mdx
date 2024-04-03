@@ -1,0 +1,76 @@
+---
+title: Prebuilt
+sidebar_position: 3
+---
+
+# Manage Participants
+
+This section explains how to list and manage participants in your Dyte app.
+
+## Listing Participants
+
+To show the list of participants in your app, you can use the `DyteParticipantsFragment` class.
+
+You can create an instance of this class and call the show method to display the list of current participants as shown below:
+
+```kotlin
+val dyteParticipantsFragment = DyteParticipantsFragment()
+dyteParticipantsFragment.show(
+  fragmentManager,
+  "SOME_TAG_HERE"
+)
+```
+
+It should show something like below, with the list of participants in the room:
+
+<img
+  src="/static/android-ui-kit/participants-list.png"
+  style={{ width: 400 }}
+/>
+
+## Host Controls
+
+If you are the host of the room, you will see the **host controls** when you click the **three-dot menu** on the top right corner of the participants list. The host controls allow you to manage the participants in the room.
+
+The host controls include the following options:
+
+- **Mute/Unmute**: Mute or unmute a participant.
+- **Kick**: Kick a participant from the room.
+- **Pin**: Pin a participant's video.
+- **Turn off video**: Turn off a participant's video.
+
+<img src="/static/android-ui-kit/host-controls.png" style={{ width: 400 }} />
+<br />
+
+You can also use these methods from our participant object to
+perform these actions programmatically.
+
+```kotlin
+val participant = meeting.participants.joined.firstOrNull { it.id == participantId }
+
+participant?.let { pcpt ->
+  // To disable a participant's video stream
+  pcpt.disableVideo();
+
+  // To disable a participant's audio stream
+  pcpt.disableAudio();
+
+  // To kick a participant from the meeting
+  pcpt.kick();
+}
+```
+
+You can also `pin` or `unpin` a participant in the meeting. All "pinned"
+participants are added to the `meeting.participants.pinned` map.
+
+```kotlin
+val participant = meeting.participants.joined.firstOrNull { it.id == participantId }
+
+participant?.let { pcpt ->
+  // To pin a participant
+  pcpt.pin();
+
+  // To unpin a participant
+  pcpt.unpin();
+}
+```
