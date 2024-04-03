@@ -30,12 +30,12 @@ let textFieldBottom: DyteTextField = {
                                       }()
 ```
 
-Now inside your `setup screen` you'll need to add elements with kotlin objects, to do that:
+Now inside your `setup screen` you'll need to set name for user
 
 ```swift
 public override func viewDidLoad() {
     super.viewDidLoad()
-    textFieldBottom.text = self.viewModel.dyteMobileClient.localUser.name
+    textFieldBottom.text = self.meeting.localUser.name
 }
 ```
 
