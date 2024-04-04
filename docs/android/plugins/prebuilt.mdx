@@ -53,22 +53,6 @@ plugin?.let { p ->
 }
 ```
 
-## Send data to the plugin
-
-You can send data (type `any`) to a plugin using the `sendData()` method. This method comes in handy when building your own plugin.
-
-```kotlin
-val pluginId = '...';
-val plugin = meeting.plugins.active.firstOrNull { it.id == pluginId }
-
-plugin?.let { p ->
-  p.sendData(
-    eventName = "my-custom-event",
-    data = "Hello world"
-  )
-}
-```
-
 ## Receive data from the plugin
 
 You can receive data from a plugin by subscribing to the `onPluginActivated` event in through our `DytePluginEventsListener` interface.
