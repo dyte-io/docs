@@ -1,0 +1,49 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-grid.svg
+description: >-
+  Learn how to create a custom grid view component in Dyte's iOS UIKit with our detailed documentation.
+---
+
+# Custom Grid View
+
+## Introduction
+
+The `GridView` class provided in Dyte's iOS UIKit allows you to create custom grid views to display content in a structured layout. This guide will walk you through the process of understanding, customizing, and utilizing the `GridView` class to create your custom grid views.
+
+## Step 1: Understanding the GridView Class
+
+The `GridView` class is a customizable UIView subclass designed to display a grid of views. It provides properties and methods to manage the arrangement and presentation of child views within the grid.
+
+### Key Components:
+
+- **Properties**:
+
+  - `maxItems`: Maximum number of items the grid can contain.
+  - `currentVisibleItem`: Number of items currently visible in the grid.
+  - `getChildView`: A closure returning a custom view type for each grid cell.
+  - `scrollView`: UIScrollView for enabling scrolling if the grid overflows.
+  - `scrollContentView`: UIView containing the actual grid content within the scroll view.
+  - `views`: Array holding the child views of the grid.
+  - `frames`: Array of CGRects representing the frames of child views.
+
+- **Methods**:
+  - `settingFrames(...)`: Set frames for the grid based on parameters such as visible item count and orientation.
+  - `prepareForReuse(...)`: Reset or reuse child views.
+  - Helper methods for frame calculations and view creation.
+
+### Example Usage:
+
+```swift
+// Instantiate GridView
+let gridView = GridView<UIView>(maxItems: 9, showingCurrently: 6) {
+    return UIView()
+}
+
+// Set frames for the grid view
+gridView.settingFrames(visibleItemCount: 6, animation: false) { _ in
+    // Handle completion if needed
+}
+
+// Add gridView to your desired view
+view.addSubview(gridView)
+```
