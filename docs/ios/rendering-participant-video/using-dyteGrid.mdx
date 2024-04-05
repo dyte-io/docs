@@ -11,12 +11,14 @@ The main grid component which abstracts all the grid handling logic and renders
 it for you.
 
 ```swift
-gridView = GridView(showingCurrently: 9, getChildView: {
+var gridView = GridView(showingCurrently: 9, getChildView: {
             return DyteParticipantTileContainerView()
         })
 ```
 
-To setup the grid inside code do as follows
+# Populate Grid Child Views
+
+To setup the grid & set Participant inside code do as follows
 
 ```swift
 func populateGridChildViews(participants: [DyteJoinedMeetingParticipant]) {

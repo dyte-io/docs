@@ -1,0 +1,24 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-participants.svg
+description: >-
+  Learn how to use and customize the ParticipantViewController component in
+  Dyte's iOS UiKit with our detailed documentation.
+---
+
+# ParticipantViewController
+
+A component which lists all participants, with ability to run privileged actions
+on each participant according to your permissions.
+
+To show DyteParticipantsFragment do in kotlin/Java as follows:
+
+```swift
+let controller = ParticipantViewController(viewModel:
+                    ParticipantViewControllerModel(mobileClient: meeting))
+controller.modalPresentationStyle = .fullScreen
+self.present(controller, animated: true)
+```
+
+<head>
+  <title>iOS ParticipantViewController</title>
+</head>

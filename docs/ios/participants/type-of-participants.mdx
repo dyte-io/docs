@@ -1,0 +1,58 @@
+---
+image: /static/ui-kit/1.x.x/components/participant-types.svg
+description: >-
+  Learn how to handle various types of participants in your iOS app using Dyte's participant view controllers with our detailed documentation.
+---
+
+# Participant Types
+
+This documentation explains how to handle different types of participants in your iOS app using Dyte's participant view controllers.
+
+## Participant Cell Configuration
+
+The following code snippet demonstrates how to configure participant cells based on their types.
+
+```swift
+public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  let cell = self.viewModel.dataSourceTableView.configureCell(tableView: tableView, indexPath: indexPath)
+  cell.selectionStyle = .none
+  cell.backgroundColor = tableView.backgroundColor
+
+  if let cell = cell as? ParticipantInCallTableViewCell {
+      // Configure In Call participant cell
+      cell.buttonMoreClick = { [weak self] button in
+          // Handle more button click
+      }
+      cell.setPinView(isHidden: !cell.model.participantUpdateEventListner.participant.isPinned)
+  } else if let cell = cell as? ParticipantWaitingTableViewCell {
+      // Configure Waiting participant cell
+      cell.buttonCrossClick = { [weak self] button in
+          // Handle cross button click
+      }
+      cell.buttonTickClick = { [weak self] button in
+          // Handle tick button click
+      }
+      cell.setPinView(isHidden: true)
+  } else if let cell = cell as? OnStageWaitingRequestTableViewCell {
+      // Configure On Stage Waiting participant cell
+      cell.buttonCrossClick = { [weak self] button in
+          // Handle cross button click
+      }
+      cell.buttonTickClick = { [weak self] button in
+          // Handle tick button click
+      }
+      cell.setPinView(isHidden: !cell.model.participant.isPinned)
+  } else if let cell = cell as? AcceptButtonTableViewCell {
+      // Configure Accept All button cell
+      cell.buttonClick = { [weak self] button in
+          // Handle Accept All button click
+      }
+  } else if let cell = cell as? RejectButtonTableViewCell {
+      // Configure Reject All button cell
+      cell.buttonClick = { [weak self] button in
+          // Handle Reject All button click
+      }
+  }
+  return cell
+}
+```
