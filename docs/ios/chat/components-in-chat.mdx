@@ -1,0 +1,129 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-chat.svg
+sidebar_position: 2
+description: >-
+  Learn how to use and customize the CustomChatViewController component in Dyte's iOS UiKit with
+  our detailed documentation.
+---
+
+# Chat Components
+
+## Overview
+
+A custom chat view controller used to show chat screen with image & file upload.
+
+### Topics:
+
+Listen to chat message updates using `meeting.addChatEventsListener(chatEventsListener: self)` & get callbacks:
+
+```swift
+extension ChatViewController: DyteChatEventsListener {
+    public func onNewChatMessage(message: DyteChatMessage) {
+       //This can be used to show local notifications
+    }
+
+    public  func onChatUpdates(messages: [DyteChatMessage]) {
+        loadChatMessages()
+    }
+}
+```
+
+Creating a custom chat screen, you need following things:
+
+```swift
+var messages: [DyteChatMessage]?
+let messageTableView = UITableView()
+let sendFileButton = DyteButton(style: .iconOnly(icon: DyteImage(image: sendFileImageIcon)), dyteButtonState: .focus)
+let sendImageButton = DyteButton(style: .iconOnly(icon: DyteImage(image: sendImageIcon)), dyteButtonState: .active)
+let sendMessageButton = DyteButton(style: .iconOnly(icon: DyteImage(image: sendMessageIcon)), dyteButtonState: .active)
+var documentsViewController: DocumentsViewController?
+let imagePicker = UIImagePickerController()
+let messageTextView = UITextView()
+```
+
+`CustomChatViewController` will have a tableView and at bottom buttons to select image/file and button to send message
+Load messages & scroll to bottom to show latest message:
+
+```swift
+private func loadChatMessages() {
+  self.messages = self.meeting.chat.messages
+  if messages.count > 0 {
+    messageTableView.reloadData(completion: {
+        DispatchQueue.main.async { [weak self] in
+            let indexPath = IndexPath(row: (self?.messages?.count ?? 1)-1, section: 0)
+            self?.messageTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        }
+    })
+  }
+}
+```
+
+Send text message, if it is correct and empty `textView` once done:
+
+```swift
+@objc func sendButtonTapped() {
+  if !messageTextView.text.isEmpty {
+    let spacing = CharacterSet.whitespacesAndNewlines
+    let message = messageTextView.text.trimmingCharacters(in: spacing)
+    try?meeting.chat.sendTextMessage(message: message)
+    messageTextView.text = ""
+  }
+}
+```
+
+Few helper functions:
+
+```swift
+
+public extension UITableView {
+
+    func reloadData(completion: @escaping () -> ()) {
+        UIView.animate(withDuration: 0, animations: {
+            self.reloadData()
+        }, completion: { _ in
+            completion()
+        })
+    }
+
+    func scrollToFirstCell() {
+        if numberOfSections > 0 {
+            if numberOfRows(inSection: 0) > 0 {
+                scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            }
+        }
+    }
+
+    func scrollToLastCell(animated: Bool) {
+        if numberOfSections > 0 {
+            let nRows = numberOfRows(inSection: numberOfSections - 1)
+            if nRows > 0 {
+                scrollToRow(at: IndexPath(row: nRows - 1, section: numberOfSections - 1), at: .bottom, animated: animated)
+            }
+        }
+    }
+
+    func stopScrolling() {
+
+        guard isDragging else {
+            return
+        }
+
+        var offset = self.contentOffset
+        offset.y -= 1.0
+        setContentOffset(offset, animated: false)
+
+        offset.y += 1.0
+        setContentOffset(offset, animated: false)
+    }
+
+    func scrolledToBottom() -> Bool {
+        return contentOffset.y >= (contentSize.height - bounds.size.height)
+    }
+}
+```
+
+`DyteChatMessage` can be of type `DyteTextMessage`, `DyteFileMessage` or `DyteImageMessage`.
+
+<head>
+  <title>iOS CustomChatViewController</title>
+</head>
