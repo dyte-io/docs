@@ -1,0 +1,55 @@
+---
+title: DyteSetupScreen
+sidebar_position: 4
+---
+
+Dyte provides a default pre-call preview UI, also known as setup screen as part of our UI components.
+
+# SetupViewController
+
+## Overview
+
+A screen shown before joining the meeting, where you can edit your display name,
+and media settings. This screen initialize the meeting and on successfull initialization
+it shows a join button to join meeting.
+
+## Topics:
+
+### Create SetupViewController
+
+```swift
+ init(meetingInfo: DyteMeetingInfoV2, mobileClient: DyteMobileClient, completion:@escaping()->Void)
+
+```
+
+Creates setup screen with the configuration object of type `DyteMeetingInfoV2`
+
+#### Parameters:
+
+Required:
+meetingInfo: An instance of type `DyteMeetingInfoV2`
+meeting: Default meeting object
+completion: escaping closure to get a callback when Meetings ends up. For eg. When user leaved the meeting then
+you want to present the starting screen.
+
+```swift
+let controller =  SetupViewController(meetingInfo: dyteMeetingInfo,
+                                              meeting: metting) {  [weak self] in
+    guard let self = self else {return}
+    self.dismiss(animated: true)
+    self.view.hideActivityIndicator()
+}
+controller.modalPresentationStyle = .fullScreen
+self.present(controller, animated: true)
+
+```
+
+### Customising flow of SetupViewController using protocol
+
+[SetupViewControllerDelegate](/ios/components/dyte-setup-screen-delegate)
+
+```swift
+  weak var delegate: SetupViewControllerDelegate?
+```
+
+The delegate of the [SetupViewController](/ios/components/dyte-setup-screen) object.

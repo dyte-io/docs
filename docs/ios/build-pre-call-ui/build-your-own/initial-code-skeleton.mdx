@@ -1,0 +1,73 @@
+---
+title: Basic structure
+sidebar_position: 1
+---
+
+## What are we building?
+
+We are deconstructing the default setup screen.
+
+At the end of this group of docs, we should have the following screen built using low level components.
+
+![meeting UI screenshot with labeled parts](/static/ios/meeting-setup.png)
+
+Let's put a basic skeleton and the initial boilerplate code.
+
+Barebone ui needed to redner for name textField and a button to join the meeting will look as follow:
+
+```swift
+let joinButton = DyteJoinButton(meeting: self.mobileClient) { [weak self] button, success in
+                      guard let self = self else {return}
+                      if success {
+                          self.delegate?.userJoinedMeetingSuccessfully(sender: self)
+                      }
+                  }
+
+let textFieldBottom: DyteTextField = {
+                                          let textField = DyteTextField()
+                                          textField.setPlaceHolder(text: "Insert your name")
+                                          return textField
+                                      }()
+```
+
+Now inside your `setup screen` you'll need to set name for user
+
+```swift
+public override func viewDidLoad() {
+    super.viewDidLoad()
+    textFieldBottom.text = self.meeting.localUser.name
+}
+```
+
+A common use case of pre-call UI is to give the user a option to set / edit their name.
+
+### Permissions
+
+Requires `meeting.localUser.permissions.miscellaneous.canEditDisplayName` to be `true`
+
+In the preset editor, ensure `Miscellaneous > Edit Name` is toggled enabled.
+
+<img src="/static/react/preset-edit-name.png" />
+
+Observe and change textField on text changes
+
+```swift
+
+func setupTextField() {
+  textFieldBottom.addTarget(self, action: #selector(textFieldEditingDidChange), for: .editingChanged)
+  textFieldBottom.delegate = self
+}
+
+@objc func textFieldEditingDidChange(_ sender: Any) {
+  if !((textFieldBottom.text?.trimmingCharacters(in: .whitespaces).isEmpty) ?? false) {
+      if let text = textFieldBottom.text {
+          self.meeting.localUser.name = text
+      }
+  }
+}
+
+```
+
+`meeting.localUser.name = text` sets the new name for the participant.
+
+At the end, we let user join the meeting using `meeting.joinRoom()`.
