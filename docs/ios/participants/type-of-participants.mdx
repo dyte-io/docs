@@ -1,0 +1,61 @@
+---
+image: /static/ui-kit/1.x.x/components/participant-types.svg
+sidebar_position: 3
+description: >-
+  Learn how to handle various types of participants in your iOS app using Dyte's participant view controllers with our detailed documentation.
+---
+
+# Participant Types
+
+This documentation explains how to handle different types of participants in your iOS app using Dyte's participant view controllers.
+
+## Participant Cell Configuration
+
+We need a `tableView` to show different types of participants on this screen.
+The following code snippet demonstrates how to configure participant cells based on their types.
+
+```swift
+public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell =  self.viewModel.dataSourceTableView.configureCell(tableView: tableView, indexPath: indexPath)
+    if let cell = cell as? ParticipantInCallTableViewCell {
+        cell.buttonMoreClick = { [weak self] button in
+            guard let self = self else {return}
+            //createMoreMenu is covered in host control docs
+            self.createMoreMenu(participantListner: cell.model.participantUpdateEventListner, indexPath: indexPath)
+        }
+    } else if let cell = cell as? ParticipantWaitingTableViewCell {
+        cell.buttonCrossClick = { [weak self] button in
+            guard let self = self else {return}
+            self.viewModel.waitlistEventListner.rejectWaitingRequest(participant: cell.model.participant)
+        }
+        cell.buttonTickClick = { [weak self] button in
+            guard let self = self else {return}
+            self.viewModel.waitlistEventListner.acceptWaitingRequest(participant: cell.model.participant)
+        }
+    } else if let cell = cell as? OnStageWaitingRequestTableViewCell {
+        cell.buttonCrossClick = { [weak self] button in
+            guard let self = self else {return}
+            self.viewModel.mobileClient.stage.denyAccess(id: cell.model.participant.id)
+            self.reloadScreen()
+        }
+        cell.buttonTickClick = { [weak self] button in
+            guard let self = self else {return}
+            self.viewModel.mobileClient.stage.grantAccess(id: cell.model.participant.id)
+            self.reloadScreen()
+        }
+    } else if let cell = cell as? AcceptButtonTableViewCell {
+        cell.buttonClick = { [weak self] button in
+            guard let self = self else {return}
+            self.viewModel.acceptAll()
+            self.reloadScreen()
+        }
+    } else if let cell = cell as? RejectButtonTableViewCell {
+        cell.buttonClick = { [weak self] button in
+            guard let self = self else {return}
+            self.viewModel.rejectAll()
+            self.reloadScreen()
+        }
+    }
+    return cell
+}
+```

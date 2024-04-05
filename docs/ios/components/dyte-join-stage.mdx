@@ -15,16 +15,16 @@ A confirmation dialog screen which is shown
 ### Creating a Audio control button which you mostly add inside Control Bar
 
 ```swift
- init(meeting: DyteMobileClient, participant: DyteJoinedMeetingParticipant) {
+init(meeting: DyteMobileClient, participant: DyteJoinedMeetingParticipant) {
 ```
-Creates a DyteAudioButtonControlBar with multiple parameters. 
+Creates a [DyteAudioButtonControlBar](/ios/components/dyte-mic-toggle) with multiple parameters. 
 
 #### Parameters:
 *Required*  
 **meeting:** Current ongoing meeting object.   
 **participant:** Participant to join stage.                                         
 
-For eg below code to join stage. 
+For example below code to join stage. 
 
 ```swift
 let alert = WebinarAlertView(meetingClient: meeting, participant: meeting.localUser)
