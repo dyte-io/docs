@@ -1,5 +1,6 @@
 ---
 image: /static/ui-kit/1.x.x/components/dyte-chat.svg
+sidebar_position: 3
 description: >-
   Learn how to use and customize the CustomChatViewController component in Dyte's iOS UiKit with
   send file and image documentation.
@@ -36,6 +37,9 @@ we can open respective pickers like follows:
   present(imagePicker, animated: true, completion: nil)
 }
 ```
+
+Implement delegates of pickerViews and once you have path to image/file this can be sent using
+`meeting.chat.sendFileMessage(filePath: selectedFileURL.path)`
 
 <head>
   <title>iOS CustomChatViewController</title>
