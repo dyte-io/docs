@@ -27,52 +27,52 @@ Creates DyteButton for the **Style** **States** **Size** you passed.
 
 ### Style
 ```swift
- public enum Style {
-        case solid
-        case line
-        case iconLeftLable(icon: DyteImage)
-        case iconRightLable(icon: DyteImage)
-        case text
-        case textIconLeft(icon: DyteImage)
-        case textIconRight(icon: DyteImage)
-        case iconOnly(icon: DyteImage)
-        case splitButton
-    }
+public enum Style {
+  case solid
+  case line
+  case iconLeftLable(icon: DyteImage)
+  case iconRightLable(icon: DyteImage)
+  case text
+  case textIconLeft(icon: DyteImage)
+  case textIconRight(icon: DyteImage)
+  case iconOnly(icon: DyteImage)
+  case splitButton
+}
 ```
 
 ### States
 ```swift
 public enum States
-    {
-        case active
-        case disabled
-        case hover
-        case focus
-        case pressed
-    }
+{
+  case active
+  case disabled
+  case hover
+  case focus
+  case pressed
+}
 ```
 
 ### Size
 ```swift
 public enum Size {
-        case small
-        case medium
-        case large 
-        }
+  case small
+  case medium
+  case large 
+}
 ```
-For eg we can use DyteButton as follows
+For example we can use DyteButton as follows
 ```swift
 let dyteImage = DyteImage(image:ImageProvider.image(named: "icon_down_arrow"))
 let downloadButton: DyteButton = {
-        let button = DyteButton(style: .iconOnly(icon: dyteImage),
-                      dyteButtonState: .active)
-        button.backgroundColor = dyteSharedTokenColor.background.shade800
-        button.isUserInteractionEnabled = false
-        button.tintColor = .white
-        // Set additional button properties if needed
-        button.selectedStateTintColor = DesignLibrary.shared.color.status.danger
-        return button
-    }()
+    let button = DyteButton(style: .iconOnly(icon: dyteImage),
+                  dyteButtonState: .active)
+    button.backgroundColor = dyteSharedTokenColor.background.shade800
+    button.isUserInteractionEnabled = false
+    button.tintColor = .white
+    // Set additional button properties if needed
+    button.selectedStateTintColor = DesignLibrary.shared.color.status.danger
+    return button
+}()
 ```
 
 <head>
