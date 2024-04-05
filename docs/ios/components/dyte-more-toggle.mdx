@@ -6,6 +6,7 @@ description: >-
 
 # DyteMoreButtonControlBar
 ## Overview
+Subclass of [DyteControlBarButton](/ios/components/dyte-controlbar-button)
 This button is use to show/hide bottom sheet. Pressing this button again and again will toggle show/hide  bottom sheet. You can add this button to show various action which are applicable according 
 to your presets for eg. You can show below actions
 1. Mute audio for all participants
@@ -24,7 +25,7 @@ All options depends on Users presets.
 ### Creating a More Menu meeting button which you mostly add inside Control Bar.
 
 ```swift
- init(meeting: DyteMobileClient, presentingViewController: UIViewController, settingViewControllerCompletion:(()->Void)? = nil) {
+init(meeting: DyteMobileClient, presentingViewController: UIViewController, settingViewControllerCompletion:(()->Void)? = nil) {
 ```
 Creates a DyteMoreButtonControlBar with multiple parameters. 
 
@@ -38,7 +39,7 @@ from bottom sheet and closed it. When user press back from setting screen then y
 
 ### Override the onClick action. 
 ```swift 
-open func onClick(button: DyteControlBarButton) 
+func onClick(button: DyteControlBarButton) 
 ```
 You can override this method inside the subclass of `DyteMoreButtonControlBar` to customize the functionality when user presses this button. 
 

@@ -4,9 +4,9 @@ description: >-
   with our detailed documentation.
 ---
 
-# How to use existing Settings screen.
-## Overview
-There exist a class [DyteSettingViewController](/ios/components/dyte-dyte-settings), which is used to select Audio device and Camera device.
+# Settings
+## Overview: How to use existing Settings screen.
+We have to use a class [DyteSettingViewController](/ios/components/dyte-settings), which is used to select Audio device and Camera device
 from the list of available devices.
 
 <img src="/static/ios/ios_settings.jpg" alt="Example Image" width="200" height="100"/>
@@ -15,60 +15,15 @@ from the list of available devices.
 ### Launch prebuilt setting screen
 
 ```swift
- private func launchSettingScreen() {
-        let controller = DyteSettingViewController(nameTag: self.meeting.localUser.name, meeting: self.meeting, completion: self.settingViewControllerCompletion)
-        controller.modalPresentationStyle = .fullScreen
-        self.present(controller, animated: true)   
- }
-```
-We can use above code to launch list of plugin screen inside app.
-
-<img src="/static/ios/iOS_plugins.png" alt="Example Image" width="200" height="100"/>
-
-Every Cell of UITableView we are showing a plugin with activate/deactivate icon on the extreme right.
-
-For Eg Plugin name "Rustpad v2" in 3rd cell is showing a cross icon to deactivate plugin and every other cell is showing icon 
-to activate plugin.
-
-
-# How to display plugins inside plugins view.
-## Overview
-To display individuals plugin inside App. We will be using components [DytePluginView](/ios/components/dyte-plugin-view)
-
-### Creating plugin view
-
-```swift
- let viewModel = VideoPeerViewModel(mobileClient: meeting, participant: meeting.localUser, showSelfPreviewVideo: false, showScreenShareVideoView: true)
-  let pluginView = DytePluginView(videoPeerViewModel:viewModel)
-  self.view.addSubview(pluginView)
-```
-User above code to create instance of DytePluginView and add this view to any view of your choice. 
-
-#### Loading pluginView with plugins
-
-You can get the list of active plugins with the help of below Api 
-
-```swift
-let plugins: [DytePlugin] = self.dyteMobileClient.plugins.active
-let arrButtons = [PluginScreenShareTabButton]()
-
-for plugin in plugins {
-  let button = PluginScreenShareTabButton(image: plugin.picture, title: plugin.name, id: plugin.id)
-  arrButtons.append(button)
+private func launchSettingScreen() {
+  let controller = DyteSettingViewController(nameTag: self.meeting.localUser.name,
+                                             meeting: self.meeting, 
+                                             completion: self.settingViewControllerCompletion)
+  controller.modalPresentationStyle = .fullScreen
+  self.present(controller, animated: true)   
 }
 ```
-To show `arrButtons` created from above code on the [DytePluginView](/ios/components/dyte-plugin-view), We will be using
-below Api. 
 
-```swift
-  self.pluginView.setButtons(buttons: arrButtons, selectedIndex: 0) { [weak self] button, pluginIsClicked in
-     guard let self = self else {return}
-    // We are having plugin button tapped by the user. 
-    // So to load this plugin inside PluginsView we need to call this Api. 
-     self.pluginView.show(pluginView:  button.plugin.getPluginView())
-   }
-
-```
 
 
 <head>

@@ -24,7 +24,7 @@ participant: Participant to join stage.
 ### Show AlertView to user 
 
 ```swift
-  func show(on view: UIView)
+func show(on view: UIView)
 ```
 #### Parameters:
 Required: 
@@ -33,30 +33,30 @@ view: Parent View on which this alertView will be shown
 ### Button with functionality to join stage
 
 ```swift
- var confirmAndJoinButton: DyteButton {get}
+var confirmAndJoinButton: DyteButton {get}
 ```
 Define it as follows 
 
 ```swift
-  public let confirmAndJoinButton: DyteButton = {
-        let button = DyteUIUTility.createButton(text: "Confirm & join stage")
-        return button
-    }()
+public let confirmAndJoinButton: DyteButton = {
+  let button = DyteUIUTility.createButton(text: "Confirm & join stage")
+  return button
+}()
 ```
 
 ### Button with functionality to remove the alertview
    
 ```swift
- var cancelButton: DyteButton {get }
+var cancelButton: DyteButton {get }
 ```
 Define it as follows 
 
  ```swift
-  public let cancelButton: DyteButton = {
-        let button = DyteUIUTility.createButton(text: "Cancel")
-        button.backgroundColor = dyteSharedTokenColor.background.shade800
-        return button
-    }()
+public let cancelButton: DyteButton = {
+  let button = DyteUIUTility.createButton(text: "Cancel")
+  button.backgroundColor = dyteSharedTokenColor.background.shade800
+  return button
+}()
  ```
 
 <head>

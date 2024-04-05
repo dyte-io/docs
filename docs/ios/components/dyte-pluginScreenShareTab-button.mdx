@@ -5,17 +5,17 @@ description: >-
   iOS UiKit with our detailed documentation.
 ---
 
-# PluginTabButton
+# DytePluginScreenShareTabButton
 ## Overview
 Subclass of [UIButton](https://developer.apple.com/documentation/uikit/uibutton)  
-Mostly used to add button to [ActiveHorizontalListView](/ios/components/dyte-active-horizontal-list-view)
+Mostly used to add plugin button to [DyteActiveTabSelectorView](/ios/components/dyte-active-tab-selector-view)
 
 ## Topics:
 
 ### Creating button
 
 ```swift
-init(image: DyteImage?, title: String = "", id: String = "", appearance: PluginScreenShareTabButtonDesignDependency = PluginScreenShareTabButtonDesignDependencyModel()) 
+init(image: DyteImage?, title: String = "", id: String = "", appearance: DytePluginScreenShareTabButtonDesignDependency = DytePluginScreenShareTabButtonDesignDependencyModel()) 
 ```
 #### Parameters
 *Required*   
@@ -23,11 +23,11 @@ init(image: DyteImage?, title: String = "", id: String = "", appearance: PluginS
 *Optional*  
 **title:** Title of type String to be shown as button title.  
 **id:** identifier used to identify this button.  
-**appearance:** Any type that confirms to PluginScreenShareTabButtonDesignDependency   
+**appearance:** Any type that confirms to DytePluginScreenShareTabButtonDesignDependency   
 
 <img src="/static/ios/ios_active_HorizontalView.png" alt="Example Image" width="400" height="200"/>
 
-For eg in above image , We have created three buttons 
+For example in above image , We have created three buttons 
 1. With title "Rustpad V2" and isSelected = `false`
 2. With title "Excalidraw" and isSelected = `false`
 3. With title "DocShare" and isSelected = `true`

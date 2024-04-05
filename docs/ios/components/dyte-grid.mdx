@@ -12,20 +12,20 @@ it for you.
 
 ```swift
 gridView = GridView(showingCurrently: 9, getChildView: {
-            return DyteParticipantTileContainerView()
-        })
+    return DyteParticipantTileContainerView()
+})
 ```
 
 To setup the grid inside kotlin/Java code do as follows
 
 ```swift
 self.gridView.settingFramesForPluginsActiveInLandscapeMode(visibleItemCount: 7,
-                                                  animation: true) { finish in
-    completion()
+                                                        animation: true) { finish in
+  completion()
 }
 //Get a peerView
 if let peerView = self.gridView.childView(index: index)?.tileView {
-    peerView.pinView(show: show)
+   peerView.pinView(show: show)
 }
 ```
 
