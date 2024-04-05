@@ -2498,7 +2498,7 @@ paths:
           in: query
           name: expired
           required: false
-          description: "If passed, only shows expired/non-expired recordings on Dyte's bucket"
+          description: 'If passed, only shows expired/non-expired recordings on Dyte bucket'
         - $ref: '#/components/parameters/search'
         - $ref: '#/components/parameters/recordingSortBy'
         - $ref: '#/components/parameters/sortOrder'
@@ -3209,6 +3209,7 @@ components:
               - meeting.participantLeft
               - recording.statusUpdate
               - livestreaming.statusUpdate
+              - meeting.chatSynced
         enabled:
           type: boolean
           x-stoplight:
@@ -3816,6 +3817,9 @@ components:
         live_stream_on_start:
           type: boolean
           description: Specifies if the meeting should start getting livestreamed on start.
+        persist_chat:
+          type: boolean
+          description: Specifies if Chat within a meeting should persist for a week
         status:
           type: string
           x-stoplight:
@@ -4887,7 +4891,7 @@ components:
         export_file:
           type: boolean
           x-stoplight:
-            id: mqrzqrbcbbx99
+            id: 8qyf8pcokcuvw
           default: true
           description: Controls whether to export video file seperately
     LivestreamingConfig:
@@ -4931,7 +4935,7 @@ components:
           x-stoplight:
             id: mqrzqrbcbbx99
           default: true
-          description: Controls whether to export video file seperately
+          description: Controls whether to export audio file seperately
     DyteBucketConfig:
       title: DyteBucketConfig
       x-stoplight:
@@ -4942,7 +4946,7 @@ components:
           type: boolean
           x-stoplight:
             id: k1f2cjsd28631
-          description: "Controls whether recordings are uploaded to Dyte's bucket. If set to false, `download_url`, `audio_download_url`, `download_url_expiry` won't be generated for a recording."
+          description: 'Controls whether recordings are uploaded to Dyte bucket. If set to false, `download_url`, `audio_download_url`, `download_url_expiry` won''t be generated for a recording.'
       required:
         - enabled
     startReason:
@@ -5303,7 +5307,7 @@ components:
             properties:
               allow_unmute:
                 type: boolean
-                description: "if false, participants won't be able to unmute themselves after they are muted"
+                description: 'if false, participants won''t be able to unmute themselves after they are muted'
     CreatePollBody:
       description: Request body for creating a new poll
       content:
@@ -5356,6 +5360,11 @@ components:
                 nullable: true
               recording_config:
                 $ref: '#/components/schemas/RecordingConfig'
+              persist_chat:
+                type: boolean
+                x-stoplight:
+                  id: dojayeqrqj1a4
+                description: 'If a meeting is set to persist_chat, meeting chat would remain for a week within the meeting space'
       description: Create meeting body
     UpdateMeetingBody:
       content:
@@ -5391,6 +5400,11 @@ components:
                   - INACTIVE
                 example: INACTIVE
                 description: Whether the meeting is `ACTIVE` or `INACTIVE`. Users will not be able to join an `INACTIVE` meeting.
+              persist_chat:
+                type: boolean
+                x-stoplight:
+                  id: 1rdw9emd9qk8y
+                description: 'If a meeting is updated to persist_chat, meeting chat would remain for a week within the meeting space'
       description: Create meeting body
     AddParticipantBody:
       content:
