@@ -4,7 +4,7 @@ description: >-
   with our detailed documentation.
 ---
 
-# Polls
+# Pre-built Polls Screen
 ## Overview: How to use existing polls screen.
 We have to use a class [DyteShowPollsViewController](/ios/components/dyte-polls), which is used to show exising list of polls
 created by participants in current meeting. With a button at the bottom to create polls.
@@ -17,23 +17,6 @@ created by participants in current meeting. With a button at the bottom to creat
 func launchPollsScreen() {
   let controller = DyteShowPollsViewController(meeting: self.meeting)
   self.presentingViewController.present(controller, animated: true)
-}
-```
-
-### To launch create polls screen.
-<img src="/static/ios/ios_create_polls.png" alt="Example Image" width="200" height="100"/>
-
-When user press the create poll button, use below code
-```swift
-@objc func createPollClick(button: DyteButton) {
-  let controller = DyteCreatePollsViewController(dyteMobileClient: dyteMobileClient) { [weak self] result in
-      guard let self = self else {return}
-      self.controller?.view.removeFromSuperview()
-      self.controller = nil
-  }
-  controller.view.backgroundColor = self.view.backgroundColor
-  self.view.addSubview(controller.view)
-  self.creatPollController = controller
 }
 ```
 
