@@ -1,0 +1,75 @@
+---
+title: Functions to disable plugins
+description: Methods on a plugin in a meeting.
+sidebar_position: 3
+tags:
+  - web-core
+  - plugins
+---
+
+# Functions to disable plugins
+
+Each plugin in `meeting.plugins` object is of type
+[`DytePlugin`](./introduction) and exposes the following functions to disable
+plugins.
+
+## Remove Plugin View
+
+This method is used for cleaning up event listeners attached to an iframe. It
+must be used before the iframe is removed from the DOM.
+
+```ts
+const plugins = meeting.plugins.all.toArray();
+
+plugins.forEach(async (plugin: DytePlugin) => {
+  await plugin.removePluginView();
+});
+```
+
+### Deactivate Plugins
+
+The `deactivate()` method deactivates the plugin for all users in the meeting.
+When you deactivate a plugin, it gets removed from the active plugins map and
+can only be accessed from `meeting.plugins.all`.
+
+The snippet below displays all active plugins and deactivate a plugin on click.
+
+```ts
+const plugins = meeting.plugins.active.toArray();
+
+plugins.forEach((plugin: DytePlugin) => {
+  const button = document.createElement('button');
+  button.innerText = `Deactivate ${plugin.name}`;
+  button.onclick = async () => {
+    await plugin.deactivate();
+  };
+  document.body.appendChild(button);
+});
+```
+
+Here is another way you can deactivate a plugin.
+
+```ts
+const plugins = meeting.plugins.active.toArray();
+const plugin = plugins.find((p) => p.name === 'YouTube');
+
+await plugin?.deactivate();
+```
+
+### ~~Disable Plugins~~
+
+**_Deprecated_**
+
+The `disable()` method deactivates the plugin for the current user. This does
+not affect other users in the meeting.
+
+```ts
+const plugins = meeting.plugins.active.toArray();
+const plugin = plugins.find((p) => p.name === 'YouTube');
+
+await plugin?.disable();
+```
+
+<head>
+  <title>Web Core Functions to disable plugins</title>
+</head>

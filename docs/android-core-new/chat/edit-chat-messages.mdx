@@ -1,0 +1,92 @@
+---
+title: Editing Chat Messages
+description: Edit chat messages that you have sent in a meeting.
+sidebar_position: 4
+tags:
+  - web-core
+  - chat
+---
+
+As mentioned in introduction, there are 3 types of chat messages - text
+messages, images, and files. There is a method in meeting.chat to edit a message
+of each type.
+
+## Edit a text message
+
+To edit a text message, the `meeting.chat.editTextMessage()` method can be used.
+This accepts a `messageId` (type `string`) and a `message` (type `string`).
+
+```ts
+const message = meeting.chat.messages[0];
+const messageId = message?.id;
+const newMessage = 'Is this the real life?';
+await;
+meeting.chat.editTextMessage(messageId, newMessage);
+```
+
+## Edit an image
+
+You can send an image with the help of meeting.chat.editImageMessage(). This
+accepts a `messageId` of type `string` and an image of type `File`.
+
+```ts
+<label for="img">Edit image:</label>
+<input type="file" id="img" name="img" accept="image/*" />
+<button onclick="onEditImage()">Edit Image</button>
+```
+
+```ts
+async function onEditImage() {
+  const messageId = '...';
+  const image = document.getElementById('img');
+  await meeting.chat.editImageMessage(messageId, image.files[0]);
+}
+```
+
+## Edit a file
+
+Editing a file is quite similar to editing an image. To edit a file use
+`meeting.chat.editFileMessage()`.
+
+```ts
+<label for="file">Edit file:</label>
+<input type="file" id="file" name="file" />
+<button onclick="onEditFile()">Edit File</button>
+```
+
+```ts
+async function onEditFile() {
+  const messageId = '...';
+  const file = document.getElementById('file');
+  await meeting.chat.editFileMessage(messageId, file.files[0]);
+}
+```
+
+## Extra
+
+There is also a common method called `meeting.chat.editMessage()` that can be
+used to edit any of the 3 types of messages displayed above. It essentially
+calls one of the methods from above depending upon the type of payload you send
+to the method. The `editMessage()` method accepts a parameters `messageId`
+`message` of the following type:
+
+```ts
+async function editMessage(
+    messageId: string,
+    message: { type: 'text', message: string }
+        | { type: 'image', image: File }
+        | { type: 'file', file: File },
+) {...}
+```
+
+Here's how you would use the `editMessage()` method to edit a text message.
+
+```ts
+const messageId = '...';
+const message = 'Is this just fantasy?';
+await meeting.chat.sendMessage(messageId, { type: 'text', message });
+```
+
+<head>
+  <title>Web Core Editing Chat Messages</title>
+</head>
