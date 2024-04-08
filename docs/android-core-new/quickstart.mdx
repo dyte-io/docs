@@ -1,0 +1,140 @@
+---
+tags:
+  - web-core
+  - quickstart
+  - setup
+slug: /
+sidebar_position: 2
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import { WebCoreCDNInstallation } from '@site/src/components/LatestInstallation';
+
+# Quickstart
+
+This quickstart shows how to use Dyte's core SDKs to add live video and audio to
+your JavaScript based applications.
+
+## Objective
+
+You'll learn how to:
+
+- Install the Dyte SDK
+- Initialize Dyte Client
+- Connect to the meeting
+- Go live!
+
+## Before Getting Started
+
+- Make sure you've read the [Getting Started with Dyte](/getting-started) topic
+  and completed the following steps:
+
+  - Create a [Dyte Developer Account](https://dev.dyte.io/)
+  - Create a [Dyte Meeting](/api/?v=v2#/operations/create_meeting)
+  - [Add Participant](/api/?v=v2#/operations/add_participant) to the meeting
+
+## Step 1: Install the SDK
+
+You can install the package using CDN, npm or Yarn.
+
+<Tabs
+  groupId="node-pm"
+  defaultValue="npm"
+  values={[
+    { label: "npm", value: "npm" },
+    { label: "yarn", value: "yarn" },
+    { label: "CDN", value: "CDN" },
+  ]}
+>
+  <TabItem value="npm">
+Install the SDK using npm.
+
+```shell
+npm install @dytesdk/web-core
+```
+
+[![npm version](https://badge.fury.io/js/@dytesdk%2Fweb-core.svg)](https://badge.fury.io/js/@dytesdk%2Fweb-core)
+
+  </TabItem>
+  <TabItem value="yarn">
+Install the SDK using yarn.
+
+```shell
+yarn add @dytesdk/web-core
+```
+
+[![npm version](https://badge.fury.io/js/@dytesdk%2Fweb-core.svg)](https://badge.fury.io/js/@dytesdk%2Fweb-core)
+
+  </TabItem>
+  <TabItem value="CDN">
+Add the following script tag in the head of your HTML file.
+  
+  <WebCoreCDNInstallation />
+  </TabItem>
+</Tabs>
+
+## Step 2: Initialize the SDK
+
+1. Initialize the Dyte client.
+2. Call the `init()` method and pass the authToken.
+
+|             |                                                                                                                                                                                   |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authToken` | After you've created the meeting, add each participant to the meeting using the [Add Participant API](/api#/operations/add_participant). The API response contains the authToken. |
+
+```js
+const meeting = await DyteClient.init({
+  authToken,
+});
+```
+
+## Step 3: Connect to the meeting
+
+Now, you have established the connection with the Dyte meeting server
+successfully. Next step is to join the room.
+
+### Join the room
+
+To join the meeting room, call join() method on the DyteClient instance as
+shown below.
+
+```js
+await meeting.join();
+```
+
+:::info
+
+Once the join room process completes roomJoined event is emitted on meeting.self
+namespace.
+
+If you want to perform any actions, such as enabling audio, video, or starting
+and stopping recording, you can do so after the roomJoined event is fired.
+
+For example:
+
+```js
+meeting.self.on('roomJoined', () => {
+  console.log('User has joined the room', meeting.self.roomJoined);
+  // run my actions.
+});
+
+await meeting.join();
+```
+
+:::
+
+### Leave the room
+
+Once the meeting is over, you can leave the meeting room.
+
+To leave the meeting room, call `leaveRoom()` method on the dyteClient as shown
+below.
+
+```js
+await meeting.leaveRoom();
+```
+
+<head>
+  <title>Web Core Quickstart</title>
+</head>

@@ -1,0 +1,43 @@
+---
+title: Media Permission Errors
+description: Local user media guide to local media permission errors.
+sidebar_position: 4
+tags:
+  - web-core
+  - local-user
+  - self
+  - self events
+---
+
+# Media Permission Errors
+
+This event is triggered when Dyte fails to acquire the user's local media
+(camera and/or microphone) or user revokes the permission for media devices.
+
+Your application can catch these errors like below:
+
+```
+meeting.self.on('mediaPermissionError', ({
+    message,
+    kind
+}) => {
+    console.log(`Failed to capture ${kind}:  ${message}`);
+});
+```
+
+This event shares information that can be used to show appropriate message for
+the user.
+
+Possible values for **message** are
+
+    DENIED  - Permission was denied by the user
+
+    SYSTEM_DENIED   - Permission was denied by the system
+
+    COULD_NOT_START - Failed to capture media stream from the hardware
+
+Possible values for **kind** - `audio`, `video`, `screenshare`
+
+<head>
+  <title>Web Core Media Permission Errors</title>
+</head>

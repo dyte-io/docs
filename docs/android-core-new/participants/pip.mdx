@@ -1,0 +1,42 @@
+---
+title: Picture-in-Picture
+description: 'Events, methods and data pertaining to browser picture in picture mode'
+sidebar_position: 3
+tags:
+  - web-core
+  - participants
+  - participant
+---
+
+Picture-in-Picture API allows you to render `meeting.participants.active` participant's video as a floating tile outside of the current webpage's context.
+
+Supported in Chrome/Edge/Chromium based browsers
+
+## Methods
+
+### Check if supported
+
+Use the boolean value at `meeting.participants.pip.isSupported` to check if the browser supports PIP capabilities
+
+### Initialization
+
+Call `meeting.participant.pip.init()` to activate PIP mode. Optionally you can pass height and width the configure the size of the PIP tile
+
+```ts
+meeting.participant.pip.init({
+  width: 360,
+  height: 360,
+});
+```
+
+### Enable
+
+`meeting.participant.pip.enable()` to enable PIP mode if disabled
+
+### Disable
+
+`meeting.participant.pip.disable()` to enable PIP mode if enabled
+
+<head>
+  <title>Web Core Picture-in-Picture</title>
+</head>

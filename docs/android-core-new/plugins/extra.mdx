@@ -1,0 +1,47 @@
+---
+title: Other methods
+description: Methods on a plugin in a meeting.
+sidebar_position: 4
+tags:
+  - web-core
+  - plugins
+---
+
+## Subscribe to events from a plugin
+
+A plugin emits the following events:
+
+- `enabled` - Emitted when a plugin is enabled.
+- `closed` - Emitted when a plugin is closed.
+- `dyteStateUpdate` - Emitted when the state of the plugin has changed.
+- `ready` - Emitted when the plugin is ready to exchange data with client SDK.
+- `toggleViewMode` - Emitted when the control is toggled for users with
+  view-only permissions for a plugin.
+
+```ts
+const pluginId = '...';
+const plugin = meeting.plugins.active.get(pluginId);
+plugin.on('enabled', () => {
+  console.log('The plugin has been enabled');
+});
+```
+
+## Send data to the plugin
+
+You can send data (type `any`) to a plugin using the `sendData()` method. This
+method comes in handy when building your own plugin.
+
+```ts
+const pluginId = '...';
+const plugin = meeting.plugins.active.get(pluginId);
+plugin.on('ready', () => {
+  plugin.sendData({
+    eventName: 'my-custom-event',
+    data: 'Hello world',
+  });
+});
+```
+
+<head>
+  <title>Web Core Other methods</title>
+</head>
