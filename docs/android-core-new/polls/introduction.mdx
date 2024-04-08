@@ -1,0 +1,44 @@
+---
+title: Introduction
+description: 'Create, receive and interact with polls in a meeting.'
+sidebar_position: 1
+tags:
+  - web-core
+  - polls
+---
+
+# Introduction
+
+The meetings polls object can be accessed using `meeting.polls`. It provides
+methods to create polls, vote, and more.
+
+`meeting.polls.items` returns an array of all polls created in a meeting, where
+each element is an object of type `Poll`.
+
+The type `Poll` is defined in the following manner.
+
+```ts
+interface Poll {
+  id: string;
+  question: string;
+  options: PollOption[];
+  anonymous: boolean;
+  hideVotes: boolean;
+  createdBy: string;
+  createdByUserId: string;
+  voted: string[]; // stores participant ID
+}
+
+interface PollOption {
+  text: string;
+  votes: {
+    id: string; // stores participant ID
+    name: string;
+  }[];
+  count: number;
+}
+```
+
+<head>
+  <title>Web Core Introduction</title>
+</head>

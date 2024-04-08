@@ -1,0 +1,117 @@
+---
+title: Participant Maps
+description: 'Events, methods and data pertaining to meeting participants.'
+sidebar_position: 1
+slug: /participants/
+tags:
+  - web-core
+  - participants
+  - participant
+---
+
+# Participant Maps
+
+The data regarding all meeting participants is stored under
+`meeting.participants`. These **does not** include the local user. Use the
+methods and events to consume the participants data. For example, to get all the
+participants who joined the meeting:
+
+```ts
+// get all joined participants
+const joinedParticipants = meeting.participants.joined;
+```
+
+The `meeting.participants` object has the following **maps** of participants
+
+- **joined**: A map that contains all the participants who are currently in the meeting
+  except the local user
+- **waitlisted**: A map that contains all the participants waiting to join the
+  meeting.
+- **active**: A map that contains all the participants except the local user whose media is subscribed to i.e
+  participants are supposed to be on the screen at the moment except the local user
+- **pinned**: A map that contains all the pinned participants of the meeting.
+
+Therefore if you were to make a video / audio grid of participants, you'd use the `active`
+map, but to display the list of all participants in the meeting you'd use the `joined` map.
+
+Each participant in each of the `joined`, `waitlisted`, `active`, and `pinned`
+maps is of type [`DyteParticipant`](../reference/DyteParticipant.md). Read more
+about each individual `participant` object
+[here](../participants/participant-object.mdx).
+
+Each of these maps are of type
+[`DyteParticipantMap`](../reference/DyteParticipantMap.md), and therefore emit a
+`participantJoined` event when a participant is added to the map, and a
+`participantLeft` event when a participant leaves the map. For instance, to
+listen for when a participant gets pinned in the meeting, you can use the
+following snippet:
+
+```ts
+meeting.participants.pinned.on('participantJoined', (participant) => {
+  console.log(`Participant ${participant.name} got pinned`);
+});
+```
+
+---
+
+and these other properties
+
+- `count`: The number of participants who are joined in the meeting.
+- `pageCount`: Number of pages available in paginated mode.
+- `maxActiveParticipantsCount`: The maximum number of participants that can be
+  present in the active state.
+- `lastActiveSpeaker `: This stores the `participantId` of the last participant
+  who spoke in the meeting.
+
+## Set participant view mode
+
+The view mode indicates whether the participants are populated in `ACTIVE_GRID`
+mode or `PAGINATED` mode. In `ACTIVE_GRID` mode, the participants are
+automatically replaced in `meeting.participants.active`, based on who is
+speaking or who has their video turned on.
+
+In `PAGINATED` mode, the participants in `meeting.participants.active` will be
+fixed. Only when you call the `meeting.participants.setPage(pageNumber)` method,
+it will replace the `active` participants with a different set of participants.
+
+You can change the participant view between `ACTIVE_GRID` and `PAGINATED` mode
+using the following method. This will trigger `viewModeChanged` event as a side
+affect.
+
+```ts
+// set the view mode to paginated
+await meeting.participants.setViewMode('PAGINATED');
+
+// set the view mode to active grid
+await meeting.participants.setViewMode('ACTIVE_GRID');
+```
+
+### Set page number in paginated mode
+
+The `setPage()` method allows you to switch between pages of participants
+present in the meeting.
+
+```ts
+// switch to second page
+await meeting.participants.setPage(2);
+```
+
+## Waiting room methods
+
+The `acceptWaitingRoomRequest()` method accepts requests from waitlisted
+participants if user has appropriate permissions.
+
+```ts
+await meeting.participants.joined.acceptWaitingRoomRequest(participantId);
+```
+
+The `rejectWaitingRoomRequest()` method requests from waitlisted participants if
+user has appropriate permissions.
+
+```ts
+await meeting.participants.joined.rejectWaitingRoomRequest(participantId);
+```
+
+<head>
+  <title>Web Core Participants</title>
+</head>

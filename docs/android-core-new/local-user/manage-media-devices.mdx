@@ -1,0 +1,49 @@
+---
+title: Manage Media Devices
+description: Local user media guide to manage media permissions.
+sidebar_position: 3
+tags:
+  - web-core
+  - local-user
+  - self
+  - self events
+---
+
+# Manage Media Devices
+
+Media devices represents the hardware for the camera, microphone and speaker
+devices. To get the list of media devices that are currently being used, you can
+use the following methods:
+
+```js
+// Get all media devices
+const devices = meeting.self.getAllDevices();
+
+// Get all audio devices
+const audioDevices = meeting.self.getAudioDevices();
+
+// Get all video devices
+const videoDevices = meeting.self.getVideoDevices();
+
+// Get all speakers
+const speakerDevices = meeting.self.getSpeakerDevices();
+
+// Get device by ID
+const device = meeting.self.getDeviceById('12345', 'audio');
+
+// Fetch current media devices being used
+const currentDevices = meeting.self.getCurrentDevices();
+```
+
+## Set device
+
+To set a device as an active device, you can call `setDevice` method. This takes
+a `MediaDeviceInfo` object, and replaces the same `kind` device.
+
+```js
+meeting.self.setDevice(device);
+```
+
+<head>
+  <title>Web Core Manage Media Devices</title>
+</head>

@@ -84,6 +84,12 @@ const SECTIONS: Section[] = [
     icon: AndroidIcon,
     section: 'mobile-core',
   },
+  {
+    name: 'Android Core [new]',
+    docId: 'android-core-new',
+    icon: AndroidIcon,
+    section: 'mobile-core',
+  },
 
   {
     name: 'iOS Core',
