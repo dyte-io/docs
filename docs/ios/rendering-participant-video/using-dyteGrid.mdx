@@ -25,7 +25,8 @@ To setup the grid & set Participant inside code do as follows
 func populateGridChildViews(participants: [DyteJoinedMeetingParticipant]) {
   for i in 0..<participants.count {
       if let peerContainerView = self.gridView.childView(index: i) {
-          peerContainerView.setParticipant(meeting: self.meeting, participant: participants[i])
+          peerContainerView.setParticipant(meeting: self.meeting,
+                                       participant: participants[i])
       }
   }
 }
