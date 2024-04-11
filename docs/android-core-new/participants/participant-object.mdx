@@ -4,116 +4,84 @@ description: The object corresponding to a particular participant.
 sidebar_position: 2
 slug: /participants/participant-object
 tags:
-  - web-core
+  - mobile-core
   - participants
-  - participant
 ---
 
-# Participant Object
+# The participant object
 
-The `participant` object consists of all the information related to a particular
-participant. For instance, it contains a participants video/audio/screenshare
-stream, and the participant's name. It also contains state variables that
-indicate whether a participant's camera is on or off, and whether they are muted
-or unmuted. Head over to [DyteParticipant](../reference/DyteParticipant.md) for
-a detailed reference.
+The `participant` object consists of all the information related to a particular participant. For instance, it contains a participants video/audio/screenshare stream, and the participant's name. It also contains state variables that indicate whether a participant's camera is on or off, and whether they are muted or unmuted.
 
 The participant object has the following properties.
 
-**Media**:
-
-- `videoEnabled`: Set to true if the participant's camera is on.
-- `audioEnabled`: Set to true if the participant is unmuted.
-- `screenShareEnabled`: Set to true if the participant is sharing their screen.
-- `videoTrack`: The video track of the participant.
-- `audioTrack`: The audio track of the participant.
-- `screenShareTracks`: The video and audio (if any) track of the participant's
-  screen share stream.
-
-**Metadata**:
 - `id`: The `participantId` of the participant (aka `peerId`).
 - `userId`: The `userId` of the participant.
 - `name`: The participant's name.
 - `picture`: The participant's picture (if any).
 - `clientSpecificId`: An arbitrary ID that can be set to identify the
   participant.
-- `isPinned`: Set to true if the participant is pinned.
+- `videoTrack`: The video track of the participant.
+- `screenShareTrack`: The video and audio (if any) track of the participant's
+  screen share stream.
+- `videoEnabled`: Set to true if the participant's camera is on.
+- `audioEnabled`: Set to true if the participant is unmuted.
+- `isPinned`: True if current user is pinned in the meeting room.
 - `presetName`: Name of the preset associated with the participant.
+- `stageStatus`: Status of stage for the participant
 
-The participant object is an event emitter, so you can set listeners on this
-object for events such as video and audio updates. For instance, to fire a
-callback when a participant toggles their mic, you can subscribe to the
-following events.
+## To get video view of a given participant
 
-```ts
-meeting.participants.joined
-  .get(participantId)
-  .on('audioUpdate', ({ audioEnabled, audioTrack }) => {
-    // This will only be fired on mic toggles for the participant with ID `participantId`
-    console.log(
-      'The participant with id',
-      participantId,
-      'has toggled their mic to',
-      audioEnabled
-    );
-  });
-```
+You can call `participant.getVideoView()` which will return a View which further
+can used to add in any ViewGroup in android.
 
-The events emitted by all participant objects are also re-emitted by all the
-maps in `meeting.participants`. Therefore, you can add a listener to
-`meeting.participants.joined` for the `audioUpdate` event. For instance, the
-same code above can be re-implemented as follows.
+Similarly one can use `participant.getScreenShareView()` which will return a
+View which further can used to add in any ViewGroup in android.
 
-```ts
-meeting.participants.joined.on(
-  'audioUpdate',
-  (participant, { audioEnabled, audioTrack }) => {
-    // This will be fired on mic toggles for all participants in the meeting
-    console.log(
-      'The participant with id',
-      participant.id,
-      'has toggled their mic to',
-      audioEnabled
-    );
-  }
-);
-```
+## Host Controls
 
-Read more about the participant events in the
-[events](/web-core/participants/events) section in the API reference.
+If you are the host of the room, you will see the **host controls** when you click the **three-dot menu** on the top right corner of the participants list. The host controls allow you to manage the participants in the room.
 
-## Host controls methods
+The host controls include the following options:
 
-If you (the local user) have the relevant permissions in the meeting, you can
-disable a participant's video/audio streams, or even remove them from the
-meeting.
+- **Mute/Unmute**: Mute or unmute a participant.
+- **Kick**: Kick a participant from the room.
+- **Pin**: Pin a participant's video.
+- **Turn off video**: Turn off a participant's video.
 
-```ts
-const participant = meeting.participants.joined.get(participantId);
+You can also use these methods from our participant object to
+perform these actions programmatically.
 
-// To disable a participant's video stream
-participant.disableVideo();
+```kotlin
+val participant = meeting.participants.joined.firstOrNull { it.id == participantId }
 
-// To disable a participant's audio stream
-participant.disableAudio();
+participant?.let { pcpt ->
+  // To disable a participant's video stream
+  pcpt.disableVideo();
 
-// To kick a participant from the meeting
-participant.kick();
+  // To disable a participant's audio stream
+  pcpt.disableAudio();
+
+  // To kick a participant from the meeting
+  pcpt.kick();
+}
 ```
 
 You can also `pin` or `unpin` a participant in the meeting. All "pinned"
 participants are added to the `meeting.participants.pinned` map.
 
-```ts
-const participant = meeting.participants.joined.get(participantId);
+```kotlin
+val participant = meeting.participants.joined.firstOrNull { it.id == participantId }
 
-// Pin a participant to the meeting.
-await participant.pin();
+participant?.let { pcpt ->
+  // To pin a participant
+  pcpt.pin();
 
-// Unpin a participant in the meeting.
-await participant.unpin();
+  // To unpin a participant
+  pcpt.unpin();
+}
 ```
 
 <head>
-  <title>Web Core The participant object</title>
+  <title>Android Core The participant object</title>
+  <meta name="description" content="Explore the Android Participants Participant Object and its functionalities for effective integration in your application."/>
 </head>

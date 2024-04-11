@@ -3,7 +3,7 @@ title: Functions to enable plugins
 description: Methods on a plugin in a meeting.
 sidebar_position: 2
 tags:
-  - web-core
+  - mobile-core
   - plugins
 ---
 
@@ -18,14 +18,13 @@ plugins.
 This method adds the communication layer between the plugin inside the iframe and
 the core application (meeting object) in the main window.
 
-```ts
-const plugins = meeting.plugins.all.toArray();
+```kotlin
+val plugin = meeting.plugins.get(0)
 
-plugins.forEach(async (plugin: DytePlugin) => {
-  const iframe = document.createElement('iframe');
-  await plugin.addPluginView(iframe);
-});
+plugin.getPluginView() // This will return a WebView
 ```
+
+The `getPluginView()` method returns a WebView that can be added to a ViewGroup.
 
 ### Activate Plugins
 
@@ -35,42 +34,34 @@ from `meeting.plugins.active`.
 
 The snippet below displays all plugins and activates a plugin on click.
 
-```ts
-const plugins = meeting.plugins.all.toArray();
+```kotlin
+val plugin: DytePlugin = meeting.plugins.get(0)
 
-plugins.forEach((plugin: DytePlugin) => {
-  const button = document.createElement('button');
-  button.innerText = plugin.name;
-  button.onclick = async () => {
-    await plugin.activate();
-  };
-  document.body.appendChild(button);
-});
+plugin.activate()
 ```
 
-Here is another way you can activate a plugin.
+This directly activates the plugin without any user interaction.
 
-```ts
-const plugins = meeting.plugins.all.toArray();
-const plugin = plugins.find((p) => p.name === 'YouTube');
+### Activate a plugin on click
 
-await plugin?.activate();
-```
+You can also show a list of all plugins and activate a plugin on click programmatically.
 
-### ~~Enable Plugins~~
+```kotlin
+val plugins: List<DytePlugin> = meeting.plugins.all
 
-**_Deprecated_**
+plugins.forEach { plugin ->
+  val button = Button(context)
 
-The `enable()` method enables a plugin for the current user. This does not
-affect other users in the meeting.
+  button.text = "Activate ${plugin.name}"
+  button.setOnClickListener {
+    plugin.activate()
+  }
 
-```ts
-const plugins = meeting.plugins.all.toArray();
-const plugin = plugins.find((p) => p.name === 'YouTube');
-
-await plugin?.enable();
+  // Add the button to your view
+  view.addView(button)
+}
 ```
 
 <head>
-  <title>Web Core Functions to enable plugins</title>
+  <title>Mobile Core Function to enable plugins</title>
 </head>
