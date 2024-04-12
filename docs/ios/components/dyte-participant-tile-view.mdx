@@ -5,33 +5,47 @@ description: >-
 ---
 
 # DyteParticipantTileView
+
 ## Overview
+
 This view will show Video of participant with combination of [DyteMeetingNameTag](/ios/components/dyte-name-tag) and [DyteAvatarView](/ios/components/dyte-avatar)
 
-<img src="/static/ios/ios_participant-tile-view.png" alt="Example Image" width="200" height="100"/>
+<img
+  src="/static/ios/ios_participant-tile-view.png"
+  alt="Example Image"
+  width="200"
+  height="100"
+/>
 
+If video is disabled then [DyteAvatarView](/ios/components/dyte-avatar) is visible to user.
 
-If video is disabled then [DyteAvatarView](/ios/components/dyte-avatar) is visible to user. 
-
-<img src="/static/ios/ios_participant-tile-avatar-view.png" alt="Example Image" width="200" height="100"/>
-
+<img
+  src="/static/ios/ios_participant-tile-avatar-view.png"
+  alt="Example Image"
+  width="200"
+  height="100"
+/>
 
 ### Create Tile view
 
 ```swift
 init(viewModel: VideoPeerViewModel)
 ```
-#### Parameters   
-**viewModel:** Instance of type [VideoPeerViewModel](/ios/Helper-Classes/dyte-plugin-view-model)
 
+#### Parameters
 
-### Showing pin image on top left 
+**viewModel:** Instance of type [VideoPeerViewModel](/ios/helper-classes/dyte-plugin-view-model)
+
+### Showing pin image on top left
+
 ```swift
-func pinView(show: Bool) 
+func pinView(show: Bool)
 ```
+
 This method is used to show/hide pin image on top left.
 
 #### Parameters
+
 **show:** `true` to show pin image and `false` to hide.
 
 <head>
