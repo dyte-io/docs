@@ -1,0 +1,72 @@
+---
+title: Prebuilt
+description: Show and use plugins list in a meeting.
+sidebar_position: 2
+tags:
+  - android-ui-kit
+  - plugins
+---
+
+## Listing plugins in a meeting
+
+To show the list of enabled plugins in your app, you can use the `DytePluginsBottomSheet` class.
+
+You can create an instance of this class and call the `show` method to display the list of enabled plugins as shown below:
+
+```kotlin
+val dytePluginsBottomSheet = DytePluginsBottomSheet()
+dytePluginsBottomSheet.show(
+  fragmentManager,
+  "SOME_TAG_HERE"
+)
+```
+
+The bottom sheet should look like this:
+
+<img src="/static/android-ui-kit/plugins-list.png" style={{ width: 400 }} />
+
+## Using a plugin in a meeting
+
+To use a plugin in a meeting, you can use the rocket icon next to the plugin name in the plugins list.
+
+<img src="/static/android-ui-kit/use-plugin.png" />
+<br />
+
+When you click on the rocket icon, the plugin webview will be added to the meeting and
+everyone in the meeting will be able to see and interact with the plugin.
+
+<img src="/static/android-ui-kit/plugin-screen.png" style={{ width: 400 }} />
+
+## Send data to the plugin
+
+You can send data (type `any`) to a plugin using the `sendData()` method. This method comes in handy when building your own plugin.
+
+```kotlin
+val pluginId = '...';
+val plugin = meeting.plugins.active.firstOrNull { it.id == pluginId }
+
+plugin?.let { p ->
+  p.sendData(
+    eventName = "my-custom-event",
+    data = "Hello world"
+  )
+}
+```
+
+## Receive data from the plugin
+
+You can receive data from a plugin by subscribing to the `onPluginActivated` event in through our `DytePluginEventsListener` interface.
+
+```kotlin
+private var pluginEventListener: DytePluginEventsListener =
+    object : DytePluginEventsListener {
+      override fun onPluginActivated(plugin: DytePlugin) {
+        // do something with the plugin
+      }
+
+      ...
+    }
+
+// use while initializing the meeting
+meeting.addPluginEventsListener(pluginEventListener)
+```
