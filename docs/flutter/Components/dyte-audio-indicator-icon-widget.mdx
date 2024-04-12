@@ -1,0 +1,26 @@
+# DyteAudioIndicatorIconWidget
+
+A widget that displays audio status of a participant in dyte meeting.
+
+:::info
+
+[`DyteProvider`](./dyte-provider.mdx) needs to be added above `DyteAudioIndicatorIconWidget` which will manage dyte client object for polls screen by itself.
+
+:::
+
+## Usage
+
+```dart
+DyteAudioIndicatorIconWidget(
+  participant: participant
+);
+
+```
+
+Here, `participant` is dyte participant object of type `DyteJoinedMeetingParticipant` of whom you want to show audio status.
+
+## Screenshot
+
+| Audio Icon                                                             | Participant Screen                                                         |
+| ---------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| <img src="/static/mobile/flutter/audio-icon-widget.png" width="50px"/> | <img src="/static/mobile/0.x.x/flutter-participant-list.png" width="210"/> |

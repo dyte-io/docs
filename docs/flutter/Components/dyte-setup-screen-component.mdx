@@ -1,0 +1,26 @@
+# DyteSetupScreen
+
+A widget that provides a well-built setup screen using our exportable components itself. This widget integrates with the Dyte UI Kit and gives our setup page as a widget.
+
+:::info
+
+[`DyteProvider`](./dyte-provider.mdx) needs to be added above `DyteSetupScreen` which will manage dyte client object for polls screen by itself.
+
+:::
+
+## Usage
+
+Here is a basic example of how to use the `DyteSetupScreen` in your Flutter app:
+
+```dart
+DyteSetupScreen(
+  selectedAudioDevice,
+  selectedVideoDevice,
+);
+```
+
+Here, `selectedAudioDevice` and `selectedVideoDevice` can be fetched using `dyteClient.getSelectedAudioDevice()` & `dyteClient.getSelectedVideoDevice()` respectively.
+
+## Screenshot
+
+<img src="/static/mobile/0.x.x/flutter-setup-page.png" width="350px" />
