@@ -6,12 +6,43 @@ description: >-
 ---
 
 # DyteMeetingNameTag
+## Overview
+This view is use show participant name followed by mic image (mute/unmute).
 
-A component which shows a participant's name.
+
+### Topics:
+
+### Creating a meeting tag. 
 
 ```swift
-let nameTag = DyteMeetingNameTag(meeting: meeting, participant: participant)
+init(meeting: DyteMobileClient, participant: DyteMeetingParticipant, appearance: DyteNameTagAppearance = AppTheme.shared.nameTagAppearance)
 ```
+
+#### Parameters:
+*Required*  
+**meeting:** Current ongoing meeting object.   
+**participant:** Participant object for which you want to show name and Mic state enabled/disbaled.   
+*Optional*  
+**appearance:** Any type which conforms to protocol "DyteNameTagAppearance"  
+
+### Explicit update the participant object for this view to show. 
+
+```swift
+func set(participant: DyteMeetingParticipant)
+```
+Update Meeting tag view with recent participant object. 
+#### Parameters:
+**participant:** Participant object for which you want to show name and Mic state enabled/disbaled. 
+
+
+### Refreshing DyteMeetingNameTag with latest values.
+
+```swift
+func refresh()
+```
+Call this method to refresh the view. 
+For example if someone update the participant name. Then call this to show latest values.
+
 
 <head>
   <title>iOS DyteMeetingNameTag</title>

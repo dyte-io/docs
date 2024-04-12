@@ -1,0 +1,32 @@
+---
+image: /static/ui-kit/1.x.x/components/dyte-meeting-title.svg
+description: >-
+  Learn how to use and customize the DyteMeetingTitleView component in Dyte's
+  iOS UiKit with our detailed documentation.
+---
+
+# DyteMeetingTitleLabel
+Subclass of [UILabel](https://developer.apple.com/documentation/uikit/uilabel) which displays the title of the meeting.
+
+### Topics:
+### Creating a DyteMeetingTitleLabel. 
+
+```swift
+init(meeting: DyteMobileClient, appearance: DyteTextAppearance = AppTheme.shared.meetingTitleAppearance)
+```
+#### Parameters:
+*Required*   
+**meeting:** Current ongoing meeting object.    
+*Optional*   
+**appearance:** Any type which conforms to protocol "DyteTextAppearance"
+
+For example you can use this as below. 
+
+```swift
+let title = DyteMeetingTitleLabel(meeting: self.meeting)
+self.view.addSubview(title)
+```
+
+<head>
+  <title>iOS DyteMeetingTitleLabel</title>
+</head>

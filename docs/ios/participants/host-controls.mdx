@@ -1,0 +1,72 @@
+---
+image: /static/ui-kit/1.x.x/components/more-menu.svg
+sidebar_position: 4
+description: >-
+  Learn how to create and use a "More" menu for host control in your iOS app
+  with our detailed documentation.
+---
+
+# Host Controls
+
+This documentation explains how to create and utilize a "More" menu for host control in your iOS app.
+
+To create the More menu, use the following code:
+
+```swift
+private func createMoreMenu(participantListener: DyteParticipantUpdateEventListener, indexPath: IndexPath) -> Bool {
+    var menus = [MenuType]()
+    let participant = participantListener.participant
+    let hostPermission = self.viewModel.mobileClient.localUser.permissions.host
+
+    if hostPermission.canPinParticipant {
+        if !participant.isPinned {
+            menus.append(.pin)
+        } else {
+            menus.append(.unPin)
+        }
+    }
+
+    if hostPermission.canMuteAudio && participant.audioEnabled {
+        menus.append(.muteAudio)
+    }
+
+    if hostPermission.canMuteVideo && participant.videoEnabled {
+        menus.append(.muteVideo)
+    }
+
+    if hostPermission.canKickParticipant && participant != self.viewModel.mobileClient.localUser {
+        menus.append(.kick)
+    }
+
+    if menus.isEmpty {
+        return false
+    }
+    menus.append(contentsOf: [.cancel])
+
+    let moreMenu = DyteMoreMenu(title: participant.name, features: menus, onSelect: { [weak self] menuType in
+        guard let self = self else { return }
+        switch menuType {
+        case .pin:
+            try? participant.pin()
+        case .unPin:
+            try? participant.unpin()
+        case .muteAudio:
+            try? participant.disableAudio()
+        case .muteVideo:
+            try? participant.disableVideo()
+        case .kick:
+            try? participant.kick()
+        case .cancel:
+            print("Operation cancelled")
+        default:
+            print("No action needed")
+        }
+    })
+    moreMenu.show(on: self.view)
+    return true
+}
+```
+
+This code creates a "More" menu with various options based on the host's permissions and
+the participant's current state. The menu allows the host to perform actions like pinning/unpinning
+a participant, muting their audio or video, and kicking them from the session.

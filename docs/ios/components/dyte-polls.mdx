@@ -1,20 +1,32 @@
 ---
 description: >-
-  Learn how to use and customize the ShowPollsViewController component in
+  Learn how to use and customize the DyteShowPollsViewController component in
   Dyte's iOS UiKit with our detailed documentation.
 ---
 
-# ShowPollsViewController
+# DyteShowPollsViewController
 
-A component that lets you create a poll.
+## Overview
+A view controller used to show list of existing polls and a button to create polls
 
-To show ShowPollsViewController do in iOS as follows:
+### Topics:
+
+### Creating a show polls screen. 
 
 ```swift
-let controller = ShowPollsViewController(dyteMobileClient: self.dyteMobileClient)
+ init(meeting: DyteMobileClient)
+```
+#### Parameters:
+**meeting:** Current ongoing meeting object. 
+
+
+### To present DyteShowPollsViewController do in iOS as follows:
+
+```swift
+let controller = DyteShowPollsViewController(dyteMobileClient: self.dyteMobileClient)
 self.present(controller, animated: true)
 ```
 
 <head>
-  <title>iOS ShowPollsViewController</title>
+  <title>iOS DyteShowPollsViewController</title>
 </head>

@@ -6,32 +6,22 @@ description: >-
 ---
 
 # DyteControlBarButton
+## Overview
+Subclass of [UIButton](https://developer.apple.com/documentation/uikit/uibutton)  
+A skeleton component used for composing Dyte buttons which are mostly add inside DyteTabbarBar
+This is a base class for component likes [DyteAudioButtonControlBar](/ios/components/dyte-mic-toggle) [DyteMoreButtonControlBar](/ios/components/dyte-more-toggle)
 
-A skeleton component used for composing buttons.
-
-```swift
-let dyteImage = DyteImage(image: ImageProvider.image(named: "icon_more_tabbar"))
-let moreButton = DyteControlBarButton(image: dyteImage, title: "More")
+### Creating button 
+```swift 
+init(image: DyteImage, title: String = "", appearance: DyteControlBarButtonAppearance = DyteControlBarButtonAppearanceModel()) 
 ```
+#### Parameters
+*Required*  
+**image:** Instance of type `DyteImage` to be passed
+*Optional*
+**title:** title to be shown below the DyteImage. Default value of this is Empty Strings.
+**appearance:** Any type that follows `DyteControlBarButtonAppearance`
 
-To setup the controlbar button inside kotlin/Java code do as follows
-
-```swift
-let controlBar =  DyteTabbarBar(delegate: nil)
-let moreImage = DyteImage(image: ImageProvider.image(named: "icon_more_tabbar"))
-let moreButton = DyteControlBarButton(image: moreImage, title: "More")
-moreButton.addTarget(self, action: #selector(clickMore(button:)), for: .touchUpInside)
-let liveImage = DyteImage(image: ImageProvider.image(named: "icon_go_live"))
-let liveButton = DyteControlBarButton(image: liveImage, title: "Go Live")
-let endLiveImage = DyteImage(image: ImageProvider.image(named: "icon_end_live"))
-liveButton.setSelected(image: endLiveImage, title: "End Live")
-liveButton.addTarget(self, action: #selector(clickLive(button:)), for: .touchUpInside)
-controlBar.setButtons([liveButton, moreButton, endCallButton])
-self.view.addSubview(controlBar)
-// In case you want to set constraints programmatically
-controlBar.set(.sameLeadingTrailing(self.view),
-                .bottom(self.view))
-```
 
 <head>
   <title>iOS DyteControlBarButton</title>
