@@ -1882,6 +1882,31 @@ paths:
         in: path
         required: true
         description: ID of the session
+  '/sessions/{session_id}/summary':
+    get:
+      summary: Fetch summary of transcripts for a session
+      description: |
+        Returns a Summary URL to download the Summary of Transcripts for the session ID as plain text.
+        <!-- theme: warning -->
+        > #### NOTE
+        >
+        > This API is in beta. [Contact us](https://dyte.io/contact) if you face
+        > any issues.
+      operationId: GetSessionSummary
+      tags:
+        - Sessions
+      responses:
+        '200':
+          $ref: '#/components/responses/GetSessionTranscriptSummary'
+      x-stoplight:
+        id: 4qpr7e8zr15hk
+    parameters:
+      - schema:
+          type: string
+        name: session_id
+        in: path
+        required: true
+        description: ID of the session
   /webhooks:
     summary: Represents webhooks for organization
     description: Represents webhooks for organization
@@ -3319,6 +3344,8 @@ components:
     Transcript:
       type: object
       properties:
+        sessionId:
+          type: string
         transcript_download_url:
           type: string
           description: URL where the transcript can be downloaded
@@ -3326,8 +3353,33 @@ components:
           type: string
           description: Time when the download URL will expire
       required:
+        - sessionId
         - transcript_download_url
         - transcript_download_url_expiry
+    TranscriptSummary:
+      type: object
+      x-stoplight:
+        id: jpu03qj4zqoxo
+      title: TranscriptSummary
+      required:
+        - sessionId
+        - summaryDownloadUrl
+        - summaryDownloadUrlExpiry
+      properties:
+        sessionId:
+          type: string
+          x-stoplight:
+            id: bq7keld7ptapa
+        summaryDownloadUrl:
+          type: string
+          description: URL where the summary of transcripts can be downloaded
+          x-stoplight:
+            id: rn73q6znbmcob
+        summaryDownloadUrlExpiry:
+          type: string
+          x-stoplight:
+            id: y053vdtvhu950
+          description: Time of Expiry before when you need to download the csv file.
     SessionParticipant:
       type: object
       properties:
@@ -3820,6 +3872,11 @@ components:
         persist_chat:
           type: boolean
           description: Specifies if Chat within a meeting should persist for a week.
+        summarize_on_end:
+          type: boolean
+          x-stoplight:
+            id: cfmygpbl1q6mg
+          description: 'Automatically generate summary of meetings using transcripts. Requires Transcriptions to be enabled, and can be retrieved via Webhooks or summary API.'
         status:
           type: string
           x-stoplight:
@@ -5362,9 +5419,12 @@ components:
                 $ref: '#/components/schemas/RecordingConfig'
               persist_chat:
                 type: boolean
-                x-stoplight:
-                  id: dojayeqrqj1a4
+                default: false
                 description: 'If a meeting is set to persist_chat, meeting chat would remain for a week within the meeting space.'
+              summarize_on_end:
+                type: boolean
+                default: false
+                description: 'Automatically generate summary of meetings using transcripts. Requires Transcriptions to be enabled, and can be retrieved via Webhooks or summary API.'
       description: Create meeting body
     UpdateMeetingBody:
       content:
@@ -5402,9 +5462,12 @@ components:
                 description: Whether the meeting is `ACTIVE` or `INACTIVE`. Users will not be able to join an `INACTIVE` meeting.
               persist_chat:
                 type: boolean
-                x-stoplight:
-                  id: 1rdw9emd9qk8y
+                default: false
                 description: 'If a meeting is updated to persist_chat, meeting chat would remain for a week within the meeting space.'
+              summarize_on_end:
+                type: boolean
+                default: false
+                description: 'Automatically generate summary of meetings using transcripts. Requires Transcriptions to be enabled, and can be retrieved via Webhooks or summary API.'
       description: Create meeting body
     AddParticipantBody:
       content:
@@ -6872,6 +6935,19 @@ components:
                             250ms_or_greater_event_fraction: 0.2
                             100ms_or_greater_event_fraction: 0.2
                         screenshare_audio_producer_cumulative: {}
+    GetSessionTranscriptSummary:
+      description: Returns a complete summary of transcripts of a session.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                x-stoplight:
+                  id: qxi8hmo8rhrqq
+              data:
+                $ref: '#/components/schemas/TranscriptSummary'
   examples:
     GetActiveSessionSuccessResponse:
       summary: Success response for fetching active session
