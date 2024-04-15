@@ -1,192 +1,218 @@
 ---
-title: Events
-description: Event handling for participants.
+title: Participant Events
+description: >-
+  Dive into the details of handling participant events in your Android
+  application using Dyte's comprehensive documentation.
 sidebar_position: 3
 tags:
-  - web-core
+  - android-core
   - participants
   - self
 ---
 
-You can subscribe to events for all participants using
-`meeting.participants.on()` method. Here are the supported events:
+## All Participants Events
 
-### View mode change
+You can subscribe to events for all participants by implementing
+`DyteParticipantEventsListener` callback and then passing that object to
+`meeting.addParticipantEventsListener(dyteParticipantEventsListener)` method.
 
-Triggered when the View mode changes
-
-```ts
-meeting.participants.on(
-  'viewModeChanged',
-  ({ viewMode, currentPage, pageCount }) => {
-    console.log('view mode changed', viewMode);
-  }
-);
-```
-
-### Page change
-
-```ts
-meeting.participants.on(
-  'pageChanged',
-  ({ viewMode, currentPage, pageCount }) => {
-    console.log('page changed', currentPage);
-  }
-);
-```
-
-### Active speaker
-
-This event is triggered when a participant becomes `active` when they starts to
-speak.
-
-```ts
-meeting.participants.on('activeSpeaker', (participant) => {
-  console.log(`${participant.id} is currently speaking`);
-});
-```
-
-## Events on all participants
-
-Instead of subscribing to individual participant events, you can subscribe to a
-participant map, such as `joined` & `active` and get updated when any of the
-participant emits an event.
-
-If you want to subscribe to participants when they become `active`, you can do
-so by subscribing to `meetings.participants.active.on('participantJoined')`
+Here are the supported methods:
 
 ### Participant joined
 
-Trigger an event when any participant joins the meeting.
+Triggers an event when any participant joins the meeting.
 
-```ts
-meeting.participants.joined.on('participantJoined', (participant) => {
-  console.log(`A participant with id "${participant.id}" has joined`);
-});
+```kotlin
+    private val participantEventsListener = object : DyteParticipantEventsListener {
+        override fun onParticipantJoin(participant: DyteMeetingParticipant) {
+            // your code here to handle new participant
+        }
+    }
 ```
 
 ### Participant left
 
-Trigger an event when any participant leaves the meeting.
+Triggers an event when any participant leaves the meeting.
 
-```ts
-meeting.participants.joined.on('participantLeft', (participant) => {
-  console.log(`A participant with id "${participant.id}" has left the meeting`);
-});
+```kotlin
+    private val participantEventsListener = object : DyteParticipantEventsListener {
+        override fun onParticipantLeave(participant: DyteMeetingParticipant) {
+            // your code here to handle participant left from meeting
+        }
+    }
 ```
 
-### Participant pinned
+### Participants update
 
-Trigger an event when a participant is pinned.
+Triggers an event whenever there is any change in the `meeting.participants` object. This includes any updates to participant lists or changes in individual participant within those lists.
 
-```ts
-meeting.participants.joined.on('pinned', (participant) => {
-  console.log(`Participant with id "${participant.id}" was pinned`);
-});
-```
-
-### Participant unpinned
-
-Trigger an event when a participant is unpinned.
-
-```ts
-meeting.participants.joined.on('unpinned', (participant) => {
-  console.log(`Participant with id "${participant.id}" was unpinned`);
-});
+```kotlin
+    private val participantEventsListener = object : DyteParticipantEventsListener {
+        override fun onUpdate(participants: DyteParticipants) {
+            // your code here to handle participant update
+        }
+    }
 ```
 
 ### Video update
 
 Trigger an event when any participant starts / stops video.
 
-```ts
-meeting.participants.joined.on('videoUpdate', (participant) => {
-  console.log(
-    `A participant with id "${participant.id}" updated their video track in the meeting`
-  );
-  // Use the video track if it exists
-  if (participant.videoEnabled) {
-    // participant.videoTrack
-  } else {
-    // handle stop video
-  }
-});
+```kotlin
+    private val participantEventsListener = object : DyteParticipantEventsListener {
+        override fun onVideoUpdate(videoEnabled: Boolean, participant: DyteMeetingParticipant) {
+            // your code here to handle participant video toggle update
+        }
+    }
 ```
 
 ### Audio update
 
 Trigger an event when any participant starts / stops audio.
 
-```ts
-meeting.participants.joined.on('audioUpdate', (participant) => {
-  console.log(
-    `A participant with id "${participant.id}" updated their audio track in the meeting`
-  );
-  // Use the audio track if it exists
-  if (participant.audioEnabled) {
-    // participant.audioTrack
-  } else {
-    // handle stop audio
-  }
-});
+```kotlin
+    private val participantEventsListener = object : DyteParticipantEventsListener {
+        override fun onAudioUpdate(audioEnabled: Boolean, participant: DyteMeetingParticipant) {
+            // your code here to handle participant audio toggle update
+        }
+    }
 ```
 
-### Screen share update
+### Screenshare updates
 
-Trigger an event when any participant starts / stops screen share.
+Triggers an event when there is any change in screenshares in a meeting.
 
-```ts
-meeting.participants.joined.on('screenShareUpdate', (participant) => {
-  console.log(
-    `A participant with id "${participant.id}" updated their screen share in the meeting`
-  );
-  // Use the screen share track if it exists
-  if (participant.screenShareEnabled) {
-    // participant.screenShareTrack
-  } else {
-    // handle stop screen share
-  }
-});
+```kotlin
+    private val participantEventsListener = object : DyteParticipantEventsListener {
+        override fun onScreenSharesUpdated() {
+            // your code here to handle screenshares from meeting
+            // you can use `meeting.participants.screenshares` to get latest screenshare participants
+        }
+
+        override fun onScreenShareStarted(participant: DyteJoinedMeetingParticipant) {
+            // participant stared presenting screen in the meeting
+        }
+
+        override fun onScreenShareEnded(participant: DyteJoinedMeetingParticipant) {
+            // participant stopped presenting screen in the meeting
+        }
+    }
 ```
 
-## Network quality score
+### Active speaker
 
-Subscribe to the `mediaScoreUpdate` event to monitor network
+Trigger an event when there is any change in active speaker in the meeting.
 
-```ts
-meeting.participants.joined.on(
-  'mediaScoreUpdate',
-  ({ participantId, kind, isScreenshare, score }) => {
-    if (kind === 'video') {
-      console.log(
-        `Participant ${participantId}'s ${
-          isScreenshare ? 'screenshare' : 'video'
-        } quality score is `,
-        score
-      );
+```kotlin
+    private val participantEventsListener = object : DyteParticipantEventsListener {
+        override fun onActiveSpeakerChanged(participant: DyteMeetingParticipant) {
+            // your code here to handle active speaker
+        }
+
+        override fun onNoActiveSpeaker() {
+            // your code here to handle no active speaker
+        }
     }
-
-    if (kind === 'audio') {
-      console.log(
-        `Participant ${participantId}'s audio quality score is `,
-        score
-      );
-    }
-
-    if (score < 5) {
-      console.log(`Participant ${participantId}'s media quality is poor`);
-    }
-  }
-);
 ```
 
-## Events for specific participant
+### Pinned participant
 
-If you want to subscribe to above events but for a specific participant only,
-you can do so by binding event to `meeting.participants.joined.get(peerId).on()`
-method. where the `peerId` is the id of the participant that you want to watch.
+Trigger an event when there is any change in pinned participant in the meeting.
 
+```kotlin
+    private val participantEventsListener = object : DyteParticipantEventsListener {
+        override fun onParticipantPinned(participant: DyteMeetingParticipant) {
+            // your code here to show pinned participant
+        }
 
-<head>
-  <title>Web Core Participant Events</title>
-</head>
+        override fun onParticipantUnpinned() {
+            // your code here to remove pinned participant
+        }
+    }
+```
+
+### Active participants list change
+
+Triggers an event when there is any change in active participants list in the meeting.
+
+```kotlin
+    private val participantEventsListener = object : DyteParticipantEventsListener {
+        override fun onActiveParticipantsChanged(active: List<DyteMeetingParticipant>) {
+            // your code here to refresh active participants
+        }
+    }
+```
+
+## Single Participant Events
+
+You can also subscribe to events for a single participant by implementing `DyteParticipantUpdateListener` callback and then passing that object to `participant.addParticipantUpdateListener(dyteParticipantUpdateListener)` method.
+
+Here are the supported methods:
+
+### Participant update
+
+Triggers an event whenever there is any change in participant.
+
+```kotlin
+    private val participantUpdateListener = object : DyteParticipantUpdateListener {
+        override fun onUpdate() {
+            // your code here to handle participant update
+        }
+    }
+```
+
+### Video update
+
+Trigger an event when the participant starts / stops video.
+
+```kotlin
+    private val participantUpdateListener = object : DyteParticipantUpdateListener {
+        override fun onVideoUpdate(isEnabled: Boolean) {
+            // your code here to handle participant video toggle update
+        }
+    }
+```
+
+### Audio update
+
+Trigger an event when the participant starts / stops audio.
+
+```kotlin
+    private val participantUpdateListener = object : DyteParticipantUpdateListener {
+        override fun onAudioUpdate(isEnabled: Boolean) {
+            // your code here to handle participant audio toggle update
+        }
+    }
+```
+
+### Pinned & Unpinned participant
+
+Trigger an event when the participant is pinned / unpinned.
+
+```kotlin
+    private val participantUpdateListener = object : DyteParticipantUpdateListener {
+        override fun onPinned() {
+            // your code here to show pinned participant
+        }
+
+        override fun onUnpinned() {
+            // your code here to remove pinned participant
+        }
+    }
+```
+
+### Screen share started & ended
+
+Trigger an event when the participant starts / stops screen sharing.
+
+```kotlin
+    private val participantUpdateListener = object : DyteParticipantUpdateListener {
+        override fun onScreenShareStarted() {
+            // your code here to handle screen share started
+        }
+
+        override fun onScreenShareEnded() {
+            // your code here to handle screen share ended
+        }
+    }
+```
