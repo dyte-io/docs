@@ -11,13 +11,13 @@ import {
 
 export type Section = { docId: string } & (
   | {
-    section: false;
-  }
+      section: false;
+    }
   | {
-    section: string;
-    icon: (props: ComponentProps<'svg'>) => ReactNode;
-    name: string;
-  }
+      section: string;
+      icon: (props: ComponentProps<'svg'>) => ReactNode;
+      name: string;
+    }
 );
 
 const SECTIONS: Section[] = [
@@ -84,7 +84,12 @@ const SECTIONS: Section[] = [
     icon: AndroidIcon,
     section: 'mobile-core',
   },
-
+  {
+    name: 'iOS Core [new]',
+    docId: 'ios-core-new',
+    icon: AppleIcon,
+    section: 'mobile-core',
+  },
   {
     name: 'iOS Core',
     docId: 'ios-core',

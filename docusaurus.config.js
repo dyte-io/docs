@@ -121,6 +121,16 @@ const docs = [
     },
   },
   {
+    id: 'ios-core-new',
+    path: 'docs/ios-core-new',
+    routeBasePath: '/ios-core-new',
+    versions: {
+      current: {
+        label: '1.x.x',
+      },
+    },
+  },
+  {
     id: 'ios-core',
     path: 'docs/ios-core',
     routeBasePath: '/ios-core',
