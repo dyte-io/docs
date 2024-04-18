@@ -1,9 +1,11 @@
 ---
 title: Creating a poll
-description: Create polls in a meeting.
+description: >-
+  Create and manage polls in your Android app using Dyte's documentation on
+  Polls Creation.
 sidebar_position: 2
 tags:
-  - web-core
+  - android-core
   - polls
   - create
 ---
@@ -18,19 +20,24 @@ accepts the following params.
 | --------- | -------- | ------------- | -------- | ------------------------------------------ |
 | question  | string   | -             | yes      | The question that is to be voted for.      |
 | options   | string[] | -             | yes      | The options of the poll.                   |
-| anonymous | boolean  | false         | no       | If true, the poll votes are anonymous.     |
-| hideVotes | boolean  | false         | no       | If true, the votes on the poll are hidden. |
+| anonymous | boolean  | -             | no       | If true, the poll votes are anonymous.     |
+| hideVotes | boolean  | -             | no       | If true, the votes on the poll are hidden. |
 
 The following snippet creates a poll where votes are anonymous.
 
-```ts
-await meeting.poll.create(
-  'Are you an early bird or a night owl?',
-  ['Early bird', 'Night owl'],
-  true
-);
+```kotlin
+meeting.poll.create(
+    "Are you an early bird or a night owl?",
+    listOf("Early bird", "Night owl"),
+    true,
+    false
+)
 ```
 
 <head>
-  <title>Web Core Creating a poll</title>
+  <title>Android Core Creating a poll</title>
+  <meta
+    name="description"
+    content="Create and manage polls in your Android app using Dyte's documentation on Polls Creation."
+  />
 </head>

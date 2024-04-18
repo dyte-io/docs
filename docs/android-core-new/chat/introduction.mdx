@@ -1,55 +1,67 @@
 ---
 title: Introducing chat
-description: Send and receive chat messages in a meeting.
+description: >-
+  Learn the basics of integrating Dyte's chat functionality into your Android
+  application – a step towards immersive real-time communication.
 sidebar_position: 1
 tags:
-  - web-core
+  - android-core
   - chat
 ---
 
 # Introducing chat
 
-The meeting chat object is stored in `meeting.chat`, which has methods for
-sending and receiving messages. There are 3 types of messages that can be sent
-in chat - text messages, images, and files.
+The meeting chat object is stored in `meeting.chat`, which has methods for sending and receiving messages. There are 3 types of messages that can be sent in chat - text messages, images, and files.
 
 The `meeting.chat.messages` array contains all the messages that have been sent
 in the chat. This is an array of objects, where each object is of type
-`Message`.
+`DyteChatMessage`.
 
-The type `Message` is defined in the following manner.
+We support three types of chat messages, they are as follows
 
-```ts
-interface BaseMessage<T extends MessageType> {
-  type: T;
-  userId: string;
-  displayName: string;
-  time: Date;
-  id: string;
-  isEdited?: boolean;
-  read?: boolean;
-  pluginId?: string;
-  pinned?: boolean;
-  targetUserIds?: string[];
-}
+- Text Message
 
-interface TextMessage extends BaseMessage<MessageType.text> {
-  message: string;
-}
-
-interface ImageMessage extends BaseMessage<MessageType.image> {
-  link: string;
-}
-
-interface FileMessage extends BaseMessage<MessageType.file> {
-  name: string;
-  size: number;
-  link: string;
-}
-
-type Message = TextMessage | ImageMessage | FileMessage;
+```kotlin
+class DyteTextMessage(
+  userId: String,
+  displayName: String,
+  read: Boolean,
+  pluginId: String?,
+  val message: String,
+  time: String,
+  channelId: String? = null,
+)
 ```
 
-<head>
-  <title>Web Core Introducing chat</title>
-</head>
+- Image Message
+
+```kotlin
+class DyteImageMessage(
+  userId: String,
+  displayName: String,
+  read: Boolean,
+  pluginId: String?,
+  val link: String,
+  time: String,
+  channelId: String? = null,
+)
+```
+
+- File Message
+
+```kotlin
+class DyteFileMessage(
+  userId: String,
+  displayName: String,
+  read: Boolean,
+  pluginId: String?,
+  val name: String,
+  time: String,
+  val link: String,
+  val size: Long,
+  channelId: String? = null,
+)
+```
+
+All above objects are of type `DyteChatMessage` along with their own class
+variables.
