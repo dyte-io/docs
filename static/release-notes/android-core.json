@@ -3,11 +3,11 @@
 		"version": "1.34.3",
 		"createdAt": 1713250285,
 		"new_api": [
-			"Added a callback in DyteSelfEventsListener to listen to permission changes happening at runtime."
+			"Added a callback in `DyteSelfEventsListener` to listen to permission changes happening at runtime."
 		],
 		"fixes": [
 			"Added locks to prevent accidental multiple inits",
-			"Performance improvements in webinar type view calls."
+			"Performance improvements fixes for large webinar calls."
 		],
 		"breaking-changes": []
 	},
@@ -16,7 +16,7 @@
 		"createdAt": 1712225259,
 		"new_api": [],
 		"fixes": [
-			"Fix in parsing plugin configs for access_control"
+			"Fix preset parsing bugs around certain plugin configurations"
 		],
 		"breaking-changes": []
 	},
@@ -25,7 +25,7 @@
 		"createdAt": 1711608282,
 		"new_api": [],
 		"fixes": [
-			"Bugfix in pagination logic in case of active screenshare/plugins"
+			"Fix incorrect pagination behaviour when a screenshare or plugin is active"
 		],
 		"breaking-changes": []
 	},
@@ -34,9 +34,8 @@
 		"createdAt": 1710917082,
 		"new_api": [],
 		"fixes": [
-			"Bugfix in permission checks for localUser.enableAudio() and localUser.enableVideo()",
-			"Bugfix in localUser.disableScreenshare() for a check if screenshare is already in progress.",
-			"Bugfix in disabling camera track if user toggles video in setup screen before joining the meeting"
+			"Improve permission checks for localUser.enableAudio() and localUser.enableVideo()",
+			"Fix bug in disabling camera if the user toggles video before joining the meeting"
 		],
 		"breaking-changes": []
 	},
@@ -45,17 +44,8 @@
 		"createdAt": 1710744282,
 		"new_api": [],
 		"fixes": [
-			"Bugfix in kick and kick-all api's for meetings"
+			"Fix a bug in handling kick and kick-all events"
 		],
-		"breaking-changes": []
-	},
-	{
-		"version": "1.32.4",
-		"createdAt": 1710225882,
-		"new_api": [
-			"Added PluginConfig in DytePlugin to read the value of accessControl set on the Dyte Developer Portal"
-		],
-		"fixes": [],
 		"breaking-changes": []
 	},
 	{
@@ -63,7 +53,7 @@
 		"createdAt": 1709102682,
 		"new_api": [],
 		"fixes": [
-			"Bugfix in disposing camera and audio track in case of waiting room entry rejected."
+			"Fix bugs in disposing camera and microphone when user's waiting room entry is rejected."
 		],
 		"breaking-changes": []
 	},
@@ -72,7 +62,7 @@
 		"createdAt": 1708929882,
 		"new_api": [],
 		"fixes": [
-			"Bugfix in VideoView cache in the core sdk when useCache is disabled."
+			"Fix caching bugs in `getVideoView`"
 		],
 		"breaking-changes": []
 	},
@@ -81,8 +71,7 @@
 		"createdAt": 1708065882,
 		"new_api": [],
 		"fixes": [
-			"Bugfix in media for corrupt frames on selected android devices",
-			"Bugfix in onPin/onUnpin events in DyteParticipantUpdateListeners"
+			"Force software encoders for selected android devices where hardware encoders produce corrupt VP8 frames"
 		],
 		"breaking-changes": []
 	},
