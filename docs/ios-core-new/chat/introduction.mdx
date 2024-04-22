@@ -1,55 +1,67 @@
 ---
 title: Introducing chat
-description: Send and receive chat messages in a meeting.
+description: >-
+  Learn the basics of integrating Dyte's chat functionality into your iOS
+  application – a step towards immersive real-time communication.
 sidebar_position: 1
 tags:
-  - web-core
+  - mobile-core
   - chat
 ---
 
 # Introducing chat
 
-The meeting chat object is stored in `meeting.chat`, which has methods for
-sending and receiving messages. There are 3 types of messages that can be sent
-in chat - text messages, images, and files.
+The meeting chat object is stored in `meeting.chat`, which has methods for sending and receiving messages. There are 3 types of messages that can be sent in chat - text messages, images, and files.
 
 The `meeting.chat.messages` array contains all the messages that have been sent
 in the chat. This is an array of objects, where each object is of type
-`Message`.
+`DyteChatMessage`.
 
-The type `Message` is defined in the following manner.
+We support three types of chat messages, they are as follows
 
-```ts
-interface BaseMessage<T extends MessageType> {
-  type: T;
-  userId: string;
-  displayName: string;
-  time: Date;
-  id: string;
-  isEdited?: boolean;
-  read?: boolean;
-  pluginId?: string;
-  pinned?: boolean;
-  targetUserIds?: string[];
+- Text Message
+
+```swift
+class DyteTextMessage {
+  let userId: String,
+  let displayName: String,
+  let read: Bool,
+  let pluginId: String?,
+  let message: String,
+  let time: String,
+  let channelId: String? = null
 }
-
-interface TextMessage extends BaseMessage<MessageType.text> {
-  message: string;
-}
-
-interface ImageMessage extends BaseMessage<MessageType.image> {
-  link: string;
-}
-
-interface FileMessage extends BaseMessage<MessageType.file> {
-  name: string;
-  size: number;
-  link: string;
-}
-
-type Message = TextMessage | ImageMessage | FileMessage;
 ```
 
-<head>
-  <title>Web Core Introducing chat</title>
-</head>
+- Image Message
+
+```swift
+class DyteImageMessage{
+  let userId: String,
+  let displayName: String,
+  let read: Bool,
+  let pluginId: String?,
+  let link: String,
+  let time: String,
+  let channelId: String? = null,
+}
+```
+
+- File Message
+
+```swift
+class DyteFileMessage{
+  let userId: String,
+  let displayName: String,
+  let read: Bool,
+  let pluginId: String?,
+  let name: String,
+  let time: String,
+  let link: String,
+  let size: Int64,
+  let channelId: String? = null,
+}
+```
+
+All above objects are of type `DyteChatMessage` along with their own class
+variables.

@@ -1,39 +1,34 @@
 ---
 title: Receiving chat messages
-description: Receive chat messages that have been sent in a meeting.
+description: >-
+  "Discover how to implement the functionality to receive chat messages in your
+  iOS app using Dyte
 sidebar_position: 3
 tags:
-  - web-core
+  - mobile-core
   - chat
 ---
 
 # Receiving chat messages
 
-The `meeting.chat` object emits events when new chat messages are received. You
-can listen for the `chatUpdate` event to log when a new chat message is
-received.
+To be able to receive chat messages you need to implement a method
+`onChatUpdates()` method from callback `DyteChatEventsListener`. You can
+subscribe to this events by calling
+`meeting.addChatEventsListener(dyteChatEventsListener)`
 
-```ts
-meeting.chat.on('chatUpdate', ({ message, messages }) => {
-  console.log(`Received message ${message}`);
-  console.log(`All messages in chat: ${messages.join(', ')}`);
-});
+```kotlin
+meeting.addChatEventsListener(object :
+  DyteChatEventsListener {
+    override fun onChatUpdates(messages: List<DyteChatMessage>) {
+     // to load chat messages
+    }
+
+    override fun onNewChatMessage(message: DyteChatMessage) {
+      // when a new chat message is shared in the meeting
+    }
+  })
 ```
 
-Here, the `message` is of type `Message`, as defined in
-[introduction](./introduction). `messages` is a list of all chat messages in the
-meeting, which is the same as `meeting.chat.messages`.
+The `onChatUpdates()` method will be called whenever there is a change in the chat messages. The `messages` parameter is a list of `DyteChatMessage` objects that have been sent in the chat.
 
-When a chat message is received, the `meeting.chat.messages` list is also
-updated.
-
-```ts
-console.log(JSON.stringify(meeting.chat.messages));
-meeting.chat.on('chatUpdate', () => {
-  console.log(JSON.stringify(meeting.chat.messages));
-});
-```
-
-<head>
-  <title>Web Core Receiving chat messages</title>
-</head>
+The `onNewChatMessage()` method will be called whenever a new chat message is shared in the meeting. The `message` parameter is a `DyteChatMessage` object that has been sent in the chat.

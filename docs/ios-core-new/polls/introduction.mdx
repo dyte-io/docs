@@ -1,9 +1,11 @@
 ---
 title: Introduction
-description: 'Create, receive and interact with polls in a meeting.'
+description: >-
+  Learn the fundamentals of integrating polls into your iOS application with
+  Dyte's Polls Introduction guide.
 sidebar_position: 1
 tags:
-  - web-core
+  - mobile-core
   - polls
 ---
 
@@ -12,33 +14,56 @@ tags:
 The meetings polls object can be accessed using `meeting.polls`. It provides
 methods to create polls, vote, and more.
 
-`meeting.polls.items` returns an array of all polls created in a meeting, where
-each element is an object of type `Poll`.
+`meeting.polls.polls` returns an array of all polls created in a meeting, where
+each element is an object of type `DytePollMessage`.
 
-The type `Poll` is defined in the following manner.
-
-```ts
-interface Poll {
-  id: string;
-  question: string;
-  options: PollOption[];
-  anonymous: boolean;
-  hideVotes: boolean;
-  createdBy: string;
-  createdByUserId: string;
-  voted: string[]; // stores participant ID
-}
-
-interface PollOption {
-  text: string;
-  votes: {
-    id: string; // stores participant ID
-    name: string;
-  }[];
-  count: number;
+```swift
+class DytePollMessage{
+  let id: String,
+  let question: String,
+  let anonymous: Bool,
+  let hideVotes: Bool,
+  let createdBy: String,
+  let options: [DytePollOption]
 }
 ```
 
-<head>
-  <title>Web Core Introduction</title>
-</head>
+The type `DytePollMessage` is the main class for any poll in Dyte. It also
+contains list of `DytePollOption` which are options for a given poll. And every
+`DytePollOption` has list of votes inside of it. Votes are objects of class
+`DytePollVote` which internally has id and name of the vote.
+
+```swift
+class DytePollOption{
+  let text: String,
+  let votes: [DytePollVote],
+  let count: Int
+}
+
+class DytePollVote{
+  let id: String,
+  let name: String
+}
+```
+
+One can easily create, vote and view polls by listening to callbacks on
+`meeting` object.
+
+## Listening to new polls in a meeting
+
+To be able to receive new poll messages you need to implement a method
+`onPollUpdates()` method from callback `DyteMeetingRoomEventsListener`. You can
+subscribe to this events by calling
+`meeting.addMeetingEventsListener(self)`
+
+```swift
+extension MeetingViewModel: DyteMeetingRoomEventsListener {
+  func onNewPoll(poll: DytePollMessage) {
+    // code to handle new poll
+  }
+
+  func onPollUpdates(pollMessages: [DytePollMessage]) {
+    // code to handle polls and their vote updates.
+  }
+}
+```

@@ -1,9 +1,11 @@
 ---
 title: Voting on a poll
-description: Voting on polls in a meeting.
+description: >-
+  Understand the process of voting on polls within your iOS app using Dyte's
+  documentation on Polls Voting.
 sidebar_position: 3
 tags:
-  - web-core
+  - mobile-core
   - polls
   - votes
 ---
@@ -21,11 +23,9 @@ accepts the following params.
 The following snippet votes for the 1st option on the 1st poll created in the
 meeting.
 
-```ts
-const poll = meeting.polls.items[0];
-await meeting.poll.vote(poll.id, 0);
-```
+```swift
+let poll: DytePollMessage = meeting.polls.items[0]
+let selectedPollOption: DytePollOption = poll.options[0]
 
-<head>
-  <title>Web Core Voting on a poll</title>
-</head>
+meeting.poll.vote(poll, selectedPollOption)
+```
