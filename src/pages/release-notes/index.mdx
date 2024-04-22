@@ -5,6 +5,10 @@ import { Code } from 'react-feather';
 Stay informed about all updates to Dyte SDKs and APIs.
 
 <CardSection id="web" title="Web SDKs" hasSubSections>
+  <CardSection id="web-core" title="SDK" HeadingTag="h4">
+    <Card title="Web Core" to="/web-core/release-notes" icon={<JSIcon />} />
+    <Card title="React Web Core" to="/react-web-core/release-notes" icon={<ReactIcon />} />
+  </CardSection>
   <CardSection id="web-ui-kit" title="UI Kit" HeadingTag="h4">
     <Card title="UI Kit" to="/ui-kit/release-notes" icon={<HTMLIcon />} />
     <Card
@@ -18,8 +22,12 @@ Stay informed about all updates to Dyte SDKs and APIs.
       icon={<AngularIcon />}
     />
   </CardSection>
-  <CardSection id="web-core" title="Web Core" HeadingTag="h4">
-    <Card title="Web Core" to="/web-core/release-notes" icon={<JSIcon />} />
+</CardSection>
+
+<CardSection id="mobile" title="Mobile SDKs" hasSubSections>
+  <CardSection id="mobile-core" title="SDK" HeadingTag="h4">
+    <Card title="Android" to="/android-core/release-notes" icon={<KotlinIcon />} />
+    <Card title="iOS" to="/ios-core/release-notes" icon={<SwiftIcon />} />
   </CardSection>
 </CardSection>
 

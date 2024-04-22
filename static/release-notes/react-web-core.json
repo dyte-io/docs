@@ -1,21 +1,31 @@
 [
   {
+    "version": "1.36.5",
+    "createdAt": "1713424768",
+    "features": [
+      "End-to-End encryption for media, for more details [read the announcement blog](https://dyte.io/blog/end-to-end-encryption/)"
+    ],
+    "new_api": [
+      "Dynamically update the maximum number of participants in `.active` map (participant whose media are subscribed) using the new `meeting.participants.setMaxActiveParticipantsCount` method"
+    ]
+  },
+  {
     "version": "1.36.4",
     "createdAt": "1711504507",
-    "features": [
+    "new_api": [
       "Added `meeting.meta.sessionId` property",
       "Allow moving participants to a breakout room with a different preset with `meeting.connectedMeetings.moveParticipantsWithCustomPreset()`"
     ],
     "fixes": [
-      "Fixed support for non standard iOS in app browsers (eg. Google Search App)",
+      "Fixed support for non standard iOS in-app browsers (eg. Google Search App)",
       "Allow joining the meeting with an empty name"
     ]
   },
   {
     "version": "1.36.3",
     "createdAt": "1709952907",
-    "features": [
-      "New method to fetch permissions of the remote participant - `participant.getPermissions()`"
+    "new_api": [
+      "New method to fetch permissions of a remote participant - `participant.getPermissions()`"
     ],
     "fixes": [
       "Reacquire a different microphone if the microphone in use is disconnected",
@@ -25,7 +35,7 @@
   {
     "version": "1.36.1",
     "createdAt": "1709014560",
-    "features": [
+    "new_api": [
       "Added optional `target` support to broadcastMessage to send messages to selected participants - `participants.broadcastMessage(type, payload, target: { presetNames, participantIds })`",
       "Added support to update participants preset dynamically - `participants.updatePermissions(participantIds, permissions)`"
     ]
