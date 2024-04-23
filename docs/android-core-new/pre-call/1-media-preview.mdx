@@ -1,6 +1,10 @@
 # Media Preview
 
-This section focuses on pre-call functionality, providing developers with the tools needed to prepare the media environment before joining the meeting. If you are using our UI Kits, this will be handled by `dyte-setup-screen` or could be built with `dyte-participant-tile`, `dyte-settings` components.
+Before joining a meeting, users may want to preview and configure their media devices like camera, microphone, and audio output.
+This section provides developers with the tools to prepare the media environment before joining a Dyte meeting.
+
+If you are using our UI Kits, this functionality can be handled by `DyteSetupFragment` or built with `DyteParticipantTileView` 
+and `DyteSettingsFragment` components.
 
 
 ## Properties
@@ -8,104 +12,108 @@ This section focuses on pre-call functionality, providing developers with the to
 - `audioEnabled`: A <span className="tag-orange">boolean</span> value indicating if the audio currently enabled.
 - `videoEnabled`: A <span className="tag-orange">boolean</span> value indicating if the video currently enabled.
 
-- `audioTrack`: The audio track for the local user.
-- `videoTrack`: The video track for the local user.
-
 ## Methods
 
 ### Toggling Media
 
-The same methods used by post joining meeting are also used to control media-pre meeting.
+The same methods used for controlling media during a meeting are also applicable for pre-call media configuration.
 
 **1. Mute/Unmute microphone**
 
-```ts
+```kotlin
 // Mute Audio
-await meeting.self.disableAudio();
+meeting.localUser.disableAudio()
 
 // Unmute Audio
-await meeting.self.enableAudio();
+meeting.localUser.enableAudio()
 ```
 
 ```mermaid
 flowchart LR
     classDef basic fill:white;
 
-    eam("enableAudio()") --> success("Emits <code>audioUpdate</code> event on <code>self</code>")
-    eam -. possibly .-> indirect("Update <code>mediaPermissions.audio</code> with <code>mediaPermissionUpdate</code> event")
+    eam("enableAudio()") --> success("Gives <code>onAudioUpdate</code> callback to <code>DyteSelfEventsListener</code>")
 
     class eam basic;
 ```
 
 <br />
 
-Anytime there is an update in audio state you will get a `audioUpdate` event
+Anytime there is an update in the audio state of the local user, the Core SDK notifies the client through the `onAudioUpdate` callback 
+from `DyteSelfEventsListener`. Here's how you can register the listener:
 
-```ts
-
-meeting.self.on('audioUpdate', ({ audioEnabled, audioTrack })=> {
-  // if enabled show a visual(izer) preview of the audio to the user
-});
-
+```kotlin
+meeting.addSelfEventsListener(object : DyteSelfEventsListener {
+    override fun onAudioUpdate(audioEnabled: Boolean) {
+        // Show a visual preview of the audio to the user if enabled
+    }
+})
 ```
 
 **2. Enable/Disable camera**
 
-```ts
+```kotlin
 // Disable Video
-await meeting.self.disableVideo();
+meeting.localUser.disableVideo()
 
 // Enable Video
-await meeting.self.enableVideo();
+meeting.localUser.enableVideo()
 ```
 
 ```mermaid
 flowchart LR
     classDef basic fill:white;
 
-    eam("enableVideo()") --> success("Emits <code>videoUpdate</code> event on <code>self</code>")
-    eam -. possibly .-> indirect("Update <code>mediaPermissions.audio</code> with <code>mediaPermissionUpdate</code> event")
+    eam("enableVideo()") --> success("Gives <code>onVideoUpdate</code> callback to <code>DyteSelfEventsListener</code>")
 
     class eam basic;
 ```
 <br />
 
-```ts
-meeting.self.on('videoUpdate', ({ videoEnabled, videoTrack })=> {
-  // if videoEnabled play video here to a <video> element
-});
+Whenever there is an update in the video state of the local user, the Core SDK notifies the client through the `onVideoUpdate` callback 
+from `DyteSelfEventsListener`. Here's how you can register the listener:
+
+```kotlin
+meeting.addSelfEventsListener(object : DyteSelfEventsListener {
+    override fun onVideoUpdate(videoEnabled: Boolean) {
+        // Show local user's VideoView if video is enabled
+    }
+})
 ```
 
 ### Changing Media Device
 
-Media devices represents the hardware for the camera, microphone and speaker
-devices. To get the list of media devices that are currently being used, you can
-use the following methods:
+Media devices represent the hardware for the camera, microphone, and speaker devices. To get the list of media devices currently 
+available, use the following methods:
 
-```ts
-// Fetch current media devices being used
-const currentDevices = meeting.self.getCurrentDevices();
-```
-
-```js
-// Get all media devices
-const devices = meeting.self.getAllDevices();
-
+```kotlin
 // Get all audio devices
-const audioDevices = meeting.self.getAudioDevices();
+const audioDevices = meeting.localUser.getAudioDevices()
 
 // Get all video devices
-const videoDevices = meeting.self.getVideoDevices();
-
-// Get all speakers
-const speakerDevices = meeting.self.getSpeakerDevices();
+const videoDevices = meeting.localUser.getVideoDevices()
 ```
 
-These methods should be called when you want the user to be shown these preferences. When the user selects a device, use the below method to select the device.
+To get the currently selected media device, use the following methods:
+
+```kotlin
+// Get current audio device being used
+const currentAudioDevice = meeting.localUser.getSelectedAudioDevice()
+
+// Get current video device being used
+const currentVideoDevice = meeting.localUser.getSelectedVideoDevice()
+```
+
+Use these methods to create a UI that allows users to configure their media devices. When the user selects a device, use the below methods to set the device.
 
 **Set device**
 
-```js
-meeting.self.setDevice(device);
-// eg. device = videoDevices[0];
+```kotlin
+// Set audio device
+meeting.localUser.setAudioDevice(device)
+// eg. device = audioDevices[0]
+
+// Set video device
+meeting.localUser.setVideoDevice(device)
+// eg. device = videoDevices[0]
 ```
