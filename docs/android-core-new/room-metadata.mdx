@@ -5,7 +5,7 @@ description: >-
   Docs.
 sidebar_position: 1
 tags:
-  - mobile-core
+  - android-core
   - room-metadata
 ---
 
@@ -13,13 +13,12 @@ tags:
 
 All metadata pertaining to a meeting is stored in `meeting.meta`. This includes:
 
-- `roomName`: The name of the room the current participant is connected to.
 - `meetingId`: The unique identifier of the meeting.
 - `meetingType`: Indicates the meeting is a group-call or a webinar.
 - `meetingTitle`: The title of the meeting.
 - `meetingStartedTimestamp`: The timestamp when the meeting started.
 - `meetingState`: The state of the meeting of type `DyteMeetingState`.
-- `authToken`: The authentication token for the meeting.
+- `authToken`: User's authentication token for the meeting.
 - `meetingConfig`: The configuration of the meeting of type `MeetingConfig`.
 
 ```kotlin
@@ -36,13 +35,13 @@ data class MeetingConfig(
 )
 ```
 
-For example, if you want to get the name of the room the current participant is
+For example, if you want to get the title of the meeting the current participant is
 connected to, you can do so by doing:
 
 ```kotlin
-val roomName = meeting.meta.roomName
+val meetingTitle = meeting.meta.meetingTitle
 ```
 
 <head>
-  <title>Mobile Core Room Metadata</title>
+  <title>Android Core Room Metadata</title>
 </head>
