@@ -26,8 +26,21 @@ named `meeting`.
         * [.connectedMeetings](#module_DyteClient+connectedMeetings)
         * [.join()](#module_DyteClient+join)
         * [.leave()](#module_DyteClient+leave)
-    * _static_
-        * [.init(options)](#module_DyteClient.init)
+
+<a name="module_DyteClient.init"></a>
+
+### initMeeting(options)
+The `initMeeting` method can be used to instantiate the DyteClient class.
+This returns an instance of DyteClient, which can be used to perform
+actions on the meeting.
+
+
+| Param | Description |
+| --- | --- |
+| options | The options object. |
+| options.authToken | The authorization token received using the API. |
+| options.apiBase | The base URL of the API. |
+| options.defaults | The default audio and video settings. |
 
 <a name="module_DyteClient+participants"></a>
 
@@ -98,21 +111,6 @@ is emitted on `self` when the room is joined successfully.
 
 ### meeting.leave()
 The `leave()` method can be used to leave a meeting.
-
-<a name="module_DyteClient.init"></a>
-
-### DyteClient.init(options)
-The `init` method can be used to instantiate the DyteClient class.
-This returns an instance of DyteClient, which can be used to perform
-actions on the meeting.
-
-
-| Param | Description |
-| --- | --- |
-| options | The options object. |
-| options.authToken | The authorization token received using the API. |
-| options.apiBase | The base URL of the API. |
-| options.defaults | The default audio and video settings. |
 
 <a name="module_DyteClient+joinRoom"></a>
 

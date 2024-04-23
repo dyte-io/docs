@@ -8,76 +8,69 @@ tags:
   - self
 ---
 
-# Introduction - Local User
 
-The local user has the methods and properties on the local user media controls.
-Accessible via `self` key within the `meeting` object, the local user also
-contains the access control (permissions) and theming-related properties that
-will help to render the meeting state.
+# Introduction
+
+Accessible via `self` key within the `meeting` object, the local user object consists of all the information related to the current participant and methods to configure media and other states. 
 
 ## Properties
 
 Here is a list of properties that local user provides:
 
-- `id`: The ID of the participant pertaining to local user.
-- `userId`: The User ID of the participant pertaining to local user.
+**Metadata**
+
+- `userId`: User ID of the local user.
+- `customParticipantId`: Identifier provided by the developer while adding the
+  participant.
 - `organizationId`: The ID of the organization the meeting is created from.
 - `name`: Contains Name of the local user.
-- `isPinned`: A boolean value indicating if the local user is pinned or not.
-- `supportsRemoteControl`: A boolean value indicating if the meeting can
-  supports remote control.
-- `device`: Information like browser and OS details.
 - `picture`: Display picture URL for the local user.
-- `waitlistStatus`: Indicates if the local user has been waitlisted or not. It
-  can take the following values: `accepted` | `waiting` | `rejected` | `none`;
-- `clientSpecificId`: Identifier provided by the developer while adding the
-  participant.
-- `roomJoined`: A boolean value indicating if the local user has joined the
-  meeting.
-- `roomState`: Indicates the state of the user in the meeting. It
-  can take the following values: `init` | `joined` | `waitlisted` | `rejected` | `kicked` | `left` | `ended`;
-- `permissions`: The permissions related to various capabilities within a
-  meeting context for the local user
+- `permissions`: The permissions related to various capabilities for the local user defined by the preset
+
+**Media**:
+
 - `mediaPermissions`: The current audio and video permissions given by the local
   user.
 - `audioTrack`: The audio track for the local user.
-- `rawAudioTrack`: The audio track for the local user without any middleware applied on it.
 - `videoTrack`: The video track for the local user.
-- `rawVideoTrack`: The video track for the local user without any middleware applied on it.
 - `screenShareTracks`: The screen share video and audio tracks for the local
   user.
 - `audioEnabled`: A boolean value indicating if the audio currently enabled.
 - `videoEnabled`: A boolean value indicating if the video currently enabled.
 - `screenShareEnabled`: A boolean value indicating if the screen share is
   currently enabled.
-- `config`: The suggested theme for building the user interface.
-- ~~`suggestedTheme`: The suggested theme for building the user interface.~~
-- ~~`preview`: The local audio and video stream for the preview purpose (it will be populated after calling `enablePreview`).~~
 
-## Change default audio / video settings
+**States**:
 
-By default as soon as you join the meeting the SDK will produce your video and
-audio streams. To change this behaviour use the `default` parameter
+- `isPinned`: A <span className="tag-orange">boolean</span> value indicating if the local user is pinned or not.
+- `roomJoined`: A <span className="tag-orange">boolean</span> value indicating if the local user is in the meeting
+- `roomState`: Indicates the state of the user in the meeting. It
+  can take the following values:
+  
+   ```ts
+   "init" | "joined" | "waitlisted" | "rejected" | "kicked" | "left" | "ended"
+   ```
 
-```ts {5}
-const meeting = await DyteClient.init({
-  authToken,
-  defaults: {
-    audio: false, // Disable user's audio by default
-    video: true, // Enable user's video by default
-  },
-});
+```mermaid
+stateDiagram-v2
+    direction LR
+    classDef END fill:#ef4444,color:#fff,stroke:#ef4444;
+
+    [*] --> init
+    init --> joined
+    init --> waitlisted
+    waitlisted --> joined
+    waitlisted --> rejected
+    joined --> kicked
+    joined --> left
+    joined --> ended
+
+    class kicked,left,ended,rejected END
 ```
 
-## Setup tracks
+<br />
 
-If audio and video tracks are disabled during the `DyteClient` initialization
-process. You can setup the audio and video tracks by simply calling setup tracks
-method like below:
 
-```ts
-meeting.self.setupTracks({ audio: true, video: true });
-```
 
 ## Change the name of the local user
 
@@ -89,7 +82,9 @@ meeting.
 await meeting.self.setName('New Name');
 ```
 
-## Mute/Unmute microphone
+## Media
+
+### Mute/Unmute microphone
 
 ```ts
 // Mute Audio
@@ -102,7 +97,17 @@ await meeting.self.enableAudio();
 meeting.self.audioEnabled;
 ```
 
-## Enable/Disable camera
+```mermaid
+flowchart LR
+    classDef basic fill:white;
+
+    eam("enableAudio()") --> success("Emits <code>audioUpdate</code> event on <code>self</code>")
+    eam -. possibly .-> indirect("Update <code>mediaPermissions.audio</code> with <code>mediaPermissionUpdate</code> event")
+
+    class eam basic;
+```
+
+### Enable/Disable camera
 
 ```ts
 // Disable Video
@@ -115,7 +120,17 @@ await meeting.self.enableVideo();
 meeting.self.videoEnabled;
 ```
 
-## Enable / Disable Screen share
+```mermaid
+flowchart LR
+    classDef basic fill:white;
+
+    eam("enableVideo()") --> success("Emits <code>videoUpdate</code> event on <code>self</code>")
+    eam -. possibly .-> indirect("Update <code>mediaPermissions.video</code> with <code>mediaPermissionUpdate</code> event")
+
+    class eam basic;
+```
+
+### Enable / Disable Screen share
 
 ```ts
 // Enable Screenshare
