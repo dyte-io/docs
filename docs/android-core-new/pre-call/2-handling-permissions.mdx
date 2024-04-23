@@ -1,50 +1,31 @@
-# Handling Browser Permissions
+# Handling Device Permissions
 
-## Properties 
+Before allowing users to interact with their camera and microphone, it's important to check if the necessary permissions are 
+granted on their Android device. Dyte's Android Core SDK provides easy-to-use APIs to check the status of these permissions.
 
-`self.mediaPermissions`: The current audio and video **browser permissions** given by the local
-  user.
+### Checking Permissions
 
-Permissions start with `NOT_REQUESTED` and can go into 4 different states
+Use the following APIs to check if the camera and microphone permissions are granted:
 
+```kotlin
+// Check if CAMERA permission is granted
+val cameraPermissionGranted = meeting.localUser.isCameraPermissionGranted
 
-```mermaid
-stateDiagram-v2
-    NOT_REQUESTED --> ACCEPTED
-    NOT_REQUESTED --> DENIED
-    NOT_REQUESTED --> SYSTEM_DENIED
-    NOT_REQUESTED --> COULD_NOT_START
+// Check if RECORD_AUDIO (microphone) permission is granted
+val micPermissionGranted = meeting.localUser.isMicrophonePermissionGranted
 ```
 
-<br />
+Alternatively, you can also use Android's standard way to check if these permissions are granted:
+- `android.permission.CAMERA`
+- `android.permission.RECORD_AUDIO`
 
+Refer to the [Android official documentation](https://developer.android.com/training/permissions/requesting#already-granted) 
+for more information on checking permissions.
 
-- `ACCEPTED` - The user accepted browser permission prompts
-- `DENIED` - The user denied browser permission prompts
-- `SYSTEM_DENIED` - The user's browser does not have the required permission, in this case usually the OS hasn't granted permission the browser application
-- `COULD_NOT_START` - Unable to start the selected device, you can retry with a different device
+You can use the permission status to enable or disable camera and microphone buttons in the pre-call UI, or provide visual 
+feedback to indicate the availability of these media devices.
 
-<br />
+### Automatic Permission Request
 
-:::warning
-
-One other thing to note down here is user might revoke permission later, or might unplug devices etc so these states can change at runtime
-
-:::
-
-<br />
-
-
-Use the `mediaPermissionUpdate` event on `self` to listen for these changes
-
-```mermaid
-stateDiagram-v2
-    NOT_REQUESTED --> ACCEPTED
-    NOT_REQUESTED --> DENIED
-    NOT_REQUESTED --> SYSTEM_DENIED
-    NOT_REQUESTED --> COULD_NOT_START
-    ACCEPTED --> DENIED
-    ACCEPTED --> COULD_NOT_START
-    DENIED --> ACCEPTED
-    COULD_NOT_START --> ACCEPTED 
-```
+When the Dyte SDK is initialised, it automatically checks for the required media permissions. If the permissions are not granted, 
+the SDK requests them on behalf of the developers.
