@@ -39,14 +39,15 @@ user's waitlist status. You can check the `waitListStatus` to determine their st
 ```swift
 extension MeetingViewModel: DyteSelfEventsListener {
     func onWaitListStatusUpdate(waitListStatus: WaitListStatus) {
-        when (waitListStatus) {
-            WAITING -> {
-                // Local user is in the waiting room
-            }
-            REJECTED -> {
-                // Local user's join room request was rejected by the host
-            }
-            else -> { }
+        switch waitListStatus {
+        case .accepted:
+            // Local user's join room request was accepted by the host
+        case .waiting:
+            // Local user is in the waiting room
+        case .rejected:
+            // Local user's join room request was rejected by the host
+        default:
+            return .none
         }
     }
 }
