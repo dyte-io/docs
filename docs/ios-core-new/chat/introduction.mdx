@@ -23,12 +23,12 @@ We support three types of chat messages, they are as follows
 
 ```swift
 class DyteTextMessage {
-  let userId: String,
-  let displayName: String,
-  let read: Bool,
-  let pluginId: String?,
-  let message: String,
-  let time: String,
+  let userId: String
+  let displayName: String
+  let read: Bool
+  let pluginId: String?
+  let message: String
+  let time: String
   let channelId: String? = null
 }
 ```
@@ -37,13 +37,13 @@ class DyteTextMessage {
 
 ```swift
 class DyteImageMessage{
-  let userId: String,
-  let displayName: String,
-  let read: Bool,
-  let pluginId: String?,
-  let link: String,
-  let time: String,
-  let channelId: String? = null,
+  let userId: String
+  let displayName: String
+  let read: Bool
+  let pluginId: String?
+  let link: String
+  let time: String
+  let channelId: String? = null
 }
 ```
 
@@ -51,15 +51,15 @@ class DyteImageMessage{
 
 ```swift
 class DyteFileMessage{
-  let userId: String,
-  let displayName: String,
-  let read: Bool,
-  let pluginId: String?,
-  let name: String,
-  let time: String,
-  let link: String,
-  let size: Int64,
-  let channelId: String? = null,
+  let userId: String
+  let displayName: String
+  let read: Bool
+  let pluginId: String?
+  let name: String
+  let time: String
+  let link: String
+  let size: Int64
+  let channelId: String? = null
 }
 ```
 

@@ -22,16 +22,16 @@ Each plugin in the list is of type `DytePlugin` which has the following public f
 
 ```swift
 class DytePlugin {
-    var id: String
-    var name: String
-    var description: String
-    var picture: String
-    var isPrivate: Bool
-    var staggered: Bool
-    var baseURL: String
-    var config: PluginConfig
-    var isActive: Bool
-    var enabledBy: String?
+    let id: String
+    let name: String
+    let description: String
+    let picture: String
+    let isPrivate: Bool
+    let staggered: Bool
+    let baseURL: String
+    let config: PluginConfig
+    let isActive: Bool
+    let enabledBy: String?
 
     func activate()
     func deactivate()
@@ -44,9 +44,9 @@ class DytePlugin {
 The `PluginConfig` type consists of the following fields:
 
 ```swift
-class PluginConfig(
-  var accessControl: String = "FULL_ACCESS"
-)
+class PluginConfig {
+  let accessControl: String = "FULL_ACCESS"
+}
 ```
 
 <head>

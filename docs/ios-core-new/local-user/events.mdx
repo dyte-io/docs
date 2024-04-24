@@ -3,7 +3,7 @@ title: Events
 description: Local user events guide.
 sidebar_position: 2
 tags:
-  - web-core
+  - mobile-core
   - local-user
   - self
   - self events
@@ -11,8 +11,9 @@ tags:
 
 # Local User - Events
 
-You can subscribe to various events on the local user by calling
-`meeting.self.on(EVENT_NAME)`.
+You can subscribe to various events on the local user by implementing
+`DyteSelfEventsListener` and passing the object to
+`meeting.addSelfEventsListener(dyteSelfEventsListener)`.
 
 ## Room joined
 
