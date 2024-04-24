@@ -1,148 +1,150 @@
 ---
 title: Introduction
-description: Local user setup guide.
+description: >-
+  Learn about local user management in iOS Core with Dyte Docs. Understand the
+  fundamentals for effective integration and app customization.
 sidebar_position: 1
 tags:
-  - web-core
+  - mobile-core
   - local-user
   - self
 ---
 
-# Introduction
+# Introduction - Local User
 
-Accessible via `self` key within the `meeting` object, the local user object consists of all the information related to the current participant and methods to configure media and other states. 
+The local user has the methods and properties on the local user media controls.
+Accessible via `localUser` within the `meeting` object.
 
 ## Properties
 
-Here is a list of properties that local user provides:
+Here is a list of properties that `meeting.localUser` user provides:
 
-**Metadata**
-
-- `userId`: User ID of the local user.
-- `customParticipantId`: Identifier provided by the developer while adding the
-  participant.
-- `organizationId`: The ID of the organization the meeting is created from.
+- `id`: The ID of the participant pertaining to local user.
 - `name`: Contains Name of the local user.
-- `picture`: Display picture URL for the local user.
-- `permissions`: The permissions related to various capabilities for the local user defined by the preset
-
-**Media**:
-
-- `mediaPermissions`: The current audio and video permissions given by the local
-  user.
+- `clientSpecificId`: Identifier provided by the developer while adding the
+  participant.
+- `permissions`: The permissions related to various capabilities within a
+  meeting context for the local user.
 - `audioTrack`: The audio track for the local user.
 - `videoTrack`: The video track for the local user.
-- `screenShareTracks`: The screen share video and audio tracks for the local
-  user.
+- `screenShareTrack`: The screen share video tracks for the local user.
 - `audioEnabled`: A boolean value indicating if the audio currently enabled.
 - `videoEnabled`: A boolean value indicating if the video currently enabled.
-- `screenShareEnabled`: A boolean value indicating if the screen share is
-  currently enabled.
+- `isScreenShareParticipant`: A boolean value indicating if the participant is a
+  screen share participant in this meeting.
 
-**States**:
+## Change default audio / video settings
 
-- `isPinned`: A <span className="tag-orange">boolean</span> value indicating if the local user is pinned or not.
-- `roomJoined`: A <span className="tag-orange">boolean</span> value indicating if the local user is in the meeting
-- `roomState`: Indicates the state of the user in the meeting. It
-  can take the following values:
-  
-   ```ts
-   "init" | "joined" | "waitlisted" | "rejected" | "kicked" | "left" | "ended"
-   ```
+By default as soon as you join the meeting the SDK will produce your video and
+audio streams. To change this behaviour use the `audioEnabled` & `videoEnabled`
+parameter
 
-```mermaid
-stateDiagram-v2
-    direction LR
-    classDef END fill:#ef4444,color:#fff,stroke:#ef4444;
-
-    [*] --> init
-    init --> joined
-    init --> waitlisted
-    waitlisted --> joined
-    waitlisted --> rejected
-    joined --> kicked
-    joined --> left
-    joined --> ended
-
-    class kicked,left,ended,rejected END
+```swift
+let meetingInfo = DyteMeetingInfo(
+            roomName = MEETING_ROOM_NAME,
+            authToken = AUTH_TOKEN,
+            audioEnabled = false,
+            videoEnabled = true)
 ```
 
-<br />
+## Get local user video view
 
+To show localUser preview inside a view. Use `getSelfPreview()` method on
+localUser. This method returns a View which can be added in any View.
 
+```swift
+meeting.localUser.getSelfPreview()
+```
+
+## Turn audio/video tracks after joining the room
+
+If audio and video tracks are disabled during the `DyteMobileClient`
+initialization process. You can setup the audio and video tracks by simply
+calling `enableAudio()` and `enableVideo()` like below:
+
+```swift
+meeting.localUser.enableAudio()
+meeting.localUser.enableVideo()
+```
 
 ## Change the name of the local user
 
-Change the user's name by calling `setName` method. The changed name will
-reflect across all participants ONLY if the change happens before joining the
-meeting.
+Change the user's name by calling `setDisplayName` method. The changed name will
+reflect across all participants ONLY if the change happens before `joinRoom()`
+the meeting and after `init()`.
 
-```ts
-await meeting.self.setName('New Name');
+```swift
+meeting.localUser.setDisplayName("New Name")
 ```
 
-## Media
+## Mute/Unmute microphone
 
-### Mute/Unmute microphone
-
-```ts
+```kotlin
 // Mute Audio
-await meeting.self.disableAudio();
+meeting.localUser.disableAudio()
 
 // Unmute Audio
-await meeting.self.enableAudio();
+meeting.localUser.enableAudio()
 
 // Get current status
-meeting.self.audioEnabled;
+meeting.localUser.audioEnabled
 ```
 
-```mermaid
-flowchart LR
-    classDef basic fill:white;
+## Enable/Disable camera
 
-    eam("enableAudio()") --> success("Emits <code>audioUpdate</code> event on <code>self</code>")
-    eam -. possibly .-> indirect("Update <code>mediaPermissions.audio</code> with <code>mediaPermissionUpdate</code> event")
-
-    class eam basic;
-```
-
-### Enable/Disable camera
-
-```ts
+```swift
 // Disable Video
-await meeting.self.disableVideo();
+meeting.localUser.disableVideo()
 
 // Enable Video
-await meeting.self.enableVideo();
+meeting.localUser.enableVideo()
 
 // Get current status
-meeting.self.videoEnabled;
+meeting.localUser.videoEnabled
 ```
 
-```mermaid
-flowchart LR
-    classDef basic fill:white;
+## Pinning & unpinning
 
-    eam("enableVideo()") --> success("Emits <code>videoUpdate</code> event on <code>self</code>")
-    eam -. possibly .-> indirect("Update <code>mediaPermissions.video</code> with <code>mediaPermissionUpdate</code> event")
+You can pin or unpin yourself given you have the appropriate permissions. You
+can check the pinned status of the local user using `meeting.localUser.isPinned`.
 
-    class eam basic;
+```swift
+meeting.localUser.pin();
 ```
 
-### Enable / Disable Screen share
+```swift
+meeting.localUser.unpin();
+```
 
-```ts
+## Enable / Disable Screen share
+
+```kotlin
 // Enable Screenshare
-await meeting.self.enableScreenShare();
+meeting.localUser.enableScreenshare();
 
 // Disable Screenshare
-await meeting.self.disableScreenShare();
-
-// Get current status
-meeting.self.screenShareEnabled;
+meeting.localUser.disableScreenshare();
 ```
 
+## Switch camera between primary and secondary
+
+```swift
+// switch camera
+meeting.localUser.switchCamera()
+```
+
+OR
+
+If you want to set video device yourself:
+
+```swift
+meeting.localUser.setVideoDevice(videoDevice: DyteVideoDevice)
+```
 
 <head>
-  <title>Web Core Introduction</title>
+  <title>iOS Core Introduction</title>
+  <meta
+    name="description"
+    content="Learn about local user management in iOS Core with Dyte Docs. Understand the fundamentals for effective integration and app customization."
+  />
 </head>

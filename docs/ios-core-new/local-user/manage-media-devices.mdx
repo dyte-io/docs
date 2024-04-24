@@ -1,12 +1,14 @@
 ---
 title: Manage Media Devices
-description: Local user media guide to manage media permissions.
+description: >-
+  Discover how to manage media devices for local users in iOS Core with Dyte
+  Docs. Optimize your app's media handling capabilities seamlessly.
 sidebar_position: 3
 tags:
-  - web-core
+  - ios-core
   - local-user
-  - self
-  - self events
+  - localUser
+  - localUser events
 ---
 
 # Manage Media Devices
@@ -15,24 +17,12 @@ Media devices represents the hardware for the camera, microphone and speaker
 devices. To get the list of media devices that are currently being used, you can
 use the following methods:
 
-```js
-// Get all media devices
-const devices = meeting.self.getAllDevices();
-
+```swift
 // Get all audio devices
-const audioDevices = meeting.self.getAudioDevices();
+let audioDevices = meeting.localUser.getAudioDevices();
 
 // Get all video devices
-const videoDevices = meeting.self.getVideoDevices();
-
-// Get all speakers
-const speakerDevices = meeting.self.getSpeakerDevices();
-
-// Get device by ID
-const device = meeting.self.getDeviceById('12345', 'audio');
-
-// Fetch current media devices being used
-const currentDevices = meeting.self.getCurrentDevices();
+let videoDevices = meeting.localUser.getVideoDevices();
 ```
 
 ## Set device
@@ -40,10 +30,14 @@ const currentDevices = meeting.self.getCurrentDevices();
 To set a device as an active device, you can call `setDevice` method. This takes
 a `MediaDeviceInfo` object, and replaces the same `kind` device.
 
-```js
-meeting.self.setDevice(device);
+```swift
+meeting.localUser.setDevice(device);
 ```
 
 <head>
-  <title>Web Core Manage Media Devices</title>
+  <title>iOS Core Manage Media Devices</title>
+  <meta
+    name="description"
+    content="Discover how to manage media devices for local users in iOS Core with Dyte Docs. Optimize your app's media handling capabilities seamlessly."
+  />
 </head>
