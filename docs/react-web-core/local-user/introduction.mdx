@@ -50,14 +50,46 @@ Here is a list of properties that local user provides:
   "accepted" | "waiting" | "rejected" | "none"
   ```
 
+- `isPinned`: A boolean value indicating if the local user is pinned or not.
 - `roomJoined`: A boolean value indicating if the local user is in the meeting
 - `roomState`: Indicates the state of the user in the meeting. It
   can take the following values:
   
    ```ts
-   "init" | "joined" | "waitlisted" | "rejected" | "kicked" | "left" | "ended"
+   "init" | "joined" | "waitlisted" | "rejected" | "kicked" | "left" | "ended" | "disconnected"
    ```
-- `isPinned`: A boolean value indicating if the local user is pinned or not.
+
+```mermaid
+stateDiagram-v2
+    direction LR
+    classDef END fill:#ef4444,color:#fff,stroke:#ef4444;
+
+    [*] --> init
+    init --> joined
+    init --> waitlisted
+    waitlisted --> joined
+    waitlisted --> rejected
+    joined --> disconnected
+    disconnected --> joined
+    joined --> kicked
+    joined --> left
+    joined --> ended
+
+    class kicked,left,ended,rejected END
+```
+
+```ts
+// subscribe to roomState
+const roomState = useDyteSelector((m) => m.self.roomState)
+
+return (
+  <>
+    {roomState === "disconnected" && <div>disconnected</div>}
+    </>
+)
+```
+    
+
 
 
 ## Change the name of the local user

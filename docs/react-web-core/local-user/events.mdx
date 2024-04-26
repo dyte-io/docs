@@ -118,24 +118,6 @@ meeting.self.on('mediaScoreUpdate', ({ kind, isScreenshare, score }) => {
 });
 ```
 
-## Webinar Stage events
-
-In a `WEBINAR` setup, below events can be used to bring a user on to stage
-
-| **Event**                  | **Description**                                                                          |
-| -------------------------- | ---------------------------------------------------------------------------------------- |
-| `waitlisted`               | Emitted when the user has been added to the waitlist.                                    |
-| `joinStageRequestAccepted` | Emitted to all host users, when a host accepts a user's request to join webinar meeting. |
-| `joinStageRequestRejected` | Emitted to all host users, when a host rejects a user's request to join webinar meeting. |
-| `removedFromStage`         | Emitted when the user has been kicked from the webinar meeting.                          |
-| `stageJoined`              | Emitted when the user has joined the webinar meeting.                                    |
-| `stageLeft`                | Emitted when the user has left the webinar meeting.                                      |
-| `peerRequestToJoinStage`   | Emitted when a user has requested to join the webinar meeting.                           |
-| `peerRejectedToJoinStage`  | Emitted when the user's request to join the meeting has been rejected.                   |
-| `peerAcceptedToJoinStage`  | Emitted when the user's request to join the meeting has been accepted                    |
-| `peerStoppedPresenting`    | Emitted when a participant stops presenting in the webinar meeting.                      |
-| `peerStartedPresenting`    | Emitted when a participant starts presenting in the webinar meeting.                     |
-
 ## Permission Updates
 
 Triggered when permissions are updated dynamically by a privileged user

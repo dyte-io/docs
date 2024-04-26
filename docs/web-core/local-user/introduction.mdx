@@ -47,7 +47,7 @@ Here is a list of properties that local user provides:
   can take the following values:
   
    ```ts
-   "init" | "joined" | "waitlisted" | "rejected" | "kicked" | "left" | "ended"
+   "init" | "joined" | "waitlisted" | "rejected" | "kicked" | "left" | "ended" | "disconnected"
    ```
 
 ```mermaid
@@ -60,6 +60,8 @@ stateDiagram-v2
     init --> waitlisted
     waitlisted --> joined
     waitlisted --> rejected
+    joined --> disconnected
+    disconnected --> joined
     joined --> kicked
     joined --> left
     joined --> ended
