@@ -3085,6 +3085,8 @@ components:
             - meeting.chatSynced
             - recording.statusUpdate
             - livestreaming.statusUpdate
+            - meeting.transcript
+            - meeting.summary
           description: Events this webhook will send updates for
           items:
             type: string
@@ -3096,6 +3098,8 @@ components:
               - meeting.chatSynced
               - recording.statusUpdate
               - livestreaming.statusUpdate
+              - meeting.transcript
+              - meeting.summary
         created_at:
           type: string
           format: date-time
@@ -3190,6 +3194,8 @@ components:
             - meeting.chatSynced
             - recording.statusUpdate
             - livestreaming.statusUpdate
+            - meeting.transcript
+            - meeting.summary
           description: Events that this webhook will get triggered by
           items:
             type: string
@@ -3201,6 +3207,8 @@ components:
               - meeting.chatSynced
               - recording.statusUpdate
               - livestreaming.statusUpdate
+              - meeting.transcript
+              - meeting.summary
         enabled:
           type: boolean
           x-stoplight:
@@ -3235,6 +3243,8 @@ components:
               - recording.statusUpdate
               - livestreaming.statusUpdate
               - meeting.chatSynced
+              - meeting.transcript
+              - meeting.summary
         enabled:
           type: boolean
           x-stoplight:
