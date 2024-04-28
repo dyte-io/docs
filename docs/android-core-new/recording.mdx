@@ -3,157 +3,93 @@ title: Recording
 description: Control recordings in a meeting.
 sidebar_position: 9
 tags:
-  - web-core
+  - android-core
   - recording
 ---
 
 # Recording
 
-The `meeting.recording` object can be used start and stop recordings in a
-meeting. You can also get the current status of a recording using this API.
+The `meeting.recording` object in Dyte's Android Core SDK provides APIs to manage recording within a meeting.
 
-The `meeting.recording` object has the following properties:
+### Recording State
 
-## List recordings
+The `meeting.recording.recordingState` property indicates the current state of the recording. Possible states include `IDLE`, 
+`STARTING`, `RECORDING`, `PAUSED`, and `STOPPING`.
 
-Retrieve a list of active recordings along with their current status.
+### Starting a Recording
 
-```ts
-const recordings = meeting.recording.recordings;
+To start a recording, use the `start()` method of the `meeting.recording` object.
+
+```kotlin
+meeting.recording.start()
 ```
 
-it returns list of recording ids and their state
+### Stopping a Recording
 
-```ts
-[
-  {
-    id: '<recording-id>',
-    state: '<recording-state>',
-  },
-];
+To stop an active recording, use the `stop()` method.
+
+```kotlin
+meeting.recording.stop()
 ```
 
-The recording states include `IDLE`, `STARTING`, `RECORDING`, `PAUSED`, and `STOPPING`.
+### Pausing a Recording
 
-## Start a recording
+To temporarily pause a recording, use the `pause()` method.
 
-Initiate a recording using the start method.
-
-```ts
-await meeting.recording.start();
+```kotlin
+meeting.recording.pause()
 ```
 
-To enable multiple parallel recordings, the first recording must be started with the option `{ allowMultiple: true }`.
+### Resuming a Recording
 
-```ts
-await meeting.recording.start({ allowMultiple: true });
+To resume a paused recording, use the `resume()` method.
+
+```kotlin
+meeting.recording.resume()
 ```
 
-Subsequent recordings can then be initiated while the first is still running.
+### Listening for Recording Events
 
-## Stop a recording
+To handle recording-related events, implement the `DyteRecordingEventsListener` interface. This interface provides callbacks for 
+various recording events:
 
-End an active recording with the stop method.
+- `onMeetingRecordingStarted()`: Called when the recording is started or resumed, either by the user or their peer.
+- `onMeetingRecordingEnded()`: Called when the recording is stopped or paused, either by the user or their peer.
+- `onMeetingRecordingStateUpdated(state: DyteRecordingState)`: Notifies when there is a change in the recording state.
+- `onMeetingRecordingStopError(e: Exception)`: Indicates an error occurred while stopping an active recording.
+- `onMeetingRecordingPauseError(e: Exception)`: Indicates an error occurred while pausing an active recording.
+- `onMeetingRecordingResumeError(e: Exception)`: Indicates an error occurred while resuming a paused recording.
 
-```ts
-await meeting.recording.stop();
+```kotlin
+meeting.addRecordingEventsListener(object : DyteRecordingEventsListener {
+    override fun onMeetingRecordingStarted() {
+        // Handle recording started
+    }
+
+    override fun onMeetingRecordingEnded() {
+        // Handle recording stopped
+    }
+
+    override fun onMeetingRecordingStateUpdated(state: DyteRecordingState) {
+        // Handle recording state update
+    }
+
+    override fun onMeetingRecordingStopError(e: Exception) {
+        // Handle recording stop error
+    }
+
+    override fun onMeetingRecordingPauseError(e: Exception) {
+        // Handle recording pause error
+    }
+
+    override fun onMeetingRecordingResumeError(e: Exception) {
+        // Handle recording resume error
+    }
+})
 ```
 
-To stop a specific recording, provide the recording ID:
-
-```ts
-await meeting.recording.stop(recordingId);
-```
-
-Omitting the recording ID will stop all recordings in `RECORDING` or `PAUSED` state.
-
-## Pause a recording
-
-Temporarily halt a recording using the pause method.
-
-```ts
-await meeting.recording.pause();
-```
-
-To pause a specific recording, include the recording ID:
-
-```ts
-await meeting.recording.pause(recordingId);
-```
-
-Without a recording ID, all recordings in the `RECORDING` state will be paused.
-
-## Resume a recording
-
-Restart a paused recording with the resume method.
-
-```ts
-await meeting.recording.resume();
-```
-
-For resuming a specific recording, pass the recording ID:
-
-```ts
-await meeting.recording.resume(recordingId);
-```
-
-If no recording ID is specified, all recordings in the `PAUSED` state will be resumed.
-
-## Recording Configuration
-
-You can set the defaults for recording during initialization
-
-```js
-const meeting = await DyteClient.init({
-  authToken,
-  defaults: {
-    recording: recordingConfig,
-  },
-});
-```
-
-In recording config you can specify height, width and codec of the recording output. You can also customize the recording file name prefix.
-
-```ts
-interface RecordingConfig {
-  videoConfig?: {
-    height?: number;
-    width?: number;
-    codec?: 'H264' | 'VP8';
-  };
-  fileNamePrefix?: string;
-}
-```
-
-#### videoConfig
-
-1. **codec** - Codec using which the recording will be encoded. `H264` will use a `mp4` container, `VP8` will use a `webm` container
-
-   Allowed values: `H264` | `VP8`
-
-   Default: `H264`
-
-2. **width** - Width of the recording video in pixels
-   Allowed values: 1 \>= width \<= 1920
-
-   Default: `1280`
-
-3. **height** - Height of the recording video in pixels
-   Allowed values: 1 \>= height \<= 1920
-
-   Default: `720`
-
-#### fileNamePrefix
-
-You can customize the file name generated by Dyte recorder. All recordings for the meeting will start with the prefix provided here.
-It is equivalent of `file_name_prefix` in our [start recording API](https://docs.dyte.io/api#/)
-
-## Check active recording state
-
-The `meeting.recording.recordingState` property describes the current state of
-the recording. The valid states are `IDLE`, `STARTING`, `RECORDING`, `PAUSED` and
-`STOPPING`.
+Implement these callbacks to handle recording events and errors appropriately in your application.
 
 <head>
-  <title>Web Core Recording</title>
+  <title>Android Core Recording</title>
 </head>
