@@ -3,7 +3,7 @@ title: Other methods
 description: Methods on a plugin in a meeting.
 sidebar_position: 4
 tags:
-  - mobile-core
+  - ios-core
   - plugins
 ---
 
@@ -12,57 +12,49 @@ tags:
 You can send data (type `any`) to a plugin using the `sendData()` method. This method comes in handy when building your own plugin.
 
 ```swift
-val pluginId = '...';
-val plugin = meeting.plugins.active.firstOrNull { it.id == pluginId }
-
-plugin?.let { p ->
-  p.sendData(
-    eventName = "my-custom-event",
-    data = "Hello world"
-  )
+let pluginId = "..."
+if let plugin = meeting.plugins.active.first(where: { $0.id == pluginId }) {
+    plugin.sendData(eventName: "my-custom-event", data: "Hello world")
 }
 ```
 
 ## Receive data from the plugin
 
-You can receive data from a plugin by implementing the methods defined in `DytePluginEventsListener` interface. This method comes in handy when building your own plugin.
+You can receive data from a plugin by implementing the methods defined in `DytePluginEventsListener` interface.
+This method comes in handy when building your own plugin. Listen Plugin events
+using `meeting.addPluginEventsListener(meetingViewModel)`
 
-```kotlin
-val pluginEventListener = object : DytePluginEventsListener {
-  override fun onPluginActivated(plugim: DytePlugin) {
+```swift
+extension MeetingViewModel: DytePluginEventsListener {
+  func onPluginActivated(plugin: DytePlugin) {
     ...
   }
 
-  override fun onPluginDeactivated(plugin: DytePlugin) {
+  func onPluginDeactivated(plugin: DytePlugin) {
     ...
   }
 
-  override onPluginMessage(plugin: DytePlugin, eventName: String, data: Any?) {
+  func onPluginMessage(plugin: DytePlugin, eventName: String, data: Any?) {
     ...
   }
 
-  override onPluginFileRequest(plugin: DytePlugin) {
+  func onPluginFileRequest(plugin: DytePlugin) {
     ...
   }
 }
-
-meeting.addPluginEventsListener(pluginEventListener)
 ```
 
 ## Upload file to a plugin
 
 You can upload a file to a plugin using the `uploadFile()` method. This method comes in handy when building your own plugin.
 
-```kotlin
-val pluginId = '...';
-val plugin = meeting.plugins.active.firstOrNull { it.id == pluginId }
-
-plugin?.let { p ->
-  p.uploadFile(
-    DytePluginFile(
-      resultCode = 1,
-      data = Intent() // Intent with the file data
-    )
-  )
+```swift
+let pluginId = "..."
+if let plugin = meeting.plugins.active.first(where: { $0.id == pluginId }) {
+    plugin.uploadFile(DytePluginFile(resultCode: 1, data: Intent()))
 }
 ```
+
+<head>
+  <title>Mobile Core extra plugins Function</title>
+</head>

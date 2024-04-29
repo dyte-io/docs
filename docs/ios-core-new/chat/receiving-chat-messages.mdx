@@ -5,7 +5,7 @@ description: >-
   iOS app using Dyte
 sidebar_position: 3
 tags:
-  - mobile-core
+  - ios-core
   - chat
 ---
 
@@ -16,17 +16,16 @@ To be able to receive chat messages you need to implement a method
 subscribe to this events by calling
 `meeting.addChatEventsListener(dyteChatEventsListener)`
 
-```kotlin
-meeting.addChatEventsListener(object :
-  DyteChatEventsListener {
-    override fun onChatUpdates(messages: List<DyteChatMessage>) {
-     // to load chat messages
-    }
+```swift
+extension MeetingViewModel: DyteChatEventsListener {
+  func onChatUpdates(messages: [DyteChatMessage]) {
+  // to load chat messages
+  }
 
-    override fun onNewChatMessage(message: DyteChatMessage) {
-      // when a new chat message is shared in the meeting
-    }
-  })
+  func onNewChatMessage(message: DyteChatMessage) {
+    // when a new chat message is shared in the meeting
+  }
+}
 ```
 
 The `onChatUpdates()` method will be called whenever there is a change in the chat messages. The `messages` parameter is a list of `DyteChatMessage` objects that have been sent in the chat.
