@@ -5,7 +5,7 @@ description: >-
   leverage these events for enhanced user experiences within your app.
 sidebar_position: 2
 tags:
-  - mobile-core
+  - ios-core
   - local-user
   - self
 ---
@@ -34,7 +34,7 @@ extension MeetingViewModel: DyteSelfEventsListener {
 Triggered when the user starts / stops the video using `enableVideo` or
 `disableVideo`
 
-```kotlin
+```swift
 extension MeetingViewModel: DyteSelfEventsListener {
     func onVideoUpdate(videoEnabled: Bool) {
       if (videoEnabled) {
@@ -68,7 +68,7 @@ extension MeetingViewModel: DyteSelfEventsListener {
 
 Triggered when the user is disconnected due to media/network errors
 
-```kotlin
+```swift
 extension MeetingViewModel: DyteSelfEventsListener {
     func onMeetingRoomDisconnected() {
       //disconnected

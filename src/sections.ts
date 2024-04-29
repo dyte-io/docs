@@ -85,12 +85,6 @@ const SECTIONS: Section[] = [
     section: 'mobile-core',
   },
   {
-    name: 'iOS Core [new]',
-    docId: 'ios-core-new',
-    icon: AppleIcon,
-    section: 'mobile-core',
-  },
-  {
     name: 'iOS Core',
     docId: 'ios-core',
     icon: AppleIcon,

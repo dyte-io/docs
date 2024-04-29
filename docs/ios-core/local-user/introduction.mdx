@@ -3,9 +3,9 @@ title: Introduction
 description: >-
   Learn about local user management in iOS Core with Dyte Docs. Understand the
   fundamentals for effective integration and app customization.
-sidebar_position: 1
+sidebar_position: 3
 tags:
-  - mobile-core
+  - ios-core
   - local-user
   - self
 ---
@@ -92,7 +92,7 @@ meeting.localUser.audioEnabled
 
 ## Enable/Disable camera
 
-```kotlin
+```swift
 // Disable Video
 meeting.localUser.disableVideo()
 
@@ -101,6 +101,19 @@ meeting.localUser.enableVideo()
 
 // Get current status
 meeting.localUser.videoEnabled
+```
+
+## Pinning & unpinning
+
+You can pin or unpin yourself given you have the appropriate permissions. You
+can check the pinned status of the local user using `meeting.localUser.isPinned`.
+
+```swift
+meeting.localUser.pin();
+```
+
+```swift
+meeting.localUser.unpin();
 ```
 
 ## Enable / Disable Screen share

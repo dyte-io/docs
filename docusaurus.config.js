@@ -121,16 +121,6 @@ const docs = [
     },
   },
   {
-    id: 'ios-core-new',
-    path: 'docs/ios-core-new',
-    routeBasePath: '/ios-core-new',
-    versions: {
-      current: {
-        label: '1.x.x',
-      },
-    },
-  },
-  {
     id: 'ios-core',
     path: 'docs/ios-core',
     routeBasePath: '/ios-core',
@@ -254,10 +244,15 @@ const plugins = [
             '/guides/capabilities/misc/livestreaming-other-platforms'
           )
         ) {
-          return ['/guides/capabilities/livestreaming-other-platforms', '/guides/capabilities/recording/livestream-recording'];
+          return [
+            '/guides/capabilities/livestreaming-other-platforms',
+            '/guides/capabilities/recording/livestream-recording',
+          ];
         }
 
-        if (path.startsWith('/guides/capabilities/video/add-virtual-background')) {
+        if (
+          path.startsWith('/guides/capabilities/video/add-virtual-background')
+        ) {
           return [
             '/guides/capabilities/middleware/add-virtual-background',
             '/guides/capabilities/customization/add-virtual-background',
@@ -455,7 +450,7 @@ const config = {
   plugins,
 
   trailingSlash: false,
-  themes: ['@docusaurus/theme-live-codeblock','@docusaurus/theme-mermaid'],
+  themes: ['@docusaurus/theme-live-codeblock', '@docusaurus/theme-mermaid'],
   clientModules: [require.resolve('./src/client/define-ui-kit.js')],
   scripts: [{ src: 'https://cdn.statuspage.io/se-v2.js', async: true }],
   markdown: {
@@ -647,7 +642,7 @@ const config = {
           'swift',
           'objectivec',
           'json',
-          'bash'
+          'bash',
         ],
         magicComments: [
           {
