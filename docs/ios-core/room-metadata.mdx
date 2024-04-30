@@ -13,7 +13,6 @@ tags:
 
 All metadata pertaining to a meeting is stored in `meeting.meta`. This includes:
 
-- `roomName`: The name of the room the current participant is connected to.
 - `meetingId`: The unique identifier of the meeting.
 - `meetingType`: Indicates the meeting is a group-call or a webinar.
 - `meetingTitle`: The title of the meeting.
@@ -36,11 +35,11 @@ struct MeetingConfig {
 }
 ```
 
-For example, if you want to get the name of the room the current participant is
+For example, if you want to get the name of the meeting the current participant is
 connected to, you can do so by doing:
 
 ```swift
-let roomName = meeting.meta.roomName
+let meetingTitle = meeting.meta.meetingTitle
 ```
 
 <head>

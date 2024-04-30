@@ -138,6 +138,23 @@ extension MeetingViewModel: DyteSelfEventsListener {
 }
 ```
 
+## Listen to Broadcast message within the room
+
+Get broadcast messages within the room using `onRoomMessage` callback.
+
+_Parameters_:
+
+`type`: A client-specific type to differentiate between custom messages like "emoji" or "greetings"
+
+`payload`: A dictionary containing the message payload, where keys are strings and values are of any type.
+
+```swift
+extension MeetingViewModel: DyteSelfEventsListener {
+  func onRoomMessage(type: String, payload: [String : Any]) {
+    // triggered when a message is sent within the room.
+  }
+```
+
 <head>
   <title>iOS Core Events</title>
   <meta

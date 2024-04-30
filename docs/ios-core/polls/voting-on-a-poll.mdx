@@ -15,10 +15,10 @@ tags:
 The `meeting.polls.vote()` method can be used to register a vote on a poll. It
 accepts the following params.
 
-| Param | Type   | Default Value | Required | Description                                |
-| ----- | ------ | ------------- | -------- | ------------------------------------------ |
-| id    | string | -             | yes      | The ID of the poll that is to be voted on. |
-| index | number | -             | yes      | The index of the option.                   |
+| Param       | Type            | Default Value | Required | Description                  |
+| ----------- | --------------- | ------------- | -------- | ---------------------------- |
+| pollMessage | DytePollMessage | -             | yes      | The poll message to vote on. |
+| pollOption  | DytePollOption  | -             | yes      | The option to vote for.      |
 
 The following snippet votes for the 1st option on the 1st poll created in the
 meeting.

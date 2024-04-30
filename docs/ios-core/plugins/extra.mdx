@@ -44,17 +44,6 @@ extension MeetingViewModel: DytePluginEventsListener {
 }
 ```
 
-## Upload file to a plugin
-
-You can upload a file to a plugin using the `uploadFile()` method. This method comes in handy when building your own plugin.
-
-```swift
-let pluginId = "..."
-if let plugin = meeting.plugins.active.first(where: { $0.id == pluginId }) {
-    plugin.uploadFile(DytePluginFile(resultCode: 1, data: Intent()))
-}
-```
-
 <head>
-  <title>Mobile Core extra plugins Function</title>
+  <title>iOS Core extra plugins Function</title>
 </head>

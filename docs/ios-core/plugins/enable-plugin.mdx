@@ -15,11 +15,11 @@ plugins.
 
 ### Get Plugin View
 
-This method adds the communication layer between the plugin inside the iframe and
-the core application (meeting object) in the main window.
+This method adds the communication layer between the plugin inside the WebView and
+the core SDK (meeting object) in your application.
 
 ```swift
-val plugin = meeting.plugins.get(0)
+val plugin = meeting.plugins.active[0]
 
 plugin.getPluginView() // This will return a WebView
 ```
@@ -32,10 +32,10 @@ The `activate()` method activates a plugin for all users in the meeting. When
 you activate a plugin, it moves into the active plugins map and can be accessed
 from `meeting.plugins.active`.
 
-The snippet below displays all plugins and activates a plugin on click.
+The snippet below retrieves the first plugin from the list and activates it.
 
 ```swift
-var plugin: DytePlugin = meeting.plugins.get(0)
+var plugin: DytePlugin = meeting.plugins.all[0]
 
 plugin.activate()
 ```

@@ -11,7 +11,7 @@ This information is intended for developers debugging or troubleshooting Dyte's 
 
 Error codes are a standardized method for developers to convey application errors and issues to users or other developers in a structured manner. Error codes typically consist of a numerical or alphanumeric code and a description that provides more information about the error.
 
-This document lists Dyte's mobile core error codes that you may encounter in various scenarios. System error codes can arise in different parts of the system, and their descriptions may not always provide exact details. To address these codes effectively, you must first understand the programmatic and runtime contexts in which these errors occurred.
+This document lists Dyte's iOS core error codes that you may encounter in various scenarios. System error codes can arise in different parts of the system, and their descriptions may not always provide exact details. To address these codes effectively, you must first understand the programmatic and runtime contexts in which these errors occurred.
 
 ## Error codes and format
 
@@ -24,63 +24,16 @@ class DyteError {
 }
 ```
 
-### Socket error codes
-
-Socket error codes are used to indicate errors that occur during network communication. These errors are typically returned by the operating system's socket API.
-
-- `Get_Socket_Response_Timeout`: Socket response timeout.
-- `Get_Socket_Response_Is_Null`: Socket response is null.
-
-### Host control error codes
-
-Host control error codes are used to indicate errors that occur during host control operations. These errors are typically returned by the host control module.
-
-- `Unpin_Peer`: Failed to unpin peer.
-- `Pin_Peer`: Failed to pin peer.
-- `Mute_Video`: Failed to mute video.
-- `Mute_Audio`: Failed to mute audio.
-- `Mute_All_Video`: Failed to mute all video.
-- `Mute_All_Audio`: Failed to mute all audio.
-- `Kick_All`: Failed to kill all.
-- `Kick_Peer`: Failed to kick peer.
-
-### Preset editor error codes
-
-Preset editor error codes are used to indicate errors that occur during preset editor operations. These errors are typically returned by the preset editor module.
-
-- `Record_Permission_Not_Given`: Record permission is not given on the preset editor.
-- `Recording_Start_Exception`: Failed to start recording.
-- `Recording_Pause_Exception`: Failed to pause recording.
-- `Recording_Resume_Exception`: Failed to resume recording.
-- `Recording_Stop_Exception`: Failed to stop recording.
-- `No_Active_Recording_Found`: There is no active recording in progress.
-
 ### Meeting error codes
 
-Meeting error codes are used to indicate errors that occur during meeting operations. These errors are typically returned by the meeting module.
+Meeting error codes are used to indicate errors that occur during meeting operations. These errors are typically returned by the methods of the `meeting` object such as `init()`, `join()`.
 
-- `Invalid_Auth_Token`: Invalid auth token.
-- `Meeting_Init_Failed`: Failed to initialize meeting.
-- `Invalid_Base_Url`: Invalid base URL.
-- `Join_Room_Failed`: Failed to join room.
-- `Unknown_Error`: Something went wrong.
-
-### Self error codes
-
-Self error codes are used to indicate errors that occur during self operations. These errors are typically returned by the self module.
-
-- `Audio_Prod_Not_Supported`: Current meeting does not support audio production.
-- `Video_Prod_Not_Supported`: Current meeting does not support video production.
-- `Audio_Not_Allowed`: User not allowed to produce audio.
-- `Video_Not_Allowed`: User not allowed to produce video.
-
-### Chat error codes
-
-Chat error codes are used to indicate errors that occur during chat operations. These errors are typically returned by the chat module.
-
-- `Chat_Not_Supported`: Permission denied.
-- `Chat_Files_Not_Supported`: Permission denied.
+- 1000: Invalid auth token.
+- 1002: Failed to initialize meeting.
+- 1003: Invalid base URL.
+- 1005: Failed to join room.
+- 4000: Something went wrong.
 
 <head>
-  <title>Mobile Core System Error Codes</title>
+  <title>iOS Core System Error Codes</title>
 </head>

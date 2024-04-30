@@ -117,7 +117,7 @@ Trigger an event when any is change in active speaker in the meeting.
 
 ## Pinned participant
 
-Trigger an event when any is change in pinned participant in the meeting.
+Trigger an event when there is any change in pinned participant in the meeting.
 
 ```swift
     extension MeetingViewModel: DyteParticipantEventsListener {
@@ -161,7 +161,7 @@ You can also subscribe to events for a single participant by implementing `DyteP
 
 Here are the supported methods:
 
-## Participant update
+### Participant update
 
 Triggers an event whenever there is any change in participant.
 
@@ -173,7 +173,7 @@ Triggers an event whenever there is any change in participant.
     }
 ```
 
-## Video update
+### Video update
 
 Trigger an event when the participant starts / stops video.
 
@@ -185,7 +185,7 @@ Trigger an event when the participant starts / stops video.
     }
 ```
 
-## Audio update
+### Audio update
 
 Trigger an event when the participant starts / stops audio.
 
@@ -197,7 +197,7 @@ Trigger an event when the participant starts / stops audio.
     }
 ```
 
-## Pinned & Unpinned participant
+### Pinned & Unpinned participant
 
 Trigger an event when the participant is pinned / unpinned.
 
@@ -213,7 +213,7 @@ Trigger an event when the participant is pinned / unpinned.
     }
 ```
 
-## Screen share started & ended
+### Screen share started & ended
 
 Trigger an event when the participant starts / stops screen sharing.
 
