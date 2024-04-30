@@ -64,6 +64,19 @@ if let participant = meeting.participants.joined.first(where: { $0.id == partici
 }
 ```
 
+## Waiting Room
+
+Host can use these waiting room methods from our participant object to
+perform these actions programmatically.
+
+```swift
+// Accept the request and let the participant in the meeting
+participant.acceptWaitListedRequest()
+
+// Reject the request, do not permit the participant to join the meeting
+participant.rejectWaitListedRequest()
+```
+
 ## pin/unpin
 
 You can also `pin` or `unpin` a participant in the meeting. All "pinned"
@@ -117,6 +130,6 @@ subscribe to this events by calling
   <title>iOS Core The participant object</title>
   <meta
     name="description"
-    content="Explore the Android Participants Participant Object and its functionalities for effective integration in your application."
+    content="Explore the iOS Core Participant Object and its functionalities for effective integration in your application."
   />
 </head>

@@ -16,19 +16,6 @@ You can subscribe to various events on the local user by implementing
 `DyteSelfEventsListener` and passing the object to
 `meeting.addSelfEventsListener(dyteSelfEventsListener)`.
 
-### Room joined
-
-Triggered when the room join event completes and now the meeting is ready to
-produce and consume media.
-
-```swift
-extension MeetingViewModel: DyteSelfEventsListener {
-    func onRoomJoined() {
-        //Room Joined
-    }
-}
-```
-
 ### Video update
 
 Triggered when the user starts / stops the video using `enableVideo` or

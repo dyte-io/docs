@@ -68,9 +68,7 @@ Add `DyteiOSCore` SDK through Swift Package Manager in Xcode. Use https://github
   </TabItem>
 </Tabs>
 
-4. Add the following entries to the info.plist file. This gives permission to
-   your app to access the camera and microphone, access photos, install the
-   required fonts and icons.
+Add the following entries to the info.plist file. This gives permission to your app to access the camera and microphone, access photos, install the required fonts and icons.
 
 ```xml
 <key>NSBluetoothPeripheralUsageDescription</key>
@@ -114,7 +112,6 @@ let meeting = DyteiOSClientBuilder().build()
 meeting.addMeetingRoomEventsListener(meetingRoomEventsListener: self)
 meeting.addParticipantEventsListener(participantEventsListener: self)
 meeting.addSelfEventsListener(selfEventsListener: self)
-meeting.addParticipantEventsListener(participantEventsListener: self)
 meeting.addChatEventsListener(chatEventsListener: self)
 meeting.addPollEventsListener(pollEventsListener: self)
 meeting.addRecordingEventsListener(recordingEventsListener: self)
@@ -122,7 +119,7 @@ meeting.addWaitlistEventListener(waitlistEventListener: self)
 meeting.addLiveStreamEventsListener(liveStreamEventsListener: self)
 ```
 
-## Step 3: Set the properties in the DyteMeetingInfo class
+## Step 3: Configure a Dyte meeting
 
 Add `authToken` that you got from the REST API to constructor of DyteMeetingInfoV2 - [Add Participant API](/api#/operations/addParticipant)
 
@@ -140,7 +137,7 @@ let meetingInfo = DyteMeetingInfoV2(authToken: authToken,
                                   baseUrl: "dyte.io")
 ```
 
-## Step 4: Initialize the connection request
+## Step 4: Initialize the Dyte meeting
 
 To initialize the connection request, call the `doInit()` method obtained on
 `meeting` with the `meetingInfo` argument. This will establish the connection
@@ -155,10 +152,12 @@ Note: This is the asynchronous method, You will have to attached observer (meeti
 
 ```swift
 func onMeetingInitCompleted() {
- }
+  // init complete
+}
 
 func onMeetingInitFailed(exception: KotlinException) {
- }
+  // init failed
+}
 ```
 
 OR
@@ -172,7 +171,9 @@ meeting.doInit(dyteMeetingInfo: DyteMeetingInfoV2,
 To initialize the connection request, call the `doInit` method
 which is asynchronous and callback based.
 
-## Step 5: Connect to the meeting
+## Step 5: Go live with your Dyte meeting
+
+### Connect to the meeting
 
 Now, you have established the connection with the Dyte meeting server
 successfully. Once `onMeetingInitCompleted()` is triggered, next step is to join
