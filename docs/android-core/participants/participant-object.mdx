@@ -1,16 +1,16 @@
 ---
-title: The participant object
-description: >-
-  Explore the Android Participants Participant Object and its functionalities
-  for effective integration in your application.
+title: Participant Object
+description: The object corresponding to a particular participant.
 sidebar_position: 2
+slug: /participants/participant-object
 tags:
-  - mobile-core
+  - android-core
   - participants
-  - participant
 ---
 
 # The participant object
+
+The data regarding all meeting participants is stored under `meeting.participants`. Use the methods and events to consume the participants data.
 
 The `participant` object consists of all the information related to a particular participant. For instance, it contains a participants video/audio/screenshare stream, and the participant's name. It also contains state variables that indicate whether a participant's camera is on or off, and whether they are muted or unmuted.
 
@@ -30,87 +30,92 @@ The participant object has the following properties.
 - `isPinned`: True if current user is pinned in the meeting room.
 - `presetName`: Name of the preset associated with the participant.
 - `stageStatus`: Status of stage for the participant
+- `maxNumberOnScreen`: A int showing the maximum number of people set for this meeting.
+- `currentPageNumber`: A int showing the current page in this meeting. Participants from this page are filled in the `active` list.
+- `pageCount`: A int showing total number of pages available in the meeting.
+- `canGoNextPage`: A boolean indicating if next page of joined participants is available to show.
+- `canGoPreviousPage`: A boolean indicating if previous page of joined participants is available to show.
 
-## To get Video view of a given participant
+## To get video view of a given participant
 
 You can call `participant.getVideoView()` which will return a View which further
-can used to add in any View Group in android.
+can used to add in any ViewGroup in android.
 
 Similarly one can use `participant.getScreenShareView()` which will return a
-View which further can used to add in any View Group in android.
+View which further can used to add in any ViewGroup in android.
 
-## Audio/Video updates for participant
-
-You can listen to audio/video changes for a single participant by calling
-`addParticipantUpdateListener(listener: DyteParticipantUpdateListener)` on any
-participant object.
+Similarly, you can also access the pagination related information like follows:
 
 ```kotlin
-dyteParticipant.addParticipantUpdateListener(object : DyteParticipantUpdateListener {
-      override fun onAudioUpdate(participant: DyteMeetingParticipant, isEnabled: Boolean) {
-        // on audio update
-      }
-
-      override fun onVideoUpdate(participant: DyteMeetingParticipant, isEnabled: Boolean) {
-        // on video update
-      }
-
-      override fun onScreenShareStarted(participant: DyteMeetingParticipant) {
-        // when participant start to screenshare
-      }
-
-      override fun onScreenShareEnded(participant: DyteMeetingParticipant) {
-        // when participant stops screenshare
-      }
-
-      override fun onPinned() {
-        // when participant is pinned
-      }
-
-      override fun onUnpinned() {
-        // when participant is unpinned
-      }
-
-      override fun onSetAsActiveSpeaker() {
-        // when participant set to active speaker
-      }
-
-      override fun onRemovedAsActiveSpeaker() {
-        // when participant is no longer active speaker
-      }
-    })
+val maxNumberOnScreen = meeting.participants.maxNumberOnScreen
+val currentPageNumber = meeting.participants.currentPageNumber
+val pageCount = meeting.participants.pageCount
+val canGoNextPage = meeting.participants.canGoNextPage
+val canGoPreviousPage = meeting.participants.canGoPreviousPage
 ```
 
-Also make sure to remove event listener when they are no longer used. You can
-remove DyteParticipantUpdateListener by calling
-`removeParticipantUpdateListener(listener)`
+## Move between pages in paginated mode
 
-## Host controls methods
-
-If you (the local user) have the relevant permissions in the meeting, you can
-disable a participant's video/audio streams, or even remove them from the
-meeting.
+The `setPage(pageNumber: Int)` method allows you to switch between pages of participants present in the meeting.
 
 ```kotlin
-val participant = meeting.participants.joined.get(0);
+// switch to 1st page
+meeting.participants.setPage(1)
+```
 
-// To disable a participant's video stream
-participant.disableVideo();
+## Host Controls
 
-// To disable a participant's audio stream
-participant.disableAudio();
+If you (the local user) have the relevant permissions, you can disable a participant's video or audio, or kick them from the meeting.
 
-// To kick a participant from the meeting
-participant.kick();
+```kotlin
+val participant = meeting.participants.joined.firstOrNull { it.id == participantId }
 
-// to pin a participant in a meeting
-participant.pin();
+participant?.let { pcpt ->
+  // To disable a participant's video stream
+  pcpt.disableVideo();
 
-// to retrieve if current participant is already pinned in a meeting
-participant.isPinned
+  // To disable a participant's audio stream
+  pcpt.disableAudio();
+
+  // To kick a participant from the meeting
+  pcpt.kick();
+}
+```
+
+You can also `pin` or `unpin` a participant in the meeting. All "pinned"
+participants are added to the `meeting.participants.pinned` map.
+
+```kotlin
+val participant = meeting.participants.joined.firstOrNull { it.id == participantId }
+
+participant?.let { pcpt ->
+  // To pin a participant
+  pcpt.pin();
+
+  // To unpin a participant
+  pcpt.unpin();
+}
+```
+
+## Broadcast message to all participants
+
+Send a message to all `joined` participants.
+
+_Parameters_:
+
+`type`: A client-specific type to differentiate between custom messages like "emoji" or "greetings"
+
+`payload`: A map containing the message payload, where keys are strings and values are of `Any` type.
+
+```kotlin
+// broadcast message
+meeting.participants.broadcastMessage(type, payload)
 ```
 
 <head>
   <title>Android Core The participant object</title>
-  <meta name="description" content="Explore the Android Participants Participant Object and its functionalities for effective integration in your application."/>
+  <meta
+    name="description"
+    content="Explore the Android Participants Participant Object and its functionalities for effective integration in your application."
+  />
 </head>

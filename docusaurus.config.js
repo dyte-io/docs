@@ -111,16 +111,6 @@ const docs = [
     },
   },
   {
-    id: 'android-core-new',
-    path: 'docs/android-core-new',
-    routeBasePath: '/android-core-new',
-    versions: {
-      current: {
-        label: '1.x.x',
-      },
-    },
-  },
-  {
     id: 'flutter-core',
     path: 'docs/flutter-core',
     routeBasePath: '/flutter-core',
