@@ -32,19 +32,19 @@ This module allows users to initialize media before initializing the root DyteCl
 
 <a name="module_DyteSelfMedia+audioTrack"></a>
 
-### dyteSelfMedia.audioTrack
+### .audioTrack
 
 Returns the `audioTrack`.
 
 <a name="module_DyteSelfMedia+rawAudioTrack"></a>
 
-### dyteSelfMedia.rawAudioTrack
+### .rawAudioTrack
 
 Returns the `rawAudioTrack` having no middleware executed on it.
 
 <a name="module_DyteSelfMedia+mediaPermissions"></a>
 
-### dyteSelfMedia.mediaPermissions
+### .mediaPermissions
 
 Returns the current audio and video permissions given by the user.
 'ACCEPTED' if the user has given permission to use the media.
@@ -55,43 +55,43 @@ Returns the current audio and video permissions given by the user.
 
 <a name="module_DyteSelfMedia+videoTrack"></a>
 
-### dyteSelfMedia.videoTrack
+### .videoTrack
 
 Returns the `videoTrack`.
 
 <a name="module_DyteSelfMedia+rawVideoTrack"></a>
 
-### dyteSelfMedia.rawVideoTrack
+### .rawVideoTrack
 
 Returns the `videoTrack` having no middleware executed on it.
 
 <a name="module_DyteSelfMedia+screenShareTracks"></a>
 
-### dyteSelfMedia.screenShareTracks
+### .screenShareTracks
 
 Returns the screen share tracks.
 
 <a name="module_DyteSelfMedia+audioEnabled"></a>
 
-### dyteSelfMedia.audioEnabled
+### .audioEnabled
 
 Returns true if audio is enabled.
 
 <a name="module_DyteSelfMedia+videoEnabled"></a>
 
-### dyteSelfMedia.videoEnabled
+### .videoEnabled
 
 Returns true if video is enabled.
 
 <a name="module_DyteSelfMedia+screenShareEnabled"></a>
 
-### dyteSelfMedia.screenShareEnabled
+### .screenShareEnabled
 
 Returns true if screen share is enabled.
 
 <a name="module_DyteSelfMedia+addAudioMiddleware"></a>
 
-### dyteSelfMedia.addAudioMiddleware()
+### .addAudioMiddleware()
 
 Adds the audio middleware to be executed on the raw audio stream.
 If there are more than 1 audio middlewares,
@@ -101,14 +101,14 @@ If you want the sequence to be altered, please remove all previous middlewares a
 **Kind**: instance method of [<code>DyteSelfMedia</code>](#module_DyteSelfMedia)  
 <a name="module_DyteSelfMedia+removeAudioMiddleware"></a>
 
-### dyteSelfMedia.removeAudioMiddleware()
+### .removeAudioMiddleware()
 
 Removes the audio middleware, if it is there.
 
 **Kind**: instance method of [<code>DyteSelfMedia</code>](#module_DyteSelfMedia)  
 <a name="module_DyteSelfMedia+addVideoMiddleware"></a>
 
-### dyteSelfMedia.addVideoMiddleware()
+### .addVideoMiddleware()
 
 Adds the video middleware to be executed on the raw video stream.
 If there are more than 1 video middlewares,
@@ -118,42 +118,42 @@ If you want the sequence to be altered, please remove all previous middlewares a
 **Kind**: instance method of [<code>DyteSelfMedia</code>](#module_DyteSelfMedia)  
 <a name="module_DyteSelfMedia+removeVideoMiddleware"></a>
 
-### dyteSelfMedia.removeVideoMiddleware()
+### .removeVideoMiddleware()
 
 Removes the video middleware, if it is there.
 
 **Kind**: instance method of [<code>DyteSelfMedia</code>](#module_DyteSelfMedia)  
 <a name="module_DyteSelfMedia+getCurrentDevices"></a>
 
-### dyteSelfMedia.getCurrentDevices()
+### .getCurrentDevices()
 
 Returns the media devices currently being used.
 
 **Kind**: instance method of [<code>DyteSelfMedia</code>](#module_DyteSelfMedia)  
 <a name="module_DyteSelfMedia+getAudioDevices"></a>
 
-### dyteSelfMedia.getAudioDevices()
+### .getAudioDevices()
 
 Returns the local participant's audio devices.
 
 **Kind**: instance method of [<code>DyteSelfMedia</code>](#module_DyteSelfMedia)  
 <a name="module_DyteSelfMedia+getVideoDevices"></a>
 
-### dyteSelfMedia.getVideoDevices()
+### .getVideoDevices()
 
 Returns the local participant's video devices.
 
 **Kind**: instance method of [<code>DyteSelfMedia</code>](#module_DyteSelfMedia)  
 <a name="module_DyteSelfMedia+getSpeakerDevices"></a>
 
-### dyteSelfMedia.getSpeakerDevices()
+### .getSpeakerDevices()
 
 Returns the local participant's speaker devices.
 
 **Kind**: instance method of [<code>DyteSelfMedia</code>](#module_DyteSelfMedia)  
 <a name="module_DyteSelfMedia+getDeviceById"></a>
 
-### dyteSelfMedia.getDeviceById(deviceId, kind)
+### .getDeviceById(deviceId, kind)
 
 Returns the local participant's device, indexed by ID and kind.
 
@@ -166,7 +166,7 @@ Returns the local participant's device, indexed by ID and kind.
 
 <a name="module_DyteSelfMedia+setDevice"></a>
 
-### dyteSelfMedia.setDevice(device)
+### .setDevice(device)
 
 Change the current media device that is being used by the local participant.
 

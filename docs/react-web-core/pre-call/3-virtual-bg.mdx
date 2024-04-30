@@ -1,0 +1,117 @@
+---
+sidebar_label: Virtual BG and Noise Cancellation
+---
+
+# 
+## Virtual Background
+
+### Installation
+
+To enable the virtual background feature in your application, first you need to install the "Background Transformer" package.
+
+<Tabs groupId="framework">
+<TabItem value="npm" label="NPM">
+
+```bash
+npm i @dytesdk/video-background-transformer
+```
+
+</TabItem>
+<TabItem value="cdn" label="CDN">
+
+If you are using the web-core CDN script bundle, you can add the package by including a script tag in the head section of your HTML file:
+
+```js
+<script src="https://cdn.jsdelivr.net/npm/@dytesdk/video-background-transformer/dist/index.iife.js"></script>
+```
+
+</TabItem>
+</Tabs>
+
+### Initialize
+
+```js
+import DyteVideoBackgroundTransformer from '@dytesdk/video-background-transformer';
+```
+
+If you installed the package using a script tag, the `DyteVideoBackgroundTransformer` will be automatically available for use once the installation process is complete.
+
+```js
+const videoBackgroundTransformer = await DyteVideoBackgroundTransformer.init();
+```
+
+### Add an image as a background
+
+To incorporate an image as a background, create a static background video middleware using the `createStaticBackgroundVideoMiddleware` method provided by the `videoBackgroundTransformer` object.
+
+```js
+const videoMiddleware =
+  await videoBackgroundTransformer.createStaticBackgroundVideoMiddleware(
+    `https://assets.dyte.io/backgrounds/bg-dyte-office.jpg`
+  );
+meeting.self.addVideoMiddleware(videoMiddleware);
+```
+
+:::info note
+
+Ensure that the URL of the image allows Cross-Origin Resource Sharing (CORS) to avoid canvas tainting issues. If the CORS policy is not allowed for the image, it may result in the video feed getting stuck on a frame or appearing blank.
+
+:::
+
+### Blur the background
+
+Create a background blur video middleware using the `createBackgroundBlurVideoMiddleware` method provided by the `videoBackgroundTransformer` object.
+
+```js
+const videoMiddleware =
+  await videoBackgroundTransformer.createBackgroundBlurVideoMiddleware(10);
+meeting.self.addVideoMiddleware(videoMiddleware);
+```
+
+Pass intensity as a parameter between 1-100
+
+### Remove blur/virtual background
+
+Use the `removeVideoMiddleware` method
+
+```
+meeting.self.removeVideoMiddleware(videoMiddleware);
+```
+
+## Noise Cancellation (Krisp.ai)
+
+
+:::info note
+
+This is a paid addon, contact support@dyte.io for access.
+
+:::
+
+### Installation
+Create/Append to the .npmrc file in the project root with the below contents
+
+```
+//registry.npmjs.org/:_authToken=<token-from-dyte>
+@dytesdk:registry=https://registry.npmjs.org/
+#always-auth=true
+```
+
+```sh
+npm i @dytesdk/krisp-noise-cancellation
+```
+
+### Usage
+
+**Initialise the middleware**
+
+```ts
+const krisp = new Krisp();
+await krisp.init(meeting);
+```
+
+**Enable / disable the noise cancellation**
+
+```
+krisp.activate()
+// krisp.deactivate()
+```

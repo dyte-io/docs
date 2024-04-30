@@ -1,6 +1,6 @@
 ---
-sidebar_position: 11
-web_core_version: 1.20.0
+sidebar_position: 12
+web_core_version: 1.32.1
 ---
 
 <!-- Auto Generated Below -->
@@ -10,21 +10,18 @@ web_core_version: 1.20.0
 The DyteLivestream module represents the state of the current livestream, and allows
 to start/stop live streams.
 
-- [DyteLivestream](#module_DyteLivestream)
-  - [.start()](#module_DyteLivestream+start)
-  - [.stop()](#module_DyteLivestream+stop)
+
+* [DyteLivestream](#module_DyteLivestream)
+    * [.start()](#module_DyteLivestream+start)
+    * [.stop()](#module_DyteLivestream+stop)
 
 <a name="module_DyteLivestream+start"></a>
 
-### meeting.livestream.start()
-
+### livestream.start()
 Starts livestreaming the meeting.
 
-**Kind**: instance method of [<code>DyteLivestream</code>](#module_DyteLivestream)  
 <a name="module_DyteLivestream+stop"></a>
 
-### meeting.livestream.stop()
-
+### livestream.stop()
 Stops livestreaming the meeting.
 
-**Kind**: instance method of [<code>DyteLivestream</code>](#module_DyteLivestream)
