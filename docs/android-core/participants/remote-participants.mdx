@@ -34,6 +34,31 @@ Therefore if you were to make a video / audio grid of participants, you'd use th
 
 Each participant in each of the `joined`, `active`, `pinned` and `screenShares` list are of type `DyteJoinedMeetingParticipant`, `waitlisted` list is of type `DyteWaitlistedParticipant`.
 
+## Waiting room methods
+
+If the local user has the permission to accept waiting room requests (`selfPermissions.host.canAcceptRequests` is true), you can 
+manage pending waiting room requests, accepting or rejecting them as needed.
+
+**Note**: If the local user is not a host, `meeting.participants.waitlisted` property returns an empty list.
+
+### Accepting Requests
+
+To accept a waiting room request, use the acceptWaitListedRequest() method on a `DyteWaitlistedParticipant` object:
+
+```kotlin
+val waitlistedParticipant = meeting.participants.waitlisted[0]
+waitlistedParticipant.acceptWaitListedRequest()
+```
+
+### Rejecting Requests
+
+To deny a waiting room request, use the `rejectWaitListedRequest()` method on a `DyteWaitlistedParticipant` object:
+
+```kotlin
+val waitlistedParticipant = meeting.participants.waitlisted[0]
+waitlistedParticipant.rejectWaitListedRequest()
+```
+
 <head>
   <title>Android Core Participants</title>
 </head>
