@@ -56,7 +56,7 @@ Triggers an event whenever there is any change in the `meeting.participants` obj
 
 ### Video update
 
-Trigger an event when any participant starts / stops video.
+Triggers an event when any participant starts / stops video.
 
 ```kotlin
     private val participantEventsListener = object : DyteParticipantEventsListener {
@@ -68,7 +68,7 @@ Trigger an event when any participant starts / stops video.
 
 ### Audio update
 
-Trigger an event when any participant starts / stops audio.
+Triggers an event when any participant starts / stops audio.
 
 ```kotlin
     private val participantEventsListener = object : DyteParticipantEventsListener {
@@ -101,7 +101,7 @@ Triggers an event when there is any change in screenshares in a meeting.
 
 ### Active speaker
 
-Trigger an event when there is any change in active speaker in the meeting.
+Triggers an event when there is any change in active speaker in the meeting.
 
 ```kotlin
     private val participantEventsListener = object : DyteParticipantEventsListener {
@@ -117,7 +117,7 @@ Trigger an event when there is any change in active speaker in the meeting.
 
 ### Pinned participant
 
-Trigger an event when there is any change in pinned participant in the meeting.
+Triggers an event when there is any change in pinned participant in the meeting.
 
 ```kotlin
     private val participantEventsListener = object : DyteParticipantEventsListener {
@@ -125,7 +125,7 @@ Trigger an event when there is any change in pinned participant in the meeting.
             // your code here to show pinned participant
         }
 
-        override fun onParticipantUnpinned() {
+        override fun onParticipantUnpinned(participant: DyteMeetingParticipant) {
             // your code here to remove pinned participant
         }
     }
@@ -163,7 +163,7 @@ Triggers an event whenever there is any change in participant.
 
 ### Video update
 
-Trigger an event when the participant starts / stops video.
+Triggers an event when the participant starts / stops video.
 
 ```kotlin
     private val participantUpdateListener = object : DyteParticipantUpdateListener {
@@ -175,7 +175,7 @@ Trigger an event when the participant starts / stops video.
 
 ### Audio update
 
-Trigger an event when the participant starts / stops audio.
+Triggers an event when the participant starts / stops audio.
 
 ```kotlin
     private val participantUpdateListener = object : DyteParticipantUpdateListener {
@@ -187,7 +187,7 @@ Trigger an event when the participant starts / stops audio.
 
 ### Pinned & Unpinned participant
 
-Trigger an event when the participant is pinned / unpinned.
+Triggers an event when the participant is pinned / unpinned.
 
 ```kotlin
     private val participantUpdateListener = object : DyteParticipantUpdateListener {
@@ -203,7 +203,7 @@ Trigger an event when the participant is pinned / unpinned.
 
 ### Screen share started & ended
 
-Trigger an event when the participant starts / stops screen sharing.
+Triggers an event when the participant starts / stops screen sharing.
 
 ```kotlin
     private val participantUpdateListener = object : DyteParticipantUpdateListener {

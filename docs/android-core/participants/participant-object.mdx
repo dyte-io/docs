@@ -83,7 +83,7 @@ participant?.let { pcpt ->
 ```
 
 You can also `pin` or `unpin` a participant in the meeting. All "pinned"
-participants are added to the `meeting.participants.pinned` map.
+participants are added to the `meeting.participants.pinned` list.
 
 ```kotlin
 val participant = meeting.participants.joined.firstOrNull { it.id == participantId }

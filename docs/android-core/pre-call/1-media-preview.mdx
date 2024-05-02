@@ -9,8 +9,8 @@ and `DyteSettingsFragment` components.
 
 ## Properties
 
-- `audioEnabled`: A <span className="tag-orange">boolean</span> value indicating if the audio currently enabled.
-- `videoEnabled`: A <span className="tag-orange">boolean</span> value indicating if the video currently enabled.
+- `meeting.localUser.audioEnabled`: A <span className="tag-orange">boolean</span> value indicating if the audio currently enabled.
+- `meeting.localUser.videoEnabled`: A <span className="tag-orange">boolean</span> value indicating if the video currently enabled.
 
 ## Methods
 
@@ -88,20 +88,20 @@ available, use the following methods:
 
 ```kotlin
 // Get all audio devices
-const audioDevices = meeting.localUser.getAudioDevices()
+val audioDevices = meeting.localUser.getAudioDevices()
 
 // Get all video devices
-const videoDevices = meeting.localUser.getVideoDevices()
+val videoDevices = meeting.localUser.getVideoDevices()
 ```
 
 To get the currently selected media device, use the following methods:
 
 ```kotlin
 // Get current audio device being used
-const currentAudioDevice = meeting.localUser.getSelectedAudioDevice()
+val currentAudioDevice = meeting.localUser.getSelectedAudioDevice()
 
 // Get current video device being used
-const currentVideoDevice = meeting.localUser.getSelectedVideoDevice()
+val currentVideoDevice = meeting.localUser.getSelectedVideoDevice()
 ```
 
 Use these methods to create a UI that allows users to configure their media devices. When the user selects a device, use the below methods to set the device.
