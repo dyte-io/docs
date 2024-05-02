@@ -246,6 +246,10 @@ shown below.
 dyteClient.leaveRoom();
 ```
 
+### Cleanup listeners
+
+Introduced in `dyte_core: 0.3.6`, `cleanAllNativeListeners()` method which needs to be called when you're done with current session of dyte meeting. It interally calls individual new clean methods for each listener `cleanNativeMeetingRoomEventsListener()`, `cleanNativeParticipantEventListener()`, `cleanNativePollListener()`, `cleanNativeRecordingListener()`, `cleanNativeStageEventsListener()`, `cleanNativeSelfParticipantEventListener()`, `cleanNativeChatListener()`, `cleanNativeDataUpdateListener()`, `cleanNativeLivestreamListener()`, `cleanNativePluginEventsListener()`.
+
 By registering state observers, you receive callbacks for this action on the
 meeting object.
 
@@ -261,6 +265,7 @@ class RoomStateNotifier implements DyteMeetingRoomEventsListener {
 
   @override
   void onMeetingRoomLeaveCompleted() {
+    dyteClient.removeMeetingRoomEventsListener(this);
     dyteClient.cleanupAppListeners();
     /// on meeting room left
   }
