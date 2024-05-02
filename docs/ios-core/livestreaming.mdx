@@ -10,7 +10,7 @@ sidebar_position: 10
 
 This topic talks about how you can use livestreaming properties, events, and functions.
 
-`DyteLivestream` object obtained by `dyteMobileClient.livestream` method. The objects and methods it contains are defined below.
+`DyteLivestream` object obtained by `meeting.livestream` method. The objects and methods it contains are defined below.
 
 ## Objects
 
@@ -31,7 +31,7 @@ The current status of the livestream, possible values can be: <br/>
 
 ### stage requests [*_List&ltDyteLiveStreamStageRequestPeer&gt_*]
 
-object accessed via `dyteMobileClient.livestream.stageRequestPeers` contains the list of requests to join the stage. Each request contains 3 properties:<br />
+object accessed via `meeting.livestream.stageRequestPeers` contains the list of requests to join the stage. Each request contains 3 properties:<br />
 
 1. `peerId`: [*String*] The peerId of the user who requested to join the stage.
 2. `userId`: [*String*] The userId of the user who requested to join the stage.
@@ -50,7 +50,7 @@ Dyte's stage management APIs allow hosts to receive and manage stage requests as
 This method lets the host accept a request to join the stage. It takes the _DyteLiveStreamStageRequestPeer.id_ as an argument whose request has to be accepted.
 
 ```swift
-dyteMobileClient.livestream.acceptRequest(peer: peer.id);
+meeting.livestream.acceptRequest(peer: peer.id);
 ```
 
 ### Reject request
@@ -58,7 +58,7 @@ dyteMobileClient.livestream.acceptRequest(peer: peer.id);
 This method lets the host reject a request to join the stage. It takes the _DyteLiveStreamStageRequestPeer.id_ as an argument whose request has to be rejected.
 
 ```swift
-dyteMobileClient.livestream.rejectRequest(peer: peer.id);
+meeting.livestream.rejectRequest(peer: peer.id);
 ```
 
 ### Accept all requests
@@ -66,7 +66,7 @@ dyteMobileClient.livestream.rejectRequest(peer: peer.id);
 This method lets the host accept all the requests to join the stage.
 
 ```swift
-dyteMobileClient.livestream.acceptAll();
+meeting.livestream.acceptAll();
 ```
 
 ### Reject all requests
@@ -74,10 +74,10 @@ dyteMobileClient.livestream.acceptAll();
 This method lets the host reject all the requests to join the stage.
 
 ```swift
-dyteMobileClient.livestream.rejectAll();
+meeting.livestream.rejectAll();
 ```
 
-You can listen to livestream events by attaching a listener by calling `addLivestreamEventsListener` on `dyteMobileClient` object where `dyteMobileClient` is an instance of `DyteMobileClient()`.
+You can listen to livestream events by attaching a listener by calling `addLivestreamEventsListener` on `meeting` object where `meeting` is an instance of `DyteMobileClient()`.
 
 ```swift
 meeting.addLiveStreamEventsListener(liveStreamEventsListener: self)

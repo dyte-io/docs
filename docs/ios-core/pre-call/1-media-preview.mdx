@@ -88,20 +88,20 @@ available, use the following methods:
 
 ```swift
 // Get all audio devices
-const audioDevices = meeting.localUser.getAudioDevices()
+let audioDevices = meeting.localUser.getAudioDevices()
 
 // Get all video devices
-const videoDevices = meeting.localUser.getVideoDevices()
+let videoDevices = meeting.localUser.getVideoDevices()
 ```
 
 To get the currently selected media device, use the following methods:
 
 ```swift
 // Get current audio device being used
-const currentAudioDevice = meeting.localUser.getSelectedAudioDevice()
+let currentAudioDevice = meeting.localUser.getSelectedAudioDevice()
 
 // Get current video device being used
-const currentVideoDevice = meeting.localUser.getSelectedVideoDevice()
+let currentVideoDevice = meeting.localUser.getSelectedVideoDevice()
 ```
 
 Use these methods to create a UI that allows users to configure their media devices. When the user selects a device, use the below methods to set the device.
