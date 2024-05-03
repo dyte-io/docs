@@ -69,7 +69,6 @@ You'll learn how to:
 
 After importing the package, perform the following steps for Android and iOS.
 
-
 ### For iOS
 
 1. Set your platform to iOS 13.0 or above in your Podfile.
@@ -130,12 +129,12 @@ final dyteClient = DyteMobileClient();
 Set the properties in the `DyteMeetingInfo` class. You just need to provide the
 participant's `authToken`.
 
-| Name        | Description                                                                                                                                                                                                                                                                                                               |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `authToken` | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
-| `baseUrl`   | The base URL of the Dyte server. Default value is `https://api.dyte.io/v2`. This is an optional argument.                                                                                                                                                                                                                 |
-| `enableAudio` | A boolean value to enable or disable audio in the meeting. Default value is `true`. This is an optional argument.                                                                                                                                                                                                       |
-| `enableVideo` | A boolean value to enable or disable video in the meeting. Default value is `true`. This is an optional argument.                                                                                                                                                                                                       |
+| Name          | Description                                                                                                                                                                                                                                                                                                               |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authToken`   | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
+| `baseUrl`     | The base URL of the Dyte server. Default value is `https://api.dyte.io/v2`. This is an optional argument.                                                                                                                                                                                                                 |
+| `enableAudio` | A boolean value to enable or disable audio in the meeting. Default value is `true`. This is an optional argument.                                                                                                                                                                                                         |
+| `enableVideo` | A boolean value to enable or disable video in the meeting. Default value is `true`. This is an optional argument.                                                                                                                                                                                                         |
 
 ```dart
 final meetingInfo = DyteMeetingInfoV2(
@@ -238,12 +237,18 @@ Successful joining of meeting is indicated by `onMeetingRoomJoined` callback.
 
 Once the meeting is over, you can leave the meeting room.
 
+Once leave meeting is completed or you decide to `release()` the meeting [called when user exits the SDK without joining the meeting room, say user exited from setup/waiting room], make sure to cleanup all listeners by calling `dyteClient.cleanAllNativeListeners()`.
+
 To leave the meeting room, call `leaveRoom()` method on the `dyteClient` as
 shown below.
 
 ```dart
 dyteClient.leaveRoom();
 ```
+
+### Cleanup listeners
+
+Introduced in `dyte_core: 0.3.6`, `cleanAllNativeListeners()` method which needs to be called when you're done with current session of dyte meeting. It interally calls individual new clean methods for each listener `cleanNativeMeetingRoomEventsListener()`, `cleanNativeParticipantEventListener()`, `cleanNativePollListener()`, `cleanNativeRecordingListener()`, `cleanNativeStageEventsListener()`, `cleanNativeSelfParticipantEventListener()`, `cleanNativeChatListener()`, `cleanNativeDataUpdateListener()`, `cleanNativeLivestreamListener()`, `cleanNativePluginEventsListener()`.
 
 By registering state observers, you receive callbacks for this action on the
 meeting object.
@@ -260,6 +265,8 @@ class RoomStateNotifier implements DyteMeetingRoomEventsListener {
 
   @override
   void onMeetingRoomLeaveCompleted() {
+    dyteClient.removeMeetingRoomEventsListener(this);
+    dyteClient.cleanupAppListeners();
     /// on meeting room left
   }
 
@@ -292,5 +299,8 @@ end
 
 <head>
   <title>Flutter Core Quickstart</title>
-  <meta name="description" content="Dive into the core of Flutter development with Dyte. Explore essential documentation to streamline your Flutter app integration."/>
+  <meta
+    name="description"
+    content="Dive into the core of Flutter development with Dyte. Explore essential documentation to streamline your Flutter app integration."
+  />
 </head>
