@@ -11,6 +11,19 @@ The DyteSelf module represents the current user, and allows to modify the state
 of the user in the meeting. The audio and video streams of the user can be retrieved from
 this module.
 
+:::tip Note
+DyteSelf extends [DyteSelfMedia](./DyteSelfMedia) therefore all the methods & variables exposed by DyteSelfMedia are also available on DyteSelf.
+
+Few examples:
+```tsx
+meeting.self.rawAudioTrack;
+meeting.self.rawVideoTrack;
+meeting.self.audioEnabled;
+meeting.self.videoEnabled;
+await meeting.self.getAudioDevices();
+await meeting.self.getVideoDevices();
+```
+:::
 
 * [DyteSelf](#module_DyteSelf)
     * [.roomState](#module_DyteSelf+roomState)
