@@ -1,0 +1,59 @@
+---
+title: DyteMeeting
+sidebar_position: 1
+---
+
+Dyte provides, `DyteMeeting` an all encompassing component that internally handles everything from showing a pre-call UI to in-call UI and post-call screen.
+
+```tsx
+<DyteMeeting meeting={meeting} showSetupScreen={true} />
+```
+
+This component contains pre-call, in-call UI as well post-call UIs.
+
+Following code shows a basic split of these UIs from the `DyteMeeting` component.
+
+import CodeRunner from '@site/src/components/CodeRunner/CodeRunner';
+
+<CodeRunner 
+highlight={[{start: 14, end: 33}]}
+hide={[{start:1, end: 4}]}
+file={`
+import { DyteSetupScreen, DyteEndedScreen, DyteHeader, DyteParticipantsAudio, DyteDialogManager, DyteStage, DyteGrid, DyteNotifications, DyteSidebar, DyteControlbar } from '@dytesdk/react-ui-kit';
+import { useDyteMeeting, useDyteSelector } from '@dytesdk/react-web-core';
+import { useEffect } from 'react';
+
+export default function MyMeeting() {
+  const { meeting } = useDyteMeeting();
+  const roomState = useDyteSelector((m) => m.self.roomState);
+
+return (
+
+<div className="flex h-full w-full">
+  {roomState === 'init' && <DyteSetupScreen meeting={meeting} />}
+  {roomState === 'joined' && (
+      <div className="flex flex-col w-full h-full">
+        <header>
+          <DyteHeader meeting={meeting}/>
+        </header>
+
+        <main className='flex w-full flex-1 justify-center items-center' style={{
+          backgroundColor: '#272727',
+          color: '#ffffff',
+        }}>
+          <span>Custom in-call UI</span>
+          <DyteDialogManager meeting={meeting}/>
+        </main>
+
+        <footer className='flex w-full overflow-visible'>
+          <DyteControlbar meeting={meeting}/>
+        </footer>
+      </div>
+
+)}
+{roomState === 'ended' && (<DyteEndedScreen meeting={meeting}/>)}
+
+</div>
+); }` } />
+
+Since `DyteMeeting` is a complex component and provides a lot more than just the UI, let's go to the next page and start splitting it to uncover what it does.

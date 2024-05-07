@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 ---
 
 # Quickstart
@@ -12,7 +12,6 @@ For getting started quickly, you can use our
 [sample code](https://github.com/dyte-io/react-samples). You can clone and run a
 sample application from the
 [React UI Kit GitHub repository](https://github.com/dyte-io/react-samples).
-
 
 ## Before Getting Started
 
@@ -115,7 +114,6 @@ For more information on the other props of `DyteMeeting`, see
 
 import CodeRunner from '@site/src/components/CodeRunner/CodeRunner';
 
-
 <CodeRunner 
 highlight={[{start: 9, end: 9}]}
 hide={[{start:1, end: 3}]}
@@ -126,13 +124,12 @@ import { useDyteMeeting } from '@dytesdk/react-web-core';
 export default function MyMeetingUI() {
   const { meeting } = useDyteMeeting();
 
-  return (
-    <DyteMeeting mode="fill" meeting={meeting} showSetupScreen={false} />
-    );
+return (
+<DyteMeeting mode="fill" meeting={meeting} showSetupScreen={false} />
+);
 }
 `} />
 
 <head>
   <title>React UI Kit Quickstart</title>
-  
 </head>
