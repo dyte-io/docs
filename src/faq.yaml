@@ -39,7 +39,7 @@
 - question: What is a Developer Portal?
   tags: ["General"]
   answer: |-
-    To get started with Dyte, you must first register in the developer portal.
+    To get started with Dyte, you must first register in the [developer portal](https://dev.dyte.io/).
 
     The developer portal provides the following information:
 
@@ -56,7 +56,7 @@
 - question: What are Presets?
   tags: ["General"]
   answer: |-
-    A set of roles, UI elements, buttons, and configurations that determines how the meeting will appear for a specific participant. Learn more: [DytePermissionsPreset](/rn-core/reference/DytePermissionsPreset#module_DytePermissionsPreset).
+    A set of roles, UI elements, buttons, and configurations that determines how the meeting will appear for a specific participant. Presets can be created using [Developer Portal](https://dev.dyte.io/roles-presets) as well as [REST APIs](https://docs.dyte.io/api#/operations/post-presets). Learn more: [DytePermissionsPreset](/rn-core/reference/DytePermissionsPreset#module_DytePermissionsPreset).
 
 - question: What are Core SDKs used for?
   tags: ["General"]
@@ -74,7 +74,7 @@
 - question: What is the Plugin SDK?
   tags: ["General"]
   answer: |-
-    You can use Dyte plugin SDKs to add third-party plugins to experience the most immersive, collaborative, and more human interaction right in your video and audio calls. Dyte provides multiple out-of-the-box plugins, for example, YouTube, Miro, WhiteBoard, and so on.
+    You can use [Dyte plugin SDKs](https://docs.dyte.io/plugin-sdk) to add third-party plugins to experience the most immersive, collaborative, and more human interaction right in your video and audio calls. Dyte provides multiple out-of-the-box plugins, for example, YouTube, Miro, WhiteBoard, and so on.
 
 - question: How to access API Keys and other details from the Developer Portal?
   tags: ["General"]
@@ -84,7 +84,7 @@
 - question: How many people can join a Dyte meeting with audio & video turned ON?
   tags: ["General"]
   answer: |-
-    On Dyte, you can have up to 200 people on the same call with video and voice enabled.
+    On Dyte, you can have up to 2000 people on the same call with video and voice enabled.
     However, if you have any specific requirements that require more people joining the same call, please
     [contact us](https://dyte.io/contact).
 
@@ -93,13 +93,13 @@
 - question: How many attendees can be seen on a live grid?'
   tags: ["General"]
   answer: |-
-    In order to provide the best possible experience, we have limited the number of attendees to 6-9. However, we can tailor it to a maximum of 12 attendees.
+    In order to provide the best possible experience, we recommend the number of attendees on live grid to be set in range of 4 to 9. However, we can tailor it to a maximum of 25 attendees.
 
 - question: How many people can join a Dyte webinar?
   tags: ["General"]
   answer: |-
-    500 people. One user with the audio-video enabled and everyone else attending
-    the call (aka one host webinar). However, if you have any specific
+    5000 people. 100 users with the audio-video enabled and everyone else attending
+    the call. However, if you have any specific
     requirements that require more people joining the same call, please 
     [contact us](https://dyte.io/contact).
 
@@ -123,6 +123,8 @@
     name from the developer portal or using REST APIs. For example,
 
     ![Create Meeting response](/static/faq/create-meeting.png)
+
+    It is to be noted that a V2 integration of our APIs doesn't have the concept of roomName therefore neither the APIs return roomName nor it is needed by SDK to initialize the meeting.
 
     For more information, see [Create a meeting](/api#/operations/createMeeting).
 
@@ -189,7 +191,7 @@
   answer: |-
     Resiliency is important. Dyte uses multi-cloud and multi-region
     architecture to provide that seamless experience. Dyte is hosted in
-    Mumbai, Virginia (US East), Singapore, and Frankfurt. You can also read
+    Mumbai, Virginia (US East), Singapore, Frankfurt & [more](https://dyte.io/blog/new-media-regions/). You can also read
     through [this](https://dyte.io/blog/multi-region-resiliency/) blog to understand how Dyte manages a multi-region setup.
 
 - question: Can I self-host Dyte on my own servers?
@@ -342,11 +344,11 @@
 
 - question: What is the maximum number of hosts and viewers allowed to participate in a livestream?
   tags: ["Technical", "Livestreaming"]
-  answer: Dyte's Interactive Livestreaming (ILS) can currently accommodate 10,000 viewers and 100 hosts on a single livestream.
+  answer: Dyte's Interactive Livestreaming (ILS) can currently accommodate 25,000 viewers and 100 hosts on a single livestream.
 
 - question: What is the maximum number of users that the livestream can handle, and how does this impact its quality?
   tags: ["Technical", "Livestreaming"]
-  answer: Currently, our platform can support up to 10,000 viewers in a single livestream, and the quality of the stream is not affected by the number of viewers. However, an increase in the number of users may impact other features such as chats and polls.
+  answer: Currently, our platform can support up to 25,000 viewers in a single livestream, and the quality of the stream is not affected by the number of viewers. However, an increase in the number of users may impact other features such as chats and polls.
 
 - question: How do I manage viewer permissions for a livestream?
   tags: ["Technical", "Livestreaming"]
