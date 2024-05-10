@@ -5,7 +5,7 @@ description: >-
   application – a step towards immersive real-time communication.
 sidebar_position: 1
 tags:
-  - mobile-core
+  - android-core
   - chat
 ---
 
@@ -20,8 +20,52 @@ in the chat. This is an array of objects, where each object is of type
 We support three types of chat messages, they are as follows
 
 - Text Message
+
+```kotlin
+class DyteTextMessage(
+  userId: String,
+  displayName: String,
+  read: Boolean,
+  pluginId: String?,
+  val message: String,
+  time: String,
+  channelId: String? = null,
+)
+```
+
 - Image Message
+
+```kotlin
+class DyteImageMessage(
+  userId: String,
+  displayName: String,
+  read: Boolean,
+  pluginId: String?,
+  val link: String,
+  time: String,
+  channelId: String? = null,
+)
+```
+
 - File Message
+
+```kotlin
+class DyteFileMessage(
+  userId: String,
+  displayName: String,
+  read: Boolean,
+  pluginId: String?,
+  val name: String,
+  time: String,
+  val link: String,
+  val size: Long,
+  channelId: String? = null,
+)
+```
 
 All above objects are of type `DyteChatMessage` along with their own class
 variables.
+
+<head>
+  <title>Android Core Introducing chat</title>
+</head>

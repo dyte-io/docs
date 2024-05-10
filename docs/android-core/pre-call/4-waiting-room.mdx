@@ -1,0 +1,55 @@
+# Waiting Room
+
+When you call `meeting.joinRoom()`, the user either enters the meeting room directly if allowed, or they are placed in the waiting room 
+if they are a waitlisted participant.
+
+The diagram illustrates the possible room states the local user can be in.
+
+```mermaid
+stateDiagram-v2
+    init --> joined
+    init --> waitlisted
+    waitlisted --> joined
+    waitlisted --> rejected
+```
+
+<br />
+
+### Meeting Room Joined
+
+If user joins the room successfully, you receive the `onMeetingRoomJoinCompleted` callback in `DyteMeetingRoomEventsListener`. 
+You can listen for this callback as follows:
+
+```kotlin
+meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
+    override fun onMeetingRoomJoinCompleted() {
+        // Local user is in the meeting
+    }
+})
+```
+
+### Waitlisted Participant
+
+If the user is waitlisted, the `onWaitListStatusUpdate` callback in `DyteSelfEventsListener` notifies you of any changes in the 
+user's waitlist status. You can check the `waitListStatus` to determine their status:
+
+- `WAITING`: Local user is in the waiting room.
+- `REJECTED`:  Local user's join room request is rejected by the host.
+
+```kotlin
+meeting.addSelfEventsListener(object : DyteSelfEventsListener {
+    override fun onWaitListStatusUpdate(waitListStatus: WaitListStatus) {
+        when (waitListStatus) {
+            WAITING -> {
+                // Local user is in the waiting room
+            }
+            REJECTED -> {
+                // Local user's join room request was rejected by the host
+            }
+            else -> { }
+        }
+    }
+})
+```
+
+Host can use [these methods to accept/reject participants](/android-core/participants#waiting-room-methods).

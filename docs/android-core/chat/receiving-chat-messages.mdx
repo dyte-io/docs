@@ -5,7 +5,7 @@ description: >-
   Android app using Dyte
 sidebar_position: 3
 tags:
-  - mobile-core
+  - android-core
   - chat
 ---
 
@@ -17,14 +17,22 @@ subscribe to this events by calling
 `meeting.addChatEventsListener(dyteChatEventsListener)`
 
 ```kotlin
-    meeting.addChatEventsListener(object :
-      DyteChatEventsListener {
-      override fun onChatUpdates(messages: List<DyteChatMessage>) {
-        // to load chat messages
-      }
+meeting.addChatEventsListener(object :
+  DyteChatEventsListener {
+    override fun onChatUpdates(messages: List<DyteChatMessage>) {
+     // to load chat messages
+    }
 
-      override fun onNewChatMessage(message: DyteChatMessage) {
-        // when a new chat message is shared in the meeting
-      }
-    })
+    override fun onNewChatMessage(message: DyteChatMessage) {
+      // when a new chat message is shared in the meeting
+    }
+  })
 ```
+
+The `onChatUpdates()` method will be called whenever there is a change in the chat messages. The `messages` parameter is a list of `DyteChatMessage` objects that have been sent in the chat.
+
+The `onNewChatMessage()` method will be called whenever a new chat message is shared in the meeting. The `message` parameter is a `DyteChatMessage` object that has been sent in the chat.
+
+<head>
+  <title>Android Core Receiving chat</title>
+</head>
