@@ -1,0 +1,35 @@
+---
+description: >-
+  Learn how to use and customize the DyteNetworkIndicator component in Dyte's React UI
+  Kit with our detailed documentation.
+---
+
+# DyteNetworkIndicator
+
+A component that indicates poor network connection.
+
+```jsx
+<DyteNetworkIndicator meeting={meeting} participant={meeting.self} />
+```
+
+It listens to the mediaScoreUpdate event of the passed participant to get the score.
+
+```tsx
+ (participant as DyteParticipant).addListener('mediaScoreUpdate', ({ kind, isScreenshare, score }) => {
+  console.log(`Score for ${isScreenshare ? 'screen share': ''} ${kind} was:: ${score}`);
+});
+```
+
+:::note info
+
+This component will only be visible if the network quality is poor (less than or equal to 3, on a scale of 5, 5 being best).
+
+:::
+
+## Props
+
+<PropsTable of="dyte-network-indicator" />
+
+<head>
+  <title>React UI Kit DyteNetworkIndicator</title>
+</head>
