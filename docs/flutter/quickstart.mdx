@@ -110,20 +110,18 @@ platform :ios, '13.0'
 <true/>
 ```
 
-
 ## Step 3: Configure a Dyte meeting
 
 To initiate Dyte Meeting for any participant you just need to pass `authToken` as an argument. You can get the `authToken` via the [Add Participant API](https://docs.dyte.io/api?v=v2#/operations/add_participant).
 
 After getting the `authToken`, you need to create the `DyteMeetingInfoV2` object as follows:
 
-| Name        | Description                                                                                                                                                                                                                                                                                                               |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `authToken` | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
-| `baseUrl`   | The base URL of the Dyte server. Default value is `https://api.dyte.io/v2`. This is an optional argument.                                                                                                                                                                                                                 |
-| `enableAudio` | A boolean value to enable or disable audio in the meeting. Default value is `true`. This is an optional argument.                                                                                                                                                                                                       |
-| `enableVideo` | A boolean value to enable or disable video in the meeting. Default value is `true`. This is an optional argument.                                                                                                                                                                                                       |
-
+| Name          | Description                                                                                                                                                                                                                                                                                                               |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authToken`   | After you've created the meeting, <br/> add each participant to the meeting <br/> using the [Add Participant API](/api?v=v2#/operations/add_participant)<br/> (The presetName created earlier <br/> must be passed in the body <br/> of the Add Participant API request) <br/> The API response contains the `authToken`. |
+| `baseUrl`     | The base URL of the Dyte server. Default value is `https://api.dyte.io/v2`. This is an optional argument.                                                                                                                                                                                                                 |
+| `enableAudio` | A boolean value to enable or disable audio in the meeting. Default value is `true`. This is an optional argument.                                                                                                                                                                                                         |
+| `enableVideo` | A boolean value to enable or disable video in the meeting. Default value is `true`. This is an optional argument.                                                                                                                                                                                                         |
 
 ```dart
 final meetingInfo = DyteMeetingInfoV2(
@@ -138,7 +136,6 @@ final meetingInfo = DyteMeetingInfoV2(
 
 The `DyteUIKit` is the main class of the SDK. It is the entry point and the only
 class required to initialize Dyte UI Kit SDK. To initialize it we have to pass `DyteUIKitInfo` object as an argument.
-
 
 ```dart
 
@@ -161,6 +158,7 @@ final uikitInfo = DyteUIKitInfo(
 final uiKit = DyteUIKitBuilder.build(uiKitInfo: uikitInfo, context: context);
 
 ```
+
 You can learn more about customization of the uikit in the [Design System](/flutter/design-token) section.
 
 ## Step 5: Launch the meeting UI
@@ -215,10 +213,11 @@ Voila! You're all done. Here is the pictorial representation of all the configur
     />
   ))}
 </div>
-````
-
 
 <head>
   <title>Flutter Quickstart</title>
-  <meta name="description" content="Get started quickly with Dyte's Flutter integration. Follow our quickstart guide for seamless integration and development."/>
+  <meta
+    name="description"
+    content="Get started quickly with Dyte's Flutter integration. Follow our quickstart guide for seamless integration and development."
+  />
 </head>
