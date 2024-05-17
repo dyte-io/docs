@@ -1,92 +1,95 @@
 ---
 title: Recording
-description: >-
-  Delve into the recording capabilities of iOS Core with Dyte Docs. Learn how to
-  seamlessly integrate and enhance your app's recording functionalities.
-sidebar_position: 9
+description: Control recordings in a meeting.
+sidebar_position: 8
 tags:
-  - mobile-core
+  - ios-core
   - recording
 ---
 
 # Recording
 
-The `meeting.recording` object can be used start and stop recordings in a
-meeting. You can also get the current status of a recording using this API.
+The `meeting.recording` object in Dyte's iOS Core SDK provides APIs to manage recording within a meeting.
 
-The `meeting.recording` object has the following properties:
+### Recording State
 
-- `recordingState`: Indicates the current recording state of the meeting.
+The `meeting.recording.recordingState` property indicates the current state of the recording. Possible states include `IDLE`,
+`STARTING`, `RECORDING`, `PAUSED`, and `STOPPING`.
 
-## Start a recording
+### Starting a Recording
 
-To start a recording, you can call the `start` method in the `meeting.recording`
-object. The valid states are `IDLE`, `STARTING`, `RECORDING`, and `STOPPING`.
+To start a recording, use the `start()` method of the `meeting.recording` object.
 
 ```swift
 meeting.recording.start()
 ```
 
-## Stop a recording
+### Stopping a Recording
 
-Call `meeting.recording.stop()` to stop the active recording.
+To stop an active recording, use the `stop()` method.
 
 ```swift
 meeting.recording.stop()
 ```
 
-## Pause a recording
+### Pausing a Recording
 
-Call `meeting.recording.pause()` to pause the active recording.
+To temporarily pause a recording, use the `pause()` method.
 
 ```swift
-meeting.recording.pause();
+meeting.recording.pause()
 ```
 
-## Resume a paused recording
+### Resuming a Recording
 
-Call `meeting.recording.resume()` to resume the paused recording.
+To resume a paused recording, use the `resume()` method.
 
 ```swift
-meeting.recording.resume();
+meeting.recording.resume()
 ```
 
-## Get active recording state
+### Listening for Recording Events
 
-The `meeting.recording.recordingState` property describes the current state of
-the recording. The valid states are `IDLE`, `STARTING`, `RECORDING`, and
-`STOPPING`.
+To handle recording-related events, implement the `DyteRecordingEventsListener` interface. This interface provides callbacks for
+various recording events:
 
-## Listening to recording events in a meeting
-
-To receive recording events, you must implement methods from `DyteRecordingEventsListener`.
-You can subscribe to these events by using the `meeting.addRecordingEventsListener(dyteRecordingEventsListener: listener)` method.
+- `onMeetingRecordingStarted()`: Called when the recording is started or resumed, either by the user or their peer.
+- `onMeetingRecordingEnded()`: Called when the recording is stopped or paused, either by the user or their peer.
+- `onMeetingRecordingStateUpdated(state: DyteRecordingState)`: Notifies when there is a change in the recording state.
+- `onMeetingRecordingStopError(e: Exception)`: Indicates an error occurred while stopping an active recording.
+- `onMeetingRecordingPauseError(e: Exception)`: Indicates an error occurred while pausing an active recording.
+- `onMeetingRecordingResumeError(e: Exception)`: Indicates an error occurred while resuming a paused recording.
 
 ```swift
-extension MeetingViewModel: DyteRecordingEventsListener {
+extension  MeetingViewModel: DyteRecordingEventsListener {
+    func onMeetingRecordingStarted() {
+        // Handle recording started
+    }
 
-  func onMeetingRecordingEnded() {
-    // your code to handle recording end
-  }
+    func onMeetingRecordingEnded() {
+        // Handle recording stopped
+    }
 
-  func onMeetingRecordingStarted() {
-    // your code to handle recording start
-  }
+    func onMeetingRecordingStateUpdated(state: DyteRecordingState) {
+        // Handle recording state update
+    }
 
-  func onMeetingRecordingStateUpdated(state: DyteRecordingState) {
-    // your code to handle recording state update
-  }
+    func onMeetingRecordingStopError(e: Exception) {
+        // Handle recording stop error
+    }
 
-  func onMeetingRecordingStopError(e: KotlinException) {
-    // your code to handle recording stop error
-  }
+    func onMeetingRecordingPauseError(e: Exception) {
+        // Handle recording pause error
+    }
+
+    func onMeetingRecordingResumeError(e: Exception) {
+        // Handle recording resume error
+    }
 }
 ```
 
+Implement these callbacks to handle recording events and errors appropriately in your application.
+
 <head>
   <title>iOS Core Recording</title>
-  <meta
-    name="description"
-    content="Delve into the recording capabilities of iOS Core with Dyte Docs. Learn how to seamlessly integrate and enhance your app's recording functionalities."
-  />
 </head>

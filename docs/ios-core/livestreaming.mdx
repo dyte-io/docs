@@ -1,0 +1,191 @@
+---
+title: Livestreaming
+sidebar_position: 10
+---
+
+- Livestreaming is often used for events, such as concerts, conferences, and sports games, as well as for online classes, gaming, and social media platforms.
+- Dyte uses LHLS to deliver low latency one way streams
+- The Interactive Livestream product delivers interactivity via chat, polls, reactions etc
+- Viewer can also be pulled in the livestream by the host using Stage Management APIs
+
+This topic talks about how you can use livestreaming properties, events, and functions.
+
+`DyteLivestream` object obtained by `meeting.livestream` method. The objects and methods it contains are defined below.
+
+## Objects
+
+### roomName [*String*]
+
+The name of the room.<br />
+
+### state [*LiveStreamState*]
+
+The current status of the livestream, possible values can be: <br/>
+
+- `LiveStreamState.NONE`
+- `LiveStreamState.STARTING`
+- `LiveStreamState.STARTED`
+- `LiveStreamState.STOPPING`
+- `LiveStreamState.STOPPED`
+- `LiveStreamState.ERRORED`
+
+### stage requests [*_List&ltDyteLiveStreamStageRequestPeer&gt_*]
+
+object accessed via `meeting.livestream.stageRequestPeers` contains the list of requests to join the stage. Each request contains 3 properties:<br />
+
+1. `peerId`: [*String*] The peerId of the user who requested to join the stage.
+2. `userId`: [*String*] The userId of the user who requested to join the stage.
+3. `displayName`: [*String*] The display name of the user who requested to join the stage.<br/><br />
+
+### liveStreamUrl [*String*]
+
+List of URL which can be used to consume livestream.
+
+## **Host Controls Methods**
+
+Dyte's stage management APIs allow hosts to receive and manage stage requests as well as leave and join the stage.
+
+### Accept request
+
+This method lets the host accept a request to join the stage. It takes the _DyteLiveStreamStageRequestPeer.id_ as an argument whose request has to be accepted.
+
+```swift
+meeting.livestream.acceptRequest(peer: peer.id);
+```
+
+### Reject request
+
+This method lets the host reject a request to join the stage. It takes the _DyteLiveStreamStageRequestPeer.id_ as an argument whose request has to be rejected.
+
+```swift
+meeting.livestream.rejectRequest(peer: peer.id);
+```
+
+### Accept all requests
+
+This method lets the host accept all the requests to join the stage.
+
+```swift
+meeting.livestream.acceptAll();
+```
+
+### Reject all requests
+
+This method lets the host reject all the requests to join the stage.
+
+```swift
+meeting.livestream.rejectAll();
+```
+
+You can listen to livestream events by attaching a listener by calling `addLivestreamEventsListener` on `meeting` object where `meeting` is an instance of `DyteMobileClient()`.
+
+```swift
+meeting.addLiveStreamEventsListener(liveStreamEventsListener: self)
+```
+
+```swift
+extension LivestreamViewController: DyteLiveStreamEventsListener {
+    public func onJoinRequestAccepted(peer: LiveStreamStagePeer) {
+        // when localUser's join request is accepted by host
+    }
+
+    public func onJoinRequestRejected(peer: LiveStreamStagePeer) {
+        // when localUser's join request is rejected by host
+    }
+
+    public func onLiveStreamEnded() {
+        // when livestream is ended
+    }
+
+    public func onLiveStreamEnding() {
+        // when livestream is ending
+    }
+
+    public func onLiveStreamErrored() {
+        // errored livestream
+    }
+
+    public func onLiveStreamStarted() {
+        // when livestream is started
+    }
+
+    public func onLiveStreamStarting() {
+        // when livestream is starting
+    }
+
+    public func onLiveStreamStateUpdate(data: DyteLivestreamData) {
+        // when there is an update in state of the livestream
+    }
+
+    public func onStageCountUpdated(count: Int32) {
+        // when stage count updates in livestream
+    }
+
+    public func onStageRequestsUpdated(requests: [LiveStreamStageRequestPeer]) {
+        // when there are updates in stage requests
+    }
+
+    public func onViewerCountUpdated(count: Int32) {
+        // when viewer count updates in livestream
+    }
+
+}
+```
+
+## Livestream events
+
+- ### onLiveStreamStarting
+
+  This event is triggered when the livestream is about to start.
+
+- ### onLiveStreamStarted
+
+  This event is triggered when the livestream has started.
+
+- ### onLiveStreamStateUpdate
+
+  This event is triggered when the livestream state is updated.
+
+- ### onViewerCountUpdated
+
+  This event is triggered when the viewer count is updated.
+
+- ### onLiveStreamEnding
+
+  This event is triggered when the livestream is about to end.
+
+- ### onLiveStreamEnded
+
+  This event is triggered when the livestream has ended.
+
+- ### onLiveStreamErrored
+
+  This event is triggered when their is an error while starting/stopping the livestream.
+
+- ### onStageCountUpdated
+
+  This event is triggered when the number of users on stage is updated. The `count` object contains the updated stage count.
+
+- ### onStageRequestsUpdated
+
+  This event is triggered when the stage requests are updated. The `requests` object contains the updated list of stage requests.
+
+- ### onJoinRequestAccepted
+
+  This event is triggered when a stage request is accepted. The `peer` object contains the peer whose request is accepted.
+
+  ```swift
+    public func onJoinRequestAccepted(peer: LiveStreamStagePeer) {}
+  ```
+
+- ### onJoinRequestRejected
+
+  This event is triggered when a stage request is rejected. The `peer` object contains the peer whose request is rejected.
+
+  ```swift
+    public func onJoinRequestRejected(peer: LiveStreamStagePeer) {}
+  ```
+
+  <head>
+    <title>iOS Core Livestreaming</title>
+  </head>

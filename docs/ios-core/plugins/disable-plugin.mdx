@@ -1,0 +1,28 @@
+---
+title: Functions to disable plugins
+description: Methods on a plugin in a meeting.
+sidebar_position: 3
+tags:
+  - ios-core
+  - plugins
+---
+
+# Functions to disable plugins
+
+Each plugin in `meeting.plugins` object is of type
+[`DytePlugin`](./introduction) and exposes the following functions to disable
+plugins.
+
+### Deactivate Plugin
+
+The `deactivate()` method deactivates the plugin for all users in the meeting. When you deactivate a plugin, it moves out of the active plugins list and can only be accessed from `meeting.plugins.all`.
+
+```swift
+let plugin = meeting.plugins.active[0]
+
+plugin.deactivate()
+```
+
+<head>
+  <title>Mobile Core Function to disable plugins</title>
+</head>

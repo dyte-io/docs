@@ -1,0 +1,89 @@
+---
+title: Stage Host Controls
+description: Stage management APIs for Host in Dyte meetings.
+sidebar_position: 2
+tags:
+  - ios-core
+  - stage
+---
+
+In a stage management-enabled meeting, a user with the `selfPermissions.host.canAcceptStageRequests` permission as `true` is
+considered a host. The `meeting.stage` object in Dyte's iOS Core SDK provides stage management APIs that allow hosts to
+manage stage access requests, invite participants to the stage, and remove participants from the stage.
+
+### List of Stage Access Requests
+
+You can retrieve the list of pending stage access requests by accessing the `meeting.stage.accessRequests` property. This property
+provides a list of `DyteJoinedMeetingParticipant` objects who have requested stage access.
+
+**Note**: If the local user is not a host, this property returns an empty list.
+
+### Grant Access
+
+To accept stage access requests or allow a participant directly to the stage, you can use the `grantAccess()` method.
+Alternatively, the `grantAccessAll()` method can be used to grant stage access to all participants with pending stage access requests.
+
+```swift
+// Grants stage access to a participant
+// id: peer id of the stage access requesting participant
+meeting.stage.grantAccess(id)
+
+// Grants stage access to all participants with pending stage access requests
+meeting.stage.grantAccessAll()
+```
+
+### Deny Access
+
+To reject stage access requests, you can use the `denyAccess()` method. Similarly, the `denyAccessAll()` method can be used to
+deny all pending stage access requests.
+
+```swift
+// Denies stage access request of a participant
+// id: peer id of the stage access requesting participant
+meeting.stage.denyAccess(id)
+
+// Denies all pending stage access requests
+meeting.stage.denyAccessAll()
+```
+
+### Kick Users
+
+You can remove a participant from the stage by using the `kick()` method.
+
+```swift
+// Kicks a participant from stage
+// id: peer id of the ON_STAGE participant to kick
+meeting.stage.kick(id)
+```
+
+### Listening to Stage Access Requests
+
+You can listen to incoming stage access requests or changes in the access requests list if you are a host. The SDK provides the
+following callbacks to `DyteStageEventListener`:
+
+```swift
+extension WebinarViewModel: DyteStageEventListener {
+    func onPresentRequestAdded(participant: DyteStageParticipant) {
+        // Called when a user is requesting to join the stage
+    }
+
+    func onPresentRequestClosed(participant: DyteStageParticipant) {
+        // Called when a user who was trying to join the stage leaves the call
+    }
+
+    func onPresentRequestRejected(participant: DyteStageParticipant) {
+        // Called when a join stage request is denied by the host
+    }
+
+    func onPresentRequestWithdrawn(participant: DyteStageParticipant) {
+        // Called when a user who was trying to join the stage withdraws their request to join
+    }
+
+    func onStageRequestsUpdated(accessRequests: [DyteJoinedMeetingParticipant]) {
+        // Called when the access requests list is updated
+    }
+}
+```
+
+These APIs enable you to manage stage access requests and participants effectively in Dyte meetings. Next, we'll explore the
+Stage APIs available to Viewer participants.

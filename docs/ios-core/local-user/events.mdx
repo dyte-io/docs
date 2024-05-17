@@ -5,7 +5,7 @@ description: >-
   leverage these events for enhanced user experiences within your app.
 sidebar_position: 2
 tags:
-  - mobile-core
+  - ios-core
   - local-user
   - self
 ---
@@ -16,25 +16,12 @@ You can subscribe to various events on the local user by implementing
 `DyteSelfEventsListener` and passing the object to
 `meeting.addSelfEventsListener(dyteSelfEventsListener)`.
 
-### Room joined
-
-Triggered when the room join event completes and now the meeting is ready to
-produce and consume media.
-
-```swift
-extension MeetingViewModel: DyteSelfEventsListener {
-    func onRoomJoined() {
-        //Room Joined
-    }
-}
-```
-
 ### Video update
 
 Triggered when the user starts / stops the video using `enableVideo` or
 `disableVideo`
 
-```kotlin
+```swift
 extension MeetingViewModel: DyteSelfEventsListener {
     func onVideoUpdate(videoEnabled: Bool) {
       if (videoEnabled) {
@@ -68,7 +55,7 @@ extension MeetingViewModel: DyteSelfEventsListener {
 
 Triggered when the user is disconnected due to media/network errors
 
-```kotlin
+```swift
 extension MeetingViewModel: DyteSelfEventsListener {
     func onMeetingRoomDisconnected() {
       //disconnected
@@ -136,6 +123,23 @@ extension MeetingViewModel: DyteSelfEventsListener {
       // Display an alert here that user no longer in the meeting.
     }
 }
+```
+
+## Listen to Broadcast message within the room
+
+Get broadcast messages within the room using `onRoomMessage` callback.
+
+_Parameters_:
+
+`type`: A client-specific type to differentiate between custom messages like "emoji" or "greetings"
+
+`payload`: A dictionary containing the message payload, where keys are strings and values are of any type.
+
+```swift
+extension MeetingViewModel: DyteSelfEventsListener {
+  func onRoomMessage(type: String, payload: [String : Any]) {
+    // triggered when a message is sent within the room.
+  }
 ```
 
 <head>

@@ -1,28 +1,24 @@
 ---
-title: Quickstart
-description: >-
-  Dive into Dyte's core documentation for iOS. Follow our guide for
-  comprehensive understanding and effective iOS core development.
-sidebar_position: 1
 tags:
-  - mobile-core
+  - ios-core
   - quickstart
+  - setup
 slug: /
+sidebar_position: 1
 ---
 
-import { CocoaPodInstallation } from '@site/src/components/LatestInstallation';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import { MavenLatestInstallation } from '@site/src/components/LatestInstallation';
+import { CocoaPodInstallation } from '@site/src/components/LatestInstallation';
 
-# iOS Core SDK Quickstart
+# Quickstart
 
-This quickstart shows how to use Dyte's iOS Core SDK to add live video and audio
-to your iOS applications.
+This quickstart shows how to use Dyte's core SDKs to add live video and audio to
+your iOS applications.
 
-For getting started quickly, you can use our
-[sample code](https://github.com/dyte-io/ios-samples/tree/main/iOS-core). You can clone
-and run a sample application from the
-[iOS Core SDK GitHub repository](https://github.com/dyte-io/ios-samples/tree/main/iOS-core).
+To get started quickly, you can use our sample code. You can clone and run a sample application from the iOS Core samples,
+available in both [Swift](https://github.com/dyte-io/ios-samples/tree/main/iOS-core) and [SwiftUI](https://github.com/dyte-io/ios-samples/tree/main/DyteSwiftUI-Core).
 
 ## Objective
 
@@ -30,32 +26,22 @@ You'll learn how to:
 
 - [Install the Dyte SDK](#step-1-install-the-sdk)
 - [Initialize the SDK](#step-2-initialize-the-sdk)
-- [Configure a Dyte meeting](#step-3-set-the-properties-in-the-dytemeetinginfo-class)
-- [Initialize the Dyte meeting](#step-4-initialize-the-connection-request)
-- [Go live with your Dyte meeting!](#step-5-connect-to-the-meeting)
+- [Configure a Dyte meeting](#step-3-configure-a-dyte-meeting)
+- [Initialize the Dyte meeting](#step-4-initialize-the-dyte-meeting)
+- [Go live with your Dyte meeting](#step-5-go-live-with-your-dyte-meeting)
 
 ## Before Getting Started
 
-- Make sure you've read the
-  [Getting Started with Dyte](/getting-started) topic and
-  completed the steps in the
-  [Integrate Dyte](/getting-started#integrate-dyte) section.
-  You must complete the following steps:
-  - Create a [Dyte Developer Account](https://dev.dyte.io/)
-  - Create a
-    [Dyte Meeting](/api/?v=v2#/operations/create_meeting)
-  - [Add Participant](/api/?v=v2#/operations/add_participant)
-    to the meeting
-- Install
-  [Xcode](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwin55bqodH8AhUVQXwKHaR-DAsQFnoECA0QAQ&url=https%3A%2F%2Fapps.apple.com%2Fus%2Fapp%2Fxcode%2Fid497799835%3Fmt%3D12&usg=AOvVaw2fEvMbfRtGhB4SPHYB54NX)
-- Ensure that Rosetta is installed with Xcode on Mac computers with Apple
-  silicon.
-- Make sure your Mac computers are running macOS version 12.0 Monterey or
-  higher.
+Make sure you've read the [Getting Started with Dyte](/getting-started) topic and completed the following steps:
+
+- Create a [Dyte Developer Account](https://dev.dyte.io/)
+- Create a [Dyte Meeting](/api/?v=v2#/operations/create_meeting)
+- [Add Participant](/api/?v=v2#/operations/add_participant) to the meeting
+- Install [Xcode](https://apps.apple.com/in/app/xcode/id497799835)
 
 ## Step 1: Install the SDK
 
-<Tabs groupId="build-android-core">
+<Tabs groupId="build-ios-core">
   <TabItem value="CocoaPods" label="CocoaPods" default>
 
 1. Set your platform to iOS 13.0 or above in your Podfile.
@@ -82,9 +68,7 @@ Add `DyteiOSCore` SDK through Swift Package Manager in Xcode. Use https://github
   </TabItem>
 </Tabs>
 
-4. Add the following entries to the info.plist file. This gives permission to
-   your app to access the camera and microphone, access photos, install the
-   required fonts and icons.
+Add the following entries to the info.plist file. This gives permission to your app to access the camera and microphone, access photos, install the required fonts and icons.
 
 ```xml
 <key>NSBluetoothPeripheralUsageDescription</key>
@@ -128,7 +112,6 @@ let meeting = DyteiOSClientBuilder().build()
 meeting.addMeetingRoomEventsListener(meetingRoomEventsListener: self)
 meeting.addParticipantEventsListener(participantEventsListener: self)
 meeting.addSelfEventsListener(selfEventsListener: self)
-meeting.addParticipantEventsListener(participantEventsListener: self)
 meeting.addChatEventsListener(chatEventsListener: self)
 meeting.addPollEventsListener(pollEventsListener: self)
 meeting.addRecordingEventsListener(recordingEventsListener: self)
@@ -136,16 +119,16 @@ meeting.addWaitlistEventListener(waitlistEventListener: self)
 meeting.addLiveStreamEventsListener(liveStreamEventsListener: self)
 ```
 
-## Step 3: Set the properties in the DyteMeetingInfo class
+## Step 3: Configure a Dyte meeting
 
 Add `authToken` that you got from the REST API to constructor of DyteMeetingInfoV2 - [Add Participant API](/api#/operations/addParticipant)
 
-| Name          | Description |
-| ------------- | ---------------------------------------------------------------- |
-| `authToken`   | After you've created the meeting, add each participant to the meeting using the [Add Participant API](/api?v=v2#/operations/add_participant) The API response contains the `authToken`. |     
-| `enableAudio` | Set whether to join the meeting with your Mic ON or OFF by passing `true` or `false`.|     
-| `enableVideo` | Set whether to join the meeting with your Camera ON or OFF by passing `true` or `false`.|     
-| `baseUrl`     | Base URL of the dyte's enviorment you have created the meeting on. |     
+| Name          | Description                                                                                                                                                                             |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authToken`   | After you've created the meeting, add each participant to the meeting using the [Add Participant API](/api?v=v2#/operations/add_participant) The API response contains the `authToken`. |
+| `enableAudio` | Set whether to join the meeting with your Mic ON or OFF by passing `true` or `false`.                                                                                                   |
+| `enableVideo` | Set whether to join the meeting with your Camera ON or OFF by passing `true` or `false`.                                                                                                |
+| `baseUrl`     | Base URL of the dyte's enviorment you have created the meeting on.                                                                                                                      |
 
 ```swift
 let meetingInfo = DyteMeetingInfoV2(authToken: authToken,
@@ -154,7 +137,7 @@ let meetingInfo = DyteMeetingInfoV2(authToken: authToken,
                                   baseUrl: "dyte.io")
 ```
 
-## Step 4: Initialize the connection request
+## Step 4: Initialize the Dyte meeting
 
 To initialize the connection request, call the `doInit()` method obtained on
 `meeting` with the `meetingInfo` argument. This will establish the connection
@@ -169,10 +152,12 @@ Note: This is the asynchronous method, You will have to attached observer (meeti
 
 ```swift
 func onMeetingInitCompleted() {
- }
+  // init complete
+}
 
 func onMeetingInitFailed(exception: KotlinException) {
- }
+  // init failed
+}
 ```
 
 OR
@@ -186,7 +171,9 @@ meeting.doInit(dyteMeetingInfo: DyteMeetingInfoV2,
 To initialize the connection request, call the `doInit` method
 which is asynchronous and callback based.
 
-## Step 5: Connect to the meeting
+## Step 5: Go live with your Dyte meeting
+
+### Connect to the meeting
 
 Now, you have established the connection with the Dyte meeting server
 successfully. Once `onMeetingInitCompleted()` is triggered, next step is to join
