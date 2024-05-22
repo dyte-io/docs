@@ -3,21 +3,21 @@ title: Handling States and Configs
 sidebar_position: 1
 ---
 
-Complete code sample link: https://github.com/dyte-io/react-samples/pull/32
+Complete code sample link: https://github.com/dyte-io/react-samples/tree/main/samples/create-your-own-ui
 
 `DyteMeeting` component does a lot more than just providing the user interface.
 
 It does the following things internally.
 
-1. Keep a mapping of components and show them according to preset view_type such as group_call, webinar, and livestream.
-2. Provide background color, text colors and other such CSS properties.
-3. Maintaing states of modals, sidebars between web-core & ui-kit
-4. Shifting the control bar buttons to More menu if the screen size is over.
-5. Pass config, states, translation, icon packs to all child components.
-6. It is a target element for enabling full screen
-7. Join the meeting automatically if showSetupScreen is false.
+1. Keeps a mapping of components and show them according to the preset's view_type such as group_call, webinar, and livestream.
+2. Provides background color, text colors and other such CSS properties.
+3. Maintains states of modals, sidebars between web-core & ui-kit
+4. Shifts the control bar buttons to More menu if the screen size is small.
+5. Passes config, states, translation, icon packs to all child components.
+6. It is the target element that gets full screened on click of full screen toggle.
+7. Joins the meeting automatically if showSetupScreen is false.
 
-Since we are splitting `DyteMeeting` component in pieces, we need to do these ourselves.
+Since we are splitting `DyteMeeting` component in pieces, we need to do these ourselves now.
 
 import CodeRunner from '@site/src/components/CodeRunner/CodeRunner';
 
@@ -273,6 +273,6 @@ ref={(el) => {
 
 To join the meeting, we are using `await meeting.join();`.
 
-Now that we know the extra over head that comes with splitting `DyteMeeting` component, let's start with showing custom UIs as per the meeting state.
+Now that we know the extra overhead that comes with splitting `DyteMeeting` component, let's start with showing custom UIs as per the meeting state.
 
 

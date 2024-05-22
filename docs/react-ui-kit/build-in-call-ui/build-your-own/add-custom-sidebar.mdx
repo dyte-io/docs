@@ -3,7 +3,7 @@ title: Add custom sidebar
 sidebar_position: 6
 ---
 
-Complete code sample link: https://github.com/dyte-io/react-samples/pull/32
+Complete code sample link: https://github.com/dyte-io/react-samples/tree/main/samples/create-your-own-ui
 
 To create a sidebar of your own, you need 2 things.
 
@@ -285,9 +285,9 @@ export class DyteStateListenersUtils{
 }
 ` } />
 
-Considering a proctoring solution, in the above code snippet, we have added `warnings` sidebar section.
+Let's say, we want to build a proctoring solution and for that we want to show guidelines to the participant in a side bar, to warn the participant not to cheat. To do so, in the below code snippet, we have added `warnings` sidebar section.
 
-We have added a custom button to trigger the UI as well.
+We have added a custom button to trigger the UI as well using `DyteControlbarButton` component.
 
 ```tsx
     <DyteControlbarButton
