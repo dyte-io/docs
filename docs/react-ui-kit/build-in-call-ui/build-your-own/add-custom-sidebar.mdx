@@ -29,7 +29,7 @@ function SidebarWithCustomUI({
         { id: 'polls', name: 'polls' },
         { id: 'participants', name: 'participants' },
         { id: 'plugins', name: 'plugins' },
-        { id: 'warnings', name: 'warnings' }
+        { id: 'guidelines', name: 'Guidelines' }
     ]);
     const [view, setView] = useState<DyteSidebarView>('sidebar');
 
@@ -69,8 +69,12 @@ function SidebarWithCustomUI({
         {currentTab === 'polls' && <DytePolls meeting={meeting} config={config} slot="polls" /> }
         {currentTab === 'participants' && <DyteParticipants meeting={meeting} config={config} states={states} slot="participants" /> }
         {currentTab === 'plugins' && <DytePlugins meeting={meeting} config={config} slot="plugins" /> }
-        {currentTab === 'warnings' && <div slot="warnings" className="flex justify-center items-center">
-            <div>Do not cheat in the exam</div>
+        {currentTab === 'guidelines' && <div slot="guidelines" className="flex justify-center items-center p-2">
+            <div>
+              <p>1. Ensure active participation and professionalism by muting your microphone when not speaking.</p>
+              <br></br>
+              <p>2. Utilize the chat feature for questions or comments during the meeting.</p>
+            </div>
         </div> }
     </DyteSidebarUi>);
 
@@ -98,10 +102,10 @@ return (
   <div>
     <DyteControlbarButton
       onClick={() => {
-          if(states.activeSidebar && !states.sidebar && states.customSidebar === 'warnings'){
+          if(states.activeSidebar && !states.sidebar && states.customSidebar === 'guidelines'){
               setStates( (oldState) => { return { ...oldState, activeSidebar: false, sidebar: null, customSidebar: null }});    
           } else {
-              setStates( (oldState) => { return { ...oldState, activeSidebar: true, sidebar: null, customSidebar: 'warnings' }});
+              setStates( (oldState) => { return { ...oldState, activeSidebar: true, sidebar: null, customSidebar: 'guidelines' }});
           }
       }}
       icon={defaultIconPack.add}
@@ -285,17 +289,17 @@ export class DyteStateListenersUtils{
 }
 ` } />
 
-Let's say, we want to build a proctoring solution and for that we want to show guidelines to the participant in a side bar, to warn the participant not to cheat. To do so, in the below code snippet, we have added `warnings` sidebar section.
+Let's say, we want to show some meeting guidelines to all the participants in a side bar. To do so, in the below code snippet, we have added `guidelines` sidebar section.
 
 We have added a custom button to trigger the UI as well using `DyteControlbarButton` component.
 
 ```tsx
     <DyteControlbarButton
       onClick={() => {
-          if(states.activeSidebar && !states.sidebar && states.customSidebar === 'warnings'){
+          if(states.activeSidebar && !states.sidebar && states.customSidebar === 'guidelines'){
               setStates( (oldState) => { return { ...oldState, activeSidebar: false, sidebar: null, customSidebar: null }});    
           } else {
-              setStates( (oldState) => { return { ...oldState, activeSidebar: true, sidebar: null, customSidebar: 'warnings' }});
+              setStates( (oldState) => { return { ...oldState, activeSidebar: true, sidebar: null, customSidebar: 'guidelines' }});
           }
       }}
       icon={defaultIconPack.add}
@@ -303,13 +307,13 @@ We have added a custom button to trigger the UI as well using `DyteControlbarBut
     />
 ```
 
-For such extensions, we will have to update the types as well if in case you are using react with Typescript.
+For such a sidebar extension, we will have to update the types as well if in case you are using react with Typescript.
 
 ```tsx
 import type { States } from "@dytesdk/ui-kit";
 import { DyteSidebarSection } from "@dytesdk/ui-kit/dist/types/components/dyte-sidebar/dyte-sidebar";
 
-export type CustomSideBarTabs = DyteSidebarSection | 'warnings';
+export type CustomSideBarTabs = DyteSidebarSection | 'guidelines';
 
 export type CustomStates = States & { activeMediaPreviewModal?: boolean, customSidebar?: CustomSideBarTabs }
 
