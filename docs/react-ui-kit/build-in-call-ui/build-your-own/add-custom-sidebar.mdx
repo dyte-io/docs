@@ -1,0 +1,324 @@
+---
+title: Add custom sidebar
+sidebar_position: 6
+---
+
+Source Code: https://github.com/dyte-io/react-samples/tree/main/samples/create-your-own-ui
+
+To create a sidebar of your own, you need 2 things.
+
+1. A custom sidebar UI
+2. An action button to trigger the UI
+
+import CodeRunner from '@site/src/components/CodeRunner/CodeRunner';
+
+<CodeRunner 
+hide={[{start:1, end: 5}, {start:98, end: 268}]}
+highlight={[{start:6, end: 64}, {start:85, end: 98}]}
+file={`
+import { DyteStage, DyteGrid, DyteNotifications, DyteSidebar, DyteControlbar, DyteParticipantsAudio, DyteDialogManager, DyteControlbarButton, DyteSidebarUi, defaultIconPack, defaultConfig, generateConfig } from '@dytesdk/react-ui-kit';
+import { useDyteMeeting, useDyteSelector } from '@dytesdk/react-web-core';
+import { useEffect, useState } from 'react';
+
+function SidebarWithCustomUI({
+    meeting, states, config, setStates,
+}: { meeting: DyteClient, config: UIConfig, states: CustomStates, setStates: SetStates }
+){
+    const [tabs, setTabs] = useState([
+        { id: 'chat', name: 'chat' },
+        { id: 'polls', name: 'polls' },
+        { id: 'participants', name: 'participants' },
+        { id: 'plugins', name: 'plugins' },
+        { id: 'guidelines', name: 'Guidelines' }
+    ]);
+    const [view, setView] = useState<DyteSidebarView>('sidebar');
+
+    if(!states.activeSidebar || (!states.sidebar && !states.customSidebar)){
+        return null;
+    }
+
+    const currentTab = states.sidebar || states.customSidebar;
+
+    return (
+    <DyteSidebarUi
+        tabs={tabs}
+        currentTab={currentTab}
+        view={view}
+        onTabChange={(e) => {
+            setStates((oldState) => {
+                return {
+                    ...oldState,
+                    activeSidebar: true,
+                    customSidebar: e.detail,
+                    sidebar: e.detail,
+                }
+            });
+        }}
+        className="w-80 "
+        onSidebarClose={() => {
+            setStates((oldState) => {
+                return {
+                    ...oldState,
+                    activeSidebar: false,
+                    sidebar: null,
+                    customSidebar: null,
+                }
+            });
+        }}>
+        {currentTab === 'chat' && <DyteChat meeting={meeting} config={config} slot="chat" /> }
+        {currentTab === 'polls' && <DytePolls meeting={meeting} config={config} slot="polls" /> }
+        {currentTab === 'participants' && <DyteParticipants meeting={meeting} config={config} states={states} slot="participants" /> }
+        {currentTab === 'plugins' && <DytePlugins meeting={meeting} config={config} slot="plugins" /> }
+        {currentTab === 'guidelines' && <div slot="guidelines" className="flex justify-center items-center p-2">
+            <div>
+              <p>1. Ensure active participation and professionalism by muting your microphone when not speaking.</p>
+              <br></br>
+              <p>2. Utilize the chat feature for questions or comments during the meeting.</p>
+            </div>
+        </div> }
+    </DyteSidebarUi>);
+
+}
+
+function MeetingStage({ meeting, config, states, setStates }: { meeting: DyteClient, config: UIConfig, states: CustomStates, setStates: SetStates}) {
+
+return (
+
+<div className="flex h-full w-full flex-col">
+  <DyteStage className="flex h-full w-full flex-1 p-2">
+    <DyteGrid meeting={meeting} config={config} states={states} />
+    <DyteNotifications meeting={meeting} config={config} states={states} />
+    {states.activeSidebar && (
+      <SidebarWithCustomUI
+        meeting={meeting}
+        config={config}
+        states={states}
+        setStates={setStates}
+      />
+    )}
+  </DyteStage>
+  <DyteParticipantsAudio meeting={meeting} />
+  <DyteDialogManager meeting={meeting} config={config} states={states} />
+  <div>
+    <DyteControlbarButton
+      onClick={() => {
+          if(states.activeSidebar && !states.sidebar && states.customSidebar === 'guidelines'){
+              setStates( (oldState) => { return { ...oldState, activeSidebar: false, sidebar: null, customSidebar: null }});    
+          } else {
+              setStates( (oldState) => { return { ...oldState, activeSidebar: true, sidebar: null, customSidebar: 'guidelines' }});
+          }
+      }}
+      icon={defaultIconPack.add}
+      label={'Open Custom SideBar'}
+    />
+</div>
+
+</div>
+); }
+
+export default function Meeting() {
+const { meeting } = useDyteMeeting();
+const [config, setConfig] = useState(defaultConfig);
+const [states, setStates] = useState<CustomStates>({
+  meeting: 'setup',
+  sidebar: 'chat'
+});
+
+useEffect(() => {
+async function setupMeetingConfigs(){
+const theme = meeting!.self.config;
+const { config } = generateConfig(theme, meeting!);
+
+      /**
+       * Full screen by default requests dyte-meeting/DyteMeeting element to be in full screen.
+       * Since DyteMeeting element is not here,
+       *  we need to pass dyte-fullscreen-toggle, an targetElementId through config.
+       */
+      // setFullScreenToggleTargetElement({config, targetElementId: 'root'});
+
+      setConfig({...config});
+
+    /**
+     * Add listeners on meeting & self to monitor leave meeting, join meeting and so on.
+     * This work was earlier done by DyteMeeting component internally.
+     */
+      const stateListenersUtils = new DyteStateListenersUtils(() => meeting, () => states, () => setStates);
+      stateListenersUtils.addDyteEventListeners();
+
+      try{
+        await meeting.join();
+      } catch(e){
+        // do nothing
+      }
+    }
+
+    if(meeting){
+    /**
+     * During development phase, make sure to expose meeting object to window,
+     * for debugging purposes.
+     */
+      Object.assign(window, {
+        meeting,
+      })
+      setupMeetingConfigs();
+    }
+
+}, [meeting]);
+
+return (
+
+  <div className="flex w-full h-full" ref={(el) => {
+            el?.addEventListener('dyteStateUpdate', (e) => {
+              const { detail: newStateUpdate } = e as unknown as { detail: CustomStates };
+              console.log('dyteStateUpdateSetup:: ', newStateUpdate);
+              setStates((oldState: CustomStates) => { return {
+                ...oldState,
+                ...newStateUpdate,
+              }});
+            });
+          }}>
+      <MeetingStage meeting={meeting} config={config} states={states} setStates={setStates} />
+  </div>
+)
+
+}
+
+export class DyteStateListenersUtils{
+    
+    getStates: () => CustomStates;
+
+    getStateSetter: () => (newState: CustomStates) => void;
+
+    getMeeting: () => DyteClient;
+
+    get states(){
+        return this.getStates();
+    }
+
+    get setGlobalStates(){
+        return this.getStateSetter();
+    };
+
+    get meeting(){
+        return this.getMeeting();
+    }
+
+    constructor(getMeeting: () => DyteClient, getGlobalStates: () => CustomStates, getGlobalStateSetter: () => (newState: CustomStates) => void){
+        this.getMeeting = getMeeting;
+        this.getStates = getGlobalStates;
+        this.getStateSetter = getGlobalStateSetter;
+    }
+    private updateStates(newState: CustomStates){
+        this.setGlobalStates((oldState: CustomStates) => { return {
+            ...oldState,
+            ...newState,
+        }});
+        console.log(newState);
+    }
+    private roomJoinedListener = () => {
+        this.updateStates({ meeting: 'joined' });
+      };
+
+      private socketServiceRoomJoinedListener = () => {
+        if (this.meeting.stage.status === 'ON_STAGE' || this.meeting.stage.status === undefined) return;
+        this.updateStates({ meeting: 'joined' });
+      };
+
+      private waitlistedListener = () => {
+        this.updateStates({ meeting: 'waiting' });
+      };
+
+      private roomLeftListener = ({ state }: { state: RoomLeftState }) => {
+        const states = this.states;
+        if (states?.roomLeftState === 'disconnected') {
+          this.updateStates({ meeting: 'ended', roomLeftState: state });
+          return;
+        }
+        this.updateStates({ meeting: 'ended', roomLeftState: state });
+      };
+
+      private mediaPermissionUpdateListener = ({ kind, message }: {
+        kind: PermissionSettings['kind'],
+        message: string,
+      }) => {
+        if (['audio', 'video'].includes(kind!)) {
+          if (message === 'ACCEPTED' || message === 'NOT_REQUESTED' || this.states.activeDebugger)
+            return;
+          const permissionModalSettings: PermissionSettings = {
+            enabled: true,
+            kind,
+          };
+          this.updateStates({ activePermissionsMessage: permissionModalSettings });
+        }
+      };
+
+      private joinStateAcceptedListener = () => {
+        this.updateStates({ activeJoinStage: true });
+      };
+
+      private handleChangingMeeting(destinationMeetingId: string) {
+        this.updateStates({
+            activeBreakoutRoomsManager: {
+                ...this.states.activeBreakoutRoomsManager,
+                active: this.states.activeBreakoutRoomsManager!.active,
+                destinationMeetingId,
+            }
+        });
+    }
+
+    addDyteEventListeners(){
+        if (this.meeting.meta.viewType === 'LIVESTREAM') {
+            this.meeting.self.addListener('socketServiceRoomJoined', this.socketServiceRoomJoinedListener);
+          }
+          this.meeting.self.addListener('roomJoined', this.roomJoinedListener);
+
+          this.meeting.self.addListener('waitlisted', this.waitlistedListener);
+          this.meeting.self.addListener('roomLeft', this.roomLeftListener);
+          this.meeting.self.addListener('mediaPermissionUpdate', this.mediaPermissionUpdateListener);
+          this.meeting.self.addListener('joinStageRequestAccepted', this.joinStateAcceptedListener);
+
+          if (this.meeting.connectedMeetings.supportsConnectedMeetings) {
+            this.meeting.connectedMeetings.once('changingMeeting', this.handleChangingMeeting);
+          }
+
+    }
+    cleanupDyteEventListeners(){
+
+    }
+
+}
+` } />
+
+Let's say, we want to show some meeting guidelines to all the participants in a side bar. To do so, in the below code snippet, we have added `guidelines` sidebar section.
+
+We have added a custom button to trigger the UI as well using `DyteControlbarButton` component.
+
+```tsx
+    <DyteControlbarButton
+      onClick={() => {
+          if(states.activeSidebar && !states.sidebar && states.customSidebar === 'guidelines'){
+              setStates( (oldState) => { return { ...oldState, activeSidebar: false, sidebar: null, customSidebar: null }});    
+          } else {
+              setStates( (oldState) => { return { ...oldState, activeSidebar: true, sidebar: null, customSidebar: 'guidelines' }});
+          }
+      }}
+      icon={defaultIconPack.add}
+      label={'Open Custom SideBar'}
+    />
+```
+
+For such a sidebar extension, we will have to update the types as well if in case you are using react with Typescript.
+
+```tsx
+import type { States } from "@dytesdk/ui-kit";
+import { DyteSidebarSection } from "@dytesdk/ui-kit/dist/types/components/dyte-sidebar/dyte-sidebar";
+
+export type CustomSideBarTabs = DyteSidebarSection | 'guidelines';
+
+export type CustomStates = States & { activeMediaPreviewModal?: boolean, customSidebar?: CustomSideBarTabs }
+
+export type SetStates = React.Dispatch<React.SetStateAction<CustomStates>>;
+```
+
+Now that we know how we can add a custom sidebar, we can move on to customise the `DyteStage` component further.
+

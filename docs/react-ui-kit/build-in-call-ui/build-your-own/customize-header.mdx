@@ -1,0 +1,255 @@
+---
+title: Customize Header
+sidebar_position: 3
+---
+
+Source Code: https://github.com/dyte-io/react-samples/tree/main/samples/create-your-own-ui
+
+Dyte's default header component `DyteHeader` can be used as the following.
+
+```tsx
+<DyteHeader meeting={meeting} />
+```
+
+Following code shows how you can customise the DyteHeader or build it from scratch as per your use case.
+
+import CodeRunner from '@site/src/components/CodeRunner/CodeRunner';
+
+<CodeRunner 
+hide={[{start:1, end: 5}, {start:29, end: 227}]}
+highlight={[{start:6, end: 27}]}
+file={`
+import { defaultConfig, generateConfig, DyteLogo, DyteRecordingIndicator, DyteLivestreamIndicator, DyteMeetingTitle, DyteGridPagination, DyteParticipantCount, DyteViewerCount, DyteClock } from '@dytesdk/react-ui-kit';
+import { useDyteMeeting, useDyteSelector } from '@dytesdk/react-web-core';
+import { useEffect, useState } from 'react';
+
+function HeaderWithCustomUI({
+    meeting, states, config,
+}: { meeting: DyteClient, config: UIConfig, states: CustomStates, setStates: SetStates }
+){
+    
+    return <div className='flex justify-between w-full bg-black text-white'>
+        <div id="header-left" className="flex items-center h-[48px]">
+            <DyteLogo meeting={meeting} />
+            <DyteRecordingIndicator meeting={meeting}/>
+            <DyteLivestreamIndicator meeting={meeting}/>
+        </div>
+        <div id="header-center" className="flex items-center h-[48px]">
+            <DyteMeetingTitle meeting={meeting}/>
+        </div>
+        <div id="header-right" className="flex items-center h-[48px]">
+            <DyteGridPagination meeting={meeting} states={states}/>
+            <DyteParticipantCount meeting={meeting}/>
+            <DyteViewerCount meeting={meeting} />
+            <DyteClock meeting={meeting} />
+        </div>
+    </div>
+}
+
+export default function Meeting() {
+  const { meeting } = useDyteMeeting();
+  const [config, setConfig] = useState(defaultConfig);
+  /**
+  * We need setStates method to add custom functionalities,
+  * as well as to ensure that web-core & ui-kit are in Sync.
+  */
+  const [states, setStates] = useState<CustomStates>({
+    meeting: 'setup',
+    sidebar: 'chat'
+  });
+
+useEffect(() => {
+  async function setupMeetingConfigs(){
+      const theme = meeting!.self.config;
+      const { config } = generateConfig(theme, meeting!);
+
+      /**
+       * Full screen toggle, by default requests dyte-meeting/DyteMeeting element to be in full screen.
+       * Since DyteMeeting element is not here,
+       *  we need to pass dyte-fullscreen-toggle, an targetElementId through config.
+       */
+      setFullScreenToggleTargetElement({config, targetElementId: 'root'});
+
+      setConfig({...config});
+
+    /**
+     * Add listeners on meeting & self to monitor leave meeting, join meeting and so on.
+     * This work was earlier done by DyteMeeting component internally.
+     */
+      const stateListenersUtils = new DyteStateListenersUtils(() => meeting, () => states, () => setStates);
+      stateListenersUtils.addDyteEventListeners();
+
+      try{
+        await meeting.join();
+      } catch(e){
+        // do nothing
+      }
+    }
+
+    if(meeting){
+      setupMeetingConfigs();
+    }
+
+}, [meeting]);
+
+return (
+  /**
+  * Using a ref hack, we are adding "dyteStateUpdate" listener,
+  * so that we can listen to child component's internal state changes.
+  */
+  <div className="flex w-full h-full bg-black text-white" ref={(el) => {
+            el?.addEventListener('dyteStateUpdate', (e) => {
+              const { detail: newStateUpdate } = e as unknown as { detail: CustomStates };
+              setStates((oldState: CustomStates) => { return {
+                ...oldState,
+                ...newStateUpdate,
+              }});
+            });
+          }}>
+      <HeaderWithCustomUI meeting={meeting} config={config} states={states} setStates={setStates} />
+  </div>
+);
+
+}
+
+/**
+* DyteStateListenersUtils is a class that listens to web-core changes and syncs them with ui-kit
+*/
+class DyteStateListenersUtils{
+
+    getStates: () => CustomStates;
+
+    getStateSetter: () => (newState: CustomStates) => void;
+
+    getMeeting: () => DyteClient;
+
+    get states(){
+        return this.getStates();
+    }
+
+    get setGlobalStates(){
+        return this.getStateSetter();
+    };
+
+    get meeting(){
+        return this.getMeeting();
+    }
+
+    constructor(getMeeting: () => DyteClient, getGlobalStates: () => CustomStates, getGlobalStateSetter: () => (newState: CustomStates) => void){
+        this.getMeeting = getMeeting;
+        this.getStates = getGlobalStates;
+        this.getStateSetter = getGlobalStateSetter;
+    }
+    private updateStates(newState: CustomStates){
+        this.setGlobalStates((oldState: CustomStates) => { return {
+            ...oldState,
+            ...newState,
+        }});
+        console.log(newState);
+    }
+    private roomJoinedListener = () => {
+        this.updateStates({ meeting: 'joined' });
+      };
+
+      private socketServiceRoomJoinedListener = () => {
+        if (this.meeting.stage.status === 'ON_STAGE' || this.meeting.stage.status === undefined) return;
+        this.updateStates({ meeting: 'joined' });
+      };
+
+      private waitlistedListener = () => {
+        this.updateStates({ meeting: 'waiting' });
+      };
+
+      private roomLeftListener = ({ state }: { state: RoomLeftState }) => {
+        const states = this.states;
+        if (states?.roomLeftState === 'disconnected') {
+          this.updateStates({ meeting: 'ended', roomLeftState: state });
+          return;
+        }
+        this.updateStates({ meeting: 'ended', roomLeftState: state });
+      };
+
+      private mediaPermissionUpdateListener = ({ kind, message }: {
+        kind: PermissionSettings['kind'],
+        message: string,
+      }) => {
+        if (['audio', 'video'].includes(kind!)) {
+          if (message === 'ACCEPTED' || message === 'NOT_REQUESTED' || this.states.activeDebugger)
+            return;
+          const permissionModalSettings: PermissionSettings = {
+            enabled: true,
+            kind,
+          };
+          this.updateStates({ activePermissionsMessage: permissionModalSettings });
+        }
+      };
+
+      private joinStateAcceptedListener = () => {
+        this.updateStates({ activeJoinStage: true });
+      };
+
+      private handleChangingMeeting(destinationMeetingId: string) {
+        this.updateStates({
+            activeBreakoutRoomsManager: {
+                ...this.states.activeBreakoutRoomsManager,
+                active: this.states.activeBreakoutRoomsManager!.active,
+                destinationMeetingId,
+            }
+        });
+    }
+
+    addDyteEventListeners(){
+        if (this.meeting.meta.viewType === 'LIVESTREAM') {
+            this.meeting.self.addListener('socketServiceRoomJoined', this.socketServiceRoomJoinedListener);
+          }
+          this.meeting.self.addListener('roomJoined', this.roomJoinedListener);
+
+          this.meeting.self.addListener('waitlisted', this.waitlistedListener);
+          this.meeting.self.addListener('roomLeft', this.roomLeftListener);
+          this.meeting.self.addListener('mediaPermissionUpdate', this.mediaPermissionUpdateListener);
+          this.meeting.self.addListener('joinStageRequestAccepted', this.joinStateAcceptedListener);
+
+          if (this.meeting.connectedMeetings.supportsConnectedMeetings) {
+            this.meeting.connectedMeetings.once('changingMeeting', this.handleChangingMeeting);
+          }
+
+    }
+    cleanupDyteEventListeners(){
+
+    }
+
+}
+
+/**
+* setFullScreenToggleTargetElement updates the ui-kit config,
+* to set targetElement to full screen toggle.
+*/
+function setFullScreenToggleTargetElement({config, targetElementId}: { config: UIConfig, targetElementId: string }){
+    if (config.root && Array.isArray(config.root['div#controlbar-left'])) {
+        const fullScreenToggleIndex = config.root['div#controlbar-left'].indexOf('dyte-fullscreen-toggle');
+        if(fullScreenToggleIndex > -1){
+            config.root['div#controlbar-left'][fullScreenToggleIndex] = ['dyte-fullscreen-toggle', {
+                variant: 'vertical',
+                targetElement: document.querySelector("#"+targetElementId),
+            }];
+        }
+    }
+    ['dyte-more-toggle.activeMoreMenu', 'dyte-more-toggle.activeMoreMenu.md', 'dyte-more-toggle.activeMoreMenu.sm'].forEach((configElemKey) => {
+        const configElem = config?.root?.[configElemKey] as any;
+        configElem?.forEach((dyteElemConfigSet: any) => {
+            if (dyteElemConfigSet[0] === 'dyte-fullscreen-toggle') {
+                dyteElemConfigSet[1].targetElement = document.querySelector("#"+targetElementId);
+            }
+        });
+    });
+}
+
+` } />
+
+Please note that the `DyteRecordingIndicator` will be shown only when recording is in-progress. Similarly `DyteLivestreamIndicator` only shows "Live" indicator if the preset is a livestream preset.
+
+if user's preset has a logo, that logo will be shown using `DyteLogo` component.
+
+Now that we know how we can build a custom header, let's move on to discuss how we can build a custom footer otherwise knows as control bar.
+
+
