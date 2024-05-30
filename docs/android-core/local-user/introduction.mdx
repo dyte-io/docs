@@ -182,6 +182,15 @@ meeting.localUser.enableVideo();
 
 ## Enable / Disable Screen share
 
+:::tip Note
+To use screenshare on Android devices running Android API 14 and above, you will need to declare the following permission in your app's AndroidManifest.xml. 
+
+
+`<uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />`
+
+Adding above permission will require you to do extra steps on Google Play Console while submitting the app. For more information please refer [this](https://support.google.com/googleplay/android-developer/answer/13392821?hl=en#declare).
+:::
+
 <Tabs groupId="screenshare-self">
   <TabItem value="kotlin" label="Kotlin" default>
 
