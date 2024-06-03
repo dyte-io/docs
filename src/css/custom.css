@@ -1161,12 +1161,12 @@ article ul {
   content: url('data:image/svg+xml,<svg class="sidebar-icon-header ___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0" aria-hidden="true" width="1em" height="1em" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M4.35 4.33a.48.48 0 0 1 .68.01c.2.2.19.54-.02.75a6.98 6.98 0 0 0 .15 9.97c.22.2.23.55.03.75a.48.48 0 0 1-.67.02 7.98 7.98 0 0 1-.17-11.5ZM15 5.1a.53.53 0 0 1-.02-.75c.19-.18.5-.2.68 0a7.98 7.98 0 0 1-.17 11.5.48.48 0 0 1-.67-.03.53.53 0 0 1 .03-.75 6.98 6.98 0 0 0 .15-9.97Zm-8.86 1a.46.46 0 0 1 .66.02c.2.2.19.55-.02.76a4.49 4.49 0 0 0 .14 6.4c.22.21.25.57.04.78a.46.46 0 0 1-.64.03 5.49 5.49 0 0 1-.18-7.99Zm7.1.78c-.2-.21-.23-.56-.02-.76.18-.19.48-.2.66-.02a5.48 5.48 0 0 1-.18 7.99.46.46 0 0 1-.64-.03c-.21-.21-.18-.57.04-.78a4.49 4.49 0 0 0 .14-6.4ZM10 8.75a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5Z" fill="currentColor"></path></svg>');
 }
 
-.chat_sidebar_header > div > a::before {
+.hide_sidebar > div > a::before {
   @apply mt-1 mr-2;
   content: url('data:image/svg+xml,<svg class="sidebar-icon-header ___12fm75w f1w7gpdv fez10in fg4l7m0" aria-hidden="true" width="1em" height="1em" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M8.54 2a6.5 6.5 0 0 0-5.68 9.67l-.8 2.08a1 1 0 0 0 1.21 1.32l2.49-.7A6.5 6.5 0 1 0 8.54 2Zm-5.5 6.5a5.5 5.5 0 1 1 3 4.9l-.18-.09-2.86.8.97-2.53-.13-.21a5.47 5.47 0 0 1-.8-2.87ZM11.5 18a6.49 6.49 0 0 1-4.93-2.26 7.5 7.5 0 0 0 1.76.26 5.47 5.47 0 0 0 5.67.4l.18-.09 2.86.8-.97-2.53.13-.21a5.47 5.47 0 0 0-.16-5.98c-.01-.6-.1-1.2-.24-1.76a6.48 6.48 0 0 1 1.38 8.04l.8 2.08a1 1 0 0 1-1.21 1.32l-2.49-.7c-.84.4-1.79.63-2.78.63Z" fill="currentColor"></path></svg>');
 }
 
-html[data-theme='dark'] .chat_sidebar_header > div > a::before {
+html[data-theme='dark'] .hide_sidebar > div > a::before {
   content: url('data:image/svg+xml,<svg fill="red" class=" ___12fm75w f1w7gpdv fez10in fg4l7m0" aria-hidden="true" width="1em" height="1em" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M8.54 2a6.5 6.5 0 0 0-5.68 9.67l-.8 2.08a1 1 0 0 0 1.21 1.32l2.49-.7A6.5 6.5 0 1 0 8.54 2Zm-5.5 6.5a5.5 5.5 0 1 1 3 4.9l-.18-.09-2.86.8.97-2.53-.13-.21a5.47 5.47 0 0 1-.8-2.87ZM11.5 18a6.49 6.49 0 0 1-4.93-2.26 7.5 7.5 0 0 0 1.76.26 5.47 5.47 0 0 0 5.67.4l.18-.09 2.86.8-.97-2.53.13-.21a5.47 5.47 0 0 0-.16-5.98c-.01-.6-.1-1.2-.24-1.76a6.48 6.48 0 0 1 1.38 8.04l.8 2.08a1 1 0 0 1-1.21 1.32l-2.49-.7c-.84.4-1.79.63-2.78.63Z" fill="white"></path></svg>');
 }
 
@@ -1327,7 +1327,7 @@ h2.anchor > code {
   opacity: 0.5;
 }
 
-.chat_sidebar_header {
+.hide_sidebar {
   display: none;
 }
 
@@ -1434,4 +1434,9 @@ h2.anchor > code, h3.anchor > code {
 
 .module-seperation {
   @apply border-t;
+}
+
+/* Hide livestream API */
+div > div[title="Live streams"] {
+  display: none;
 }
