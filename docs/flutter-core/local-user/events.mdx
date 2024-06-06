@@ -140,10 +140,46 @@ When the local user is removed from the meeting, the `onRemovedFromMeeting()` ca
 
 ```dart
 
-@override
-void onRemovedFromMeeting() {
-  // Display an alert to the user indicating that they are no longer in the meeting.
+class LocalUserNotifier implements DyteSelfEventsListener {
+
+  ...
+
+  @override
+  void onRemovedFromMeeting() {
+    // Display an alert to the user indicating that they are no longer in the meeting.
+  }
+
+  ...
 }
+```
+
+## Screenshare callbacks for local user
+
+```dart
+
+class LocalUserNotifier implements DyteSelfEventsListener {
+
+  ...
+
+
+  @override
+  void onScreenShareStartFailed(String reason) {
+    // screenshare failed to start
+  }
+
+  @override
+  void onScreenShareStarted() {
+    // screenshare started presenting in the meeting
+  }
+
+  @override
+  void onScreenShareStopped() {
+    // screenshared stopped by the local user
+  }
+
+  ...
+}
+
 ```
 
 ## Change in audio/video source
@@ -151,14 +187,23 @@ void onRemovedFromMeeting() {
 Whenever user changes audio/video source using `setAudioDevice(DyteAudioDevice)` and `setVideoDevice(DyteVideoDevice)` respectively [ref: [here](/flutter-core/local-user/manage-media-devices)], `onAudioDevicesUpdated()` and `onVideoDevicesChanged()` are triggered respectively.
 
 ```dart
-@override
-void onAudioDevicesUpdated() {
-  // triggered on successful execution of `setAudioDevice(DyteAudioDevice)`
-}
 
-@override
-void onVideoDeviceChanged(DyteVideoDevice videoDevice) {
-  // triggered on successful execution of `setVideoDevice(DyteVideoDevice)`
+class LocalUserNotifier implements DyteSelfEventsListener {
+
+  ...
+
+  @override
+  void onAudioDevicesUpdated() {
+    // triggered on successful execution of `setAudioDevice(DyteAudioDevice)`
+  }
+
+  @override
+  void onVideoDeviceChanged(DyteVideoDevice videoDevice) {
+    // triggered on successful execution of `setVideoDevice(DyteVideoDevice)`
+  }
+
+  ...
+
 }
 
 ```
@@ -168,13 +213,24 @@ void onVideoDeviceChanged(DyteVideoDevice videoDevice) {
 Manage messages within the room using `onRoomMessage(String message)` callback.
 
 ```dart
-@override
-void onRoomMessage(String type, Map<String, dynamic> payload) {
-  // triggered when a message is sent within the room.
+
+class LocalUserNotifier implements DyteSelfEventsListener {
+
+  ...
+
+  @override
+  void onRoomMessage(String type, Map<String, dynamic> payload) {
+    // triggered when a message is sent within the room.
+  }
+
+  ...
 }
 ```
 
 <head>
   <title>Flutter Core Events</title>
-  <meta name="description" content="Explore events related to local user interactions in Flutter. Follow our documentation for effective handling of local user events in your app."/>
+  <meta
+    name="description"
+    content="Explore events related to local user interactions in Flutter. Follow our documentation for effective handling of local user events in your app."
+  />
 </head>
