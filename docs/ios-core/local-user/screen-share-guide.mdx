@@ -17,10 +17,10 @@ This guide is being updated, and might not work as expected in its current form
 ## Overview
 
 1. Add a new Broadcast Upload Extension to your project.
-2. Setup app groups
+2. Setup app groups.
 3. Download `DyteSampleHandler` class from [Github repo](https://github.com/dyte-io/iOS-ScreenShare) .
 4. Have your SampleHandler class inherited from this downloaded class `DyteSampleHandler` .
-5. Update Info.plist
+5. Update Info.plist.
 
 ### Add a new Broadcast Upload Extension to your project.
 
@@ -72,6 +72,15 @@ To Launch the broadcast extension and call the method `enableScreenshare()`
 
 ```swift
 dyteClient.localUser.enableScreenshare()
+```
+
+### Stop the Screenshare
+
+To stop the ongoing screenshare and call the method `disableScreenshare()`. This will show the system
+alert with a stop button for stopping screen share.
+
+```swift
+dyteClient.localUser.disbaleScreenshare()
 ```
 
 ![screenshot](/static/mobile/0.x.x/ios-setup-app.png)
