@@ -1,6 +1,8 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
 import {
+  ChatMultipleRegular,
+  LiveRegular,
   MicRegular,
   VideoRegular,
 } from '@fluentui/react-icons';
@@ -15,7 +17,6 @@ const PRODUCTS = [
     lightImage: '/static/landing-page/hero/video-graphic.png',
     darkImage: '/static/landing-page/hero/video-graphic-dark.png',
     text: 'Enable live video communication within your application. Perfect for education, telemedicine, social networks and gaming',
-    beta: false,
   },
   {
     title: 'Voice',
@@ -24,7 +25,24 @@ const PRODUCTS = [
     lightImage: '/static/landing-page/hero/voice-graphic.png',
     darkImage: '/static/landing-page/hero/voice-graphic-dark.png',
     text: 'Incorporate high-quality real-time audio into your application. Build voice calls, audio conferences, voice chats in games and more',
-  }
+  },
+  {
+    title: 'Interactive Live Streaming',
+    link: '/guides/livestream/livestream-overview',
+    icon: LiveRegular,
+    lightImage: '/static/landing-page/hero/livestream-graphic.png',
+    darkImage: '/static/landing-page/hero/livestream-graphic-dark.png',
+    text: 'Integrate highly scalable live video broadcasting capabilities into your app, ideal for apps that involve streaming webinars, sports or live events',
+  },
+  {
+    title: 'Chat',
+    beta: true,
+    link: '/guides/realtime-chat/intro-chat',
+    icon: ChatMultipleRegular,
+    lightImage: '/static/landing-page/hero/chat-graphic.png',
+    darkImage: '/static/landing-page/hero/chat-graphic-dark.png',
+    text: 'Add real-time chat functionalities to your application. Be it customer support, social networks or any other colloboration use case, we got you covered',
+  },
 ];
 
 function HeroProduct({
@@ -71,8 +89,8 @@ function HeroProduct({
 
 export default function HeroSection() {
   return (
-    <div className='noise-bg'>
-      <section className="no-underline-links px-4 pt-16 lg:py-0">
+    <>
+      <section className="noise-bg no-underline-links px-4 pt-16 lg:py-0">
         <div className="flex flex-col items-center justify-between py-14">
           <h2 className="mb-4 font-jakarta text-5xl font-bold">
             Build with Dyte
@@ -86,11 +104,11 @@ export default function HeroSection() {
         </div>
       </section>
 
-      <section className="mx-auto grid w-full max-w-5xl grid-cols-1 grid-rows-1 gap-6 px-4 md:grid-cols-2 mb-32">
+      <section className="mx-auto grid w-full max-w-5xl grid-cols-1 grid-rows-2 gap-6 px-4 md:grid-cols-2">
         {PRODUCTS.map((product) => (
           <HeroProduct {...product} key={product.title} />
         ))}
       </section>
-    </div>
+    </>
   );
 }
