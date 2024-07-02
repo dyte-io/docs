@@ -1,5 +1,5 @@
 ---
-title: Create & Vote a poll
+title: Creating a poll
 description: >-
   Learn how to create polls in Flutter using Dyte's features. Follow our
   documentation for seamless integration and effective poll creation.
@@ -32,25 +32,6 @@ dyteClient.polls.create(
     anonymous: true,
     hideVotes: false,
 );
-```
-
-# Voting on a poll
-
-The `dyteClient.polls.vote()` method can be used to register a vote on a poll.
-It accepts the following params.
-
-| Param       | Type            | Default Value | Required | Description                                                |
-| ----------- | --------------- | ------------- | -------- | ---------------------------------------------------------- |
-| pollMessage | DytePollMessage | -             | yes      | Contains all the poll properties (question, options, etc.) |
-| pollOption  | DytePollOption  | yes           | yes      | Option on which the user voted                             |
-
-The following snippet votes for the 1st option on the 1st poll created in the
-meeting.
-
-```dart
-final poll = dyteClient.polls.polls[0];
-final selectedPollOption = poll.options[0];
-dyteClient.polls.vote(poll, selectedPollOption);
 ```
 
 <head>
