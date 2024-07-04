@@ -3,7 +3,7 @@
     "version": "0.7.5",
     "createdAt": 1719167400,
     "fixes": [
-      "iOS Screenshare",
+      "Fixed iOS Screenshare, crashed after 3-4 sec due to memory limitation.",
       "Return appropriate error details on Exception Page"
     ],
     "breaking-changes": []
@@ -12,9 +12,9 @@
     "version": "0.7.4",
     "createdAt": 1718649000,
     "fixes": [
-      "Loader issue on end meeting for all/on removed from meeting/exiting from setup screen.",
-      "Video flickering issue",
-      "Hide chat button if the user can't send chat."
+      "Fixed loader issue on end meeting for all/on removed from meeting/exiting from setup screen.",
+      "Fixed video flickering issue when meeting is idle for a few seconds.",
+      "Hidden chat button if the user can't send chat."
     ],
     "breaking-changes": []
   },
@@ -22,23 +22,23 @@
     "version": "0.7.3",
     "createdAt": 1717957800,
     "features": [
-      "Skip setup screen by passing `skipSetupScreen` param to `true` in `DyteUIKitBuilder.build()` method."
+      "You can skip setup screen by passing `skipSetupScreen` param to `true` in `DyteUIKitBuilder.build()` method."
     ],
     "breaking-changes": []
   },
   {
     "version": "0.7.2",
     "createdAt": 1716921000,
-    "fixes": ["Join room when title is null."],
+    "fixes": ["You can join room without any exception when title is null."],
     "breaking-changes": []
   },
   {
     "version": "0.7.1",
     "createdAt": 1714588200,
     "fixes": [
-      "Previous meet join with different authToken in same app session.",
-      "Respect limit on screenshare count from dev portal.",
-      "Cleanup native listeners on release/leave meeting complete."
+      "Fixed previous meet join with different authToken in same app session.",
+      "Fixed respecting limit on screenshare count from dev portal.",
+      "Added cleanup native listeners methods on release/leave meeting complete."
     ],
     "breaking-changes": []
   },
@@ -46,17 +46,16 @@
     "version": "0.7.0",
     "createdAt": 1713205800,
     "features": [
-      "Polls & Plugins screen are exportable.",
-      "Export DyteAudioIndicator, DyteNameTag, DyteSetupScreen",
+      "Exported Polls & Plugins screen.",
+      "Exported DyteAudioIndicator, DyteNameTag, DyteSetupScreen",
       "Added screenshare button checks for webinar and livestream control bars.",
       "Introduced DyteReleaseResourcesButton widget (to be used if you want to exit SDK before joining the call)."
     ],
     "fixes": [
-      "Small bug-fixes and performance improvements",
-      "Theme fixes for participant page, chat message layout.",
+      "Fixed themes for participant page, chat message layout.",
       "Renamed ParticipantsPage to DyteParticipantsPage.",
-      "Remove audio/video toggling if participant is offstage.",
-      "Populates error details onMeetingInitFailed()/onMeetingJoinFailed()."
+      "Fixed audio/video toggling buttons visibility if participant is offstage.",
+      "Populated error details onMeetingInitFailed()/onMeetingJoinFailed()."
     ],
     "breaking-changes": []
   },
@@ -66,7 +65,7 @@
     "fixes": [
       "Added viewer list for webinar",
       "Added check for screenshare option",
-      "Remove stage privileges when host is off-stage."
+      "Fixed stage privileges when host is off-stage."
     ],
     "features": ["Added viewer list for webinar"],
     "breaking-changes": []
@@ -104,10 +103,10 @@
       "Added loaders for audio/video toggle buttons."
     ],
     "fixes": [
-      "Remove disable all videos button.",
+      "Removed disable all videos button.",
       "Changed notification option from bottom to top.",
       "Minor design changes on Plugin screen and app bar.",
-      "Multiple `(you)` tag fixes."
+      "Fixed multiple `(you)` tag fixes."
     ]
   },
   {
@@ -117,13 +116,13 @@
       "Unread count badge on more button in control bar.",
       "Added notification when reconnection in progress.",
       "Added labels to audio/video control bar buttons.",
-      "Custom color to IconButoon that overrides design token"
+      "Added custom color to IconButoon that overrides design token"
     ],
     "fixes": [
       "Fixed button updation as per stage permission.",
-      "Appbar title invisibility fix",
-      "Kick disabled for self.",
-      "Design token for control bar audio/video buttons.",
+      "Fixed appbar title invisibility.",
+      "Disabled kick option for self.",
+      "Fixed design token colors to be respected for control bar audio/video buttons.",
       "Added center text when stage is empty."
     ]
   },
