@@ -55,7 +55,7 @@ packages, try installing them separately.
 
 Here's a series of steps that you need to perform:
 
-1. Set up `DyteProvider`. You need it to import the `DyteProvider` from the
+1. Set up `DyteProvider`. You need to import the `DyteProvider` from the
    `dytesdk/react-web-core`. DyteProvider basically is a hook wrapper on
    dytesdk/web-core. This provides a meeting object to child components.
 2. Initialize the Dyte client. Use the `useDyteClient()` hook and `initMeeting`
@@ -125,10 +125,9 @@ export default function MyMeetingUI() {
   const { meeting } = useDyteMeeting();
 
 return (
+
 <DyteMeeting mode="fill" meeting={meeting} showSetupScreen={false} />
-);
-}
-`} />
+); } `} />
 
 <head>
   <title>React UI Kit Quickstart</title>

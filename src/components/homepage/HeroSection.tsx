@@ -16,7 +16,7 @@ const PRODUCTS = [
     icon: VideoRegular,
     lightImage: '/static/landing-page/hero/video-graphic.png',
     darkImage: '/static/landing-page/hero/video-graphic-dark.png',
-    text: 'Enable live video communication within your application. Perfect for education, telemedicine, social networks and gaming',
+    text: 'Enable live video communication within your application. Perfect for education, telemedicine, social networks, and gaming',
   },
   {
     title: 'Voice',
@@ -41,7 +41,7 @@ const PRODUCTS = [
     icon: ChatMultipleRegular,
     lightImage: '/static/landing-page/hero/chat-graphic.png',
     darkImage: '/static/landing-page/hero/chat-graphic-dark.png',
-    text: 'Add real-time chat functionalities to your application. Be it customer support, social networks or any other colloboration use case, we got you covered',
+    text: 'Add real-time chat functionalities to your application. Be it customer support, social networks, or any other collaboration use case, we got you covered',
   },
 ];
 

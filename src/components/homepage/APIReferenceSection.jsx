@@ -23,9 +23,10 @@ export default function APIReferenceSection() {
         <div className="flex-1">
           <h2 className="text-4xl">REST API Reference</h2>
           <p className="text-zinc-400">
-            Don&apos;t worry, they are&apos;t complex. Use our
-            developer-friendly REST APIs and integrate video and voice communication
-            into your web, mobile, or desktop applications programmatically.
+            Don&apos;t worry, they aren&apos;t complex. Use our
+            developer-friendly REST APIs and integrate video and voice
+            communication into your web, mobile, or desktop applications
+            programmatically.
           </p>
           <Link
             href="/api"
