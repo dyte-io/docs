@@ -33,16 +33,7 @@ const PRODUCTS = [
     lightImage: '/static/landing-page/hero/livestream-graphic.png',
     darkImage: '/static/landing-page/hero/livestream-graphic-dark.png',
     text: 'Integrate highly scalable live video broadcasting capabilities into your app, ideal for apps that involve streaming webinars, sports or live events',
-  },
-  {
-    title: 'Chat',
-    beta: true,
-    link: '/guides/realtime-chat/intro-chat',
-    icon: ChatMultipleRegular,
-    lightImage: '/static/landing-page/hero/chat-graphic.png',
-    darkImage: '/static/landing-page/hero/chat-graphic-dark.png',
-    text: 'Add real-time chat functionalities to your application. Be it customer support, social networks or any other colloboration use case, we got you covered',
-  },
+  }
 ];
 
 function HeroProduct({
@@ -61,8 +52,8 @@ function HeroProduct({
         borderWidth: '1px',
       }}
       className={clsx(
-        'group relative cursor-pointer overflow-clip rounded-3xl from-primary/30 via-transparent to-transparent text-black transition-all hover:bg-gradient-to-tr hover:text-primary hover:no-underline dark:text-white',
-        'border-secondary-700 bg-secondary-900 hover:!border-primary dark:border-secondary-800'
+        'group cursor-pointer overflow-clip rounded-3xl from-primary/30 via-transparent to-transparent text-black transition-all hover:bg-gradient-to-tr hover:text-primary hover:no-underline dark:text-white',
+        'border-secondary-700 bg-secondary-900 hover:!border-primary dark:border-secondary-800 w-[90vw] sm:w-[440px]'
       )}
     >
       <div className="p-6 !pb-0">
@@ -89,8 +80,8 @@ function HeroProduct({
 
 export default function HeroSection() {
   return (
-    <>
-      <section className="noise-bg no-underline-links px-4 pt-16 lg:py-0">
+    <div className='noise-bg pb-14'>
+      <section className="no-underline-links px-4 pt-16 lg:py-0">
         <div className="flex flex-col items-center justify-between py-14">
           <h2 className="mb-4 font-jakarta text-5xl font-bold">
             Build with Dyte
@@ -104,11 +95,11 @@ export default function HeroSection() {
         </div>
       </section>
 
-      <section className="mx-auto grid w-full max-w-5xl grid-cols-1 grid-rows-2 gap-6 px-4 md:grid-cols-2">
+      <section className="mx-auto w-full max-w-6xl flex gap-6 px-4 flex-wrap justify-center">
         {PRODUCTS.map((product) => (
           <HeroProduct {...product} key={product.title} />
         ))}
       </section>
-    </>
+    </div>
   );
 }
