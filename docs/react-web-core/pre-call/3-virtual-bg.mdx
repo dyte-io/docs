@@ -38,18 +38,10 @@ If you installed the package using a script tag, the `DyteVideoBackgroundTransfo
 
 ```js
 const videoBackgroundTransformer = await DyteVideoBackgroundTransformer.init({
-            meeting,
-            segmentationConfig: {
-              model: 'mlkit', // could also be 'meet'
-              backend: 'wasmSimd',
-              inputResolution: '256x256', // '256x144' for meet
-              pipeline: 'webgl2', // canvas2dCpu | webgl2
-              targetFps: 35, 
-              deferInputResizing: true,
-            },
+            meeting: meeting
         });
 
-meeting.self.setVideoMiddlewareGlobalConfig({ disablePerFrameCanvasRendering: true });
+await meeting.self.setVideoMiddlewareGlobalConfig({ disablePerFrameCanvasRendering: true });
 ```
 
 
