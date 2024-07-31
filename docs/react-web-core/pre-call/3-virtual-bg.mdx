@@ -37,8 +37,21 @@ import DyteVideoBackgroundTransformer from '@dytesdk/video-background-transforme
 If you installed the package using a script tag, the `DyteVideoBackgroundTransformer` will be automatically available for use once the installation process is complete.
 
 ```js
-const videoBackgroundTransformer = await DyteVideoBackgroundTransformer.init();
+const videoBackgroundTransformer = await DyteVideoBackgroundTransformer.init({
+            meeting,
+            segmentationConfig: {
+              model: 'mlkit', // could also be 'meet'
+              backend: 'wasmSimd',
+              inputResolution: '256x256', // '256x144' for meet
+              pipeline: 'webgl2', // canvas2dCpu | webgl2
+              targetFps: 35, 
+              deferInputResizing: true,
+            },
+        });
+
+meeting.self.setVideoMiddlewareGlobalConfig({ disablePerFrameCanvasRendering: true });
 ```
+
 
 ### Add an image as a background
 

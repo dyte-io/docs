@@ -169,34 +169,3 @@ Requires the permission to kick a participant.
 #### participant.disableVideo()
 Disables video for this participant.
 Requires the permission to disable video for a participant.
-
-<a name="module_DyteParticipant--this.+acceptJoinStageRequest"></a>
-
-#### ~~participant.acceptJoinStageRequest()~~
-***Deprecated***
-
-<a name="module_DyteParticipant--this.+rejectRequestToJoinStage"></a>
-
-#### ~~participant.rejectRequestToJoinStage()~~
-***Deprecated***
-
-<a name="module_DyteParticipant--this.+removeFromStage"></a>
-
-#### ~~participant.removeFromStage()~~
-***Deprecated***
-
-<a name="module_DyteParticipant--this.+setWebinarStageStatus"></a>
-
-#### ~~participant.setWebinarStageStatus()~~
-***Deprecated***
-
-
-<a name="module_DyteParticipant--this.+clientSpecificId"></a>
-
-#### ~~participant.clientSpecificId~~
-***Deprecated***
-
-<a name="module_DyteParticipant--this.+webinarStageStatus"></a>
-
-#### ~~participant.webinarStageStatus~~
-***Deprecated***
