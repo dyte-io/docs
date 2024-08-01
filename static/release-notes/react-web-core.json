@@ -1,5 +1,46 @@
 [
   {
+    "version": "2.0.0",
+    "createdAt": "1722411332",
+    "new_api": [
+      "Introduce NO_DEVICES_AVAILABLE as another member of `mediaPermissionError` enum",
+      "Manual subscription API - Manually select participants to consume",
+      "New `mediaConnectionUpdate` and `socketConnectionUpdate` events on meeting.meta",
+      "Enable media before initialising SDK with the new `DyteSelfMedia` class"
+    ],
+    "breaking-changes":[
+      "Removed support for V1 REST API and V1 REST API terminology",
+      "Drops webinar methods and properties on self and participant objects in favour of meeting.stage"
+    ],
+    "fixes": [
+      "Handled multiple re-connection edge cases",
+      "Improved error handling on microphone and camera stream"
+    ]
+  },
+  {
+    "version": "1.34.7-14",
+    "createdAt": "1721700332",
+    "features": [
+      "Support typescript versions as old as 3.4"
+    ],
+    "fixes": [
+      "Force TURN servers on multiple successful connection which are followed by immediate disconnection",
+      "Throw browser not supported and network errors on `init`",
+      "Improve active speaker detection logic",
+      "Release screenshare media when stopped by the browser UI"
+    ]
+  },
+  {
+    "version": "1.36.5-7",
+    "createdAt": "1714529132",
+    "features": [
+      "Emit partial transcriptions on `meeting.ai`"
+    ],
+    "fixes": [
+      "Allow closing a plugin if enabled by self even if the user does not have the preset permission to close a plugin"
+    ]
+  },
+  {
     "version": "1.36.5",
     "createdAt": "1713424768",
     "features": [
