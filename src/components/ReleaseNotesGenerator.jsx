@@ -30,6 +30,12 @@ const changeTypes = [
     label: 'Deprecated API',
     className: 'deprecated',
   },
+  {
+    name: 'breaking-changes',
+    color: '#e01d5a',
+    label: 'Breaking Changes',
+    className: 'deprecated',
+  }
 ];
 
 function convertHtmlTagsInTextToReactTags(text) {
