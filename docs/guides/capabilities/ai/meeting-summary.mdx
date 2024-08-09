@@ -93,24 +93,12 @@ You can see the webhook format [here](/guides/capabilities/webhooks/webhook-even
 
 ### Fetching Summary via API Call
 
-You can use API to fetch the summary for a meeting at a later time using [REST API](/api#/operations/GetMeetingSummary)
+You can use API to fetch the summary for a meeting at a later time using [REST API](/api#/operations/GetSessionSummary)
 Dyte stores the summary of a meeting for 7 days since the start of the meeting.
 
-## Triggering Summary Manually
+## Triggering Summary manually
 
-If you need to generate a summary after the meeting has ended, you can trigger the summary using the POST summary route.
-
-### Example API Call
-
-Here is an example of how to trigger the summary manually:
-
-```http
-POST /api/v1/meetings/{meeting_id}/summary
-```
-
-This API call will generate a summary based on the transcript data of the specified meeting.
-
-By utilizing these summarization features, you can ensure that important points from your meetings are captured and easily accessible for future reference.
+If you need to generate a summary after the meeting has ended, you can trigger the summary using [REST API](/api#/operations/post-sessions-session_id-summary).
 
 <head>
   <title>Meeting Summary Guide</title>
