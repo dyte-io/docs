@@ -83,7 +83,7 @@ const docs = [
     routeBasePath: '/web-core',
     versions: {
       current: {
-        label: '1.x.x',
+        label: '2.x.x',
       },
     },
   },
@@ -94,7 +94,7 @@ const docs = [
     routeBasePath: '/react-web-core',
     versions: {
       current: {
-        label: '1.x.x',
+        label: '2.x.x',
       },
     },
   },

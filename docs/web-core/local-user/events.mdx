@@ -14,9 +14,9 @@ tags:
 You can subscribe to various events on the local user by calling
 `meeting.self.on(EVENT_NAME)`.
 
-## Room joined
+## Meeting joined
 
-Triggered when the room join event completes and now the `meeting` is ready to
+Triggered when the join event completes and now the `meeting` is ready to
 produce and consume media.
 
 ```ts
@@ -27,7 +27,7 @@ meeting.self.on('roomJoined', () => {
 });
 ```
 
-## Room left
+## Meeting left
 
 Triggered when the local user leaves the meeting.
 
@@ -44,10 +44,13 @@ Here are all the possible values of the `state` variable.
 
 | Event      | Description                                                                         |
 | ---------- | ----------------------------------------------------------------------------------- |
-| `left`     | Participant has left the room.                                                      |
+| `left`     | Participant has left the meeting.                                                      |
 | `kicked`   | Participant is removed from the meeting.                                            |
 | `ended`    | Everyone is removed from the meeting, and the session has ended.                    |
-| `rejected` | Participant's request to join the room is rejected (when you're in a waiting room). |
+| `rejected` | Participant's request to join the meeting is rejected (when you're in a waiting room). |
+| `disconnected` | Temporary network disconnection |
+| `failed` | Failed to join the meeting |
+| `connected-meeting` | Participant has left this meeting and joined a connected meeting (Breakout meeting) |
 
 ## Video update
 

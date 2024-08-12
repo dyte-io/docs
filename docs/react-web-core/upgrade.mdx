@@ -1,0 +1,44 @@
+---
+title: 2.x Upgrade Guide
+sidebar_position: 1
+---
+
+### Breaking changes
+
+With this major release we tried to reduce the number of breaking changes to the minimal amount.
+
+**1. Removal of V1 REST API terminology in favor of V2 REST API terminology**
+
+- meeting.self.`clientSpecificId` - > meeting.self.`customParticipantId`
+- meeting.meta.`roomName` → meeting.meta.`meetingId`
+- meeting.self.`suggestedTheme` → meeting.self.`config`
+- Dropped meeting.meta.`joined` (Duplicate of meeting.self.`joined`)
+
+
+**2. Event changes ️‍🔥 ️‍🔥 ️‍🔥**
+
+Network disconnects now trigger roomLeft event on meeting.self with a state indicating the cause of leaving the room. If you have redirection logic on `roomLeft`, please update it accordingly.
+
+```jsx
+meeting.self.on('roomLeft', ({ state }) => {
+	if(state === 'ended' || state == "left" || state == "kicked"){
+		// maybe redirect to another page
+	}
+}
+```
+
+Possible state values are ‘kicked’ | 'ended' | 'left'  | 'rejected' | 'connected-meeting' | 'disconnected' | 'failed';
+
+**3. Handling Reconnection / Disconnection**
+
+- `connected` `disconnected` `connectionError` `iceConnected` `iceDisconnected` `iceFailed` `iceReconnecting` `socketConnected` `socketDisconnected` `socketReconnecting` `socketReconnectAttempt` `socketReconnectFailure` `socketReconnected` `socketFailure`
+    
+    events on meeting.meta are **removed and replaced** with new simplified connection events and properties
+    
+    - Updates to Media connection (WebRTC connection used for the transfer of actual media) will be sent on `mediaConnectionUpdate` event with the payload    
+      You can also get the value of this payload by checking the `meeting.meta.mediaState` property
+    
+    - Updates to Websocket connection (used for chat, polls and other basic signaling) will be sent on `socketConnectionUpdate` event.    
+      You can also get the value of this payload by checking the `meeting.meta.socketState` property
+
+    Read more on the [meeting metadata page](/web-core/room-metadata)

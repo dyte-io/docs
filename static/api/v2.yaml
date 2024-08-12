@@ -1860,13 +1860,7 @@ paths:
   '/sessions/{session_id}/transcript':
     get:
       summary: Fetch the complete transcript for a session
-      description: |
-        Returns a URL to download the transcript for the session ID in CSV format.
-        <!-- theme: warning -->
-        > #### NOTE
-        >
-        > This API is in beta. [Contact us](https://dyte.io/contact) if you face
-        > any issues.
+      description: Returns a URL to download the transcript for the session ID in CSV format.
       operationId: GetSessionTranscript
       tags:
         - Sessions
@@ -1885,13 +1879,7 @@ paths:
   '/sessions/{session_id}/summary':
     get:
       summary: Fetch summary of transcripts for a session
-      description: |
-        Returns a Summary URL to download the Summary of Transcripts for the session ID as plain text.
-        <!-- theme: warning -->
-        > #### NOTE
-        >
-        > This API is in beta. [Contact us](https://dyte.io/contact) if you face
-        > any issues.
+      description: Returns a Summary URL to download the Summary of Transcripts for the session ID as plain text.
       operationId: GetSessionSummary
       tags:
         - Sessions
@@ -1907,6 +1895,37 @@ paths:
         in: path
         required: true
         description: ID of the session
+    post:
+      summary: Generate summary of Transcripts for the session
+      tags:
+        - Sessions
+      responses:
+        2XX:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+                      message:
+                        type: string
+                x-examples:
+                  Example 1:
+                    success: true
+                    data:
+                      success: true
+                      message: Success
+      operationId: post-sessions-session_id-summary
+      x-stoplight:
+        id: xxsurwq6a4lbm
+      description: Trigger Summary generation of Transcripts for the session ID.
   /webhooks:
     summary: Represents webhooks for organization
     description: Represents webhooks for organization
@@ -3085,6 +3104,8 @@ components:
             - meeting.chatSynced
             - recording.statusUpdate
             - livestreaming.statusUpdate
+            - meeting.transcript
+            - meeting.summary
           description: Events this webhook will send updates for
           items:
             type: string
@@ -3096,6 +3117,8 @@ components:
               - meeting.chatSynced
               - recording.statusUpdate
               - livestreaming.statusUpdate
+              - meeting.transcript
+              - meeting.summary
         created_at:
           type: string
           format: date-time
@@ -3190,6 +3213,8 @@ components:
             - meeting.chatSynced
             - recording.statusUpdate
             - livestreaming.statusUpdate
+            - meeting.transcript
+            - meeting.summary
           description: Events that this webhook will get triggered by
           items:
             type: string
@@ -3201,6 +3226,8 @@ components:
               - meeting.chatSynced
               - recording.statusUpdate
               - livestreaming.statusUpdate
+              - meeting.transcript
+              - meeting.summary
         enabled:
           type: boolean
           x-stoplight:
@@ -3235,6 +3262,8 @@ components:
               - recording.statusUpdate
               - livestreaming.statusUpdate
               - meeting.chatSynced
+              - meeting.transcript
+              - meeting.summary
         enabled:
           type: boolean
           x-stoplight:
@@ -4205,6 +4234,24 @@ components:
                 - video
                 - screenshare
               properties:
+                audio:
+                  type: object
+                  x-stoplight:
+                    id: 5an4pjgy18pc2
+                  description: Control options for Audio quality.
+                  properties:
+                    enable_stereo:
+                      type: boolean
+                      x-stoplight:
+                        id: 77frawyrim78m
+                      default: false
+                      description: Enable Stereo for your meetings
+                    enable_high_bitrate:
+                      type: boolean
+                      x-stoplight:
+                        id: x1lzadet3cvfu
+                      default: false
+                      description: Enable High Quality Audio for your meetings
                 video:
                   type: object
                   description: Configuration options for participant videos
@@ -5181,6 +5228,86 @@ components:
           description: The type of output destination this layer is being exported to.
         storage_config:
           $ref: '#/components/schemas/StorageConfig'
+    AIConfig:
+      title: AIConfig
+      x-stoplight:
+        id: kztjtl2gfzp7f
+      type: object
+      description: The AI Config allows you to customize the behavior of meeting transcriptions and summaries
+      properties:
+        transcription:
+          $ref: '#/components/schemas/TranscriptionConfig'
+        summarization:
+          $ref: '#/components/schemas/SummarizationConfig'
+    TranscriptionConfig:
+      type: object
+      x-examples:
+        Example 1:
+          keywords:
+            - Dyte
+          language: en-US
+          profanity_filter: false
+      description: Transcription Configurations
+      title: TranscriptionConfig
+      properties:
+        keywords:
+          type: array
+          description: Adds specific terms to improve accurate detection during transcription.
+          items:
+            type: string
+        language:
+          description: Specifies the language code for transcription to ensure accurate results.
+          enum:
+            - en-US
+            - en-IN
+            - de
+            - hi
+            - sv
+            - ru
+            - pl
+            - el
+            - fr
+            - nl
+          default: en-US
+        profanity_filter:
+          type: boolean
+          description: Control the inclusion of offensive language in transcriptions.
+          default: false
+    SummarizationConfig:
+      type: object
+      x-examples:
+        Example 1:
+          word_limit: 500
+          text_format: plain_text
+          summary_type: team_meeting
+      title: SummarizationConfig
+      description: Summary Config
+      properties:
+        word_limit:
+          type: integer
+          description: Sets the maximum number of words in the meeting summary.
+          minimum: 150
+          maximum: 1000
+          default: 500
+        text_format:
+          description: 'Determines the text format of the summary, such as plain text or markdown.'
+          enum:
+            - plain_text
+            - markdown
+          default: markdown
+        summary_type:
+          description: 'Defines the style of the summary, such as general, team meeting, or sales call.'
+          enum:
+            - general
+            - team_meeting
+            - sales_call
+            - client_check_in
+            - interview
+            - daily_standup
+            - one_on_one_meeting
+            - lecture
+            - code_review
+          default: general
   parameters:
     Content-Type:
       name: Content-Type
@@ -5417,6 +5544,8 @@ components:
                 nullable: true
               recording_config:
                 $ref: '#/components/schemas/RecordingConfig'
+              ai_config:
+                $ref: '#/components/schemas/AIConfig'
               persist_chat:
                 type: boolean
                 default: false
@@ -5468,6 +5597,8 @@ components:
                 type: boolean
                 default: false
                 description: 'Automatically generate summary of meetings using transcripts. Requires Transcriptions to be enabled, and can be retrieved via Webhooks or summary API.'
+              ai_config:
+                $ref: '#/components/schemas/AIConfig'
       description: Create meeting body
     AddParticipantBody:
       content:
@@ -5879,7 +6010,20 @@ components:
                         properties:
                           recording_config:
                             $ref: '#/components/schemas/RecordingConfig'
+                  - x-stoplight:
+                      id: oosgzi8gcjpe8
+                    properties:
+                      data:
+                        type: object
+                        x-stoplight:
+                          id: m1r6xt4nso9lc
+                        properties:
+                          ai_config:
+                            $ref: '#/components/schemas/AIConfig'
                 type: object
+              - type: object
+                x-stoplight:
+                  id: 2st9dl0q4r6ju
       headers: {}
     GetAllMeetings:
       description: Success response

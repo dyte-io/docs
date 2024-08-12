@@ -43,7 +43,6 @@ Add your extension to an app group by going to your extension's target in the pr
 
 ```swift
 import ReplayKit
-import DyteiOSCore
 
 class SampleHandler: DyteSampleHandler {}
 ```
@@ -54,14 +53,14 @@ Make sure **both of them** (App and Extension Info.plist) contains below key.
 
 ```
   <key>RTCAppGroupIdentifier</key>
-	<string>(name of the group)</string>
+	<string>(name of the group you have created)</string>
 ```
 
 Add below key inside the Info.plist of the main App.
 
 ```
 <key>RTCScreenSharingExtension</key>
-	<string>(Bundle Identifier of the Broadcast upload extension)</string>
+	<string>(Bundle Identifier of the Broadcast upload extension you have added in your project)</string>
 ```
 
 ![Info.plist screenshot](/static/mobile/0.x.x/ios-setup-info.png)

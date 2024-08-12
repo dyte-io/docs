@@ -1,0 +1,118 @@
+---
+title: Custom Meeting Locale
+description: Beginner's guide to Dyte's Flutter UI Kit.
+sidebar_position: 4
+---
+
+Dyte's Flutter UI Kit allows you to customize the locale of the whole UI Kit. This means you can change the language of the UI Kit to any language you want. You can do this by providing an arb path to the `DyteUIKitBuilder` object. Follow the following steps to achieve the same:
+
+1. Create an Application Resource Bundle (_.arb_) file and place it in your project's assets folder. The arb file should contain the translations for the UI Kit in the desired language. For example, if you want to change the language to French, you can create a file `fr.arb` and place it in you `<path-to-project>/assets/` folder.
+
+:::info
+To know more about ARB files in Flutter, head [here](https://localizely.com/flutter-arb/).
+:::
+
+2. Pass the path of the arb file to the `DyteUIKitBuilder.build()` method. The arb file should be passed as a string. For example, if you have placed the arb file in the assets folder, you can pass the path as `assets/fr.arb` as a second argument as follows:
+
+```dart
+/// assuming Step 1 is completed:
+
+import 'package:dyte_uikit/dyte_uikit.dart';
+
+// Declare and assign a DyteMeetingInfo object.
+final DyteMeetingInfo meetingInfo = DyteMeetingInfoV2(authToken: <AUTH_TOKEN>);
+
+// Build the DyteUiKit object with the meetingInfo and the arb file path.
+final DyteUiKit uikit= DyteUIKitBuilder.build(meetingInfo, 'assets/fr.arb');
+
+// Push the uikit widget to the navigator to launch the UI Kit.
+Navigator.push(context, MaterialPageRoute(builder: (context) => uikit),);
+```
+
+You can have the following `keys` in the arb file:
+
+| `key`                                                             | `value`              |
+| ----------------------------------------------------------------- | -------------------- |
+| ------------- **_Newer strings introduced in v0.7.9_** ---------- | -------------------- |
+| "endMeetingForAll"                                                | "_\<locale-word>_"   |
+| "message"                                                         | "_\<locale-word>_"   |
+| "newPollCreated"                                                  | "_\<locale-word>_"   |
+| "waitingToGoLive"                                                 | "_\<locale-word>_"   |
+| "frontCamera"                                                     | "_\<locale-word>_"   |
+| "rearCamera"                                                      | "_\<locale-word>_"   |
+| "externalCamera"                                                  | "_\<locale-word>_"   |
+| "headset"                                                         | "_\<locale-word>_"   |
+| "speaker"                                                         | "_\<locale-word>_"   |
+| "bluetooth"                                                       | "_\<locale-word>_"   |
+| "earpiece"                                                        | "_\<locale-word>_"   |
+| -----------------------------------------------------------       | -------------------- |
+| "join"                                                            | "_\<locale-word>_"   |
+| "joinInAs"                                                        | "_\<locale-word>_"   |
+| "enterYourName"                                                   | "_\<locale-word>_"   |
+| "micOn"                                                           | "_\<locale-word>_"   |
+| "micOff"                                                          | "_\<locale-word>_"   |
+| "leave"                                                           | "_\<locale-word>_"   |
+| "cancel"                                                          | "_\<locale-word>_"   |
+| "areYouSureYouWantToLeaveTheCall"                                 | "_\<locale-word>_"   |
+| "more"                                                            | "_\<locale-word>_"   |
+| "selectAudioDevice"                                               | "_\<locale-word>_"   |
+| "selectVideoDevice"                                               | "_\<locale-word>_"   |
+| "videoOn"                                                         | "_\<locale-word>_"   |
+| "videoOff"                                                        | "_\<locale-word>_"   |
+| "mute"                                                            | "_\<locale-word>_"   |
+| "unmute"                                                          | "_\<locale-word>_"   |
+| "unpin"                                                           | "_\<locale-word>_"   |
+| "pin"                                                             | "_\<locale-word>_"   |
+| "kick"                                                            | "_\<locale-word>_"   |
+| "removeFromStage"                                                 | "_\<locale-word>_"   |
+| "screenShare"                                                     | "_\<locale-word>_"   |
+| "plugins"                                                         | "_\<locale-word>_"   |
+| "createPoll"                                                      | "_\<locale-word>_"   |
+| "question"                                                        | "_\<locale-word>_"   |
+| "askAQuestion"                                                    | "_\<locale-word>_"   |
+| "options"                                                         | "_\<locale-word>_"   |
+| "enterAnOption"                                                   | "_\<locale-word>_"   |
+| "addOption"                                                       | "_\<locale-word>_"   |
+| "anonymous"                                                       | "_\<locale-word>_"   |
+| "hideResultsBeforeVoting"                                         | "_\<locale-word>_"   |
+| "questionAndOptionsCantBeEmpty"                                   | "_\<locale-word>_"   |
+| "polls"                                                           | "_\<locale-word>_"   |
+| "pollBy"                                                          | "_\<locale-word>_"   |
+| "vote"                                                            | "_\<locale-word>_"   |
+| "voted"                                                           | "_\<locale-word>_"   |
+| "viewVoters"                                                      | "_\<locale-word>_"   |
+| "stopRecording"                                                   | "_\<locale-word>_"   |
+| "startRecording"                                                  | "_\<locale-word>_"   |
+| "muteAll"                                                         | "_\<locale-word>_"   |
+| "disableAllVideos"                                                | "_\<locale-word>_"   |
+| "settings"                                                        | "_\<locale-word>_"   |
+| "rec"                                                             | "_\<locale-word>_"   |
+| "camera"                                                          | "_\<locale-word>_"   |
+| "microphoneInput"                                                 | "_\<locale-word>_"   |
+| "chat"                                                            | "_\<locale-word>_"   |
+| "noMessages"                                                      | "_\<locale-word>_"   |
+| "chatMessagesWillAppearHere"                                      | "_\<locale-word>_"   |
+| "file"                                                            | "_\<locale-word>_"   |
+| "image"                                                           | "_\<locale-word>_"   |
+| "send"                                                            | "_\<locale-word>_"   |
+| "participants"                                                    | "_\<locale-word>_"   |
+| "waitlisted"                                                      | "_\<locale-word>_"   |
+| "inCall"                                                          | "_\<locale-word>_"   |
+| "you"                                                             | "_\<locale-word>_"   |
+| "turnOffVideo"                                                    | "_\<locale-word>_"   |
+| "videoAlreadyOff"                                                 | "_\<locale-word>_"   |
+| "dyte"                                                            | "_\<locale-word>_"   |
+| "back"                                                            | "_\<locale-word>_"   |
+| "waitingForTheHostToLetYouIn"                                     | "_\<locale-word>_"   |
+| "shareScreen"                                                     | "_\<locale-word>_"   |
+| "stopSharing"                                                     | "_\<locale-word>_"   |
+
+3. All set, run the app and view the UI Kit in the desired language!
+
+<head>
+  <title>Flutter Custom Locale</title>
+  <meta
+    name="description"
+    content="Add the custom locale to the Flutter UI Kit."
+  />
+</head>
