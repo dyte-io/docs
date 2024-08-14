@@ -1,5 +1,6 @@
 ---
-sidebar_position: 3
+sidebar_position: 8
+slug: /basics/display-videos
 ---
 
 # Render participant videos
@@ -19,7 +20,13 @@ function Meeting() {
 
   function ParticipantTile({ participant, meeting }) {
     return (
-      <DyteParticipantTile participant={participant}>
+      <DyteParticipantTile
+        participant={participant}
+        style={{
+          width: 240,
+          height: 480,
+        }}
+      >
         <DyteNameTag participant={participant} meeting={meeting}>
           <DyteAudioVisualizer participant={participant} />
         </DyteNameTag>
@@ -30,13 +37,12 @@ function Meeting() {
 
   return (
     <View
-      id="grid"
       style={{
-        flex: 1,
-        flexDirection: 'row',
+        display: 'flex',
         flexWrap: 'wrap',
         alignContent: 'center',
         justifyContent: 'center',
+        gap: '1rem',
       }}
     >
       {activeParticipants.toArray().map((participant) => (
@@ -48,7 +54,7 @@ function Meeting() {
 ```
 
 But in the real world, a video tile grid is more complex, it is responsive, tile
-sizes are dynamic, there are differnt layouts, the grid handles screensharing
+sizes are dynamic, there are different layouts, the grid handles screensharing
 etc.
 
 Dyte has ready to use grid components, that you can use out of the box
@@ -77,14 +83,20 @@ events and data on it's own and passes the following props to it's children.
 These props are passed to it's children which it computes from the UI Config
 which is passed to it. By default it will use the default UI Config.
 
+:::tip
+
+Try editing the `aspectRatio` and `gap` props.
+
+:::
+
 ```jsx
 function Example() {
   const { meeting } = useDyteMeeting();
 
   return (
-    <Row style={{ width: '100%', height: '400' }}>
-      <DyteGrid meeting={meeting} />
-    </Row>
+    <View style={{ width: '100%', height: '400px' }}>
+      <DyteGrid meeting={meeting} aspectRatio="16:9" gap="8" size="sm" />
+    </View>
   );
 }
 ```
@@ -116,7 +128,7 @@ Pinned participants are in spotlight area, i.e; larger grid.
 Accepts: `participants`, `pinnedParticipants`, `screenShareParticipants`,
 `plugins`.
 
-This grid renders screenshares as well as plugins in the main larger Row and
+This grid renders screenshares as well as plugins in the main larger view and
 renders a smaller grid on the right side which is configurable via the UI
 Config. You can use SimleGrid or SpotlightGrid here.
 
@@ -137,16 +149,10 @@ function Example() {
   const participants = new Array(count).fill(meeting.self);
 
   return (
-    <View
-      style={{
-        flex: 1,
-        flexDirection: 'row',
-      }}
-    >
+    <View>
       <View
         style={{
-          flex: 1,
-          flexDirection: 'row',
+          display: 'flex',
           flexWrap: 'wrap',
           justifyContent: 'center',
           gap: '12px',
@@ -157,8 +163,12 @@ function Example() {
           Remove
         </DyteButton>
       </View>
-      <View style={{ flexDirection: 'row', width: '100%', height: '400px' }}>
-        <DyteSimpleGrid participants={participants} />
+      <View style={{ width: '100%', height: '400px' }}>
+        <DyteSimpleGrid
+          aspectRatio="16:9"
+          gap="8"
+          participants={participants}
+        />
       </View>
     </View>
   );
@@ -166,9 +176,5 @@ function Example() {
 ```
 
 <head>
-  <title>React Native UI Kit Render participant videos</title>
-  <meta
-    name="description"
-    content="Dive into displaying videos in React Native with Dyte's guide on fundamental video display concepts. Enhance your React Native app with video capabilities."
-  />
+  <title>React UI Kit Render participant videos</title>
 </head>
