@@ -1,5 +1,27 @@
 [
   {
+    "version": "2.0.6",
+    "createdAt": "1725467416",
+    "fixes": [
+      "Incorrect handling of audio for participants not on the current page"
+    ]
+  },
+  {
+    "version": "2.0.4",
+    "createdAt": "1724423416",
+    "fixes": [
+      "Multiple dynamic permissions (beta) bug fixes"
+    ]
+  },
+  {
+    "version": "2.0.1-3",
+    "createdAt": "1722609016",
+    "fixes": [
+      "Fix `self.roomState` switching to `init` state during reconnection",
+      "Add missing properties (picture, customParticipantId) to waitlisted participants"
+    ]
+  },
+  {
     "version": "2.0.0",
     "createdAt": "1722411332",
     "new_api": [
@@ -8,7 +30,7 @@
       "New `mediaConnectionUpdate` and `socketConnectionUpdate` events on meeting.meta",
       "Enable media before initialising SDK with the new `DyteSelfMedia` class"
     ],
-    "breaking-changes":[
+    "breaking-changes": [
       "Removed support for **V1 REST API** and V1 REST API terminology",
       "Drops webinar methods and properties on self and participant objects in favour of `meeting.stage`",
       "Disconnection triggers `roomLeft` event is emitted on meeting.self"
