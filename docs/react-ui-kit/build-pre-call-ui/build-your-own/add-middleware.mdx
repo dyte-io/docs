@@ -44,8 +44,16 @@ export default function CustomMeetingPreview() {
     if (!meeting) {
       return;
     }
+    /**
+     * @dytesdk/ui-kit-addons/video-background uses @dytesdk/video-background-transformer.
+     * To customise DyteVideoBackgroundTransformer configs, please refer to https://www.npmjs.com/package/@dytesdk/video-background-transformer?activeTab=readme.
+     * 
+    */
     const videoBackground = new VideoBackground({
       modes: ['blur', 'virtual'],
+      segmentationConfig: {
+        pipeline: 'canvas2dCpu', // 'webgl2' | 'canvas2dCpu'
+      },
       images: [
         'https://assets.dyte.io/backgrounds/bg_0.jpg',
         'https://assets.dyte.io/backgrounds/bg_1.jpg',
