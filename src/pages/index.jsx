@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Layout from '@theme/Layout';
 
 import HeroSection from '../components/homepage/HeroSection';
@@ -10,8 +10,7 @@ import HelpSection from '../components/homepage/HelpSection';
 import Head from '@docusaurus/Head';
 import GuidesAndSamples from '../components/homepage/GuidesAndSamples';
 import SDKs from '../components/homepage/SDKs';
-import Link from '@docusaurus/Link';
-import PhHelloBar from '../components/homepage/phHelloBar';
+import PhHelloBar from '../components/homepage/PHBanner';
 
 export default function Homepage() {
   return (
