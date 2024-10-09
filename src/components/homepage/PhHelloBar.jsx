@@ -1,15 +1,4 @@
 import React from 'react';
-import Link from '@docusaurus/Link';
-import {
-  AppsAddInRegular,
-  ArrowRightFilled,
-  DocumentRegular,
-  OpenRegular,
-  RecordRegular,
-  VideoRegular,
-} from '@fluentui/react-icons';
-import clsx from 'clsx';
-import { ChevronRight, GitHub } from 'react-feather';
 
 function HelloBar() {
   return (
