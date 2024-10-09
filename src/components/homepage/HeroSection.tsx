@@ -33,7 +33,7 @@ const PRODUCTS = [
     lightImage: '/static/landing-page/hero/livestream-graphic.png',
     darkImage: '/static/landing-page/hero/livestream-graphic-dark.png',
     text: 'Integrate highly scalable live video broadcasting capabilities into your app, ideal for apps that involve streaming webinars, sports or live events',
-  },
+  }
 ];
 
 function HeroProduct({
@@ -53,7 +53,7 @@ function HeroProduct({
       }}
       className={clsx(
         'group cursor-pointer overflow-clip rounded-3xl from-primary/30 via-transparent to-transparent text-black transition-all hover:bg-gradient-to-tr hover:text-primary hover:no-underline dark:text-white',
-        'w-[90vw] border-secondary-700 bg-secondary-900 hover:!border-primary dark:border-secondary-800 sm:w-[440px]'
+        'border-secondary-700 bg-secondary-900 hover:!border-primary dark:border-secondary-800 w-[90vw] sm:w-[440px]'
       )}
     >
       <div className="p-6 !pb-0">
@@ -80,7 +80,7 @@ function HeroProduct({
 
 export default function HeroSection() {
   return (
-    <div className="noise-bg pb-14">
+    <div className='noise-bg pb-14'>
       <section className="no-underline-links px-4 pt-16 lg:py-0">
         <div className="flex flex-col items-center justify-between py-14">
           <h2 className="mb-4 font-jakarta text-5xl font-bold">
@@ -95,7 +95,7 @@ export default function HeroSection() {
         </div>
       </section>
 
-      <section className="mx-auto flex w-full max-w-6xl flex-wrap justify-center gap-6 px-4">
+      <section className="mx-auto w-full max-w-6xl flex gap-6 px-4 flex-wrap justify-center">
         {PRODUCTS.map((product) => (
           <HeroProduct {...product} key={product.title} />
         ))}

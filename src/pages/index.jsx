@@ -11,7 +11,6 @@ import Head from '@docusaurus/Head';
 import GuidesAndSamples from '../components/homepage/GuidesAndSamples';
 import SDKs from '../components/homepage/SDKs';
 import Link from '@docusaurus/Link';
-import PhHelloBar from '../components/homepage/phHelloBar';
 
 export default function Homepage() {
   return (
@@ -24,20 +23,16 @@ export default function Homepage() {
         <link rel="prefetch" href="/assets/css/elements.min.css" />
       </Head>
       <div>
-        <PhHelloBar />
-
-        {/* Code for Twilio credits banner */}
-
-        {/* <div className="w-full bg-gradient-to-r from-blue-500 to-red-500 p-4 text-center font-medium text-white">
-          Affected by Twilio Video Sunsetting? Migrate to Dyte and get upto
-          $30,000 Credits{' '}
+        <div className="w-full bg-gradient-to-r from-blue-500 to-red-500 p-4 text-center font-medium text-white">
+          Affected by Twilio Video Sunsetting? Migrate to Dyte and get upto $30,000
+          Credits{' '}
           <Link
             to="https://dyte.io/twilio-video-competitor"
             className="text-white underline"
           >
             Learn more
           </Link>
-        </div> */}
+        </div>
       </div>
 
       <HeroSection />
