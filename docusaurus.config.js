@@ -51,7 +51,7 @@ const docs = [
     routeBasePath: '/ui-kit',
     versions: {
       current: {
-        label: '1.x.x',
+        label: '2.x.x',
       },
     },
   },
@@ -61,7 +61,7 @@ const docs = [
     routeBasePath: '/react-ui-kit',
     versions: {
       current: {
-        label: '1.x.x',
+        label: '2.x.x',
       },
     },
   },
@@ -71,7 +71,7 @@ const docs = [
     routeBasePath: '/angular-ui-kit',
     versions: {
       current: {
-        label: '1.x.x',
+        label: '2.x.x',
       },
     },
   },
