@@ -14,7 +14,7 @@ import { ChevronRight, GitHub } from 'react-feather';
 function HelloBar() {
   return (
     <a
-      href="https://www.producthunt.com/products/feta"
+      href="https://www.producthunt.com/posts/feta"
       target="_blank"
       className="hello-bar u-hflex-center-center w-inline-block"
     >
@@ -26,9 +26,7 @@ function HelloBar() {
             alt=""
             className="ph_cat"
           />
-          <div className="ph_banner_txt">
-            We are launching our new product Feta on ProductHunt soon!
-          </div>
+          <div className="ph_banner_txt">We are live on ProductHunt🎉</div>
         </div>
         <div className="banner_separator"></div>
         <div className="hello_bar_cta u-hflex-left-center u-gap-8">
