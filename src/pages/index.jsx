@@ -11,7 +11,7 @@ import Head from '@docusaurus/Head';
 import GuidesAndSamples from '../components/homepage/GuidesAndSamples';
 import SDKs from '../components/homepage/SDKs';
 import Link from '@docusaurus/Link';
-import PhHelloBar from '../components/homepage/phHelloBar';
+import PhHelloBar from '../components/homepage/PhHelloBar';
 
 export default function Homepage() {
   return (
