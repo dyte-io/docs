@@ -20,12 +20,6 @@ function HelloBar() {
     >
       <div className="hello_bar_contents u-hflex-center-center u-gap-10">
         <div className="ph_cat_nd_txt-wrapper u-hflex-left-center u-gap-10">
-          <img
-            src="https://cdn.prod.website-files.com/66323b0d8cbb65b15bf8550c/6703f2188ab1ea055e35b760_ph_cat.png"
-            loading="lazy"
-            alt=""
-            className="ph_cat"
-          />
           <div className="ph_banner_txt">
             Introducing Feta: Better way to run standups, retros and syncs
           </div>
