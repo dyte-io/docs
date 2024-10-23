@@ -14,7 +14,7 @@ import { ChevronRight, GitHub } from 'react-feather';
 function HelloBar() {
   return (
     <a
-      href="https://www.producthunt.com/posts/feta"
+      href=" https://feta.io/story"
       target="_blank"
       className="hello-bar u-hflex-center-center w-inline-block"
     >
@@ -26,11 +26,13 @@ function HelloBar() {
             alt=""
             className="ph_cat"
           />
-          <div className="ph_banner_txt">We are live on ProductHunt🎉</div>
+          <div className="ph_banner_txt">
+            Introducing Feta: Better way to run standups, retros and syncs
+          </div>
         </div>
         <div className="banner_separator"></div>
         <div className="hello_bar_cta u-hflex-left-center u-gap-8">
-          <div className="text-block-98">Subscribe &amp; Get 3 Months Free</div>
+          <div className="text-block-98">Get 3 Months Free</div>
           <img
             src="https://cdn.prod.website-files.com/66323b0d8cbb65b15bf8550c/6703f48cc2268f2ff727de7b_Arrow%20Down%20Left.png"
             loading="lazy"
