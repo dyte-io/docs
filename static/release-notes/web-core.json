@@ -3,14 +3,14 @@
     "version": "2.1.9",
     "createdAt": "1729752332",
     "fixes": [
-      "Participant call stats were missing due to third party feature flag provider delays/outages."
+      "Address the issue where post-meeting participant call quality data is unavailable for some users. This occurs in a small percentage of cases due to delays or outages from the third-party feature flag provider, which prevent the client from sending these events."
     ]
   },
   {
     "version": "2.1.8",
     "createdAt": "1729685732",
     "fixes": [
-      "Websocket disconnections were not resetting meeting.self.roomState to init causing reconnection issues."
+      "Fixed meeting.self.roomState to ensure that after a network reconnection, the state returns to init if it was originally set to init."
     ]
   },
   {
