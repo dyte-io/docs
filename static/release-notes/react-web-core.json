@@ -1,5 +1,33 @@
 [
   {
+    "version": "2.1.12-13",
+    "createdAt": "1732086657",
+    "fixes": [
+      "Improve audio,video subscription speed and reliability",
+      "Fixed the issue where participant call report was not generated due to ip detection failure",
+      "Fixed livestream socket reconnection issues for viewer"
+    ],
+    "enhancements": [
+      "Added stats such as bitrate, packet loss on `mediaScoreUpdate` event.",
+      "Livestream now supports direct ingestion via RTMP. Use `meeting.livestream.start({ manualIngestion: true })`"
+    ]
+  },
+  {
+    "version": "2.1.11",
+    "createdAt": "1731944143",
+    "fixes": [
+      "Added additional metadata required for whiteboard plugin",
+      "Fixed pip error `addSource of undefined`"
+    ]
+  },
+  {
+    "version": "2.1.10",
+    "createdAt": "1730705555",
+    "fixes": [
+      "The connected meeting feature, previously gated behind a feature flag, is now available to all users without additional configuration"
+    ]
+  },
+  {
     "version": "2.1.9",
     "createdAt": "1729752332",
     "fixes": [
