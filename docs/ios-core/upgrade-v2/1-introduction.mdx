@@ -22,16 +22,30 @@ We have removed deprecated methods and properties in favour of improved, uniform
 - Removed `DyteParticipants.screenshares` (use `DyteParticipants.screenShares`). The deprecated type `DyteScreenShareMeetingParticipant` has also been removed
 - **Chat Methods**: Removed deprecated file and image send methods. The new closure-based methods take `NSURL`s & return proper errors
   - File message methods:
-    - Removed `sendFileMessage(filePath: String)`, `sendFileMessage(filePath: String, fileName: String)`, `sendFileMessage(fileUri: NSURL)`.  
-    Use `sendFileMessage(fileURL: NSURL, onResult: (ChatFileError?) -> Void)`
-    - Removed `sendFileMessage(filePath: String, peerIds: [String])`, `sendFileMessage(fileUri: NSURL, peerIds: [String])`.  
-    Use `sendFileMessage(fileURL: NSURL, peerIds: [String], onResult: (ChatFileError?) -> Void)`
+    - Removed:
+      - `sendFileMessage(filePath: String)`
+      - `sendFileMessage(filePath: String, fileName: String)`
+      - `sendFileMessage(fileUri: NSURL)`
+    - Use instead:
+      - `sendFileMessage(fileURL: NSURL, onResult: (ChatFileError?) -> Void)`
+    - Removed:
+      - `sendFileMessage(filePath: String, peerIds: [String])`
+      - `sendFileMessage(fileUri: NSURL, peerIds: [String])`
+    - Use instead:
+      - `sendFileMessage(fileURL: NSURL, peerIds: [String], onResult: (ChatFileError?) -> Void)`
   - Image message methods:
-    - Removed `sendImageMessage(filePath: String, fileName: String)`, `sendImageMessage(imageUri: NSURL)`, `sendImageMessage(imagePath: String)`.  
-    Use `sendImageMessage(imageURL: NSURL, onResult: (ChatFileError?) -> Void)`
-    - Removed `sendImageMessage(imagePath: String, peerIds: [String])`, `sendImageMessage(imageUri: NSURL, peerIds: [String])`, 
-    `sendImageMessage(filePath: String, fileName: String, peerIds: [String])`.  
-    Use `sendImageMessage(imageURL: NSURL, peerIds: [String], onResult: (ChatFileError?) -> Void)`
+    - Removed:
+      - `sendImageMessage(filePath: String, fileName: String)`
+      - `sendImageMessage(imageUri: NSURL)`
+      - `sendImageMessage(imagePath: String)`
+    - Use instead:
+      - `sendImageMessage(imageURL: NSURL, onResult: (ChatFileError?) -> Void)`
+    - Removed:
+      - `sendImageMessage(imagePath: String, peerIds: [String])`
+      - `sendImageMessage(imageUri: NSURL, peerIds: [String])`
+      - `sendImageMessage(filePath: String, fileName: String, peerIds: [String])`
+    - Use instead:
+      - `sendImageMessage(imageURL: NSURL, peerIds: [String], onResult: (ChatFileError?) -> Void)`
 - Removed deprecated listener callbacks:
   - `DyteSelfEventsListener.onStageStatusUpdated`. Use `DyteStageEventListener.onStageStatusUpdated()`
   - `DyteStageEventListener.onPresentRequestAccepted(participant: DyteJoinedMeetingParticipant)`

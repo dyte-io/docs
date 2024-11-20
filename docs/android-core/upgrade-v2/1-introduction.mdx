@@ -22,16 +22,30 @@ We have removed deprecated methods and properties in favour of improved, uniform
 - Removed `DyteParticipants.screenshares` (use `DyteParticipants.screenShares`). The deprecated type `DyteScreenShareMeetingParticipant` has also been removed
 - **Chat Methods**: Removed deprecated file and image send methods. The new lambda-based methods take more reliable `Uri`s & return proper errors
   - File message methods:
-    - Removed `sendFileMessage(filePath: String)`, `sendFileMessage(filePath: String, fileName: String)`, `sendFileMessage(fileUri: Uri)`.  
-    Use `sendFileMessage(fileUri: Uri, onResult: (ChatFileError?) -> Unit)`
-    - Removed `sendFileMessage(filePath: String, peerIds: List<String>)`, `sendFileMessage(fileUri: Uri, peerIds: List<String>)`.  
-    Use `sendFileMessage(fileUri: Uri, peerIds: List<String>, onResult: (ChatFileError?) -> Unit)`
+    - Removed:
+      - `sendFileMessage(filePath: String)`
+      - `sendFileMessage(filePath: String, fileName: String)`
+      - `sendFileMessage(fileUri: Uri)`
+    - Use instead:
+      - `sendFileMessage(fileUri: Uri, onResult: (ChatFileError?) -> Unit)`
+    - Removed:
+      - `sendFileMessage(filePath: String, peerIds: List<String>)`
+      - `sendFileMessage(fileUri: Uri, peerIds: List<String>)`
+    - Use instead:
+      - `sendFileMessage(fileUri: Uri, peerIds: List<String>, onResult: (ChatFileError?) -> Unit)`
   - Image message methods:
-    - Removed `sendImageMessage(filePath: String, fileName: String)`, `sendImageMessage(imageUri: Uri)`, `sendImageMessage(imagePath: String)`.  
-    Use `sendImageMessage(imageUri: Uri, onResult: (ChatFileError?) -> Unit)`
-    - Removed `sendImageMessage(imagePath: String, peerIds: List<String>)`, `sendImageMessage(imageUri: Uri, peerIds: List<String>)`, 
-    `sendImageMessage(filePath: String, fileName: String, peerIds: List<String>)`.  
-    Use `sendImageMessage(imageUri: Uri, peerIds: List<String>, onResult: (ChatFileError?) -> Unit)`
+    - Removed:
+      - `sendImageMessage(filePath: String, fileName: String)`
+      - `sendImageMessage(imageUri: Uri)`
+      - `sendImageMessage(imagePath: String)`
+    - Use instead:
+      - `sendImageMessage(imageUri: Uri, onResult: (ChatFileError?) -> Unit)`
+    - Removed:
+      - `sendImageMessage(imagePath: String, peerIds: List<String>)`
+      - `sendImageMessage(imageUri: Uri, peerIds: List<String>)`
+      - `sendImageMessage(filePath: String, fileName: String, peerIds: List<String>)`
+    - Use instead:
+      - `sendImageMessage(imageUri: Uri, peerIds: List<String>, onResult: (ChatFileError?) -> Unit)`
 - Removed deprecated listener callbacks:
   - `DyteSelfEventsListener.onStageStatusUpdated`. Use `DyteStageEventListener.onStageStatusUpdated()`
   - `DyteStageEventListener.onPresentRequestAccepted(participant: DyteJoinedMeetingParticipant)`
