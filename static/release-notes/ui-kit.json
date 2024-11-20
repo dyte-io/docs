@@ -1,5 +1,72 @@
 [
   {
+    "version": "2.1.0-1",
+    "createdAt": 1732087718,
+    "features": [
+      "Added media troubleshooter in more menu"
+    ],
+    "perf": [
+      "Implemented virtualization in the participants' list to improve performance and responsiveness when rendering a large number of participants."
+    ]
+  },
+  {
+    "version": "2.0.6",
+    "createdAt": 1730705348,
+    "fixes": [
+      "Removed the feature flag for private chat, making it accessible by default for all users."
+    ]
+  },
+  {
+    "version": "2.0.5",
+    "createdAt": 1728381516,
+    "fixes": [
+      "Fixed an issue where the device selector was not updating after granting media permissions on the setup screen."
+    ]
+  },
+  {
+    "version": "2.0.4",
+    "createdAt": 1727864194,
+    "fixes": [
+      "Fixed an issue where the device selector was not updating after granting media permissions on macOS.",
+      "Fixed PIP race cases where PIP was not initialised in time and participants feeds were not added to PIP",
+      "Fixed PIP issue where preview video was shown in PIP",
+      "Fixed `<dyte-avatar>` z-index issues"
+    ]
+  },
+  {
+    "version": "2.0.3",
+    "createdAt": 1725947806,
+    "fixes": [
+      "Corrected styling issues with `<dyte-button>` when the `disabled` key was set to `false`."
+    ]
+  },
+  {
+    "version": "2.0.2",
+    "createdAt": 1727864194,
+    "fixes": [
+      "Fixed `<dyte-chat-toggle>` to display the unread message count only after joining a meeting."
+    ]
+  },
+  {
+    "version": "2.0.1",
+    "createdAt": 1724994414,
+    "fixes": [
+      "Removed the waitlisted notification for participants after they were accepted into the meeting."
+    ]
+  },
+  {
+    "version": "2.0.0",
+    "createdAt": 1722423085,
+    "features": [
+      "Added compatibility with web-core 2.0."
+    ],
+    "breaking-changes": [
+      "Removed `<dyte-debugger>` component",
+      "Dropped support for the v1 API",
+      "Removed usages of deprecated stage APIs"
+    ]
+  },
+  {
     "version": "1.66.0",
     "createdAt": 1709193540,
     "features": [
