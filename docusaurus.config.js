@@ -106,7 +106,7 @@ const docs = [
     routeBasePath: '/android-core',
     versions: {
       current: {
-        label: '1.x.x',
+        label: '2.x.x',
       },
     },
   },
@@ -126,7 +126,7 @@ const docs = [
     routeBasePath: '/ios-core',
     versions: {
       current: {
-        label: '1.x.x',
+        label: '2.x.x',
       },
     },
   },
