@@ -151,34 +151,9 @@ meeting.participants.joined.on('screenShareUpdate', (participant) => {
 
 ## Network quality score
 
-Subscribe to the `mediaScoreUpdate` event to monitor network
+import ParticipantMediaScoreUpdate from '@site/docs/web-core/participants/participant-media-score-update.mdx'
 
-```ts
-meeting.participants.joined.on(
-  'mediaScoreUpdate',
-  ({ participantId, kind, isScreenshare, score }) => {
-    if (kind === 'video') {
-      console.log(
-        `Participant ${participantId}'s ${
-          isScreenshare ? 'screenshare' : 'video'
-        } quality score is `,
-        score
-      );
-    }
-
-    if (kind === 'audio') {
-      console.log(
-        `Participant ${participantId}'s audio quality score is `,
-        score
-      );
-    }
-
-    if (score < 5) {
-      console.log(`Participant ${participantId}'s media quality is poor`);
-    }
-  }
-);
-```
+<ParticipantMediaScoreUpdate />
 
 ## Events for specific participant
 

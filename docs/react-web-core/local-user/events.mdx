@@ -97,26 +97,10 @@ meeting.self.on('deviceUpdate', ({ device }) => {
 
 ## Network quality score
 
-Subscribe to the `mediaScoreUpdate` event to monitor network
+import SelfMediaScoreUpdate from '@site/docs/web-core/local-user/self-media-score-update.mdx'
 
-```ts
-meeting.self.on('mediaScoreUpdate', ({ kind, isScreenshare, score }) => {
-  if (kind === 'video') {
-    console.log(
-      `Your ${isScreenshare ? 'screenshare' : 'video'} quality score is `,
-      score
-    );
-  }
+<SelfMediaScoreUpdate />
 
-  if (kind === 'audio') {
-    console.log('Your audio quality score is ', score);
-  }
-
-  if (score < 5) {
-    console.log('Your media quality is poor');
-  }
-});
-```
 
 ## Permission Updates
 
