@@ -621,10 +621,6 @@ const config = {
                 label: 'Blog',
                 href: 'https://dyte.io/blog',
               },
-              {
-                label: 'Community',
-                href: 'https://community.dyte.io',
-              },
             ],
           },
         ],
