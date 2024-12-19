@@ -144,8 +144,6 @@ const company = [
   { name: 'Customers', href: 'https://dyte.io/customers' },
   { name: 'Blog', href: 'https://dyte.io/blog' },
   { name: 'Careers', href: 'https://jobs.lever.co/dyte-io' },
-  { name: 'Community', href: 'https://dyte.io/community' },
-  { name: 'Startup Program', href: 'https://dyte.io/startups' },
   { name: 'Contact Us', href: 'https://dyte.io/contact' },
   { name: 'FAQ', href: '/faq' },
   { name: 'Guide on Video SDK', href: 'https://dyte.io/blog/video-sdk/' },
