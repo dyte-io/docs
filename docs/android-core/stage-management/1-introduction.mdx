@@ -55,22 +55,13 @@ and their audio and video are no longer received by others in the room.
 meeting.stage.leave()
 ```
 
-## Error types
-
-All the stage management APIs can throw an error of type `StageError`. The error type can be one of the following:
-
-- StageDisabledForMeetingType: The meeting type does not support stage management.
-- PermissionDenied: The user does not have the required permissions to perform the operation.
-- ActionInvalidForStageStatus: The operation is invalid for the current stage status.
-- NoRequestToCancel: There is no pending request to cancel.
-
 ### List of Stage Events
 
 The `DyteStageEventListener` interface provides callback methods for various stage events. Implement these callbacks to handle
 stage-related events in your application:
 
 ```kotlin
-meeting.addStageEventsListener(object : DyteStageEventListener {
+meeting.addStageEventListener(object : DyteStageEventListener {
     override fun onStageAccessRequestAccepted() {
         // Called when the local user is accepted to join the stage.
     }
@@ -85,10 +76,12 @@ meeting.addStageEventsListener(object : DyteStageEventListener {
 
     override fun onNewStageAccessRequest(participant: DyteRemoteParticipant) {
         // Called when a new stage access request is received from a participant.
+        // Triggered only if the local user is a host.
     }
 
     override fun onStageAccessRequestsUpdated(accessRequests: List<DyteRemoteParticipant>) {
         // Called when the list of stage access requests is updated.
+        // Triggered only if the local user is a host.
     }
 
     override fun onStageStatusUpdated(oldStatus: StageStatus, newStatus: StageStatus) {}
@@ -100,10 +93,19 @@ meeting.addStageEventsListener(object : DyteStageEventListener {
         oldStatus: StageStatus,
         newStatus: StageStatus,
     ) {
-        // Called when a participant's stage status is updated.
+        // Called when a remote participant's stage status is updated.
     }
 })
 ```
+
+### Stage Errors
+
+All the stage management APIs return a `StageError` if the operation fails. On success, they return `null`. The error type can be one of the following:
+
+- `StageDisabledForMeetingType`: The meeting type does not support stage management.
+- `PermissionDenied`: The user does not have the required permissions to perform the operation.
+- `ActionInvalidForStageStatus`: The operation is invalid for the current stage status.
+- `NoRequestToCancel`: There is no pending request to cancel.
 
 Next, we'll explore the Stage Management APIs for hosts, allowing them to manage stage requests, participants in Dyte meetings.
 

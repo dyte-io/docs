@@ -28,7 +28,7 @@ You can send an image with the help of `meeting.chat.sendImageMessage()` and
 sends it to the participants in the meeting.
 
 ```kotlin
-meeting.chat.sendImageMessage(fileUri) { err ->
+meeting.chat.sendImageMessage(imageUri) { err ->
   // Handle error if any
 }
 ```
@@ -43,24 +43,24 @@ meeting.chat.sendFileMessage(fileUri) { err ->
 }
 ```
 
-## Error types
+## Chat Errors
 
-The `sendTextMessage` method does not have a callback function, so it does not return an error object of type `ChatTextError`. It can be the following:
+The `sendTextMessage` method returns a `ChatTextError` if the operation fails, `null` if successful. The error can be the following:
 
-- PermissionDenied: The user does not have permission to send a message.
-- MessageIsBlank: The message is empty.
-- CharacterLimitExceeded: The message exceeds the character limit.
-- RateLimitBreached: The user has sent too many messages in a short period of time.
+- `PermissionDenied`: The user does not have permission to send a message.
+- `MessageIsBlank`: The message is empty.
+- `CharacterLimitExceeded`: The message exceeds the character limit. Default limit is 2000 characters.
+- `RateLimitBreached`: The user has sent too many messages in a short period of time.
 
-Both `sendImageMessage` and `sendFileMessage` methods accept a callback function that will be called with an error object if there is an error while sending the message.
+Both `sendImageMessage` and `sendFileMessage` methods accept a callback function that will be called with a `ChatFileError` if the operation is not successful, otherwise with `null` if successful.
 
-The error object is of type `ChatFileError`, which can be classified into the following:
+Possible `ChatFileError`s are:
 
-- FileFormatNotAllowed: The file format is not allowed.
-- PermissionDenied: The user does not have permission to send a file.
-- RateLimitBreached: The user has sent too many files in a short period of time.
-- ReadFailed: The file could not be read.
-- UploadFailed: The file could not be uploaded.
+- `FileFormatNotAllowed`: The file format is not allowed.
+- `PermissionDenied`: The user does not have permission to send a file.
+- `RateLimitBreached`: The user has breached the rate limit for sending messages.
+- `ReadFailed`: The file could not be read.
+- `UploadFailed`: The file could not be uploaded.
 
 A `when` block can be used to handle these errors inside the callback, as shown below:
 

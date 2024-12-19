@@ -33,8 +33,7 @@ meeting.stage.grantAccess(meeting.stage.accessRequests.map { it.userId })
 
 ### Deny Access
 
-To reject stage access requests, you can use the `denyAccess()` method. Similarly, the `denyAccessAll()` method can be used to
-deny all pending stage access requests.
+To reject stage access requests, you can use the `denyAccess()` method.
 
 ```kotlin
 // Denies stage access request of a participant
@@ -58,10 +57,10 @@ meeting.stage.kick(listOf(id))
 ### Listening to Stage Access Requests
 
 You can listen to incoming stage access requests or changes in the access requests list if you are a host. The SDK provides the
-following callbacks to `DyteStageEventsListener`:
+following callbacks to `DyteStageEventListener`:
 
 ```kotlin
-meeting.addStageEventsListener(object : DyteStageEventsListener {
+meeting.addStageEventListener(object : DyteStageEventListener {
     override fun onNewStageAccessRequest(participant: DyteRemoteParticipant) {
         // Called when a new stage access request is received from a participant.
     }

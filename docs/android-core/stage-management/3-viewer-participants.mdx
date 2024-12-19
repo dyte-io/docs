@@ -19,12 +19,16 @@ meeting.stage.requestAccess()
 ```
 
 When a host accepts the user's stage access request or allows the user directly to the stage, the SDK triggers the
-`onStageAccessRequestAccepted` callback in `DyteStageEventListener`. You can listen to this event:
+`onStageAccessRequestAccepted` callback and if the host rejects the request, the SDK triggers the `onStageAccessRequestRejected` callback. You can listen to these events by adding a `DyteStageEventListener`:
 
 ```kotlin
-meeting.addStageEventsListener(object : DyteStageEventListener {
+meeting.addStageEventListener(object : DyteStageEventListener {
     override fun onStageAccessRequestAccepted() {
         // Host accepted the join stage request or invited user directly to stage
+    }
+
+    override fun onStageAccessRequestRejected() {
+        // Host rejected the join stage request
     }
 })
 ```
