@@ -7,7 +7,7 @@ tags:
   - stage
 ---
 
-Viewer participants in a stage-enabled meeting are users whose preset permission for media production is set as `CAN_REQUEST`. 
+Viewer participants in a stage-enabled meeting are users whose preset permission for media production is set as `CAN_REQUEST`.
 The `meeting.stage` object provides APIs for viewer participants to request stage access and withdraw their join stage request.
 
 ### Request Access
@@ -18,13 +18,17 @@ To request access to the stage, you can call the `requestAccess()` method:
 meeting.stage.requestAccess()
 ```
 
-When a host accepts the user's stage access request or allows the user directly to the stage, the SDK triggers the 
-`onPresentRequestReceived` callback in `DyteStageEventListener`. You can listen to this event:
+When a host accepts the user's stage access request or allows the user directly to the stage, the SDK triggers the
+`onStageAccessRequestAccepted` callback and if the host rejects the request, the SDK triggers the `onStageAccessRequestRejected` callback. You can listen to these events by adding a `DyteStageEventListener`:
 
 ```kotlin
-meeting.addStageEventsListener(object : DyteStageEventListener {
-    override fun onPresentRequestReceived() {
+meeting.addStageEventListener(object : DyteStageEventListener {
+    override fun onStageAccessRequestAccepted() {
         // Host accepted the join stage request or invited user directly to stage
+    }
+
+    override fun onStageAccessRequestRejected() {
+        // Host rejected the join stage request
     }
 })
 ```
