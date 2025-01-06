@@ -20,31 +20,26 @@ The participant object has the following properties.
 - `userId`: The `userId` of the participant.
 - `name`: The participant's name.
 - `picture`: The participant's picture (if any).
-- `clientSpecificId`: An arbitrary ID that can be set to identify the
+- `customParticipantId`: An arbitrary ID that can be set to identify the
   participant.
-- `videoTrack`: The video track of the participant.
-- `screenShareTrack`: The video and audio (if any) track of the participant's
-  screen share stream.
 - `videoEnabled`: Set to true if the participant's camera is on.
 - `audioEnabled`: Set to true if the participant is unmuted.
 - `isPinned`: True if current user is pinned in the meeting room.
 - `presetName`: Name of the preset associated with the participant.
 - `stageStatus`: Status of stage for the participant
-- `maxNumberOnScreen`: A int showing the maximum number of people set for this meeting.
-- `currentPageNumber`: A int showing the current page in this meeting. Participants from this page are filled in the `active` list.
-- `pageCount`: A int showing total number of pages available in the meeting.
-- `canGoNextPage`: A boolean indicating if next page of joined participants is available to show.
-- `canGoPreviousPage`: A boolean indicating if previous page of joined participants is available to show.
 
 ## To get video view of a given participant
 
 You can call `participant.getVideoView()` which will return a View which further
 can used to add in any ViewGroup in android.
 
-Similarly one can use `participant.getScreenShareView()` which will return a
+Similarly one can use `participant.getScreenShareVideoView()` which will return a
 View which further can used to add in any ViewGroup in android.
 
 Similarly, you can also access the pagination related information like follows:
+
+<Tabs groupId="android-core-participants">
+  <TabItem value="kotlin" label="Kotlin" default>
 
 ```kotlin
 val maxNumberOnScreen = meeting.participants.maxNumberOnScreen
@@ -54,36 +49,98 @@ val canGoNextPage = meeting.participants.canGoNextPage
 val canGoPreviousPage = meeting.participants.canGoPreviousPage
 ```
 
+  </TabItem>
+
+  <TabItem value="java" label="Java" default>
+
+```java
+int maxNumberOnScreen = meeting.participants.getMaxNumberOnScreen();
+int currentPageNumber = meeting.participants.getCurrentPageNumber();
+int pageCount = meeting.participants.getPageCount();
+boolean canGoNextPage = meeting.participants.getCanGoNextPage();
+boolean canGoPreviousPage = meeting.participants.getCanGoPreviousPage();
+```
+
+  </TabItem>
+</Tabs>
+
 ## Move between pages in paginated mode
 
-The `setPage(pageNumber: Int)` method allows you to switch between pages of participants present in the meeting.
+The `setPage` method allows you to switch between pages of participants present in the meeting.
+
+<Tabs groupId="android-core-participants">
+  <TabItem value="kotlin" label="Kotlin" default>
 
 ```kotlin
 // switch to 1st page
 meeting.participants.setPage(1)
 ```
 
+  </TabItem>
+
+  <TabItem value="java" label="Java" default>
+
+```java
+// switch to 1st page
+meeting.participants.setPage(1)
+```
+
+  </TabItem>
+</Tabs>
+
 ## Host Controls
 
 If you (the local user) have the relevant permissions, you can disable a participant's video or audio, or kick them from the meeting.
+
+<Tabs groupId="android-core-participants">
+  <TabItem value="kotlin" label="Kotlin" default>
 
 ```kotlin
 val participant = meeting.participants.joined.firstOrNull { it.id == participantId }
 
 participant?.let { pcpt ->
   // To disable a participant's video stream
-  pcpt.disableVideo();
+  pcpt.disableVideo()
 
   // To disable a participant's audio stream
-  pcpt.disableAudio();
+  pcpt.disableAudio()
 
   // To kick a participant from the meeting
-  pcpt.kick();
+  pcpt.kick()
 }
 ```
 
+  </TabItem>
+
+  <TabItem value="java" label="Java" default>
+
+```java
+Optional<DyteRemoteParticipant> participant = meeting.getParticipants().getJoined()
+    .stream()
+    .filter(pcpt -> pcpt.getId().equals(participantId))
+    .findFirst();
+
+participant.ifPresent(pcpt -> {
+    // To disable a participant's video stream
+    pcpt.disableVideo();
+
+    // To disable a participant's audio stream
+    pcpt.disableAudio();
+
+    // To kick a participant from the meeting
+    pcpt.kick();
+});
+```
+
+  </TabItem>
+</Tabs>
+
 You can also `pin` or `unpin` a participant in the meeting. All "pinned"
 participants are added to the `meeting.participants.pinned` list.
+
+
+<Tabs groupId="android-core-participants">
+  <TabItem value="kotlin" label="Kotlin" default>
 
 ```kotlin
 val participant = meeting.participants.joined.firstOrNull { it.id == participantId }
@@ -97,6 +154,28 @@ participant?.let { pcpt ->
 }
 ```
 
+  </TabItem>
+
+  <TabItem value="java" label="Java" default>
+
+```java
+Optional<DyteRemoteParticipant> participant = meeting.getParticipants().getJoined()
+    .stream()
+    .filter(pcpt -> pcpt.getId().equals(participantId))
+    .findFirst();
+
+participant.ifPresent(pcpt -> {
+  // To pin a participant
+  pcpt.pin();
+
+  // To unpin a participant
+  pcpt.unpin();
+});
+```
+
+  </TabItem>
+</Tabs>
+
 ## Broadcast message to all participants
 
 Send a message to all `joined` participants.
@@ -105,12 +184,27 @@ _Parameters_:
 
 `type`: A client-specific type to differentiate between custom messages like "emoji" or "greetings"
 
-`payload`: A map containing the message payload, where keys are strings and values are of `Any` type.
+`payload`: A Map containing the message payload, of type `Map<String, Any>`.
+
+<Tabs groupId="android-core-participants">
+  <TabItem value="kotlin" label="Kotlin" default>
 
 ```kotlin
 // broadcast message
 meeting.participants.broadcastMessage(type, payload)
 ```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java" default>
+
+```java
+// broadcast message
+meeting.participants.broadcastMessage(type, payload);
+```
+
+  </TabItem>
+</Tabs>
 
 <head>
   <title>Android Core The participant object</title>
