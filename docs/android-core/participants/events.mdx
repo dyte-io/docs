@@ -13,8 +13,8 @@ tags:
 ## All Participants Events
 
 You can subscribe to events for all participants by implementing
-`DyteParticipantEventsListener` callback and then passing that object to
-`meeting.addParticipantEventsListener(dyteParticipantEventsListener)` method.
+`DyteParticipantsEventListener` callback and then passing that object to
+`meeting.addParticipantsEventListener(dyteParticipantEventsListener)` method.
 
 Here are the supported methods:
 
@@ -87,7 +87,7 @@ Triggers an event whenever there is any change in the `meeting.participants` obj
   <TabItem value="kotlin" label="Kotlin" default>
 
 ```kotlin
-    private val participantEventsListener = object : DyteParticipantEventsListener {
+    private val participantEventsListener = object : DyteParticipantsEventListener {
         override fun onUpdate(participants: DyteParticipants) {
             // your code here to handle participant update
         }
@@ -99,7 +99,7 @@ Triggers an event whenever there is any change in the `meeting.participants` obj
   <TabItem value="java" label="Java" default>
 
 ```java
-    DyteParticipantsEventListener listener = new DyteParticipantEventsListener() {
+    DyteParticipantsEventListener listener = new DyteParticipantsEventListener() {
         @Override
         public void onUpdate(DyteParticipants participants) {
             // your code here to handle participant update
@@ -118,7 +118,7 @@ Triggers an event when any participant starts / stops video.
   <TabItem value="kotlin" label="Kotlin" default>
 
   ```kotlin
-      private val participantEventsListener = object : DyteParticipantEventsListener {
+      private val participantEventsListener = object : DyteParticipantsEventListener {
           override fun onVideoUpdate(participant: DyteRemoteParticipant, isEnabled: Boolean) {
               // your code here to handle participant video toggle update
           }
@@ -130,7 +130,7 @@ Triggers an event when any participant starts / stops video.
   <TabItem value="java" label="Java" default>
 
 ```java
-    DyteParticipantsEventListener listener = new DyteParticipantEventsListener() {
+    DyteParticipantsEventListener listener = new DyteParticipantsEventListener() {
         @Override
         public void onVideoUpdate(DyteRemoteParticipant participant, boolean isEnabled) {
             // your code here to handle participant video toggle update
@@ -150,7 +150,7 @@ Triggers an event when any participant starts / stops audio.
   <TabItem value="kotlin" label="Kotlin" default>
 
 ```kotlin
-    private val participantEventsListener = object : DyteParticipantEventsListener {
+    private val participantEventsListener = object : DyteParticipantsEventListener {
         override fun onAudioUpdate(participant: DyteRemoteParticipant, isEnabled: Boolean) {
             // your code here to handle participant audio toggle update
         }
@@ -162,7 +162,7 @@ Triggers an event when any participant starts / stops audio.
   <TabItem value="java" label="Java" default>
 
 ```java
-    DyteParticipantsEventListener listener = new DyteParticipantEventsListener() {
+    DyteParticipantsEventListener listener = new DyteParticipantsEventListener() {
         @Override
         public void onAudioUpdate(@NonNull DyteRemoteParticipant participant, boolean isEnabled) {
             // your code here to handle participant audio toggle update
@@ -181,7 +181,7 @@ Triggers an event when there is any change in screenshares in a meeting.
   <TabItem value="kotlin" label="Kotlin" default>
 
 ```kotlin
-    private val participantEventsListener = object : DyteParticipantEventsListener {
+    private val participantEventsListener = object : DyteParticipantsEventListener {
         override fun onScreenShareUpdate(participant: DyteRemoteParticipant, isEnabled: Boolean) {
             // your code here to handle screenshares from meeting
             // you can use `meeting.participants.screenshares` to get latest screenshare participants
@@ -194,7 +194,7 @@ Triggers an event when there is any change in screenshares in a meeting.
   <TabItem value="java" label="Java" default>
 
 ```java
-    DyteParticipantsEventListener listener = new DyteParticipantEventsListener() {
+    DyteParticipantsEventListener listener = new DyteParticipantsEventListener() {
         @Override
         public void onScreenShareUpdate(@NonNull DyteRemoteParticipant participant, boolean isEnabled) {
             // your code here to handle screenshares from meeting
@@ -214,7 +214,7 @@ Triggers an event when there is any change in active speaker in the meeting.
   <TabItem value="kotlin" label="Kotlin" default>
 
 ```kotlin
-    private val participantEventsListener = object : DyteParticipantEventsListener {
+    private val participantEventsListener = object : DyteParticipantsEventListener {
         override fun onActiveSpeakerChanged(participant: DyteRemoteParticipant?) {
             // If participant is null, there is no active speaker
         }
@@ -226,7 +226,7 @@ Triggers an event when there is any change in active speaker in the meeting.
   <TabItem value="java" label="Java" default>
 
 ```java
-    DyteParticipantsEventListener listener = new DyteParticipantEventsListener() {
+    DyteParticipantsEventListener listener = new DyteParticipantsEventListener() {
         @Override
         public void onActiveSpeakerChanged(@Nullable DyteRemoteParticipant participant) {
             // If participant is null, there is no active speaker
@@ -245,7 +245,7 @@ Triggers an event when there is any change in pinned participant in the meeting.
   <TabItem value="kotlin" label="Kotlin" default>
 
 ```kotlin
-    private val participantEventsListener = object : DyteParticipantEventsListener {
+    private val participantEventsListener = object : DyteParticipantsEventListener {
         override fun onParticipantPinned(participant: DyteRemoteParticipant) {
         }
 
@@ -260,7 +260,7 @@ Triggers an event when there is any change in pinned participant in the meeting.
   <TabItem value="java" label="Java" default>
 
 ```kotlin
-    DyteParticipantsEventListener listener = new DyteParticipantEventsListener() {
+    DyteParticipantsEventListener listener = new DyteParticipantsEventListener() {
         @Override
         public void onParticipantPinned(DyteRemoteParticipant participant) {
         }
@@ -282,7 +282,7 @@ Triggers an event when there is any change in active participants list in the me
   <TabItem value="kotlin" label="Kotlin" default>
 
 ```kotlin
-    private val participantEventsListener = object : DyteParticipantEventsListener {
+    private val participantEventsListener = object : DyteParticipantsEventListener {
         override fun onActiveParticipantsChanged(active: List<DyteRemoteParticipant>) {
         }
     }
@@ -293,7 +293,7 @@ Triggers an event when there is any change in active participants list in the me
   <TabItem value="java" label="Java" default>
 
 ```kotlin
-    DyteParticipantsEventListener listener = new DyteParticipantEventsListener() {
+    DyteParticipantsEventListener listener = new DyteParticipantsEventListener() {
         @Override
         public void onActiveParticipantsChanged(List<DyteRemoteParticipant> participants) {
         }
