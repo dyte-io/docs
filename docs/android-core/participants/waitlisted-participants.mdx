@@ -50,7 +50,7 @@ To deny a waiting room request, use the `rejectWaitingRoomRequest(String)` metho
 
 ```kotlin
 val waitlistedParticipant = meeting.participants.waitlisted[0]
-waitlistedParticipant.rejectWaitListedRequest()
+meeting.participants.rejectWaitingRoomRequest(waitlistedParticipant.id)
 ```
 
   </TabItem>

@@ -26,7 +26,7 @@ Triggers an event when any participant joins the meeting.
   <TabItem value="kotlin" label="Kotlin" default>
 
 ```kotlin
-    private val participantEventsListener = object : DyteParticipantEventsListener {
+    private val participantsEventListener = object : DyteParticipantsEventListener {
         override fun onParticipantJoin(participant: DyteRemoteParticipant) {
         }
     }
@@ -37,7 +37,7 @@ Triggers an event when any participant joins the meeting.
   <TabItem value="java" label="Java" default>
 
 ```java
-    DyteParticipantsEventListener listener = new DyteParticipantEventsListener() {
+    DyteParticipantsEventListener listener = new DyteParticipantsEventListener() {
         @Override
         public void onParticipantJoin(DyteRemoteParticipant participant) {
         }
@@ -55,7 +55,7 @@ Triggers an event when any participant leaves the meeting.
   <TabItem value="kotlin" label="Kotlin" default>
 
 ```kotlin
-    private val participantEventsListener = object : DyteParticipantEventsListener {
+    private val participantsEventListener = object : DyteParticipantsEventListener {
         override fun onParticipantLeave(participant: DyteRemoteParticipant) {
         }
     }
@@ -67,7 +67,7 @@ Triggers an event when any participant leaves the meeting.
   <TabItem value="java" label="Java" default>
 
 ```java
-    DyteParticipantsEventListener listener = new DyteParticipantEventsListener() {
+    DyteParticipantsEventListener listener = new DyteParticipantsEventListener() {
         @Override
         public void onParticipantLeave(DyteRemoteParticipant participant) {
         }
@@ -88,7 +88,7 @@ Triggers an event whenever there is any change in the `meeting.participants` obj
 
 ```kotlin
     private val participantEventsListener = object : DyteParticipantEventsListener {
-        override fun onAllParticipantsUpdated(allParticipants: List<DyteParticipant>) {
+        override fun onUpdate(participants: DyteParticipants) {
             // your code here to handle participant update
         }
     }
@@ -101,7 +101,7 @@ Triggers an event whenever there is any change in the `meeting.participants` obj
 ```java
     DyteParticipantsEventListener listener = new DyteParticipantEventsListener() {
         @Override
-        public void onAllParticipantsUpdated(List<DyteParticipant> participants) {
+        public void onUpdate(DyteParticipants participants) {
             // your code here to handle participant update
         }
     };
