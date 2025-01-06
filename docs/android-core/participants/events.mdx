@@ -302,3 +302,184 @@ Triggers an event when there is any change in active participants list in the me
 
   </TabItem>
 </Tabs>
+
+## Single Participant Events
+
+You can also subscribe to events for a single participant by implementing `DyteParticipantUpdateListener` callback and then passing that object to `participant.addParticipantUpdateListener(dyteParticipantUpdateListener)` method.
+
+Here are the supported methods:
+
+### Participant update
+
+Triggers an event whenever there is any change in participant.
+
+<Tabs groupId="android-core-participants">
+  <TabItem value="kotlin" label="Kotlin" default>
+
+  ```kotlin
+      private val participantUpdateListener = object : DyteParticipantUpdateListener {
+          override fun onUpdate(participant: DyteRemoteParticipant) {
+              // your code here to handle participant update
+          }
+      }
+  ```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java" default>
+
+  ```java
+      DyteParticipantUpdateListener participantUpdateListener = new DyteParticipantUpdateListener() {
+          @Override
+          public void onUpdate(DyteRemoteParticipant participant) {
+              // your code here to handle participant update
+          }
+      }
+  ```
+
+  </TabItem>
+</Tabs>
+
+### Video update
+
+Triggers an event when the participant starts / stops video.
+
+<Tabs groupId="android-core-participants">
+  <TabItem value="kotlin" label="Kotlin" default>
+
+```kotlin
+    private val participantUpdateListener = object : DyteParticipantUpdateListener {
+        override fun onVideoUpdate(participant: DyteRemoteParticipant, isEnabled: Boolean) {
+        }
+    }
+```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java" default>
+
+```java
+    DyteParticipantUpdateListener participantUpdateListener = new DyteParticipantUpdateListener() {
+        @Override
+        public void onVideoUpdate(DyteRemoteParticipant participant, boolean isEnabled) {
+        }
+    }
+```
+
+  </TabItem>
+</Tabs>
+
+
+
+### Audio update
+
+Triggers an event when the participant starts / stops audio.
+
+<Tabs groupId="android-core-participants">
+  <TabItem value="kotlin" label="Kotlin" default>
+
+```kotlin
+    private val participantUpdateListener = object : DyteParticipantUpdateListener {
+        override fun onAudioUpdate(participant: DyteRemoteParticipant, isEnabled: Boolean) {
+            // your code here to handle participant audio toggle update
+        }
+    }
+```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java" default>
+
+```java
+    DyteParticipantUpdateListener participantUpdateListener = new DyteParticipantUpdateListener() {
+        @Override
+        public void onAudioUpdate(DyteRemoteParticipant participant, boolean isEnabled) {
+            // your code here to handle participant audio toggle update
+        }
+    }
+```
+
+  </TabItem>
+</Tabs>
+
+
+### Pinned & Unpinned participant
+
+Triggers an event when the participant is pinned / unpinned.
+
+<Tabs groupId="android-core-participants">
+  <TabItem value="kotlin" label="Kotlin" default>
+
+```kotlin
+    private val participantUpdateListener = object : DyteParticipantUpdateListener {
+        override fun onPinned(participant: DyteRemoteParticipant) {
+            // your code here to show pinned participant
+        }
+
+        override fun onUnpinned(participant: DyteRemoteParticipant) {
+            // your code here to remove pinned participant
+        }
+    }
+```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java" default>
+
+```java
+    DyteParticipantUpdateListener participantUpdateListener = new DyteParticipantUpdateListener() {
+        @Override
+        public void onPinned(DyteRemoteParticipant participant) {
+            // your code here to show pinned participant
+        }
+
+        @Override
+        public void onUnpinned(DyteRemoteParticipant participant) {
+            // your code here to remove pinned participant
+        }
+    }
+```
+
+  </TabItem>
+</Tabs>
+
+
+### Screen share started & ended
+
+Triggers an event when the participant starts / stops screen sharing.
+
+<Tabs groupId="android-core-participants">
+  <TabItem value="kotlin" label="Kotlin" default>
+
+```kotlin
+    private val participantUpdateListener = object : DyteParticipantUpdateListener {
+        override fun onScreenShareStarted(participant: DyteRemoteParticipant) {
+            // your code here to handle screen share started
+        }
+
+        override fun onScreenShareEnded(participant: DyteRemoteParticipant) {
+            // your code here to handle screen share ended
+        }
+    }
+```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java" default>
+
+```java
+    DyteParticipantUpdateListener participantUpdateListener = new DyteParticipantUpdateListener() {
+        @Override
+        public void onScreenShareStarted(DyteRemoteParticipant participant) {
+            // your code here to handle screen share started
+        }
+
+        @Override
+        public void onScreenShareEnded(DyteRemoteParticipant participant) {
+            // your code here to handle screen share ended
+        }
+    }
+```
+
+  </TabItem>
+</Tabs>
