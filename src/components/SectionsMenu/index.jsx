@@ -17,7 +17,10 @@ const SectionsMenu = forwardRef(
           </Select.Icon>
         </Select.Trigger>
 
-        <Select.Content className={clsx('sections-menu-content', className)}>
+        <Select.Content
+          position="popper"
+          className={clsx('sections-menu-content', className)}
+        >
           <Select.ScrollUpButton className="sections-menu-scrollButton">
             <ChevronUp />
           </Select.ScrollUpButton>
@@ -32,7 +35,7 @@ const SectionsMenu = forwardRef(
                   disabled={disabled}
                 >
                   <Select.ItemText>
-                    <div className="item-text text-text-400">
+                    <div className="item-text text-text-400 dark:text-white/80">
                       {Icon && <Icon />}
                       <span>{name}</span>
                     </div>
@@ -52,7 +55,7 @@ const SectionsMenu = forwardRef(
         </Select.Content>
       </Select.Root>
     );
-  }
+  },
 );
 
 export default SectionsMenu;
