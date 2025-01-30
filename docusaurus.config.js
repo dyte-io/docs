@@ -106,7 +106,7 @@ const docs = [
     routeBasePath: '/android-core',
     versions: {
       current: {
-        label: '1.x.x',
+        label: '2.x.x',
       },
     },
   },
@@ -126,7 +126,7 @@ const docs = [
     routeBasePath: '/ios-core',
     versions: {
       current: {
-        label: '1.x.x',
+        label: '2.x.x',
       },
     },
   },
@@ -448,6 +448,9 @@ const resourcesHTML = fs.readFileSync('./src/snippets/resources.html', 'utf-8');
 const config = {
   ...meta,
   plugins,
+  future: {
+    experimental_faster: true,
+  },
 
   trailingSlash: false,
   themes: ['@docusaurus/theme-live-codeblock', '@docusaurus/theme-mermaid'],
@@ -621,10 +624,6 @@ const config = {
                 label: 'Blog',
                 href: 'https://dyte.io/blog',
               },
-              {
-                label: 'Community',
-                href: 'https://community.dyte.io',
-              },
             ],
           },
         ],
@@ -665,23 +664,23 @@ const config = {
       },
     }),
 
-  webpack: {
-    jsLoader: (isServer) => ({
-      loader: require.resolve('swc-loader'),
-      options: {
-        jsc: {
-          parser: {
-            syntax: 'typescript',
-            tsx: true,
-          },
-          target: 'es2017',
-        },
-        module: {
-          type: isServer ? 'commonjs' : 'es6',
-        },
-      },
-    }),
-  },
+  // webpack: {
+  //   jsLoader: (isServer) => ({
+  //     loader: require.resolve('swc-loader'),
+  //     options: {
+  //       jsc: {
+  //         parser: {
+  //           syntax: 'typescript',
+  //           tsx: true,
+  //         },
+  //         target: 'es2017',
+  //       },
+  //       module: {
+  //         type: isServer ? 'commonjs' : 'es6',
+  //       },
+  //     },
+  //   }),
+  // },
 };
 
 module.exports = config;

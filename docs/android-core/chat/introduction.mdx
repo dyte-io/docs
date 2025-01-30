@@ -1,5 +1,5 @@
 ---
-title: Introducing chat
+title: Introduction
 description: >-
   Learn the basics of integrating Dyte's chat functionality into your Android
   application – a step towards immersive real-time communication.
@@ -29,7 +29,8 @@ class DyteTextMessage(
   pluginId: String?,
   val message: String,
   time: String,
-  channelId: String? = null,
+  createdAtMillis: Long,
+  targetUserIds: List<String>?,
 )
 ```
 
@@ -43,7 +44,8 @@ class DyteImageMessage(
   pluginId: String?,
   val link: String,
   time: String,
-  channelId: String? = null,
+  createdAtMillis: Long,
+  targetUserIds: List<String>?,
 )
 ```
 
@@ -57,9 +59,10 @@ class DyteFileMessage(
   pluginId: String?,
   val name: String,
   time: String,
+  createdAtMillis: Long,
   val link: String,
   val size: Long,
-  channelId: String? = null,
+  targetUserIds: List<String>?,
 )
 ```
 

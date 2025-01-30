@@ -15,6 +15,9 @@ tags:
 
 To get media permissions (audio/video) for localUser we can do as follows
 
+<Tabs groupId="android-core-local-user">
+  <TabItem value="kotlin" label="Kotlin" default>
+
 ```kotlin
 val isCameraPermissionGranted
   = meeting.localUser.isCameraPermissionGranted
@@ -22,20 +25,54 @@ val isMicrophonePermissionGranted
   = meeting.localUser.isMicrophonePermissionGranted
 ```
 
+  </TabItem>
+
+  <TabItem value="java" label="Java" default>
+
+```java
+boolean isCameraPermissionGranted
+  = meeting.localUser.isCameraPermissionGranted();
+boolean isMicrophonePermissionGranted
+  = meeting.localUser.isMicrophonePermissionGranted();
+```
+
+  </TabItem>
+</Tabs>
+
 Similarly to listen to callbacks regarding media permissions once user joins
 the meeting
+
+<Tabs groupId="android-core-local-user">
+  <TabItem value="kotlin" label="Kotlin" default>
 
 ```kotlin
 meeting.addSelfEventsListener(object : DyteSelfEventsListener {
     override fun onMeetingRoomJoinedWithoutCameraPermission() {
-      // when meeting room is joined without camera permission
     }
 
     override fun onMeetingRoomJoinedWithoutMicPermission() {
-      // when meeting room is joined without microphone permission
+    }
+})
+```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java" default>
+
+```kotlin
+meeting.addSelfEventsListener(new : DyteSelfEventsListener() {
+    @Override
+    public void onMeetingRoomJoinedWithoutCameraPermission() {
+    }
+
+    @Override
+    public void onMeetingRoomJoinedWithoutMicPermission() {
     }
 });
 ```
+
+  </TabItem>
+</Tabs>
 
 <head>
   <title>Android Core Media Permissions</title>

@@ -28,9 +28,9 @@ You can send an image with the help of `meeting.chat.sendImageMessage()` and
 sends it to the participants in the meeting.
 
 ```kotlin
-val filePath = "file_path_of_image"
-val fileName = "file_name"
-meeting.chat.sendImageMessage(filePath, fileName)
+meeting.chat.sendImageMessage(imageUri) { err ->
+  // Handle error if any
+}
 ```
 
 ## Send a file
@@ -38,9 +38,41 @@ meeting.chat.sendImageMessage(filePath, fileName)
 Sending a file is quite similar to sending an image. The only difference is that when you send an image, a preview will be shown in the meeting chat, which is not the case for sending files. That being said, an image can be sent as a file too using `meeting.chat.sendFileMessage()`.
 
 ```kotlin
-val filePath = "file_path_of_image"
-val fileName = "file_name"
-meeting.chat.sendFileMessage(filePath, fileName)
+meeting.chat.sendFileMessage(fileUri) { err ->
+  // Handle error if any
+}
+```
+
+## Chat Errors
+
+The `sendTextMessage` method returns a `ChatTextError` if the operation fails, `null` if successful. The error can be the following:
+
+- `PermissionDenied`: The user does not have permission to send a message.
+- `MessageIsBlank`: The message is empty.
+- `CharacterLimitExceeded`: The message exceeds the character limit. Default limit is 2000 characters.
+- `RateLimitBreached`: The user has sent too many messages in a short period of time.
+
+Both `sendImageMessage` and `sendFileMessage` methods accept a callback function that will be called with a `ChatFileError` if the operation is not successful, otherwise with `null` if successful.
+
+Possible `ChatFileError`s are:
+
+- `FileFormatNotAllowed`: The file format is not allowed.
+- `PermissionDenied`: The user does not have permission to send a file.
+- `RateLimitBreached`: The user has breached the rate limit for sending messages.
+- `ReadFailed`: The file could not be read.
+- `UploadFailed`: The file could not be uploaded.
+
+A `when` block can be used to handle these errors inside the callback, as shown below:
+
+```kotlin
+when (err) {
+  is ChatFileError.FileFormatNotAllowed -> {}
+  is ChatFileError.PermissionDenied -> {}
+  is ChatFileError.RateLimitBreached -> {}
+  is ChatFileError.ReadFailed -> {}
+  is ChatFileError.UploadFailed -> {}
+  else -> {}
+}
 ```
 
 <head>

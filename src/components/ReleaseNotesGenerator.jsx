@@ -35,7 +35,12 @@ const changeTypes = [
     name: 'perf',
     color: '#5555aa',
     label: 'Performance',
-  }
+  },
+  {
+    name: 'enhancements',
+    color: '#8e8ee5',
+    label: 'Enhancements',
+  },
 ];
 
 function convertHtmlTagsInTextToReactTags(text) {
