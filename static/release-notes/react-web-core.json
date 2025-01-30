@@ -6,9 +6,7 @@
       "Improved active speaker detection to resolve inaccuracies in specific scenarios.",
       "Removed rate limits of meeting.stores getter methods."
     ],
-    "features": [
-      "Added ability to control livestream viewer qualities"
-    ]
+    "features": ["Added ability to control livestream viewer qualities"]
   },
   {
     "version": "2.1.12-13",
@@ -35,7 +33,8 @@
     "version": "2.1.10",
     "createdAt": "1730705555",
     "fixes": [
-      "The connected meeting feature, previously gated behind a feature flag, is now available to all users without additional configuration"
+      "The connected meeting feature, previously gated behind a feature flag, is now available to all users without additional configuration",
+      "Fixed an edge case with connected meetings"
     ]
   },
   {
@@ -56,15 +55,13 @@
     "version": "2.1.6-7",
     "createdAt": "1729651881",
     "fixes": [
-      "Connecte Meetings - Allow user to end all related meetings from a child meeting"
+      "Connected Meetings - Allow user to end all related meetings from a child meeting"
     ]
   },
   {
     "version": "2.1.5",
     "createdAt": "1729565481",
-    "fixes": [
-      "Support custom icon for handraise in Picture-in-Picture"
-    ]
+    "fixes": ["Support custom icon for handraise in Picture-in-Picture"]
   },
   {
     "version": "2.1.3-4",
@@ -76,9 +73,7 @@
   {
     "version": "2.1.2",
     "createdAt": "1728467027",
-    "fixes": [
-      "Export types for Store APIs (meeting.store)"
-    ]
+    "fixes": ["Export types for Store APIs (meeting.store)"]
   },
   {
     "version": "2.1.1",
@@ -90,9 +85,7 @@
   {
     "version": "2.1.0",
     "createdAt": "1727859603",
-    "fixes": [
-      "Handle screenshare pause in Safari"
-    ],
+    "fixes": ["Handle screenshare pause in Safari"],
     "features": [
       "Picture-in-Picture now shows avatar, hand raises and mirrors self video"
     ],
@@ -118,9 +111,7 @@
   {
     "version": "2.0.4",
     "createdAt": "1724423416",
-    "fixes": [
-      "Multiple dynamic permissions (beta) bug fixes"
-    ]
+    "fixes": ["Multiple dynamic permissions (beta) bug fixes"]
   },
   {
     "version": "2.0.1-3",
@@ -156,9 +147,7 @@
   {
     "version": "1.34.7-14",
     "createdAt": "1721700332",
-    "features": [
-      "Support typescript versions as old as 3.4"
-    ],
+    "features": ["Support typescript versions as old as 3.4"],
     "fixes": [
       "Force TURN servers on multiple successful connection which are followed by immediate disconnection",
       "Throw browser not supported and network errors on `init`",
@@ -169,9 +158,7 @@
   {
     "version": "1.36.5-7",
     "createdAt": "1714529132",
-    "features": [
-      "Emit partial transcriptions on `meeting.ai`"
-    ],
+    "features": ["Emit partial transcriptions on `meeting.ai`"],
     "fixes": [
       "Allow closing a plugin if enabled by self even if the user does not have the preset permission to close a plugin"
     ]
@@ -220,9 +207,7 @@
   {
     "version": "1.35.19",
     "createdAt": "1707323400",
-    "features": [
-      "All event callbacks now have type information"
-    ],
+    "features": ["All event callbacks now have type information"],
     "fixes": [
       "Fixed `useDyteClient` hook to support breakout rooms changed meeting",
       "Fixed an issue with livestream where hosts were not able to see participants accepted on stage",
@@ -241,9 +226,7 @@
   {
     "version": "1.35.17",
     "createdAt": "1705912281",
-    "features": [
-      "Stereo audio support"
-    ],
+    "features": ["Stereo audio support"],
     "new_api": [
       "User can now configure media quality configuration include stereo audio on `DyteClient.init`. Checkout the [documentation here](/web-core/advanced/advance#mediaconfiguration)"
     ]
@@ -251,9 +234,7 @@
   {
     "version": "1.35.16",
     "createdAt": "1705890681",
-    "fixes": [
-      "Fix blank Picture-in-Picture stream on PIP resize"
-    ],
+    "fixes": ["Fix blank Picture-in-Picture stream on PIP resize"],
     "perf": [
       "Updated [simulcast](https://en.wikipedia.org/wiki/Simulcast) configuration for better video performance"
     ],
@@ -368,9 +349,7 @@
   {
     "version": "1.15.0",
     "createdAt": 1688083200,
-    "fixes": [
-      "Fixed an edge case around file upload in Chat."
-    ],
+    "fixes": ["Fixed an edge case around file upload in Chat."],
     "features": [
       "Added add support for quoting a chat message while reply for Chat SDK",
       "Chat SDK now shows unread count and last message on channel list.",
@@ -430,9 +409,7 @@
   {
     "version": "1.21.x",
     "createdAt": 1677609000,
-    "fixes": [
-      "Handle WeWork Solistice Camera gracefully"
-    ],
+    "fixes": ["Handle WeWork Solistice Camera gracefully"],
     "features": [
       "Initial support for our upcoming Interactive Livestream product (LL-HLS)",
       "Webcam quality can now be controlled from the preset, allows customer to select a higher base quality in the preset editor (beta)"
@@ -467,9 +444,7 @@
   {
     "version": "1.19.0",
     "createdAt": 1674714600,
-    "fixes": [
-      "Improved permissions check for audio/video/screenshare"
-    ],
+    "fixes": ["Improved permissions check for audio/video/screenshare"],
     "features": [
       "When Tab Sync is enabled, now a `selfTabUpdate` event is fired on the local user when the user switches a plugin"
     ],
