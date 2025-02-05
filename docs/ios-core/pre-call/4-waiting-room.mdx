@@ -22,7 +22,7 @@ You can listen for this callback as follows:
 
 ```swift
 extension MeetingViewModel: DyteMeetingRoomEventsListener {
-    func onMeetingRoomJoinCompleted() {
+    func onMeetingRoomJoinCompleted(meeting: DyteMobileClient) {
         // Local user is in the meeting
     }
 }

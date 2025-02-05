@@ -13,8 +13,8 @@ tags:
 # All Participant Events
 
 You can subscribe to events for all participants by implementing
-`DyteParticipantEventsListener` protocol and then passing that object to
-`meeting.addParticipantEventsListener(dyteParticipantEventsListener)` method.
+`DyteParticipantsEventListener` protocol and then passing that object to
+`meeting.addParticipantsEventListener(dyteParticipantEventsListener)` method.
 
 Here are the supported methods:
 
@@ -23,7 +23,7 @@ Here are the supported methods:
 Triggers an event when any participant joins the meeting.
 
 ```swift
-    extension MeetingViewModel: DyteParticipantEventsListener {
+    extension MeetingViewModel: DyteParticipantsEventListener {
         func onParticipantJoin(participant: DyteMeetingParticipant) {
             // your code here to handle new participant
         }
@@ -35,7 +35,7 @@ Triggers an event when any participant joins the meeting.
 Triggers an event when any participant leaves the meeting.
 
 ```swift
-    extension MeetingViewModel: DyteParticipantEventsListener {
+    extension MeetingViewModel: DyteParticipantsEventListener {
         func onParticipantLeave(participant: DyteMeetingParticipant) {
             // your code here to handle participant left from meeting
         }
@@ -47,7 +47,7 @@ Triggers an event when any participant leaves the meeting.
 Triggers an event whenever there is any change in participant.
 
 ```swift
-    extension MeetingViewModel: DyteParticipantEventsListener {
+    extension MeetingViewModel: DyteParticipantsEventListener {
         func onUpdate(participants: DyteParticipants) {
             // your code here to handle participant update
         }
@@ -59,8 +59,8 @@ Triggers an event whenever there is any change in participant.
 Trigger an event when any participant starts / stops video.
 
 ```swift
-    extension MeetingViewModel: DyteParticipantEventsListener {
-        func onVideoUpdate(videoEnabled: Bool, participant: DyteMeetingParticipant) {
+    extension MeetingViewModel: DyteParticipantsEventListener {
+        func onVideoUpdate(isEnabled: Bool, participant: DyteMeetingParticipant) {
             // your code here to handle participant video toggle update
         }
     }
@@ -71,8 +71,8 @@ Trigger an event when any participant starts / stops video.
 Trigger an event when any participant starts / stops audio.
 
 ```swift
-    extension MeetingViewModel: DyteParticipantEventsListener {
-        func onAudioUpdate(audioEnabled: Bool, participant: DyteMeetingParticipant) {
+    extension MeetingViewModel: DyteParticipantsEventListener {
+        func onAudioUpdate(isEnabled: Bool, participant: DyteMeetingParticipant) {
             // your code here to handle participant audio toggle update
         }
     }
@@ -83,7 +83,7 @@ Trigger an event when any participant starts / stops audio.
 Triggers an event when there is any change in screenshares in a meeting.
 
 ```swift
-    extension MeetingViewModel: DyteParticipantEventsListener {
+    extension MeetingViewModel: DyteParticipantsEventListener {
         func onScreenSharesUpdated() {
             // your code here to handle screenshares from meeting
             // you can use `meeting.participants.screenshares` to get latest screenshare participants
@@ -104,7 +104,7 @@ Triggers an event when there is any change in screenshares in a meeting.
 Triggers an event when any is change in active speaker in the meeting.
 
 ```swift
-    extension MeetingViewModel: DyteParticipantEventsListener {
+    extension MeetingViewModel: DyteParticipantsEventListener {
         func onActiveSpeakerChanged(participant: DyteMeetingParticipant) {
             // your code here to handle active speaker
         }
@@ -120,7 +120,7 @@ Triggers an event when any is change in active speaker in the meeting.
 Triggers an event when there is any change in pinned participant in the meeting.
 
 ```swift
-    extension MeetingViewModel: DyteParticipantEventsListener {
+    extension MeetingViewModel: DyteParticipantsEventListener {
         func onParticipantPinned(participant: DyteMeetingParticipant) {
             // your code here to show pinned participant
         }
@@ -136,7 +136,7 @@ Triggers an event when there is any change in pinned participant in the meeting.
 Triggers an event when any is change in active participants list in the meeting.
 
 ```swift
-    extension MeetingViewModel: DyteParticipantEventsListener {
+    extension MeetingViewModel: DyteParticipantsEventListener {
         func onActiveParticipantsChanged(active: [DyteMeetingParticipant]) {
             // your code here to refresh active participants
         }

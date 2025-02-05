@@ -63,8 +63,19 @@ initialization process. You can setup the audio and video tracks by simply
 calling `enableAudio()` and `enableVideo()` like below:
 
 ```swift
-meeting.localUser.enableAudio()
-meeting.localUser.enableVideo()
+meeting.localUser.enableAudio{ err in 
+    if let error = err {
+        print("Error enabling audio: \(error)")
+    }
+}
+```
+
+```swift
+meeting.localUser.enableVideo{ err in 
+    if let error = err {
+        print("Error enabling video: \(error)")
+    }
+}
 ```
 
 ## Change the name of the local user
