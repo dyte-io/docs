@@ -19,10 +19,13 @@ You can subscribe to various events on the local user by implementing `DyteSelfE
 Triggered when the user starts/stops the video using `enableVideo()` or
 `disableVideo()`.
 
+<Tabs groupId="android-core-local-user">
+  <TabItem value="kotlin" label="Kotlin" default>
+
 ```kotlin
 meeting.addSelfEventsListener(object : DyteSelfEventsListener {
-    override fun onVideoUpdate(videoEnabled: Boolean) {
-      if (videoEnabled) {
+    override fun onVideoUpdate(isEnabled: Boolean) {
+      if (isEnabled) {
         // video is enabled, and other participants in room can see local user
       } else {
         // video is disabled, and other participants in room can not see local user.
@@ -31,15 +34,38 @@ meeting.addSelfEventsListener(object : DyteSelfEventsListener {
 })
 ```
 
+  </TabItem>
+
+  <TabItem value="java" label="Java" default>
+
+```java
+meeting.addSelfEventsListener(new DyteSelfEventsListener() {
+    @Override
+    public void onVideoUpdate(boolean isEnabled) {
+      if (isEnabled) {
+        // video is enabled, and other participants in room can see local user
+      } else {
+        // video is disabled, and other participants in room can not see local user.
+      }
+    }
+});
+```
+
+  </TabItem>
+</Tabs>
+
 ### Audio update
 
 Triggered when the user starts/stops the audio using `enableAudio()` or
 `disableAudio()`.
 
+<Tabs groupId="android-core-local-user">
+  <TabItem value="kotlin" label="Kotlin" default>
+
 ```kotlin
 meeting.addSelfEventsListener(object : DyteSelfEventsListener {
-    override fun onAudioUpdate(audioEnabled: Boolean) {
-      if (audioEnabled) {
+    override fun onAudioUpdate(isEnabled: Boolean) {
+      if (isEnabled) {
         // audio is enabled, and other participants in room can hear local user
       } else {
         // audio is disabled, and other participants in room can not hear local user.
@@ -48,18 +74,26 @@ meeting.addSelfEventsListener(object : DyteSelfEventsListener {
 })
 ```
 
-### Proximity changed
 
-Triggered whenever there is a change in proximity, indicating if the device is near an earpiece, which subsequently causes the display to turn on or off.
+  </TabItem>
 
-```kotlin
-meeting.addSelfEventsListener(object : DyteSelfEventsListener {
-    override fun onProximityChanged(isNear: Boolean) {
-      // if `isNear` is true, display should be turned off, as user might be speaking through earpiece
-      // if false, display should be turned on, as user might be looking at display and listening through speaker/earphones.
+  <TabItem value="java" label="Java" default>
+
+```java
+meeting.addSelfEventsListener(new DyteSelfEventsListener() {
+    override fun onAudioUpdate(boolean isEnabled) {
+      if (isEnabled) {
+        // audio is enabled, and other participants in room can hear local user
+      } else {
+        // audio is disabled, and other participants in room can not hear local user.
+      }
     }
-})
+});
 ```
+
+
+  </TabItem>
+</Tabs>
 
 ### Waitlist status
 
@@ -67,70 +101,145 @@ For meetings whose waiting room is enabled:
 
 To get status of localUser in waiting room we can use
 
+<Tabs groupId="android-core-local-user">
+  <TabItem value="kotlin" label="Kotlin" default>
+
 ```kotlin
 val waitListStatus = meeting.localUser.waitListStatus
 ```
 
+  </TabItem>
+
+  <TabItem value="java" label="Java" default>
+
+```java
+WaitListStatus waitListStatus = meeting.localUser.getWaitListStatus();
+```
+
+  </TabItem>
+</Tabs>
+
+
 You can listen to those changes in `onWaitListStatusUpdate()` callbacks
+
+<Tabs groupId="android-core-local-user">
+  <TabItem value="kotlin" label="Kotlin" default>
 
 ```kotlin
 meeting.addSelfEventsListener(object : DyteSelfEventsListener {
     override fun onWaitListStatusUpdate(waitListStatus: WaitListStatus) {
       // handle waitlist status here
     }
-});
+})
 ```
 
-### Process message within a room
+  </TabItem>
 
-Manage messages among participants within a room.
+  <TabItem value="java" label="Java" default>
 
-```kotlin
-meeting.addSelfEventsListener(object : DyteSelfEventsListener {
-    override fun onRoomMessage(type: String, payload: Map<String, *>) {
-      // handle the message here
+```java
+meeting.addSelfEventsListener(new DyteSelfEventsListener() {
+    @Override
+    public void onWaitListStatusUpdate(WaitListStatus waitListStatus) {
+      // handle waitlist status here
     }
 });
 ```
 
+  </TabItem>
+</Tabs>
+
 ### Screenshare callbacks for local user
+
+<Tabs groupId="android-core-local-user">
+  <TabItem value="kotlin" label="Kotlin" default>
 
 ```kotlin
 meeting.addSelfEventsListener(object : DyteSelfEventsListener {
     override fun onScreenShareStartFailed(reason: String) {
-      // screenshare failed to start
     }
 
-    override fun onScreenShareStarted() {
-      // screenshare started presenting in the meeting
+    override fun onScreenShareUpdate(isEnabled: Boolean) {
+    }
+})
+```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java" default>
+
+```java
+meeting.addSelfEventsListener(new DyteSelfEventsListener() {
+    @Override
+    public void onScreenShareStartFailed(@NonNull String reason) {
     }
 
-    override fun onScreenShareStopped() {
-      // screenshared stopped by the local user
+    @Override
+    public void onScreenShareUpdate(boolean isEnabled) {
     }
 });
 ```
 
+  </TabItem>
+</Tabs>
+
 ### Device permission callbacks once local user is joined in the meeting
+
+<Tabs groupId="android-core-local-user">
+  <TabItem value="kotlin" label="Kotlin" default>
 
 ```kotlin
 meeting.addSelfEventsListener(object : DyteSelfEventsListener {
     override fun onMeetingRoomJoinedWithoutCameraPermission() {
-      // local user joined without camera permission 
     }
 
     override fun onMeetingRoomJoinedWithoutMicPermission() {
-      // local user joined without microphone permission 
+    }
+})
+```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java" default>
+
+```kotlin
+meeting.addSelfEventsListener(new DyteSelfEventsListener() {
+    @Override
+    public void onMeetingRoomJoinedWithoutCameraPermission() {
+    }
+
+    @Override
+    public void onMeetingRoomJoinedWithoutMicPermission() {
     }
 });
 ```
 
+  </TabItem>
+</Tabs>
+
 ### When local user is kicked out from the meeting by a remote user
+
+<Tabs groupId="android-core-local-user">
+  <TabItem value="kotlin" label="Kotlin" default>
 
 ```kotlin
 meeting.addSelfEventsListener(object : DyteSelfEventsListener {
     override fun onRemovedFromMeeting() {
-        // removed from meeting
-      }
+    }
 });
 ```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java" default>
+
+```java
+meeting.addSelfEventsListener(new DyteSelfEventsListener() {
+    @Override
+    public void onRemovedFromMeeting() {
+    }
+})
+```
+
+  </TabItem>
+</Tabs>

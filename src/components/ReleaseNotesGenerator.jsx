@@ -4,6 +4,18 @@ import ReactMarkdown from 'react-markdown';
 
 const changeTypes = [
   {
+    name: 'breaking-changes',
+    color: '#e01d5a',
+    label: 'Breaking Changes',
+    className: 'deprecated',
+  },
+  {
+    name: 'new_api',
+    color: '#1264a3',
+    label: 'New API',
+    className: 'newAPI',
+  },
+  {
     name: 'features',
     color: '#00e0a5',
     label: 'Features',
@@ -14,21 +26,20 @@ const changeTypes = [
     label: 'Fixed Issues',
   },
   {
-    name: 'perf',
-    color: '#5555aa',
-    label: 'Performance Improvements',
-  },
-  {
-    name: 'new_api',
-    color: '#1264a3',
-    label: 'New API',
-    className: 'newAPI',
-  },
-  {
     name: 'dep_api',
     color: '#e01d5a',
     label: 'Deprecated API',
     className: 'deprecated',
+  },
+  {
+    name: 'perf',
+    color: '#5555aa',
+    label: 'Performance',
+  },
+  {
+    name: 'enhancements',
+    color: '#8e8ee5',
+    label: 'Enhancements',
   },
 ];
 

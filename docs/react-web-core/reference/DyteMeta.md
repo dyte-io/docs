@@ -88,13 +88,3 @@ Sets current active tab for user
 | Param |
 | --- |
 | spotlightTab | 
-
-<a name="module_DyteMeta+joined"></a>
-
-### ~~meta.joined~~
-***Deprecated***
-
-<a name="module_DyteMeta+roomName"></a>
-
-### ~~meta.roomName~~
-***Deprecated***

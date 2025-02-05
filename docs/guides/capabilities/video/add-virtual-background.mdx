@@ -27,10 +27,10 @@ If you are using the web-core CDN script bundle, you can add the package by incl
 If you prefer using a specific version of the package, you can modify the source URL by appending the desired version number:
 
 ```js
-<script src="https://cdn.jsdelivr.net/npm/@dytesdk/video-background-transformer@1.1.3/dist/index.iife.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@dytesdk/video-background-transformer@2.0.3/dist/index.iife.js"></script>
 ```
 
-Whenever a new release of the package is available, you can simply update the version number in the source URL to upgrade to the latest version.
+Whenever a new minor release of the package is available, you can simply update the version number in the source URL to upgrade to the latest version.
 
 ## Initialize
 
@@ -40,13 +40,37 @@ import DyteVideoBackgroundTransformer from '@dytesdk/video-background-transforme
 
 If you installed the package using a script tag, the `DyteVideoBackgroundTransformer` will be automatically available for use once the installation process is complete.
 
-To begin using the Dyte Background Transformer, you need to initialize it by calling the `init` method. Follow the steps below to initialize the transformer:
+2.x versions of DyteVideoBackgroundTransformer use their own rendering mechanism thus require you to disable the default per frame canvas rendering.
 
 ```js
-const videoBackgroundTransformer = await DyteVideoBackgroundTransformer.init();
+await meeting.self.setVideoMiddlewareGlobalConfig({ disablePerFrameCanvasRendering: true });
 ```
 
-Make sure to use the `await` keyword before the `init` method call to ensure the initialization process is completed before proceeding further. Once the initialization is successful, the `videoBackgroundTransformer` object will be ready for use in your application.
+For reference, A middleware such as [company branding](https://github.com/dyte-in/streams-middleware-samples/blob/main/video/company-branding.js) with the default per frame rendering can be rewritten without per frame rendering as [this](https://github.com/dyte-in/streams-middleware-samples/blob/main/video/middleware-with-per-frame-rendering-disabled/company-branding.js).
+
+:::info Note
+If you don't want to disable the default per frame rendering mechanism due to a custom middleware, please use the [legacy version](https://www.npmjs.com/package/@dytesdk/video-background-transformer/v/1.1.8) (README included) of DyteVideoBackgroundTransformer that is compatible with respective web-core 1.x versions.
+:::
+
+Now that we have disabled the per frame rendering, We can initialise the DyteVideoBackgroundTransformer.
+
+```js
+const videoBackgroundTransformer = await DyteVideoBackgroundTransformer.init({
+    meeting: meeting,
+    segmentationConfig: {
+      pipeline: 'canvas2dCpu', // 'webgl2' | 'canvas2dCpu'
+    },
+});
+
+```
+
+To customise DyteVideoBackgroundTransformer configs, please refer to the [video background transfomer](https://www.npmjs.com/package/@dytesdk/video-background-transformer?activeTab=readme) NPM package.
+
+:::info Note
+DyteVideoBackgroundTransformer's 2.x version requires you to use web-core 2.x versions. Please refer to our web-core [upgrade guide](https://docs.dyte.io/web-core/upgrade).
+
+If, In case you don't want to upgrade SDKs yet, Please use the [legacy version](https://www.npmjs.com/package/@dytesdk/video-background-transformer/v/1.1.8) (README included) of DyteVideoBackgroundTransformer that is compatible with respective web-core 1.x versions.
+:::
 
 ## Usage
 

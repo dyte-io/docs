@@ -1,0 +1,47 @@
+---
+title: Room Metadata
+description: >-
+  Learn about managing room metadata in your iOS application using Dyte
+  Docs.
+sidebar_position: 6
+tags:
+  - ios-core
+  - room-metadata
+---
+
+# Room Metadata
+
+All metadata pertaining to a meeting is stored in `meeting.meta`. This includes:
+
+- `meetingId`: The unique identifier of the meeting.
+- `meetingType`: Indicates the meeting is a group-call or a webinar.
+- `meetingTitle`: The title of the meeting.
+- `meetingStartedTimestamp`: The timestamp when the meeting started.
+- `meetingState`: The state of the meeting of type `DyteMeetingState`.
+- `authToken`: The authentication token for the meeting.
+- `meetingConfig`: The configuration of the meeting of type `MeetingConfig`.
+
+```swift
+enum DyteMeetingState {
+  case notInitialised
+  case initStarted
+  case initCompleted
+  case initFailed
+}
+
+struct MeetingConfig {
+  let enableAudio: Bool
+  let enableVideo: Bool
+}
+```
+
+For example, if you want to get the name of the meeting the current participant is
+connected to, you can do so by doing:
+
+```swift
+let meetingTitle = meeting.meta.meetingTitle
+```
+
+<head>
+  <title>Mobile Core Room Metadata</title>
+</head>

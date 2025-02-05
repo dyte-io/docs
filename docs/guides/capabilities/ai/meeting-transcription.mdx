@@ -7,16 +7,9 @@ description: >-
 
 # Meeting Transcription
 
-:::info beta
-The meeting transcription feature is currently in beta, which means it is still being tested and evaluated, and may undergo some change. This feature is not accessible to the public at the moment and will be activated solely upon request, subject to our team's assessment of your usage and needs. If you wish to have this feature enabled for your organization, please [get in touch with us](https://dyte.io/contact).
-:::
-
 Dyte's meeting transcription allows you to transcribe your Dyte meetings in real-time, making it easy to capture important discussions and refer back to them later.
 This guide will walk you through how to use this feature effectively.
 
-:::info NOTE
-Dyte's AI meeting transcription currently only supports English.
-:::
 
 ## Control transcriptions for participants using presets
 
@@ -24,6 +17,72 @@ You can control whether or not a participant's audio will be transcribe with the
 All participants with the `transcription_enabled` turned on in their preset will be able to generate transcripts in real-time in a Dyte meeting.
 
 You can create a new preset on our [Developer Portal](https://dev.dyte.io/presets), or using our [REST API](/api#/operations/post-presets).
+
+## Modify Transcription Behavior with AI Config
+
+You can control transcription behavior through a configurable AI setup. When creating a meeting using the [REST API](/api#/operations/create_meeting), you can pass an AI configuration for transcriptions. This allows for greater control over the transcription process.
+
+
+### Supported Languages
+
+You can specify the language for transcription to ensure accurate and relevant results. The following languages are supported:
+
+
+- *English (United States):* `en-US`
+- *English (India):* `en-IN`
+- *German:* `de`
+- *Hindi:* `hi`
+- *Swedish:* `sv`
+- *Russian:* `ru`
+- *Polish:* `pl`
+- *Greek:* `el`
+- *French:* `fr`
+- *Dutch:* `nl`
+- *Turkish* `tr`
+- *Spanish* `es`
+- *Italian* `it`
+- *Portuguese* `pt`
+- *Romanian* `ro`
+- *Korean* `ko`
+- *Indonesia* `id`
+- *Multi* `multi`
+
+```json lines
+"language": "en-US"
+```
+### Keywords
+
+Keywords can be added to help the transcription engine accurately detect and transcribe specific terms, such as names, technical jargon, or other context-specific words. This is particularly useful in meetings where certain terms are frequently used and need to be recognized correctly.
+
+```json lines
+"keywords": ["Dyte", "Mary", "Sue"]
+```
+
+
+### Profanity Filter
+
+You can enable or disable the profanity filter based on your needs. This feature ensures that any offensive language is either included or excluded from the transcriptions, depending on your preference.
+```json lines
+"profanity_filter": false
+```
+
+By utilizing these new features, you can customize the transcription experience to better suit your needs.
+
+### Example Configuration
+Here is an example of how to pass the AI configuration in the [meeting creation API](/api#/operations/create_meeting):
+```json
+{
+  "title": "Meeting Transcriptions",
+  "ai_config": {
+    "transcription": {
+      "keywords": ["Dyte"],
+      "language": "en-US",
+      "profanity_filter": false
+    }
+  }
+}
+
+```
 
 ## Consuming transcripts
 
@@ -51,6 +110,21 @@ meeting.ai.on('transcript', (transcriptData) => {
   console.log('Transcript:', transcriptData);
 });
 ```
+
+As participants speak during the meeting, you'll receive partial transcripts, giving you real-time feedback even before they finish their sentences. The `isPartialTranscript` flag in the transcript data shows whether the transcript is partial or final.
+```json
+{
+  "id": "1a2b3c4d-5678-90ab-cdef-1234567890ab",
+  "name": "Alice",
+  "peerId": "4f5g6h7i-8j9k-0lmn-opqr-1234567890st",
+  "userId": "uvwxyz-1234-5678-90ab-cdefghijklmn",
+  "customParticipantId": "abc123xyz",
+  "transcript": "Hello?",
+  "isPartialTranscript": true,
+  "date": "Wed Aug 07 2024 10:15:30 GMT+0530 (India Standard Time)"
+}
+```
+In the example above, `isPartialTranscript` is true, indicating the transcript is still in progress. Once the participant finishes speaking, the final transcript will be sent with `isPartialTranscript` set to false. This helps you distinguish between ongoing speech and completed transcriptions, making the transcription process more dynamic and responsive.
 
 ### Consume transcript via a post-meeting webhook
 

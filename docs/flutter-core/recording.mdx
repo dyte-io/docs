@@ -14,23 +14,11 @@ tags:
 The `dyteClient.recording` object can be used start and stop recordings in a
 meeting.
 
-The `dyteClient.recording` object has the following properties:
+### Recording State
 
-- recordingState: `DyteRecordingState`, Indicates the current recording
-  state of the meeting.
+The `dyteClient.recording.recordingState` property indicates the current state of the recording. Possible states include `idle`, `recording`, `starting`, `stopping`.
 
-To listen recording status updates, you need to listen for
-`onMeetingRecordingStateUpdated()` event. This returns `DyteRecordingState`
-object with it.
-
-There can be 4 states:
-
-- `idle`
-- `starting`
-- `recording`
-- `stopping`
-
-## Start a recording
+### Start a recording
 
 To start a recording, you need to call the `start()` method in the
 `dyteClient.recording` object, as shown below.
@@ -39,7 +27,7 @@ To start a recording, you need to call the `start()` method in the
 dyteClient.recording.start();
 ```
 
-## Stop a recording
+### Stop a recording
 
 To stop a recording, you need to call the `stop()` method in the
 `dyteClient.recording` object, as shown below.
@@ -48,10 +36,22 @@ To stop a recording, you need to call the `stop()` method in the
 dyteClient.recording.stop();
 ```
 
-## Listen to recording state changes
+### Listening for Recording Events
 
-The changes to recording state can be listened by implementing
-`onMeetingRecordingStateUpdated` from `DyteMeetingRoomEventsListener`.
+To handle recording-related updates, you need to listen for
+`onMeetingRecordingStateUpdated()` event. This returns `DyteRecordingState`
+object with it.
+
+### Listen to recording state changes
+
+To handle recording-related updates, you need to implement `DyteMeetingRoomEventsListener`. This interface provides callbacks for various recording events as described in excerpt below:
+
+- `onMeetingRecordingStarted()`: Called when the recording is started or resumed, either by the user or their peer.
+- `onMeetingRecordingEnded()`: Called when the recording is stopped or paused, either by the user or their peer.
+- `onMeetingRecordingStateUpdated(DyteRecordingState` recordingState): Notifies when there is a change in the recording state.
+- `onMeetingRecordingStopError(String error)`: Indicates an error occurred while stopping an active recording.
+- `onMeetingRecordingPauseError(String error)`: Indicates an error occurred while pausing an active recording.
+- `onMeetingRecordingResumeError(String error)`: Indicates an error occurred while resuming a paused recording.
 
 ```dart
 
@@ -89,5 +89,8 @@ dyteClient.addRecordingListener(RecordingListener());
 
 <head>
   <title>Flutter Core Recording</title>
-  <meta name="description" content="Explore recording features in Flutter with Dyte's documentation. Learn how to enable and configure recording for a seamless user experience."/>
+  <meta
+    name="description"
+    content="Explore recording features in Flutter with Dyte's documentation. Learn how to enable and configure recording for a seamless user experience."
+  />
 </head>

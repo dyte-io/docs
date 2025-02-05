@@ -1,0 +1,115 @@
+---
+title: Stage Host Controls
+description: Stage management APIs for Host in Dyte meetings.
+sidebar_position: 2
+tags:
+  - flutter-core
+  - stage
+---
+
+In a stage management-enabled meeting, a user with the `selfPermissions.host.canAcceptStageRequests` permission as `true` is
+considered a host. The `dyteMobileClient.stage` object in Dyte's Flutter Core SDK provides stage management APIs that allow hosts to
+manage stage access requests, invite participants to the stage, and remove participants from the stage.
+
+### List of Stage Access Requests
+
+You can retrieve the list of pending stage access requests by accessing the `dyteMobileClient.stage.accessRequests` property. This property
+provides a list of `DyteJoinedMeetingParticipant` objects who have requested stage access.
+
+:::note
+If the local user is not a host, this property returns an empty list.
+:::
+
+### Grant stage access
+
+A privileged user can grant access to stage for a set of users with `grantAccess` method.
+
+| **Parameters** | **Type**                       |
+| -------------- | ------------------------------ |
+| peer           | _DyteJoinedMeetingParticipant_ |
+
+```dart
+dyteClient.stage.grantAccess(peer);
+```
+
+To grant access to all stage requests at a time, you can user `grantAccessToAll()` method. This method takes no parameters.
+
+```dart
+dyteClient.stage.grantAccessToAll();
+```
+
+### Deny stage access
+
+A privileged user can deny access to stage for a set of users with `denyAccess` method.
+
+| **Parameters** | **Type**                       |
+| -------------- | ------------------------------ |
+| peer           | _DyteJoinedMeetingParticipant_ |
+
+```dart
+dyteClient.stage.denyAccess(peer);
+```
+
+To deny all stage requests at a time, you can user `denyAccessToAll()` method. This method takes no parameters.
+
+```dart
+dyteClient.stage.denyAccessToAll();
+```
+
+### Kick participant from stage
+
+A privileged user can kick a participant from stage with `kick` method.
+
+| **Parameters** | **Type**                       |
+| -------------- | ------------------------------ |
+| peer           | _DyteJoinedMeetingParticipant_ |
+
+```dart
+dyteClient.stage.kick(peer);
+```
+
+### Listening to Stage Access Requests
+
+You can listen to incoming stage access requests or changes in the access requests list if you are a host. The SDK provides the
+following callbacks to `DyteStageEventsListener`:
+
+```dart
+class StageEventListener extends DyteStageEventsListener {
+  @override
+  void onPresentRequestAdded(DyteJoinedMeetingParticipant participant) {
+    // Called when a participant requests to join the stage. Triggered only if the local user is a host.
+  }
+
+  @override
+  void onPresentRequestClosed(DyteJoinedMeetingParticipant participant) {
+    // Called when a participant with a pending stage access request leaves the meeting.
+    // Triggered only if the local user is a host.
+  }
+
+  @override
+  void onPresentRequestRejected(DyteJoinedMeetingParticipant participant) {
+    // Called when a participant's stage access request is denied by the host.
+    // Triggered only if the local user is a host.
+  }
+
+  @override
+  void onPresentRequestWithdrawn(DyteJoinedMeetingParticipant participant) {
+    // Called when a participant cancels their stage access request.
+    // Triggered only if the local user is a host.
+  }
+
+  @override
+  void onStageRequestsUpdated(List<DyteJoinedMeetingParticipant> accessRequests) {
+      // Called when the list of stage access requests is updated.
+  }
+}
+```
+
+You need to attach the listener to meeting client as follows:
+
+```dart
+dyteClient.addStageEventsListener(StageEventsListener())
+```
+
+These APIs enable you to manage stage access requests and participants effectively in Dyte meetings. Next, we'll explore the
+Stage APIs available to Viewer participants.

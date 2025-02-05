@@ -21,19 +21,17 @@ Here is a list of properties that local user provides:
 - `id`: ID of the local user participant.
 - `name`: Name of the local user.
 - `picture`: Picture URL of the local user.
-- `clientSpecificId`: Unique participant ID.
+- `customParticipantId`: Unique participant ID.
 - `permissions`: Permissions related to various capabilities within a meeting context for the local user.
-- `videoTrack`: Video track associated with the local user.
-- `screenShareTrack`: Video track used for screen sharing by the local user.
 - `audioEnabled`: A boolean value that shows whether the audio is currently enabled for the local user.
 - `videoEnabled`: A boolean value that shows whether the video is currently enabled for the local user.
 - `screenshareEnabled`: A boolean value that shows whether the screenshare is currently enabled for the local user.
-- `presetName`: A strign value representing name of preset for local user. You can find this preset on Dyte Developer Portal
+- `presetName`: A string value representing name of preset for local user. You can find this preset on Dyte Developer Portal
+- `presetInfo` : A typed object representing the preset information for local user.
 - `roomJoined`: A boolean value representing if local user has joined the room or not.
 - `isCameraPermissionGranted`: A boolean value representing if local user has access to device Camera permission.
 - `isMicrophonePermissionGranted`: A boolean value representing if local user has access to device Microphone permission.
 - `waitListStatus`: Waitlist Status of the local user. It can have four values. None, Waiting, Accepted & Rejected.
-
 
 ## Change default audio/video settings
 
@@ -54,7 +52,7 @@ val meetingInfo = DyteMeetingInfoV2(
   <TabItem value="java" label="Java">
 
 ```java {3,4}
-DyteMeetingInfoV2 meetingInfo = DyteMeetingInfoV2(
+DyteMeetingInfoV2 meetingInfo = new DyteMeetingInfoV2(
       AUTH_TOKEN,
       false,
       true,
@@ -120,10 +118,10 @@ Mute/unmute your microphone in the meeting using `disableAudio()` and `enableAud
 meeting.localUser.audioEnabled
 
 // Mute Audio
-meeting.localUser.disableAudio()
+meeting.localUser.disableAudio {}
 
 // Unmute Audio
-meeting.localUser.enableAudio()
+meeting.localUser.enableAudio {}
 ```
 
   </TabItem>
@@ -131,13 +129,13 @@ meeting.localUser.enableAudio()
 
 ```java
 // Get current status
-meeting.localUser.audioEnabled;
+meeting.localUser.getAudioEnabled();
 
 // Mute Audio
-meeting.localUser.disableAudio();
+meeting.localUser.disableAudio(error -> null);
 
 // Unmute Audio
-meeting.localUser.enableAudio();
+meeting.localUser.enableAudio(error -> null);
 ```
 
   </TabItem>
@@ -156,10 +154,10 @@ Enable/disable your camera in the meeting using `disableVideo()` and `enableVide
 meeting.localUser.videoEnabled
 
 // Disable Video
-meeting.localUser.disableVideo()
+meeting.localUser.disableVideo {}
 
 // Enable Video
-meeting.localUser.enableVideo()
+meeting.localUser.enableVideo {}
 ```
 
   </TabItem>
@@ -167,13 +165,13 @@ meeting.localUser.enableVideo()
 
 ```java
 // Get current status
-meeting.localUser.videoEnabled;
+meeting.localUser.getVideoEnabled();
 
 // Disable Video
-meeting.localUser.disableVideo();
+meeting.localUser.disableVideo(error -> null);
 
 // Enable Video
-meeting.localUser.enableVideo();
+meeting.localUser.enableVideo(error -> null);
 ```
 
   </TabItem>
@@ -182,18 +180,27 @@ meeting.localUser.enableVideo();
 
 ## Enable / Disable Screen share
 
+:::tip Note
+To use screenshare on Android devices running Android API 14 and above, you will need to declare the following permission in your app's AndroidManifest.xml.
+
+
+`<uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />`
+
+Adding above permission will require you to do extra steps on Google Play Console while submitting the app. For more information please refer [this](https://support.google.com/googleplay/android-developer/answer/13392821?hl=en#declare).
+:::
+
 <Tabs groupId="screenshare-self">
   <TabItem value="kotlin" label="Kotlin" default>
 
 ```kotlin
 // Get current status
-meeting.localUser.screenshareEnabled
+meeting.localUser.screenShareEnabled
 
 // Enable Screenshare
-meeting.localUser.enableScreenshare()
+meeting.localUser.enableScreenShare()
 
 // Disable Screenshare
-meeting.localUser.disableScreenshare()
+meeting.localUser.disableScreenShare()
 ```
 
   </TabItem>
@@ -201,13 +208,13 @@ meeting.localUser.disableScreenshare()
 
 ```java
 // Get current status
-meeting.localUser.screenshareEnabled;
+meeting.localUser.getScreenShareEnabled();
 
 // Enable Screenshare
-meeting.localUser.enableScreenshare();
+meeting.localUser.enableScreenShare();
 
 // Disable Screenshare
-meeting.localUser.disableScreenshare();
+meeting.localUser.disableScreenShare();
 ```
 
   </TabItem>
@@ -223,9 +230,9 @@ meeting.localUser.disableScreenshare();
 val devices = meeting.localUser.getVideoDevices()
 
 // switch video device
-meeting.localUser.setVideoDevice(videoDevice)
+meeting.localUser.setVideoDevice(devices[0])
 
-// on devices with only 2 camera's you can use
+// on devices with only 2 cameras you can use
 meeting.localUser.switchCamera()
 ```
 
@@ -237,7 +244,10 @@ meeting.localUser.switchCamera()
 List<DyteVideoDevice> devices = meeting.localUser.getVideoDevices();
 
 // switch video device
-meeting.localUser.setVideoDevice(videoDevice);
+meeting.localUser.setVideoDevice(devices.get(0));
+
+// on devices with only 2 cameras you can use
+meeting.localUser.switchCamera();
 ```
 
   </TabItem>
@@ -250,10 +260,10 @@ meeting.localUser.setVideoDevice(videoDevice);
 
 ```kotlin
 // get all available audio devices
-val devices = meeting.localUser.getAudioDevice()
+val devices = meeting.localUser.getAudioDevices()
 
 // switch video device
-meeting.localUser.setAudioDevice(audioDevice)
+meeting.localUser.setAudioDevice(devices[0])
 ```
 
   </TabItem>
@@ -264,7 +274,7 @@ meeting.localUser.setAudioDevice(audioDevice)
 List<DyteAudioDevice> devices = meeting.localUser.getAudioDevices();
 
 // switch video device
-meeting.localUser.setAudioDevice(audioDevice);
+meeting.localUser.setAudioDevice(devices.get(0));
 ```
 
   </TabItem>

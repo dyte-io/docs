@@ -12,13 +12,32 @@ tags:
 
 The data regarding all meeting participants is stored under `meeting.participants`. These **does not** include the local user. Use the methods and events to consume the participants data. For example, to get all the participants who joined the meeting:
 
+<Tabs groupId="android-core-participants">
+  <TabItem value="kotlin" label="Kotlin" default>
+
 ```kotlin
 // get all joined participants
-val joined: List<DyteJoinedMeetingParticipant> = meeting.participants.joined
+val joined: List<DyteRemoteParticipant> = meeting.participants.joined
 
 // get active participants
-val active: List<DyteParticipant> = meeting.participants.active
+val active: List<DyteRemoteParticipant> = meeting.participants.active
 ```
+
+  </TabItem>
+
+  <TabItem value="java" label="Java" default>
+
+```java
+// get all joined participants
+List<DyteRemoteParticipant> joined = meeting.getParticipants().getJoined();
+
+// get active participants
+List<DyteRemoteParticipant> active = meeting.getParticipants().getActive();
+```
+
+  </TabItem>
+</Tabs>
+
 
 The `meeting.participants` object has the following **lists** of participants
 
@@ -26,13 +45,11 @@ The `meeting.participants` object has the following **lists** of participants
   except the local user
 - **waitlisted**: A list that contains all the participants waiting to join the
   meeting.
-- **active**: A list that contains all the participants, **including** the local user whose media is subscribed to i.e participants who are supposed to be on the screen at the moment, including the local user.
+- **active**: A list that contains all the participants, **excluding** the local user whose media is subscribed to i.e participants who are supposed to be on the screen at the moment, except the local user.
 - **pinned**: A list that contains all the pinned participants of the meeting.
 - **screenShares**: A list that contains all the participants who are sharing their screen.
 
 Therefore if you were to make a video / audio grid of participants, you'd use the `active` list, but to display the list of all participants in the meeting you'd use the `joined` list.
-
-Each participant in each of the `joined`, `active`, `pinned` and `screenShares` list are of type `DyteJoinedMeetingParticipant`, `waitlisted` list is of type `DyteWaitlistedParticipant`.
 
 <head>
   <title>Android Core Participants</title>

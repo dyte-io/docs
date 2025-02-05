@@ -1,0 +1,60 @@
+# Waiting Room
+
+When you call `dyteMobileClient.joinRoom()`, the user either enters the meeting room directly if allowed, or they are placed in the waiting room
+if they are a waitlisted participant.
+
+The diagram illustrates the possible room states the local user can be in.
+
+```mermaid
+stateDiagram-v2
+    init --> joined
+    init --> waitlisted
+    waitlisted --> joined
+    waitlisted --> rejected
+```
+
+<br />
+
+### Meeting Room Joined
+
+If user joins the room successfully, you receive the `onMeetingRoomJoinCompleted()` callback in `DyteMeetingRoomEventsListener`.
+You can listen for this callback as follows:
+
+```dart
+
+class MeetingRoomNotifier extends DyteMeetingRoomEventsListener{
+    override fun onMeetingRoomJoinCompleted() {
+        // Local user is in the meeting
+    }
+}
+
+dyteMobileClient.addMeetingRoomEventsListener(MeetingRoomNotifier());
+```
+
+### Waitlisted Participant
+
+If the user is waitlisted, the `onWaitListStatusUpdate` callback in `DyteSelfEventsListener` notifies you of any changes in the
+user's waitlist status. You can check the `waitListStatus` to determine their status:
+
+- `WAITING`: Local user is in the waiting room.
+- `REJECTED`: Local user's join room request is rejected by the host.
+
+```dart
+class WaitingRoomNotifier extends DyteSelfEventsListener{
+  @override
+  void onWaitListStatusUpdate(DyteWaitListStatus waitListStatus) {
+    switch (waitListStatus) {
+      case DyteWaitListStatus.waiting:
+        // Local user is in the waiting room
+      case DyteWaitListStatus.rejected:
+        // Local user's join room request was rejected by the host
+      default:
+        break;
+    }
+  }
+}
+
+dyteMobileClient.addSelfEventsListener(WaitingRoomNotifier());
+```
+
+Host can use [these methods to accept/reject participants](/flutter-core/participants#waiting-room-methods).

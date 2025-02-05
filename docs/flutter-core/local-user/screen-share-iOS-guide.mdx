@@ -31,42 +31,15 @@ Add your extension to an app group by going to your extension's target in the pr
 
 ### Setup SampleHandler
 
-- Edit your SampleHandler class to look something like this.
+- Place the `DyteSampleHandler.swift` file present [here](https://github.com/dyte-io/iOS-ScreenShare/blob/main/DyteSampleHandler.swift) in the `ios/<screenshare-folder>/` folder in your flutter project.
+
+- Create a `SampleHandler.swift` file or replace the contents of the file if already present in the same `ios/<screenshare-folder>/` to look something like this:
 
 ```swift
 
-
 import ReplayKit
-import DyteiOSCore
 
-class SampleHandler: RPBroadcastSampleHandler {
-
-    let dyteBroadcast: DyteBroadcastHandler  = DyteBroadcastHandler();
-
-    override init() {
-        super.init()
-    }
-    override func broadcastPaused() {
-        dyteBroadcast.broadcastPaused()
-    }
-
-    override func broadcastResumed() {
-        dyteBroadcast.broadcastResumed()
-    }
-
-    override func broadcastFinished() {
-        dyteBroadcast.broadcastFinished()
-    }
-
-    override func broadcastStarted(withSetupInfo setupInfo: [String : NSObject]?) {
-        dyteBroadcast.broadcastStartedWithSetupInfo(setupInfo: setupInfo)
-    }
-
-    override func processSampleBuffer(_ sampleBuffer: CMSampleBuffer, with sampleBufferType: RPSampleBufferType) {
-        let rawPointer = Unmanaged.passUnretained(sampleBuffer).toOpaque()
-        dyteBroadcast.processSampleBuffer(sampleBuffer: rawPointer, withType: Int64(sampleBufferType.rawValue))
-
-    }
+class SampleHandler: DyteSampleHandler {
 
 }
 
@@ -77,7 +50,7 @@ class SampleHandler: RPBroadcastSampleHandler {
 Make sure **both of them** (App and Extension Info.plist) contains these keys
 
 ```
-  <key>RTCAppGroupIdentifier</key>
+    <key>RTCAppGroupIdentifier</key>
 	<string>(name of the group)</string>
 	<key>RTCScreenSharingExtension</key>
 	<string>(Bundle Identifier)</string>

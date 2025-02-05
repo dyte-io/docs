@@ -83,7 +83,7 @@ const docs = [
     routeBasePath: '/web-core',
     versions: {
       current: {
-        label: '1.x.x',
+        label: '2.x.x',
       },
     },
   },
@@ -94,7 +94,7 @@ const docs = [
     routeBasePath: '/react-web-core',
     versions: {
       current: {
-        label: '1.x.x',
+        label: '2.x.x',
       },
     },
   },
@@ -106,7 +106,7 @@ const docs = [
     routeBasePath: '/android-core',
     versions: {
       current: {
-        label: '1.x.x',
+        label: '2.x.x',
       },
     },
   },
@@ -126,7 +126,7 @@ const docs = [
     routeBasePath: '/ios-core',
     versions: {
       current: {
-        label: '1.x.x',
+        label: '2.x.x',
       },
     },
   },
@@ -244,10 +244,15 @@ const plugins = [
             '/guides/capabilities/misc/livestreaming-other-platforms'
           )
         ) {
-          return ['/guides/capabilities/livestreaming-other-platforms', '/guides/capabilities/recording/livestream-recording'];
+          return [
+            '/guides/capabilities/livestreaming-other-platforms',
+            '/guides/capabilities/recording/livestream-recording',
+          ];
         }
 
-        if (path.startsWith('/guides/capabilities/video/add-virtual-background')) {
+        if (
+          path.startsWith('/guides/capabilities/video/add-virtual-background')
+        ) {
           return [
             '/guides/capabilities/middleware/add-virtual-background',
             '/guides/capabilities/customization/add-virtual-background',
@@ -443,9 +448,12 @@ const resourcesHTML = fs.readFileSync('./src/snippets/resources.html', 'utf-8');
 const config = {
   ...meta,
   plugins,
+  future: {
+    experimental_faster: true,
+  },
 
   trailingSlash: false,
-  themes: ['@docusaurus/theme-live-codeblock','@docusaurus/theme-mermaid'],
+  themes: ['@docusaurus/theme-live-codeblock', '@docusaurus/theme-mermaid'],
   clientModules: [require.resolve('./src/client/define-ui-kit.js')],
   scripts: [{ src: 'https://cdn.statuspage.io/se-v2.js', async: true }],
   markdown: {
@@ -616,10 +624,6 @@ const config = {
                 label: 'Blog',
                 href: 'https://dyte.io/blog',
               },
-              {
-                label: 'Community',
-                href: 'https://community.dyte.io',
-              },
             ],
           },
         ],
@@ -637,7 +641,7 @@ const config = {
           'swift',
           'objectivec',
           'json',
-          'bash'
+          'bash',
         ],
         magicComments: [
           {
@@ -660,23 +664,23 @@ const config = {
       },
     }),
 
-  webpack: {
-    jsLoader: (isServer) => ({
-      loader: require.resolve('swc-loader'),
-      options: {
-        jsc: {
-          parser: {
-            syntax: 'typescript',
-            tsx: true,
-          },
-          target: 'es2017',
-        },
-        module: {
-          type: isServer ? 'commonjs' : 'es6',
-        },
-      },
-    }),
-  },
+  // webpack: {
+  //   jsLoader: (isServer) => ({
+  //     loader: require.resolve('swc-loader'),
+  //     options: {
+  //       jsc: {
+  //         parser: {
+  //           syntax: 'typescript',
+  //           tsx: true,
+  //         },
+  //         target: 'es2017',
+  //       },
+  //       module: {
+  //         type: isServer ? 'commonjs' : 'es6',
+  //       },
+  //     },
+  //   }),
+  // },
 };
 
 module.exports = config;

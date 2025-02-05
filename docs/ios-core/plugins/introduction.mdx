@@ -1,0 +1,53 @@
+---
+title: Introduction
+description: Manage plugins in a meeting.
+sidebar_position: 1
+tags:
+  - ios-core
+  - plugins
+---
+
+# Introduction
+
+Plugins are one-click add-ons that can make your meetings more immersive and collaborative. Dyte provides a bunch of inbuilt plugins to choose from, you can also build your own plugins using the [Plugin SDK](../../plugin-sdk/).
+
+The meeting plugins can be accessed from the `meeting.plugins` object, it exposes the following.
+
+| Property | Type | Description                            |
+| -------- | ---- | -------------------------------------- |
+| active   | List | All plugins that are currently in use. |
+| all      | List | All plugins the meeting has access to. |
+
+Each plugin in the list is of type `DytePlugin` which has the following public fields and methods:
+
+```swift
+class DytePlugin {
+    let id: String
+    let name: String
+    let description: String
+    let picture: String
+    let isPrivate: Bool
+    let staggered: Bool
+    let baseURL: String
+    let config: PluginConfig
+    let isActive: Bool
+    let enabledBy: String?
+
+    func activate()
+    func deactivate()
+    func getPluginView(): WebView
+    func sendData(eventName: String, data: Any?)
+}
+```
+
+The `PluginConfig` type consists of the following fields:
+
+```swift
+class PluginConfig {
+  let accessControl: String = "FULL_ACCESS"
+}
+```
+
+<head>
+  <title>Mobile Core Introduction</title>
+</head>

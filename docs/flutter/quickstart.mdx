@@ -99,6 +99,15 @@ platform :ios, '13.0'
 
 <key>NSPhotoLibraryUsageDescription</key>
 <string>For people to share, we need access to your photos.</string>
+
+
+<key>UIBackgroundModes</key>
+<array>
+	<string>audio</string>
+	<string>voip</string>
+	<string>fetch</string>
+	<string>remote-notification</string>
+</array>
 ```
 
 3. In iOS, if you are allowing user to download attachments in chat, add the following permissions in your app's Info.plist:
@@ -155,9 +164,17 @@ final uikitInfo = DyteUIKitInfo(
       ),
     );
 
-final uiKit = DyteUIKitBuilder.build(uiKitInfo: uikitInfo, context: context);
+final uiKit = DyteUIKitBuilder.build(uiKitInfo: uikitInfo,
+  skipSetupScreen: true, // optional argument, to skip the setup screen, defaults to false
+);
 
 ```
+
+:::note
+
+Note: To skip the setup screen, you need to pass the `skipSetupScreen` argument as `true` in the `DyteUIKitBuilder.build` method.
+
+:::
 
 You can learn more about customization of the uikit in the [Design System](/flutter/design-token) section.
 

@@ -1,0 +1,226 @@
+---
+title: Build Stage UI using DyteGrid
+sidebar_position: 5
+---
+
+Source Code: https://github.com/dyte-io/react-samples/tree/main/samples/create-your-own-ui
+
+Following code shows you can customise or build the stage UI of a meeting as per your use case.
+
+import CodeRunner from '@site/src/components/CodeRunner/CodeRunner';
+
+<CodeRunner 
+hide={[{start:1, end: 5}, {start:29, end: 199}]}
+highlight={[{start:6, end: 27}]}
+file={`
+import { DyteStage, DyteGrid, DyteNotifications, DyteSidebar, DyteControlbar, DyteParticipantsAudio, DyteDialogManager, defaultConfig, generateConfig } from '@dytesdk/react-ui-kit';
+import { useDyteMeeting, useDyteSelector } from '@dytesdk/react-web-core';
+import { useEffect, useState } from 'react';
+
+function MeetingStage({ meeting, config, states, setStates }: { meeting: DyteClient, config: UIConfig, states: CustomStates, setStates: SetStates}) {
+
+return (
+
+<div className="flex h-full w-full flex-col">
+  <DyteStage className="flex h-full w-full flex-1 p-2">
+    <DyteGrid meeting={meeting} config={config} states={states} />
+    <DyteNotifications meeting={meeting} config={config} states={states} />
+    {states.activeSidebar && (
+      <DyteSidebar
+        meeting={meeting}
+        config={config}
+        states={states}
+        setStates={setStates}
+      />
+    )}
+  </DyteStage>
+  <DyteParticipantsAudio meeting={meeting} />
+  <DyteDialogManager meeting={meeting} config={config} states={states} />
+  <DyteControlbar meeting={meeting} config={config} states={states} />
+</div>
+); }
+
+export default function Meeting() {
+const { meeting } = useDyteMeeting();
+const [config, setConfig] = useState(defaultConfig);
+const [states, setStates] = useState<CustomStates>({
+  meeting: 'setup',
+  sidebar: 'chat'
+});
+
+useEffect(() => {
+async function setupMeetingConfigs(){
+const theme = meeting!.self.config;
+const { config } = generateConfig(theme, meeting!);
+
+      /**
+       * Full screen by default requests dyte-meeting/DyteMeeting element to be in full screen.
+       * Since DyteMeeting element is not here,
+       *  we need to pass dyte-fullscreen-toggle, an targetElementId through config.
+       */
+      // setFullScreenToggleTargetElement({config, targetElementId: 'root'});
+
+      setConfig({...config});
+
+    /**
+     * Add listeners on meeting & self to monitor leave meeting, join meeting and so on.
+     * This work was earlier done by DyteMeeting component internally.
+     */
+      const stateListenersUtils = new DyteStateListenersUtils(() => meeting, () => states, () => setStates);
+      stateListenersUtils.addDyteEventListeners();
+
+      try{
+        await meeting.join();
+      } catch(e){
+        // do nothing
+      }
+    }
+
+    if(meeting){
+    /**
+     * During development phase, make sure to expose meeting object to window,
+     * for debugging purposes.
+     */
+      Object.assign(window, {
+        meeting,
+      })
+      setupMeetingConfigs();
+    }
+
+}, [meeting]);
+
+return (
+
+  <div className="flex w-full h-full" ref={(el) => {
+            el?.addEventListener('dyteStateUpdate', (e) => {
+              const { detail: newStateUpdate } = e as unknown as { detail: CustomStates };
+              console.log('dyteStateUpdateSetup:: ', newStateUpdate);
+              setStates((oldState: CustomStates) => { return {
+                ...oldState,
+                ...newStateUpdate,
+              }});
+            });
+          }}>
+      <MeetingStage meeting={meeting} config={config} states={states} setStates={setStates} />
+  </div>
+)
+
+}
+
+export class DyteStateListenersUtils{
+    
+    getStates: () => CustomStates;
+
+    getStateSetter: () => (newState: CustomStates) => void;
+
+    getMeeting: () => DyteClient;
+
+    get states(){
+        return this.getStates();
+    }
+
+    get setGlobalStates(){
+        return this.getStateSetter();
+    };
+
+    get meeting(){
+        return this.getMeeting();
+    }
+
+    constructor(getMeeting: () => DyteClient, getGlobalStates: () => CustomStates, getGlobalStateSetter: () => (newState: CustomStates) => void){
+        this.getMeeting = getMeeting;
+        this.getStates = getGlobalStates;
+        this.getStateSetter = getGlobalStateSetter;
+    }
+    private updateStates(newState: CustomStates){
+        this.setGlobalStates((oldState: CustomStates) => { return {
+            ...oldState,
+            ...newState,
+        }});
+        console.log(newState);
+    }
+    private roomJoinedListener = () => {
+        this.updateStates({ meeting: 'joined' });
+      };
+
+      private socketServiceRoomJoinedListener = () => {
+        if (this.meeting.stage.status === 'ON_STAGE' || this.meeting.stage.status === undefined) return;
+        this.updateStates({ meeting: 'joined' });
+      };
+
+      private waitlistedListener = () => {
+        this.updateStates({ meeting: 'waiting' });
+      };
+
+      private roomLeftListener = ({ state }: { state: RoomLeftState }) => {
+        const states = this.states;
+        if (states?.roomLeftState === 'disconnected') {
+          this.updateStates({ meeting: 'ended', roomLeftState: state });
+          return;
+        }
+        this.updateStates({ meeting: 'ended', roomLeftState: state });
+      };
+
+      private mediaPermissionUpdateListener = ({ kind, message }: {
+        kind: PermissionSettings['kind'],
+        message: string,
+      }) => {
+        if (['audio', 'video'].includes(kind!)) {
+          if (message === 'ACCEPTED' || message === 'NOT_REQUESTED' || this.states.activeDebugger)
+            return;
+          const permissionModalSettings: PermissionSettings = {
+            enabled: true,
+            kind,
+          };
+          this.updateStates({ activePermissionsMessage: permissionModalSettings });
+        }
+      };
+
+      private joinStateAcceptedListener = () => {
+        this.updateStates({ activeJoinStage: true });
+      };
+
+      private handleChangingMeeting(destinationMeetingId: string) {
+        this.updateStates({
+            activeBreakoutRoomsManager: {
+                ...this.states.activeBreakoutRoomsManager,
+                active: this.states.activeBreakoutRoomsManager!.active,
+                destinationMeetingId,
+            }
+        });
+    }
+
+    addDyteEventListeners(){
+        if (this.meeting.meta.viewType === 'LIVESTREAM') {
+            this.meeting.self.addListener('socketServiceRoomJoined', this.socketServiceRoomJoinedListener);
+          }
+          this.meeting.self.addListener('roomJoined', this.roomJoinedListener);
+
+          this.meeting.self.addListener('waitlisted', this.waitlistedListener);
+          this.meeting.self.addListener('roomLeft', this.roomLeftListener);
+          this.meeting.self.addListener('mediaPermissionUpdate', this.mediaPermissionUpdateListener);
+          this.meeting.self.addListener('joinStageRequestAccepted', this.joinStateAcceptedListener);
+
+          if (this.meeting.connectedMeetings.supportsConnectedMeetings) {
+            this.meeting.connectedMeetings.once('changingMeeting', this.handleChangingMeeting);
+          }
+
+    }
+    cleanupDyteEventListeners(){
+
+    }
+
+}
+` } />
+
+Few of the crucial components that we added here are:
+1. `DyteNotifications` to show notifications related to device plug/unplug and peer join/leave.
+2. `DyteParticipantsAudio` to play other participant audio.
+3. `DyteSidebar` to show sidebars for Chat, Plugins and polls.
+4. `DyteDialogManager` contails all modals such as settings, breakout rooms, and leave action.
+
+`DyteGrid` is the most crucial component here. It internally changes the UI based on the shared screens, pinned participants, spotlight, multi-user call.
+
+In upcoming guides we will discuss how we can build DyteGrid from scratch as well. But before that, let's discuss how we can build a custom sidebar next.
+
+

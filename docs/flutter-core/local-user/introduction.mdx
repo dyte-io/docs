@@ -12,8 +12,7 @@ tags:
 
 # Introduction - Local User
 
-`DyteSelfUser` object contain all the methods and properties about the self user including their
-media controls for the current room.
+The local user in the `dyteMobileClient` object has a set of methods and properties related to media controls. These can be accessed using the identifier localUser.
 
 ## Properties
 
@@ -23,8 +22,6 @@ Here is a list of properties that local user provides:
 - `userId`: The `userId` of the participant.
 - `name`: Contains Name of the local user.
 - `picture`: Link to the url of the participant
-- `isHost`: Boolean value indicating whether this user is host of current
-  meeting or not.
 - `clientSpecificId`: Identifier provided by the developer while adding the
   participant.
 - `flags`: Type `ParticipantFlags` and it contains two boolean values
@@ -32,7 +29,6 @@ Here is a list of properties that local user provides:
   - `hidden`: if the participant is hidden
 - `audioEnabled`: Boolean value indicating if the audio currently enabled.
 - `videoEnabled`: Boolean value indicating if the video currently enabled.
-- `stageStatus` : Stage status of the local participant.
 
 Local user properties can be fetched via `localUser` getter on the `dyteClient`.
 
@@ -114,6 +110,21 @@ dyteClient.localUser.switchCamera();
 
 ## Enable / Disable Screen share
 
+:::tip Note
+
+### Android
+
+To use screenshare on Android devices running Android API 14 and above, you will need to declare the following permission in your app's AndroidManifest.xml.
+
+`<uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />`
+
+Adding above permission will require you to do extra steps on Google Play Console while submitting the app. For more information please refer [this](https://support.google.com/googleplay/android-developer/answer/13392821?hl=en#declare).
+
+### iOS
+
+Refer to screenshare setup for iOS [here](./screen-share-iOS-guide.mdx)
+:::
+
 ```dart
 // Enable Screenshare
 dyteClient.localUser.enableScreenshare();
@@ -124,5 +135,8 @@ dyteClient.localUser.disableScreenshare();
 
 <head>
   <title>Flutter Core Introduction</title>
-  <meta name="description" content="Learn about the local user concept in Flutter with Dyte's documentation. Follow our guide for a smooth introduction and integration."/>
+  <meta
+    name="description"
+    content="Learn about the local user concept in Flutter with Dyte's documentation. Follow our guide for a smooth introduction and integration."
+  />
 </head>
