@@ -1,5 +1,5 @@
 ---
-title: Introducing chat
+title: Introduction
 description: >-
   Learn the basics of integrating Dyte's chat functionality into your iOS
   application – a step towards immersive real-time communication.
@@ -29,7 +29,8 @@ class DyteTextMessage {
   let pluginId: String?
   let message: String
   let time: String
-  let channelId: String? = null
+  let createdAtMillis: Int64
+  let targetUserIds: [String]? = null
 }
 ```
 
@@ -43,7 +44,8 @@ class DyteImageMessage{
   let pluginId: String?
   let link: String
   let time: String
-  let channelId: String? = null
+  let createdAtMillis: Int64
+  let targetUserIds: [String]? = null
 }
 ```
 
@@ -59,7 +61,8 @@ class DyteFileMessage{
   let time: String
   let link: String
   let size: Int64
-  let channelId: String? = null
+  let createdAtMillis: Int64
+  let targetUserIds: [String]? = null
 }
 ```
 

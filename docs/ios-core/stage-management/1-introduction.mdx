@@ -21,7 +21,7 @@ permissions, and kicking participants from the stage. These APIs are accessible 
 
 ### Stage Status
 
-In meetings where stage management is enabled, a user's stage status can change within the values represented by the `DyteStageStatus`
+In meetings where stage management is enabled, a user's stage status can change within the values represented by the `StageStatus`
 enum. These status values include:
 
 - `ON_STAGE`: Indicates that the user is currently on the stage and is allowed to publish media.
@@ -32,12 +32,12 @@ enum. These status values include:
 - `REJECTED_TO_JOIN_STAGE`: Indicates that the host has rejected the user's request to join the stage. The user can request again
   to join from this status.
 
-The `meeting.stage.status` property provides the current stage status of the local user.
+The `meeting.stage.stageStatus` property provides the current stage status of the local user.
 
 ### Viewers
 
 You can retrieve a list of off-stage participants (viewers) in a stage-enabled meeting by accessing the `meeting.stage.viewers`
-property. This property provides a list of `DyteJoinedMeetingParticipant` objects whose stage status is not `ON_STAGE`.
+property. This property provides a list of `DyteRemoteParticipant` objects whose stage status is not `ON_STAGE`.
 
 ### Joining the Stage
 
@@ -64,59 +64,48 @@ stage-related events in your application:
 
 ```swift
 extension WebinarViewModel: DyteStageEventListener {
-    func onPresentRequestReceived() {
-        // Called when the local user's stage access request is accepted by the host,
-        // or when the local user, who is a viewer, is invited to the stage by the host.
+    func onStageAccessRequestAccepted() {
+        // Called when the local user is accepted to join the stage.
     }
 
-    func onAddedToStage() {
-        // Called when the local user successfully joins the stage.
+    func onStageAccessRequestRejected() {
+        // Called when the local user's request to join the stage is rejected by the host.
     }
 
     func onRemovedFromStage() {
         // Called when the local user is removed from the stage.
     }
 
-    func onPresentRequestAdded(participant: DyteJoinedMeetingParticipant) {
-        // Called when a participant requests to join the stage. Triggered only if the local user is a host.
-    }
-
-    func onPresentRequestClosed(participant: DyteJoinedMeetingParticipant) {
-        // Called when a participant with a pending stage access request leaves the meeting.
+    func onNewStageAccessRequest(participant: DyteRemoteParticipant) {
+        // Called when a new stage access request is received from a participant.
         // Triggered only if the local user is a host.
     }
 
-    func onPresentRequestRejected(participant: DyteJoinedMeetingParticipant) {
-        // Called when a participant's stage access request is denied by the host.
-        // Triggered only if the local user is a host.
-    }
-
-    func onPresentRequestWithdrawn(participant: DyteJoinedMeetingParticipant) {
+    func onStageAccessRequestsUpdated(participant: DyteJoinedMeetingParticipant) {
         // Called when a participant cancels their stage access request.
         // Triggered only if the local user is a host.
     }
 
-    func onParticipantRemovedFromStage(participant: DyteJoinedMeetingParticipant) {
-        // Called when a participant is removed from the stage by the host.
-    }
-
-    func onStageRequestsUpdated(accessRequests: [DyteJoinedMeetingParticipant]) {
+    func onStageAccessRequestsUpdated(accessRequests: [DyteRemoteParticipant]) {
         // Called when the list of stage access requests is updated.
     }
 
-    func onParticipantStartedPresenting(participant: DyteJoinedMeetingParticipant) {
-        // Called when a participant joins the stage.
-    }
-
-    func onParticipantStoppedPresenting(participant: DyteJoinedMeetingParticipant) {
-        // Called when a participant leaves the stage.
-    }
-
-    func onStageStatusUpdated(stageStatus: DyteStageStatus) {
+    func onStageStatusUpdated(oldStatus: DyteiOSCore.StageStatus, newStatus: DyteiOSCore.StageStatus) {
         // Called when the local user's stage status is updated.
+    }
+
+    func onPeerStageStatusUpdated(participant: DyteRemoteParticipant, oldStatus: DyteiOSCore.StageStatus, newStatus: DyteiOSCore.StageStatus) {
+        // Called when a remote participant's stage status is updated.
     }
 }
 ```
+
+All the stage management APIs return a `StageError` if the operation fails. On success, they return `null`. The error type can be one of the following:
+
+- `StageDisabledForMeetingType`: The meeting type does not support stage management.
+- `PermissionDenied`: The user does not have the required permissions to perform the operation.
+- `ActionInvalidForStageStatus`: The operation is invalid for the current stage status.
+- `NoRequestToCancel`: There is no pending request to cancel.
 
 Next, we'll explore the Stage Management APIs for hosts, allowing them to manage stage requests, participants in Dyte meetings.
 
