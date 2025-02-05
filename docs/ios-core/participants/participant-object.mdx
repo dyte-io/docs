@@ -18,7 +18,7 @@ The participant object has the following properties.
 - `userId`: The `userId` of the participant.
 - `name`: The participant's name.
 - `picture`: The participant's picture (if any).
-- `clientSpecificId`: An arbitrary ID that can be set to identify the
+- `customParticipantId`: An arbitrary ID that can be set to identify the
   participant.
 - `videoTrack`: The video track of the participant.
 - `screenShareTrack`: The video and audio (if any) track of the participant's
@@ -27,6 +27,7 @@ The participant object has the following properties.
 - `audioEnabled`: Set to true if the participant is unmuted.
 - `isPinned`: True if current user is pinned in the meeting room.
 - `presetName`: Name of the preset associated with the participant.
+- `presetInfo` : A typed object representing the preset information for local user.
 - `stageStatus`: Status of stage for the participant
 
 ## To get video view of a given participant
@@ -34,7 +35,7 @@ The participant object has the following properties.
 You can call `participant.getVideoView()` which will return a View which further
 can used to add in any view.
 
-Similarly one can use `participant.getScreenShareView()` which will return a
+Similarly one can use `participant.getScreenShareVideoView()` which will return a
 View which further can used to add in any view.
 
 ## Host Controls

@@ -24,7 +24,7 @@ Triggers an event when any participant joins the meeting.
 
 ```swift
     extension MeetingViewModel: DyteParticipantsEventListener {
-        func onParticipantJoin(participant: DyteMeetingParticipant) {
+        func onParticipantJoin(participant: DyteRemoteParticipant) {
             // your code here to handle new participant
         }
     }
@@ -36,7 +36,7 @@ Triggers an event when any participant leaves the meeting.
 
 ```swift
     extension MeetingViewModel: DyteParticipantsEventListener {
-        func onParticipantLeave(participant: DyteMeetingParticipant) {
+        func onParticipantLeave(participant: DyteRemoteParticipant) {
             // your code here to handle participant left from meeting
         }
     }
@@ -60,7 +60,7 @@ Trigger an event when any participant starts / stops video.
 
 ```swift
     extension MeetingViewModel: DyteParticipantsEventListener {
-        func onVideoUpdate(isEnabled: Bool, participant: DyteMeetingParticipant) {
+        func onVideoUpdate(participant: DyteRemoteParticipant, isEnabled: Bool) {
             // your code here to handle participant video toggle update
         }
     }
@@ -72,7 +72,7 @@ Trigger an event when any participant starts / stops audio.
 
 ```swift
     extension MeetingViewModel: DyteParticipantsEventListener {
-        func onAudioUpdate(isEnabled: Bool, participant: DyteMeetingParticipant) {
+        func onAudioUpdate(participant: DyteRemoteParticipant, isEnabled: Bool) {
             // your code here to handle participant audio toggle update
         }
     }
@@ -84,16 +84,16 @@ Triggers an event when there is any change in screenshares in a meeting.
 
 ```swift
     extension MeetingViewModel: DyteParticipantsEventListener {
-        func onScreenSharesUpdated() {
+        func onScreenShareUpdate(participant: DyteRemoteParticipant, isEnabled: Bool) {
             // your code here to handle screenshares from meeting
             // you can use `meeting.participants.screenshares` to get latest screenshare participants
         }
 
-        func onScreenShareStarted(participant: DyteJoinedMeetingParticipant) {
+        func onScreenShareStarted(participant: DyteRemoteParticipant) {
             // participant stared presenting screen in the meeting
         }
 
-        func onScreenShareEnded(participant: DyteJoinedMeetingParticipant) {
+        func onScreenShareEnded(participant: DyteRemoteParticipant) {
             // participant stopped presenting screen in the meeting
         }
     }
@@ -105,7 +105,7 @@ Triggers an event when any is change in active speaker in the meeting.
 
 ```swift
     extension MeetingViewModel: DyteParticipantsEventListener {
-        func onActiveSpeakerChanged(participant: DyteMeetingParticipant) {
+        func onActiveSpeakerChanged(participant: DyteRemoteParticipant?) {
             // your code here to handle active speaker
         }
 
@@ -121,11 +121,11 @@ Triggers an event when there is any change in pinned participant in the meeting.
 
 ```swift
     extension MeetingViewModel: DyteParticipantsEventListener {
-        func onParticipantPinned(participant: DyteMeetingParticipant) {
+        func onParticipantPinned(participant: DyteRemoteParticipant) {
             // your code here to show pinned participant
         }
 
-        func onParticipantUnpinned(participant: DyteJoinedMeetingParticipant) {
+        func onParticipantUnpinned(participant: DyteRemoteParticipant) {
             // your code here to remove pinned participant
         }
     }
@@ -137,7 +137,7 @@ Triggers an event when any is change in active participants list in the meeting.
 
 ```swift
     extension MeetingViewModel: DyteParticipantsEventListener {
-        func onActiveParticipantsChanged(active: [DyteMeetingParticipant]) {
+        func onActiveParticipantsChanged(active: [DyteRemoteParticipant]) {
             // your code here to refresh active participants
         }
     }
@@ -155,7 +155,7 @@ Triggers an event whenever there is any change in participant.
 
 ```swift
     extension MeetingViewModel: DyteParticipantUpdateListener {
-        func onUpdate() {
+        func onUpdate(participant: DyteMeetingParticipant) {
             // your code here to handle participant update
         }
     }
@@ -191,11 +191,11 @@ Triggers an event when the participant is pinned / unpinned.
 
 ```swift
     extension MeetingViewModel: DyteParticipantUpdateListener {
-        func onPinned() {
+        func onPinned(participant: DyteRemoteParticipant) {
             // your code here to show pinned participant
         }
 
-        func onUnpinned() {
+        func onUnpinned(participant: DyteRemoteParticipant) {
             // your code here to remove pinned participant
         }
     }
@@ -207,11 +207,11 @@ Triggers an event when the participant starts / stops screen sharing.
 
 ```swift
     extension MeetingViewModel: DyteParticipantUpdateListener {
-        func onScreenShareStarted() {
+        func onScreenShareStarted(participant: DyteRemoteParticipant) {
             // your code here to handle screen share started
         }
 
-        func onScreenShareEnded() {
+        func onScreenShareEnded(participant: DyteRemoteParticipant) {
             // your code here to handle screen share ended
         }
     }

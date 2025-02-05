@@ -9,7 +9,7 @@ tags:
   - waiting room
 ---
 
-Participants in the waiting room are represented by `DyteWaitlistedParticipant` objects. If the local user has the permission to
+Participants in the waiting room are represented by `DyteRemoteParticipant` objects. If the local user has the permission to
 accept waiting room requests (`selfPermissions.host.canAcceptRequests` is true), you can manage pending waiting room requests,
 accepting or rejecting them as needed.
 You can access the list of waitlisted participants via the `meeting.participants.waitlisted` property.
@@ -18,20 +18,20 @@ You can access the list of waitlisted participants via the `meeting.participants
 
 ### Accepting Requests
 
-To accept a waiting room request, use the acceptWaitListedRequest() method on a `DyteWaitlistedParticipant` object:
+To accept a waiting room request, use the acceptWaitListedRequest() method on a `DyteRemoteParticipant` object:
 
 ```swift
 let waitlistedParticipant = meeting.participants.waitlisted[0]
-waitlistedParticipant.acceptWaitListedRequest()
+mobileClient.participants.acceptWaitingRoomRequest(id: waitlistedParticipant.id)
 ```
 
 ### Rejecting Requests
 
-To deny a waiting room request, use the `rejectWaitListedRequest()` method on a `DyteWaitlistedParticipant` object:
+To deny a waiting room request, use the `rejectWaitListedRequest()` method on a `DyteParticipants` object:
 
 ```swift
 let waitlistedParticipant = meeting.participants.waitlisted[0]
-waitlistedParticipant.rejectWaitListedRequest()
+mobileClient.participants.rejectWaitingRoomRequest(waitlistedParticipant.id)
 ```
 
 ### Waiting Room Events
@@ -41,19 +41,19 @@ Implement the `DyteWaitlistEventsListener` interface to listen for events relate
 ```swift
 extension MeetingViewModel: DyteWaitlistEventsListener {
 
-  func onWaitListParticipantJoined(participant: DyteMeetingParticipant) {
+  func onWaitListParticipantJoined(participant: DyteRemoteParticipant) {
       // triggered when waitList peer is joined
   }
 
-  func onWaitListParticipantAccepted(participant: DyteMeetingParticipant) {
+  func onWaitListParticipantAccepted(participant: DyteRemoteParticipant) {
       // triggered when waitListed peer is accepted by host
   }
 
-  func onWaitListParticipantRejected(participant: DyteMeetingParticipant) {
+  func onWaitListParticipantRejected(participant: DyteRemoteParticipant) {
       // triggered when entry of waitListed peer declined by host
   }
 
-  func onWaitListParticipantClosed(participant: DyteMeetingParticipant) {
+  func onWaitListParticipantClosed(participant: DyteRemoteParticipant) {
       // triggered when waitListed peer get's disconnected
   }
 }
