@@ -110,7 +110,7 @@ let meeting = DyteiOSClientBuilder().build()
 
 ```swift
 meeting.addMeetingRoomEventsListener(meetingRoomEventsListener: self)
-meeting.addParticipantEventsListener(participantEventsListener: self)
+meeting.addParticipantsEventListener(participantEventsListener: self)
 meeting.addSelfEventsListener(selfEventsListener: self)
 meeting.addChatEventsListener(chatEventsListener: self)
 meeting.addPollEventsListener(pollEventsListener: self)
@@ -128,13 +128,13 @@ Add `authToken` that you got from the REST API to constructor of DyteMeetingInfo
 | `authToken`   | After you've created the meeting, add each participant to the meeting using the [Add Participant API](/api?v=v2#/operations/add_participant) The API response contains the `authToken`. |
 | `enableAudio` | Set whether to join the meeting with your Mic ON or OFF by passing `true` or `false`.                                                                                                   |
 | `enableVideo` | Set whether to join the meeting with your Camera ON or OFF by passing `true` or `false`.                                                                                                |
-| `baseUrl`     | Base URL of the dyte's enviorment you have created the meeting on.                                                                                                                      |
+| `baseDomain`     | Base URL of the dyte's enviorment you have created the meeting on.                                                                                                                      |
 
 ```swift
 let meetingInfo = DyteMeetingInfoV2(authToken: authToken,
                                   enableAudio: true,
                                   enableVideo: true,
-                                  baseUrl: "dyte.io")
+                                  baseDomain: "dyte.io")
 ```
 
 ## Step 4: Initialize the Dyte meeting
@@ -185,7 +185,11 @@ To join the meeting room, do the following only after you received the doInit co
 
 ```swift
 func onMeetingInitCompleted() {
-   meeting.joinRoom()
+   meeting.joinRoom {
+            
+    } onRoomJoinFailed: {
+            
+    }
  }
 ```
 

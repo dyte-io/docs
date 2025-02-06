@@ -43,7 +43,7 @@ from `DyteSelfEventsListener`. Here's how you can register the listener:
 
 ```swift
 extension MeetingViewModel: DyteSelfEventsListener {
-    func onAudioUpdate(audioEnabled: Boolean) {
+    func onAudioUpdate(isEnabled: Boolean) {
         // Show a visual preview of the audio to the user if enabled
     }
 }
@@ -75,7 +75,7 @@ from `DyteSelfEventsListener`. Here's how you can register the listener:
 
 ```swift
 extension MeetingViewModel: DyteSelfEventsListener {
-    func onVideoUpdate(videoEnabled: Boolean) {
+    func onVideoUpdate(isEnabled: Boolean) {
         // Show local user's VideoView if video is enabled
     }
 }

@@ -19,12 +19,16 @@ meeting.stage.requestAccess()
 ```
 
 When a host accepts the user's stage access request or allows the user directly to the stage, the SDK triggers the
-`onPresentRequestReceived` callback in `DyteStageEventListener`. You can listen to this event:
+`onStageAccessRequestAccepted` callback and if the host rejects the request, the SDK triggers the `onStageAccessRequestRejected` callback. You can listen to these events by adding a `DyteStageEventListener`:
 
 ```swift
 extension WebinarViewModel: DyteStageEventListener {
-    func onPresentRequestReceived() {
+    func onStageAccessRequestAccepted() {
         // Host accepted the join stage request or invited user directly to stage
+    }
+
+    func onStageAccessRequestRejected() {
+        // Host rejected the join stage request
     }
 }
 ```
