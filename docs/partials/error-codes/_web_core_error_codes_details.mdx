@@ -1,0 +1,535 @@
+This topic describes web core system error codes 0-16.
+
+# DyteClient
+
+## Error code: 0000
+- **Error message**: Something unexpected occured
+- **Possible reason**:
+- **Possible solution**:
+
+## Error code: 0001
+
+- **Error message**: Failed to initialize
+- **Possible reason**: `DyteClient` is not getting initialized.
+- **Possible solution**: Verify if you initialized the `DyteClient` correctly `await DyteClient.init({ ... })`. See [DyteClient](/web-core/reference/DyteClient). If you continue to experience issue, please [reach out](https://dyte.io/contact) to us for the help.
+
+## Error code: 0002
+
+- **Error message**: Failed to join room
+- **Possible reason**: Indicates a problem with the `DyteClient`.
+- **Possible solution**: The `joinRoom()` method is used to join a meeting room in Dyte. Try calling this method on the `DyteClient`:
+
+```bash
+await meeting.joinRoom();
+```
+
+Once the join room process completes, you'll see the `roomJoined` event is emitted on the `meeting.self` namespace.
+
+## Error code: 0003
+
+- **Error message**: Failed to leave room
+- **Possible reason**: Indicates a problem with the `DyteClient`.
+- **Possible solution**: The `leaveRoom()` method is used to leave a meeting room in Dyte. Try calling this method on the `DyteClient`:
+
+```bash
+await meeting.leaveRoom();
+```
+
+## Error code: 0004
+
+- **Error message**: Invalid auth token
+- **Possible reason**: Indicates a problem with the passed participant auth token.
+- **Possible solution**: Ensure that the passed auth token is a valid JWT auth token that is not expired yet.
+
+## Error code: 0010
+
+- **Error message**: Browser not supported
+- **Possible reason**: Browser is too old and does not support WebRTC
+- **Possible solution**: Upgrade browser to the latest version. Google Chrome is preferred.
+
+## Error code: 0011
+
+- **Error message**: HTTP Network Error
+- **Possible reason**: Either internet issues are there or the API requests are failing
+- **Possible solution**: Ensure that the internet connection is proper. Speed can be test at fast.com. Make sure that the meeting is active and the token has not expired.
+
+## Error code: 0012
+
+- **Error message**: Websocket Network Error
+- **Possible reason**: Either internet issues are there or the Websocket connection failed
+- **Possible solution**: Ensure that the internet connection is proper. Speed can be test at fast.com. Make sure that the meeting is active and the token has not expired.
+
+## Error code: 0013
+
+- **Error message**: Rate Limited
+- **Possible reason**: SDK API that you are calling is being called too often
+- **Possible solution**: This happens due to faulty code. See why would so many requests are being made.
+
+# Controller
+
+## Error code: 0100
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the Controller module.
+- **Possible solution**: Check the logs for more details and retry the operation. If the issue persists, contact support.
+
+## Error code: 0101
+- **Error message**: Permission denied
+- **Possible reason**: The user does not have the required permissions to perform the action.
+- **Possible solution**: Verify the user's permissions and try again.
+
+## Error code: 0102
+- **Error message**: Prerequisite module missing
+- **Possible reason**: A required module for the Controller is missing or not initialized.
+- **Possible solution**: Ensure all prerequisite modules are properly initialized.
+
+# RoomNodeClient
+
+## Error code: 0200
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the RoomNodeClient module.
+- **Possible solution**: Check the logs for more details and retry the operation. If the issue persists, contact support.
+
+# HiveNodeClient
+
+## Error code: 0300
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the HiveNodeClient module.
+- **Possible solution**: Check the logs for more details and retry the operation. If the issue persists, contact support.
+
+# SocketService
+
+## Error code: 0400
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the SocketService module.
+- **Possible solution**: Check the logs for more details and retry the operation. If the issue persists, contact support.
+
+## Error code: 0404
+- **Error message**: Missing prerequisites to establish a websocket connection
+- **Possible reason**: Required prerequisites for establishing a WebSocket connection are missing.
+- **Possible solution**: Ensure all prerequisites (e.g., auth token, network connectivity) are met.
+
+# Chat
+
+## Error code: 0500
+- **Error message**: Internal exception
+- **Possible reason**: 
+- **Possible solution**: 
+
+## Error code: 0501
+- **Error message**: Permission denied.
+- **Possible reason**: User does not have the required permissions to perform this action.
+- **Possible solution**: Please check if you've added the required permissions to your organization for your [preset](https://dev.dyte.io/).
+
+## Error code: 0502
+- **Error message**: Invalid message body.
+- **Possible reason**: The message body does not conform to the expected format.
+- **Possible solution**: The type `Message` is not defined correctly. See [Chat](/web-core/chat/introduction).
+
+## Error code: 0503
+- **Error message**: Text message is too large.
+- **Possible reason**: The message exceeds the allowed character limit.
+- **Possible solution**: Reduce the message length and try again.
+
+## Error code: 0504
+- **Error message**: Message not found by the given ID.
+- **Possible reason**: The message ID provided does not correspond to an existing message.
+- **Possible solution**: Verify the message ID and ensure the message exists before querying.
+
+## Error code: 0505
+- **Error message**: Action not permitted without joining room.
+- **Possible reason**: The user attempted to perform an action that requires them to be in a room.
+- **Possible solution**: Ensure the user joins a room before performing this action.
+
+## Error code: 0506
+- **Error message**: Message search is disabled.
+- **Possible reason**: The message search feature is turned off.
+- **Possible solution**: Enable message search in the system settings or contact support.
+
+## Error code: 0510
+- **Error message**: Invalid channel name.
+- **Possible reason**: The channel name provided does not meet the required format or does not exist.
+- **Possible solution**: Ensure the channel name is correctly formatted and exists in the system.
+
+
+<img
+  src="/static/errorcodes/chat-perms.png"
+  width="300"
+  height="100"
+  alt="error-chat-preset"
+  className="errorcode-chat-perms-preset"
+/>
+
+# Plugin
+
+## Error code: 0600
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the Plugin module.
+- **Possible solution**: Check the logs for more details and retry the operation. If the issue persists, contact support.
+
+## Error code: 0601
+- **Error message**: Permission denied
+- **Possible reason**: The user does not have the required permissions to perform the action.
+- **Possible solution**: Verify the user's permissions and try again.
+
+## Error code: 0602
+- **Error message**: Auth token not set for plugin
+- **Possible reason**: The authentication token for the plugin is missing or invalid.
+- **Possible solution**: Set a valid auth token for the plugin and try again.
+
+## Error code: 0603
+- **Error message**: Iframe was not provided
+- **Possible reason**: The required iframe for the plugin is missing.
+- **Possible solution**: Provide the iframe and try again.
+
+# Polls
+
+## Error code: 0700
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the Polls module.
+- **Possible solution**: Check the logs for more details and retry the operation. If the issue persists, contact support.
+
+## Error code: 0705
+- **Error message**: Action not permitted without joining room
+- **Possible reason**: The user attempted to perform an action without joining the room.
+- **Possible solution**: Join the room first and then retry the action.
+
+# Meta
+
+## Error code: 0800
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the Meta module.
+- **Possible solution**: Check the logs for more details and retry the operation. If the issue persists, contact support.
+
+## Error code: 0801
+- **Error message**: Permission denied
+- **Possible reason**: The user does not have the required permissions to perform the action.
+- **Possible solution**: Verify the user's permissions and try again.
+
+# Preset
+
+## Error code: 0900
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the Preset module.
+- **Possible solution**: Check the logs for more details and retry the operation. If the issue persists, contact support.
+
+## Error code: 0904
+- **Error message**: Could not load preset
+- **Possible reason**: The preset could not be loaded due to missing or invalid data.
+- **Possible solution**: Verify the preset data and try again.
+
+# Recording
+
+## Error code: 1000
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the Recording module.
+- **Possible solution**: Check the logs for more details and retry the operation. If the issue persists, contact support.
+
+## Error code: 1001
+- **Error message**: Permission denied
+- **Possible reason**: The user does not have the required permissions to perform the action.
+- **Possible solution**: Verify the user's permissions and try again.
+
+## Error code: 1004
+- **Error message**: Could not find specified recording
+- **Possible reason**: The specified recording could not be found.
+- **Possible solution**: Verify the recording ID and try again.
+
+## Error code: 1005
+- **Error message**: Action not permitted in given recording state
+- **Possible reason**: The action is not allowed in the current state of the recording.
+- **Possible solution**: Check the recording state and try again.
+
+# Self
+
+## Error code: 1100
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the Self module.
+- **Possible solution**: Check the logs for more details and retry the operation. If the issue persists, contact support.
+
+## Error code: 1101
+- **Error message**: Permission denied
+- **Possible reason**: The user does not have the required permissions to perform the action.
+- **Possible solution**: Verify the user's permissions and try again.
+
+## Error code: 1102
+- **Error message**: Unsupported
+- **Possible reason**: The requested action is not supported.
+- **Possible solution**: Check the documentation for supported actions.
+
+## Error code: 1103
+- **Error message**: Name cannot be empty
+- **Possible reason**: The name field was left empty.
+- **Possible solution**: Provide a valid name and try again.
+
+## Error code: 1104
+- **Error message**: No device selected while calling meeting.self.setDevice
+- **Possible reason**: No device was selected when setting the device.
+- **Possible solution**: Select a device and try again.
+
+## Error code: 1105
+- **Error message**: Action not permitted without joining room
+- **Possible reason**: The user attempted to perform an action without joining the room.
+- **Possible solution**: Join the room first and then retry the action.
+
+## Error code: 1106
+- **Error message**: Can't set currently used device
+- **Possible reason**: The device is currently in use and cannot be changed.
+- **Possible solution**: Wait for the device to become available and try again.
+
+# Participant
+
+## Error code: 1200
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the Participant module.
+- **Possible solution**: Check the logs for more details and retry the operation. If the issue persists, contact support.
+
+## Error code: 1201
+- **Error message**: Permission denied
+- **Possible reason**: The user does not have the required permissions to perform the action.
+- **Possible solution**: Verify the user's permissions and try again.
+
+## Error code: 1202
+- **Error message**: Invalid page number was requested
+- **Possible reason**: The requested page number is invalid.
+- **Possible solution**: Provide a valid page number and try again.
+
+## Error code: 1203
+- **Error message**: Invalid participant count per page was requested
+- **Possible reason**: The requested participant count per page is invalid.
+- **Possible solution**: Provide a valid count and try again.
+
+## Error code: 1204
+- **Error message**: No participants exists with the given UserIds
+- **Possible reason**: No participants were found with the specified UserIds.
+- **Possible solution**: Verify the UserIds and try again.
+
+## Error code: 1205
+- **Error message**: Action not permitted without joining room
+- **Possible reason**: The user attempted to perform an action without joining the room.
+- **Possible solution**: Join the room first and then retry the action.
+
+## Error code: 1206
+- **Error message**: Manual Subscription Mode was not ACTIVATED
+- **Possible reason**: Manual subscription mode is not activated.
+- **Possible solution**: Activate manual subscription mode and try again.
+
+## Error code: 1207
+- **Error message**: Invalid view mode
+- **Possible reason**: The requested view mode is invalid.
+- **Possible solution**: Provide a valid view mode and try again.
+
+## Error code: 1208
+- **Error message**: Manual Subscription not enabled for organization
+- **Possible reason**: Manual subscription is not enabled for the organization.
+- **Possible solution**: Enable manual subscription for the organization and try again.
+
+## Error code: 1209
+- **Error message**: Broadcast message type must be a non-empty string
+- **Possible reason**: The broadcast message type is empty or invalid.
+- **Possible solution**: Provide a valid message type and try again.
+
+# Spotlight
+
+## Error code: 1300
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the Spotlight module.
+- **Possible solution**: Check the logs for more details and retry the operation. If the issue persists, contact support.
+
+# Remote Request
+
+## Error code: 1400
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the Remote Request module.
+- **Possible solution**: Check the logs for more details and retry the operation. If the issue persists, contact support.
+
+## Error code: 1402
+- **Error message**: No existing remote requests
+- **Possible reason**: No remote requests exist for the given context.
+- **Possible solution**: Verify the context and try again.
+
+## Error code: 1403
+- **Error message**: No peer exists with given id
+- **Possible reason**: No peer was found with the specified ID.
+- **Possible solution**: Verify the peer ID and try again.
+
+# Webinar
+
+## Error code: 1500
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the Webinar module.
+- **Possible solution**: Check the logs for more details and retry the operation. If the issue persists, contact support.
+
+# LocalMediaHandler
+
+## Error code: 1601
+
+- **Error message**: Failed to get audio track
+- **Possible reason**: Indicates a problem with the audio track of the device.
+- **Possible solution**: Verify if you've subscribed to the [Audio update event](/web-core/local-user/events#audio-update). Check your audio track status. If the problem persists, please [contact us](https://dyte.io/contact) for the help.
+
+## Error code: 1602
+
+- **Error message**: Failed to get video track
+- **Possible reason**: Indicates a problem with the video track of the device.
+- **Possible solution**: Verify if you've subscribed to the [Video update event](/web-core/local-user/events#video-update). Check your video track status. If the problem persists, please [contact us](https://dyte.io/contact) for the help.
+
+## Error code: 1603
+
+- **Error message**: Incorrect device
+- **Possible reason**: Indicates a problem with the device.
+- **Possible solution**: Verify if you're connected to the correct device. See [Device update](/web-core/local-user/events#device-update). If the problem persists, please [contact us](https://dyte.io/contact) for the help.
+
+## Error code: 1604
+
+- **Error message**: Failed to change device
+- **Possible reason**: Indicates a problem with the device.
+- **Possible solution**: Please [contact us](https://dyte.io/contact) for the help.
+
+## Error code: 1605
+- **Error message**: Failed to get audio & video track
+- **Possible reason**: Both audio and video tracks could not be retrieved.
+- **Possible solution**: Check the devices and permissions, then try again.
+
+## Error code: 1606
+- **Error message**: No audio input devices are available
+- **Possible reason**: No audio input devices were found.
+- **Possible solution**: Connect an audio input device and try again.
+
+## Error code: 1607
+- **Error message**: No video input devices are available
+- **Possible reason**: No video input devices were found.
+- **Possible solution**: Connect a video input device and try again.
+
+## Error code: 1608
+- **Error message**: No audio output devices (speakers) are available
+- **Possible reason**: No audio output devices were found.
+- **Possible solution**: Connect an audio output device and try again.
+
+## Error code: 1609
+- **Error message**: Failed to fetch list of media devices
+- **Possible reason**: The list of media devices could not be retrieved.
+- **Possible solution**: Check the device permissions and try again.
+
+## Error code: 1610
+- **Error message**: No media track exists
+- **Possible reason**: No media track was found.
+- **Possible solution**: Verify the media tracks and try again.
+
+## Error code: 1611
+- **Error message**: Failed to unmute track
+- **Possible reason**: The track could not be unmuted.
+- **Possible solution**: Check the track settings and try again.
+
+# End-End Encryption
+
+## Error code: 1701
+- **Error message**: Crypto error
+- **Possible reason**: An error occurred during encryption or decryption.
+- **Possible solution**: Check the encryption settings and try again.
+
+# AI
+
+## Error code: 1800
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the AI module.
+- **Possible solution**: Check the logs for more details and retry the operation. If the issue persists, contact support.
+
+## Error code: 1801
+- **Error message**: Can't fetch transcript file
+- **Possible reason**: The transcript file could not be fetched.
+- **Possible solution**: Verify the file path and try again.
+
+# Livestream
+
+## Error code: 1900
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the Livestream module.
+- **Possible solution**: Check the logs for more details and retry the operation. If the issue persists, contact support.
+
+## Error code: 1901
+- **Error message**: Permission denied
+- **Possible reason**: The user does not have the required permissions to perform the action.
+- **Possible solution**: Verify the user's permissions and try again.
+
+## Error code: 1902
+- **Error message**: Livestream that has not yet started, can't be stopped
+- **Possible reason**: The livestream has not started and cannot be stopped.
+- **Possible solution**: Start the livestream first and then try to stop it.
+
+# CFNodeClient
+
+## Error code: 2000
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the CFNodeClient module.
+- **Possible solution**: Check the logs for more details and retry the operation. If the issue persists, contact support.
+
+# BaseNodeClient
+
+## Error code: 2100
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the BaseNodeClient module.
+- **Possible solution**: Check the logs for more details and retry the operation. If the issue persists, contact support.
+
+## Error code: 2101
+- **Error message**: Permission denied
+- **Possible reason**: The user does not have the required permissions to perform the action.
+- **Possible solution**: Verify the user's permissions and try again.
+
+## Error code: 2102
+- **Error message**: Unsupported
+- **Possible reason**: The requested action is not supported.
+- **Possible solution**: Check the documentation for supported actions.
+
+## Error code: 2104
+- **Error message**: Method not implemented
+- **Possible reason**: The requested method is not implemented.
+- **Possible solution**: Check the documentation for available methods.
+
+## Error code: 2105
+- **Error message**: Action not permitted without joining room
+- **Possible reason**: The user attempted to perform an action without joining the room.
+- **Possible solution**: Join the room first and then retry the action.
+
+# Stage
+
+## Error code: 2200
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the Stage module.
+- **Possible solution**: Check the logs for more details and retry the operation. If the issue persists, contact support.
+
+## Error code: 2201
+- **Error message**: Permission denied
+- **Possible reason**: The user does not have the required permissions to perform the action.
+- **Possible solution**: Verify the user's permissions and try again.
+
+## Error code: 2202
+- **Error message**: Unsupported
+- **Possible reason**: The requested action is not supported.
+- **Possible solution**: Check the documentation for supported actions.
+
+## Error code: 2203
+- **Error message**: Stage is disabled
+- **Possible reason**: The stage feature is disabled.
+- **Possible solution**: Enable the stage feature and try again.
+
+## Error code: 2204
+- **Error message**: Method not implemented
+- **Possible reason**: The requested method is not implemented.
+- **Possible solution**: Check the documentation for available methods.
+
+## Error code: 2205
+- **Error message**: Action not permitted without joining room
+- **Possible reason**: The user attempted to perform an action without joining the room.
+- **Possible solution**: Join the room first and then retry the action.
+
+## Error code: 2206
+- **Error message**: Action not permitted in current stage status
+- **Possible reason**: The action is not allowed in the current stage status.
+- **Possible solution**: Check the stage status and try again.
+
+# General
+
+## Error code: 9900
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred.
+- **Possible solution**: Check the logs for more details and retry the operation. If the issue persists, contact support.
