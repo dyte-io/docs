@@ -49,9 +49,12 @@ that contains the word Basic followed by a space and a base64-encoded string
 For example, `Authorization: Basic ZGVtbzpwQDU1dzByZA==`
 
 1.  First, register on our [Developer Portal](https://dev.dyte.io).
-2.  Copy the API Key for your organization. This API Key is unique to your
+2.  Go to [API Keys section](https://dev.dyte.io/apikeys).
+3.  Copy the API Key for your organization. This API Key is unique to your
     organization. The organization ID acts as the username, and the API Key is
     your password.
+
+You can quickly generate a base64-encoded `api_authorization_token` using `window.btoa('YOUR_ORG_ID:YOUR_API_KEY')` in the browser console."
 
 ### Step 3: Create Presets
 
@@ -82,7 +85,7 @@ meeting ID is required for subsequent operations like adding participants.
 ```bash
 curl --request POST \
   --url https://api.dyte.io/v2/meetings \
-  --header 'Authorization: Basic ZGV2QGR5dGUuaW46MTIzNDU2Nzg5YXNkaGZnaGo=' \
+  --header 'Authorization: Basic <api_authorization_token>' \
   --header 'Content-Type: application/json' \
   --data '{
   "title": "Sample meeting",
@@ -124,7 +127,7 @@ The preset name created earlier must be passed in the request.
 ```bash
 curl --request POST \
   --url https://api.dyte.io/v2/meetings/<meetingId>/participants \
-  --header 'Authorization: Basic ZGV2QGR5dGUuaW46MTIzNDU2Nzg5YXNkaGZnaGo=' \
+  --header 'Authorization: Basic <api_authorization_token>' \
   --header 'Content-Type: application/json' \
   --data '{
   "name": "Mary Sue",
@@ -169,7 +172,7 @@ configuration, the recording will be stored in your S3 bucket as well.
 ```bash
 curl --request POST \
   --url https://api.dyte.io/v2/recordings \
-  --header 'Authorization: Basic MzkwYmYyNzQtNDEzMy00MjZkLTg0OTEtZWE3YTFhMTkwNDhiOjdmYTQzNjAwZjk3ZTVkZGI5NmIw' \
+  --header 'Authorization: Basic <api_authorization_token>' \
   --header 'Content-Type: application/json' \
   --data '{
   "meeting_id": "97440c6a-140b-40a9-9499-b23fd7a3868a",
@@ -218,7 +221,7 @@ curl --request POST \
 ```bash
 curl --request PUT \
   --url https://api.staging.dyte.in/v2/recordings/<recordingId> \
-  --header 'Authorization: Basic NzBjNWQzOTEtNGJhYy00Y2YzLTk5MDctYmVjMjA1Nzk4YWRiOmQyNzBmYjJmOGNiNGUzZWY1MGI1' \
+  --header 'Authorization: Basic <api_authorization_token>' \
   --header 'Content-Type: application/json' \
   --data '{
   "action": "stop"
@@ -287,7 +290,7 @@ send the event.
 ```bash
 curl --request POST \
   --url https://api.dyte.io/v2/webhooks \
-  --header 'Authorization: Basic NzBjNWQzOTEtNGJhYy00Y2YzLTk5MDctYmVjMjA1Nzk4YWRiOmQyNzBmYjJmOGNiNGUzZWY1MGI1' \
+  --header 'Authorization: Basic <api_authorization_token>' \
   --header 'Content-Type: application/json' \
   --data '{
   "name": "Attendance",

@@ -17,6 +17,8 @@ simple steps.
 
 Login to the [Developer Portal](https://dev.dyte.io/) and create an account. Copy the [API Keys](https://dev.dyte.io/apikeys) for your organization from the Developer portal. These API Keys are unique to your organization and are required to use Dyte REST APIs such as when instantiating a meeting.
 
+To familiarize yourself with the Dyte REST APIs, we recommend exploring the [Dyte REST API Quickstart Guide](https://docs.dyte.io/guides/rest-apis/quickstart).
+
 ## Step 2: Generate credentials for a livestream
 
 This step generates credentials and ingest URLs for the livestream.
@@ -26,7 +28,7 @@ This step generates credentials and ingest URLs for the livestream.
 ```bash
 curl --location --request POST 'https://api.dyte.io/v2/livestreams' \
      --header 'Content-Type: application/json' \
-     --header 'Authorization: Basic ZGVtbzpwQDU1dzByZA==' \
+     --header 'Authorization: Basic <api_authorization_token>' \
      --data-raw '{
     "name": "test_livestream"
 }'
@@ -87,7 +89,7 @@ This request returns the `ingest_seconds`, `viewer_seconds`, `ingest_server`,
 ```bash
 curl --location \
      --request GET 'https://api.dyte.io/v2/livestreams/9fb22eea-3392-42ad-b884-1129a4f517d2' \
-     --header 'Authorization: Basic ZGVtbzpwQDU1dzByZA=='
+     --header 'Authorization: Basic <api_authorization_token>'
 ```
 
 :::info note
