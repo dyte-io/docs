@@ -21,6 +21,8 @@ To start livestreaming a meeting, do the following:
 
 Login to the [Developer Portal](https://dev.dyte.io/) and create an account. Copy the [API Keys](https://dev.dyte.io/apikeys) for your organization from the Developer portal. These API Keys are unique to your organization and are required to use Dyte REST APIs such as when instantiating a meeting.
 
+To familiarize yourself with the Dyte REST APIs, we recommend exploring the [Dyte REST API Quickstart Guide](https://docs.dyte.io/guides/rest-apis/quickstart).
+
 ### Step 2: Create a live stream
 
 To start live streaming, specify the `meeting ID` of the meeting that you want to live stream. You can obtain the meeting ID by doing the following:
@@ -44,7 +46,7 @@ In the [Start livestreaming a meeting](/api#/paths/meetings-meeting_id--livestre
 ```
 curl --request POST \
   --url https://api.cluster.dyte.in/v2/meetings/{meetingId}/livestreams \
-  --header 'Authorization: Basic <token>' \
+  --header 'Authorization: Basic <api_authorization_token>' \
   --header 'Content-Type: application/json'
 ```
 
@@ -80,7 +82,7 @@ get the **meeting ID**. The API returns a parameter called `id`, which is your
 ```bash
 curl --request GET \
   --url https://api.cluster.dyte.in/v2/meetings/{meetingId}/active-livestream \
-  --header 'Authorization: Basic <token>' \
+  --header 'Authorization: Basic <api_authorization_token>' \
   --header 'Content-Type: application/json'
 ```
 
@@ -118,7 +120,7 @@ get the **meeting ID**. The API returns a parameter called `id`, which is your
 ```bash
 curl --request POST \
   --url https://api.cluster.dyte.in/v2/meetings/meetingId/active-livestream/stop \
-  --header 'Authorization: Basic <token>' \
+  --header 'Authorization: Basic <api_authorization_token>' \
   --header 'Content-Type: application/json'
 ```
 

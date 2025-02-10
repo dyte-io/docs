@@ -61,7 +61,7 @@ to receive all events, you can make a request like:
 
 ```bash
 curl --location --request POST 'https://api.dyte.io/v2/webhooks' \
---header 'Authorization: Basic WRiOmQyNzBmYjJmOGNiNGUzZWY1MGI1' \
+--header 'Authorization: Basic <api_authorization_token>' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "name": "All events webhook",
@@ -79,6 +79,8 @@ curl --location --request POST 'https://api.dyte.io/v2/webhooks' \
 
 For more information, check out the
 [webhooks API reference](/api/?v=v2#/operations/addWebhook).
+
+To familiarize yourself with the Dyte REST APIs, we recommend exploring the [Dyte REST API Quickstart Guide](https://docs.dyte.io/guides/rest-apis/quickstart).
 
 #### Check for `dyte-uuid` Header
 

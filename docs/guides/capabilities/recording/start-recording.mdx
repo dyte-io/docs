@@ -11,6 +11,8 @@ This topic explains how to use Dyte to implement composite recording.
 Before getting started with this guide, we recommend that you read
 [Getting Started with Dyte](/getting-started) to familiarize yourself with Dyte.
 
+To familiarize yourself with the Dyte REST APIs, we recommend exploring the [Dyte REST API Quickstart Guide](https://docs.dyte.io/guides/rest-apis/quickstart).
+
 There are three ways to start recording a Dyte meeting:
 
 - Using the `record_on_start` flag when
@@ -55,7 +57,7 @@ participant joins the meeting.
 ```bash
 curl --request POST \
   --url https://api.dyte.io/v2/meetings \
-  --header 'Authorization: Basic NzcyNDMyYXNoZGphZDpkc2ZzZGFmc2FkZmFzZGZzZGY=' \
+  --header 'Authorization: Basic <api_authorization_token>' \
   --header 'Content-Type: application/json' \
   --data '{
   "title": "Lorem Ipsum",
@@ -96,7 +98,7 @@ meeting ID.
 ```bash title="Calling Start Recording API"
 curl --request POST \
   --url https://api.dyte.io/v2/recordings \
-  --header 'Authorization: Basic NzcyNDMyYXNoZGphZDpkc2ZzZGFmc2FkZmFzZGZzZGY=' \
+  --header 'Authorization: Basic <api_authorization_token>' \
   --header 'Content-Type: application/json' \
   --data '{
   "meeting_id": "97440c6a-140b-40a9-9499-b23fd7a3868a"

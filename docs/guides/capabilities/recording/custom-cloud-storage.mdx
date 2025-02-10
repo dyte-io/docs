@@ -49,6 +49,8 @@ precedence and override the storage details configured in the Developer Portal.
 
 :::
 
+To familiarize yourself with the Dyte REST APIs, we recommend exploring the [Dyte REST API Quickstart Guide](https://docs.dyte.io/guides/rest-apis/quickstart).
+
 
 ### Using the `storage_config` option in the Start Recording API
 
@@ -59,7 +61,7 @@ storage_config for a specific
 ```bash
 curl --request POST \
   --url https://api.dyte.io/v2/recordings \
-  --header 'Authorization: Basic NzBjNWQzOTEtNGJhYy00Y2YzLTk5MDctYmVjMjA1Nzk4YWRiOmQyNzBmYjJmOGNiNGUzZWY1MGI1' \
+  --header 'Authorization: Basic <api_authorization_token>' \
   --header 'Content-Type: application/json' \
   --data '{
   "meeting_id": "97440c6a-140b-40a9-9499-b23fd7a3868a",
@@ -73,6 +75,8 @@ curl --request POST \
   }
 }'
 ```
+
+To familiarize yourself with the Dyte REST APIs, we recommend exploring the [Dyte REST API Quickstart Guide](https://docs.dyte.io/guides/rest-apis/quickstart).
 
 
 ## Supported Cloud Providers
