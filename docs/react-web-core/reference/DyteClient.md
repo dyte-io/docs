@@ -39,8 +39,9 @@ actions on the meeting.
 | --- | --- |
 | options | The options object. |
 | options.authToken | The authorization token received using the API. |
-| options.apiBase | The base URL of the API. |
+| options.baseURI | The base URL of the API. |
 | options.defaults | The default audio and video settings. |
+| options.onError | optional error callback, To listen for Dyte SDK errors |
 
 <a name="module_DyteClient+participants"></a>
 
