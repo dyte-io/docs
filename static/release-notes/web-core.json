@@ -1,5 +1,37 @@
 [
   {
+    "version": "2.4.0",
+    "createdAt": 1739435426,
+    "new_api": [
+      "Broadcast messages across connected meetings (breakout rooms) ```meeting.participants.broadcastMessage('<message_type>', { message: 'Hi' }, { meetingIds: ['<connected_meeting_id>'] });```"
+    ]
+  },
+  {
+    "version": "2.3.0",
+    "createdAt": 1739349026,
+    "new_api": [
+      "Remove all middlewares in a single call: `meeting.self.removeAllAudioMiddlewares()` `meeting.self.removeAllVideoMiddlewares()`",
+      "Added the ability to listen to all Dyte SDK errors by passing an `onError` callback to `DyteClient.init`"
+    ],
+    "fixes": [
+      "Improve frequent active participant changes under active speaker mode."
+    ]
+  },
+  {
+    "version": "2.2.2",
+    "createdAt": 1737361826,
+    "fixes": [
+      "Resolved an issue where PIP failed if an invalid URL was provided or if CORS issues were present."
+    ]
+  },
+  {
+    "version": "2.2.1",
+    "createdAt": 1736929826,
+    "fixes": [
+      "Fixed media acquisition on Samsung Devices when the device is already being used by the same app"
+    ]
+  },
+  {
     "version": "2.2.0",
     "createdAt": 1735900565,
     "fixes": [
