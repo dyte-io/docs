@@ -14,31 +14,59 @@ tags:
 You can subscribe to various events on the local user by calling
 `meeting.self.on(EVENT_NAME)`.
 
-## Meeting joined
+## Room joined
 
 Triggered when the join event completes and now the `meeting` is ready to
 produce and consume media.
 
-```ts
+<Tabs groupId="framework" defaultValue="react">
+  <TabItem value="js" label="Javascript">
+  ```ts
 meeting.self.on('roomJoined', () => {
-  console.log(
-    'User has joined the meeting and ready to produce and consume media',
-  );
+    console.log(
+      'User has joined the meeting and ready to produce and consume media',
+    );
 });
 ```
+  </TabItem>
+  <TabItem value="react" label="React">
+  
+```ts
+const roomJoined = useDyteSelector((meeting) => meeting.self.roomJoined);
+useEffect(() => {
+  if (roomJoined)
+    console.log('User has joined the meeting and ready to produce and consume media')
+}, [roomJoined]);
+```
+  </TabItem>
+</Tabs>
 
-## Meeting left
+## Room left
 
 Triggered when the local user leaves the meeting.
 
+<Tabs groupId="framework" defaultValue="react">
+  <TabItem value="js" label="Javascript">
 ```js
 meeting.self.on('roomLeft', ({ state }) => {
   // state is a string whose values are explained below
   if (state === 'left') {
-    console.log('User has left the meeting');
+    console.log('User has left the room');
   }
 });
 ```
+  </TabItem>
+  <TabItem value="react" label="React">
+  
+```ts
+const roomJoined = useDyteSelector((meeting) => meeting.self.roomJoined);
+useEffect(() => {
+  if (!roomJoined)
+    console.log('User has left the room')
+}, [roomJoined]);
+```
+  </TabItem>
+</Tabs>
 
 Here are all the possible values of the `state` variable.
 
@@ -57,9 +85,11 @@ Here are all the possible values of the `state` variable.
 Triggered when the user starts / stops the video using `enableVideo` or
 `disableVideo`
 
+<Tabs groupId="framework" defaultValue="react">
+  <TabItem value="js" label="Javascript">
+  
 ```ts
 const videoElem = document.getElementById('my-video');
-
 meeting.self.on('videoUpdate', async ({ videoEnabled, videoTrack }) => {
   if (videoEnabled) {
     const stream = new MediaStream();
@@ -71,15 +101,33 @@ meeting.self.on('videoUpdate', async ({ videoEnabled, videoTrack }) => {
   }
 });
 ```
+</TabItem>
+  <TabItem value="react" label="React">
+```ts
+const videoEnabled = useDyteSelector((meeting) => meeting.self.videoEnabled);
+const videoTrack = useDyteSelector((meeting) => meeting.self.videoTrack);
+useEffect(() => {
+  const videoElem = document.getElementById('my-video');
+  if (videoEnabled && videoTrack) {
+    const stream = new MediaStream();
+    stream.addTrack(videoTrack);
+    videoElem.srcObject = stream;
+    videoElem.play();
+  }
+}, [videoEnabled, videoTrack]);
+```
+  </TabItem>
+</Tabs>
 
 ## Audio update
 
 Triggered when the user starts / stops the audio using `enableAudio` or
 `disableAudio`
 
+<Tabs groupId="framework" defaultValue="react">
+  <TabItem value="js" label="Javascript">
 ```ts
 const audioElem = document.getElementById('my-audio');
-
 meeting.self.on('audioUpdate', async ({ audioEnabled, audioTrack }) => {
   if (audioEnabled) {
     const stream = new MediaStream();
@@ -91,15 +139,33 @@ meeting.self.on('audioUpdate', async ({ audioEnabled, audioTrack }) => {
   }
 });
 ```
+</TabItem>
+  <TabItem value="react" label="React">
+  ```ts
+const audioEnabled = useDyteSelector((meeting) => meeting.self.audioEnabled);
+const audioTrack = useDyteSelector((meeting) => meeting.self.audioTrack);
+useEffect(() => {
+    const audioElem = document.getElementById('my-audio');
+    if (audioEnabled && audioTrack) {
+      const stream = new MediaStream();
+      stream.addTrack(audioTrack);
+      audioElem.srcObject = stream;
+      audioElem.play();
+    }
+}, [audioEnabled, audioTrack]);
+```
+</TabItem>
+</Tabs>
 
 ## Screenshare update
 
 Triggered when the user starts / stops the screen share using
 `enableScreenShare()` or `disableScreenShare()`.
 
-```ts
+<Tabs groupId="framework" defaultValue="react">
+  <TabItem value="js" label="Javascript">
+  ```ts
 const screenElem = document.getElementById('my-screen-share');
-
 meeting.self.on(
   'screenShareUpdate',
   async ({ screenShareEnabled, screenShareTracks }) => {
@@ -114,6 +180,18 @@ meeting.self.on(
   },
 );
 ```
+  </TabItem>
+  <TabItem value="react" label="React">
+  ```ts
+const screenShareEnabled = useDyteSelector(
+    (meeting) => meeting.self.screenShareEnabled,
+);
+const screenShareTrack = useDyteSelector(
+    (meeting) => meeting.self.screenShareTrack,
+);
+```
+  </TabItem>
+</Tabs>
 
 ## Device update
 

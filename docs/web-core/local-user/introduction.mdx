@@ -77,7 +77,29 @@ stateDiagram-v2
     class kicked,left,ended,rejected END
 ```
 
-<br />
+<Tabs groupId="framework" defaultValue="react">
+  <TabItem value="js" label="Javascript">
+If you would like to subscribe to roomState, you can do so by listening to the `roomLeft` and `roomJoined` events as seen [here](/web-core/local-user/events#room-joined).
+```ts
+const roomState = meeting.self.roomState;
+```
+
+  </TabItem>
+  <TabItem value="react" label="React">
+  
+```ts
+// subscribe to roomState
+const roomState = useDyteSelector((m) => m.self.roomState)
+
+return (
+
+  <>
+    {roomState === "disconnected" && <div>disconnected</div>}
+  </>
+)
+```
+  </TabItem>
+</Tabs>
 
 ## Change the name of the local user
 

@@ -16,12 +16,9 @@ This event is triggered when Dyte fails to acquire the user's local media
 
 Your application can catch these errors like below:
 
-```
-meeting.self.on('mediaPermissionError', ({
-    message,
-    kind
-}) => {
-    console.log(`Failed to capture ${kind}:  ${message}`);
+```ts
+meeting.self.on('mediaPermissionError', ({ message, kind }) => {
+  console.log(`Failed to capture ${kind}:  ${message}`);
 });
 ```
 
@@ -30,11 +27,11 @@ the user.
 
 Possible values for **message** are
 
-    DENIED  - Permission was denied by the user
+    `DENIED`  - Permission was denied by the user
 
-    SYSTEM_DENIED   - Permission was denied by the system
+    `SYSTEM_DENIED`   - Permission was denied by the system
 
-    COULD_NOT_START - Failed to capture media stream from the hardware
+    `COULD_NOT_START` - Failed to capture media stream from the hardware
 
 Possible values for **kind** - `audio`, `video`, `screenshare`
 
