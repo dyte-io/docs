@@ -5,13 +5,28 @@ sidebar_position: 1
 
 ## Defaults Configuration
 
-```js
+<Tabs groupId="framework" defaultValue="react">
+  <TabItem value="js" label="Javascript">
+	```js
 await DyteClient.init({
   defaults: {
     ...
   }
 })
 ```
+	</TabItem>
+  <TabItem value="react" label="React">
+	```js
+useEffect(() => {
+    initMeeting({
+      defaults: {
+        ...
+      },
+    });
+  }, []);
+```
+	</TabItem>
+</Tabs>
 
 While initializing DyteClient you can pass configuration overrides, the available options are
 
@@ -35,7 +50,9 @@ type DefaultOptions {
 This optional propery is true by default and defines whether audio or video would be acquired and enabled on SDK initialization as soon as you join the meeting the SDK will produce your video and
 audio streams by default.
 
-```ts {5}
+<Tabs groupId="framework" defaultValue="react">
+  <TabItem value="js" label="Javascript">
+	```ts {5}
 const meeting = await DyteClient.init({
   authToken,
   defaults: {
@@ -44,6 +61,21 @@ const meeting = await DyteClient.init({
   },
 });
 ```
+	</TabItem>
+  <TabItem value="react" label="React">
+	```ts
+	useEffect(() => {
+    initMeeting({
+      authToken: '<auth-token>',
+      defaults: {
+        audio: false,
+        video: false,
+      },
+    });
+  }, []);
+	```
+	</TabItem>
+</Tabs>
 
 ### mediaConfiguration.screenShare.displaySurface
 
