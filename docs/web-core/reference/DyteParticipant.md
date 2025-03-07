@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-web_core_version: 1.32.1
+web_core_version: 2.4.1
 ---
 
 <!-- Auto Generated Below -->
@@ -21,31 +21,44 @@ const participant4 = meeting.participants.active
 ```
 
 - [DyteParticipant](#module_DyteParticipant)
-  - [.id](#module_DyteParticipant--this.+id)
-  - [.userId](#module_DyteParticipant--this.+userId)
-  - [.name](#module_DyteParticipant--this.+name)
-  - [.picture](#module_DyteParticipant--this.+picture)
-  - [.customParticipantId](#module_DyteParticipant--this.+customParticipantId)
-  - [.device](#module_DyteParticipant--this.+device)
-  - [.videoTrack](#module_DyteParticipant--this.+videoTrack)
-  - [.audioTrack](#module_DyteParticipant--this.+audioTrack)
-  - [.screenShareTracks](#module_DyteParticipant--this.+screenShareTracks)
-  - [.videoEnabled](#module_DyteParticipant--this.+videoEnabled)
-  - [.audioEnabled](#module_DyteParticipant--this.+audioEnabled)
-  - [.screenShareEnabled](#module_DyteParticipant--this.+screenShareEnabled)
-  - [.producers](#module_DyteParticipant--this.+producers)
-  - [.supportsRemoteControl](#module_DyteParticipant--this.+supportsRemoteControl)
-  - [.presetName](#module_DyteParticipant--this.+presetName)
-  - [.stageStatus](#module_DyteParticipant--this.+stageStatus)
-  - [.roomJoined](#module_DyteParticipant--this.+roomJoined)
-  - [.isPinned](#module_DyteParticipant--this.+isPinned)
-  - [.pin()](#module_DyteParticipant--this.+pin)
-  - [.unpin()](#module_DyteParticipant--this.+unpin)
-  - [.setIsPinned()](#module_DyteParticipant--this.+setIsPinned)
-  - [.disableAudio()](#module_DyteParticipant--this.+disableAudio)
-  - [.kick()](#module_DyteParticipant--this.+kick)
-  - [.disableVideo()](#module_DyteParticipant--this.+disableVideo)
+  - [this.](#exp_module_DyteParticipant--this.) ⏏
+    - [.id](#module_DyteParticipant--this.+id)
+    - [.userId](#module_DyteParticipant--this.+userId)
+    - [.name](#module_DyteParticipant--this.+name)
+    - [.picture](#module_DyteParticipant--this.+picture)
+    - [.customParticipantId](#module_DyteParticipant--this.+customParticipantId)
+    - ~~[.clientSpecificId](#module_DyteParticipant--this.+clientSpecificId)~~
+    - [.device](#module_DyteParticipant--this.+device)
+    - [.videoTrack](#module_DyteParticipant--this.+videoTrack)
+    - [.audioTrack](#module_DyteParticipant--this.+audioTrack)
+    - [.screenShareTracks](#module_DyteParticipant--this.+screenShareTracks)
+    - [.videoEnabled](#module_DyteParticipant--this.+videoEnabled)
+    - [.audioEnabled](#module_DyteParticipant--this.+audioEnabled)
+    - [.screenShareEnabled](#module_DyteParticipant--this.+screenShareEnabled)
+    - [.producers](#module_DyteParticipant--this.+producers)
+    - [.manualProducerConfig](#module_DyteParticipant--this.+manualProducerConfig)
+    - [.supportsRemoteControl](#module_DyteParticipant--this.+supportsRemoteControl)
+    - [.presetName](#module_DyteParticipant--this.+presetName)
+    - [.stageStatus](#module_DyteParticipant--this.+stageStatus)
+    - [.mediaJoined](#module_DyteParticipant--this.+mediaJoined)
+    - [.socketJoined](#module_DyteParticipant--this.+socketJoined)
+    - [.isPinned](#module_DyteParticipant--this.+isPinned)
+    - [.pin()](#module_DyteParticipant--this.+pin)
+    - [.unpin()](#module_DyteParticipant--this.+unpin)
+    - [.setIsPinned()](#module_DyteParticipant--this.+setIsPinned)
+    - [.disableAudio()](#module_DyteParticipant--this.+disableAudio)
+    - [.kick()](#module_DyteParticipant--this.+kick)
+    - [.disableVideo()](#module_DyteParticipant--this.+disableVideo)
+    - [.updateVideo()](#module_DyteParticipant--this.+updateVideo)
 
+<a name="exp_module_DyteParticipant--this."></a>
+
+### this. ⏏
+
+NOTE(ishita1805): Added a fallback value to support hive group-call
+till stage support is not completed for hive.
+
+**Kind**: Exported member  
 <a name="module_DyteParticipant--this.+id"></a>
 
 #### participant.id
@@ -76,6 +89,12 @@ The picture of the participant.
 #### participant.customParticipantId
 
 The custom id of the participant set during Add Participant REST API
+
+<a name="module_DyteParticipant--this.+clientSpecificId"></a>
+
+#### ~~participant.clientSpecificId~~
+
+**_Deprecated_**
 
 <a name="module_DyteParticipant--this.+device"></a>
 
@@ -125,6 +144,12 @@ This is true if the participant is screensharing.
 
 producers created by participant
 
+<a name="module_DyteParticipant--this.+manualProducerConfig"></a>
+
+#### participant.manualProducerConfig
+
+producer config passed during manual subscription
+
 <a name="module_DyteParticipant--this.+supportsRemoteControl"></a>
 
 #### participant.supportsRemoteControl
@@ -143,9 +168,15 @@ The preset of the participant.
 
 Denotes the participants's current stage status.
 
-<a name="module_DyteParticipant--this.+roomJoined"></a>
+<a name="module_DyteParticipant--this.+mediaJoined"></a>
 
-#### participant.roomJoined
+#### participant.mediaJoined
+
+Returns true if the local participant has joined the meeting.
+
+<a name="module_DyteParticipant--this.+socketJoined"></a>
+
+#### participant.socketJoined
 
 Returns true if the local participant has joined the meeting.
 
@@ -193,3 +224,9 @@ Requires the permission to kick a participant.
 
 Disables video for this participant.
 Requires the permission to disable video for a participant.
+
+<a name="module_DyteParticipant--this.+updateVideo"></a>
+
+#### participant.updateVideo()
+
+Internal method, do not use

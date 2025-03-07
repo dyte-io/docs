@@ -64,6 +64,7 @@ export default function SidebarMenu() {
         const { name, docs, description, className } = group;
 
         const isCurrentSection = currentSection === group.section;
+        const shouldUpgradeSwitcher = currentSection === 'web-core-sdk';
 
         const navigateToFirstSection = () => handleSectionChange(docs[0].docId);
 
@@ -84,7 +85,16 @@ export default function SidebarMenu() {
           >
             <div className={clsx(styles.label, className)}>{name}</div>
             <div>
-              {isCurrentSection ? (
+              {shouldUpgradeSwitcher ? (
+                <p
+                  className={clsx(
+                    styles.description,
+                    isCurrentSection && styles.sectionActive,
+                  )}
+                >
+                  {description}
+                </p>
+              ) : isCurrentSection ? (
                 <div className={styles.row}>
                   <SectionsMenu
                     defaultValue={isCurrentSection ? docId : docs[0].id}

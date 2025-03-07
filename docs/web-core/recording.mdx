@@ -18,9 +18,22 @@ The `meeting.recording` object has the following properties:
 
 Retrieve a list of active recordings along with their current status.
 
+<Tabs groupId="framework" defaultValue="react">
+  <TabItem value="js" label="Javascript">
+
 ```ts
 const recordings = meeting.recording.recordings;
 ```
+
+  </TabItem>
+  <TabItem value="react" label="React">
+  
+  ```ts
+const recordings = useDyteSelector((m) => m.recording.recordings);
+```
+
+  </TabItem>
+</Tabs>
 
 it returns list of recording ids and their state
 
@@ -103,14 +116,30 @@ If no recording ID is specified, all recordings in the `PAUSED` state will be re
 
 You can set the defaults for recording during initialization
 
-```js
+<Tabs groupId="framework" defaultValue="react">
+  <TabItem value="js" label="Javascript">
+  ```js
 const meeting = await DyteClient.init({
-  authToken,
-  defaults: {
-    recording: recordingConfig,
-  },
+    authToken,
+    defaults: {
+      recording: recordingConfig,
+    },
 });
 ```
+  </TabItem>
+  <TabItem value="react" label="React">
+  ```js
+  useEffect(() => {
+    initMeeting({
+      authToken,
+      defaults: {
+        recording: recordingConfig,
+      },
+    });
+  }, []);
+  ```
+  </TabItem>
+</Tabs>
 
 In recording config you can specify height, width and codec of the recording output. You can also customize the recording file name prefix.
 

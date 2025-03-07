@@ -1,6 +1,6 @@
 ---
 sidebar_position: 14
-web_core_version: 1.32.1
+web_core_version: 2.4.1
 ---
 
 <!-- Auto Generated Below -->
@@ -17,7 +17,6 @@ const plugin2 = meeting.plugins.all.get(pluginId);
 ```
 
 - [DytePlugin](#module_DytePlugin)
-  - [.roomJoined](#module_DytePlugin+roomJoined)
   - [.sendIframeEvent(message)](#module_DytePlugin+sendIframeEvent)
   - [.sendData(payload)](#module_DytePlugin+sendData)
   - [.removePluginView(viewId)](#module_DytePlugin+removePluginView)
@@ -29,15 +28,11 @@ const plugin2 = meeting.plugins.all.get(pluginId);
   - [.activate()](#module_DytePlugin+activate)
   - [.deactivate()](#module_DytePlugin+deactivate)
 
-<a name="module_DytePlugin+roomJoined"></a>
-
-### plugin.roomJoined
-
-Returns true if the local participant has joined the meeting.
-
 <a name="module_DytePlugin+sendIframeEvent"></a>
 
 ### plugin.sendIframeEvent(message)
+
+**Kind**: instance method of [<code>DytePlugin</code>](#module_DytePlugin)
 
 | Param   | Description                              |
 | ------- | ---------------------------------------- |
@@ -48,6 +43,8 @@ Returns true if the local participant has joined the meeting.
 ### plugin.sendData(payload)
 
 This method is used to send arbitrary data to the plugin.
+
+**Kind**: instance method of [<code>DytePlugin</code>](#module_DytePlugin)
 
 | Param             | Description                                                            |
 | ----------------- | ---------------------------------------------------------------------- |
@@ -62,6 +59,8 @@ This method is used to send arbitrary data to the plugin.
 This method is used for cleaning up event listeners attached to an iframe. It must
 be used before the iframe is removed from the DOM.
 
+**Kind**: instance method of [<code>DytePlugin</code>](#module_DytePlugin)
+
 | Param  | Default              | Description                                                        |
 | ------ | -------------------- | ------------------------------------------------------------------ |
 | viewId | <code>default</code> | ID of the view corresponding to this iframe. Default is 'default'. |
@@ -73,6 +72,8 @@ be used before the iframe is removed from the DOM.
 This method adds the communcation layer between the plugin inside the iframe
 and the core application (meeting object) in the main window.
 
+**Kind**: instance method of [<code>DytePlugin</code>](#module_DytePlugin)
+
 | Param  | Default              | Description                                                        |
 | ------ | -------------------- | ------------------------------------------------------------------ |
 | iframe |                      | Iframe element to display this plugin.                             |
@@ -82,30 +83,37 @@ and the core application (meeting object) in the main window.
 
 ### plugin.activateForSelf()
 
+**Kind**: instance method of [<code>DytePlugin</code>](#module_DytePlugin)  
 <a name="module_DytePlugin+deactivateForSelf"></a>
 
 ### plugin.deactivateForSelf()
 
+**Kind**: instance method of [<code>DytePlugin</code>](#module_DytePlugin)  
 <a name="module_DytePlugin+enable"></a>
 
 ### ~~plugin.enable()~~
 
 **_Deprecated_**
 
+**Kind**: instance method of [<code>DytePlugin</code>](#module_DytePlugin)  
 <a name="module_DytePlugin+disable"></a>
 
 ### ~~plugin.disable()~~
 
 **_Deprecated_**
 
+**Kind**: instance method of [<code>DytePlugin</code>](#module_DytePlugin)  
 <a name="module_DytePlugin+activate"></a>
 
 ### plugin.activate()
 
 Activate this plugin for all participants.
 
+**Kind**: instance method of [<code>DytePlugin</code>](#module_DytePlugin)  
 <a name="module_DytePlugin+deactivate"></a>
 
 ### plugin.deactivate()
 
 Deactivate this plugin for all participants.
+
+**Kind**: instance method of [<code>DytePlugin</code>](#module_DytePlugin)

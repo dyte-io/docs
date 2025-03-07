@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-web_core_version: 1.32.1
+web_core_version: 2.4.1
 ---
 
 <!-- Auto Generated Below -->
@@ -21,10 +21,12 @@ named `meeting`.
     - [.plugins](#module_DyteClient+plugins)
     - [.chat](#module_DyteClient+chat)
     - [.polls](#module_DyteClient+polls)
-    - [.remote](#module_DyteClient+remote)
     - [.connectedMeetings](#module_DyteClient+connectedMeetings)
+    - [.**internals**](#module_DyteClient+__internals__)
     - [.join()](#module_DyteClient+join)
     - [.leave()](#module_DyteClient+leave)
+    - ~~[.joinRoom()](#module_DyteClient+joinRoom)~~
+    - ~~[.leaveRoom()](#module_DyteClient+leaveRoom)~~
   - _static_
     - [.init(options)](#module_DyteClient.init)
 
@@ -36,6 +38,7 @@ The `participants` object consists of 4 maps of participants,
 `waitlisted`, `joined`, `active`, `pinned`. The maps are indexed by
 `peerId`s, and the values are the corresponding participant objects.
 
+**Kind**: instance property of [<code>DyteClient</code>](#module_DyteClient)  
 <a name="module_DyteClient+self"></a>
 
 ### meeting.self
@@ -44,6 +47,7 @@ The `self` object can be used to manipulate audio and video settings,
 and other configurations for the local participant. This exposes methods
 to enable and disable media tracks, share the user's screen, etc.
 
+**Kind**: instance property of [<code>DyteClient</code>](#module_DyteClient)  
 <a name="module_DyteClient+meta"></a>
 
 ### meeting.meta
@@ -51,6 +55,7 @@ to enable and disable media tracks, share the user's screen, etc.
 The `room` object stores information about the current meeting, such
 as chat messages, polls, room name, etc.
 
+**Kind**: instance property of [<code>DyteClient</code>](#module_DyteClient)  
 <a name="module_DyteClient+ai"></a>
 
 ### meeting.ai
@@ -59,6 +64,7 @@ The `ai` object is used to interface with Dyte's AI features.
 You can obtain the live meeting transcript and use other meeting AI
 features such as summary, and agenda using this object.
 
+**Kind**: instance property of [<code>DyteClient</code>](#module_DyteClient)  
 <a name="module_DyteClient+plugins"></a>
 
 ### meeting.plugins
@@ -66,6 +72,7 @@ features such as summary, and agenda using this object.
 The `plugins` object stores information about the plugins available in
 the current meeting. It exposes methods to activate and deactivate them.
 
+**Kind**: instance property of [<code>DyteClient</code>](#module_DyteClient)  
 <a name="module_DyteClient+chat"></a>
 
 ### meeting.chat
@@ -73,6 +80,7 @@ the current meeting. It exposes methods to activate and deactivate them.
 The chat object stores the chat messages that were sent in the meeting.
 This includes text messages, images, and files.
 
+**Kind**: instance property of [<code>DyteClient</code>](#module_DyteClient)  
 <a name="module_DyteClient+polls"></a>
 
 ### meeting.polls
@@ -80,13 +88,7 @@ This includes text messages, images, and files.
 The polls object stores the polls that were initiated in the meeting.
 It exposes methods to create and vote on polls.
 
-<a name="module_DyteClient+remote"></a>
-
-### meeting.remote
-
-The remote object stores the remote control requests for the meeting.
-It exposes methods to request, accept and end the remote control.
-
+**Kind**: instance property of [<code>DyteClient</code>](#module_DyteClient)  
 <a name="module_DyteClient+connectedMeetings"></a>
 
 ### meeting.connectedMeetings
@@ -94,49 +96,60 @@ It exposes methods to request, accept and end the remote control.
 The connectedMeetings object stores the connected meetings states.
 It exposes methods to create/read/update/delete methods for connected meetings.
 
+**Kind**: instance property of [<code>DyteClient</code>](#module_DyteClient)  
 <a name="module_DyteClient+__internals__"></a>
 
+### meeting.\_\_internals\_\_
+
+The **internals** object exposes the internal tools & utilities such as features and logger
+so that client can utilise the same to build their own feature based UI.
+DyteLogger (**internals**.logger) can be used to send logs to Dyte's servers
+to inform Dyte of issues, if any, proactively.
+
+**Kind**: instance property of [<code>DyteClient</code>](#module_DyteClient)  
 <a name="module_DyteClient+join"></a>
 
 ### meeting.join()
 
-The `join()` method can be used to join the meeting. A `roomJoined` event
-is emitted on `self` when the room is joined successfully.
+The `join()` method can be used to join the meeting.
+A `roomJoined` event is emitted on `self` when the room
+is joined successfully.
 
+**Kind**: instance method of [<code>DyteClient</code>](#module_DyteClient)  
 <a name="module_DyteClient+leave"></a>
 
 ### meeting.leave()
 
 The `leave()` method can be used to leave a meeting.
 
-<a name="module_DyteClient.init"></a>
-
-### DyteClient.init(options)
-
-The `init` method can be used to instantiate the DyteClient class.
-This returns an instance of DyteClient, which can be used to perform
-actions on the meeting.
-
-| Param             | Description                                     |
-| ----------------- | ----------------------------------------------- |
-| options           | The options object.                             |
-| options.authToken | The authorization token received using the API. |
-| options.apiBase   | The base URL of the API.                        |
-| options.defaults  | The default audio and video settings.           |
-
+**Kind**: instance method of [<code>DyteClient</code>](#module_DyteClient)  
 <a name="module_DyteClient+joinRoom"></a>
 
 ### ~~meeting.joinRoom()~~
 
 **_Deprecated_**
 
-The `joinRoom()` method can be used to join the meeting. A `roomJoined` event
-is emitted on `self` when the room is joined successfully.
-
+**Kind**: instance method of [<code>DyteClient</code>](#module_DyteClient)  
 <a name="module_DyteClient+leaveRoom"></a>
 
 ### ~~meeting.leaveRoom()~~
 
 **_Deprecated_**
 
-The `leaveRoom()` method can be used to leave a meeting.
+**Kind**: instance method of [<code>DyteClient</code>](#module_DyteClient)  
+<a name="module_DyteClient.init"></a>
+
+### meeting.init(options)
+
+The `init` method can be used to instantiate the DyteClient class.
+This returns an instance of DyteClient, which can be used to perform
+actions on the meeting.
+
+**Kind**: static method of [<code>DyteClient</code>](#module_DyteClient)
+
+| Param             | Description                                     |
+| ----------------- | ----------------------------------------------- |
+| options           | The options object.                             |
+| options.authToken | The authorization token received using the API. |
+| options.baseURI   | The base URL of the API.                        |
+| options.defaults  | The default audio and video settings.           |

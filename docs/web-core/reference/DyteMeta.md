@@ -1,6 +1,6 @@
 ---
 sidebar_position: 7
-web_core_version: 1.32.1
+web_core_version: 2.4.1
 ---
 
 <!-- Auto Generated Below -->
@@ -17,71 +17,66 @@ This consists of the metadata of the meeting, such as the room name and the titl
   - [.meetingTitle](#module_DyteMeta+meetingTitle)
   - [.sessionId](#module_DyteMeta+sessionId)
   - [.meetingId](#module_DyteMeta+meetingId)
-  - [.mediaConnected](#module_DyteMeta+mediaConnected)
-  - [.socketConnected](#module_DyteMeta+socketConnected)
   - [.setBroadcastTabChanges(broadcastTabChanges)](#module_DyteMeta+setBroadcastTabChanges)
   - [.setSelfActiveTab(spotlightTab)](#module_DyteMeta+setSelfActiveTab)
 
 <a name="module_DyteMeta+selfActiveTab"></a>
 
-### meta.selfActiveTab
+### meeting.meta.selfActiveTab
 
 Represents the current active tab
 
+**Kind**: instance property of [<code>DyteMeta</code>](#module_DyteMeta)  
 <a name="module_DyteMeta+broadcastTabChanges"></a>
 
-### meta.broadcastTabChanges
+### meeting.meta.broadcastTabChanges
 
 Represents whether current user is spotlighted
 
+**Kind**: instance property of [<code>DyteMeta</code>](#module_DyteMeta)  
 <a name="module_DyteMeta+viewType"></a>
 
-### meta.viewType
+### meeting.meta.viewType
 
 The `viewType` tells the type of the meeting
 possible values are: GROUP_CALL| LIVESTREAM | CHAT | AUDIO_ROOM
 
+**Kind**: instance property of [<code>DyteMeta</code>](#module_DyteMeta)  
 <a name="module_DyteMeta+meetingStartedTimestamp"></a>
 
-### meta.meetingStartedTimestamp
+### meeting.meta.meetingStartedTimestamp
 
 The timestamp of the time when the meeting started.
 
+**Kind**: instance property of [<code>DyteMeta</code>](#module_DyteMeta)  
 <a name="module_DyteMeta+meetingTitle"></a>
 
-### meta.meetingTitle
+### meeting.meta.meetingTitle
 
 The title of the meeting.
 
+**Kind**: instance property of [<code>DyteMeta</code>](#module_DyteMeta)  
 <a name="module_DyteMeta+sessionId"></a>
 
-### meta.sessionId
+### meeting.meta.sessionId
 
 (Experimental) The sessionId this meeting object is part of.
 
+**Kind**: instance property of [<code>DyteMeta</code>](#module_DyteMeta)  
 <a name="module_DyteMeta+meetingId"></a>
 
-### meta.meetingId
+### meeting.meta.meetingId
 
 The room name of the meeting.
 
-<a name="module_DyteMeta+mediaConnected"></a>
-
-### meta.mediaConnected
-
-Has room-node connection been made.
-
-<a name="module_DyteMeta+socketConnected"></a>
-
-### meta.socketConnected
-
-This is set to true if user has succesfully connected to the socket.
-
+**Kind**: instance property of [<code>DyteMeta</code>](#module_DyteMeta)  
 <a name="module_DyteMeta+setBroadcastTabChanges"></a>
 
-### meta.setBroadcastTabChanges(broadcastTabChanges)
+### meeting.meta.setBroadcastTabChanges(broadcastTabChanges)
 
 Sets current user as broadcasting tab changes
+
+**Kind**: instance method of [<code>DyteMeta</code>](#module_DyteMeta)
 
 | Param               |
 | ------------------- |
@@ -89,9 +84,11 @@ Sets current user as broadcasting tab changes
 
 <a name="module_DyteMeta+setSelfActiveTab"></a>
 
-### meta.setSelfActiveTab(spotlightTab)
+### meeting.meta.setSelfActiveTab(spotlightTab)
 
 Sets current active tab for user
+
+**Kind**: instance method of [<code>DyteMeta</code>](#module_DyteMeta)
 
 | Param        |
 | ------------ |

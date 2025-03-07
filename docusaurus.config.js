@@ -454,7 +454,10 @@ const config = {
 
   trailingSlash: false,
   themes: ['@docusaurus/theme-live-codeblock', '@docusaurus/theme-mermaid'],
-  clientModules: [require.resolve('./src/client/define-ui-kit.js')],
+  clientModules: [
+    require.resolve('./src/client/define-ui-kit.js'),
+    require.resolve('./src/client/set-framework.js'),
+  ],
   scripts: [{ src: 'https://cdn.statuspage.io/se-v2.js', async: true }],
   markdown: {
     mermaid: true,

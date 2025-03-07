@@ -18,7 +18,7 @@ meeting.self.updateVideoConstraints(resolution)
 Example
 
 ```ts
-meeting.self.updateVideoConstraints({
+await meeting.self.updateVideoConstraints({
   width: { ideal: 1920 },
   height: { ideal: 1080 },
 });
@@ -31,7 +31,7 @@ meeting.self.updateScreenshareConstraints(resolution)
 Example
 
 ```ts
-meeting.self.updateScreenshareConstraints({
+await meeting.self.updateScreenshareConstraints({
   width: { ideal: 1920 },
   height: { ideal: 1080 },
 });
