@@ -20,13 +20,55 @@ Each of these state changes generate their own events.
 
 - **joined**
 
+<Tabs groupId="framework" defaultValue="react">
+  <TabItem value="js" label="Javascript">
+
 ```ts
 meeting.self.on('roomJoined', () => {
   // local user is in the meeting
 });
 ```
 
+</TabItem>
+<TabItem value="react" label="React">
+
+```ts
+const roomState = useDyteSelector((m) => m.self.roomState);
+const joined = roomState === 'joined';
+```
+
+Alternatively
+
+```ts
+meeting.self.on('roomJoined', () => {
+  // local user is in the meeting
+});
+```
+
+  </TabItem>
+</Tabs>
+
 - **waitlisted**
+
+<Tabs groupId="framework" defaultValue="react">
+  <TabItem value="js" label="Javascript">
+
+    ```ts
+    meeting.self.on('waitlisted', () =>{' '}
+    {
+      // local user is waitlisted
+    });
+    ```
+
+  </TabItem>
+  <TabItem value="react" label="React">
+
+```ts
+const roomState = useDyteSelector((m) => m.self.roomState);
+const isWaitlisted = roomState === 'waitlisted';
+```
+
+Alternatively
 
 ```ts
 meeting.self.on('waitlisted', () => {
@@ -34,12 +76,37 @@ meeting.self.on('waitlisted', () => {
 });
 ```
 
+  </TabItem>
+</Tabs>
+
 - **rejected**
+
+<Tabs groupId="framework" defaultValue="react">
+  <TabItem value="js" label="Javascript">
 
 ```ts
 meeting.self.on('roomLeft', ({ state }) => {
   // state = rejected when host rejects the entry
 });
 ```
+
+  </TabItem>
+  <TabItem value="react" label="React">
+  
+```ts
+const roomState = useDyteSelector((m) => m.self.roomState);
+const rejected = roomState === 'rejected';
+```
+
+Alternatively
+
+```ts
+meeting.self.on('roomLeft', ({ state }) => {
+  // state = rejected when host rejects the entry
+});
+```
+
+</TabItem>
+</Tabs>
 
 Host can use [these methods to accept/reject participants](/web-core/participants#waiting-room-methods)
