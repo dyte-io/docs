@@ -2,7 +2,6 @@
 
 This section focuses on pre-call functionality, providing developers with the tools needed to prepare the media environment before joining the meeting. If you are using our UI Kits, this will be handled by `dyte-setup-screen` or could be built with `dyte-participant-tile`, `dyte-settings` components.
 
-
 ## Properties
 
 - `audioEnabled`: A <span className="tag-orange">boolean</span> value indicating if the audio currently enabled.
@@ -42,11 +41,9 @@ flowchart LR
 Anytime there is an update in audio state you will get a `audioUpdate` event
 
 ```ts
-
-meeting.self.on('audioUpdate', ({ audioEnabled, audioTrack })=> {
+meeting.self.on('audioUpdate', ({ audioEnabled, audioTrack }) => {
   // if enabled show a visual(izer) preview of the audio to the user
 });
-
 ```
 
 **2. Enable/Disable camera**
@@ -68,10 +65,11 @@ flowchart LR
 
     class eam basic;
 ```
+
 <br />
 
 ```ts
-meeting.self.on('videoUpdate', ({ videoEnabled, videoTrack })=> {
+meeting.self.on('videoUpdate', ({ videoEnabled, videoTrack }) => {
   // if videoEnabled play video here to a <video> element
 });
 ```

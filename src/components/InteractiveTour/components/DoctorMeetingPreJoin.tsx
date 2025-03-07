@@ -1,6 +1,6 @@
-import { clsx } from "../utils";
-import { useStore } from "../store";
-import React from "react";
+import { clsx } from '../utils';
+import { useStore } from '../store';
+import React from 'react';
 
 export default function DoctorMeetingPreJoin() {
   const store = useStore();
@@ -14,9 +14,7 @@ export default function DoctorMeetingPreJoin() {
           <span className="mt-2 mb-1 text-md font-bold text-wrap">
             Time for your appointment
           </span>
-          <span className="text-md font-semibold text-gray-400">
-            6:00 PM
-          </span>
+          <span className="text-md font-semibold text-gray-400">6:00 PM</span>
         </div>
         <div className="grid bg-secondary-1000">
           <div
@@ -35,7 +33,9 @@ export default function DoctorMeetingPreJoin() {
                     className="mx-2 aspect-square overflow-hidden rounded-full object-cover"
                   />
                   <div className="flex flex-1 flex-col pl-4">
-                    <p className="text-md mb-0 font-semibold">Dr {doctor.name}</p>
+                    <p className="text-md mb-0 font-semibold">
+                      Dr {doctor.name}
+                    </p>
                     <p className="mb-0 text-sm text-gray-500 dark:text-gray-400">
                       {doctor.dept}
                     </p>
@@ -44,7 +44,7 @@ export default function DoctorMeetingPreJoin() {
                 <button
                   onClick={() => store.incStep(6)}
                   className={clsx(
-                    "book-now relative cursor-pointer bg-blue-600",
+                    'book-now relative cursor-pointer bg-blue-600',
                   )}
                 >
                   {store.currentStep == 5 && (

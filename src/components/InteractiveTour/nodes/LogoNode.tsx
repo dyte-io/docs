@@ -1,6 +1,6 @@
-import { Handle, NodeProps, Position } from "reactflow";
-import { clsx } from "../utils";
-import React from "react";
+import { Handle, NodeProps, Position } from 'reactflow';
+import { clsx } from '../utils';
+import React from 'react';
 
 export type LogoNodeProps = {
   active: boolean;
@@ -8,7 +8,11 @@ export type LogoNodeProps = {
 
 export default function LogoNode({ data }: NodeProps<LogoNodeProps>) {
   return (
-    <div className={clsx(data.active ? "grayscale-0 opacity-100" : "grayscale opacity-30")}>
+    <div
+      className={clsx(
+        data.active ? 'grayscale-0 opacity-100' : 'grayscale opacity-30',
+      )}
+    >
       <div className="flex flex-col justify-center items-center">
         <svg
           className="h-8  text-blue-600"
@@ -33,7 +37,7 @@ export default function LogoNode({ data }: NodeProps<LogoNodeProps>) {
         </svg>
         <span className="ml-1 font-semibold">REST API</span>
       </div>
-      <Handle className={"w-2 h-2"} type="target" position={Position.Bottom} />
+      <Handle className={'w-2 h-2'} type="target" position={Position.Bottom} />
     </div>
   );
 }

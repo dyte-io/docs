@@ -20,7 +20,7 @@ function DocSidebarDesktop({ path, sidebar, onCollapse, isHidden }) {
       className={clsx(
         styles.sidebar,
         hideOnScroll && styles.sidebarWithHideableNavbar,
-        isHidden && styles.sidebarHidden
+        isHidden && styles.sidebarHidden,
       )}
     >
       {hideOnScroll && <Logo tabIndex={-1} className={styles.sidebarLogo} />}

@@ -27,7 +27,7 @@ export function useSectionMenu() {
       docId,
       currentSection,
       sections: SECTIONS.filter(
-        (section) => section.section === currentSection
+        (section) => section.section === currentSection,
       ),
     };
   }

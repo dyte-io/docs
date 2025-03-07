@@ -25,7 +25,7 @@ export function CardSection({
       className={clsx(
         'homepage-section',
         hasSubSections && 'has-sub-sections',
-        className
+        className,
       )}
     >
       {title && <HeadingTag id={id ?? paramCase(title)}>{title}</HeadingTag>}
@@ -57,7 +57,7 @@ export function Card({
   className?: string;
 }>) {
   return (
-    <Link to={to} className={clsx("homepage-card",className)}>
+    <Link to={to} className={clsx('homepage-card', className)}>
       {icon && <div className="icon">{icon}</div>}
       <div className="card-content">
         <div className="title" id={id && paramCase(title)}>

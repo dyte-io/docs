@@ -1,7 +1,6 @@
-import type { NodeProps } from "reactflow";
-import { Handle, Position } from "reactflow";
-import React from "react";
-
+import type { NodeProps } from 'reactflow';
+import { Handle, Position } from 'reactflow';
+import React from 'react';
 
 export type PositionLoggerNodeData = {
   label?: string;

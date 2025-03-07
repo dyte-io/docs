@@ -5,8 +5,10 @@ description: >-
 ---
 
 # ConfigureWebinerAlertView
+
 ## Overview
-Methods and properties for managing Webinar AlertView. This will create an alert which will tells user about their 
+
+Methods and properties for managing Webinar AlertView. This will create an alert which will tells user about their
 Audio and Video status before joining the webinar stage.
 
 ## Topics:
@@ -16,18 +18,22 @@ Audio and Video status before joining the webinar stage.
 ```swift
  init(meeting: DyteMobileClient, participant: DyteJoinedMeetingParticipant) {
 ```
-#### Parameters:
-Required: 
-meeting: Current ongoing meeting object. 
-participant: Participant to join stage.                                       
 
-### Show AlertView to user 
+#### Parameters:
+
+Required:
+meeting: Current ongoing meeting object.
+participant: Participant to join stage.
+
+### Show AlertView to user
 
 ```swift
 func show(on view: UIView)
 ```
+
 #### Parameters:
-Required: 
+
+Required:
 view: Parent View on which this alertView will be shown
 
 ### Button with functionality to join stage
@@ -35,7 +41,8 @@ view: Parent View on which this alertView will be shown
 ```swift
 var confirmAndJoinButton: DyteButton {get}
 ```
-Define it as follows 
+
+Define it as follows
 
 ```swift
 public let confirmAndJoinButton: DyteButton = {
@@ -45,19 +52,20 @@ public let confirmAndJoinButton: DyteButton = {
 ```
 
 ### Button with functionality to remove the alertview
-   
+
 ```swift
 var cancelButton: DyteButton {get }
 ```
-Define it as follows 
 
- ```swift
+Define it as follows
+
+```swift
 public let cancelButton: DyteButton = {
-  let button = DyteUIUTility.createButton(text: "Cancel")
-  button.backgroundColor = dyteSharedTokenColor.background.shade800
-  return button
+ let button = DyteUIUTility.createButton(text: "Cancel")
+ button.backgroundColor = dyteSharedTokenColor.background.shade800
+ return button
 }()
- ```
+```
 
 <head>
   <title>iOS ConfigureWebinerAlertView</title>

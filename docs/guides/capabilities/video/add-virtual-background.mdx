@@ -43,7 +43,9 @@ If you installed the package using a script tag, the `DyteVideoBackgroundTransfo
 2.x versions of DyteVideoBackgroundTransformer use their own rendering mechanism thus require you to disable the default per frame canvas rendering.
 
 ```js
-await meeting.self.setVideoMiddlewareGlobalConfig({ disablePerFrameCanvasRendering: true });
+await meeting.self.setVideoMiddlewareGlobalConfig({
+  disablePerFrameCanvasRendering: true,
+});
 ```
 
 For reference, A middleware such as [company branding](https://github.com/dyte-in/streams-middleware-samples/blob/main/video/company-branding.js) with the default per frame rendering can be rewritten without per frame rendering as [this](https://github.com/dyte-in/streams-middleware-samples/blob/main/video/middleware-with-per-frame-rendering-disabled/company-branding.js).
@@ -56,12 +58,11 @@ Now that we have disabled the per frame rendering, We can initialise the DyteVid
 
 ```js
 const videoBackgroundTransformer = await DyteVideoBackgroundTransformer.init({
-    meeting: meeting,
-    segmentationConfig: {
-      pipeline: 'canvas2dCpu', // 'webgl2' | 'canvas2dCpu'
-    },
+  meeting: meeting,
+  segmentationConfig: {
+    pipeline: 'canvas2dCpu', // 'webgl2' | 'canvas2dCpu'
+  },
 });
-
 ```
 
 To customise DyteVideoBackgroundTransformer configs, please refer to the [video background transfomer](https://www.npmjs.com/package/@dytesdk/video-background-transformer?activeTab=readme) NPM package.
@@ -86,7 +87,7 @@ To incorporate an image as a background, follow these steps:
 ```js
 const videoMiddleware =
   await videoBackgroundTransformer.createStaticBackgroundVideoMiddleware(
-    `IMAGE_LINK_OF_YOUR_LIKING`
+    `IMAGE_LINK_OF_YOUR_LIKING`,
   );
 ```
 
@@ -95,7 +96,7 @@ For example:
 ```js
 const videoMiddleware =
   await videoBackgroundTransformer.createStaticBackgroundVideoMiddleware(
-    `https://assets.dyte.io/backgrounds/bg-dyte-office.jpg`
+    `https://assets.dyte.io/backgrounds/bg-dyte-office.jpg`,
   );
 ```
 
@@ -138,5 +139,8 @@ meeting.self.removeVideoMiddleware(videoMiddleware);
 
 <head>
   <title>Virtual Background Guide</title>
-  <meta name="description" content="Learn how to add virtual backgrounds with Dyte's customization capabilities. Follow our guide for effective customization of virtual backgrounds."/>
+  <meta
+    name="description"
+    content="Learn how to add virtual backgrounds with Dyte's customization capabilities. Follow our guide for effective customization of virtual backgrounds."
+  />
 </head>

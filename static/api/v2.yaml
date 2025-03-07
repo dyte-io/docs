@@ -2701,7 +2701,7 @@ paths:
         - $ref: '#/components/parameters/perPage'
         - name: expired
           in: query
-          description: 'If passed, only shows expired/non-expired recordings on Dyte''s bucket'
+          description: "If passed, only shows expired/non-expired recordings on Dyte's bucket"
           required: false
           schema:
             type: boolean
@@ -3178,7 +3178,7 @@ components:
             properties:
               allow_unmute:
                 type: boolean
-                description: 'if false, participants won''t be able to unmute themselves after they are muted'
+                description: "if false, participants won't be able to unmute themselves after they are muted"
     CreatePollBody:
       description: Request body for creating a new poll
       content:
@@ -5457,7 +5457,7 @@ components:
       properties:
         enabled:
           type: boolean
-          description: 'Controls whether recordings are uploaded to Dyte''s bucket. If set to false, `download_url`, `audio_download_url`, `download_url_expiry` won''t be generated for a recording.'
+          description: "Controls whether recordings are uploaded to Dyte's bucket. If set to false, `download_url`, `audio_download_url`, `download_url_expiry` won't be generated for a recording."
       required:
         - enabled
     LivestreamingConfig:

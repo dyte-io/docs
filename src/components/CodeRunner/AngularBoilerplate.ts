@@ -11,4 +11,4 @@ import { DyteComponentsModule } from '@dytesdk/angular-ui-kit';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}`
+export class AppModule {}`;

@@ -225,6 +225,7 @@ The payload for this event is like the following:
 This event is triggered when the summary of a meeting becomes available after the meeting ends.
 
 The payload for this event is structured as follows:
+
 ```json
 {
   "event": "meeting.summary",
@@ -237,10 +238,10 @@ The payload for this event is structured as follows:
     "startedAt": "2023-08-10T10:31:20.173Z",
     "endedAt": "2023-08-10T10:33:56.771Z",
     "organizedBy": {
-          "id": "d6f046b8-b638-4cf7-8090-d9332447ae49",
-          "name": "Dyte"
-      }
-    },
+      "id": "d6f046b8-b638-4cf7-8090-d9332447ae49",
+      "name": "Dyte"
+    }
+  },
   "summaryDownloadUrl": "https://sample.com/summary.txt",
   "summaryDownloadUrlExpiry": "2023-12-13 07:08:39.051621Z"
 }
@@ -417,5 +418,8 @@ This event is triggered when a livestream's status changes. Possible values for
 
 <head>
   <title>Webhook Events List Guide</title>
-  <meta name="description" content="Explore various webhook events and their implementation with Dyte's capabilities. Follow our guide for effective event handling."/>
+  <meta
+    name="description"
+    content="Explore various webhook events and their implementation with Dyte's capabilities. Follow our guide for effective event handling."
+  />
 </head>

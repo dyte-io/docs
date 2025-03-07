@@ -25,7 +25,7 @@ const viewMode = useDyteSelector((meeting) => meeting.participants.viewMode);
 
 ```ts
 const pageChanged = useDyteSelector(
-  (meeting) => meeting.participants.pageCount
+  (meeting) => meeting.participants.pageCount,
 );
 ```
 
@@ -36,7 +36,7 @@ speak.
 
 ```ts
 const activeSpeaker = useDyteSelector(
-  (meeting) => meeting.participants.lastActiveSpeaker
+  (meeting) => meeting.participants.lastActiveSpeaker,
 );
 ```
 
@@ -55,7 +55,7 @@ Trigger an event when any participant joins the meeting.
 
 ```ts
 const joinedParticipants = useDyteSelector(
-  (meeting) => meeting.participants.joined
+  (meeting) => meeting.participants.joined,
 );
 ```
 
@@ -65,7 +65,7 @@ Trigger an event when a participant is pinned / unpinned.
 
 ```ts
 const pinnedParticipants = useDyteSelector(
-  (meeting) => meeting.participants.pinned
+  (meeting) => meeting.participants.pinned,
 );
 ```
 
@@ -75,7 +75,7 @@ Trigger an event when the target participant starts / stops video.
 
 ```ts
 const videoEnabled = useDyteSelector(
-  (m) => m.participants.joined.get(participantId).videoEnabled
+  (m) => m.participants.joined.get(participantId).videoEnabled,
 );
 ```
 
@@ -97,7 +97,7 @@ Trigger an event when the target participant starts / stops screen share.
 
 ```ts
 const screenShareEnabled = useDyteSelector(
-  (m) => m.participants.joined.get(participantId).screenShareEnabled
+  (m) => m.participants.joined.get(participantId).screenShareEnabled,
 );
 ```
 
@@ -105,18 +105,15 @@ Trigger an event when any participant starts / stops screen share.
 
 ```ts
 const screensharingParticipant = useDyteSelector((m) =>
-  m.participants.joined.toArray().find((p) => p.screenShareEnabled)
+  m.participants.joined.toArray().find((p) => p.screenShareEnabled),
 );
 ```
 
 ## Network quality score
 
-import ParticipantMediaScoreUpdate from '@site/docs/partials/events/_participant-media-score-update.mdx'
+import ParticipantMediaScoreUpdate from '@site/docs/partials/events/_participant-media-score-update.mdx';
 
 <ParticipantMediaScoreUpdate />
-
-
-
 
 ## Events for specific participant
 

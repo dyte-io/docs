@@ -27,7 +27,7 @@ const { meeting } = useDyteMeeting();
 
 // Array of participants having their screenshare on
 const ssParticipants = useDyteSelector((m) =>
-  m.participant.joined.toArray().filter((p) => p.screenShareEnabled)
+  m.participant.joined.toArray().filter((p) => p.screenShareEnabled),
 );
 
 // or using traditional event listeners
@@ -67,7 +67,7 @@ const { meeting } = useDyteMeeting();
 
 // Array of participants having their screenshare on
 const ssParticipants = useDyteSelector((m) =>
-  m.participant.joined.toArray().filter((p) => p.screenShareEnabled)
+  m.participant.joined.toArray().filter((p) => p.screenShareEnabled),
 );
 
 // or using traditional event listeners

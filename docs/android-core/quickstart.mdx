@@ -92,12 +92,12 @@ DyteMobileClient dyteClient = DyteMeetingBuilder.INSTANCE.build(activity);
 Configure the following properties in the `DyteMeetingInfoV2` class. You must pass a valid participant `authToken` obtained from
 the [Add Participant](/api/?v=v2#/operations/add_participant) API.
 
-| Name          | Description |
-|---------------|----------------------------------------------------------------------------------------|
+| Name          | Description                                                                                                                                                                             |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `authToken`   | After you've created the meeting, add each participant to the meeting using the [Add Participant API](/api?v=v2#/operations/add_participant) The API response contains the `authToken`. |
-| `enableAudio` | Set whether to join the meeting with your Mic ON (`true`) or OFF (`false`). |
-| `enableVideo` | Set whether to join the meeting with your Camera ON (`true`) or OFF (`false`).|
-| `baseDomain`  | Base domain of the dyte's environment you have created the meeting on. Only required if using a white-labeled domain, defaults to "dyte.io" |
+| `enableAudio` | Set whether to join the meeting with your Mic ON (`true`) or OFF (`false`).                                                                                                             |
+| `enableVideo` | Set whether to join the meeting with your Camera ON (`true`) or OFF (`false`).                                                                                                          |
+| `baseDomain`  | Base domain of the dyte's environment you have created the meeting on. Only required if using a white-labeled domain, defaults to "dyte.io"                                             |
 
 <Tabs groupId="android-core-quickstart">
   <TabItem value="kotlin" label="Kotlin" default>

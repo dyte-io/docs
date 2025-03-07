@@ -55,7 +55,7 @@ app.post('/webhook', express.json({ type: 'application/json' }), (req, res) => {
     'RSA-SHA256',
     Buffer.from(JSON.stringify(payload)),
     dytePublicKey,
-    Buffer.from(signature, 'base64')
+    Buffer.from(signature, 'base64'),
   );
   // ... do further processing
 });
@@ -87,5 +87,8 @@ Webhook IDs are commonly utilized for the following purposes:
 
 <head>
   <title>Verify Webhooks Using Dyte's Signature and Webhook ID Guide</title>
-  <meta name="description" content="Learn how to use signatures with Dyte's webhook capabilities. Follow our guide for effective signature implementation."/>
+  <meta
+    name="description"
+    content="Learn how to use signatures with Dyte's webhook capabilities. Follow our guide for effective signature implementation."
+  />
 </head>

@@ -43,7 +43,7 @@ function Accordion({ title, children, open, onOpen, onClose }) {
         'dyte-accordion cursor-pointer border-0 border-solid last-of-type:border-0',
         open
           ? 'mb-4 rounded-2xl bg-secondary-800'
-          : 'border-b border-zinc-300 dark:border-zinc-700'
+          : 'border-b border-zinc-300 dark:border-zinc-700',
       )}
       role="tab"
       aria-expanded={open}
@@ -54,7 +54,7 @@ function Accordion({ title, children, open, onOpen, onClose }) {
         role="heading"
         className={clsx(
           'flex w-full cursor-pointer select-none items-center justify-between gap-4 border-0 border-solid bg-transparent p-6',
-          open && '!pb-0 text-primary dark:text-primary-100'
+          open && '!pb-0 text-primary dark:text-primary-100',
         )}
         tabIndex={0}
         onClick={handleOpen}
@@ -73,13 +73,13 @@ function Accordion({ title, children, open, onOpen, onClose }) {
           <Minus
             className={clsx(
               'h-4 w-4 text-zinc-500 dark:text-zinc-300',
-              !open && 'hidden'
+              !open && 'hidden',
             )}
           />
           <Plus
             className={clsx(
               'h-4 w-4 text-primary-100',
-              open ? 'hidden' : 'block'
+              open ? 'hidden' : 'block',
             )}
           />
         </div>
@@ -92,7 +92,7 @@ function Accordion({ title, children, open, onOpen, onClose }) {
         aria-labelledby={headingId}
         className={clsx(
           'accordion-content p-6 !pt-0',
-          open ? 'block' : 'hidden'
+          open ? 'block' : 'hidden',
         )}
       >
         {children}
@@ -142,7 +142,7 @@ export default function FAQPage() {
           'cursor-pointer rounded-md border-none px-3.5 py-1.5 font-jakarta text-sm font-medium',
           activeTab === tag
             ? 'bg-primary text-white'
-            : 'bg-secondary-800 text-black dark:text-white'
+            : 'bg-secondary-800 text-black dark:text-white',
         )}
         data-tag={tag}
         onClick={() => setActiveTab(tag)}

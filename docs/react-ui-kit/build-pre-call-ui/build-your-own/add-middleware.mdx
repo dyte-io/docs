@@ -47,8 +47,8 @@ export default function CustomMeetingPreview() {
     /**
      * @dytesdk/ui-kit-addons/video-background uses @dytesdk/video-background-transformer.
      * To customise DyteVideoBackgroundTransformer configs, please refer to https://www.npmjs.com/package/@dytesdk/video-background-transformer?activeTab=readme.
-     * 
-    */
+     *
+     */
     const videoBackground = new VideoBackground({
       modes: ['blur', 'virtual'],
       segmentationConfig: {
@@ -88,7 +88,7 @@ export default function CustomMeetingPreview() {
               icon={effectsSVG}
               onClick={() => {
                 const changer = document.querySelector(
-                  'dyte-background-changer'
+                  'dyte-background-changer',
                 );
                 if (changer) {
                   const isOpen = changer?.getAttribute('data-open') === 'true';

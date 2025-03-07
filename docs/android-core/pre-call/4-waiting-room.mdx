@@ -31,7 +31,6 @@ meeting.addMeetingRoomEventsListener(object : DyteMeetingRoomEventsListener {
 })
 ```
 
-
   </TabItem>
 
   <TabItem value="java" label="Java" default>
@@ -45,7 +44,6 @@ meeting.addMeetingRoomEventsListener(new DyteMeetingRoomEventsListener() {
 })
 ```
 
-
   </TabItem>
 </Tabs>
 
@@ -55,7 +53,7 @@ If the user is waitlisted, the `onWaitListStatusUpdate` callback in `DyteSelfEve
 user's waitlist status. You can check the `waitListStatus` to determine their status:
 
 - `WAITING`: Local user is in the waiting room.
-- `REJECTED`:  Local user's join room request is rejected by the host.
+- `REJECTED`: Local user's join room request is rejected by the host.
 
 <Tabs groupId="android-core-media-preview">
   <TabItem value="kotlin" label="Kotlin" default>
