@@ -51,7 +51,7 @@ export default function Home() {
   const location = router.location;
 
   const url = new URL(
-    `https://docs.dyte.io${location.pathname}${location.search}`
+    `https://docs.dyte.io${location.pathname}${location.search}`,
   );
 
   const currentVersion = url.searchParams.get('v') || 'v2';

@@ -10,35 +10,35 @@ web_core_version: 1.32.1
 This module provides the ability to control a remotely shared screen using mouse and keyboard.
 Methods are available to request, accept and end control of shared screen.
 
-
-* [DyteRemote](#module_DyteRemote)
-    * [.requestControl(peerId)](#module_DyteRemote+requestControl) ⇒
-    * [.acceptControl(requestId)](#module_DyteRemote+acceptControl)
-    * [.endControl()](#module_DyteRemote+endControl)
+- [DyteRemote](#module_DyteRemote)
+  - [.requestControl(peerId)](#module_DyteRemote+requestControl) ⇒
+  - [.acceptControl(requestId)](#module_DyteRemote+acceptControl)
+  - [.endControl()](#module_DyteRemote+endControl)
 
 <a name="module_DyteRemote+requestControl"></a>
 
 ### meeting.remote.requestControl(peerId) ⇒
+
 Sends a request to a peer for remote control.
 
-**Returns**: request identifier for the control request.  
+**Returns**: request identifier for the control request.
 
-| Param | Description |
-| --- | --- |
+| Param  | Description                                               |
+| ------ | --------------------------------------------------------- |
 | peerId | The peer that needs to receive the remote control request |
 
 <a name="module_DyteRemote+acceptControl"></a>
 
 ### meeting.remote.acceptControl(requestId)
+
 Accepts a remote control request from a peer.
 
-
-| Param | Description |
-| --- | --- |
+| Param     | Description                                      |
+| --------- | ------------------------------------------------ |
 | requestId | The request identifier that needs to be accepted |
 
 <a name="module_DyteRemote+endControl"></a>
 
 ### meeting.remote.endControl()
-End an active remote control.
 
+End an active remote control.

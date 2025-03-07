@@ -113,7 +113,7 @@ const Meeting = () => {
   // these are optimized so that re-renders only occur when the selected slice changes
   const messages = useDyteSelector((meeting) => meeting.chat.messages);
   const activeParticipants = useDyteSelector(
-    (meeting) => meeting.participants.active
+    (meeting) => meeting.participants.active,
   );
 
   return <div>{/* render your UI */}</div>;

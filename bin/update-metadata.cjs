@@ -42,7 +42,7 @@ for (const section of Object.keys(prefixes)) {
       const headingMatch = content.match(/^# (.*)/m);
       if (!headingMatch && !existingTitle) {
         console.log(
-          `File ${filePath} does not have an H1 heading. Skipping...`
+          `File ${filePath} does not have an H1 heading. Skipping...`,
         );
         continue;
       }
@@ -66,7 +66,7 @@ for (const section of Object.keys(prefixes)) {
 
       const updatedFileContent = grayMatter.stringify(
         content + updatedContent.join('\n'),
-        data
+        data,
       );
       fs.writeFileSync(filePath, updatedFileContent);
 

@@ -66,10 +66,10 @@ Triggered when the user starts / stops the screen share using
 
 ```ts
 const screenShareEnabled = useDyteSelector(
-  (meeting) => meeting.self.screenShareEnabled
+  (meeting) => meeting.self.screenShareEnabled,
 );
 const screenShareTrack = useDyteSelector(
-  (meeting) => meeting.self.screenShareTrack
+  (meeting) => meeting.self.screenShareTrack,
 );
 ```
 
@@ -97,10 +97,9 @@ meeting.self.on('deviceUpdate', ({ device }) => {
 
 ## Network quality score
 
-import SelfMediaScoreUpdate from '@site/docs/partials/events/_self-media-score-update.mdx'
+import SelfMediaScoreUpdate from '@site/docs/partials/events/_self-media-score-update.mdx';
 
 <SelfMediaScoreUpdate />
-
 
 ## Permission Updates
 

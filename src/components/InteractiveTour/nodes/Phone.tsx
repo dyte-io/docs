@@ -15,7 +15,7 @@ export default function Phone({ data }: NodeProps<PhoneProps>) {
     <div
       className={clsx(
         'rounded-t-[28px] rounded-b-[36px] bg-pink-500/90 shadow-xl',
-        data.active ? 'opacity-100 grayscale-0' : 'opacity-40 grayscale'
+        data.active ? 'opacity-100 grayscale-0' : 'opacity-40 grayscale',
       )}
     >
       <p
@@ -35,12 +35,12 @@ export default function Phone({ data }: NodeProps<PhoneProps>) {
   );
 }
 
-export function PhoneGeneric({ children }: { children: React.ReactNode}) {
+export function PhoneGeneric({ children }: { children: React.ReactNode }) {
   return (
     <div
       className={clsx(
         'rounded-t-[28px] rounded-b-[36px] bg-pink-500/90 shadow-xl',
-        'opacity-100 grayscale-0'
+        'opacity-100 grayscale-0',
       )}
     >
       <p
@@ -51,9 +51,7 @@ export function PhoneGeneric({ children }: { children: React.ReactNode}) {
         Your Application
       </p>
       <div className="simulator nowheel bg-secondary-1000">
-        <div className="h-full w-full bg-secondary-1000 p-2">
-          {children}
-        </div>
+        <div className="h-full w-full bg-secondary-1000 p-2">{children}</div>
       </div>
     </div>
   );

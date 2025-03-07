@@ -13,8 +13,7 @@ import { WebCoreCDNInstallation } from '@site/src/components/LatestInstallation'
 
 # Quickstart
 
-This quickstart shows how to use Dyte's core SDKs to add live video and audio to
-your JavaScript based applications.
+This quickstart shows how to incorporate live video and audio into your React application using Dyte's Core SDKs. Core SDKs offer comprehensive customization and branding capabilities, enabling you to create your own user interface (UI) from scratch, without having to deal with complex media layers.
 
 ## Objective
 
@@ -128,11 +127,11 @@ await meeting.join();
 
 Once the meeting is over, you can leave the meeting room.
 
-To leave the meeting room, call `leaveRoom()` method on the dyteClient as shown
+To leave the meeting room, call `leave()` method on the dyteClient as shown
 below.
 
 ```js
-await meeting.leaveRoom();
+await meeting.leave();
 ```
 
 <head>

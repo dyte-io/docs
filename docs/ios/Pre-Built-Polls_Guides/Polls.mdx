@@ -5,12 +5,20 @@ description: >-
 ---
 
 # Pre-built create poll Scren
+
 ## Overview: How to use existing create polls screen.
+
 We have to use a class [DyteCreatePollsViewController](/ios/components/dyte-poll-form), which is used to create polls for the participant.
 
-<img src="/static/ios/ios_create_polls.png" alt="Example Image" width="200" height="100"/>
+<img
+  src="/static/ios/ios_create_polls.png"
+  alt="Example Image"
+  width="200"
+  height="100"
+/>
 
 When user press the create poll button, use below code
+
 ```swift
 @objc func createPollClick(button: DyteButton) {
   let controller = DyteCreatePollsViewController(dyteMobileClient: dyteMobileClient) { [weak self] result in

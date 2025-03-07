@@ -61,7 +61,6 @@ Triggers an event when any participant leaves the meeting.
     }
 ```
 
-
   </TabItem>
 
   <TabItem value="java" label="Java" default>
@@ -74,10 +73,8 @@ Triggers an event when any participant leaves the meeting.
     };
 ```
 
-
   </TabItem>
 </Tabs>
-
 
 ### Participants update
 
@@ -117,13 +114,13 @@ Triggers an event when any participant starts / stops video.
 <Tabs groupId="android-core-participants">
   <TabItem value="kotlin" label="Kotlin" default>
 
-  ```kotlin
-      private val participantEventsListener = object : DyteParticipantsEventListener {
-          override fun onVideoUpdate(participant: DyteRemoteParticipant, isEnabled: Boolean) {
-              // your code here to handle participant video toggle update
-          }
-      }
-  ```
+```kotlin
+    private val participantEventsListener = object : DyteParticipantsEventListener {
+        override fun onVideoUpdate(participant: DyteRemoteParticipant, isEnabled: Boolean) {
+            // your code here to handle participant video toggle update
+        }
+    }
+```
 
   </TabItem>
 
@@ -140,7 +137,6 @@ Triggers an event when any participant starts / stops video.
 
   </TabItem>
 </Tabs>
-
 
 ### Audio update
 
@@ -254,7 +250,6 @@ Triggers an event when there is any change in pinned participant in the meeting.
     }
 ```
 
-
   </TabItem>
 
   <TabItem value="java" label="Java" default>
@@ -316,26 +311,26 @@ Triggers an event whenever there is any change in participant.
 <Tabs groupId="android-core-participants">
   <TabItem value="kotlin" label="Kotlin" default>
 
-  ```kotlin
-      private val participantUpdateListener = object : DyteParticipantUpdateListener {
-          override fun onUpdate(participant: DyteRemoteParticipant) {
-              // your code here to handle participant update
-          }
-      }
-  ```
+```kotlin
+    private val participantUpdateListener = object : DyteParticipantUpdateListener {
+        override fun onUpdate(participant: DyteRemoteParticipant) {
+            // your code here to handle participant update
+        }
+    }
+```
 
   </TabItem>
 
   <TabItem value="java" label="Java" default>
 
-  ```java
-      DyteParticipantUpdateListener participantUpdateListener = new DyteParticipantUpdateListener() {
-          @Override
-          public void onUpdate(DyteRemoteParticipant participant) {
-              // your code here to handle participant update
-          }
-      }
-  ```
+```java
+    DyteParticipantUpdateListener participantUpdateListener = new DyteParticipantUpdateListener() {
+        @Override
+        public void onUpdate(DyteRemoteParticipant participant) {
+            // your code here to handle participant update
+        }
+    }
+```
 
   </TabItem>
 </Tabs>
@@ -369,8 +364,6 @@ Triggers an event when the participant starts / stops video.
   </TabItem>
 </Tabs>
 
-
-
 ### Audio update
 
 Triggers an event when the participant starts / stops audio.
@@ -401,7 +394,6 @@ Triggers an event when the participant starts / stops audio.
 
   </TabItem>
 </Tabs>
-
 
 ### Pinned & Unpinned participant
 
@@ -442,7 +434,6 @@ Triggers an event when the participant is pinned / unpinned.
 
   </TabItem>
 </Tabs>
-
 
 ### Screen share started & ended
 

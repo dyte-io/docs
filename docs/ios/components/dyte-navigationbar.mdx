@@ -5,15 +5,14 @@ description: >-
   with our detailed documentation.
 ---
 
-
-
 # DyteNavigationBar
-## Overview
-This view is used as Navigation bar and can be added anywhere on any UIView.  
-This view consist of title and back button. 
-We can add custom action to back button by using  
-`func setClicks(previousButton:@escaping(DyteControlBarButton)->Void)` 
 
+## Overview
+
+This view is used as Navigation bar and can be added anywhere on any UIView.  
+This view consist of title and back button.
+We can add custom action to back button by using  
+`func setClicks(previousButton:@escaping(DyteControlBarButton)->Void)`
 
 ### Topics:
 
@@ -22,12 +21,15 @@ We can add custom action to back button by using
 ```swift
  init(title: String)
 ```
-Creates a DyteNavigationBar with title. 
+
+Creates a DyteNavigationBar with title.
 
 #### Parameters:
+
 **title:** Title shown at the center of NavigationBar.
 
 ### Getting titleLabel which is of type UILabel
+
 ```swift
 let titleLabel: DyteLabel
 ```
@@ -43,8 +45,8 @@ let leftButton: DyteControlBarButton
 ```swift
 func setBackButtonClick(callBack: @escaping(DyteControlBarButton)->Void)
 ```
-This method is used to set the callback which is called when the user presses the back button. 
 
+This method is used to set the callback which is called when the user presses the back button.
 
 <head>
   <title>iOS DyteNavigationBar</title>

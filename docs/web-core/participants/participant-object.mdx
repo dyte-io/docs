@@ -31,6 +31,7 @@ The participant object has the following properties.
   screen share stream.
 
 **Metadata**:
+
 - `id`: The `participantId` of the participant (aka `peerId`).
 - `userId`: The `userId` of the participant.
 - `name`: The participant's name.
@@ -54,7 +55,7 @@ meeting.participants.joined
       'The participant with id',
       participantId,
       'has toggled their mic to',
-      audioEnabled
+      audioEnabled,
     );
   });
 ```
@@ -73,9 +74,9 @@ meeting.participants.joined.on(
       'The participant with id',
       participant.id,
       'has toggled their mic to',
-      audioEnabled
+      audioEnabled,
     );
-  }
+  },
 );
 ```
 

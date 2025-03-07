@@ -10,18 +10,18 @@ web_core_version: 1.32.1
 The DyteLivestream module represents the state of the current livestream, and allows
 to start/stop live streams.
 
-
-* [DyteLivestream](#module_DyteLivestream)
-    * [.start()](#module_DyteLivestream+start)
-    * [.stop()](#module_DyteLivestream+stop)
+- [DyteLivestream](#module_DyteLivestream)
+  - [.start()](#module_DyteLivestream+start)
+  - [.stop()](#module_DyteLivestream+stop)
 
 <a name="module_DyteLivestream+start"></a>
 
 ### livestream.start()
+
 Starts livestreaming the meeting.
 
 <a name="module_DyteLivestream+stop"></a>
 
 ### livestream.stop()
-Stops livestreaming the meeting.
 
+Stops livestreaming the meeting.

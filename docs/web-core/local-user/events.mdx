@@ -22,7 +22,7 @@ produce and consume media.
 ```ts
 meeting.self.on('roomJoined', () => {
   console.log(
-    'User has joined the meeting and ready to produce and consume media'
+    'User has joined the meeting and ready to produce and consume media',
   );
 });
 ```
@@ -42,15 +42,15 @@ meeting.self.on('roomLeft', ({ state }) => {
 
 Here are all the possible values of the `state` variable.
 
-| Event      | Description                                                                         |
-| ---------- | ----------------------------------------------------------------------------------- |
-| `left`     | Participant has left the meeting.                                                      |
-| `kicked`   | Participant is removed from the meeting.                                            |
-| `ended`    | Everyone is removed from the meeting, and the session has ended.                    |
-| `rejected` | Participant's request to join the meeting is rejected (when you're in a waiting room). |
-| `disconnected` | Temporary network disconnection |
-| `failed` | Failed to join the meeting |
-| `connected-meeting` | Participant has left this meeting and joined a connected meeting (Breakout meeting) |
+| Event               | Description                                                                            |
+| ------------------- | -------------------------------------------------------------------------------------- |
+| `left`              | Participant has left the meeting.                                                      |
+| `kicked`            | Participant is removed from the meeting.                                               |
+| `ended`             | Everyone is removed from the meeting, and the session has ended.                       |
+| `rejected`          | Participant's request to join the meeting is rejected (when you're in a waiting room). |
+| `disconnected`      | Temporary network disconnection                                                        |
+| `failed`            | Failed to join the meeting                                                             |
+| `connected-meeting` | Participant has left this meeting and joined a connected meeting (Breakout meeting)    |
 
 ## Video update
 
@@ -111,7 +111,7 @@ meeting.self.on(
     } else {
       await screenElem.stop();
     }
-  }
+  },
 );
 ```
 
@@ -139,7 +139,7 @@ meeting.self.on('deviceUpdate', ({ device }) => {
 
 ## Network quality score
 
-import SelfMediaScoreUpdate from '@site/docs/partials/events/_self-media-score-update.mdx'
+import SelfMediaScoreUpdate from '@site/docs/partials/events/_self-media-score-update.mdx';
 
 <SelfMediaScoreUpdate />
 

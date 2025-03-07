@@ -9,13 +9,13 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
-      with:
-        node-version: 16
-        registry-url: https://registry.npmjs.org/
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
 
-    - name: npm install, lint
-      run: |
-        npm install
-        npm run lint
+      - name: npm install, lint
+        run: |
+          npm install
+          npm run lint

@@ -71,7 +71,7 @@ export default function SidebarMenu() {
           <div
             className={clsx(
               styles.section,
-              isCurrentSection && styles.sectionActive
+              isCurrentSection && styles.sectionActive,
             )}
             onClick={navigateToFirstSection}
             onKeyDown={(e) => {
@@ -84,23 +84,14 @@ export default function SidebarMenu() {
           >
             <div className={clsx(styles.label, className)}>{name}</div>
             <div>
-              {isCurrentSection ? (
-                <div className={styles.row}>
-                  <SectionsMenu
-                    defaultValue={isCurrentSection ? docId : docs[0].id}
-                    values={docs}
-                    onValueChange={handleSectionChange}
-                    triggerClassName={styles.sectionsMenu}
-                  />
-                  <VersionDropdown
-                    docsPluginId={docId}
-                    dropdownItemsBefore={[]}
-                    dropdownItemsAfter={[]}
-                  />
-                </div>
-              ) : (
-                <p className={styles.description}>{description}</p>
-              )}
+              <p
+                className={clsx(
+                  styles.description,
+                  isCurrentSection && styles.sectionActive,
+                )}
+              >
+                {description}
+              </p>
             </div>
           </div>
         );

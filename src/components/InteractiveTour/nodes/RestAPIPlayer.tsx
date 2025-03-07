@@ -1,9 +1,8 @@
-import { Handle, NodeProps, Position } from "reactflow";
-import { clsx } from "../utils";
-import { useStore } from "../store";
-import React from "react";
+import { Handle, NodeProps, Position } from 'reactflow';
+import { clsx } from '../utils';
+import { useStore } from '../store';
+import React from 'react';
 import CodeBlock from '@theme/CodeBlock';
-
 
 export type RestAPIPlayerProps = {
   active: boolean;
@@ -21,48 +20,48 @@ const restAPISteps: {
   [key: number]: { tag: string; endpoint: string; desc: string };
 } = {
   2: {
-    tag: "POST",
-    endpoint: "/v2/meetings",
+    tag: 'POST',
+    endpoint: '/v2/meetings',
     desc: `\n{\n\ttitle: "Meeting with Doctor"\n}\n\n\n\n`,
   },
   3: {
-    tag: "201",
-    endpoint: "/v2/meetings",
+    tag: '201',
+    endpoint: '/v2/meetings',
     desc: `{\n\tsuccess: true,\n\t"data": {\n\t\t"id": "497f6eca-6276...", \n\t\t"title":"Meeting with Doctor"\n\t\t.\n\t\t.`,
   },
   4: {
-    tag: "201",
-    endpoint: "/v2/meetings",
+    tag: '201',
+    endpoint: '/v2/meetings',
     desc: `{\n\tsuccess: true,\n\t"data": {\n\t\t"id": "497f6eca-6276...", \n\t\t"title":"Meeting with Doctor"\n\t\t.\n\t\t.`,
   },
   6: {
-    tag: "POST",
-    endpoint: "/v2/meetings/{id}/participants",
+    tag: 'POST',
+    endpoint: '/v2/meetings/{id}/participants',
     desc: Add_participant_req,
   },
   7: {
-    tag: "201",
-    endpoint: "/v2/meetings/{id}/participants",
+    tag: '201',
+    endpoint: '/v2/meetings/{id}/participants',
     desc: `{\n\tsuccess: true,\n\t"data": {\n\t\t"id": "497f6eca-6276...", \n\t\t"token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXV"\n\t\t.\n\t\t.`,
   },
   8: {
-    tag: "201",
-    endpoint: "/v2/meetings/{id}/participants",
+    tag: '201',
+    endpoint: '/v2/meetings/{id}/participants',
     desc: `{\n\tsuccess: true,\n\t"data": {\n\t\t"id": "497f6eca-6276...", \n\t\t"token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXV..."\n\t\t.\n\t\t.`,
-  }
+  },
 };
 
 export default function RestAPIPlayer({ data }: NodeProps<RestAPIPlayerProps>) {
   const { currentStep } = useStore();
-  const { tag, endpoint, desc} = restAPISteps[currentStep] ?? {};
+  const { tag, endpoint, desc } = restAPISteps[currentStep] ?? {};
   return (
     <div
       className={clsx(
-        "rounded-xl rounded-b-[16px] bg-pink-500/90 shadow-xl px-0.5 pb-0.5",
-        data.active ? "grayscale-0 opacity-100" : "grayscale opacity-30"
+        'rounded-xl rounded-b-[16px] bg-pink-500/90 shadow-xl px-0.5 pb-0.5',
+        data.active ? 'grayscale-0 opacity-100' : 'grayscale opacity-30',
       )}
     >
-      <div className={"rounded-t-md px-2 py-1 mb-0 text-white text-xs"}>
+      <div className={'rounded-t-md px-2 py-1 mb-0 text-white text-xs'}>
         Your Server
       </div>
 
@@ -99,19 +98,19 @@ export default function RestAPIPlayer({ data }: NodeProps<RestAPIPlayerProps>) {
       </div>
 
       <Handle
-        className={"w-1 h-1"}
+        className={'w-1 h-1'}
         type="target"
         position={Position.Left}
         id="phone-conn"
       />
       <Handle
-        className={"w-1 h-1"}
+        className={'w-1 h-1'}
         type="source"
         position={Position.Bottom}
         id="db-conn"
       />
       <Handle
-        className={"w-1 h-1"}
+        className={'w-1 h-1'}
         type="source"
         position={Position.Right}
         id="dyte-conn"
