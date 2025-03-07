@@ -73,23 +73,21 @@ const pinnedParticipants = useDyteSelector(
 
 Trigger an event when the target participant starts / stops video.
 
-```ts
+```js
 const videoEnabled = useDyteSelector(
   (m) => m.participants.joined.get(participantId).videoEnabled,
 );
 ```
 
-````
-
 ### Audio update
 
 Trigger an event when the target participant starts / stops audio.
 
-```ts
-const audioEnabled = useDyteSelector((m) =>
-  m.participants.joined.get(participantId).audioEnabled
+```js
+const audioEnabled = useDyteSelector(
+  (m) => m.participants.joined.get(participantId).audioEnabled,
 );
-````
+```
 
 ### Screen share update
 
