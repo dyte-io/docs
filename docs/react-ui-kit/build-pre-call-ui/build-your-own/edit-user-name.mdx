@@ -36,49 +36,50 @@ export default function CustomMeetingPreview() {
   const permissions = useDyteSelector((m) => m.self.permissions);
   const [participantName, setParticipantName] = useState("");
 
-useEffect(() => {
-if (!meeting) {
-return;
-}
-setParticipantName(meeting.self.name);
-}, [meeting]);
+  useEffect(() => {
+    if (!meeting) {
+      return;
+    }
+    setParticipantName(meeting.self.name);
+  }, [meeting]);
 
-return (
-
-<div
-  className="h-full w-full flex flex-col items-center justify-center"
-  style={{ minHeight: '400px' }}
->
-  <div className="flex w-full items-center justify-around p-[10%]">
-    <div></div>
-    <div className="flex w-1/4 flex-col justify-between">
-      <div className="flex flex-col items-center">
-        <p>Joining as</p>
+  return (
+    <div
+      className="h-full w-full flex flex-col items-center justify-center"
+      style={{ minHeight: "400px" }}
+    >
+      <div className="flex w-full items-center justify-around p-[10%]">
+        <div></div>
+        <div className="flex w-1/4 flex-col justify-between">
+          <div className="flex flex-col items-center">
+            <p>Joining as</p>
+          </div>
+          {permissions.canEditDisplayName && (
+            <input
+              placeholder="Your name"
+              className="mb-10 rounded-sm border p-2.5 focus:border-blue-500"
+              value={participantName}
+              onChange={(event) => setParticipantName(event.target.value)}
+            />
+          )}
+          <DyteButton
+            kind="wide"
+            size="lg"
+            style={{ cursor: participantName ? "pointer" : "not-allowed" }}
+            onClick={async () => {
+              if (participantName) {
+                if (permissions.canEditDisplayName) {
+                  await meeting.self.setName(participantName);
+                }
+                await meeting.join();
+              }
+            }}
+          >
+            Join
+          </DyteButton>
+        </div>
       </div>
-      {permissions.canEditDisplayName && (
-        <input
-          placeholder="Your name"
-          className="mb-10 rounded-sm border p-2.5 focus:border-blue-500"
-          value={participantName}
-          onChange={(event) => setParticipantName(event.target.value)}
-        />
-      )}
-      <DyteButton
-        kind="wide"
-        size="lg"
-        style={{ cursor: participantName ? 'pointer' : 'not-allowed' }}
-        onClick={async () => {
-          if (participantName) {
-            if (permissions.canEditDisplayName) {
-              await meeting.self.setName(participantName);
-            }
-            await meeting.join();
-          }
-        }}
-      >
-        Join
-      </DyteButton>
     </div>
-  </div>
-</div>
-); } `} />
+  );
+}
+`} />

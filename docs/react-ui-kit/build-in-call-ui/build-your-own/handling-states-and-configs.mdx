@@ -42,9 +42,9 @@ export default function Meeting() {
   });
 
 useEffect(() => {
-async function setupMeetingConfigs(){
-const theme = meeting!.self.config;
-const { config } = generateConfig(theme, meeting!);
+  async function setupMeetingConfigs(){
+      const theme = meeting!.self.config;
+      const { config } = generateConfig(theme, meeting!);
 
       /**
        * Full screen toggle, by default requests dyte-meeting/DyteMeeting element to be in full screen.
@@ -76,23 +76,22 @@ const { config } = generateConfig(theme, meeting!);
 }, [meeting]);
 
 return (
-/\*\*
-
-- Using a ref hack, we are adding "dyteStateUpdate" listener,
-- so that we can listen to child component's internal state changes.
-  \*/
+  /**
+  * Using a ref hack, we are adding "dyteStateUpdate" listener,
+  * so that we can listen to child component's internal state changes.
+  */
   <div className="flex w-full h-full bg-black text-white justify-center items-center" ref={(el) => {
-  el?.addEventListener('dyteStateUpdate', (e) => {
-  const { detail: newStateUpdate } = e as unknown as { detail: CustomStates };
-  setStates((oldState: CustomStates) => { return {
-  ...oldState,
-  ...newStateUpdate,
-  }});
-  });
-  }}>
-  <CustomDyteMeetingUI meeting={meeting} config={config} states={states} setStates={setStates} />
+            el?.addEventListener('dyteStateUpdate', (e) => {
+              const { detail: newStateUpdate } = e as unknown as { detail: CustomStates };
+              setStates((oldState: CustomStates) => { return {
+                ...oldState,
+                ...newStateUpdate,
+              }});
+            });
+          }}>
+      <CustomDyteMeetingUI meeting={meeting} config={config} states={states} setStates={setStates} />
   </div>
-  );
+);
 
 }
 
@@ -100,139 +99,137 @@ function CustomDyteMeetingUI({ meeting, config, states, setStates }: { meeting: 
 return <div>Your Custom UI will come here </div>;
 }
 
-/\*\*
+/**
+* DyteStateListenersUtils is a class that listens to web-core changes and syncs them with ui-kit
+*/
+class DyteStateListenersUtils{
 
-- DyteStateListenersUtils is a class that listens to web-core changes and syncs them with ui-kit
-  \*/
-  class DyteStateListenersUtils{
+    getStates: () => CustomStates;
 
-      getStates: () => CustomStates;
+    getStateSetter: () => (newState: CustomStates) => void;
 
-      getStateSetter: () => (newState: CustomStates) => void;
+    getMeeting: () => DyteClient;
 
-      getMeeting: () => DyteClient;
+    get states(){
+        return this.getStates();
+    }
 
-      get states(){
-          return this.getStates();
-      }
+    get setGlobalStates(){
+        return this.getStateSetter();
+    };
 
-      get setGlobalStates(){
-          return this.getStateSetter();
+    get meeting(){
+        return this.getMeeting();
+    }
+
+    constructor(getMeeting: () => DyteClient, getGlobalStates: () => CustomStates, getGlobalStateSetter: () => (newState: CustomStates) => void){
+        this.getMeeting = getMeeting;
+        this.getStates = getGlobalStates;
+        this.getStateSetter = getGlobalStateSetter;
+    }
+    private updateStates(newState: CustomStates){
+        this.setGlobalStates((oldState: CustomStates) => { return {
+            ...oldState,
+            ...newState,
+        }});
+        console.log(newState);
+    }
+    private roomJoinedListener = () => {
+        this.updateStates({ meeting: 'joined' });
       };
 
-      get meeting(){
-          return this.getMeeting();
-      }
+      private socketServiceRoomJoinedListener = () => {
+        if (this.meeting.stage.status === 'ON_STAGE' || this.meeting.stage.status === undefined) return;
+        this.updateStates({ meeting: 'joined' });
+      };
 
-      constructor(getMeeting: () => DyteClient, getGlobalStates: () => CustomStates, getGlobalStateSetter: () => (newState: CustomStates) => void){
-          this.getMeeting = getMeeting;
-          this.getStates = getGlobalStates;
-          this.getStateSetter = getGlobalStateSetter;
-      }
-      private updateStates(newState: CustomStates){
-          this.setGlobalStates((oldState: CustomStates) => { return {
-              ...oldState,
-              ...newState,
-          }});
-          console.log(newState);
-      }
-      private roomJoinedListener = () => {
-          this.updateStates({ meeting: 'joined' });
-        };
+      private waitlistedListener = () => {
+        this.updateStates({ meeting: 'waiting' });
+      };
 
-        private socketServiceRoomJoinedListener = () => {
-          if (this.meeting.stage.status === 'ON_STAGE' || this.meeting.stage.status === undefined) return;
-          this.updateStates({ meeting: 'joined' });
-        };
-
-        private waitlistedListener = () => {
-          this.updateStates({ meeting: 'waiting' });
-        };
-
-        private roomLeftListener = ({ state }: { state: RoomLeftState }) => {
-          const states = this.states;
-          if (states?.roomLeftState === 'disconnected') {
-            this.updateStates({ meeting: 'ended', roomLeftState: state });
-            return;
-          }
+      private roomLeftListener = ({ state }: { state: RoomLeftState }) => {
+        const states = this.states;
+        if (states?.roomLeftState === 'disconnected') {
           this.updateStates({ meeting: 'ended', roomLeftState: state });
-        };
+          return;
+        }
+        this.updateStates({ meeting: 'ended', roomLeftState: state });
+      };
 
-        private mediaPermissionUpdateListener = ({ kind, message }: {
-          kind: PermissionSettings['kind'],
-          message: string,
-        }) => {
-          if (['audio', 'video'].includes(kind!)) {
-            if (message === 'ACCEPTED' || message === 'NOT_REQUESTED' || this.states.activeDebugger)
-              return;
-            const permissionModalSettings: PermissionSettings = {
-              enabled: true,
-              kind,
-            };
-            this.updateStates({ activePermissionsMessage: permissionModalSettings });
+      private mediaPermissionUpdateListener = ({ kind, message }: {
+        kind: PermissionSettings['kind'],
+        message: string,
+      }) => {
+        if (['audio', 'video'].includes(kind!)) {
+          if (message === 'ACCEPTED' || message === 'NOT_REQUESTED' || this.states.activeDebugger)
+            return;
+          const permissionModalSettings: PermissionSettings = {
+            enabled: true,
+            kind,
+          };
+          this.updateStates({ activePermissionsMessage: permissionModalSettings });
+        }
+      };
+
+      private joinStateAcceptedListener = () => {
+        this.updateStates({ activeJoinStage: true });
+      };
+
+      private handleChangingMeeting(destinationMeetingId: string) {
+        this.updateStates({
+            activeBreakoutRoomsManager: {
+                ...this.states.activeBreakoutRoomsManager,
+                active: this.states.activeBreakoutRoomsManager!.active,
+                destinationMeetingId,
+            }
+        });
+    }
+
+    addDyteEventListeners(){
+        if (this.meeting.meta.viewType === 'LIVESTREAM') {
+            this.meeting.self.addListener('socketServiceRoomJoined', this.socketServiceRoomJoinedListener);
           }
-        };
+          this.meeting.self.addListener('roomJoined', this.roomJoinedListener);
 
-        private joinStateAcceptedListener = () => {
-          this.updateStates({ activeJoinStage: true });
-        };
+          this.meeting.self.addListener('waitlisted', this.waitlistedListener);
+          this.meeting.self.addListener('roomLeft', this.roomLeftListener);
+          this.meeting.self.addListener('mediaPermissionUpdate', this.mediaPermissionUpdateListener);
+          this.meeting.self.addListener('joinStageRequestAccepted', this.joinStateAcceptedListener);
 
-        private handleChangingMeeting(destinationMeetingId: string) {
-          this.updateStates({
-              activeBreakoutRoomsManager: {
-                  ...this.states.activeBreakoutRoomsManager,
-                  active: this.states.activeBreakoutRoomsManager!.active,
-                  destinationMeetingId,
-              }
-          });
-      }
+          if (this.meeting.connectedMeetings.supportsConnectedMeetings) {
+            this.meeting.connectedMeetings.once('changingMeeting', this.handleChangingMeeting);
+          }
 
-      addDyteEventListeners(){
-          if (this.meeting.meta.viewType === 'LIVESTREAM') {
-              this.meeting.self.addListener('socketServiceRoomJoined', this.socketServiceRoomJoinedListener);
-            }
-            this.meeting.self.addListener('roomJoined', this.roomJoinedListener);
+    }
+    cleanupDyteEventListeners(){
 
-            this.meeting.self.addListener('waitlisted', this.waitlistedListener);
-            this.meeting.self.addListener('roomLeft', this.roomLeftListener);
-            this.meeting.self.addListener('mediaPermissionUpdate', this.mediaPermissionUpdateListener);
-            this.meeting.self.addListener('joinStageRequestAccepted', this.joinStateAcceptedListener);
-
-            if (this.meeting.connectedMeetings.supportsConnectedMeetings) {
-              this.meeting.connectedMeetings.once('changingMeeting', this.handleChangingMeeting);
-            }
-
-      }
-      cleanupDyteEventListeners(){
-
-      }
+    }
 
 }
 
-/\*\*
-
-- setFullScreenToggleTargetElement updates the ui-kit config,
-- to set targetElement to full screen toggle.
-  \*/
-  function setFullScreenToggleTargetElement({config, targetElementId}: { config: UIConfig, targetElementId: string }){
-  if (config.root && Array.isArray(config.root['div#controlbar-left'])) {
-  const fullScreenToggleIndex = config.root['div#controlbar-left'].indexOf('dyte-fullscreen-toggle');
-  if(fullScreenToggleIndex > -1){
-  config.root['div#controlbar-left'][fullScreenToggleIndex] = ['dyte-fullscreen-toggle', {
-  variant: 'vertical',
-  targetElement: document.querySelector("#"+targetElementId),
-  }];
-  }
-  }
-  ['dyte-more-toggle.activeMoreMenu', 'dyte-more-toggle.activeMoreMenu.md', 'dyte-more-toggle.activeMoreMenu.sm'].forEach((configElemKey) => {
-  const configElem = config?.root?.[configElemKey] as any;
-  configElem?.forEach((dyteElemConfigSet: any) => {
-  if (dyteElemConfigSet[0] === 'dyte-fullscreen-toggle') {
-  dyteElemConfigSet[1].targetElement = document.querySelector("#"+targetElementId);
-  }
-  });
-  });
-  }
+/**
+* setFullScreenToggleTargetElement updates the ui-kit config,
+* to set targetElement to full screen toggle.
+*/
+function setFullScreenToggleTargetElement({config, targetElementId}: { config: UIConfig, targetElementId: string }){
+    if (config.root && Array.isArray(config.root['div#controlbar-left'])) {
+        const fullScreenToggleIndex = config.root['div#controlbar-left'].indexOf('dyte-fullscreen-toggle');
+        if(fullScreenToggleIndex > -1){
+            config.root['div#controlbar-left'][fullScreenToggleIndex] = ['dyte-fullscreen-toggle', {
+                variant: 'vertical',
+                targetElement: document.querySelector("#"+targetElementId),
+            }];
+        }
+    }
+    ['dyte-more-toggle.activeMoreMenu', 'dyte-more-toggle.activeMoreMenu.md', 'dyte-more-toggle.activeMoreMenu.sm'].forEach((configElemKey) => {
+        const configElem = config?.root?.[configElemKey] as any;
+        configElem?.forEach((dyteElemConfigSet: any) => {
+            if (dyteElemConfigSet[0] === 'dyte-fullscreen-toggle') {
+                dyteElemConfigSet[1].targetElement = document.querySelector("#"+targetElementId);
+            }
+        });
+    });
+}
 
 ` } />
 
@@ -248,21 +245,16 @@ In the above code snippets, we are generating configs using the preset configura
 Post this, We are extending the config to pass the targetElement to full screen toggle and storing this config to be passed to child components.
 
 ```tsx
-setFullScreenToggleTargetElement({ config, targetElementId: 'root' });
-setConfig({ ...config });
+    setFullScreenToggleTargetElement({config, targetElementId: 'root'});
+    setConfig({...config});
 ```
 
 We need to also ensure that web-core & ui-kit states are in sync. Since we are handling states now, we will have to add web-core & ui-kit listeners.
 
 To add web-core listeners, `DyteStateListenersUtils` class, is being used.
-
 ```tsx
-const stateListenersUtils = new DyteStateListenersUtils(
-  () => meeting,
-  () => states,
-  () => setStates,
-);
-stateListenersUtils.addDyteEventListeners();
+  const stateListenersUtils = new DyteStateListenersUtils(() => meeting, () => states, () => setStates);
+  stateListenersUtils.addDyteEventListeners();
 ```
 
 To add ui-kit state listeners, we are using ref based hack to ensure that every propagated `dyteStateUpdate` event is listened to.
@@ -282,3 +274,5 @@ ref={(el) => {
 To join the meeting, we are using `await meeting.join();`.
 
 Now that we know the extra overhead that comes with splitting `DyteMeeting` component, let's start with showing custom UIs as per the meeting state.
+
+

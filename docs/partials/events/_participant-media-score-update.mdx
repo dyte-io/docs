@@ -9,21 +9,21 @@ meeting.participants.joined.on(
         `Participant ${participantId}'s ${
           isScreenshare ? 'screenshare' : 'video'
         } quality score is `,
-        score,
+        score
       );
     }
 
     if (kind === 'audio') {
       console.log(
         `Participant ${participantId}'s audio quality score is `,
-        score,
+        score
       );
     }
 
     if (score < 5) {
       console.log(`Participant ${participantId}'s media quality is poor`);
     }
-  },
+  }
 );
 ```
 
