@@ -86,7 +86,7 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }) {
       searchContainer.current = document.createElement('div');
       document.body.insertBefore(
         searchContainer.current,
-        document.body.firstChild
+        document.body.firstChild,
       );
       setIsOpen(true);
     });
@@ -102,7 +102,7 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }) {
         setInitialQuery(event.key);
       });
     },
-    [importDocSearchModalIfNeeded, setIsOpen, setInitialQuery]
+    [importDocSearchModalIfNeeded, setIsOpen, setInitialQuery],
   );
   const navigator = useRef({
     navigate({ itemUrl }) {
@@ -123,21 +123,21 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }) {
         items.map((item) => ({
           ...item,
           url: processSearchResultUrl(item.url),
-        }))
+        })),
   ).current;
   const resultsFooterComponent = useMemo(
     () => (footerProps) => <ResultsFooter {...footerProps} onClose={onClose} />,
-    [onClose]
+    [onClose],
   );
   const transformSearchClient = useCallback(
     (searchClient) => {
       searchClient.addAlgoliaAgent(
         'docusaurus',
-        siteMetadata.docusaurusVersion
+        siteMetadata.docusaurusVersion,
       );
       return searchClient;
     },
-    [siteMetadata.docusaurusVersion]
+    [siteMetadata.docusaurusVersion],
   );
   useDocSearchKeyboardEvents({
     isOpen,
@@ -210,7 +210,7 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }) {
             className={clsx(
               'fixed inset-0 z-[300] flex flex-col overflow-y-auto',
               selectedIndex === 0 &&
-                'bg-gradient-to-br from-blue-600/40 to-red-600/40'
+                'bg-gradient-to-br from-blue-600/40 to-red-600/40',
             )}
             onClick={(e) => {
               if (
@@ -224,7 +224,7 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }) {
             <div
               className={clsx(
                 'overlay absolute inset-0 z-0 bg-black/40 backdrop-blur-sm',
-                selectedIndex === 0 ? 'block' : 'hidden'
+                selectedIndex === 0 ? 'block' : 'hidden',
               )}
             />
 
@@ -242,7 +242,7 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }) {
                       'cursor-pointer focus:outline-none',
                       selected
                         ? 'bg-white text-primary shadow dark:bg-secondary dark:text-white'
-                        : 'text-text-400'
+                        : 'text-text-400',
                     )
                   }
                 >
@@ -260,7 +260,7 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }) {
                       'cursor-pointer focus:outline-none',
                       selected
                         ? 'bg-white text-primary shadow dark:bg-secondary dark:text-white'
-                        : 'text-text-400'
+                        : 'text-text-400',
                     )
                   }
                 >
@@ -297,7 +297,7 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }) {
               </Tab.Panels>
             </Tab.Group>
           </div>,
-          searchContainer.current
+          searchContainer.current,
         )}
     </>
   );

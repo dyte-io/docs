@@ -13,10 +13,10 @@ This feature makes it easy to capture key points and action items, providing a c
 :::info
 To generate a meeting summary, transcription must be enabled. The summarization feature relies on the transcription data to create accurate and meaningful summaries.
 :::
+
 ## Enabling Meeting Summarization
 
 To enable automatic summarization post meeting, you can set the `summarize_on_end` flag when creating a meeting using the [REST API](/api#/operations/create_meeting).
-
 
 ### Summarization Configuration Options
 
@@ -58,6 +58,7 @@ Select the type of summary based on the nature of the meeting. Supported types a
 ```json lines
 "summary_type": "team_meeting"
 ```
+
 ### Example Configuration
 
 Here is an example of how to enable summarization in the meeting creation API call:
@@ -75,8 +76,6 @@ Here is an example of how to enable summarization in the meeting creation API ca
   "summarize_on_end": true
 }
 ```
-
-
 
 ## Consuming Summaries
 
@@ -102,5 +101,8 @@ If you need to generate a summary after the meeting has ended, you can trigger t
 
 <head>
   <title>Meeting Summary Guide</title>
-  <meta name="description" content="Learn how to generate and utilize meeting summaries with Dyte's AI. This guide will help you understand and implement summarization features effectively."/>
+  <meta
+    name="description"
+    content="Learn how to generate and utilize meeting summaries with Dyte's AI. This guide will help you understand and implement summarization features effectively."
+  />
 </head>

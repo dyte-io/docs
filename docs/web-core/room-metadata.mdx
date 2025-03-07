@@ -28,7 +28,7 @@ const { meetingTitle } = meeting.meta;
 
 if (meeting.self.roomJoined) {
   console.log(
-    `The local user has joined a meeting with title ${meetingTitle}.`
+    `The local user has joined a meeting with title ${meetingTitle}.`,
   );
 }
 ```
@@ -36,7 +36,7 @@ if (meeting.self.roomJoined) {
 **Events**
 
 The `meta` object also emits events for indicating the change in the connection
-state of the room. 
+state of the room.
 
 1. **Media Connection**
 
@@ -54,11 +54,13 @@ meeting.meta.on('mediaConnectionUpdate', ({ transport, state }) => {
 Updates to Websocket connection (used for chat, polls and other basic signaling) will be sent on `socketConnectionUpdate` event
 
 ```ts
-meeting.meta.on('socketConnectionUpdate', ({ state, reconnectionAttempt, reconnected }) => {
-  // state - 'connected' | 'disconnected' | 'reconnecting' | 'failed'
-});
+meeting.meta.on(
+  'socketConnectionUpdate',
+  ({ state, reconnectionAttempt, reconnected }) => {
+    // state - 'connected' | 'disconnected' | 'reconnecting' | 'failed'
+  },
+);
 ```
-
 
 <head>
   <title>Web Core Room Metadata</title>

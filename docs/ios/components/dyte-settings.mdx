@@ -6,29 +6,34 @@ description: >-
 ---
 
 # DyteSettingViewController
+
 ## Overview
+
 A screen that is used to show settings to switch between different audio/video devices.
 
+### Create DyteSettingViewController
 
-### Create  DyteSettingViewController 
 ```swift
 init(nameTag: String, meeting: DyteMobileClient, completion:(()->Void)? = nil)
 ```
+
 Creates settings screen with name tag.
 
 #### Parameters:
-*Required:*    
+
+_Required:_  
 **nameTag:** An String representing participant name.  
-**meeting:** Default meeting object   
-*Optional:*  
+**meeting:** Default meeting object  
+_Optional:_  
 **completion:** Closure to get a callback when user presses back button present on [DyteNavigationBar](/ios/components/dyte-navigationbar)
 
 ### Hide/Show top bar
+
 ```swift
 var shouldShowTopBar: Bool = true
 ```
 
-Default value is `true`. To hide the topbar assign this to `false`. 
+Default value is `true`. To hide the topbar assign this to `false`.
 
 ### To show DyteSettingViewController do in iOS as follows:
 

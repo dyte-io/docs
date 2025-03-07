@@ -34,7 +34,6 @@ export default function MyMeetingUI() {
 You can change the `nameTagPosition` to any of the supported values
 and change the placement of audio-visualizer in name-tag as well.
 
-
 <CodeRunner 
 hide={[{start:1, end: 3}]}
 additionalDecorators={[{
@@ -74,20 +73,19 @@ import { useDyteMeeting } from "@dytesdk/react-web-core";
 export default function MyMeetingUI() {
   const { meeting } = useDyteMeeting();
 
-  return (
-    <DyteParticipantTile
+return (
+<DyteParticipantTile
       participant={meeting.self}
       nameTagPosition="bottom-center" 
       variant="gradient"
     >
-      <DyteNameTag participant={meeting.self}>
-        <DyteAudioVisualizer slot="start" />
-      </DyteNameTag>
-    </DyteParticipantTile>
-  );
+<DyteNameTag participant={meeting.self}>
+<DyteAudioVisualizer slot="start" />
+</DyteNameTag>
+</DyteParticipantTile>
+);
 }
 `} />
-
 
 ## Props
 

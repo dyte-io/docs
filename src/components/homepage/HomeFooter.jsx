@@ -228,7 +228,7 @@ function Safety({ className }) {
     <div
       className={clsx(
         'flex max-w-[418px] flex-row overflow-clip rounded-2xl bg-white dark:bg-[#474747] sm:flex-col sm:pr-0 sm:pb-8 lg:flex-row lg:pr-16 lg:pb-0',
-        className
+        className,
       )}
     >
       <div className="flex flex-1 place-items-center justify-center rounded-2xl bg-white px-4 py-6 font-jakarta font-bold text-gray-500 dark:bg-[#474747] dark:text-[#fff]">
@@ -275,14 +275,14 @@ function Status({ className }) {
       href="https://status.dyte.io"
       className={clsx(
         'flex items-center gap-2 rounded-lg border border-transparent p-1 px-2 font-jakarta font-semibold text-gray-500 transition-colors hover:border-gray-400 hover:bg-white hover:no-underline dark:hover:bg-[#474747]',
-        className
+        className,
       )}
       target="_blank"
     >
       <div
         className={clsx(
           'h-4 w-4 rounded-full bg-[#2DB002]',
-          status.indicator === 'none' ? 'bg-[#2DB002]' : 'bg-yellow-500'
+          status.indicator === 'none' ? 'bg-[#2DB002]' : 'bg-yellow-500',
         )}
       ></div>
       <div>{status.description}</div>
@@ -296,7 +296,7 @@ function Links({ name, links, isAccordion }) {
 
   const toggleAccordion = (href) => {
     setActiveAccordion((prevAccordion) =>
-      prevAccordion === href ? null : href
+      prevAccordion === href ? null : href,
     );
   };
 

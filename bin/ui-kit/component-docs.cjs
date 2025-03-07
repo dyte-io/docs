@@ -100,11 +100,11 @@ for (const component of components) {
 
   writeMDXFile(
     `${basePaths.react}/${tag}.mdx`,
-    generateFile(component, 'react')
+    generateFile(component, 'react'),
   );
 
   writeMDXFile(
     `${basePaths.angular}/${tag}.mdx`,
-    generateFile(component, 'angular')
+    generateFile(component, 'angular'),
   );
 }

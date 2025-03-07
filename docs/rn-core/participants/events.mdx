@@ -22,7 +22,7 @@ meeting.participants.on(
   'viewModeChanged',
   ({ viewMode, currentPage, pageCount }) => {
     console.log('view mode changed', viewMode);
-  }
+  },
 );
 ```
 
@@ -33,7 +33,7 @@ meeting.participants.on(
   'pageChanged',
   ({ viewMode, currentPage, pageCount }) => {
     console.log('page changed', currentPage);
-  }
+  },
 );
 ```
 
@@ -104,7 +104,7 @@ Trigger an event when any participant starts / stops video.
 ```ts
 meeting.participants.joined.on('videoUpdate', (participant) => {
   console.log(
-    `A participant with id "${participant.id}" updated their video track in the meeting`
+    `A participant with id "${participant.id}" updated their video track in the meeting`,
   );
   // Use the video track if it exists
   if (participant.videoEnabled) {
@@ -122,7 +122,7 @@ Trigger an event when any participant starts / stops audio.
 ```ts
 meeting.participants.joined.on('audioUpdate', (participant) => {
   console.log(
-    `A participant with id "${participant.id}" updated their audio track in the meeting`
+    `A participant with id "${participant.id}" updated their audio track in the meeting`,
   );
   // Use the audio track if it exists
   if (participant.audioEnabled) {
@@ -140,7 +140,7 @@ Trigger an event when any participant starts / stops screen share.
 ```ts
 meeting.participants.joined.on('screenShareUpdate', (participant) => {
   console.log(
-    `A participant with id "${participant.id}" updated their screen share in the meeting`
+    `A participant with id "${participant.id}" updated their screen share in the meeting`,
   );
   // Use the screen share track if it exists
   if (participant.screenShareEnabled) {
@@ -164,21 +164,21 @@ meeting.participants.joined.on(
         `Participant ${participantId}'s ${
           isScreenshare ? 'screenshare' : 'video'
         } quality score is `,
-        score
+        score,
       );
     }
 
     if (kind === 'audio') {
       console.log(
         `Participant ${participantId}'s audio quality score is `,
-        score
+        score,
       );
     }
 
     if (score < 5) {
       console.log(`Participant ${participantId}'s media quality is poor`);
     }
-  }
+  },
 );
 ```
 

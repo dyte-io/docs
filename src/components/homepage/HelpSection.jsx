@@ -8,7 +8,7 @@ export default function HelpSection({ className = '' }) {
       <div
         className={clsx(
           'mx-auto max-w-7xl rounded-3xl bg-white p-4 py-10 text-black dark:bg-black dark:text-white lg:p-24 lg:py-20',
-          className
+          className,
         )}
       >
         <h2 className="mb-12 text-center lg:text-3xl">
@@ -44,8 +44,8 @@ export default function HelpSection({ className = '' }) {
             />
             <h3 className="my-3">Support</h3>
             <p className="text-zinc-600 dark:text-zinc-400">
-              Dyte&apos;s expert support team is always available to help. Connect for
-              dedicated 1:1 support!
+              Dyte&apos;s expert support team is always available to help.
+              Connect for dedicated 1:1 support!
             </p>
             <Link
               href="https://dyte.io/contact"

@@ -194,14 +194,14 @@ The following table maps the Dyte API v2 endpoints to the corresponding v1.
 
 ### Meetings and participants
 
-| **Action**                                  | **v1**                                                                             | **v2**                                                       |
-| ------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| Create a meeting                            | POST /v1/organizations/\{orgId\}/meeting                                             | POST /v2/meetings                                            |
-| Update details of a meeting                 | PATCH /v1/organizations/\{orgId\}/meetings/\{meetingId\}                               | PATCH /v2/meetings/\{meetingId\}                               |
-| Fetch details of a meeting in an org        | GET /v1/organizations/\{orgId\}/meetings/\{meetingId\}                                 | GET /v2/meetings/\{meetingId\}                                 |
-| Fetch details of all the meetings in an org | GET /v1/organizations/\{orgId\}/meetings                                             | GET /v2/meetings                                             |
-| Add a participant                           | POST /v1/organizations/\{orgId\}/meetings/\{meetingId\}/participant                    | POST /v2/meetings/\{meetingId\}/participants                   |
-| Fetch all participants in a meeting         | GET /v1/organizations/\{orgId\}/meetings/\{meetingId\}/participants                    | GET /v2/meetings/\{meetingId\}/participants                    |
+| **Action**                                  | **v1**                                                                                   | **v2**                                                           |
+| ------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Create a meeting                            | POST /v1/organizations/\{orgId\}/meeting                                                 | POST /v2/meetings                                                |
+| Update details of a meeting                 | PATCH /v1/organizations/\{orgId\}/meetings/\{meetingId\}                                 | PATCH /v2/meetings/\{meetingId\}                                 |
+| Fetch details of a meeting in an org        | GET /v1/organizations/\{orgId\}/meetings/\{meetingId\}                                   | GET /v2/meetings/\{meetingId\}                                   |
+| Fetch details of all the meetings in an org | GET /v1/organizations/\{orgId\}/meetings                                                 | GET /v2/meetings                                                 |
+| Add a participant                           | POST /v1/organizations/\{orgId\}/meetings/\{meetingId\}/participant                      | POST /v2/meetings/\{meetingId\}/participants                     |
+| Fetch all participants in a meeting         | GET /v1/organizations/\{orgId\}/meetings/\{meetingId\}/participants                      | GET /v2/meetings/\{meetingId\}/participants                      |
 | Fetch details of a participant in a meeting | GET /v1/organizations/\{orgId\}/meetings/\{meetingId\}/participants/\{participantId\}    | GET /v2/meetings/\{meetingId\}/participants/\{participantId\}    |
 | Edit participant details                    | PATCH /v1/organizations/\{orgId\}/meetings/\{meetingId\}/participants/\{participantId\}  | PATCH /v2/meetings/\{meetingId\}/participants/\{participantId\}  |
 | Delete a participant                        | DELETE /v1/organizations/\{orgId\}/meetings/\{meetingId\}/participants/\{participantId\} | DELETE /v2/meetings/\{meetingId\}/participants/\{participantId\} |
@@ -228,9 +228,9 @@ The following table maps the Dyte API v2 endpoints to the corresponding v1.
 
 ### Presets
 
-| **Action**                | **v1**                                          | **v2**                        |
-| ------------------------- | ----------------------------------------------- | ----------------------------- |
-| Create a preset           | POST /v1/organizations/\{organizationId\}/preset  | POST /v2/presets              |
+| **Action**                | **v1**                                            | **v2**                          |
+| ------------------------- | ------------------------------------------------- | ------------------------------- |
+| Create a preset           | POST /v1/organizations/\{organizationId\}/preset  | POST /v2/presets                |
 | Update a preset           | PATCH /v1/organizations/\{organizationId\}/preset | PATCH /v2/presets/\{preset_id\} |
 | Fetch details of a preset | GET /v1/organizations/\{organizationId\}/presets  | GET /v2/presets/\{preset_id\}   |
 

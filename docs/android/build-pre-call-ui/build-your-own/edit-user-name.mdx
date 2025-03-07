@@ -19,7 +19,7 @@ We add a `<DyteInputField>` element for entering the participant name. We should
 
 ```xml {15, 21}
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout 
+<androidx.constraintlayout.widget.ConstraintLayout
   ....
   >
 
@@ -64,7 +64,7 @@ nameAtom.addTextChangedListener(
     }
 
     override fun afterTextChanged(s: Editable?) {
-      meeting.self.setDisplayName(s?.toString()) 
+      meeting.self.setDisplayName(s?.toString())
     }
   }
 )

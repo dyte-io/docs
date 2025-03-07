@@ -15,7 +15,7 @@ video tile grid components
 function Meeting() {
   const { meeting } = useDyteMeeting();
   const activeParticipants = useDyteSelector(
-    (meeting) => meeting.participants.active
+    (meeting) => meeting.participants.active,
   );
 
   function ParticipantTile({ participant, meeting }) {

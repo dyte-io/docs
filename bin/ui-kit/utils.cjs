@@ -10,7 +10,7 @@ const { prettier: prettierConfig } = require('../../package.json');
 function writeMDXFile(path, text) {
   return fs.writeFileSync(
     path,
-    prettier.format(text, { ...prettierConfig, parser: 'mdx' })
+    prettier.format(text, { ...prettierConfig, parser: 'mdx' }),
   );
 }
 

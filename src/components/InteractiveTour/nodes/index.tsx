@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { Node } from "reactflow";
-import DoctorMeeting from "../components/DoctorMeeting";
-import DoctorMeetingPreJoin from "../components/DoctorMeetingPreJoin";
-import React from "react";
+import type { Node } from 'reactflow';
+import DoctorMeeting from '../components/DoctorMeeting';
+import DoctorMeetingPreJoin from '../components/DoctorMeetingPreJoin';
+import React from 'react';
 
 export const initialNodes = [
   {
-    id: "explanation",
-    type: "explanation",
+    id: 'explanation',
+    type: 'explanation',
     position: {
       x: -700,
       y: -30,
@@ -15,32 +15,32 @@ export const initialNodes = [
     data: {},
   },
   {
-    id: "cust-db",
-    type: "database",
+    id: 'cust-db',
+    type: 'database',
     position: { x: 114, y: 500 },
     data: { active: false },
   },
   {
-    id: "cust-server",
-    type: "rest-api-player",
+    id: 'cust-server',
+    type: 'rest-api-player',
     position: { x: -10, y: 184 },
     data: { active: false },
   },
   {
-    id: "phone",
-    type: "phone",
+    id: 'phone',
+    type: 'phone',
     position: { x: -400, y: 50 },
     data: {
       children: (step: number) => {
-        if(step > 0 && step <= 4) return <DoctorMeeting />;
-        if(step > 4 && step <= 8) return <DoctorMeetingPreJoin />;
+        if (step > 0 && step <= 4) return <DoctorMeeting />;
+        if (step > 4 && step <= 8) return <DoctorMeetingPreJoin />;
       },
       active: false,
     },
   },
   {
-    id: "dyte",
-    type: "logo",
+    id: 'dyte',
+    type: 'logo',
     position: { x: 400, y: 50 },
     data: { active: false },
   },
@@ -50,7 +50,7 @@ function updateNodeData(node: Node, updateData: any) {
   const orgNode = initialNodes.find((e) => e.id === node.id);
   if (orgNode === undefined) return node;
   const newNode = { ...node };
-  
+
   newNode.hidden = updateData._hidden;
   newNode.data = {
     ...orgNode.data,
@@ -83,7 +83,7 @@ export function gotoStepNodes(nodes: Node[], step: number) {
     }
     case 2: {
       const updates = {
-        "cust-server": {
+        'cust-server': {
           active: true,
         },
         dyte: {
@@ -94,7 +94,7 @@ export function gotoStepNodes(nodes: Node[], step: number) {
     }
     case 3: {
       const updates = {
-        "cust-server": {
+        'cust-server': {
           active: true,
         },
         dyte: {
@@ -105,10 +105,10 @@ export function gotoStepNodes(nodes: Node[], step: number) {
     }
     case 4: {
       const updates = {
-        "cust-server": {
+        'cust-server': {
           active: true,
         },
-        "cust-db": {
+        'cust-db': {
           active: true,
         },
       };
@@ -119,37 +119,37 @@ export function gotoStepNodes(nodes: Node[], step: number) {
         phone: {
           active: true,
         },
-        "cust-db": {
+        'cust-db': {
           _hidden: true,
-        }
+        },
       };
       return updateNodesData(nodes, updates);
     }
     case 6: {
       const updates = {
-        "cust-server": {
+        'cust-server': {
           active: true,
         },
         dyte: {
           active: true,
         },
-        "cust-db": {
+        'cust-db': {
           _hidden: true,
-        }
+        },
       };
       return updateNodesData(nodes, updates);
     }
     case 7: {
       const updates = {
-        "cust-server": {
+        'cust-server': {
           active: true,
         },
         dyte: {
           active: true,
         },
-        "cust-db": {
+        'cust-db': {
           _hidden: true,
-        }
+        },
       };
       return updateNodesData(nodes, updates);
     }

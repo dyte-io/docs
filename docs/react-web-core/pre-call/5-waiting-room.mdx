@@ -22,7 +22,7 @@ Each of these state changes generate their own events.
 
 ```ts
 const roomState = useDyteSelector((m) => m.self.roomState);
-const joined = roomState === "joined";
+const joined = roomState === 'joined';
 ```
 
 Alternatively
@@ -30,29 +30,28 @@ Alternatively
 ```ts
 meeting.self.on('roomJoined', () => {
   // local user is in the meeting
-})
+});
 ```
 
 - **waitlisted**
 
 ```ts
 const roomState = useDyteSelector((m) => m.self.roomState);
-const isWaitlisted = roomState === "waitlisted";
+const isWaitlisted = roomState === 'waitlisted';
 ```
 
 ```ts
 meeting.self.on('waitlisted', () => {
   // local user is waitlisted
-})
+});
 ```
 
-- **rejected** 
-
+- **rejected**
 
 ```ts
 meeting.self.on('roomLeft', ({ state }) => {
   // state = rejected when host rejects the entry
-})
+});
 ```
 
 Host can use [these methods to accept/reject participants](/web-core/participants#waiting-room-methods)

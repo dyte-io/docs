@@ -10,7 +10,7 @@ tags:
 
 # Introduction
 
-Accessible via `self` key within the `meeting` object, the local user object consists of all the information related to the current participant and methods to configure media and other states. 
+Accessible via `self` key within the `meeting` object, the local user object consists of all the information related to the current participant and methods to configure media and other states.
 
 ## Properties
 
@@ -45,10 +45,17 @@ Here is a list of properties that local user provides:
 - `roomJoined`: A <span className="tag-orange">boolean</span> value indicating if the local user is in the meeting
 - `roomState`: Indicates the state of the user in the meeting. It
   can take the following values:
-  
-   ```ts
-   "init" | "joined" | "waitlisted" | "rejected" | "kicked" | "left" | "ended" | "disconnected"
-   ```
+
+  ```ts
+  'init' |
+    'joined' |
+    'waitlisted' |
+    'rejected' |
+    'kicked' |
+    'left' |
+    'ended' |
+    'disconnected';
+  ```
 
 ```mermaid
 stateDiagram-v2
@@ -70,8 +77,6 @@ stateDiagram-v2
 ```
 
 <br />
-
-
 
 ## Change the name of the local user
 
@@ -143,7 +148,6 @@ await meeting.self.disableScreenShare();
 // Get current status
 meeting.self.screenShareEnabled;
 ```
-
 
 <head>
   <title>Web Core Introduction</title>

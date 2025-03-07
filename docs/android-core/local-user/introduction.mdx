@@ -63,7 +63,6 @@ DyteMeetingInfoV2 meetingInfo = new DyteMeetingInfoV2(
   </TabItem>
 </Tabs>
 
-
 ## Get local user video view
 
 To display the `localUser` preview in a view, utilize the `getSelfPreview()` method on `localUser`. This method provides a View that can be added to any `ViewGroup` in Android.
@@ -141,7 +140,6 @@ meeting.localUser.enableAudio(error -> null);
   </TabItem>
 </Tabs>
 
-
 ## Enable/disable camera
 
 Enable/disable your camera in the meeting using `disableVideo()` and `enableVideo()` methods, and check the current status with `videoEnabled`.
@@ -177,12 +175,10 @@ meeting.localUser.enableVideo(error -> null);
   </TabItem>
 </Tabs>
 
-
 ## Enable / Disable Screen share
 
 :::tip Note
 To use screenshare on Android devices running Android API 14 and above, you will need to declare the following permission in your app's AndroidManifest.xml.
-
 
 `<uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />`
 

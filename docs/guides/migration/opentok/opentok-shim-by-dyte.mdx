@@ -65,7 +65,7 @@ session.on('streamCreated', function streamCreated(event) {
       width: '100%',
       height: '100%',
     },
-    handleError
+    handleError,
   );
   // }
 });
@@ -79,7 +79,7 @@ session.on('connectionCreated', (connectionCreatedEvent) => {
     connections.find(
       (connection) =>
         connection.connectionId ===
-        connectionCreatedEvent.connection.connectionId
+        connectionCreatedEvent.connection.connectionId,
     )
   ) {
     console.log('connection already exists');
@@ -93,7 +93,7 @@ session.on('connectionDestroyed', (connectionDestroyedEvent) => {
   connections = connections.filter(
     (connection) =>
       connection.connectionId !==
-      connectionDestroyedEvent.connection.connectionId
+      connectionDestroyedEvent.connection.connectionId,
   );
 });
 ```
