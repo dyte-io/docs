@@ -19,19 +19,12 @@ While initializing DyteClient you can pass configuration overrides, the availabl
 type DefaultOptions {
 	video?: boolean;
 	audio?: boolean;
-	screenShare?: {
-		displaySurface?: 'window' | 'monitor' | 'browser';
-	};
 	mediaConfiguration?: {
 		video?: VideoQualityConstraints,
 		audio?: AudioQualityConstraints,
+		screenshare?: ScreenshareQualityConstraints,
 	}
 	isNonPreferredDevice?: (device: MediaDeviceInfo) => boolean;
-	/**
-	 * If true, will automatically switch audio input and output device
-	 * to a new device connected mid call. (In case of disconnection switch
-	 * will happen automatically in both cases)
-	 */
 	autoSwitchAudioDevice?: boolean;
 	recording?: RecordingConfig;
 }
@@ -39,12 +32,8 @@ type DefaultOptions {
 
 ### audio, video
 
-This optional propery is true by default and defines whether audio or video would be acquired and enabled on SDK initialization
-
-** Change default audio / video settings (())
-
-By default as soon as you join the meeting the SDK will produce your video and
-audio streams.
+This optional propery is true by default and defines whether audio or video would be acquired and enabled on SDK initialization as soon as you join the meeting the SDK will produce your video and
+audio streams by default.
 
 ```ts {5}
 const meeting = await DyteClient.init({
@@ -55,7 +44,8 @@ const meeting = await DyteClient.init({
   },
 });
 ```
-### screenShare.displaySurface
+
+### mediaConfiguration.screenShare.displaySurface
 
 Specifies the _preferred_ screenshare surface, user will still be shown all possible options but the one configured here will be preselected
 
