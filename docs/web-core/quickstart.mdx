@@ -179,19 +179,22 @@ For example:
 
 <Tabs groupId="framework" defaultValue="react">
   <TabItem value="js" label="Javascript">
+
 ```js
 meeting.self.on('roomJoined', () => {
   console.log('User has joined the room', meeting.self.roomJoined);
   // run my actions.
 });
 ```
+
   </TabItem>
   <TabItem value="react" label="React">
-  ```js
+
+```js
 ...
 const roomJoinedListener = () => {
-  console.log('User has joined the room', meeting.self.roomJoined);
-  // run my actions.
+console.log('User has joined the room', meeting.self.roomJoined);
+// run my actions.
 }
 
 useEffect(() => {
@@ -202,8 +205,8 @@ meeting.self.off('roomJoined', roomJoinedListener);
 };
 }, [meeting]);
 ...
-
 ```
+
 </TabItem>
 </Tabs>
 
@@ -229,19 +232,22 @@ For example:
 
 <Tabs groupId="framework" defaultValue="react">
   <TabItem value="js" label="Javascript">
+
 ```js
 meeting.self.on('roomLeft', () => {
   console.log('User has left the room', meeting.self.roomJoined);
   // run my actions.
 });
 ```
+
   </TabItem>
   <TabItem value="react" label="React">
-  ```js
+
+```js
 ...
 const roomLeftListener = () => {
-  console.log('User has left the room', meeting.self.roomJoined);
-  // run my actions.
+console.log('User has left the room', meeting.self.roomJoined);
+// run my actions.
 }
 
 useEffect(() => {
@@ -252,8 +258,8 @@ meeting.self.off('roomLeft', roomLeftListener);
 };
 }, [meeting]);
 ...
-
 ```
+
 </TabItem>
 </Tabs>
 :::

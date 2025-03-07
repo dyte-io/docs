@@ -99,7 +99,7 @@ return (
 - Using a ref hack, we are adding "dyteStateUpdate" listener,
 - so that we can listen to child component's internal state changes.
   \*/
-    <div className="flex w-full h-full bg-black text-white" ref={(el) => {
+  <div className="flex w-full h-full bg-black text-white" ref={(el) => {
   el?.addEventListener('dyteStateUpdate', (e) => {
   const { detail: newStateUpdate } = e as unknown as { detail: CustomStates };
   setStates((oldState: CustomStates) => { return {
@@ -109,8 +109,8 @@ return (
   });
   }}>
   <HeaderWithCustomUI meeting={meeting} config={config} states={states} setStates={setStates} />
-    </div>
-);
+  </div>
+  );
 
 }
 
