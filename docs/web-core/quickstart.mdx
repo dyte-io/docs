@@ -193,16 +193,16 @@ meeting.self.on('roomJoined', () => {
 ```js
 ...
 const roomJoinedListener = () => {
-console.log('User has joined the room', meeting.self.roomJoined);
-// run my actions.
+  console.log('User has joined the room', meeting.self.roomJoined);
+  // run my actions.
 }
 
 useEffect(() => {
-meeting.self.on('roomJoined', roomJoinedListener);
+  meeting.self.on('roomJoined', roomJoinedListener);
 
-return () => {
-meeting.self.off('roomJoined', roomJoinedListener);
-};
+  return () => {
+  meeting.self.off('roomJoined', roomJoinedListener);
+  };
 }, [meeting]);
 ...
 ```
@@ -246,16 +246,16 @@ meeting.self.on('roomLeft', () => {
 ```js
 ...
 const roomLeftListener = () => {
-console.log('User has left the room', meeting.self.roomJoined);
-// run my actions.
+  console.log('User has left the room', meeting.self.roomJoined);
+  // run my actions.
 }
 
 useEffect(() => {
-meeting.self.on('roomLeft', roomLeftListener);
+  meeting.self.on('roomLeft', roomLeftListener);
 
-return () => {
-meeting.self.off('roomLeft', roomLeftListener);
-};
+  return () => {
+    meeting.self.off('roomLeft', roomLeftListener);
+  };
 }, [meeting]);
 ...
 ```
