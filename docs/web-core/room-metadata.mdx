@@ -24,24 +24,28 @@ is connected to, you can do so by doing:
 
 <Tabs groupId="framework" defaultValue="react">
   <TabItem value="js" label="Javascript">
-  ```ts
+```ts
 // Destructuring the metadata to get meetingTitle and joined
 const { meetingTitle } = meeting.meta;
 if (meeting.self.roomJoined) {
-    console.log(
-      `The local user has joined a meeting with title ${meetingTitle}.`,
-    );
+  console.log(
+    `The local user has joined a meeting with title ${meetingTitle}.`,
+  );
 }
 ```
   </TabItem>
   <TabItem value="react" label="React">
-  ```ts
-const [meetingTitle, roomJoined] = useDyteSelector((m) => [m.meta.meetingTitle, m.self.roomJoined]);
-if (roomJoined) {
+```ts
+const [meetingTitle, roomJoined] = useDyteSelector((m) => 
+  [m.meta.meetingTitle, m.self.roomJoined]
+);
+useEffect(() => {
+  if (roomJoined) {
     console.log(
       `The local user has joined a meeting with title ${meetingTitle}.`,
     );
-}
+  }
+}, [roomJoined, meetingTitle])
 ```
   </TabItem>
 </Tabs>

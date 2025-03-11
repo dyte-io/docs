@@ -28,7 +28,7 @@ const recordings = meeting.recording.recordings;
   </TabItem>
   <TabItem value="react" label="React">
   
-  ```ts
+```ts
 const recordings = useDyteSelector((m) => m.recording.recordings);
 ```
 
@@ -118,26 +118,26 @@ You can set the defaults for recording during initialization
 
 <Tabs groupId="framework" defaultValue="react">
   <TabItem value="js" label="Javascript">
-  ```js
+```js
 const meeting = await DyteClient.init({
-    authToken,
-    defaults: {
-      recording: recordingConfig,
-    },
+  authToken,
+  defaults: {
+    recording: recordingConfig,
+  },
 });
 ```
   </TabItem>
   <TabItem value="react" label="React">
-  ```js
-  useEffect(() => {
-    initMeeting({
-      authToken,
-      defaults: {
-        recording: recordingConfig,
-      },
-    });
-  }, []);
-  ```
+```js
+useEffect(() => {
+  initMeeting({
+    authToken,
+    defaults: {
+      recording: recordingConfig,
+    },
+  });
+}, []);
+```
   </TabItem>
 </Tabs>
 
