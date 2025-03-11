@@ -20,10 +20,6 @@ const products = [
     href: 'https://dyte.io/live-streaming-sdk',
   },
   {
-    name: 'Chat SDK',
-    href: 'https://dyte.io/chat-sdk',
-  },
-  {
     name: 'Pricing',
     href: 'https://dyte.io/pricing',
   },
