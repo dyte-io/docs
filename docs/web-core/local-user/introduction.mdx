@@ -90,9 +90,7 @@ const roomState = meeting.self.roomState;
 ```ts
 // subscribe to roomState
 const roomState = useDyteSelector((m) => m.self.roomState)
-
 return (
-
   <>
     {roomState === "disconnected" && <div>disconnected</div>}
   </>

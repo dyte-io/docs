@@ -21,23 +21,34 @@ produce and consume media.
 
 <Tabs groupId="framework" defaultValue="react">
   <TabItem value="js" label="Javascript">
-  ```ts
+```ts
 meeting.self.on('roomJoined', () => {
-    console.log(
-      'User has joined the meeting and ready to produce and consume media',
-    );
+  console.log(
+    'User has joined the meeting and ready to produce and consume media',
+  );
 });
 ```
   </TabItem>
   <TabItem value="react" label="React">
-  
 ```ts
 const roomJoined = useDyteSelector((meeting) => meeting.self.roomJoined);
 useEffect(() => {
-  if (roomJoined)
+  if (roomJoined) {
     console.log('User has joined the meeting and ready to produce and consume media')
+  }
 }, [roomJoined]);
 ```
+
+Alternatively,
+
+```ts
+meeting.self.on('roomJoined', () => {
+  console.log(
+    'User has joined the meeting and ready to produce and consume media',
+  );
+});
+```
+
   </TabItem>
 </Tabs>
 
@@ -65,6 +76,18 @@ useEffect(() => {
     console.log('User has left the room')
 }, [roomJoined]);
 ```
+
+Alternatively,
+
+```js
+meeting.self.on('roomLeft', ({ state }) => {
+  // state is a string whose values are explained below
+  if (state === 'left') {
+    console.log('User has left the room');
+  }
+});
+```
+
   </TabItem>
 </Tabs>
 
@@ -141,17 +164,17 @@ meeting.self.on('audioUpdate', async ({ audioEnabled, audioTrack }) => {
 ```
 </TabItem>
   <TabItem value="react" label="React">
-  ```ts
+```ts
 const audioEnabled = useDyteSelector((meeting) => meeting.self.audioEnabled);
 const audioTrack = useDyteSelector((meeting) => meeting.self.audioTrack);
 useEffect(() => {
-    const audioElem = document.getElementById('my-audio');
-    if (audioEnabled && audioTrack) {
-      const stream = new MediaStream();
-      stream.addTrack(audioTrack);
-      audioElem.srcObject = stream;
-      audioElem.play();
-    }
+  const audioElem = document.getElementById('my-audio');
+  if (audioEnabled && audioTrack) {
+    const stream = new MediaStream();
+    stream.addTrack(audioTrack);
+    audioElem.srcObject = stream;
+    audioElem.play();
+  }
 }, [audioEnabled, audioTrack]);
 ```
 </TabItem>

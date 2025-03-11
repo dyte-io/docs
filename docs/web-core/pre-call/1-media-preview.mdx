@@ -43,19 +43,19 @@ Anytime there is an update in audio state you will get a `audioUpdate` event
 <Tabs groupId="framework" defaultValue="react">
   <TabItem value="js" label="Javascript">
 
-    ```ts
-    meeting.self.on('audioUpdate', ({ audioEnabled, audioTrack }) => {
-      // if enabled show a visual(izer) preview of the audio to the user
-    });
-    ```
+```ts
+meeting.self.on('audioUpdate', ({ audioEnabled, audioTrack }) => {
+  // if enabled show a visual(izer) preview of the audio to the user
+});
+```
 
   </TabItem>
   <TabItem value="react" label="React">
 
-    ```tsx
-    const audioEnabled = useDyteSelector((m) => m.self.audioEnabled);
-    const audioTrack = useDyteSelector((m) => m.self.audioTrack);
-    ```
+```tsx
+const audioEnabled = useDyteSelector((m) => m.self.audioEnabled);
+const audioTrack = useDyteSelector((m) => m.self.audioTrack);
+```
 
 or if you want a traditional JS event you can use the `audioUpdate` event
 
@@ -104,18 +104,18 @@ Anytime there is an update in audio state you will get a `videoUpdate` event
 <Tabs groupId="framework" defaultValue="react">
   <TabItem value="js" label="Javascript">
 
-    ```ts
-    meeting.self.on('videoUpdate', ({(videoEnabled, videoTrack)}) => {
-      // if videoEnabled play video here to a <video> element
-    });
-    ```
+```ts
+meeting.self.on('videoUpdate', ({(videoEnabled, videoTrack)}) => {
+  // if videoEnabled play video here to a <video> element
+});
+```
 
   </TabItem>
   <TabItem value="react" label="React">
-    ```ts
-    const videoEnabled = useDyteSelector((m) => m.self.videoEnabled);
-    const videoTrack = useDyteSelector((m) => m.self.videoTrack);
-    ```
+```ts
+const videoEnabled = useDyteSelector((m) => m.self.videoEnabled);
+const videoTrack = useDyteSelector((m) => m.self.videoTrack);
+```
 
 or if you want a traditional JS event you can use the `videoUpdate` event
 

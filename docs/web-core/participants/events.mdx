@@ -17,12 +17,12 @@ Triggered when the View mode changes
 
 <Tabs groupId="framework" defaultValue="react">
   <TabItem value="js" label="Javascript">
-  ```ts
+```ts
 meeting.participants.on(
-    'viewModeChanged',
-    ({ viewMode, currentPage, pageCount }) => {
-        console.log('view mode changed', viewMode);
-    },
+  'viewModeChanged',
+  ({ viewMode, currentPage, pageCount }) => {
+    console.log('view mode changed', viewMode);
+  },
 );
 ```
   </TabItem>
@@ -40,10 +40,10 @@ const viewMode = useDyteSelector((meeting) => meeting.participants.viewMode);
   <TabItem value="js" label="Javascript">
 ```ts
 meeting.participants.on(
-    'pageChanged',
-    ({ viewMode, currentPage, pageCount }) => {
-        console.log('page changed', currentPage);
-    },
+  'pageChanged',
+  ({ viewMode, currentPage, pageCount }) => {
+    console.log('page changed', currentPage);
+  },
 );
 ```
   </TabItem>
@@ -65,14 +65,14 @@ speak.
   <TabItem value="js" label="Javascript">
 ```ts
 meeting.participants.on('activeSpeaker', (participant) => {
-    console.log(`${participant.id} is currently speaking`);
+  console.log(`${participant.id} is currently speaking`);
 });
 ```
   </TabItem>
   <TabItem value="react" label="React">
-  ```ts
+```ts
 const activeSpeaker = useDyteSelector(
-    (meeting) => meeting.participants.lastActiveSpeaker,
+  (meeting) => meeting.participants.lastActiveSpeaker,
 );
 ```
   </TabItem>
@@ -93,23 +93,26 @@ Trigger an event when any participant joins the meeting.
 
 <Tabs groupId="framework" defaultValue="react">
   <TabItem value="js" label="Javascript">
-  ```ts
+```ts
 meeting.participants.joined.on('participantJoined', (participant) => {
-    console.log(`A participant with id "${participant.id}" has joined`);
+  console.log(`A participant with id "${participant.id}" has joined`);
 });
 ```
   </TabItem>
   <TabItem value="react" label="React">
-  ```ts
-  /**
-   * Returns a list of all joined participants in the meeting
-  */
+```ts
+/**
+ * Returns a list of all joined participants in the meeting
+*/
 const joinedParticipants = useDyteSelector(
-    (meeting) => meeting.participants.joined,
+  (meeting) => meeting.participants.joined,
 );
-  /**
-   * Check the Javascript event for listening to participant joined event
-  */
+```
+Alternatively,
+```ts
+meeting.participants.joined.on('participantJoined', (participant) => {
+  console.log(`A participant with id "${participant.id}" has joined`);
+});
 ```
   </TabItem>
 </Tabs>
@@ -120,23 +123,26 @@ Trigger an event when any participant leaves the meeting.
 
 <Tabs groupId="framework" defaultValue="react">
   <TabItem value="js" label="Javascript">
-  ```ts
+```ts
 meeting.participants.joined.on('participantLeft', (participant) => {
-    console.log(`A participant with id "${participant.id}" has left the meeting`);
+  console.log(`A participant with id "${participant.id}" has left the meeting`);
 });
 ```
   </TabItem>
   <TabItem value="react" label="React">
-  ```ts
-  /**
-   * Returns a list of all joined participants in the meeting
-  */
+```ts
+/**
+ * Returns a list of all joined participants in the meeting
+*/
 const joinedParticipants = useDyteSelector(
-    (meeting) => meeting.participants.joined,
+  (meeting) => meeting.participants.joined,
 );
-  /**
-   * Check the Javascript event for listening to participant left event
-  */
+```
+Alternatively,
+```ts
+meeting.participants.joined.on('participantLeft', (participant) => {
+  console.log(`A participant with id "${participant.id}" has left the meeting`);
+});
 ```
   </TabItem>
 </Tabs>
@@ -149,15 +155,15 @@ Trigger an event when a participant is pinned.
   <TabItem value="js" label="Javascript">
 ```ts
 meeting.participants.joined.on('pinned', (participant) => {
-    console.log(`Participant with id "${participant.id}" was pinned`);
+  console.log(`Participant with id "${participant.id}" was pinned`);
 });
 ```
   </TabItem>
   <TabItem value="react" label="React">
-  ```ts
+```ts
 // Returns a list of all pinned participants in the meeting, to listen to pinned event check the Javascript event
 const pinnedParticipants = useDyteSelector(
-    (meeting) => meeting.participants.pinned,
+  (meeting) => meeting.participants.pinned,
 );
 ```
   </TabItem>
@@ -176,10 +182,10 @@ meeting.participants.joined.on('unpinned', (participant) => {
 ```
   </TabItem>
   <TabItem value="react" label="React">
-  ```ts
+```ts
 // Returns a list of all pinned participants in the meeting, to listen to pinned event check the Javascript event
 const pinnedParticipants = useDyteSelector(
-    (meeting) => meeting.participants.pinned,
+  (meeting) => meeting.participants.pinned,
 );
 ```
   </TabItem>
@@ -193,26 +199,27 @@ Trigger an event when any participant starts / stops video.
   <TabItem value="js" label="Javascript">
 ```ts
 meeting.participants.joined.on('videoUpdate', (participant) => {
-    console.log(
-      `A participant with id "${participant.id}" updated their video track in the meeting`,
-    );
-    // Use the video track if it exists
-    if (participant.videoEnabled) {
-      // participant.videoTrack
-    } else {
-      // handle stop video
-    }
+  console.log(
+    `A participant with id "${participant.id}" updated their video track in the meeting`,
+  );
+  // Use the video track if it exists
+  if (participant.videoEnabled) {
+    // participant.videoTrack
+  } else {
+    // handle stop video
+  }
 });
 ```
   </TabItem>
   <TabItem value="react" label="React">
 ```js
+// Check for one participant
 const videoEnabled = useDyteSelector(
   (m) => m.participants.joined.get(participantId).videoEnabled,
 );
 // All video enabled participants
 const videoEnabledParticipants = useDyteSelector((m) =>
-    m.participants.joined.toArray().find((p) => p.videoEnabled),
+  m.participants.joined.toArray().find((p) => p.videoEnabled),
 );
 ```
 </TabItem>
@@ -224,29 +231,30 @@ Trigger an event when any participant starts / stops audio.
 
 <Tabs groupId="framework" defaultValue="react">
   <TabItem value="js" label="Javascript">
-  ```ts
+```ts
 meeting.participants.joined.on('audioUpdate', (participant) => {
-    console.log(
-      `A participant with id "${participant.id}" updated their audio track in the meeting`,
-    );
-    // Use the audio track if it exists
-    if (participant.audioEnabled) {
-      // participant.audioTrack
-    } else {
-      // handle stop audio
-    }
+  console.log(
+    `A participant with id "${participant.id}" updated their audio track in the meeting`,
+  );
+  // Use the audio track if it exists
+  if (participant.audioEnabled) {
+    // participant.audioTrack
+  } else {
+    // handle stop audio
+  }
 });
 ```
 
   </TabItem>
   <TabItem value="react" label="React">
 ```js
+// Check for one participant
 const audioEnabled = useDyteSelector(
-    (m) => m.participants.joined.get(participantId).audioEnabled,
+  (m) => m.participants.joined.get(participantId).audioEnabled,
 );
 // All audio enabled participants
 const audioEnabledParticipants = useDyteSelector((m) =>
-    m.participants.joined.toArray().find((p) => p.audioEnabled),
+  m.participants.joined.toArray().find((p) => p.audioEnabled),
 );
 ```
 </TabItem>
@@ -274,12 +282,13 @@ meeting.participants.joined.on('screenShareUpdate', (participant) => {
 </TabItem>
   <TabItem value="react" label="React">
 ```ts
+// Check for one participant
 const screensharingParticipant = useDyteSelector((m) =>
   m.participants.joined.toArray().find((p) => p.screenShareEnabled),
 );
 // All screen sharing participants
 const audioEnabledParticipants = useDyteSelector((m) =>
-    m.participants.joined.toArray().find((p) => p.screenShareEnabled),
+  m.participants.joined.toArray().find((p) => p.screenShareEnabled),
 );
 ```
 </TabItem>

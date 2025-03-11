@@ -20,7 +20,7 @@ must be used before the iframe is removed from the DOM.
 
 <Tabs groupId="framework" defaultValue="react">
   <TabItem value="js" label="Javascript">
-  ```ts
+```ts
 const plugins = meeting.plugins.all.toArray();
 plugins.forEach(async (plugin: DytePlugin) => {
   await plugin.removePluginView();
@@ -28,7 +28,7 @@ plugins.forEach(async (plugin: DytePlugin) => {
 ```
   </TabItem>
   <TabItem value="react" label="React">
-  ```ts
+```ts
 const plugins = useDyteSelector((m) => m.plugins.all.toArray());
 plugins.forEach(async (plugin: DytePlugin) => {
   await plugin.removePluginView();
@@ -60,7 +60,7 @@ plugins.forEach((plugin: DytePlugin) => {
 ```
 </TabItem>
   <TabItem value="react" label="React">
-  ```ts
+```ts
 const plugins = useDyteSelector((m) => m.plugins.active.toArray());
 plugins.forEach((plugin: DytePlugin) => {
   const button = document.createElement('button');

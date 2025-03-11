@@ -7,7 +7,7 @@ sidebar_position: 1
 
 <Tabs groupId="framework" defaultValue="react">
   <TabItem value="js" label="Javascript">
-	```js
+```js
 await DyteClient.init({
   defaults: {
     ...
@@ -16,14 +16,14 @@ await DyteClient.init({
 ```
 	</TabItem>
   <TabItem value="react" label="React">
-	```js
+```js
 useEffect(() => {
-    initMeeting({
-      defaults: {
-        ...
-      },
-    });
-  }, []);
+  initMeeting({
+    defaults: {
+      ...
+    },
+  });
+}, []);
 ```
 	</TabItem>
 </Tabs>
@@ -52,7 +52,7 @@ audio streams by default.
 
 <Tabs groupId="framework" defaultValue="react">
   <TabItem value="js" label="Javascript">
-	```ts {5}
+```ts {5}
 const meeting = await DyteClient.init({
   authToken,
   defaults: {
@@ -63,17 +63,17 @@ const meeting = await DyteClient.init({
 ```
 	</TabItem>
   <TabItem value="react" label="React">
-	```ts
-	useEffect(() => {
-    initMeeting({
-      authToken: '<auth-token>',
-      defaults: {
-        audio: false,
-        video: false,
-      },
-    });
-  }, []);
-	```
+```ts
+useEffect(() => {
+  initMeeting({
+    authToken: '<auth-token>',
+    defaults: {
+      audio: false,
+      video: false,
+    },
+  });
+}, []);
+```
 	</TabItem>
 </Tabs>
 

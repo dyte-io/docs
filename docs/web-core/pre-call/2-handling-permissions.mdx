@@ -45,13 +45,13 @@ meeting.self?.addListener('mediaPermissionUpdate', ({ kind, message }) => {
   <TabItem value="react" label="React">
 ```js
 useEffect(() => {
-    const onMediaPermissionUpdate = ({ kind, message }) => {
-        console.log(`Permission update for ${kind} is ${message}`);
-    };
-    meeting.self?.on('mediaPermissionUpdate', onMediaPermissionUpdate);
-    return () => {
-        meeting.self?.off('mediaPermissionUpdate', onMediaPermissionUpdate);
-    };
+  const onMediaPermissionUpdate = ({ kind, message }) => {
+    console.log(`Permission update for ${kind} is ${message}`);
+  };
+  meeting.self?.on('mediaPermissionUpdate', onMediaPermissionUpdate);
+  return () => {
+    meeting.self?.off('mediaPermissionUpdate', onMediaPermissionUpdate);
+  };
 }, [meeting]);
 ```
   </TabItem>

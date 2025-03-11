@@ -15,7 +15,7 @@ received.
 
 <Tabs groupId="framework" defaultValue="react">
   <TabItem value="js" label="Javascript">
-  ```ts
+```ts
 meeting.chat.on('chatUpdate', ({ message, messages }) => {
   console.log(`Received message ${message}`);
   console.log(`All messages in chat: ${messages.join(', ')}`);
@@ -23,12 +23,20 @@ meeting.chat.on('chatUpdate', ({ message, messages }) => {
 ```
   </TabItem>
   <TabItem value="react" label="React">
-  ```ts
-console.log(JSON.stringify(meeting.chat.messages));
-meeting.chat.on('chatUpdate', () => {
-  console.log(JSON.stringify(meeting.chat.messages));
+
+```ts
+const messages = useDyteSelector((m) => m.chat.messages));
+```
+
+Alternatively,
+
+```ts
+meeting.chat.on('chatUpdate', ({ message, messages }) => {
+  console.log(`Received message ${message}`);
+  console.log(`All messages in chat: ${messages.join(', ')}`);
 });
 ```
+
   </TabItem>
 </Tabs>
 
