@@ -8,8 +8,27 @@ import ProductSection from '/docs/partials/_product-section.mdx';
 
 # Introduction
 
-The Dyte Core SDK is designed to provide you with an easy way to incorporate live video, voice, livestream and chat capabilities into your apps and websites. The Core SDK acts as a data-only layer. It provides simple APIs offering high-level primitives and abstracting away complex media and networking optimizations.
+The Dyte Core SDK is designed to provide developers with an easy way to incorporate real-time communication (RTC) solutions into their apps and websites. With full customization and branding options, you can build your own user interface from the ground up without dealing with complicated media layers.
 
+The Core SDK acts as a data-only layer, offering high-level primitives and abstracting away complex media and networking optimizations. It only provides simple APIs that are user-friendly and easy to work with.
+
+{/* TODO: Move this to a parent level switch when we move this page to the new layout */}
+
+<Tabs groupId="framework" defaultValue="react">
+  <TabItem value="js" label="Javascript"></TabItem>
+  <TabItem value="react" label="React">
+  ## Hooks
+
+[React Hooks](https://beta.reactjs.org/reference/react) are functions that allow developers to manage state and other React features in functional components. Hooks were introduced in React version 16.8 as a way to simplify the code. Dyte provides the following built-in hooks:
+
+- useDyteClient()
+- useDyteMeeting()
+- useDyteSelector()
+
+See [Hooks](/react-ui-kit/using-hooks) for more information.
+
+</TabItem>
+</Tabs>
 ## Utility Modules
 
 The Core SDK includes various modules for in-call utilities like chat, polls, and recording that enable building a UI on top of it. The following are the core SDK modules:

@@ -1,6 +1,6 @@
 ---
-sidebar_position: 17
-web_core_version: 1.32.1
+sidebar_position: 18
+web_core_version: 2.4.1
 ---
 
 <!-- Auto Generated Below -->
@@ -19,33 +19,39 @@ This consists of the methods to faciliate connected meetings
 
 <a name="module_DyteConnectedMeetings+getConnectedMeetings"></a>
 
-### connectedMeetings.getConnectedMeetings()
+### meeting.connectedMeetings.getConnectedMeetings()
 
 get connected meeting state
 
+**Kind**: instance method of [<code>DyteConnectedMeetings</code>](#module_DyteConnectedMeetings)  
 <a name="module_DyteConnectedMeetings+createMeetings"></a>
 
-### connectedMeetings.createMeetings()
+### meeting.connectedMeetings.createMeetings()
 
 create connected meetings
 
+**Kind**: instance method of [<code>DyteConnectedMeetings</code>](#module_DyteConnectedMeetings)  
 <a name="module_DyteConnectedMeetings+updateMeetings"></a>
 
-### connectedMeetings.updateMeetings()
+### meeting.connectedMeetings.updateMeetings()
 
 update meeting title
 
+**Kind**: instance method of [<code>DyteConnectedMeetings</code>](#module_DyteConnectedMeetings)  
 <a name="module_DyteConnectedMeetings+deleteMeetings"></a>
 
-### connectedMeetings.deleteMeetings()
+### meeting.connectedMeetings.deleteMeetings()
 
 delete connected meetings
 
+**Kind**: instance method of [<code>DyteConnectedMeetings</code>](#module_DyteConnectedMeetings)  
 <a name="module_DyteConnectedMeetings+moveParticipants"></a>
 
-### connectedMeetings.moveParticipants(sourceMeetingId, destinationMeetingId, participantIds)
+### meeting.connectedMeetings.moveParticipants(sourceMeetingId, destinationMeetingId, participantIds)
 
 Trigger event to move participants
+
+**Kind**: instance method of [<code>DyteConnectedMeetings</code>](#module_DyteConnectedMeetings)
 
 | Param                | Type                              | Description                    |
 | -------------------- | --------------------------------- | ------------------------------ |
@@ -55,6 +61,8 @@ Trigger event to move participants
 
 <a name="module_DyteConnectedMeetings+moveParticipantsWithCustomPreset"></a>
 
-### connectedMeetings.moveParticipantsWithCustomPreset()
+### meeting.connectedMeetings.moveParticipantsWithCustomPreset()
 
 Trigger event to move participants with custom preset
+
+**Kind**: instance method of [<code>DyteConnectedMeetings</code>](#module_DyteConnectedMeetings)

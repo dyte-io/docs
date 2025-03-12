@@ -13,5 +13,10 @@ await meeting.self.setName('New Name');
 Before joining the meeting, you can get a list of people current in the meeting by using the method
 
 ```ts
+/**
+ * Returns all peers currently in the room, is a non paginated call
+ * and should only be used if you are in a non room joined state,
+ * if in a joined group call, use `meeting.participants.joined`
+ */
 meeting.participants.getParticipantsInMeetingPreJoin();
 ```

@@ -25,6 +25,7 @@ Here is a list of properties that local user provides:
 - `name`: Contains Name of the local user.
 - `picture`: Display picture URL for the local user.
 - `permissions`: The permissions related to various capabilities for the local user defined by the preset
+- `config`: The configuration for how the meeting should appear for the local user
 
 **Media**:
 
@@ -76,7 +77,27 @@ stateDiagram-v2
     class kicked,left,ended,rejected END
 ```
 
-<br />
+<Tabs groupId="framework" defaultValue="react">
+  <TabItem value="js" label="Javascript">
+If you would like to subscribe to roomState, you can do so by listening to the `roomLeft` and `roomJoined` events as seen [here](/web-core/local-user/events#room-joined).
+```ts
+const roomState = meeting.self.roomState;
+```
+
+  </TabItem>
+  <TabItem value="react" label="React">
+  
+```ts
+// subscribe to roomState
+const roomState = useDyteSelector((m) => m.self.roomState)
+return (
+  <>
+    {roomState === "disconnected" && <div>disconnected</div>}
+  </>
+)
+```
+  </TabItem>
+</Tabs>
 
 ## Change the name of the local user
 
@@ -147,6 +168,26 @@ await meeting.self.disableScreenShare();
 
 // Get current status
 meeting.self.screenShareEnabled;
+```
+
+### Check all available media devices
+
+```ts
+// Returns all media devices accessible by the local participant.
+await meeting.self.getAllDevices();
+```
+
+### Change the media device in use
+
+Given a device parameter, switches the corresponding input to given device. You can choose which device needs to be changed to from using the above getAllDevices function
+
+```ts
+/**
+ * Change the current media device that is being used by the local participant.
+ * @param device The device that is to be used. A device of the same `kind` will be replaced.
+ * the primary stream.
+ */
+await meeting.self.setDevice(device);
 ```
 
 <head>

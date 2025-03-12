@@ -40,11 +40,43 @@ flowchart LR
 
 Anytime there is an update in audio state you will get a `audioUpdate` event
 
+<Tabs groupId="framework" defaultValue="react">
+  <TabItem value="js" label="Javascript">
+
 ```ts
 meeting.self.on('audioUpdate', ({ audioEnabled, audioTrack }) => {
   // if enabled show a visual(izer) preview of the audio to the user
 });
 ```
+
+  </TabItem>
+  <TabItem value="react" label="React">
+
+```tsx
+const audioEnabled = useDyteSelector((m) => m.self.audioEnabled);
+const audioTrack = useDyteSelector((m) => m.self.audioTrack);
+```
+
+or if you want a traditional JS event you can use the `audioUpdate` event
+
+```ts
+// Alternatively
+useEffect(() => {
+  if (!meeting) return;
+
+  const onAudioUpdate = ({ audioEnabled, audioTrack }) => {
+    // if enabled show a visual(izer) preview of the audio to the user
+  };
+
+  meeting.self.on('audioUpdate', onAudioUpdate);
+  return () => {
+    meeting.self.removeListener('audioUpdate', onAudioUpdate);
+  };
+}, [meeting]);
+```
+
+  </TabItem>
+</Tabs>
 
 **2. Enable/Disable camera**
 
@@ -67,12 +99,44 @@ flowchart LR
 ```
 
 <br />
+Anytime there is an update in audio state you will get a `videoUpdate` event
+
+<Tabs groupId="framework" defaultValue="react">
+  <TabItem value="js" label="Javascript">
 
 ```ts
-meeting.self.on('videoUpdate', ({ videoEnabled, videoTrack }) => {
+meeting.self.on('videoUpdate', ({(videoEnabled, videoTrack)}) => {
   // if videoEnabled play video here to a <video> element
 });
 ```
+
+  </TabItem>
+  <TabItem value="react" label="React">
+```ts
+const videoEnabled = useDyteSelector((m) => m.self.videoEnabled);
+const videoTrack = useDyteSelector((m) => m.self.videoTrack);
+```
+
+or if you want a traditional JS event you can use the `videoUpdate` event
+
+```ts
+// Alternatively
+useEffect(() => {
+  if (!meeting) return;
+
+  const onVideoUpdate = ({ videoEnabled, videoTrack }) => {
+    // if videoEnabled play video here to a <video> element
+  };
+
+  meeting.self.on('videoUpdate', onVideoUpdate);
+  return () => {
+    meeting.self.removeListener('videoUpdate', onVideoUpdate);
+  };
+}, [meeting]);
+```
+
+  </TabItem>
+</Tabs>
 
 ### Changing Media Device
 
@@ -87,16 +151,16 @@ const currentDevices = meeting.self.getCurrentDevices();
 
 ```js
 // Get all media devices
-const devices = meeting.self.getAllDevices();
+const devices = await meeting.self.getAllDevices();
 
 // Get all audio devices
-const audioDevices = meeting.self.getAudioDevices();
+const audioDevices = await meeting.self.getAudioDevices();
 
 // Get all video devices
-const videoDevices = meeting.self.getVideoDevices();
+const videoDevices = await meeting.self.getVideoDevices();
 
 // Get all speakers
-const speakerDevices = meeting.self.getSpeakerDevices();
+const speakerDevices = await meeting.self.getSpeakerDevices();
 ```
 
 These methods should be called when you want the user to be shown these preferences. When the user selects a device, use the below method to select the device.

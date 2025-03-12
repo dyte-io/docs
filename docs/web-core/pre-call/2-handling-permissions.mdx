@@ -34,6 +34,29 @@ One other thing to note down here is user might revoke permission later, or migh
 
 Use the `mediaPermissionUpdate` event on `self` to listen for these changes
 
+<Tabs groupId="framework" defaultValue="react">
+  <TabItem value="js" label="Javascript">
+```js
+meeting.self?.addListener('mediaPermissionUpdate', ({ kind, message }) => {
+  console.log(`Permission update for ${kind} is ${message}`);
+});
+```
+  </TabItem>
+  <TabItem value="react" label="React">
+```js
+useEffect(() => {
+  const onMediaPermissionUpdate = ({ kind, message }) => {
+    console.log(`Permission update for ${kind} is ${message}`);
+  };
+  meeting.self?.on('mediaPermissionUpdate', onMediaPermissionUpdate);
+  return () => {
+    meeting.self?.off('mediaPermissionUpdate', onMediaPermissionUpdate);
+  };
+}, [meeting]);
+```
+  </TabItem>
+</Tabs>
+
 ```mermaid
 stateDiagram-v2
     NOT_REQUESTED --> ACCEPTED

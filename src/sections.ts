@@ -71,12 +71,12 @@ const SECTIONS: Section[] = [
     icon: JSIcon,
     section: 'web-core-sdk',
   },
-  {
-    name: 'React',
-    docId: 'react-web-core',
-    icon: ReactIcon,
-    section: 'web-core-sdk',
-  },
+  // {
+  //   name: 'React',
+  //   docId: 'react-web-core',
+  //   icon: ReactIcon,
+  //   section: 'web-core-sdk',
+  // },
   // Mobile SDKs
   {
     name: 'Android Core',
