@@ -8,7 +8,7 @@ sidebar_label: Virtual BG and Noise Cancellation
 
 ### Installation
 
-To enable the virtual background feature in your application, first you need to install the "Background Transformer" package.
+To enable the virtual background feature in your application, you first need to install the "Background Transformer" package.
 
 <Tabs groupId="framework">
 <TabItem value="npm" label="NPM">
@@ -51,7 +51,7 @@ For reference, A middleware such as [company branding](https://github.com/dyte-i
 If you don't want to disable the default per frame rendering mechanism due to a custom middleware, please use the [legacy version](https://www.npmjs.com/package/@dytesdk/video-background-transformer/v/1.1.8) (README included) of DyteVideoBackgroundTransformer that is compatible with web-core 1.x versions.
 :::
 
-Now that we have disabled the per frame rendering, We can initialise the DyteVideoBackgroundTransformer.
+Now that we have disabled the per frame rendering, we can initialise the DyteVideoBackgroundTransformer.
 
 ```js
 const videoBackgroundTransformer = await DyteVideoBackgroundTransformer.init({
@@ -67,7 +67,7 @@ To customise DyteVideoBackgroundTransformer configs, please refer to the [video 
 :::info Note
 DyteVideoBackgroundTransformer's 2.x version requires you to use web-core 2.x versions. Please refer to our web-core [upgrade guide](https://docs.dyte.io/web-core/upgrade).
 
-If, In case you don't want to upgrade SDKs yet, Please use the [legacy version](https://www.npmjs.com/package/@dytesdk/video-background-transformer/v/1.1.8) (README included) of DyteVideoBackgroundTransformer that is compatible with web-core 1.x versions.
+In case you don't want to upgrade SDKs yet, Please use the [legacy version](https://www.npmjs.com/package/@dytesdk/video-background-transformer/v/1.1.8) (README included) of DyteVideoBackgroundTransformer that is compatible with web-core 1.x versions.
 :::
 
 ### Add an image as a background
@@ -118,7 +118,7 @@ This is a paid addon, contact support@dyte.io for access.
 
 ### Installation
 
-Create/Append to the .npmrc file in the project root with the below contents
+Create/Append to the `.npmrc` file in the project root with the below contents
 
 ```
 //registry.npmjs.org/:_authToken=<paid-token-from-dyte>
