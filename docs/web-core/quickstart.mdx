@@ -149,11 +149,11 @@ await meeting.join();
 
 :::info
 
-Once the join room process completes roomJoined event is emitted on meeting.self
+Once the join room process completes `roomJoined` event is emitted on the `meeting.self`
 namespace.
 
 If you want to perform any actions, such as enabling audio, video, or starting
-and stopping recording, you can do so after the roomJoined event is fired.
+and stopping recording, you can do so after the `roomJoined` event is fired.
 
 For example:
 
@@ -205,8 +205,8 @@ await meeting.leave();
 
 :::info
 
-Once the leave room process completes roomLeft event is emitted on meeting.self,
-roomLeft may also be called in case the user is kicked out of the room or disconnects
+Once the leave room process completes `roomLeft` event is emitted on `meeting.self`,
+`roomLeft` may also be called in case the user is kicked out of the room or disconnects
 
 For example:
 
