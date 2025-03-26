@@ -24,7 +24,7 @@ export default function Homepage() {
         <link rel="prefetch" href="/assets/css/elements.min.css" />
       </Head>
       <div>
-        <PhHelloBar />
+        {/* <PhHelloBar /> */}
 
         {/* Code for Twilio credits banner */}
 
