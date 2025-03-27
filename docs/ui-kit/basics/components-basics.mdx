@@ -14,7 +14,7 @@ and use case.
 
 ### Write less code
 
-You can use the provided `<dyte-meeting />` monolith component in case you want
+You can use the provided `<dyte-meeting />` component in case you want
 to write less code and not handle all the states and components rendering.
 
 It takes care of all of it and loads the entire meeting UI from your preset.
@@ -45,44 +45,48 @@ It takes care of all of it and loads the entire meeting UI from your preset.
 ### Using individual components
 
 If you wish to integrate UI Kit components into your UI at various parts, you
-can use the individual components.
+can use individual components as well which are used within the main `dyte-meeting` component.
+
+To simplify using individual components, you can the `dyte-ui-provider` component which lets you
+automatically sync all the common props that you would normally pass to each individual component without
+having to pass them manually to each component. These props are `meeting`, `config`, `iconPack`, `t`, `size` and `states`.
 
 Here is a basic example which renders a grid if you join the meeting.
 
 ```html
 <div id="app">
-  <div id="joining">Joining...</div>
+	<dyte-ui-provider id="dyte-provider">
+	  <div id="joining">Joining...</div>
 
-  <div id="joined-screen" style="display: none;">
-    <dyte-grid id="my-grid" class="dyte"></dyte-grid>
-    <dyte-mic-toggle class="dyte"></dyte-mic-toggle>
-    <dyte-camera-toggle class="dyte"></dyte-camera-toggle>
-  </div>
+	  <div id="joined-screen" style="display: none;">
+	    <dyte-grid id="my-grid" class="dyte"></dyte-grid>
+	    <dyte-mic-toggle class="dyte"></dyte-mic-toggle>
+	    <dyte-camera-toggle class="dyte"></dyte-camera-toggle>
+	  </div>
+  </dyte-ui-provider/>
 </div>
 
 <script>
   // load meeting
   const app = document.getElementById('app');
 
-  function passMeeting() {
-    const els = document.getElementsByClassName('dyte');
-    for (const el of els) {
-      el.meeting = meeting;
-    }
-  }
-
   function handleApp() {
     meeting.self.on('roomJoined', () => {
       document.getElementById('joining').remove();
       const joinedScreen = document.getElementById('joined-screen');
       joinedScreen.style.display = 'block';
-      passMeeting();
+      document.getElementById('dyte-provider').meeting = meeting;
+      // You can also pass `iconPack`, `t`, `config`, `size` props to the provider.
     });
   }
 
   handleApp();
 </script>
 ```
+
+This way, all the components which you used will automatically sync with the changes.
+
+You can also pass these props individually as well like before.
 
 ## Default Props
 
