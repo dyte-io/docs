@@ -8,7 +8,6 @@ This quickstart shows how to use Dyte's UI Kit prebuilt components to add live
 video and audio to your React application with minimal coding and a variety of
 meeting UI customization options.
 
-
 ## Before Getting Started
 
 - Make sure you've read the [Getting Started with Dyte](/getting-started) topic
@@ -21,7 +20,6 @@ meeting UI customization options.
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 ## Step 1: Installation
 
 Since the UI Kit uses the Dyte Core SDK, you must install the
@@ -31,7 +29,6 @@ Since the UI Kit uses the Dyte Core SDK, you must install the
 | ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | @dytesdk/react-native-ui-kit | [![npm version](https://badge.fury.io/js/@dytesdk%2Freact-native-ui-kit.svg)](https://badge.fury.io/js/@dytesdk%2Freact-native-ui-kit) |
 | @dytesdk/react-native-core   | [![npm version](https://badge.fury.io/js/@dytesdk%2Freact-native-core.svg)](https://badge.fury.io/js/@dytesdk%2Freact-native-core)     |
-
 
 <Tabs
   groupId="rn-sdk"
@@ -43,7 +40,6 @@ Since the UI Kit uses the Dyte Core SDK, you must install the
 >
 
 <TabItem value="react-native">
-
 
 ```bash
 npm install @dytesdk/react-native-ui-kit @dytesdk/react-native-core
@@ -64,6 +60,7 @@ Install the following dependencies only if you need livestream.
 ```bash
 npm install amazon-ivs-react-native-player
 ```
+
 </details>
 
 <br />
@@ -151,8 +148,6 @@ platform :ios, '12.0'
 </TabItem>
 <TabItem value="expo">
 
-
-
 ```bash
 npx expo install @dytesdk/react-native-ui-kit @dytesdk/react-native-core
 ```
@@ -178,6 +173,7 @@ Install the following dependencies only if you need livestream.
 ```bash
 npx expo install amazon-ivs-react-native-player
 ```
+
 </details>
 
 <br />
@@ -207,7 +203,6 @@ In `app.json`, add these to plugins:
 npx expo prebuild
 ```
 
-
 </TabItem>
 </Tabs>
 
@@ -226,7 +221,6 @@ Here's a series of steps that you need to perform:
 
 4. Pass the meeting object to UI Kit, which will use it to retrieve meeting
    information and display it on the user interface.
-
 
 <br />
 
@@ -278,12 +272,9 @@ For more information on the other props of `DyteMeeting`, see
 function YourCustomMeetingComponent() {
   const { meeting } = useDyteMeeting();
 
-  return (
-    <DyteMeeting meeting={meeting} />
-  );
+  return <DyteMeeting meeting={meeting} />;
 }
 ```
-
 
 <head>
   <title>React Native UI Kit Quickstart</title>

@@ -5,8 +5,11 @@ description: >-
 ---
 
 # DyteWebinarAlertView
+
 ## Overview
+
 A confirmation dialog screen which is shown
+
 - When the user's request to Join Stage is approved by the meeting host.
 - When host invites the localUser to join stage.
 
@@ -17,14 +20,16 @@ A confirmation dialog screen which is shown
 ```swift
 init(meeting: DyteMobileClient, participant: DyteJoinedMeetingParticipant) {
 ```
-Creates a [DyteAudioButtonControlBar](/ios/components/dyte-mic-toggle) with multiple parameters. 
+
+Creates a [DyteAudioButtonControlBar](/ios/components/dyte-mic-toggle) with multiple parameters.
 
 #### Parameters:
-*Required*  
-**meeting:** Current ongoing meeting object.   
-**participant:** Participant to join stage.                                         
 
-For example below code to join stage. 
+_Required_  
+**meeting:** Current ongoing meeting object.  
+**participant:** Participant to join stage.
+
+For example below code to join stage.
 
 ```swift
 let alert = WebinarAlertView(meetingClient: meeting, participant: meeting.localUser)

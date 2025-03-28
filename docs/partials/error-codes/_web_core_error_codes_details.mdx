@@ -1,0 +1,547 @@
+This topic describes web core system error codes 0-20.
+
+# DyteClient
+
+### Error code: 0001
+
+- **Error message**: Failed to initialize
+- **Possible reason**: `DyteClient` is not getting initialized.
+- **Possible solution**: Verify if you initialized the `DyteClient` correctly `await DyteClient.init({ ... })`. See [DyteClient](/web-core/reference/DyteClient). If you continue to experience issue, please [reach out](https://dyte.io/contact) to us for the help.
+
+### Error code: 0002
+
+- **Error message**: Failed to join room
+- **Possible reason**: Indicates a problem with the `DyteClient`.
+- **Possible solution**: The `joinRoom()` method is used to join a meeting room in Dyte. Try calling this method again on the `DyteClient`:
+
+```bash
+await meeting.joinRoom();
+```
+
+Once the join room process completes, you'll see the `roomJoined` event is emitted on the `meeting.self` namespace.
+
+### Error code: 0003
+
+- **Error message**: Failed to leave room
+- **Possible reason**: Indicates a problem with the `DyteClient`.
+- **Possible solution**: The `leaveRoom()` method is used to leave a meeting room in Dyte. Try calling this method again on the `DyteClient`:
+
+```bash
+await meeting.leaveRoom();
+```
+
+### Error code: 0004
+
+- **Error message**: Invalid auth token
+- **Possible reason**: Indicates a problem with the passed participant auth token.
+- **Possible solution**: Ensure that the passed auth token is a valid JWT auth token that is not expired yet.
+
+### Error code: 0010
+
+- **Error message**: Browser not supported
+- **Possible reason**: Browser is too old and does not support WebRTC
+- **Possible solution**: Upgrade browser to the latest version. Google Chrome is preferred.
+
+### Error code: 0011
+
+- **Error message**: HTTP Network Error
+- **Possible reason**: Either internet issues are there or the API requests are failing due to a faulty auth token among other cases
+- **Possible solution**: Ensure that the internet connection is proper. Speed test can be performed at [fast.com](https://fast.com/). Make sure that the meeting is active and the token has not expired.
+
+### Error code: 0012
+
+- **Error message**: Websocket Network Error
+- **Possible reason**: Either internet issues are there or the Websocket connection failed due to a faulty auth token among other cases
+- **Possible solution**: Ensure that the internet connection is proper. Speed test can be performed at [fast.com](https://fast.com/). Make sure that the meeting is active and the token has not expired.
+
+### Error code: 0013
+
+- **Error message**: Rate Limited
+- **Possible reason**: SDK API that you are calling is being called too often
+- **Possible solution**: API rate limiting generally occurs when the webpage is making an unusually high number of requests within a short period. to resolve this, analyze your code to determine why so many requests are being sent and implement optimizations to reduce unnecessary calls.
+
+# Controller
+
+### Error code: 0100
+
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the Controller module.
+- **Possible solution**: Check the logs for more details and retry the operation. If you continue to experience issue, please [reach out](https://dyte.io/contact) to us for the help.
+
+### Error code: 0101
+
+- **Error message**: Permission denied
+- **Possible reason**: The participant does not have the required permissions to perform the action.
+- **Possible solution**: Verify the participant's permissions in their respective [preset](https://dev.dyte.io/presets) and try again.
+
+### Error code: 0102
+
+- **Error message**: Prerequisite module missing
+- **Possible reason**: A required module such as `self` for the Controller is missing or not initialized.
+- **Possible solution**: Ensure all prerequisite modules are properly passed in `DyteClient` initialization.
+
+# RoomNodeClient
+
+### Error code: 0200
+
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the RoomNodeClient module.
+- **Possible solution**: Check the logs for more details and retry the operation. If you continue to experience issue, please [reach out](https://dyte.io/contact) to us for the help.
+
+# HiveNodeClient
+
+### Error code: 0300
+
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the HiveNodeClient module.
+- **Possible solution**: Check the logs for more details and retry the operation. If you continue to experience issue, please [reach out](https://dyte.io/contact) to us for the help.
+
+# SocketService
+
+### Error code: 0400
+
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the SocketService module.
+- **Possible solution**: Check the logs for more details and retry the operation. If you continue to experience issue, please [reach out](https://dyte.io/contact) to us for the help.
+
+### Error code: 0404
+
+- **Error message**: Missing prerequisites to establish a websocket connection
+- **Possible reason**: Required prerequisites for establishing a WebSocket connection are missing.
+- **Possible solution**: Ensure all prerequisites (e.g., JWT auth token with meetingId, network connectivity) are met. This is extremely rare case and usually indicates an issue in Dyte SDK.
+
+# Chat
+
+### Error code: 0500
+
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the Chat module.
+- **Possible solution**: Check the logs for more details and retry the operation. If you continue to experience issue, please [reach out](https://dyte.io/contact) to us for the help.
+
+### Error code: 0501
+
+- **Error message**: Permission denied.
+- **Possible reason**: The participant does not have the required permissions to perform the action.
+- **Possible solution**: Verify the participant's permissions in their respective [preset](https://dev.dyte.io/presets) and try again.
+
+### Error code: 0502
+
+- **Error message**: Invalid message body.
+- **Possible reason**: The message body does not conform to the expected format.
+- **Possible solution**: The type `Message` is not defined correctly. See [Chat](/web-core/chat/introduction).
+
+### Error code: 0503
+
+- **Error message**: Text message is too large.
+- **Possible reason**: The message exceeds the allowed character limit.
+- **Possible solution**: Reduce the message length and try again.
+
+### Error code: 0504
+
+- **Error message**: Message not found by the given ID.
+- **Possible reason**: The message ID provided does not correspond to an existing message.
+- **Possible solution**: Verify the message ID and ensure the message exists before querying.
+
+### Error code: 0505
+
+- **Error message**: Action not permitted without joining room.
+- **Possible reason**: The participant attempted to perform an action that requires them to join the meeting first.
+- **Possible solution**: The participant attempted to execute an action that is only permitted for individuals who have already joined the meeting. to proceed, they must first join the meeting using `meeting.join()` before attempting the action again.
+
+### Error code: 0506
+
+- **Error message**: Message search is disabled.
+- **Possible reason**: The message search feature is turned off.
+- **Possible solution**: Please [reach out](https://dyte.io/contact) to us for the help.
+
+### Error code: 0510
+
+- **Error message**: Invalid channel name.
+- **Possible reason**: The channel name provided does not meet the required format or does not exist.
+- **Possible solution**: Ensure the channel name is correctly formatted and exists in the system.
+
+<img
+  src="/static/errorcodes/chat-perms.png"
+  width="300"
+  height="100"
+  alt="error-chat-preset"
+  className="errorcode-chat-perms-preset"
+/>
+
+# Plugin
+
+### Error code: 0600
+
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the Plugin module.
+- **Possible solution**: Check the logs for more details and retry the operation. If you continue to experience issue, please [reach out](https://dyte.io/contact) to us for the help.
+
+### Error code: 0601
+
+- **Error message**: Permission denied
+- **Possible reason**: The participant does not have the required permissions to perform the action.
+- **Possible solution**: Verify the participant's permissions in their respective [preset](https://dev.dyte.io/presets) and try again.
+
+### Error code: 0602
+
+- **Error message**: Auth token not set for plugin
+- **Possible reason**: The authentication token for the plugin is missing or invalid.
+- **Possible solution**: Set a valid auth token for the plugin and try again.
+
+### Error code: 0603
+
+- **Error message**: Iframe was not provided
+- **Possible reason**: The required iframe for the plugin is missing.
+- **Possible solution**: Provide the iframe and try again.
+
+# Polls
+
+### Error code: 0700
+
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the Polls module.
+- **Possible solution**: Check the logs for more details and retry the operation. If you continue to experience issue, please [reach out](https://dyte.io/contact) to us for the help.
+
+### Error code: 0705
+
+- **Error message**: Action not permitted without joining room
+- **Possible reason**: The participant attempted to perform an action without joining the meeting.
+- **Possible solution**: The participant attempted to execute an action that is only permitted for individuals who have already joined the meeting. to proceed, they must first join the meeting using `meeting.join()` before attempting the action again..
+
+# Meta
+
+### Error code: 0800
+
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the Meta module.
+- **Possible solution**: Check the logs for more details and retry the operation. If you continue to experience issue, please [reach out](https://dyte.io/contact) to us for the help.
+
+### Error code: 0801
+
+- **Error message**: Permission denied
+- **Possible reason**: The participant does not have the required permissions to perform the action.
+- **Possible solution**: Verify the participant's permissions in their respective [preset](https://dev.dyte.io/presets) and try again.
+
+# Preset
+
+### Error code: 0900
+
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the Preset module.
+- **Possible solution**: Check the logs for more details and retry the operation. If you continue to experience issue, please [reach out](https://dyte.io/contact) to us for the help.
+
+### Error code: 0904
+
+- **Error message**: Could not load preset
+- **Possible reason**: The preset could not be loaded due to missing or invalid data. It could be that the preset is faulty, or non existent.
+- **Possible solution**: Verify the preset's existence in [Developer Portal](https://dev.dyte.io/presets) and try again.
+
+# Recording
+
+### Error code: 1000
+
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the Recording module.
+- **Possible solution**: Check the logs for more details and retry the operation. If you continue to experience issue, please [reach out](https://dyte.io/contact) to us for the help.
+
+### Error code: 1001
+
+- **Error message**: Permission denied
+- **Possible reason**: The participant does not have the required permissions to perform the action.
+- **Possible solution**: Verify the participant's permissions in their respective [preset](https://dev.dyte.io/presets) and try again.
+
+### Error code: 1004
+
+- **Error message**: Could not find specified recording
+- **Possible reason**: The specified recording could not be found.
+- **Possible solution**: Verify the recording ID and try again.
+
+### Error code: 1005
+
+- **Error message**: Action not permitted in given recording state
+- **Possible reason**: The action is not allowed in the current state of the recording. For example, you can't start a new recording when the existing recording is being stopped.
+- **Possible solution**: Check the recording state using `meeting.recording.recordingState` and try again accordingly.
+
+# Self
+
+### Error code: 1100
+
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the Self module.
+- **Possible solution**: Check the logs for more details and retry the operation. If you continue to experience issue, please [reach out](https://dyte.io/contact) to us for the help.
+
+### Error code: 1101
+
+- **Error message**: Permission denied
+- **Possible reason**: The participant does not have the required permissions to perform the action.
+- **Possible solution**: Verify the participant's permissions in their respective [preset](https://dev.dyte.io/presets) and try again.
+
+### Error code: 1102
+
+- **Error message**: Unsupported
+- **Possible reason**: The requested action is not supported in the current media handler.
+- **Possible solution**: If you think it is a mistake, please [reach out](https://dyte.io/contact) to us for the help.
+
+### Error code: 1103
+
+- **Error message**: Participant name cannot be empty
+- **Possible reason**: The name field was left empty while creating participant.
+- **Possible solution**: Provide a valid participant name and try again.
+
+### Error code: 1104
+
+- **Error message**: No device selected while calling meeting.self.setDevice
+- **Possible reason**: No device was passed when setting the device.
+- **Possible solution**: Make sure to pass a valid device in setDevice method.
+
+### Error code: 1105
+
+- **Error message**: Action not permitted without joining room
+- **Possible reason**: The participant attempted to perform an action without joining the meeting.
+- **Possible solution**: The participant attempted to execute an action that is only permitted for individuals who have already joined the meeting. to proceed, they must first join the meeting using `meeting.join()` before attempting the action again..
+
+### Error code: 1106
+
+- **Error message**: Can't set currently used device again
+- **Possible reason**: `meeting.self.setDevice` method is called with a device that is already set.
+- **Possible solution**: No need to select the device again. If you must, please try switching devices or [reach out](https://dyte.io/contact) to us for the help.
+
+# Participant
+
+### Error code: 1200
+
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the Participant module.
+- **Possible solution**: Check the logs for more details and retry the operation. If you continue to experience issue, please [reach out](https://dyte.io/contact) to us for the help.
+
+### Error code: 1201
+
+- **Error message**: Permission denied
+- **Possible reason**: The participant does not have the required permissions to perform the action.
+- **Possible solution**: Verify the participant's permissions in their respective [preset](https://dev.dyte.io/presets) and try again.
+
+### Error code: 1202
+
+- **Error message**: Invalid page number was requested
+- **Possible reason**: The requested page number is invalid. Passed page number is beyond the total pages available of participants.
+- **Possible solution**: Provide a valid page number and try again.
+
+### Error code: 1203
+
+- **Error message**: Invalid participant count per page was requested
+- **Possible reason**: The requested participant count per page is invalid.
+- **Possible solution**: Provide a valid count and try again.
+
+### Error code: 1204
+
+- **Error message**: No participants exists with the given participantIds
+- **Possible reason**: No participants were found with the specified participantIds.
+- **Possible solution**: Verify the participantIds and try again.
+
+### Error code: 1205
+
+- **Error message**: Action not permitted without joining room
+- **Possible reason**: The participant attempted to perform an action without joining the meeting.
+- **Possible solution**: The participant attempted to execute an action that is only permitted for individuals who have already joined the meeting. to proceed, they must first join the meeting using `meeting.join()` before attempting the action again..
+
+### Error code: 1206
+
+- **Error message**: Manual Subscription Mode was not ACTIVATED
+- **Possible reason**: Manual subscription mode is not activated. You are trying to call methods such as `meeting.participants.subscribe` without calling the `meeting.participants.setViewMode` with MANUAL view mode.
+- **Possible solution**: Activate manual subscription mode and try again.
+
+### Error code: 1207
+
+- **Error message**: Invalid view mode
+- **Possible reason**: The requested view mode is invalid.
+- **Possible solution**: Provide a valid view mode and try again.
+
+### Error code: 1208
+
+- **Error message**: Manual Subscription not enabled for organization
+- **Possible reason**: Manual subscription is not enabled for the organization.
+- **Possible solution**: To enable it for your organizaton, please [reach out](https://dyte.io/contact) to us.
+
+### Error code: 1209
+
+- **Error message**: Broadcast message type must be a non-empty string
+- **Possible reason**: The broadcast message type is empty or invalid.
+- **Possible solution**: Provide a valid message type and try again.
+
+# Spotlight
+
+### Error code: 1300
+
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the Spotlight module.
+- **Possible solution**: Check the logs for more details and retry the operation. If you continue to experience issue, please [reach out](https://dyte.io/contact) to us for the help.
+
+# Webinar
+
+### Error code: 1500
+
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the Webinar module.
+- **Possible solution**: Check the logs for more details and retry the operation. If you continue to experience issue, please [reach out](https://dyte.io/contact) to us for the help.
+
+# LocalMediaHandler
+
+### Error code: 1601
+
+- **Error message**: Failed to acquire audio track
+- **Possible reason**: Media acquisition can fail due to permission denial, insecure contexts, unavailable or busy devices, unsupported constraints, or browser restrictions.
+- **Possible solution**: Check the error message, browser settings, and device availability to troubleshoot.
+
+### Error code: 1602
+
+- **Error message**: Failed to get video track
+- **Possible reason**: Media acquisition can fail due to permission denial, insecure contexts, unavailable or busy devices, unsupported constraints, or browser restrictions.
+- **Possible solution**: Check the error message, browser settings, and device availability to troubleshoot.
+
+### Error code: 1603
+
+- **Error message**: Incorrect device
+- **Possible reason**: If passed device is falsy such as `undefined` or not a valid device, this error gets thrown.
+- **Possible solution**: Verify that you are passing a correct device.
+
+### Error code: 1604
+
+- **Error message**: Failed to change device
+- **Possible reason**: Indicates a problem with the device.
+- **Possible solution**: Verify that the device is not being used by some other software. If problem persists, Please [contact us](https://dyte.io/contact) for the help.
+
+### Error code: 1605
+
+- **Error message**: Failed to get audio & video track
+- **Possible reason**: Both audio and video tracks could not be retrieved.
+- **Possible solution**: Check the devices and permissions, then try again.
+
+### Error code: 1606
+
+- **Error message**: No audio input devices are available
+- **Possible reason**: No audio input devices were found.
+- **Possible solution**: Connect an audio input device (such as a mic) and try again.
+
+### Error code: 1607
+
+- **Error message**: No video input devices are available
+- **Possible reason**: No video input devices were found.
+- **Possible solution**: Connect a video input device (such as a camera) and try again.
+
+### Error code: 1608
+
+- **Error message**: No audio output devices (speakers) are available
+- **Possible reason**: No audio output devices were found.
+- **Possible solution**: Connect an audio output device (such as a speaker) and try again.
+
+### Error code: 1609
+
+- **Error message**: Failed to fetch list of media devices
+- **Possible reason**: The list of media devices could not be retrieved.
+- **Possible solution**: Ensure you grant device permissions for mic & camera when prompted so that device list can be fetched.
+
+### Error code: 1610
+
+- **Error message**: No media track exists
+- **Possible reason**: No active media track was found.
+- **Possible solution**: Verify that the video is enabled using `meeting.self.videoEnabled` before calling `meeting.self.updateVideoConstaints`.
+
+### Error code: 1611
+
+- **Error message**: Failed to unmute track
+- **Possible reason**: The track could not be unmuted. Either the device is current being used by other software or the device is no longer in usable state.
+- **Possible solution**: Make sure that no other software is using your media devices. Close down other tabs using media devices, if any.
+
+# End-End Encryption
+
+### Error code: 1701
+
+- **Error message**: Crypto error
+- **Possible reason**: An error occurred during encryption or decryption.
+- **Possible solution**: Check the encryption settings and try again.
+
+# AI
+
+### Error code: 1800
+
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the AI module.
+- **Possible solution**: Check the logs for more details and retry the operation. If you continue to experience issue, please [reach out](https://dyte.io/contact) to us for the help.
+
+### Error code: 1801
+
+- **Error message**: Can't fetch transcript file
+- **Possible reason**: The transcript file could not be fetched.
+- **Possible solution**: Verify the file path and try again. Please [reach out](https://dyte.io/contact) to us, if issue persists.
+
+# Livestream
+
+### Error code: 1900
+
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the Livestream module.
+- **Possible solution**: Check the logs for more details and retry the operation. If you continue to experience issue, please [reach out](https://dyte.io/contact) to us for the help.
+
+### Error code: 1901
+
+- **Error message**: Permission denied
+- **Possible reason**: The participant does not have the required permissions to perform the action.
+- **Possible solution**: Verify the participant's permissions in their respective [preset](https://dev.dyte.io/presets) and try again.
+
+### Error code: 1902
+
+- **Error message**: Livestream that has not yet started, can't be stopped
+- **Possible reason**: The livestream has not started and cannot be stopped.
+- **Possible solution**: Start the livestream first and then try to stop it.
+
+# Stage
+
+### Error code: 2000
+
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred within the Stage module.
+- **Possible solution**: Check the logs for more details and retry the operation. If you continue to experience issue, please [reach out](https://dyte.io/contact) to us for the help.
+
+### Error code: 2001
+
+- **Error message**: Permission denied
+- **Possible reason**: The participant does not have the required permissions to perform the action.
+- **Possible solution**: Verify the participant's permissions in their respective [preset](https://dev.dyte.io/presets) and try again.
+
+### Error code: 2002
+
+- **Error message**: Unsupported
+- **Possible reason**: The requested action is not supported.
+- **Possible solution**: Check the documentation for supported actions.
+
+### Error code: 2003
+
+- **Error message**: Stage is disabled
+- **Possible reason**: The stage feature is disabled.
+- **Possible solution**: Enable the stage feature and try again.
+
+### Error code: 2004
+
+- **Error message**: Method not implemented
+- **Possible reason**: The requested method is not implemented.
+- **Possible solution**: Check the documentation for available methods.
+
+### Error code: 2005
+
+- **Error message**: Action not permitted without joining room
+- **Possible reason**: The participant attempted to perform an action without joining the meeting.
+- **Possible solution**: The participant attempted to execute an action that is only permitted for individuals who have already joined the meeting. to proceed, they must first join the meeting using `meeting.join()` before attempting the action again..
+
+### Error code: 2006
+
+- **Error message**: Action not permitted in current stage status
+- **Possible reason**: The action is not allowed in the current stage status.
+- **Possible solution**: Check the stage status and try again.
+
+# General
+
+### Error code: 9900
+
+- **Error message**: Internal exception
+- **Possible reason**: An unexpected error occurred.
+- **Possible solution**: Check the logs for more details and retry the operation. If you continue to experience issue, please [reach out](https://dyte.io/contact) to us for the help.

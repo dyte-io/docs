@@ -10,7 +10,6 @@ description: >-
 Dyte's meeting transcription allows you to transcribe your Dyte meetings in real-time, making it easy to capture important discussions and refer back to them later.
 This guide will walk you through how to use this feature effectively.
 
-
 ## Control transcriptions for participants using presets
 
 You can control whether or not a participant's audio will be transcribe with the help of the `transcription_enabled` flag in the participant's preset.
@@ -22,34 +21,33 @@ You can create a new preset on our [Developer Portal](https://dev.dyte.io/preset
 
 You can control transcription behavior through a configurable AI setup. When creating a meeting using the [REST API](/api#/operations/create_meeting), you can pass an AI configuration for transcriptions. This allows for greater control over the transcription process.
 
-
 ### Supported Languages
 
 You can specify the language for transcription to ensure accurate and relevant results. The following languages are supported:
 
-
-- *English (United States):* `en-US`
-- *English (India):* `en-IN`
-- *German:* `de`
-- *Hindi:* `hi`
-- *Swedish:* `sv`
-- *Russian:* `ru`
-- *Polish:* `pl`
-- *Greek:* `el`
-- *French:* `fr`
-- *Dutch:* `nl`
-- *Turkish* `tr`
-- *Spanish* `es`
-- *Italian* `it`
-- *Portuguese* `pt`
-- *Romanian* `ro`
-- *Korean* `ko`
-- *Indonesia* `id`
-- *Multi* `multi`
+- _English (United States):_ `en-US`
+- _English (India):_ `en-IN`
+- _German:_ `de`
+- _Hindi:_ `hi`
+- _Swedish:_ `sv`
+- _Russian:_ `ru`
+- _Polish:_ `pl`
+- _Greek:_ `el`
+- _French:_ `fr`
+- _Dutch:_ `nl`
+- _Turkish_ `tr`
+- _Spanish_ `es`
+- _Italian_ `it`
+- _Portuguese_ `pt`
+- _Romanian_ `ro`
+- _Korean_ `ko`
+- _Indonesia_ `id`
+- _Multi_ `multi`
 
 ```json lines
 "language": "en-US"
 ```
+
 ### Keywords
 
 Keywords can be added to help the transcription engine accurately detect and transcribe specific terms, such as names, technical jargon, or other context-specific words. This is particularly useful in meetings where certain terms are frequently used and need to be recognized correctly.
@@ -58,10 +56,10 @@ Keywords can be added to help the transcription engine accurately detect and tra
 "keywords": ["Dyte", "Mary", "Sue"]
 ```
 
-
 ### Profanity Filter
 
 You can enable or disable the profanity filter based on your needs. This feature ensures that any offensive language is either included or excluded from the transcriptions, depending on your preference.
+
 ```json lines
 "profanity_filter": false
 ```
@@ -69,7 +67,9 @@ You can enable or disable the profanity filter based on your needs. This feature
 By utilizing these new features, you can customize the transcription experience to better suit your needs.
 
 ### Example Configuration
+
 Here is an example of how to pass the AI configuration in the [meeting creation API](/api#/operations/create_meeting):
+
 ```json
 {
   "title": "Meeting Transcriptions",
@@ -81,7 +81,6 @@ Here is an example of how to pass the AI configuration in the [meeting creation 
     }
   }
 }
-
 ```
 
 ## Consuming transcripts
@@ -112,6 +111,7 @@ meeting.ai.on('transcript', (transcriptData) => {
 ```
 
 As participants speak during the meeting, you'll receive partial transcripts, giving you real-time feedback even before they finish their sentences. The `isPartialTranscript` flag in the transcript data shows whether the transcript is partial or final.
+
 ```json
 {
   "id": "1a2b3c4d-5678-90ab-cdef-1234567890ab",
@@ -124,6 +124,7 @@ As participants speak during the meeting, you'll receive partial transcripts, gi
   "date": "Wed Aug 07 2024 10:15:30 GMT+0530 (India Standard Time)"
 }
 ```
+
 In the example above, `isPartialTranscript` is true, indicating the transcript is still in progress. Once the participant finishes speaking, the final transcript will be sent with `isPartialTranscript` set to false. This helps you distinguish between ongoing speech and completed transcriptions, making the transcription process more dynamic and responsive.
 
 ### Consume transcript via a post-meeting webhook
@@ -165,5 +166,8 @@ To test if meeting transcription has been configured for your organization, perf
 
 <head>
   <title>Meeting Transcription Guide</title>
-  <meta name="description" content="Explore meeting transcription capabilities with Dyte's AI. Follow our guide to understand and implement transcription features."/>
+  <meta
+    name="description"
+    content="Explore meeting transcription capabilities with Dyte's AI. Follow our guide to understand and implement transcription features."
+  />
 </head>

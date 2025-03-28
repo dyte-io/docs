@@ -11,25 +11,24 @@ tags:
 
 # Manage Media Devices
 
-Media devices represents the hardware for the camera, microphone and speaker
-devices. To get the list of media devices that are currently being used, you can
+To get the list of media devices that are currently being used, you can
 use the following methods:
 
 ```js
 // Get all media devices
-const devices = meeting.self.getAllDevices();
+const devices = await meeting.self.getAllDevices();
 
 // Get all audio devices
-const audioDevices = meeting.self.getAudioDevices();
+const audioDevices = await meeting.self.getAudioDevices();
 
 // Get all video devices
-const videoDevices = meeting.self.getVideoDevices();
+const videoDevices = await meeting.self.getVideoDevices();
 
 // Get all speakers
-const speakerDevices = meeting.self.getSpeakerDevices();
+const speakerDevices = await meeting.self.getSpeakerDevices();
 
 // Get device by ID
-const device = meeting.self.getDeviceById('12345', 'audio');
+const device = await meeting.self.getDeviceById('12345', 'audio');
 
 // Fetch current media devices being used
 const currentDevices = meeting.self.getCurrentDevices();
@@ -41,7 +40,7 @@ To set a device as an active device, you can call `setDevice` method. This takes
 a `MediaDeviceInfo` object, and replaces the same `kind` device.
 
 ```js
-meeting.self.setDevice(device);
+await meeting.self.setDevice(device);
 ```
 
 <head>

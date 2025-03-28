@@ -15,9 +15,14 @@ A component that indicates poor network connection.
 It listens to the mediaScoreUpdate event of the passed participant to get the score.
 
 ```tsx
- (participant as DyteParticipant).addListener('mediaScoreUpdate', ({ kind, isScreenshare, score, scoreStats }) => {
-  console.log(`Score for ${isScreenshare ? 'screen share': ''} ${kind} was:: ${score}`);
-});
+(participant as DyteParticipant).addListener(
+  'mediaScoreUpdate',
+  ({ kind, isScreenshare, score, scoreStats }) => {
+    console.log(
+      `Score for ${isScreenshare ? 'screen share' : ''} ${kind} was:: ${score}`,
+    );
+  },
+);
 ```
 
 :::note info

@@ -22,21 +22,38 @@ All metadata pertaining to a meeting is stored in `meeting.meta`. This includes:
 For example, if you want to get the title of the meeting the current participant
 is connected to, you can do so by doing:
 
+<Tabs groupId="framework" defaultValue="react">
+  <TabItem value="js" label="Javascript">
 ```ts
 // Destructuring the metadata to get meetingTitle and joined
 const { meetingTitle } = meeting.meta;
-
 if (meeting.self.roomJoined) {
   console.log(
-    `The local user has joined a meeting with title ${meetingTitle}.`
+    `The local user has joined a meeting with title ${meetingTitle}.`,
   );
 }
 ```
+  </TabItem>
+  <TabItem value="react" label="React">
+```ts
+const [meetingTitle, roomJoined] = useDyteSelector((m) => 
+  [m.meta.meetingTitle, m.self.roomJoined]
+);
+useEffect(() => {
+  if (roomJoined) {
+    console.log(
+      `The local user has joined a meeting with title ${meetingTitle}.`,
+    );
+  }
+}, [roomJoined, meetingTitle])
+```
+  </TabItem>
+</Tabs>
 
 **Events**
 
 The `meta` object also emits events for indicating the change in the connection
-state of the room. 
+state of the room.
 
 1. **Media Connection**
 
@@ -54,11 +71,13 @@ meeting.meta.on('mediaConnectionUpdate', ({ transport, state }) => {
 Updates to Websocket connection (used for chat, polls and other basic signaling) will be sent on `socketConnectionUpdate` event
 
 ```ts
-meeting.meta.on('socketConnectionUpdate', ({ state, reconnectionAttempt, reconnected }) => {
-  // state - 'connected' | 'disconnected' | 'reconnecting' | 'failed'
-});
+meeting.meta.on(
+  'socketConnectionUpdate',
+  ({ state, reconnectionAttempt, reconnected }) => {
+    // state - 'connected' | 'disconnected' | 'reconnecting' | 'failed'
+  },
+);
 ```
-
 
 <head>
   <title>Web Core Room Metadata</title>

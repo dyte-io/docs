@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-web_core_version: 1.32.1
+web_core_version: 2.4.1
 ---
 
 <!-- Auto Generated Below -->
@@ -9,80 +9,121 @@ web_core_version: 1.32.1
 
 This module represents all the participants in the meeting (except the local user).
 It consists of 4 maps:
+
 - `joined`: A map of all participants that have joined the meeting.
 - `waitlisted`: A map of all participants that have been added to the waitlist.
 - `active`: A map of active participants who should be displayed in the meeting grid.
 - `pinned`: A map of pinned participants.
 
-
 * [DyteParticipants](#module_DyteParticipants)
-    * [.waitlisted](#module_DyteParticipants--module.exports+waitlisted)
-    * [.joined](#module_DyteParticipants--module.exports+joined)
-    * [.active](#module_DyteParticipants--module.exports+active)
-    * [.pinned](#module_DyteParticipants--module.exports+pinned)
-    * [.all](#module_DyteParticipants--module.exports+all)
-    * [.pip](#module_DyteParticipants--module.exports+pip)
-    * [.roomJoined](#module_DyteParticipants--module.exports+roomJoined)
-    * [.viewMode](#module_DyteParticipants--module.exports+viewMode)
-    * [.currentPage](#module_DyteParticipants--module.exports+currentPage)
-    * [.lastActiveSpeaker](#module_DyteParticipants--module.exports+lastActiveSpeaker)
-    * [.selectedPeers](#module_DyteParticipants--module.exports+selectedPeers)
-    * [.count](#module_DyteParticipants--module.exports+count)
-    * [.maxActiveParticipantsCount](#module_DyteParticipants--module.exports+maxActiveParticipantsCount)
-    * [.pageCount](#module_DyteParticipants--module.exports+pageCount)
-    * [.setMaxActiveParticipantsCount(limit:)](#module_DyteParticipants--module.exports+setMaxActiveParticipantsCount)
-    * [.acceptWaitingRoomRequest(id)](#module_DyteParticipants--module.exports+acceptWaitingRoomRequest)
-    * [.acceptAllWaitingRoomRequest()](#module_DyteParticipants--module.exports+acceptAllWaitingRoomRequest)
-    * [.rejectWaitingRoomRequest(id)](#module_DyteParticipants--module.exports+rejectWaitingRoomRequest)
-    * [.setViewMode(viewMode)](#module_DyteParticipants--module.exports+setViewMode)
-    * [.setPage(page)](#module_DyteParticipants--module.exports+setPage)
-    * [.disableAllAudio(allowUnmute)](#module_DyteParticipants--module.exports+disableAllAudio)
-    * [.disableAllVideo()](#module_DyteParticipants--module.exports+disableAllVideo)
-    * [.kickAll()](#module_DyteParticipants--module.exports+kickAll)
-    * [.broadcastMessage(target)](#module_DyteParticipants--module.exports+broadcastMessage)
-    * [.getAllJoinedPeers()](#module_DyteParticipants--module.exports+getAllJoinedPeers)
-    * [.getParticipantsInMeetingPreJoin()](#module_DyteParticipants--module.exports+getParticipantsInMeetingPreJoin)
+  - [.waitlisted](#module_DyteParticipants+waitlisted)
+  - [.joined](#module_DyteParticipants+joined)
+  - ~~[.active](#module_DyteParticipants+active)~~
+  - [.videoSubscribed](#module_DyteParticipants+videoSubscribed)
+  - [.audioSubscribed](#module_DyteParticipants+audioSubscribed)
+  - [.pinned](#module_DyteParticipants+pinned)
+  - [.all](#module_DyteParticipants+all)
+  - [.pip](#module_DyteParticipants+pip)
+  - [.socketJoined](#module_DyteParticipants+socketJoined)
+  - [.mediaJoined](#module_DyteParticipants+mediaJoined)
+  - [.viewMode](#module_DyteParticipants+viewMode)
+  - [.currentPage](#module_DyteParticipants+currentPage)
+  - [.lastActiveSpeaker](#module_DyteParticipants+lastActiveSpeaker)
+  - [.selectedPeers](#module_DyteParticipants+selectedPeers)
+  - [.count](#module_DyteParticipants+count)
+  - [.maxActiveParticipantsCount](#module_DyteParticipants+maxActiveParticipantsCount)
+  - [.pageCount](#module_DyteParticipants+pageCount)
+  - [.setMaxActiveParticipantsCount(limit:)](#module_DyteParticipants+setMaxActiveParticipantsCount)
+  - [.acceptWaitingRoomRequest(id)](#module_DyteParticipants+acceptWaitingRoomRequest)
+  - [.acceptAllWaitingRoomRequest()](#module_DyteParticipants+acceptAllWaitingRoomRequest)
+  - [.rejectWaitingRoomRequest(id)](#module_DyteParticipants+rejectWaitingRoomRequest)
+  - [.setViewMode(viewMode)](#module_DyteParticipants+setViewMode)
+  - [.setPage(page)](#module_DyteParticipants+setPage)
+  - [.disableAllAudio(allowUnmute)](#module_DyteParticipants+disableAllAudio)
+  - [.disableAllVideo()](#module_DyteParticipants+disableAllVideo)
+  - ~~[.disableAudio(participantId)](#module_DyteParticipants+disableAudio)~~
+  - ~~[.disableVideo(participantId)](#module_DyteParticipants+disableVideo)~~
+  - ~~[.kick(participantId)](#module_DyteParticipants+kick)~~
+  - [.kickAll()](#module_DyteParticipants+kickAll)
+  - [.broadcastMessage(target)](#module_DyteParticipants+broadcastMessage)
+  - [.getAllJoinedPeers()](#module_DyteParticipants+getAllJoinedPeers)
+  - [.getParticipantsInMeetingPreJoin()](#module_DyteParticipants+getParticipantsInMeetingPreJoin)
 
+<a name="module_DyteParticipants+waitlisted"></a>
 
-<a name="module_DyteParticipants--module.exports+waitlisted"></a>
+### meeting.participants.waitlisted
 
-### participants.waitlisted
 Returns a list of participants waiting to join the meeting.
 
-<a name="module_DyteParticipants--module.exports+joined"></a>
+**Kind**: instance property of [<code>DyteParticipants</code>](#module_DyteParticipants)  
+<a name="module_DyteParticipants+joined"></a>
 
-### participants.joined
+### meeting.participants.joined
+
 Returns a list of all participants in the meeting.
 
-<a name="module_DyteParticipants--module.exports+active"></a>
+**Kind**: instance property of [<code>DyteParticipants</code>](#module_DyteParticipants)  
+<a name="module_DyteParticipants+active"></a>
 
-### participants.active
-Returns a list of participants whose streams are currently consumed.
+### ~~meeting.participants.active~~
 
-<a name="module_DyteParticipants--module.exports+pinned"></a>
+**_Deprecated_**
 
-### participants.pinned
+**Kind**: instance property of [<code>DyteParticipants</code>](#module_DyteParticipants)  
+<a name="module_DyteParticipants+videoSubscribed"></a>
+
+### meeting.participants.videoSubscribed
+
+Returns a list of participants whose video streams are currently consumed.
+
+**Kind**: instance property of [<code>DyteParticipants</code>](#module_DyteParticipants)  
+<a name="module_DyteParticipants+audioSubscribed"></a>
+
+### meeting.participants.audioSubscribed
+
+Returns a list of participants whose audio streams are currently consumed.
+
+**Kind**: instance property of [<code>DyteParticipants</code>](#module_DyteParticipants)  
+<a name="module_DyteParticipants+pinned"></a>
+
+### meeting.participants.pinned
+
 Returns a list of participants who have been pinned.
 
-<a name="module_DyteParticipants--module.exports+all"></a>
+**Kind**: instance property of [<code>DyteParticipants</code>](#module_DyteParticipants)  
+<a name="module_DyteParticipants+all"></a>
 
-### participants.all
+### meeting.participants.all
+
 Returns all added participants irrespective of whether they are currently
 in the meeting or not
 
-<a name="module_DyteParticipants--module.exports+pip"></a>
+**Kind**: instance property of [<code>DyteParticipants</code>](#module_DyteParticipants)  
+<a name="module_DyteParticipants+pip"></a>
 
-### participants.pip
+### meeting.participants.pip
+
 Return the controls for Picture-in-Picture
 
-<a name="module_DyteParticipants--module.exports+roomJoined"></a>
+**Kind**: instance property of [<code>DyteParticipants</code>](#module_DyteParticipants)  
+<a name="module_DyteParticipants+socketJoined"></a>
 
-### participants.roomJoined
+### meeting.participants.socketJoined
+
 Returns true if the local participant has joined the meeting.
 
-<a name="module_DyteParticipants--module.exports+viewMode"></a>
+**Kind**: instance property of [<code>DyteParticipants</code>](#module_DyteParticipants)  
+<a name="module_DyteParticipants+mediaJoined"></a>
 
-### participants.viewMode
+### meeting.participants.mediaJoined
+
+Returns true if the local participant has joined the meeting.
+
+**Kind**: instance property of [<code>DyteParticipants</code>](#module_DyteParticipants)  
+<a name="module_DyteParticipants+viewMode"></a>
+
+### meeting.participants.viewMode
+
 Indicates whether the meeting is in 'ACTIVE_GRID' mode or 'PAGINATED' mode.
 
 In 'ACTIVE_GRID' mode, participants are populated in the participants.active map
@@ -93,178 +134,217 @@ In 'PAGINATED' mode, participants are populated in the participants.active map
 just once, and the participants in the map will only change if the page number is
 changed by the user using setPage(page).
 
-<a name="module_DyteParticipants--module.exports+currentPage"></a>
+**Kind**: instance property of [<code>DyteParticipants</code>](#module_DyteParticipants)  
+<a name="module_DyteParticipants+currentPage"></a>
 
-### participants.currentPage
+### meeting.participants.currentPage
+
 This indicates the current page that has been set by the user in PAGINATED mode.
 If the meeting is in ACTIVE_GRID mode, this value will be 0.
 
-<a name="module_DyteParticipants--module.exports+lastActiveSpeaker"></a>
+**Kind**: instance property of [<code>DyteParticipants</code>](#module_DyteParticipants)  
+<a name="module_DyteParticipants+lastActiveSpeaker"></a>
 
-### participants.lastActiveSpeaker
+### meeting.participants.lastActiveSpeaker
+
 This stores the `participantId` of the last participant who spoke in the meeting.
 
-<a name="module_DyteParticipants--module.exports+selectedPeers"></a>
+**Kind**: instance property of [<code>DyteParticipants</code>](#module_DyteParticipants)  
+<a name="module_DyteParticipants+selectedPeers"></a>
 
-### participants.selectedPeers
+### meeting.participants.selectedPeers
+
 Keeps a list of all participants who have been present in the selected peers list.
 
-<a name="module_DyteParticipants--module.exports+count"></a>
+**Kind**: instance property of [<code>DyteParticipants</code>](#module_DyteParticipants)  
+<a name="module_DyteParticipants+count"></a>
 
-### participants.count
+### meeting.participants.count
+
 Returns the number of participants who are joined in the meeting.
 
-<a name="module_DyteParticipants--module.exports+maxActiveParticipantsCount"></a>
+**Kind**: instance property of [<code>DyteParticipants</code>](#module_DyteParticipants)  
+<a name="module_DyteParticipants+maxActiveParticipantsCount"></a>
 
-### participants.maxActiveParticipantsCount
+### meeting.participants.maxActiveParticipantsCount
+
 Returns the maximum number of participants that can be present in
 the active map.
 
-<a name="module_DyteParticipants--module.exports+pageCount"></a>
+**Kind**: instance property of [<code>DyteParticipants</code>](#module_DyteParticipants)  
+<a name="module_DyteParticipants+pageCount"></a>
 
-### participants.pageCount
+### meeting.participants.pageCount
+
 Returns the number of pages that are available in the meeting in PAGINATED mode.
 If the meeting is in ACTIVE_GRID mode, this value will be 0.
 
-<a name="module_DyteParticipants--module.exports+setMaxActiveParticipantsCount"></a>
+**Kind**: instance property of [<code>DyteParticipants</code>](#module_DyteParticipants)  
+<a name="module_DyteParticipants+setMaxActiveParticipantsCount"></a>
 
-### participants.setMaxActiveParticipantsCount(limit:)
+### meeting.participants.setMaxActiveParticipantsCount(limit:)
+
 Updates the maximum number of participants that are populated in
 the active map.
 
+**Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)
 
-| Param | Description |
-| --- | --- |
+| Param  | Description       |
+| ------ | ----------------- |
 | limit: | Updated max limit |
 
-<a name="module_DyteParticipants--module.exports+acceptWaitingRoomRequest"></a>
+<a name="module_DyteParticipants+acceptWaitingRoomRequest"></a>
 
-### participants.acceptWaitingRoomRequest(id)
+### meeting.participants.acceptWaitingRoomRequest(id)
+
 Accepts requests from waitlisted participants if user
 has appropriate permissions.
 
+**Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)
 
-| Param | Description |
-| --- | --- |
-| id | peerId or userId of the waitlisted participant. |
+| Param | Description                                     |
+| ----- | ----------------------------------------------- |
+| id    | peerId or userId of the waitlisted participant. |
 
-<a name="module_DyteParticipants--module.exports+acceptAllWaitingRoomRequest"></a>
+<a name="module_DyteParticipants+acceptAllWaitingRoomRequest"></a>
 
-### participants.acceptAllWaitingRoomRequest()
+### meeting.participants.acceptAllWaitingRoomRequest()
+
 We need a new event for socket service events
 since if we send them all together, sequence of events
 can be unreliable
 
-<a name="module_DyteParticipants--module.exports+rejectWaitingRoomRequest"></a>
+**Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)  
+<a name="module_DyteParticipants+rejectWaitingRoomRequest"></a>
 
-### participants.rejectWaitingRoomRequest(id)
+### meeting.participants.rejectWaitingRoomRequest(id)
+
 Rejects requests from waitlisted participants if user
 has appropriate permissions.
 
+**Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)
 
-| Param | Description |
-| --- | --- |
-| id | participantId of the waitlisted participant. |
+| Param | Description                                  |
+| ----- | -------------------------------------------- |
+| id    | participantId of the waitlisted participant. |
 
-<a name="module_DyteParticipants--module.exports+setViewMode"></a>
+<a name="module_DyteParticipants+setViewMode"></a>
 
-### participants.setViewMode(viewMode)
+### meeting.participants.setViewMode(viewMode)
+
 Sets the view mode of the meeting to either ACTIVE_GRID or PAGINATED.
 
+**Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)
 
-| Param | Description |
-| --- | --- |
+| Param    | Description                                          |
+| -------- | ---------------------------------------------------- |
 | viewMode | The mode in which the active map should be populated |
 
-<a name="module_DyteParticipants--module.exports+setPage"></a>
+<a name="module_DyteParticipants+setPage"></a>
 
-### participants.setPage(page)
+### meeting.participants.setPage(page)
+
 Populates the active map with participants present in the page number
 indicated by the parameter `page` in PAGINATED mode.
 Does not do anything in ACTIVE_GRID mode.
 
+**Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)
 
-| Param | Description |
-| --- | --- |
-| page | The page number to be set. |
+| Param | Description                |
+| ----- | -------------------------- |
+| page  | The page number to be set. |
 
-<a name="module_DyteParticipants--module.exports+disableAllAudio"></a>
+<a name="module_DyteParticipants+disableAllAudio"></a>
 
-### participants.disableAllAudio(allowUnmute)
+### meeting.participants.disableAllAudio(allowUnmute)
+
 Disables audio for all participants in the meeting.
 
+**Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)
 
-| Param | Description |
-| --- | --- |
+| Param       | Description                                        |
+| ----------- | -------------------------------------------------- |
 | allowUnmute | Allow participants to unmute after they are muted. |
 
-<a name="module_DyteParticipants--module.exports+disableAllVideo"></a>
+<a name="module_DyteParticipants+disableAllVideo"></a>
 
-### participants.disableAllVideo()
+### meeting.participants.disableAllVideo()
+
 Disables video for all participants in the meeting.
 
-<a name="module_DyteParticipants--module.exports+disableAudio"></a>
+**Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)  
+<a name="module_DyteParticipants+disableAudio"></a>
 
-### participants.~~disableAudio(participantId)~~
-***Deprecated***
+### ~~meeting.participants.disableAudio(participantId)~~
 
+**_Deprecated_**
 
-| Param | Description |
-| --- | --- |
+**Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)
+
+| Param         | Description                    |
+| ------------- | ------------------------------ |
 | participantId | ID of participant to be muted. |
 
-<a name="module_DyteParticipants--module.exports+disableVideo"></a>
+<a name="module_DyteParticipants+disableVideo"></a>
 
-### participants.~~disableVideo(participantId)~~
-***Deprecated***
+### ~~meeting.participants.disableVideo(participantId)~~
 
+**_Deprecated_**
 
-| Param | Description |
-| --- | --- |
+**Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)
+
+| Param         | Description                    |
+| ------------- | ------------------------------ |
 | participantId | ID of participant to be muted. |
 
-<a name="module_DyteParticipants--module.exports+kick"></a>
+<a name="module_DyteParticipants+kick"></a>
 
-### participants.~~kick(participantId)~~
-***Deprecated***
+### ~~meeting.participants.kick(participantId)~~
 
+**_Deprecated_**
 
-| Param | Description |
-| --- | --- |
+**Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)
+
+| Param         | Description                     |
+| ------------- | ------------------------------- |
 | participantId | ID of participant to be kicked. |
 
-<a name="module_DyteParticipants--module.exports+kickAll"></a>
+<a name="module_DyteParticipants+kickAll"></a>
 
-### participants.kickAll()
+### meeting.participants.kickAll()
+
 Kicks all participants from the meeting.
 
-<a name="module_DyteParticipants--module.exports+broadcastMessage"></a>
+**Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)  
+<a name="module_DyteParticipants+broadcastMessage"></a>
 
-### participants.broadcastMessage(target)
+### meeting.participants.broadcastMessage(target)
+
 Broadcasts the message to participants
 
 If no `target` is specified it is sent to all participants including `self`.
 
+**Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)
 
-| Param | Description |
-| --- | --- |
+| Param  | Description                                                                                                                           |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------- |
 | target | object containing a list of `participantIds` or object containing `presetName` - every user with that preset will be sent the message |
 
-<a name="module_DyteParticipants--module.exports+acceptAllRequestToJoinStageRequests"></a>
+<a name="module_DyteParticipants+getAllJoinedPeers"></a>
 
-### participants.~~acceptAllRequestToJoinStageRequests()~~
-***Deprecated***
+### meeting.participants.getAllJoinedPeers()
 
-<a name="module_DyteParticipants--module.exports+getAllJoinedPeers"></a>
-
-### participants.getAllJoinedPeers()
 Returns all peers currently present in the room
 If you are in a group call, use `meeting.participants.joined`
 instead
 
-<a name="module_DyteParticipants--module.exports+getParticipantsInMeetingPreJoin"></a>
+**Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)  
+<a name="module_DyteParticipants+getParticipantsInMeetingPreJoin"></a>
 
-### participants.getParticipantsInMeetingPreJoin()
+### meeting.participants.getParticipantsInMeetingPreJoin()
+
 Returns all peers currently in the room, is a non paginated call
 and should only be used if you are in a non room joined state,
 if in a joined group call, use `meeting.participants.joined`
+
+**Kind**: instance method of [<code>DyteParticipants</code>](#module_DyteParticipants)

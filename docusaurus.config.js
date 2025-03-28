@@ -241,7 +241,7 @@ const plugins = [
 
         if (
           path.startsWith(
-            '/guides/capabilities/misc/livestreaming-other-platforms'
+            '/guides/capabilities/misc/livestreaming-other-platforms',
           )
         ) {
           return [
@@ -276,7 +276,7 @@ const plugins = [
             return [
               path.replace(
                 '/web-core/livestreaming',
-                '/web-core/livestreaming/livestream-apis'
+                '/web-core/livestreaming/livestream-apis',
               ),
             ];
           }
@@ -284,7 +284,7 @@ const plugins = [
           return [
             path.replace(
               '/rn-core/livestreaming',
-              '/rn-core/livestreaming/livestream-apis'
+              '/rn-core/livestreaming/livestream-apis',
             ),
           ];
         }
@@ -292,7 +292,7 @@ const plugins = [
           return [
             path.replace(
               '/react-web-core/livestreaming',
-              '/react-web-core/livestreaming/livestream-apis'
+              '/react-web-core/livestreaming/livestream-apis',
             ),
           ];
         }
@@ -300,7 +300,7 @@ const plugins = [
           return [
             path.replace(
               '/web-core/stage',
-              '/web-core/livestreaming/state-management-apis'
+              '/web-core/livestreaming/state-management-apis',
             ),
           ];
         }
@@ -308,7 +308,7 @@ const plugins = [
           return [
             path.replace(
               '/rn-core/stage',
-              '/rn-core/livestreaming/state-management-apis'
+              '/rn-core/livestreaming/state-management-apis',
             ),
           ];
         }
@@ -316,7 +316,7 @@ const plugins = [
           return [
             path.replace(
               '/react-web-core/stage',
-              '/react-web-core/livestreaming/state-management-apis'
+              '/react-web-core/livestreaming/state-management-apis',
             ),
           ];
         }
@@ -325,7 +325,7 @@ const plugins = [
             path.replace('/guides/capabilities/webhooks', '/guides/webhooks'),
             path.replace(
               '/guides/capabilities/webhooks',
-              '/guides/features/webhooks'
+              '/guides/features/webhooks',
             ),
           ];
         }
@@ -334,7 +334,7 @@ const plugins = [
             path.replace('/guides/capabilities/recording', '/guides/recording'),
             path.replace(
               '/guides/capabilities/recording',
-              '/guides/features/recording'
+              '/guides/features/recording',
             ),
           ];
         }
@@ -343,7 +343,7 @@ const plugins = [
             path.replace('/guides/capabilities/recording', '/guides/recording'),
             path.replace(
               '/guides/capabilities/recording',
-              '/guides/features/recording'
+              '/guides/features/recording',
             ),
           ];
         }
@@ -352,7 +352,7 @@ const plugins = [
             path.replace('/guides/capabilities/embed', '/guides/embed'),
             path.replace(
               '/guides/capabilities/embed',
-              '/guides/features/embed'
+              '/guides/features/embed',
             ),
           ];
         }
@@ -360,11 +360,11 @@ const plugins = [
           return [
             path.replace(
               '/guides/capabilities/export-chat-dump',
-              '/guides/export-chat-dump'
+              '/guides/export-chat-dump',
             ),
             path.replace(
               '/guides/capabilities/export-chat-dump',
-              '/guides/features/export-chat-dump'
+              '/guides/features/export-chat-dump',
             ),
           ];
         }
@@ -372,11 +372,11 @@ const plugins = [
           return [
             path.replace(
               '/guides/capabilities/breakoutroom',
-              '/guides/breakoutroom'
+              '/guides/breakoutroom',
             ),
             path.replace(
               '/guides/capabilities/breakoutroom',
-              '/guides/features/breakoutroom'
+              '/guides/features/breakoutroom',
             ),
           ];
         }
@@ -454,7 +454,10 @@ const config = {
 
   trailingSlash: false,
   themes: ['@docusaurus/theme-live-codeblock', '@docusaurus/theme-mermaid'],
-  clientModules: [require.resolve('./src/client/define-ui-kit.js')],
+  clientModules: [
+    require.resolve('./src/client/define-ui-kit.js'),
+    require.resolve('./src/client/set-framework.js'),
+  ],
   scripts: [{ src: 'https://cdn.statuspage.io/se-v2.js', async: true }],
   markdown: {
     mermaid: true,

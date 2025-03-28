@@ -1,6 +1,6 @@
 ---
-sidebar_position: 18
-web_core_version: 1.32.1
+sidebar_position: 16
+web_core_version: 2.4.1
 ---
 
 <!-- Auto Generated Below -->
@@ -10,30 +10,37 @@ web_core_version: 1.32.1
 The DyteRecording module represents the state of the current recording, and allows
 to start/stop recordings and check if there's a recording in progress.
 
-
-* [DyteRecording](#module_DyteRecording)
-    * [.start()](#module_DyteRecording+start)
-    * [.stop()](#module_DyteRecording+stop)
-    * [.pause()](#module_DyteRecording+pause)
-    * [.resume()](#module_DyteRecording+resume)
+- [DyteRecording](#module_DyteRecording)
+  - [.start()](#module_DyteRecording+start)
+  - [.stop()](#module_DyteRecording+stop)
+  - [.pause()](#module_DyteRecording+pause)
+  - [.resume()](#module_DyteRecording+resume)
 
 <a name="module_DyteRecording+start"></a>
 
-### recording.start()
+### meeting.recording.start()
+
 Starts recording the meeting.
 
+**Kind**: instance method of [<code>DyteRecording</code>](#module_DyteRecording)  
 <a name="module_DyteRecording+stop"></a>
 
-### recording.stop()
+### meeting.recording.stop()
+
 Stops all recording currently in 'RECORDING' state
 
+**Kind**: instance method of [<code>DyteRecording</code>](#module_DyteRecording)  
 <a name="module_DyteRecording+pause"></a>
 
-### recording.pause()
+### meeting.recording.pause()
+
 Pauses all recording currently in 'RECORDING' state
 
+**Kind**: instance method of [<code>DyteRecording</code>](#module_DyteRecording)  
 <a name="module_DyteRecording+resume"></a>
 
-### recording.resume()
+### meeting.recording.resume()
+
 Resumes all recording currently in 'PAUSED' state
 
+**Kind**: instance method of [<code>DyteRecording</code>](#module_DyteRecording)

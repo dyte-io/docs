@@ -1,9 +1,9 @@
-
 # DyteEndMeetingControlBarButton
-## Overview
-This button is use to implement the action for leaving the meeting. You can add functionality to leave the meeting 
-inside the app by using this button.
 
+## Overview
+
+This button is use to implement the action for leaving the meeting. You can add functionality to leave the meeting
+inside the app by using this button.
 
 ### Topics:
 
@@ -12,20 +12,23 @@ inside the app by using this button.
 ```swift
 init(meeting: DyteMobileClient, alertViewController: UIViewController , onClick:((DyteEndMeetingControlBarButton, DyteLeaveDialog.DyteLeaveDialogAlertButtonType)->Void)? = nil, appearance: DyteControlBarButtonAppearance = AppTheme.shared.controlBarButtonAppearance)
 ```
-Creates a DyteEndMeetingControlBarButton with multiple parameters. 
+
+Creates a DyteEndMeetingControlBarButton with multiple parameters.
 
 #### Parameters:
-*Required*   
-**meeting:** Current ongoing meeting object.   
+
+_Required_  
+**meeting:** Current ongoing meeting object.  
 **alertViewController:** UIViewController object on which you want to present the UIAlertViewController. UIAlertView shown as final confirmation
-to leave meeting from the user.    
-*Optional*  
-**onClick:** Closure that you passed to get callback when user take action on UIAlertView 
-appearance: Any type which conforms to protocol "DyteControlBarButtonAppearance"  
+to leave meeting from the user.  
+_Optional_  
+**onClick:** Closure that you passed to get callback when user take action on UIAlertView
+appearance: Any type which conforms to protocol "DyteControlBarButtonAppearance"
 
+### Override the onClick action.
 
-### Override the onClick action. 
-```swift 
-open func onClick(button: DyteEndMeetingControlBarButton) 
+```swift
+open func onClick(button: DyteEndMeetingControlBarButton)
 ```
-You can override this method inside the subclass of `DyteEndMeetingControlBarButton` to customize the functionality when user presses this button. 
+
+You can override this method inside the subclass of `DyteEndMeetingControlBarButton` to customize the functionality when user presses this button.

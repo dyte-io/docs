@@ -26,13 +26,13 @@ export default function MyMeeting() {
   const { meeting } = useDyteMeeting();
   const roomState = useDyteSelector((m) => m.self.roomState);
 
-  return (
-    <div className="flex w-full h-full">
-      {roomState === 'init' && <DyteSetupScreen meeting={meeting} />}
-      {roomState === 'joined' && <center>Custom in-meeting UI</center>}
-      {roomState === 'ended' && <center>Custom post-meeting UI</center>}
-    </div>
-  );
+return (
+<div className="flex w-full h-full">
+{roomState === 'init' && <DyteSetupScreen meeting={meeting} />}
+{roomState === 'joined' && <center>Custom in-meeting UI</center>}
+{roomState === 'ended' && <center>Custom post-meeting UI</center>}
+</div>
+);
 }`
 } />
 

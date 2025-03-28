@@ -2,11 +2,10 @@
 
 This section focuses on pre-call functionality, providing developers with the tools needed to prepare the media environment before joining the meeting. If you are using our UI Kits, this will be handled by `DyteSetupScreen` or could be built with `DyteParticipantTile` and other components.
 
-
 ## Properties
 
-- `audioEnabled`: A <span className="tag-orange">boolean</span> value indicating if the audio currently enabled.
-- `videoEnabled`: A <span className="tag-orange">boolean</span> value indicating if the video currently enabled.
+- `audioEnabled`: A <span className="tag-orange">boolean</span> value indicating if the audio is currently enabled.
+- `videoEnabled`: A <span className="tag-orange">boolean</span> value indicating if the video is currently enabled.
 
 - `audioTrack`: The audio track for the local user.
 - `videoTrack`: The video track for the local user.
@@ -39,7 +38,6 @@ flowchart LR
 
 <br />
 
-
 ```ts
 const audioEnabled = useDyteSelector((m) => m.self.audioEnabled);
 const audioTrack = useDyteSelector((m) => m.self.audioTrack);
@@ -49,21 +47,20 @@ const audioTrack = useDyteSelector((m) => m.self.audioTrack);
 
 or if you want a traditional JS event you can use the `audioUpdate` event
 
-
 ```ts
 // Alternatively
 useEffect(() => {
-  if(!meeting) return;
+  if (!meeting) return;
 
-  const onAudioUpdate = ({ audioEnabled, audioTrack })=> {
-  // if enabled show a visual(izer) preview of the audio to the user
+  const onAudioUpdate = ({ audioEnabled, audioTrack }) => {
+    // if enabled show a visual(izer) preview of the audio to the user
   };
 
   meeting.self.on('audioUpdate', onAudioUpdate);
   return () => {
-    meeting.self.removeListener('audioUpdate', onAudioUpdate)
-  }
-}, [meeting])
+    meeting.self.removeListener('audioUpdate', onAudioUpdate);
+  };
+}, [meeting]);
 ```
 
 **2. Enable/Disable camera**
@@ -85,6 +82,7 @@ flowchart LR
 
     class eam basic;
 ```
+
 <br />
 
 ```ts
@@ -94,8 +92,7 @@ const videoTrack = useDyteSelector((m) => m.self.videoTrack);
 
 ### Changing Media Device
 
-Media devices represents the hardware for the camera, microphone and speaker
-devices. To get the list of media devices that are currently being used, you can
+To get the list of media devices that are currently being used, you can
 use the following methods:
 
 ```ts

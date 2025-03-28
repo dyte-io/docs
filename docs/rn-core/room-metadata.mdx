@@ -27,7 +27,7 @@ const { meetingTitle } = meeting.meta;
 
 if (meeting.self.roomJoined) {
   console.log(
-    `The local user has joined a meeting with title ${meetingTitle}.`
+    `The local user has joined a meeting with title ${meetingTitle}.`,
   );
 }
 ```
@@ -40,13 +40,13 @@ event to find out if the local user's connection has dropped.
 ```ts
 meeting.meta.on('connected', () => {
   console.log(
-    `The local user has successfully joined the meeting ${meeting.meta.meetingTitle}`
+    `The local user has successfully joined the meeting ${meeting.meta.meetingTitle}`,
   );
 });
 
 meeting.meta.on('disconnected', () => {
   console.log(
-    `The local user got disconnected from the meeting ${meeting.meta.meetingTitle}`
+    `The local user got disconnected from the meeting ${meeting.meta.meetingTitle}`,
   );
 });
 

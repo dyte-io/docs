@@ -75,7 +75,7 @@ export default function SDKs() {
         <h4 className="mb-2 text-2xl">Core SDK</h4>
 
         <p className="mb-6 text-text-400">
-          Our easy to use Video + Voice + Livestreaming + Chat{' '}
+          Our easy to use Video + Voice + Livestreaming{' '}
           <span className="font-semibold">all in one</span> SDK
         </p>
 

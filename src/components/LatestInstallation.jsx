@@ -17,7 +17,7 @@ export const MavenLatestInstallation = ({ pkg }) => {
 
     fetch(
       'https://b72qj023g7.execute-api.ap-south-1.amazonaws.com/default/android-core-latest',
-      requestOptions
+      requestOptions,
     )
       .then((response) => response.json())
       .then((result) => setVersion(result.latestVersion ?? '+'));

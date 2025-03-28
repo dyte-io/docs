@@ -1,6 +1,6 @@
 ---
 sidebar_position: 8
-web_core_version: 1.32.1
+web_core_version: 2.4.1
 ---
 
 <!-- Auto Generated Below -->
@@ -9,171 +9,216 @@ web_core_version: 1.32.1
 
 This is the chat module, which can be used to send and receive messages from the meeting.
 
-
-* [DyteChat](#module_DyteChat)
-    * [.messages](#module_DyteChat+messages)
-    * [.channels](#module_DyteChat+channels)
-    * [.roomJoined](#module_DyteChat+roomJoined)
-    * [.pinned](#module_DyteChat+pinned)
-    * [.sendTextMessage(message)](#module_DyteChat+sendTextMessage)
-    * [.sendImageMessage(image)](#module_DyteChat+sendImageMessage)
-    * [.sendFileMessage(file)](#module_DyteChat+sendFileMessage)
-    * [.sendMessage(message, participantIds)](#module_DyteChat+sendMessage)
-    * [.getMessagesByUser(userId)](#module_DyteChat+getMessagesByUser)
-    * [.getMessagesByType(type)](#module_DyteChat+getMessagesByType)
-    * [.pin(id)](#module_DyteChat+pin)
-    * [.unpin(id)](#module_DyteChat+unpin)
-    * [.getMessages()](#module_DyteChat+getMessages)
-    * [.createChannel()](#module_DyteChat+createChannel)
-    * [.updateChannel()](#module_DyteChat+updateChannel)
-    * [.sendMessageToChannel(message, channelId)](#module_DyteChat+sendMessageToChannel)
-    * [.getChannelMembers()](#module_DyteChat+getChannelMembers)
-    * [.searchMessages()](#module_DyteChat+searchMessages)
-    * [.markLastReadMessage()](#module_DyteChat+markLastReadMessage)
+- [DyteChat](#module_DyteChat)
+  - [.messages](#module_DyteChat+messages)
+  - [.channels](#module_DyteChat+channels)
+  - [.socketJoined](#module_DyteChat+socketJoined)
+  - [.pinned](#module_DyteChat+pinned)
+  - [.setMaxTextLimit()](#module_DyteChat+setMaxTextLimit)
+  - [.sendTextMessage(message)](#module_DyteChat+sendTextMessage)
+  - [.sendImageMessage(image)](#module_DyteChat+sendImageMessage)
+  - [.sendFileMessage(file)](#module_DyteChat+sendFileMessage)
+  - [.sendMessage(message, participantIds)](#module_DyteChat+sendMessage)
+  - [.getMessagesByUser(userId)](#module_DyteChat+getMessagesByUser)
+  - [.getMessagesByType(type)](#module_DyteChat+getMessagesByType)
+  - [.pin(id)](#module_DyteChat+pin)
+  - [.unpin(id)](#module_DyteChat+unpin)
+  - [.getMessages()](#module_DyteChat+getMessages)
+  - [.createChannel()](#module_DyteChat+createChannel)
+  - [.updateChannel()](#module_DyteChat+updateChannel)
+  - [.sendMessageToChannel(message, channelId)](#module_DyteChat+sendMessageToChannel)
+  - [.getChannelMembers()](#module_DyteChat+getChannelMembers)
+  - [.searchMessages()](#module_DyteChat+searchMessages)
+  - [.markLastReadMessage()](#module_DyteChat+markLastReadMessage)
 
 <a name="module_DyteChat+messages"></a>
 
-### chat.messages
+### meeting.chat.messages
+
 An array of chat messages.
 
+**Kind**: instance property of [<code>DyteChat</code>](#module_DyteChat)  
 <a name="module_DyteChat+channels"></a>
 
-### chat.channels
+### meeting.chat.channels
+
 An Array of all available channels.
 
-<a name="module_DyteChat+roomJoined"></a>
+**Kind**: instance property of [<code>DyteChat</code>](#module_DyteChat)  
+<a name="module_DyteChat+socketJoined"></a>
 
-### chat.roomJoined
+### meeting.chat.socketJoined
+
 Returns true if the local participant has joined the meeting.
 
+**Kind**: instance property of [<code>DyteChat</code>](#module_DyteChat)  
 <a name="module_DyteChat+pinned"></a>
 
-### chat.pinned
+### meeting.chat.pinned
+
 Returns an array of pinned messages.
 
+**Kind**: instance property of [<code>DyteChat</code>](#module_DyteChat)  
+<a name="module_DyteChat+setMaxTextLimit"></a>
+
+### meeting.chat.setMaxTextLimit()
+
+Set the max character limit of a text message
+
+**Kind**: instance method of [<code>DyteChat</code>](#module_DyteChat)  
 <a name="module_DyteChat+sendTextMessage"></a>
 
-### chat.sendTextMessage(message)
+### meeting.chat.sendTextMessage(message)
+
 Sends a chat text message to the room.
 
+**Kind**: instance method of [<code>DyteChat</code>](#module_DyteChat)
 
-| Param | Description |
-| --- | --- |
+| Param   | Description                                |
+| ------- | ------------------------------------------ |
 | message | The message that must be sent to the room. |
 
 <a name="module_DyteChat+sendImageMessage"></a>
 
-### chat.sendImageMessage(image)
+### meeting.chat.sendImageMessage(image)
+
 Sends an image message to the meeting.
 
+**Kind**: instance method of [<code>DyteChat</code>](#module_DyteChat)
 
-| Param | Description |
-| --- | --- |
+| Param | Description                   |
+| ----- | ----------------------------- |
 | image | The image that is to be sent. |
 
 <a name="module_DyteChat+sendFileMessage"></a>
 
-### chat.sendFileMessage(file)
+### meeting.chat.sendFileMessage(file)
+
 Sends a file to the meeting.
 
+**Kind**: instance method of [<code>DyteChat</code>](#module_DyteChat)
 
-| Param | Description |
-| --- | --- |
-| file | A File object. |
+| Param | Description    |
+| ----- | -------------- |
+| file  | A File object. |
 
 <a name="module_DyteChat+sendMessage"></a>
 
-### chat.sendMessage(message, participantIds)
+### meeting.chat.sendMessage(message, participantIds)
+
 Sends a message to the meeting. This method can be used to send text, image,
 or file messages. The message type is determined by the key 'type' in `message`
 object.
 
+**Kind**: instance method of [<code>DyteChat</code>](#module_DyteChat)
 
-| Param | Description |
-| --- | --- |
-| message | An object including the type and content of the message. |
-| participantIds | An array including the userIds of the participants. |
+| Param          | Description                                              |
+| -------------- | -------------------------------------------------------- |
+| message        | An object including the type and content of the message. |
+| participantIds | An array including the userIds of the participants.      |
 
 <a name="module_DyteChat+getMessagesByUser"></a>
 
-### chat.getMessagesByUser(userId)
+### meeting.chat.getMessagesByUser(userId)
+
 Returns an array of messages sent by a specific userId.
 
+**Kind**: instance method of [<code>DyteChat</code>](#module_DyteChat)
 
-| Param | Description |
-| --- | --- |
+| Param  | Description                                    |
+| ------ | ---------------------------------------------- |
 | userId | The user id of the user that sent the message. |
 
 <a name="module_DyteChat+getMessagesByType"></a>
 
-### chat.getMessagesByType(type)
+### meeting.chat.getMessagesByType(type)
+
 Returns an array of 'text', 'image' or 'file' messages.
 
+**Kind**: instance method of [<code>DyteChat</code>](#module_DyteChat)
 
-| Param | Description |
-| --- | --- |
-| type | 'text', 'image', or 'file'. |
+| Param | Description                 |
+| ----- | --------------------------- |
+| type  | 'text', 'image', or 'file'. |
 
 <a name="module_DyteChat+pin"></a>
 
-### chat.pin(id)
+### meeting.chat.pin(id)
+
 Pins a chat message
 
+**Kind**: instance method of [<code>DyteChat</code>](#module_DyteChat)
 
-| Param | Description |
-| --- | --- |
-| id | ID of the message to be pinned |
+| Param | Description                    |
+| ----- | ------------------------------ |
+| id    | ID of the message to be pinned |
 
 <a name="module_DyteChat+unpin"></a>
 
-### chat.unpin(id)
+### meeting.chat.unpin(id)
+
 Unpins a chat message
 
+**Kind**: instance method of [<code>DyteChat</code>](#module_DyteChat)
 
-| Param | Description |
-| --- | --- |
-| id | ID of the message to be unpinned |
+| Param | Description                      |
+| ----- | -------------------------------- |
+| id    | ID of the message to be unpinned |
 
 <a name="module_DyteChat+getMessages"></a>
 
-### chat.getMessages()
+### meeting.chat.getMessages()
+
 Gets chat messages in a paginated manner
 
+**Kind**: instance method of [<code>DyteChat</code>](#module_DyteChat)  
 <a name="module_DyteChat+createChannel"></a>
 
-### chat.createChannel()
+### meeting.chat.createChannel()
+
 Creates a channel with specified name and userIds as members
 
+**Kind**: instance method of [<code>DyteChat</code>](#module_DyteChat)  
 <a name="module_DyteChat+updateChannel"></a>
 
-### chat.updateChannel()
+### meeting.chat.updateChannel()
+
 Updates the channel
 
+**Kind**: instance method of [<code>DyteChat</code>](#module_DyteChat)  
 <a name="module_DyteChat+sendMessageToChannel"></a>
 
-### chat.sendMessageToChannel(message, channelId)
+### meeting.chat.sendMessageToChannel(message, channelId)
+
 Sends a message to a channel. This method can be used to send text, image,
 or file messages. The message type is determined by the key 'type' in `message`
 object.
 
+**Kind**: instance method of [<code>DyteChat</code>](#module_DyteChat)
 
-| Param | Description |
-| --- | --- |
-| message | An object including the type and content of the message. |
-| channelId | Id of the channel where you want to send the message. |
+| Param     | Description                                              |
+| --------- | -------------------------------------------------------- |
+| message   | An object including the type and content of the message. |
+| channelId | Id of the channel where you want to send the message.    |
 
 <a name="module_DyteChat+getChannelMembers"></a>
 
-### chat.getChannelMembers()
+### meeting.chat.getChannelMembers()
+
 returns a list of members added to the channel
 
+**Kind**: instance method of [<code>DyteChat</code>](#module_DyteChat)  
 <a name="module_DyteChat+searchMessages"></a>
 
-### chat.searchMessages()
+### meeting.chat.searchMessages()
+
 search messages
 
+**Kind**: instance method of [<code>DyteChat</code>](#module_DyteChat)  
 <a name="module_DyteChat+markLastReadMessage"></a>
 
-### chat.markLastReadMessage()
+### meeting.chat.markLastReadMessage()
+
 marks last read message in a channel
 
+**Kind**: instance method of [<code>DyteChat</code>](#module_DyteChat)

@@ -42,8 +42,8 @@ An example from the Developer Portal displaying meeting details.
     <summary>
         **Session**
     </summary>
-In Dyte, a meeting is a communication channel, and each instance of that channel is called a session. A session represents an ongoing meeting or a meeting that happened. Like meetings, you can get fetch the details of a session via Developer Portal or using the [APIs](/api#/operations/GetSessions).
-After a minute of all participants leaving, the session is ended and any participants that join after that will result in the creation of a new session.
+In Dyte, a meeting is a communication channel, and each instance of that channel is called a session. A session represents an ongoing meeting or a meeting that happened in the past. Like meetings, you can get the details of a session via Developer Portal or using the [APIs](/api#/operations/GetSessions).
+A minute after all participants leave, the session is ended and any participants that join after that will result in the creation of a new session.
 
 An example from the Developer Portal displaying session details.
 
@@ -78,12 +78,12 @@ To create a preset, please refer to our Developer Portal's [Presets Section](htt
 
 Now that you are familiar with the terminology of basic concepts on Dyte, we can take a look at how different parts of the Dyte system come together. The components are the REST API, core SDK , UIKit and a Developer Portal. Each of these serve different purposes and belong in different blocks of your application.
 
-Let's dive deeper into what purpose each of these components server.
+Let's dive deeper into what purpose each of these components serve.
 
 ### Developer Portal
 
 To begin with, let's start with our [dashboard](https://dev.dyte.io/dashboard). This is where you will do a number of administrative tasks. This is your go-to-place for things like defining organisations, meeting logs, grabbing API Keys and billing operations.
-You can also use Developer Portal to create meetings, presets, setup storage for recordings, add webhooks, and much more.
+You can also use the Developer Portal to create meetings, presets, setup storage for recordings, add webhooks, and much more.
 
 <img
   src="/static/guides/dev-portal.png"

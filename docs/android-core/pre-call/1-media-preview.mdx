@@ -6,11 +6,10 @@ This section provides developers with the tools to prepare the media environment
 If you are using our UI Kits, this functionality can be handled by `DyteSetupFragment` or built with `DyteParticipantTileView`
 and `DyteSettingsFragment` components.
 
-
 ## Properties
 
-- `meeting.localUser.audioEnabled`: A <span className="tag-orange">boolean</span> value indicating if the audio currently enabled.
-- `meeting.localUser.videoEnabled`: A <span className="tag-orange">boolean</span> value indicating if the video currently enabled.
+- `meeting.localUser.audioEnabled`: A <span className="tag-orange">boolean</span> value indicating if the audio is currently enabled.
+- `meeting.localUser.videoEnabled`: A <span className="tag-orange">boolean</span> value indicating if the video is currently enabled.
 
 ## Methods
 
@@ -87,7 +86,6 @@ meeting.addSelfEventsListener(new DyteSelfEventsListener() {
   </TabItem>
 </Tabs>
 
-
 **2. Enable/Disable camera**
 
 <Tabs groupId="android-core-media-preview">
@@ -124,6 +122,7 @@ flowchart LR
 
     class eam basic;
 ```
+
 <br />
 
 Whenever there is an update in the video state of the local user, the Core SDK notifies the client through the `onVideoUpdate` callback
@@ -155,7 +154,6 @@ meeting.addSelfEventsListener(new DyteSelfEventsListener() {
 
   </TabItem>
 </Tabs>
-
 
 ### Changing Media Device
 

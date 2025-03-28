@@ -6,36 +6,36 @@ import {
   NodeChange,
   EdgeChange,
   Node,
-} from "reactflow";
-import { nanoid } from "nanoid";
-import { createWithEqualityFn } from "zustand/traditional";
-import { shallow } from "zustand/shallow";
-import { gotoStepNodes, initialNodes } from "./nodes";
-import { gotoStepEdges, initialEdges } from "./edges";
-import { faker } from "@faker-js/faker";
+} from 'reactflow';
+import { nanoid } from 'nanoid';
+import { createWithEqualityFn } from 'zustand/traditional';
+import { shallow } from 'zustand/shallow';
+import { gotoStepNodes, initialNodes } from './nodes';
+import { gotoStepEdges, initialEdges } from './edges';
+import { faker } from '@faker-js/faker';
 
 export const steps = [
   {
-    href: "create-meeting",
-    name: "Create a meeting",
+    href: 'create-meeting',
+    name: 'Create a meeting',
     startStep: 1,
     endStep: 4,
   },
   {
-    href: "add-participant",
-    name: "Add a participant",
+    href: 'add-participant',
+    name: 'Add a participant',
     startStep: 5,
     endStep: 7,
   },
   {
-    href: "init-sdk",
-    name: "Initialize SDK",
+    href: 'init-sdk',
+    name: 'Initialize SDK',
     startStep: 8,
     endStep: 9,
   },
   {
-    href: "join-meeting",
-    name: "Join meeting",
+    href: 'join-meeting',
+    name: 'Join meeting',
     startStep: 10,
     endStep: 11,
   },
@@ -61,11 +61,13 @@ export const useStore = createWithEqualityFn<State & Actions>(
     nodes: [],
     nextNav: undefined,
     edges: [],
-    doctors: ['Cardiology', 'Dermatology', 'Pediatrics', 'Psychiatrist'].map((e) => ({
+    doctors: ['Cardiology', 'Dermatology', 'Pediatrics', 'Psychiatrist'].map(
+      (e) => ({
         dept: e,
         name: faker.person.fullName(),
-        avatar: faker.image.avatar()
-    })),
+        avatar: faker.image.avatar(),
+      }),
+    ),
     currentStep: 0,
 
     onNodesChange(changes) {
@@ -87,21 +89,27 @@ export const useStore = createWithEqualityFn<State & Actions>(
       set({ edges: [edge, ...get().edges] });
     },
     incStep(nextStep) {
-      set((s) => {       
-        const nStep = nextStep ?? s.currentStep + 1; 
+      set((s) => {
+        const nStep = nextStep ?? s.currentStep + 1;
         const step = steps.find((n) => n.startStep == nStep);
         let nextNav = undefined;
-        if(step) {
+        if (step) {
           nextNav = step.href;
         }
         return {
           nextNav: nextNav,
           currentStep: nStep,
-          nodes: gotoStepNodes(s.nodes.length == 0 ? initialNodes : s.nodes, nStep),
-          edges: gotoStepEdges(s.edges.length == 0 ? initialEdges : s.edges, nStep)
+          nodes: gotoStepNodes(
+            s.nodes.length == 0 ? initialNodes : s.nodes,
+            nStep,
+          ),
+          edges: gotoStepEdges(
+            s.edges.length == 0 ? initialEdges : s.edges,
+            nStep,
+          ),
         };
       });
     },
   }),
-  shallow
+  shallow,
 );

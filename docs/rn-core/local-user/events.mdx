@@ -22,7 +22,7 @@ produce and consume media.
 ```ts
 meeting.self.on('roomJoined', () => {
   console.log(
-    'User has joined the meeting and ready to produce and consume media'
+    'User has joined the meeting and ready to produce and consume media',
   );
 });
 ```
@@ -103,7 +103,7 @@ meeting.self.on(
     } else {
       // Stop the screenshare
     }
-  }
+  },
 );
 ```
 
@@ -138,7 +138,7 @@ meeting.self.on('mediaScoreUpdate', ({ kind, isScreenshare, score }) => {
   if (kind === 'video') {
     console.log(
       `Your ${isScreenshare ? 'screenshare' : 'video'} quality score is `,
-      score
+      score,
     );
   }
 

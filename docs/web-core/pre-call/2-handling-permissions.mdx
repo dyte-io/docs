@@ -1,12 +1,11 @@
 # Handling Browser Permissions
 
-## Properties 
+## Properties
 
 `self.mediaPermissions`: The current audio and video **browser permissions** given by the local
-  user.
+user.
 
 Permissions start with `NOT_REQUESTED` and can go into 4 different states
-
 
 ```mermaid
 stateDiagram-v2
@@ -18,10 +17,9 @@ stateDiagram-v2
 
 <br />
 
-
 - `ACCEPTED` - The user accepted browser permission prompts
 - `DENIED` - The user denied browser permission prompts
-- `SYSTEM_DENIED` - The user's browser does not have the required permission, in this case usually the OS hasn't granted permission the browser application
+- `SYSTEM_DENIED` - The user's browser does not have the required permission, in this case this usually means the browser application lacks the necessary permission on the OS level
 - `COULD_NOT_START` - Unable to start the selected device, you can retry with a different device
 
 <br />
@@ -34,8 +32,30 @@ One other thing to note down here is user might revoke permission later, or migh
 
 <br />
 
-
 Use the `mediaPermissionUpdate` event on `self` to listen for these changes
+
+<Tabs groupId="framework" defaultValue="react">
+  <TabItem value="js" label="Javascript">
+```js
+meeting.self?.addListener('mediaPermissionUpdate', ({ kind, message }) => {
+  console.log(`Permission update for ${kind} is ${message}`);
+});
+```
+  </TabItem>
+  <TabItem value="react" label="React">
+```js
+useEffect(() => {
+  const onMediaPermissionUpdate = ({ kind, message }) => {
+    console.log(`Permission update for ${kind} is ${message}`);
+  };
+  meeting.self?.on('mediaPermissionUpdate', onMediaPermissionUpdate);
+  return () => {
+    meeting.self?.off('mediaPermissionUpdate', onMediaPermissionUpdate);
+  };
+}, [meeting]);
+```
+  </TabItem>
+</Tabs>
 
 ```mermaid
 stateDiagram-v2
@@ -46,5 +66,5 @@ stateDiagram-v2
     ACCEPTED --> DENIED
     ACCEPTED --> COULD_NOT_START
     DENIED --> ACCEPTED
-    COULD_NOT_START --> ACCEPTED 
+    COULD_NOT_START --> ACCEPTED
 ```

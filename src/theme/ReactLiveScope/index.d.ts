@@ -2,28 +2,28 @@
 import React from 'react';
 declare const ReactLiveScope: {
   createFactory<T extends HTMLElement>(
-    type: keyof React.ReactHTML
+    type: keyof React.ReactHTML,
   ): React.HTMLFactory<T>;
   createFactory(type: keyof React.ReactSVG): React.SVGFactory;
   createFactory<P extends React.DOMAttributes<T_1>, T_1 extends Element>(
-    type: string
+    type: string,
   ): React.DOMFactory<P, T_1>;
   createFactory<P_1>(
-    type: React.FunctionComponent<P_1>
+    type: React.FunctionComponent<P_1>,
   ): React.FunctionComponentFactory<P_1>;
   createFactory<P_2>(
     type: React.ClassType<
       P_2,
       React.ClassicComponent<P_2, any>,
       React.ClassicComponentClass<P_2>
-    >
+    >,
   ): React.CFactory<P_2, React.ClassicComponent<P_2, any>>;
   createFactory<
     P_3,
     T_2 extends React.Component<P_3, any, any>,
-    C extends React.ComponentClass<P_3, any>
+    C extends React.ComponentClass<P_3, any>,
   >(
-    type: React.ClassType<P_3, T_2, C>
+    type: React.ClassType<P_3, T_2, C>,
   ): React.CFactory<P_3, T_2>;
   createFactory<P_4>(type: React.ComponentClass<P_4, any>): React.Factory<P_4>;
   createElement(
@@ -73,7 +73,7 @@ declare const ReactLiveScope: {
   createElement<
     P_10 extends {},
     T_6 extends React.Component<P_10, any, any>,
-    C_1 extends React.ComponentClass<P_10, any>
+    C_1 extends React.ComponentClass<P_10, any>,
   >(
     type: React.ClassType<P_10, T_6, C_1>,
     props?: (React.ClassAttributes<T_6> & P_10) | null | undefined,
@@ -127,14 +127,14 @@ declare const ReactLiveScope: {
   ): React.ReactElement<P_18, string | React.JSXElementConstructor<any>>;
   createContext<T_12>(defaultValue: T_12): React.Context<T_12>;
   isValidElement<P_19>(
-    object: {} | null | undefined
+    object: {} | null | undefined,
   ): object is React.ReactElement<
     P_19,
     string | React.JSXElementConstructor<any>
   >;
   createRef<T_13>(): React.RefObject<T_13>;
   forwardRef<T_14, P_20 = {}>(
-    render: React.ForwardRefRenderFunction<T_14, P_20>
+    render: React.ForwardRefRenderFunction<T_14, P_20>,
   ): React.ForwardRefExoticComponent<
     React.PropsWithoutRef<P_20> & React.RefAttributes<T_14>
   >;
@@ -142,82 +142,84 @@ declare const ReactLiveScope: {
     Component: React.FunctionComponent<P_21>,
     propsAreEqual?:
       | ((prevProps: Readonly<P_21>, nextProps: Readonly<P_21>) => boolean)
-      | undefined
+      | undefined,
   ): React.NamedExoticComponent<P_21>;
   memo<T_15 extends React.ComponentType<any>>(
     Component: T_15,
     propsAreEqual?:
       | ((
           prevProps: Readonly<React.ComponentProps<T_15>>,
-          nextProps: Readonly<React.ComponentProps<T_15>>
+          nextProps: Readonly<React.ComponentProps<T_15>>,
         ) => boolean)
-      | undefined
+      | undefined,
   ): React.MemoExoticComponent<T_15>;
   lazy<T_16 extends React.ComponentType<any>>(
     factory: () => Promise<{
       default: T_16;
-    }>
+    }>,
   ): React.LazyExoticComponent<T_16>;
   useContext<T_17>(context: React.Context<T_17>): T_17;
   useState<S>(
-    initialState: S | (() => S)
+    initialState: S | (() => S),
   ): [S, React.Dispatch<React.SetStateAction<S>>];
   useState<S_1 = undefined>(): [
     S_1 | undefined,
-    React.Dispatch<React.SetStateAction<S_1 | undefined>>
+    React.Dispatch<React.SetStateAction<S_1 | undefined>>,
   ];
   useReducer<R extends React.ReducerWithoutAction<any>, I>(
     reducer: R,
     initializerArg: I,
-    initializer: (arg: I) => React.ReducerStateWithoutAction<R>
+    initializer: (arg: I) => React.ReducerStateWithoutAction<R>,
   ): [React.ReducerStateWithoutAction<R>, React.DispatchWithoutAction];
   useReducer<R_1 extends React.ReducerWithoutAction<any>>(
     reducer: R_1,
     initializerArg: React.ReducerStateWithoutAction<R_1>,
-    initializer?: undefined
+    initializer?: undefined,
   ): [React.ReducerStateWithoutAction<R_1>, React.DispatchWithoutAction];
   useReducer<R_2 extends React.Reducer<any, any>, I_1>(
     reducer: R_2,
     initializerArg: I_1 & React.ReducerState<R_2>,
-    initializer: (arg: I_1 & React.ReducerState<R_2>) => React.ReducerState<R_2>
+    initializer: (
+      arg: I_1 & React.ReducerState<R_2>,
+    ) => React.ReducerState<R_2>,
   ): [React.ReducerState<R_2>, React.Dispatch<React.ReducerAction<R_2>>];
   useReducer<R_3 extends React.Reducer<any, any>, I_2>(
     reducer: R_3,
     initializerArg: I_2,
-    initializer: (arg: I_2) => React.ReducerState<R_3>
+    initializer: (arg: I_2) => React.ReducerState<R_3>,
   ): [React.ReducerState<R_3>, React.Dispatch<React.ReducerAction<R_3>>];
   useReducer<R_4 extends React.Reducer<any, any>>(
     reducer: R_4,
     initialState: React.ReducerState<R_4>,
-    initializer?: undefined
+    initializer?: undefined,
   ): [React.ReducerState<R_4>, React.Dispatch<React.ReducerAction<R_4>>];
   useRef<T_18>(initialValue: T_18): React.MutableRefObject<T_18>;
   useRef<T_19>(initialValue: T_19 | null): React.RefObject<T_19>;
   useRef<T_20 = undefined>(): React.MutableRefObject<T_20 | undefined>;
   useLayoutEffect(
     effect: React.EffectCallback,
-    deps?: React.DependencyList | undefined
+    deps?: React.DependencyList | undefined,
   ): void;
   useEffect(
     effect: React.EffectCallback,
-    deps?: React.DependencyList | undefined
+    deps?: React.DependencyList | undefined,
   ): void;
   useImperativeHandle<T_21, R_5 extends T_21>(
     ref: React.Ref<T_21> | undefined,
     init: () => R_5,
-    deps?: React.DependencyList | undefined
+    deps?: React.DependencyList | undefined,
   ): void;
   useCallback<T_22 extends Function>(
     callback: T_22,
-    deps: React.DependencyList
+    deps: React.DependencyList,
   ): T_22;
   useMemo<T_23>(
     factory: () => T_23,
-    deps: React.DependencyList | undefined
+    deps: React.DependencyList | undefined,
   ): T_23;
   useDebugValue<T_24>(
     value: T_24,
-    format?: ((value: T_24) => any) | undefined
+    format?: ((value: T_24) => any) | undefined,
   ): void;
   useDeferredValue<T_25>(value: T_25): T_25;
   useTransition(): [boolean, React.TransitionStartFunction];
@@ -225,28 +227,28 @@ declare const ReactLiveScope: {
   useId(): string;
   useInsertionEffect(
     effect: React.EffectCallback,
-    deps?: React.DependencyList | undefined
+    deps?: React.DependencyList | undefined,
   ): void;
   useSyncExternalStore<Snapshot>(
     subscribe: (onStoreChange: () => void) => () => void,
     getSnapshot: () => Snapshot,
-    getServerSnapshot?: (() => Snapshot) | undefined
+    getServerSnapshot?: (() => Snapshot) | undefined,
   ): Snapshot;
   Children: {
     map<T_26, C_2>(
       children: C_2 | readonly C_2[],
-      fn: (child: C_2, index: number) => T_26
+      fn: (child: C_2, index: number) => T_26,
     ): C_2 extends null | undefined
       ? C_2
       : Exclude<T_26, boolean | null | undefined>[];
     forEach<C_3>(
       children: C_3 | readonly C_3[],
-      fn: (child: C_3, index: number) => void
+      fn: (child: C_3, index: number) => void,
     ): void;
     count(children: any): number;
     only<C_4>(children: C_4): C_4 extends any[] ? never : C_4;
     toArray(
-      children: React.ReactNode | React.ReactNode[]
+      children: React.ReactNode | React.ReactNode[],
     ): (
       | string
       | number

@@ -28,8 +28,8 @@ Here is a list of properties that `meeting.localUser` user provides:
 - `audioTrack`: The audio track for the local user.
 - `videoTrack`: The video track for the local user.
 - `screenShareTrack`: The screen share video tracks for the local user.
-- `audioEnabled`: A boolean value indicating if the audio currently enabled.
-- `videoEnabled`: A boolean value indicating if the video currently enabled.
+- `audioEnabled`: A boolean value indicating if the audio is currently enabled.
+- `videoEnabled`: A boolean value indicating if the video is currently enabled.
 - `isScreenShareParticipant`: A boolean value indicating if the participant is a
   screen share participant in this meeting.
 
@@ -63,7 +63,7 @@ initialization process. You can setup the audio and video tracks by simply
 calling `enableAudio()` and `enableVideo()` like below:
 
 ```swift
-meeting.localUser.enableAudio{ err in 
+meeting.localUser.enableAudio{ err in
     if let error = err {
         print("Error enabling audio: \(error)")
     }
@@ -71,7 +71,7 @@ meeting.localUser.enableAudio{ err in
 ```
 
 ```swift
-meeting.localUser.enableVideo{ err in 
+meeting.localUser.enableVideo{ err in
     if let error = err {
         print("Error enabling video: \(error)")
     }

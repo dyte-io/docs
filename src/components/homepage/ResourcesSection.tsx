@@ -148,7 +148,7 @@ export default function ResourcesSection() {
             className={clsx(
               'rounded-lg px-4 py-2 transition-colors',
               activeType === 'all' &&
-                'bg-zinc-700 text-white dark:bg-zinc-200 dark:text-black'
+                'bg-zinc-700 text-white dark:bg-zinc-200 dark:text-black',
             )}
             onClick={() => setActiveType('all')}
           >
@@ -158,7 +158,7 @@ export default function ResourcesSection() {
             className={clsx(
               'rounded-lg px-4 py-2 transition-colors',
               activeType === 'blog' &&
-                'bg-zinc-700 text-white dark:bg-zinc-200 dark:text-black'
+                'bg-zinc-700 text-white dark:bg-zinc-200 dark:text-black',
             )}
             onClick={() => setActiveType('blog')}
           >
@@ -168,7 +168,7 @@ export default function ResourcesSection() {
             className={clsx(
               'rounded-lg px-4 py-2 transition-colors',
               activeType === 'video' &&
-                'bg-zinc-700 text-white dark:bg-zinc-200 dark:text-black'
+                'bg-zinc-700 text-white dark:bg-zinc-200 dark:text-black',
             )}
             onClick={() => setActiveType('video')}
           >

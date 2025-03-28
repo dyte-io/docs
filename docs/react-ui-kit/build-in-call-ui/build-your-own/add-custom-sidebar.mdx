@@ -21,17 +21,17 @@ import { useDyteMeeting, useDyteSelector } from '@dytesdk/react-web-core';
 import { useEffect, useState } from 'react';
 
 function SidebarWithCustomUI({
-    meeting, states, config, setStates,
+meeting, states, config, setStates,
 }: { meeting: DyteClient, config: UIConfig, states: CustomStates, setStates: SetStates }
 ){
-    const [tabs, setTabs] = useState([
-        { id: 'chat', name: 'chat' },
-        { id: 'polls', name: 'polls' },
-        { id: 'participants', name: 'participants' },
-        { id: 'plugins', name: 'plugins' },
-        { id: 'guidelines', name: 'Guidelines' }
-    ]);
-    const [view, setView] = useState<DyteSidebarView>('sidebar');
+const [tabs, setTabs] = useState([
+{ id: 'chat', name: 'chat' },
+{ id: 'polls', name: 'polls' },
+{ id: 'participants', name: 'participants' },
+{ id: 'plugins', name: 'plugins' },
+{ id: 'guidelines', name: 'Guidelines' }
+]);
+const [view, setView] = useState<DyteSidebarView>('sidebar');
 
     if(!states.activeSidebar || (!states.sidebar && !states.customSidebar)){
         return null;
@@ -294,31 +294,51 @@ Let's say, we want to show some meeting guidelines to all the participants in a 
 We have added a custom button to trigger the UI as well using `DyteControlbarButton` component.
 
 ```tsx
-    <DyteControlbarButton
-      onClick={() => {
-          if(states.activeSidebar && !states.sidebar && states.customSidebar === 'guidelines'){
-              setStates( (oldState) => { return { ...oldState, activeSidebar: false, sidebar: null, customSidebar: null }});    
-          } else {
-              setStates( (oldState) => { return { ...oldState, activeSidebar: true, sidebar: null, customSidebar: 'guidelines' }});
-          }
-      }}
-      icon={defaultIconPack.add}
-      label={'Open Custom SideBar'}
-    />
+<DyteControlbarButton
+  onClick={() => {
+    if (
+      states.activeSidebar &&
+      !states.sidebar &&
+      states.customSidebar === 'guidelines'
+    ) {
+      setStates((oldState) => {
+        return {
+          ...oldState,
+          activeSidebar: false,
+          sidebar: null,
+          customSidebar: null,
+        };
+      });
+    } else {
+      setStates((oldState) => {
+        return {
+          ...oldState,
+          activeSidebar: true,
+          sidebar: null,
+          customSidebar: 'guidelines',
+        };
+      });
+    }
+  }}
+  icon={defaultIconPack.add}
+  label={'Open Custom SideBar'}
+/>
 ```
 
 For such a sidebar extension, we will have to update the types as well if in case you are using react with Typescript.
 
 ```tsx
-import type { States } from "@dytesdk/ui-kit";
-import { DyteSidebarSection } from "@dytesdk/ui-kit/dist/types/components/dyte-sidebar/dyte-sidebar";
+import type { States } from '@dytesdk/ui-kit';
+import { DyteSidebarSection } from '@dytesdk/ui-kit/dist/types/components/dyte-sidebar/dyte-sidebar';
 
 export type CustomSideBarTabs = DyteSidebarSection | 'guidelines';
 
-export type CustomStates = States & { activeMediaPreviewModal?: boolean, customSidebar?: CustomSideBarTabs }
+export type CustomStates = States & {
+  activeMediaPreviewModal?: boolean;
+  customSidebar?: CustomSideBarTabs;
+};
 
 export type SetStates = React.Dispatch<React.SetStateAction<CustomStates>>;
 ```
 
 Now that we know how we can add a custom sidebar, we can move on to customise the `DyteStage` component further.
-

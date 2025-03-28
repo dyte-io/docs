@@ -55,7 +55,7 @@ function ThemedLiveEditor() {
       key={String(isBrowser)}
       className={clsx(
         styles.playgroundEditor,
-        'border border-secondary-800 !pb-4'
+        'border border-secondary-800 !pb-4',
       )}
     />
   );

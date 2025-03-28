@@ -5,26 +5,27 @@ description: >-
   with our detailed documentation.
 ---
 
-
-
 # DyteClockView
-## Overview
-This view is used to show elapsed time for the meeting in the format Hours:Minute:Seconds.
 
+## Overview
+
+This view is used to show elapsed time for the meeting in the format Hours:Minute:Seconds.
 
 ### Topics:
 
 ### Creating a clock view
 
 ```swift
- init(meeting: DyteMobileClient, appearance: DyteTextAppearance = AppTheme.shared.clockViewAppearance) 
+ init(meeting: DyteMobileClient, appearance: DyteTextAppearance = AppTheme.shared.clockViewAppearance)
 ```
-Creates a DyteClockView for meeting passed. 
 
-#### Parameters:  
-*Required*  
+Creates a DyteClockView for meeting passed.
+
+#### Parameters:
+
+_Required_  
 **meeting:** Current ongoing meeting object.  
-*Optional*  
+_Optional_  
 **appearance:** Any type which conforms to protocol "DyteTextAppearance"
 
 ```swift

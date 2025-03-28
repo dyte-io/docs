@@ -10,7 +10,7 @@ tags:
 
 # Introduction
 
-Accessible via `self` key within the `meeting` object, the local user object consists of all the information related to the current participant and methods to configure media and other states. 
+Accessible via `self` key within the `meeting` object, the local user object consists of all the information related to the current participant and methods to configure media and other states.
 
 ## Properties
 
@@ -36,28 +36,35 @@ Here is a list of properties that local user provides:
 - `rawVideoTrack`: The video track for the local user without any middleware applied on it.
 - `screenShareTracks`: The screen share video and audio tracks for the local
   user.
-- `audioEnabled`: A boolean value indicating if the audio currently enabled.
-- `videoEnabled`: A boolean value indicating if the video currently enabled.
+- `audioEnabled`: A boolean value indicating if the audio is currently enabled.
+- `videoEnabled`: A boolean value indicating if the video is currently enabled.
 - `screenShareEnabled`: A boolean value indicating if the screen share is
   currently enabled.
 
 **States**:
 
 - `waitlistStatus`: Indicates if the local user has been waitlisted or not. It
-  can take the following values: 
-  
+  can take the following values:
+
   ```ts
-  "accepted" | "waiting" | "rejected" | "none"
+  'accepted' | 'waiting' | 'rejected' | 'none';
   ```
 
 - `isPinned`: A boolean value indicating if the local user is pinned or not.
 - `roomJoined`: A boolean value indicating if the local user is in the meeting
 - `roomState`: Indicates the state of the user in the meeting. It
   can take the following values:
-  
-   ```ts
-   "init" | "joined" | "waitlisted" | "rejected" | "kicked" | "left" | "ended" | "disconnected"
-   ```
+
+  ```ts
+  'init' |
+    'joined' |
+    'waitlisted' |
+    'rejected' |
+    'kicked' |
+    'left' |
+    'ended' |
+    'disconnected';
+  ```
 
 ```mermaid
 stateDiagram-v2
@@ -88,9 +95,6 @@ return (
     </>
 )
 ```
-    
-
-
 
 ## Change the name of the local user
 
@@ -101,6 +105,7 @@ meeting.
 ```ts
 await meeting.self.setName('New Name');
 ```
+
 ## Media
 
 ### Mute/Unmute microphone
@@ -141,7 +146,6 @@ await meeting.self.disableScreenShare();
 // Get current status
 meeting.self.screenShareEnabled;
 ```
-
 
 <head>
   <title>React Web Core Introduction</title>
