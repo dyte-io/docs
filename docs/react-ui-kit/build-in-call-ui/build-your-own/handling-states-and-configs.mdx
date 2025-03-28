@@ -17,8 +17,12 @@ It does the following things internally.
 6. It is the target element that gets full screened on click of full screen toggle.
 7. Joins the meeting automatically if showSetupScreen is false.
 
-The `DyteUIProvider` handles states for you. The way this works is all the individual components, 
+The `DyteUIProvider` handles states for you. The way this works is all the individual components,
 when they want to change the state, they emit the updated state partials via the `dyteStateUpdate` event.
+
+:::info
+All components sync to props passed to `DyteUIProvider` starting from UI Kit `v2.4.0`, so make sure you on the latest version.
+:::
 
 DyteUIProvider listens to this event and updates the state accordingly and then emits a `dyteStatesUpdate` event
 which contains the full states object that you can use.
