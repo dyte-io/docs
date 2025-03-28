@@ -115,6 +115,33 @@ await participant.pin();
 await participant.unpin();
 ```
 
+## Play Video Track
+
+### Register Video Element
+
+API to play a users video track on a provided `<video>` element.
+
+```ts
+// this is the video element where we want to play the users track
+const videoElement = document.querySelector('video.participant');
+
+meeting.self.registerVideoElement(videoElement);
+
+// if you want to play a preview video track which is local
+// and not sent to other users, you can pass
+// the second argument `isPreview` as `true`.
+meeting.self.registerVideoElement(videoElement, true);
+```
+
+### Deregister Video Element
+
+There is also a way to deregister a video element.
+This is typically done in the cleanup phase if you are using some framework like React.
+
+```ts
+meeting.self.deregisterVideoElement(videoElement);
+```
+
 <head>
   <title>Web Core The participant object</title>
 </head>
