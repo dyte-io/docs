@@ -18,40 +18,39 @@ import { useDyteMeeting, useDyteSelector } from '@dytesdk/react-web-core';
 import { useEffect, useState } from 'react';
 
 function MeetingStage({ meeting, config, states, setStates }: { meeting: DyteClient, config: UIConfig, states: CustomStates, setStates: SetStates}) {
-
-return (
-
-<div className="flex h-full w-full flex-col">
-  <DyteStage className="flex h-full w-full flex-1 p-2">
-    <DyteGrid meeting={meeting} config={config} states={states} />
-    <DyteNotifications meeting={meeting} config={config} states={states} />
-    {states.activeSidebar && (
-      <DyteSidebar
-        meeting={meeting}
-        config={config}
-        states={states}
-        setStates={setStates}
-      />
-    )}
-  </DyteStage>
-  <DyteParticipantsAudio meeting={meeting} />
-  <DyteDialogManager meeting={meeting} config={config} states={states} />
-  <DyteControlbar meeting={meeting} config={config} states={states} />
-</div>
-); }
+  return (
+    <div className="flex h-full w-full flex-col">
+      <DyteStage className="flex h-full w-full flex-1 p-2">
+        <DyteGrid meeting={meeting} config={config} states={states} />
+        <DyteNotifications meeting={meeting} config={config} states={states} />
+        {states.activeSidebar && (
+          <DyteSidebar
+            meeting={meeting}
+            config={config}
+            states={states}
+            setStates={setStates}
+          />
+        )}
+      </DyteStage>
+      <DyteParticipantsAudio meeting={meeting} />
+      <DyteDialogManager meeting={meeting} config={config} states={states} />
+      <DyteControlbar meeting={meeting} config={config} states={states} />
+    </div>
+  );
+}
 
 export default function Meeting() {
-const { meeting } = useDyteMeeting();
-const [config, setConfig] = useState(defaultConfig);
-const [states, setStates] = useState<CustomStates>({
-  meeting: 'setup',
-  sidebar: 'chat'
-});
+  const { meeting } = useDyteMeeting();
+  const [config, setConfig] = useState(defaultConfig);
+  const [states, setStates] = useState<CustomStates>({
+    meeting: 'setup',
+    sidebar: 'chat'
+  });
 
-useEffect(() => {
-async function setupMeetingConfigs(){
-const theme = meeting!.self.config;
-const { config } = generateConfig(theme, meeting!);
+  useEffect(() => {
+    async function setupMeetingConfigs(){
+      const theme = meeting!.self.config;
+      const { config } = generateConfig(theme, meeting!);
 
       /**
        * Full screen by default requests dyte-meeting/DyteMeeting element to be in full screen.
@@ -62,10 +61,10 @@ const { config } = generateConfig(theme, meeting!);
 
       setConfig({...config});
 
-    /**
-     * Add listeners on meeting & self to monitor leave meeting, join meeting and so on.
-     * This work was earlier done by DyteMeeting component internally.
-     */
+      /**
+       * Add listeners on meeting & self to monitor leave meeting, join meeting and so on.
+       * This work was earlier done by DyteMeeting component internally.
+       */
       const stateListenersUtils = new DyteStateListenersUtils(() => meeting, () => states, () => setStates);
       stateListenersUtils.addDyteEventListeners();
 
@@ -77,34 +76,31 @@ const { config } = generateConfig(theme, meeting!);
     }
 
     if(meeting){
-    /**
-     * During development phase, make sure to expose meeting object to window,
-     * for debugging purposes.
-     */
+      /**
+       * During development phase, make sure to expose meeting object to window,
+       * for debugging purposes.
+       */
       Object.assign(window, {
         meeting,
       })
       setupMeetingConfigs();
     }
+  }, [meeting]);
 
-}, [meeting]);
-
-return (
-
-  <div className="flex w-full h-full" ref={(el) => {
-            el?.addEventListener('dyteStateUpdate', (e) => {
-              const { detail: newStateUpdate } = e as unknown as { detail: CustomStates };
-              console.log('dyteStateUpdateSetup:: ', newStateUpdate);
-              setStates((oldState: CustomStates) => { return {
-                ...oldState,
-                ...newStateUpdate,
-              }});
-            });
-          }}>
+  return (
+    <div className="flex w-full h-full" ref={(el) => {
+      el?.addEventListener('dyteStateUpdate', (e) => {
+        const { detail: newStateUpdate } = e as unknown as { detail: CustomStates };
+        console.log('dyteStateUpdateSetup:: ', newStateUpdate);
+        setStates((oldState: CustomStates) => { return {
+          ...oldState,
+          ...newStateUpdate,
+        }});
+      });
+    }}>
       <MeetingStage meeting={meeting} config={config} states={states} setStates={setStates} />
-  </div>
-)
-
+    </div>
+  )
 }
 
 export class DyteStateListenersUtils{
