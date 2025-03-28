@@ -114,20 +114,19 @@ For more information on the other props of `DyteMeeting`, see
 
 import CodeRunner from '@site/src/components/CodeRunner/CodeRunner';
 
-<CodeRunner 
-highlight={[{start: 9, end: 9}]}
-hide={[{start:1, end: 3}]}
-file={`
+<CodeRunner
+  highlight={[{ start: 9, end: 9 }]}
+  hide={[{ start: 1, end: 3 }]}
+  file={`
 import { DyteMeeting } from '@dytesdk/react-ui-kit';
 import { useDyteMeeting } from '@dytesdk/react-web-core';
-
 export default function MyMeetingUI() {
-  const { meeting } = useDyteMeeting();
-
-return (
-
-<DyteMeeting mode="fill" meeting={meeting} showSetupScreen={false} />
-); } `} />
+    const { meeting } = useDyteMeeting();
+    return (
+      <DyteMeeting mode="fill" meeting={meeting} showSetupScreen={false} />
+    );
+}`}
+/>
 
 <head>
   <title>React UI Kit Quickstart</title>

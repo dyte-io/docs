@@ -22,16 +22,16 @@ file={`
 import { defaultConfig, generateConfig, DyteBreakoutRoomsToggle, DyteCameraToggle, DyteChatToggle, DyteControlbar, DyteControlbarButton, DyteDebuggerToggle, DyteFullscreenToggle, DyteLeaveButton, DyteMicToggle, DyteMoreToggle, DyteMuteAllButton, DyteParticipantsToggle, DytePipToggle, DytePluginsToggle, DytePoll, DytePollsToggle, DyteRecordingToggle, DyteScreenShareToggle, DyteSettingsToggle, DyteStageToggle } from '@dytesdk/react-ui-kit';
 import { useDyteMeeting, useDyteSelector } from '@dytesdk/react-web-core';
 import { useEffect, useState } from 'react';
-
 function ControlBarWithCustomUI({
-meeting, states, config, setStates,
+  meeting, states, config, setStates,
 }: { meeting: DyteClient, config: UIConfig, states: CustomStates, setStates: SetStates }
 ){
 
     // Change selector as per your needs.
     const fullScreenTargetElement = document.querySelector('document') as HTMLElement;
 
-    return <div className="flex w-full bg-black text-white justify-between">
+    return (
+      <div className="flex w-full bg-black text-white justify-between">
         <div id="controlbar-left" className="flex items-center overflow-visible justify-center">
             <DyteFullscreenToggle states={states} targetElement={fullScreenTargetElement}/>
             <DyteSettingsToggle states={states} />
@@ -59,7 +59,7 @@ meeting, states, config, setStates,
             <DytePluginsToggle meeting={meeting} states={states} />
         </div>
     </div>
-
+  )
 }
 
 export default function Meeting() {
@@ -74,39 +74,39 @@ export default function Meeting() {
     sidebar: 'chat'
   });
 
-useEffect(() => {
-async function setupMeetingConfigs(){
-const theme = meeting!.self.config;
-const { config } = generateConfig(theme, meeting!);
+  useEffect(() => {
+    async function setupMeetingConfigs(){
+    const theme = meeting!.self.config;
+    const { config } = generateConfig(theme, meeting!);
+
+        /**
+        * Full screen toggle, by default requests dyte-meeting/DyteMeeting element to be in full screen.
+        * Since DyteMeeting element is not here,
+        *  we need to pass dyte-fullscreen-toggle, an targetElementId through config.
+        */
+        setFullScreenToggleTargetElement({config, targetElementId: 'root'});
+
+        setConfig({...config});
 
       /**
-       * Full screen toggle, by default requests dyte-meeting/DyteMeeting element to be in full screen.
-       * Since DyteMeeting element is not here,
-       *  we need to pass dyte-fullscreen-toggle, an targetElementId through config.
-       */
-      setFullScreenToggleTargetElement({config, targetElementId: 'root'});
+      * Add listeners on meeting & self to monitor leave meeting, join meeting and so on.
+      * This work was earlier done by DyteMeeting component internally.
+      */
+        const stateListenersUtils = new DyteStateListenersUtils(() => meeting, () => states, () => setStates);
+        stateListenersUtils.addDyteEventListeners();
 
-      setConfig({...config});
-
-    /**
-     * Add listeners on meeting & self to monitor leave meeting, join meeting and so on.
-     * This work was earlier done by DyteMeeting component internally.
-     */
-      const stateListenersUtils = new DyteStateListenersUtils(() => meeting, () => states, () => setStates);
-      stateListenersUtils.addDyteEventListeners();
-
-      try{
-        await meeting.join();
-      } catch(e){
-        // do nothing
+        try{
+          await meeting.join();
+        } catch(e){
+          // do nothing
+        }
       }
-    }
 
-    if(meeting){
-      setupMeetingConfigs();
-    }
+      if(meeting){
+        setupMeetingConfigs();
+      }
 
-}, [meeting]);
+  }, [meeting]);
 
 return (
 /\*\*
@@ -115,16 +115,16 @@ return (
 - so that we can listen to child component's internal state changes.
   \*/
     <div className="flex w-full h-full bg-black text-white" ref={(el) => {
-            el?.addEventListener('dyteStateUpdate', (e) => {
-              const { detail: newStateUpdate } = e as unknown as { detail: CustomStates };
-              setStates((oldState: CustomStates) => { return {
-                ...oldState,
-                ...newStateUpdate,
-              }});
-            });
-          }}>
-      <ControlBarWithCustomUI meeting={meeting} config={config} states={states} setStates={setStates} />
-  </div>
+  el?.addEventListener('dyteStateUpdate', (e) => {
+  const { detail: newStateUpdate } = e as unknown as { detail: CustomStates };
+  setStates((oldState: CustomStates) => { return {
+  ...oldState,
+  ...newStateUpdate,
+  }});
+  });
+  }}>
+  <ControlBarWithCustomUI meeting={meeting} config={config} states={states} setStates={setStates} />
+    </div>
 );
 
 }
