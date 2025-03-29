@@ -7,10 +7,9 @@ To let the user choose between multiple available input / output devices, you ca
 
 ```tsx
 function DeviceSettings({ open, onClose }) {
-  const { meeting } = useDyteMeeting();
   return (
     <SomeDialogComponent open={open} onClose={onClose}>
-      <DyteSettings meeting={meeting} />
+      <DyteSettings />
     </SomeDialogComponent>
   );
 }
@@ -30,10 +29,10 @@ function CustomMeetingPreview() {
       style={{ minHeight: '400px' }}
     >
       {/* Do not re-add this, if already added in the parent component */}
-      <DyteDialogManager meeting={meeting} />
+      <DyteDialogManager />
       <div className="flex w-full items-center justify-around p-[10%]">
         <div className="relative">
-          <DyteParticipantTile meeting={meeting} participant={meeting.self}>
+          <DyteParticipantTile participant={meeting.self}>
             <DyteAvatar participant={meeting.self} />
             <DyteNameTag participant={meeting.self}>
               <DyteAudioVisualizer participant={meeting.self} slot="start" />
@@ -45,7 +44,7 @@ function CustomMeetingPreview() {
                 right: '8px',
               }}
             >
-              <DyteSettingsToggle meeting={meeting} size="sm" />
+              <DyteSettingsToggle size="sm" />
             </div>
             <div
               id="user-actions"
@@ -55,8 +54,8 @@ function CustomMeetingPreview() {
                 right: '8px',
               }}
             >
-              <DyteMicToggle meeting={meeting} size="sm" />
-              <DyteCameraToggle meeting={meeting} size="sm" />
+              <DyteMicToggle size="sm" />
+              <DyteCameraToggle size="sm" />
             </div>
           </DyteParticipantTile>
         </div>

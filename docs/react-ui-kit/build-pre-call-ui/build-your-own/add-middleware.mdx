@@ -74,14 +74,14 @@ export default function CustomMeetingPreview() {
       className="flex h-full w-full justify-around p-[10%]"
     >
       <div className="flex h-full w-full justify-around p-[10%]">
-        <DyteParticipantTile meeting={meeting} participant={meeting.self}>
+        <DyteParticipantTile participant={meeting.self}>
           <DyteAvatar participant={meeting.self} />
           <DyteNameTag participant={meeting.self}>
             <DyteAudioVisualizer participant={meeting.self} slot="start" />
           </DyteNameTag>
           <div id="user-actions" className="absolute bottom-2 right-2 flex">
-            <DyteMicToggle meeting={meeting} size="sm"></DyteMicToggle>
-            <DyteCameraToggle meeting={meeting} size="sm"></DyteCameraToggle>
+            <DyteMicToggle size="sm"></DyteMicToggle>
+            <DyteCameraToggle size="sm"></DyteCameraToggle>
             <DyteControlbarButton
               className="cursor-pointer"
               size="sm"
