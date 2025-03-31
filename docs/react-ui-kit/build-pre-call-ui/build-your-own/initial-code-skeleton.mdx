@@ -35,25 +35,27 @@ function MyMeeting() {
   const roomState = useDyteSelector((m) => m.self.roomState);
 
   return (
-    <div style={{ height: '480px' }}>
-      {/* Our custom pre-call UI */}
-      {roomState === 'init' && <CustomMeetingPreview />}
+    <DyteUIProvider meeting={meeting}>
+      <div style={{ height: '480px' }}>
+        {/* Our custom pre-call UI */}
+        {roomState === 'init' && <CustomMeetingPreview />}
 
-      {/* Essential components to play audio, show notifications etc */}
-      <DyteParticipantsAudio meeting={meeting} />
-      <DyteNotifications meeting={meeting} />
-      <DyteDialogManager meeting={meeting} />
+        {/* Essential components to play audio, show notifications etc */}>
+        <DyteParticipantsAudio />
+        <DyteNotifications />
+        <DyteDialogManager />
 
-      {/* 
+        {/*
 
-      For the sake of simplicty, the next couple of pages 
-        will only talk about CustomMeetingPreview 
-      
-      {roomState === 'joined' && <CustomInMeetingUI />}
-      {roomState === 'ended' && <CustomPostMeetingUI />)}
-      
-      */}
-    </div>
+        For the sake of simplicty, the next couple of pages
+          will only talk about CustomMeetingPreview
+
+        {roomState === 'joined' && <CustomInMeetingUI />}
+        {roomState === 'ended' && <CustomPostMeetingUI />)}
+
+        */}
+      </div>
+    </DyteUIProvider>
   );
 }
 ```
@@ -74,7 +76,7 @@ export default function CustomMeetingPreview() {
       className="flex flex-col items-center justify-center"
     >
       <div className="flex flex-col items-center">
-        <p>Joining as {meeting.self.name}</p>
+        <p style={{ color: 'white' }}>Joining as {meeting.self.name}</p>
       </div>
       <DyteButton
         size="lg"
