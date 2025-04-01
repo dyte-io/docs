@@ -102,10 +102,11 @@ import CodeRunner from '@site/src/components/CodeRunner/CodeRunner';
 highlight={[{start: 10, end: 10}]}
 hide={[{start:1, end: 8}]}
 framework='static'
-file={`<head>
+file={`
+<head>
   <script type="module">
-      import { defineCustomElements } from 'https://cdn.jsdelivr.net/npm/@dytesdk/ui-kit@latest/loader/index.es2017.js';
-      defineCustomElements();
+    import { defineCustomElements } from 'https://cdn.jsdelivr.net/npm/@dytesdk/ui-kit@latest/loader/index.es2017.js';
+    defineCustomElements();
   </script>
   <!-- Import Web Core via CDN too -->
   <!-- <script src="https://cdn.dyte.in/core/dyte.js"></script> -->
@@ -127,8 +128,7 @@ file={`<head>
       document.getElementById('my-meeting').meeting = meeting;
     };
 
-init();
-
+    init();
   </script>
 </body>
 `}

@@ -66,15 +66,13 @@ function MyMeeting() {
 highlight={[{start: 12, end: 12}, {start: 18, end: 18}]}
 hide={[{start: 1, end: 3}]}
 file={`
-import { useDyteMeeting } from "@dytesdk/react-web-core";
-import { DyteButton } from "@dytesdk/react-ui-kit";
+import { useDyteMeeting } from '@dytesdk/react-web-core';
+import { DyteButton } from '@dytesdk/react-ui-kit';
 
 export default function CustomMeetingPreview() {
   const { meeting } = useDyteMeeting();
   return (
-    <div
-      className="flex flex-col items-center justify-center"
-    >
+    <div className="flex flex-col items-center justify-center">
       <div className="flex flex-col items-center">
         <p style={{ color: 'white' }}>Joining as {meeting.self.name}</p>
       </div>
