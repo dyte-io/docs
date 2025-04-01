@@ -20,14 +20,14 @@ We'll be using `DyteParticipantTile`, `DyteAvatar`, `DyteNameTag`, `DyteAudioVis
 `DyteMicToggle` and `DyteCameraToggle` for media controls
 
 ```tsx
-<DyteParticipantTile meeting={meeting} participant={meeting.self}>
+<DyteParticipantTile participant={meeting.self}>
   <DyteAvatar participant={meeting.self} />
   <DyteNameTag participant={meeting.self}>
     <DyteAudioVisualizer participant={meeting.self} slot="start" />
   </DyteNameTag>
   <div id="user-actions" className="absolute bottom-2 right-2 flex">
-    <DyteMicToggle meeting={meeting} size="sm"></DyteMicToggle>
-    <DyteCameraToggle meeting={meeting} size="sm"></DyteCameraToggle>
+    <DyteMicToggle size="sm"></DyteMicToggle>
+    <DyteCameraToggle size="sm"></DyteCameraToggle>
   </div>
 </DyteParticipantTile>
 ```
@@ -45,47 +45,46 @@ import { useDyteMeeting } from '@dytesdk/react-web-core';
 export default function CustomMeetingPreview() {
   const { meeting } = useDyteMeeting();
 
-  return (
-    <div
-      className="h-full w-full flex flex-col items-center justify-center"
-      style={{ minHeight: '400px' }}
-    >
-      <div className="flex w-full items-center justify-around p-[10%]">
-        <div className="relative">
-          <DyteParticipantTile meeting={meeting} participant={meeting.self}>
-            <DyteAvatar participant={meeting.self} />
-            <DyteNameTag participant={meeting.self}>
-              <DyteAudioVisualizer participant={meeting.self} slot="start" />
-            </DyteNameTag>
-            <div
-              id="user-actions"
-              className="absolute flex"
-              style={{
-                bottom: '8px',
-                right: '8px',
-              }}
-            >
-              <DyteMicToggle meeting={meeting} size="sm"></DyteMicToggle>
-              <DyteCameraToggle meeting={meeting} size="sm"></DyteCameraToggle>
-            </div>
-          </DyteParticipantTile>
+return (
+
+<div
+  className="h-full w-full flex flex-col items-center justify-center"
+  style={{ minHeight: '400px' }}
+>
+  <div className="flex w-full items-center justify-around p-[10%]">
+    <div className="relative">
+      <DyteParticipantTile participant={meeting.self}>
+        <DyteAvatar participant={meeting.self} />
+        <DyteNameTag participant={meeting.self}>
+          <DyteAudioVisualizer participant={meeting.self} slot="start" />
+        </DyteNameTag>
+        <div
+          id="user-actions"
+          className="absolute flex"
+          style={{
+            bottom: '8px',
+            right: '8px',
+          }}
+        >
+          <DyteMicToggle size="sm"></DyteMicToggle>
+          <DyteCameraToggle size="sm"></DyteCameraToggle>
         </div>
-        <div className="flex w-1/4 flex-col justify-between">
-          <div className="flex flex-col items-center">
-            <p>Joining as {meeting.self.name}</p>
-          </div>
-          <DyteButton
-            kind="wide"
-            size="lg"
-            onClick={async () => {
-              await meeting.join();
-            }}
-          >
-            Join
-          </DyteButton>
-        </div>
-      </div>
+      </DyteParticipantTile>
     </div>
-  );
-}
-`} />
+    <div className="flex w-1/4 flex-col justify-between">
+      <div className="flex flex-col items-center">
+        <p>Joining as {meeting.self.name}</p>
+      </div>
+      <DyteButton
+        kind="wide"
+        size="lg"
+        onClick={async () => {
+          await meeting.join();
+        }}
+      >
+        Join
+      </DyteButton>
+    </div>
+  </div>
+</div>
+); } `} />
