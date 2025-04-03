@@ -6,6 +6,9 @@ description: >-
   REST APIs for seamless integration and development.
 ---
 
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Dyte REST API Quickstart
 
 Dyte's API follows the
@@ -43,18 +46,24 @@ For the complete list of routes, see [API documentation](/api/?v=v2).
 Dyte's APIs use API Keys to authenticate requests via
 [HTTP Basic Auth](http://en.wikipedia.org/wiki/Basic_access_authentication). To
 perform the authentication, an HTTP request is sent with an Authorization header
-that contains the word Basic followed by a space and a base64-encoded string
+that contains the word `Basic` followed by a space and a base64-encoded string
 `organizationId:apiKey`.
 
 For example, `Authorization: Basic ZGVtbzpwQDU1dzByZA==`
 
 1.  First, register on our [Developer Portal](https://dev.dyte.io).
 2.  Go to [API Keys section](https://dev.dyte.io/apikeys).
-3.  Copy the API Key for your organization. This API Key is unique to your
-    organization. The organization ID acts as the username, and the API Key is
-    your password.
+3.  Copy the <b>Authorization Header</b>
+4.  Use the copied header in your API requests.
 
-You can quickly generate a base64-encoded `api_authorization_token` using `window.btoa('YOUR_ORG_ID:YOUR_API_KEY')` in the browser console."
+<ThemedImage
+  alt="Auth Header"
+  className="w-full"
+  sources={{
+    light: useBaseUrl('/static/dev-portal/auth-header-light.png'),
+    dark: useBaseUrl('/static/dev-portal/auth-header-dark.png'),
+  }}
+/>
 
 ### Step 3: Create Presets
 
