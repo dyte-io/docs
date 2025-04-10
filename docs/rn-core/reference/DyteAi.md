@@ -1,6 +1,6 @@
 ---
-sidebar_position: 16
-web_core_version: 1.32.1
+sidebar_position: 17
+web_core_version: 2.4.1
 ---
 
 <!-- Auto Generated Below -->
@@ -21,8 +21,11 @@ features such as summary, and agenda using this object.
 
 Parse a single line transcript
 
+**Kind**: static method of [<code>DyteAi</code>](#module_DyteAi)  
 <a name="module_DyteAi.parseTranscripts"></a>
 
 ### meeting.ai.parseTranscripts()
 
 Parse a multi-line transcript
+
+**Kind**: static method of [<code>DyteAi</code>](#module_DyteAi)

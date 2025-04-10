@@ -1,6 +1,6 @@
 ---
 sidebar_position: 10
-web_core_version: 1.32.1
+web_core_version: 2.4.1
 ---
 
 <!-- Auto Generated Below -->
@@ -18,12 +18,15 @@ The DytePlugins module consists of all the plugins in the meeting. It has 2 maps
 
 <a name="module_DytePlugins+all"></a>
 
-### plugins.all
+### meeting.plugins.all
 
 All plugins accessible by the current user.
 
+**Kind**: instance property of [<code>DytePlugins</code>](#module_DytePlugins)  
 <a name="module_DytePlugins+active"></a>
 
-### plugins.active
+### meeting.plugins.active
 
 All plugins that are currently enabled in the room.
+
+**Kind**: instance property of [<code>DytePlugins</code>](#module_DytePlugins)
