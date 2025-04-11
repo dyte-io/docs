@@ -24,8 +24,8 @@ event.
       onClick: () => alert('Hey'),
     },
   }}
-  onDyteNotificationDismiss={(e) => {
-    e.target.remove();
+  onDyteNotificationDismiss={() => {
+    console.log('Dismissed');
   }}
 />
 ```

@@ -8,11 +8,10 @@ description: >-
 
 A component which handles all dialog elements in a component such as:
 
-- dyte-settings
-- dyte-leave-meeting
-- dyte-permissions-message
-- dyte-image-viewer
-- dyte-remote-access-manager
+- DyteSettings
+- DyteLeaveMeeting
+- DytePermissionsMessage
+- DyteImageViewer
 
 This components depends on the values from `states` object.
 
@@ -23,7 +22,7 @@ function Example() {
   const setState = (s) => setStates((states) => ({ ...states, ...s }));
 
   return (
-    <Row>
+    <View>
       <DyteButton onClick={() => setState({ activeSettings: true })}>
         Show Settings
       </DyteButton>
@@ -33,15 +32,12 @@ function Example() {
       <DyteButton onClick={() => setState({ activePermissionsMessage: true })}>
         Show Permissions Troubleshooting UI
       </DyteButton>
-      <DyteButton onClick={() => setState({ activeRemoteAccessManager: true })}>
-        Show Remote Access Manager
-      </DyteButton>
       <DyteDialogManager
         meeting={meeting}
         states={states}
         onDyteStateUpdate={(e) => setState(e.detail)}
       />
-    </Row>
+    </View>
   );
 }
 ```

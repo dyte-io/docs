@@ -24,7 +24,7 @@ the placement of audio-visualizer in name-tag as well.
 ```jsx
 <DyteParticipantTile participant={meeting.self} nameTagPosition="bottom-center">
   <DyteNameTag participant={meeting.self}>
-    <DyteAudioVisualizer slot="end" />
+    <DyteAudioVisualizer />
   </DyteNameTag>
 </DyteParticipantTile>
 ```
@@ -35,10 +35,9 @@ It also has a few variants.
 <DyteParticipantTile
   participant={meeting.self}
   nameTagPosition="bottom-center"
-  variant="gradient"
 >
   <DyteNameTag participant={meeting.self}>
-    <DyteAudioVisualizer slot="start" />
+    <DyteAudioVisualizer />
   </DyteNameTag>
 </DyteParticipantTile>
 ```

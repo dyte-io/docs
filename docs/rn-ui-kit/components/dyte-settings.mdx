@@ -11,22 +11,9 @@ A settings component to see and change your audio/video devices as well as see
 your connection quality.
 
 ```jsx
-<Center>
-  <h2>Desktop</h2>
-
-  <DyteSettings
-    meeting={meeting}
-    style={{ height: '480px', width: '100%', maxWidth: '720px' }}
-  />
-
-  <h2>Mobile</h2>
-
-  <DyteSettings
-    meeting={meeting}
-    size="sm"
-    style={{ height: '480px', width: '100%', maxWidth: '360px' }}
-  />
-</Center>
+<View>
+  <DyteSettings meeting={meeting} />
+</View>
 ```
 
 ## Props
