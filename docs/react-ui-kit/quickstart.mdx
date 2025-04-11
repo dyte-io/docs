@@ -66,16 +66,10 @@ Here's a series of steps that you need to perform:
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `authToken` | After you've created the meeting, add each participant to the meeting using the [Add Participant API](/api#/operations/add_participant). The API response contains the authToken. |
 
-4. Pass the meeting object to UI Kit, which will use it to retrieve meeting
-   information and display it on the user interface.
-
-   The meeting object serves as the link between web-core and UI Kit, allowing
-   them to communicate with one another. Once the UI Kit has the meeting object,
-   it can join and leave meetings, and so on.
 
 ```jsx
 import { useEffect } from 'react';
-import { useDyteClient } from '@dytesdk/react-web-core';
+import { useDyteClient, DyteProvider } from '@dytesdk/react-web-core';
 import { DyteMeeting } from '@dytesdk/react-ui-kit';
 
 export default function App() {
@@ -93,7 +87,9 @@ export default function App() {
 
   return (
     <DyteProvider value={meeting}>
-      <MyMeetingUI />
+      /**
+       * Coming in Step 3
+      */
     </DyteProvider>
   );
 }
@@ -114,19 +110,42 @@ For more information on the other props of `DyteMeeting`, see
 
 import CodeRunner from '@site/src/components/CodeRunner/CodeRunner';
 
-<CodeRunner
-  highlight={[{ start: 9, end: 9 }]}
-  hide={[{ start: 1, end: 3 }]}
-  file={`
+
+<CodeRunner 
+highlight={[{start: 9, end: 9}]}
+hide={[{start:1, end: 21}, { start: 23, end: 25 }]}
+file={`
+import { useEffect } from 'react';
+import { useDyteClient, useDyteMeeting, DyteProvider } from '@dytesdk/react-web-core';
 import { DyteMeeting } from '@dytesdk/react-ui-kit';
-import { useDyteMeeting } from '@dytesdk/react-web-core';
+
+export default function App() {
+    const [meeting, initMeeting] = useDyteClient();
+
+    useEffect(() => {
+      initMeeting({
+        authToken: '<auth-token>',
+        defaults: {
+          audio: false,
+          video: false,
+        },
+      });
+    }, []);
+
+    return (
+      <DyteProvider value={meeting}>
+        <MyMeetingUI />
+      </DyteProvider>
+    );
+}
+
 export default function MyMeetingUI() {
     const { meeting } = useDyteMeeting();
     return (
       <DyteMeeting mode="fill" meeting={meeting} showSetupScreen={false} />
     );
-}`}
-/>
+
+} `} />
 
 <head>
   <title>React UI Kit Quickstart</title>

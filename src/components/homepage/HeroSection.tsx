@@ -11,20 +11,20 @@ import clsx from 'clsx';
 
 const PRODUCTS = [
   {
-    title: 'Live Video',
+    title: 'Live Video Calls',
     link: '/guides/live-video/intro-video-conf',
     icon: VideoRegular,
     lightImage: '/static/landing-page/hero/video-graphic.png',
     darkImage: '/static/landing-page/hero/video-graphic-dark.png',
-    text: 'Enable live video communication within your application. Perfect for education, telemedicine, social networks and gaming',
+    text: 'Enable live video communication within your application using WebRTC. Perfect for education, telemedicine, social networks and gaming',
   },
   {
-    title: 'Voice',
+    title: 'Voice Calls',
     link: '/guides/voice-conf/intro-voice-conf',
     icon: MicRegular,
     lightImage: '/static/landing-page/hero/voice-graphic.png',
     darkImage: '/static/landing-page/hero/voice-graphic-dark.png',
-    text: 'Incorporate high-quality real-time audio into your application. Build voice calls, audio conferences, voice chats in games and more',
+    text: 'Incorporate high-quality real-time audio into your application using WebRTC. Build voice calls, audio conferences, voice chats in games and more',
   },
   {
     title: 'Interactive Live Streaming',
@@ -32,7 +32,7 @@ const PRODUCTS = [
     icon: LiveRegular,
     lightImage: '/static/landing-page/hero/livestream-graphic.png',
     darkImage: '/static/landing-page/hero/livestream-graphic-dark.png',
-    text: 'Integrate highly scalable live video broadcasting capabilities into your app, ideal for apps that involve streaming webinars, sports or live events',
+    text: 'Integrate highly scalable live video broadcasting capabilities into your app using HLS, ideal for apps that involve streaming webinars, sports or live events',
   },
 ];
 
@@ -43,7 +43,6 @@ function HeroProduct({
   text,
   lightImage,
   darkImage,
-  beta,
 }: (typeof PRODUCTS)[0]) {
   return (
     <Link
@@ -61,7 +60,7 @@ function HeroProduct({
           <Icon className="h-7 w-7" />
           <div>
             {title}
-            {beta && <span className="font-normal text-text-400"> (Beta)</span>}
+            {/* {beta && <span className="font-normal text-text-400"> (Beta)</span>} */}
           </div>
         </h3>
         <p className="mb-0 text-sm text-zinc-400">{text}</p>
