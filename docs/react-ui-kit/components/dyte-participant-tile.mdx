@@ -73,17 +73,17 @@ import { useDyteMeeting } from "@dytesdk/react-web-core";
 export default function MyMeetingUI() {
   const { meeting } = useDyteMeeting();
 
-return (
-<DyteParticipantTile
+  return (
+    <DyteParticipantTile
       participant={meeting.self}
       nameTagPosition="bottom-center" 
       variant="gradient"
     >
-<DyteNameTag participant={meeting.self}>
-<DyteAudioVisualizer slot="start" />
-</DyteNameTag>
-</DyteParticipantTile>
-);
+      <DyteNameTag participant={meeting.self}>
+        <DyteAudioVisualizer slot="start" />
+      </DyteNameTag>
+    </DyteParticipantTile>
+  );
 }
 `} />
 
