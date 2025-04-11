@@ -1,6 +1,6 @@
 ---
 sidebar_position: 12
-web_core_version: 1.32.1
+web_core_version: 2.4.1
 ---
 
 <!-- Auto Generated Below -->
@@ -16,12 +16,15 @@ to start/stop live streams.
 
 <a name="module_DyteLivestream+start"></a>
 
-### livestream.start()
+### meeting.livestream.start()
 
 Starts livestreaming the meeting.
 
+**Kind**: instance method of [<code>DyteLivestream</code>](#module_DyteLivestream)  
 <a name="module_DyteLivestream+stop"></a>
 
-### livestream.stop()
+### meeting.livestream.stop()
 
 Stops livestreaming the meeting.
+
+**Kind**: instance method of [<code>DyteLivestream</code>](#module_DyteLivestream)

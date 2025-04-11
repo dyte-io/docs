@@ -136,7 +136,7 @@ const docs = [
     routeBasePath: '/rn-core',
     versions: {
       current: {
-        label: '0.x.x',
+        label: '1.x.x',
       },
     },
   },

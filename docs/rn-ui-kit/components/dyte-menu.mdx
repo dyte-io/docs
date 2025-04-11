@@ -10,9 +10,9 @@ description: >-
 A menu component.
 
 ```jsx
-<Row style={{ padding: '52px 0 0 0' }}>
+<View style={{ padding: '52px 0 0 0' }}>
   <DyteMenu placement="top">
-    <DyteButton slot="trigger">Top Menu</DyteButton>
+    <DyteButton>Top Menu</DyteButton>
     <DyteMenuList>
       <DyteMenuItem onClick={() => alert('You clicked: alert()')}>
         alert()
@@ -22,14 +22,14 @@ A menu component.
 
   {/* This menu will be placed at top due to less space */}
   <DyteMenu placement="bottom">
-    <DyteButton slot="trigger">Bottom Menu</DyteButton>
+    <DyteButton>Bottom Menu</DyteButton>
     <DyteMenuList>
       <DyteMenuItem onClick={() => alert('You clicked: alert()')}>
         alert()
       </DyteMenuItem>
     </DyteMenuList>
   </DyteMenu>
-</Row>
+</View>
 ```
 
 ## Props

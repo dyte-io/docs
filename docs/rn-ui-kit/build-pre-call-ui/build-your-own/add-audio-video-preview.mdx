@@ -21,7 +21,7 @@ We'll be using `DyteParticipantTile`, `DyteAvatar`, `DyteNameTag`, `DyteAudioVis
 <DyteParticipantTile meeting={meeting} participant={meeting.self}>
   <DyteAvatar participant={meeting.self} />
   <DyteNameTag participant={meeting.self}>
-    <DyteAudioVisualizer participant={meeting.self} slot="start" />
+    <DyteAudioVisualizer participant={meeting.self} />
   </DyteNameTag>
   <View className="absolute bottom-2 right-2 flex">
     <DyteMicToggle meeting={meeting} size="sm"></DyteMicToggle>
@@ -39,8 +39,8 @@ import {
   DyteMicToggle,
   DyteCameraToggle,
   DyteButton,
-} from '@dytesdk/react-ui-kit';
-import { useDyteMeeting } from '@dytesdk/react-web-core';
+} from '@dytesdk/react-native-ui-kit';
+import { useDyteMeeting } from '@dytesdk/react-native-core';
 
 export default function CustomMeetingPreview() {
   const { meeting } = useDyteMeeting();
