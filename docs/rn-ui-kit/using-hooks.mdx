@@ -104,6 +104,7 @@ object change.
 
 ```jsx
 import { useDyteSelector, useDyteMeeting } from '@dytesdk/react-native-core';
+import { DyteMeeting, DyteText } from '@dytesdk/react-native-ui-kit';
 
 function Meeting() {
   const { meeting } = useDyteMeeting();
@@ -113,9 +114,16 @@ function Meeting() {
     to actually enter the meeting
   */
   useEffect(() => {
-    meeting.joinRoom();
+    const join = async () => {
+      if(!meeting.self.roomJoined)
+        await meeting.joinRoom();
+    };
+    join();
   }, [meeting]);
 
+  if(!meeting.self.roomJoined) {
+    return <DyteText>Loading...</DyteText>
+  }
   // show DyteMeeting
   return <DyteMeeting meeting={meeting} />;
 }

@@ -85,7 +85,7 @@ without any additional steps.
 1. Edit your `android/gradle.properties` and add the following line
 
 ```groovy
-android.enableDexingArtifactTransform.desugaring=false
+android.useFullClasspathForDexingTransform=true
 ```
 
 2. Create / append to the file `android/app/proguard-rules.pro`
@@ -128,10 +128,6 @@ platform :ios, '12.0'
 2. Add the fonts and permission entries in `info.plist`
 
 ```xml
-<key>NSBluetoothPeripheralUsageDescription</key>
-<string>We will use your Bluetooth to access your Bluetooth headphones.</string>
-<key>NSBluetoothAlwaysUsageDescription</key>
-<string>We will use your Bluetooth to access your Bluetooth headphones.</string>
 <key>NSCameraUsageDescription</key>
 <string>For people to see you during meetings, we need access to your camera.</string>
 <key>NSMicrophoneUsageDescription</key>
@@ -248,7 +244,7 @@ export default function App() {
   return (
     <DyteProvider value={meeting}>
       <DyteUIProvider>
-        <YourCustomMeetingComponent />
+        <DyteMeeting meeting={meeting} />
       </DyteUIProvider>
     </DyteProvider>
   );
