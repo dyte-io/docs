@@ -30,6 +30,8 @@ accepts an image of type `File`, and sends it to the participants in the
 meeting.
 
 ```ts
+import DocumentPicker from 'react-native-document-picker';
+
 async function onSendImage() {
   // Get the image uri and create an object with the following fields
   const res = await DocumentPicker.pickSingle({
@@ -53,6 +55,8 @@ not the case for sending files. That being said, an image can be sent as a file
 too using `meeting.chat.sendFileMessage()`.
 
 ```ts
+import DocumentPicker from 'react-native-document-picker';
+
 async function onSendFile() {
   // Get the file uri and create an object with the following fields
   const res = await DocumentPicker.pickSingle({

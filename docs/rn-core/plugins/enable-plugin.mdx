@@ -19,12 +19,30 @@ This method adds the communication layer between the plugin inside the iframe an
 the core application (meeting object) in the main window.
 
 ```ts
+const webviewRef = useRef<WebView>();
 const plugins = meeting.plugins.all.toArray();
 
 plugins.forEach(async (plugin: DytePlugin) => {
-  const iframe = document.createElement('iframe');
+  let iframe = {
+    src: plugin.baseURL,
+    allow: 'true',
+    title: plugin.name,
+    props: {
+      onMessage: (_e) => {},
+    },
+    postMessage: (_data) => {
+      if (webviewRef.current) {
+        (webviewRef.current as WebView).postMessage(_data);
+      }
+    },
+  };
   await plugin.addPluginView(iframe);
 });
+
+<WebView
+  ref={webviewRef}
+  ....
+/>
 ```
 
 ### Activate Plugins

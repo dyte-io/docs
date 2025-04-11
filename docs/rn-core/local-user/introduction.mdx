@@ -157,6 +157,8 @@ flowchart LR
       ```
         <key>RTCAppGroupIdentifier</key>
         <string>YOUR_APP_GROUP</string>
+        <key>RTCAppScreenSharingExtension</key>
+        <string>BUNDLE_IDENTIFIER_FOR_BROADCAST_UPLOAD_EXTENSION</string>
       ```
     - Add these changes to your iOS folder's Podfile:
       ```ruby
@@ -203,35 +205,11 @@ flowchart LR
       - <code>Signing</code> -> <code>Enable App Sandbox</code> to <code>No</code>
     - Now enable the screenshare pop up handle and then enable Dyte's screenshare API:
       ```tsx
-      // Import this component
-      import { NativeModules, findNodeHandle } from 'react-native';
-      import { ScreenCapturePickerView } from '@dyteinternals/react-native-webrtc';
-
-      function MyComponent() {
-
-        const screenCapturePickerViewRef = useRef(null);
-
-        // Function to show ScreenCapture Picker
-        const showScreenRecordPicker = async () => {
-          const handle = findNodeHandle(screenCapturePickerViewRef.current);
-          NativeModules.ScreenCapturePickerViewManager.show(handle);
-        };
-
         // To enable screenshare
-        await showScreenRecordPicker();
         await meeting.self.enableScreenShare();
 
         // To disable screenshare
         await meeting.self.disableScreenShare();
-
-        return (
-          ...
-          // Add this in components
-          <ScreenCapturePickerView ref={screenCapturePickerViewRef} />
-          ...
-        );
-
-      }
       ```
 
   </TabItem>
