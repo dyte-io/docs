@@ -3466,6 +3466,8 @@ components:
         application/json:
           schema:
             type: object
+            required:
+              - meeting_id
             properties:
               meeting_id:
                 type: string
@@ -3491,33 +3493,19 @@ components:
                 type: string
                 description: Pass a custom url to record arbitary screen
                 format: uri
-              dyte_bucket_config:
-                $ref: '#/components/schemas/DyteBucketConfig'
+              realtimekit_bucket_config:
+                $ref: '#/components/schemas/realtimekitBucketConfig'
               interactive_config:
                 $ref: '#/components/schemas/InteractiveConfig'
               allow_multiple_recordings:
                 type: boolean
                 description: 'By default, a meeting allows only one recording to run at a time. Enabling the `allow_multiple_recordings` parameter to true allows you to initiate multiple recordings concurrently in the same meeting. This allows you to record separate videos of the same meeting with different configurations, such as portrait mode or landscape mode.'
                 default: false
-            required:
-              - meeting_id
           examples:
             Example 1:
               value:
                 meeting_id: 97440c6a-140b-40a9-9499-b23fd7a3868a
                 max_seconds: 60
-                storage_config:
-                  type: aws
-                  secret: string
-                  bucket: string
-                  region: us-east-1
-                  path: string
-                  auth_method: KEY
-                  username: string
-                  password: string
-                  host: string
-                  port: 0
-                  private_key: string
                 video_config:
                   codec: H264
                   width: 1280
@@ -3534,7 +3522,7 @@ components:
                   channel: stereo
                   export_file: true
                 file_name_prefix: string
-                dyte_bucket_config:
+                realtimekit_bucket_config:
                   enabled: true
                 interactive_config:
                   type: ID3
@@ -3555,6 +3543,8 @@ components:
         application/json:
           schema:
             type: object
+            required:
+              - layers
             properties:
               meeting_id:
                 type: string
@@ -3564,10 +3554,8 @@ components:
                 additionalProperties:
                   $ref: '#/components/schemas/TrackConfigLayer'
               max_seconds:
-                type: string
+                type: number
                 description: Maximum seconds this recording should be active for (beta)
-            required:
-              - layers
           examples:
             Example 1:
               value:
@@ -3576,21 +3564,12 @@ components:
                   default:
                     file_name_prefix: string
                     outputs:
-                      - type: DYTE_BUCKET
-                      - type: STORAGE_CONFIG
-                        storage_config:
-                          type: aws
-                          secret: string
-                          bucket: string
-                          region: us-east-1
-                          path: string
-                          auth_method: KEY
-                          username: string
-                          password: string
-                          host: string
-                          port: 0
-                          private_key: string
-                max_seconds: string
+                      - type: REALTIMEKIT_BUCKET
+                  default-video:
+                    file_name_prefix: string
+                    outputs:
+                      - type: REALTIMEKIT_BUCKET
+                max_seconds: 60
   securitySchemes:
     Authorization:
       type: http
@@ -5488,6 +5467,8 @@ components:
       title: RecordingConfig
       description: |
         Recording Configurations to be used for this meeting. This level of configs takes higher preference over organization level configs on the Dyte developer portal.
+      x-stoplight:
+        id: 6gqf9rgafk4s0
       properties:
         max_seconds:
           type: number
@@ -5503,12 +5484,10 @@ components:
           $ref: '#/components/schemas/AudioConfig'
         storage_config:
           $ref: '#/components/schemas/StorageConfig'
-        dyte_bucket_config:
-          $ref: '#/components/schemas/DyteBucketConfig'
+        realtimekit_bucket_config:
+          $ref: '#/components/schemas/realtimekitBucketConfig'
         live_streaming_config:
           $ref: '#/components/schemas/LivestreamingConfig'
-      x-stoplight:
-        id: 6gqf9rgafk4s0
     VideoConfig:
       type: object
       title: VideoConfig
@@ -5654,17 +5633,17 @@ components:
         - type
       x-stoplight:
         id: up82756qnymm5
-    DyteBucketConfig:
+    realtimekitBucketConfig:
       type: object
-      title: DyteBucketConfig
+      title: realtimekitBucketConfig
+      x-stoplight:
+        id: oweuvv8iqyg9c
+      required:
+        - enabled
       properties:
         enabled:
           type: boolean
-          description: 'Controls whether recordings are uploaded to Dyte''s bucket. If set to false, `download_url`, `audio_download_url`, `download_url_expiry` won''t be generated for a recording.'
-      required:
-        - enabled
-      x-stoplight:
-        id: oweuvv8iqyg9c
+          description: 'Controls whether recordings are uploaded to Realtimekit''s bucket. If set to false, `download_url`, `audio_download_url`, `download_url_expiry` won''t be generated for a recording.'
     LivestreamingConfig:
       type: object
       title: LivestreamingConfig
@@ -6521,6 +6500,8 @@ components:
     TrackConfigLayer:
       type: object
       title: TrackLayerConfig
+      x-stoplight:
+        id: f9bkjt94wdw0k
       properties:
         file_name_prefix:
           type: string
@@ -6529,8 +6510,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TrackLayerOutput'
-      x-stoplight:
-        id: f9bkjt94wdw0k
     TrackLayerOutput:
       type: object
       title: TrackLayerOutput
@@ -6538,10 +6517,10 @@ components:
         type:
           type: string
           enum:
-            - DYTE_BUCKET
+            - REALTIMEKIT_BUCKET
             - STORAGE_CONFIG
           description: The type of output destination this layer is being exported to.
-          default: DYTE_BUCKET
+          default: REALTIMEKIT_BUCKET
         storage_config:
           $ref: '#/components/schemas/StorageConfig'
       x-stoplight:
