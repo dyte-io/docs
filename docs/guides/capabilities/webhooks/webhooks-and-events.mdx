@@ -8,167 +8,139 @@ description: >-
 
 # Set Up Webhooks to Receive Real-time Updates
 
-This topic explains how to set up webhooks to receive real-time updates for
-specific events. Refer
-[View Webhook Events List](/guides/capabilities/webhooks/webhook-events) to view the list of
-events for which notifications can be sent. Setting up a webhook to start
-receiving notifications in your application involves the following steps:
+Webhooks let you receive real-time updates when specific events occur in Dyte. They enable your backend to respond immediately—for example, when a participant joins a meeting or when a recording status changes.
 
-1. Identify the events you want to monitor and the event payloads you want to
-   parse.
-2. Create a webhook endpoint as an HTTP endpoint (URL) on your backend
-   application. Creating a webhook endpoint is no different from creating any
-   other API route on your backend. It's an HTTP or HTTPS endpoint on your
-   server with a URL. You can use a single endpoint to handle multiple event
-   types at once, or you can set up individual endpoints for specific events.
-3. Handle requests from Dyte by parsing each event object and returning 2xx
-   response status codes.
-4. Deploy your webhook endpoint so it's a publicly accessible HTTPS URL.
-5. Register your publicly accessible HTTPS URL using the Dyte
-   [developer portal](https://dev.dyte.io) or Webhook APIs.
+To set up webhooks, follow these five steps:
 
-### Step 1: Identify the events to monitor
+1. Identify which events you want to monitor.
+2. Create a webhook endpoint in your backend.
+3. Handle incoming webhook requests and respond correctly.
+4. Secure your webhook with signature verification.
+5. Register your endpoint using [Dyte's developer portal](https://dev.dyte.io) or API.
 
-Use the [events overview guide](/guides/capabilities/webhooks/webhook-events) to identify the
-events your webhook endpoint needs to parse.
+---
 
-### Step 2: Create a webhook endpoint
+## Step 1: Choose the Events to Monitor
 
-Set up an HTTP endpoint that can accept webhook requests with a POST method. For
-example, this route in express is a map to a Node.js webhook function.
+Start by identifying which Dyte events are relevant for your application. For a complete list, see the [webhook events guide](/guides/capabilities/webhooks/webhook-events).
+
+---
+
+## Step 2: Create a Webhook Endpoint
+
+Set up a POST endpoint in your backend server to accept webhook events from Dyte. Here’s an example using Express in Node.js:
 
 ```js
 const express = require('express');
 const app = express();
 
 app.post('/webhook', express.json({ type: 'application/json' }), (req, res) => {
-  const event = request.body;
-  // ... do further processing
+  const event = req.body;
+  // Handle event
+  res.status(200).send('Event received');
 });
 ```
 
-### Step 3: Handle requests from Dyte
+You can use a single endpoint for all events or set up separate routes for each event type.
 
-Your endpoint must be configured to receive events for the type of event
-notifications you want to receive. Dyte sends events to your webhook endpoint as
-part of a POST request with a JSON payload.
+If you want to test your endpoint before registering it with Dyte, use tools like [Beeceptor](https://beeceptor.com/) or [Typed Webhook](https://typedwebhook.tools/) to inspect payloads and debug easily.
 
-#### Register your Endpoint
+---
 
-You can register your endpoint as a webhook and listen for specific events using
-our [dev portal](https://dev.dyte.io) or by making an API request. For example,
-to receive all events, you can make a request like:
+## Step 3: Handle Events and Return a `2xx` Response
+
+When Dyte sends a webhook event, it expects your endpoint to:
+
+- Parse the JSON payload
+- Respond with a 2xx status code within 3 seconds
+
+Example:
+
+```js
+app.post('/webhook', express.json({ type: 'application/json' }), (req, res) => {
+  const event = req.body;
+
+  // Process the event here
+
+  res.status(200).send();
+});
+```
+
+If your endpoint takes longer than 3 seconds or returns a `3xx`, `4xx`, or `5xx` response, Dyte retries the request up to five times.
+
+### `dyte-uuid` Header
+
+Every webhook request from Dyte includes a `dyte-uuid` header. You can use this to avoid processing the same event more than once.
+
+### Register the Webhook
+
+You can register your endpoint through the [developer portal](https://dev.dyte.io) or use the API:
 
 ```bash
 curl --location --request POST 'https://api.dyte.io/v2/webhooks' \
 --header 'Authorization: Basic <api_authorization_token>' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "name": "All events webhook",
-    "url": "<your endpoint here>",
-    "events": [
-        "meeting.started",
-        "meeting.ended",
-        "meeting.participantJoined",
-        "meeting.participantLeft",
-        "recording.statusUpdate",
-        "livestreaming.statusUpdate"
-    ]
+  "name": "All events webhook",
+  "url": "<your endpoint here>",
+  "events": [
+    "meeting.started",
+    "meeting.ended",
+    "meeting.participantJoined",
+    "meeting.participantLeft",
+    "recording.statusUpdate",
+    "livestreaming.statusUpdate"
+  ]
 }'
 ```
 
-For more information, check out the
-[webhooks API reference](/api/?v=v2#/operations/addWebhook).
+For more info, see the [Webhook API reference](/api/?v=v2#/operations/addWebhook).
 
-To familiarize yourself with the Dyte REST APIs, we recommend exploring the [Dyte REST API Quickstart Guide](https://docs.dyte.io/guides/rest-apis/quickstart).
+---
 
-#### Check for `dyte-uuid` Header
+## Step 4: Secure Your Webhooks (Recommended)
 
-Each webhook will have a unique value for the `dyte-uuid` header. You can use
-these to ensure you don't process any retries.
+To ensure that requests are genuinely from Dyte, validate the webhook signature. Learn more in the [webhook signature guide](/guides/capabilities/webhooks/signatures).
 
-#### Return a `2xx` Response
-
-Your endpoint must quickly (within 3 seconds) return a successful status code (`2xx`) prior to any
-complex logic that could cause a timeout.
-
-```js
-app.post('/webhook', express.json({ type: 'application/json' }), (req, res) => {
-  const event = request.body;
-  // ... do further processing
-  res.status(200).send();
-  // ... perform heavy tasks
-  return;
-});
-```
-
-#### Built-in Retries
-
-Dyte webhooks have built-in retry methods for `3xx`, `4xx` or `5xx` response
-status codes. If Dyte doesn't receive a `2xx` response status code for an event within 3 seconds,
-we mark the event as failed and retry up to 5 times.
-
-### Step 4: Secure your webhooks (recommended)
-
-Use [webhook signatures](/guides/capabilities/webhooks/signatures) to verify that Dyte
-generated a webhook request and that it didn't come from a malicious server
-pretending to be Dyte.
-
-#### Sample code
-
-<Tabs>
-
-<TabItem value="node" label="Node.js">
+Example Node.js implementation:
 
 ```js
 const express = require('express');
+const crypto = require('crypto');
 const app = express();
 
 app.post('/webhook', express.json({ type: 'application/json' }), (req, res) => {
-  // verify signature
-  // ...
+  const signature = req.headers['x-dyte-signature'];
+  const secret = process.env.DYTE_WEBHOOK_SECRET;
+  const expectedSignature = crypto
+    .createHmac('sha256', secret)
+    .update(JSON.stringify(req.body))
+    .digest('hex');
 
-  // parse event body
-  switch (req.body.event) {
-    case 'meeting.participantJoined':
-      const { meeting, participant } = req.body;
-      // Then define and call a method to handle the joined participant
-      // handleParticipantJoined(meeting, participant);
-      break;
-    case 'recording.statusUpdate':
-      const { meeting, recording } = req.body;
-      // Then define and call a method to handle the recording status update
-      // handleRecordingUpdate(meeting, recording);
-      break;
-    // ... handle other event types
-    default:
-      console.log(`Unhandled event type ${event.type}`);
+  if (signature !== expectedSignature) {
+    return res.status(401).send('Invalid signature');
   }
-});
 
-app.listen(8000, () => console.log('Running on port 8000'));
+  const event = req.body;
+  // Process event here
+
+  res.status(200).send();
+});
 ```
 
-</TabItem>
+---
 
-</Tabs>
+## Step 5: Register Your Endpoint
 
-### Step 5: Register your HTTPS URL
+Once your endpoint is live and secured, register it using:
 
-Register your publicly accessible HTTPS URL using the
-[Dyte developer portal](https://dev.dyte.io) or
-[Webhook APIs](/api/?v=v2#/operations/addWebhook).
+- The [Dyte developer portal](https://dev.dyte.io)
+- The [Webhook API](/api/?v=v2#/operations/addWebhook)
 
-## See also
+---
 
-- [Events overview guide](/guides/capabilities/webhooks/webhook-events)
-- [Webhooks API reference](/api/?v=v2#/operations/addWebhook)
-- [Webhook signatures](/guides/capabilities/webhooks/signatures)
+## See Also
 
-<head>
-  <title>Set Up Webhooks to Receive Real-time Updates Guide</title>
-  <meta
-    name="description"
-    content="Learn about the relationship between webhooks and events in Dyte. Follow our guide for effective integration and management."
-  />
-</head>
+- [Webhook Events Reference](/guides/capabilities/webhooks/webhook-events)
+- [Webhook API Reference](/api/?v=v2#/operations/addWebhook)
+- [Webhook Signatures](/guides/capabilities/webhooks/signatures)
