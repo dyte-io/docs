@@ -11,7 +11,7 @@ The Dyte CLI needs a little bit of work to get started. We're working on
 reducing the amount of effort required, but for now you'll have to do the
 following.
 
-## Configuration
+## Manual Configuration
 
 1. Authorize yourself with the Dyte Dev Portal. This allows you to access all
    the organizations that you belong to from the CLI.
@@ -26,13 +26,17 @@ dyte auth login
 dyte auth org
 ```
 
-Alternatively, you can programmatically authorize the Dyte CLI using the following command:
+## Programmatic Configuration
+
+If browser-based authorization via `dyte auth login` is not suitable, you can alternatively authorize the Dyte CLI programmatically using the following command:
 
 ```bash
 dyte config creds --org-id YOUR_DYTE_ORG_ID --api-key API_KEY_OF_THE_ORG
 ```
 
-This approach is particularly useful when integrating CI/CD pipelines into your custom plugin development workflow.
+This method is especially beneficial for automating workflows, such as integrating CI/CD pipelines in custom plugin development.
+
+Note that this is an organization-specific authorization. As a result, commands like dyte auth org will not function. However, you can still perform organization-specific operations, including publishing plugins and creating meetings.
 
 ## Usage
 
