@@ -26,6 +26,14 @@ dyte auth login
 dyte auth org
 ```
 
+Alternatively, you can programmatically authorize the Dyte CLI using the following command:
+
+```bash
+dyte config creds --org-id YOUR_DYTE_ORG_ID --api-key API_KEY_OF_THE_ORG
+```
+
+This approach is particularly useful when integrating CI/CD pipelines into your custom plugin development workflow.
+
 ## Usage
 
 ### General
