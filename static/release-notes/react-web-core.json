@@ -77,6 +77,80 @@
     ]
   },
   {
+    "version": "3.1.5",
+    "createdAt": 1754285720,
+    "fixes": [
+      "Improved React Native support for AudioActivityReporter with proper audio sampling",
+      "Resolved issue preventing users from creating polls",
+      "Fixed issue where leaving a meeting took more than 20 seconds"
+    ]
+  },
+  {
+    "version": "3.1.4",
+    "createdAt": 1752726160,
+    "fixes": [
+      "Livestream feature is now available to all BETA users",
+      "Fixed livestream stage functionality where hosts were not consuming peer videos upon participant's stage join",
+      "Resolved issues with viewer joins and leaves in livestream stage"
+    ]
+  },
+  {
+    "version": "3.1.3",
+    "createdAt": 1751980688,
+    "fixes": [
+      "Fixed issue where users could not enable video mid-meeting if they joined without video initially"
+    ]
+  },
+  {
+    "version": "3.1.2",
+    "createdAt": 1751468859,
+    "fixes": [
+      "Fixed edge case in large meetings where existing participants could not hear or see newly joined users"
+    ]
+  },
+  {
+    "version": "3.1.0-3.1.1",
+    "createdAt": 1751276191,
+    "features": [
+      "Added methods to toggle self tile visibility",
+      "Introduced broadcast functionality across connected meetings (breakout rooms)"
+    ],
+    "new_api": [
+      "Broadcast messages across meetings: ```meeting.participants.broadcastMessage('<message_type>', { message: 'Hi' }, { meetingIds: ['<connected_meeting_id>'] });```"
+    ],
+    "enhancements": [
+      "Reduced time to display videos of newly joined participants when joining in bulk",
+      "Added support for multiple meetings on the same page in RealtimeKit Core SDK"
+    ]
+  },
+  {
+    "version": "3.0.2",
+    "createdAt": 1750149131,
+    "fixes": [
+      "Enhanced error handling for media operations",
+      "Fixed issue where active participants with audio/video were not appearing in the active participant list"
+    ]
+  },
+  {
+    "version": "3.0.1",
+    "createdAt": 1748503604,
+    "fixes": [
+      "Resolved initial setup issues with Cloudflare RealtimeKit integration",
+      "Fixed meeting join and media connectivity issues",
+      "Enhanced media track handling"
+    ]
+  },
+  {
+    "version": "3.0.0",
+    "createdAt": 1748502820,
+    "breaking-changes": [
+      "Significant changes to Cloudflare Realtime SFU integration required a version bump to prevent breaking Dyte integrations in case of new issues. `@dytesdk/web-core` is discontinued in favor of `@cloudflare/realtimekit`. Only extremely crucial fixes will be released to the deprecated SDK."
+    ],
+    "features": [
+      "Initial release of Cloudflare RealtimeKit with support for Group Calls, Webinars, Livestreaming, Polls, and Chat. Please refer to [Cloudflare RealtimeKit](https://docs.realtime.cloudflare.com) for more information."
+    ]
+  },
+  {
     "version": "2.4.5",
     "createdAt": 1744885445,
     "new_api": [
