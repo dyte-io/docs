@@ -7,15 +7,12 @@ description: >-
 
 # Webhooks Overview
 
-Webhooks are
-[HTTP-based](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) callback
-functions that can be defined by the user to allow lightweight, event-driven
-communication between two APIs.
+Webhooks are a powerful way for web applications to communicate with each other in real-time. They enable one application to send automated messages or data to another application when a specific event occurs. This mechanism is widely used for various integrations. Webhooks are efficient because they push updates immediately, eliminating the need for constant polling, and promoting event-driven architectural style.
 
 Setting up a webhook involves the following steps:
 
 1. The client provides a unique URL to the server API and specifies which event
-   it wanted to be notified about.
+   it wants to be notified about.
 2. Once the webhook is configured, the server automatically sends the relevant
    payload to the client's webhook URL when the specified event occurs.
 
@@ -29,15 +26,15 @@ A webhook enables Dyte to push real-time updates to your applications. When the
 event occurs, Dyte makes an HTTP request (usually a POST) to the URL you
 configured for the webhook and sends the updates to your application as a JSON
 payload. You can then use these events to perform actions in your backend
-systems. To learn more, see Dyte webhook events overview.
+systems. Check out the list of events Dyte supports on [Webhook Events](/guides/capabilities/webhooks/webhook-events) page.
 
 Webhooks are particularly useful for asynchronous events, such as when a
 recording is uploaded or when a participant joins the meeting.
 
 Let's say you have a meeting that you want to record. You have registered to
-receive the `meeting.started` and `meeting.ended` event. A webhook notifies your
+receive the `meeting.started` and `meeting.ended` events. A webhook notifies your
 app when the meeting starts and when it ends. After your webhook endpoint
-receives the meeting.started event, your webhook function can then run backend
+receives the `meeting.started` event, your webhook function can run backend
 actions to start recording the meeting and end the recording of the meeting when
 `meeting.ended` event is received.
 
@@ -70,7 +67,7 @@ The following headers are of more importance for your security and reliability:
 
 ### Payload
 
-Payload contains information about the event that triggered the webhook, such as user data or a change in state.
+The payload contains information about the event that triggered the webhook, such as user data or a state change.
 
 For example,
 
@@ -81,6 +78,14 @@ For example,
   "status": "OFFLINE"
 }
 ```
+
+### Developing and Testing Webhooks
+
+Developing and testing webhooks can be time-consuming, especially during the development phase when your webhook API is under construction. You can use [Beeceptor](https://beeceptor.com/webhook-integration/?utm_source=social&utm_campaign=dyte-io), a tool that can significantly fast-track your webhook development by providing features like mock-endpoints and local-tunnels. Here is how:
+
+* **HTTP Mock endpoint**: Using an HTTPS mock endpoint you can simulate the behavior of real webhook consumers. Use this to discover various events and respective payloads.
+* **Local tunnel**: Local tunnels provide a secure public HTTPs endpoint that exposes a local web service running on your localhost. This eliminates the complexity of roundtrip deployments when developing webhooks, and enables faster integration.
+
 
 <head>
   <title>Webhooks Overview Guide</title>
