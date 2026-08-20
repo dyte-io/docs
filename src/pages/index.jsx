@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
+import { Hash, Share2, Search } from 'react-feather';
 
 const sections = [
   {
@@ -14,7 +15,7 @@ const sections = [
   {
     title: 'API Reference',
     description:
-      'Every resource in the OSPI platform API — identity, producers, products, categories, documents, inventory, sharing, search, ordering and DPP.',
+      'Every resource in the OSPI platform API, plus a live, per-endpoint reference with a "Try It" console.',
     to: '/api-reference',
     cta: 'Browse the API',
   },
@@ -24,6 +25,42 @@ const sections = [
       'The 34 Architecture Decision Records behind the platform, and the domain model they implement.',
     to: '/architecture',
     cta: 'See the decisions',
+  },
+];
+
+// Every snippet below is real: the OSPI code is computed by the actual
+// checksum algorithm (src/identity/ospi-code.util.ts, ADR-004/ADR-008), and
+// the request bodies use the real DTO field names/enums the API validates
+// against (src/sharing/dto.ts, src/search/*).
+const capabilities = [
+  {
+    icon: Hash,
+    title: 'Product Identity',
+    body: 'Every product and variant gets a single, checksum-verified global identifier — mintable in the same call that creates the product.',
+    codeLabel: 'A real OSPI code',
+    code: `OSPI-ACME-123456-00012345-0001-00000001-1-47J`,
+  },
+  {
+    icon: Share2,
+    title: 'Cross-Organization Sharing',
+    body: 'A Connection between two organizations plus a scoped Sharing Grant control exactly which products, categories and data a partner can see.',
+    codeLabel: 'POST /api/v1/sharing-grants',
+    code: `{
+  "connectionId": "conn_8f2a1c",
+  "targetType": "ALL_PRODUCTS",
+  "dataCategories": [
+    "PRODUCT_DATA",
+    "INVENTORY"
+  ]
+}`,
+  },
+  {
+    icon: Search,
+    title: 'Public Code Resolver',
+    body: 'Scan a code, no login: resolve an OSPI code to its product, manufacturer, variants and public documents without authentication.',
+    codeLabel: 'GET /api/v1/search/resolve/:code',
+    code: `GET /api/v1/search/resolve/\\
+  OSPI-ACME-123456-00012345-0001-00000001-1-47J`,
   },
 ];
 
@@ -46,6 +83,33 @@ const pillars = [
   },
 ];
 
+function CapabilityCard({ icon: Icon, title, body, codeLabel, code }) {
+  return (
+    <div className="flex flex-col overflow-hidden rounded-xl border border-[var(--docs-color-border)] bg-[var(--docs-color-background-100)] transition hover:border-primary">
+      <div className="p-6 pb-5">
+        <div className="mb-4 flex items-center gap-2.5">
+          <Icon size={20} className="text-primary" />
+          <h3 className="text-lg font-semibold text-[var(--docs-color-text)]">
+            {title}
+          </h3>
+        </div>
+        <p className="text-sm text-text-400">{body}</p>
+      </div>
+      <div
+        className="border-t border-[var(--docs-color-border)] px-5 py-4"
+        style={{ background: '#0d1117' }}
+      >
+        <p className="mb-2 font-mono text-[11px] uppercase tracking-wide text-[#8b949e]">
+          {codeLabel}
+        </p>
+        <pre className="m-0 overflow-x-auto whitespace-pre-wrap break-all bg-transparent p-0 font-mono text-xs leading-relaxed text-[#c9d1d9]">
+          {code}
+        </pre>
+      </div>
+    </div>
+  );
+}
+
 export default function Homepage() {
   return (
     <Layout
@@ -61,13 +125,14 @@ export default function Homepage() {
           <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary">
             OSPI — Open Standard Product Identification
           </p>
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-            One documented API for product identity and product data exchange
+          <h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl">
+            Build with OSPI
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-lg text-text-400">
             OSPI issues globally unique, checksum-verified product identifiers
-            and gives organizations a shared REST API for product master
-            data, inventory, cross-organization sharing, search and ordering.
+            and gives organizations a shared, documented REST API for product
+            master data, inventory, cross-organization sharing, search and
+            ordering.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Link
@@ -87,7 +152,16 @@ export default function Homepage() {
       </header>
 
       <main className="mx-auto max-w-5xl px-6 py-16">
-        <div className="grid gap-6 sm:grid-cols-3">
+        <div className="grid items-start gap-6 sm:grid-cols-2">
+          {capabilities.slice(0, 2).map((c) => (
+            <CapabilityCard key={c.title} {...c} />
+          ))}
+        </div>
+        <div className="mx-auto mt-6 sm:max-w-[calc(50%-0.75rem)]">
+          <CapabilityCard {...capabilities[2]} />
+        </div>
+
+        <div className="mt-16 grid gap-6 sm:grid-cols-3">
           {sections.map((s) => (
             <Link
               key={s.to}
