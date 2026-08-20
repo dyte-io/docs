@@ -202,7 +202,7 @@ const config = {
               },
               {
                 label: 'Changelog',
-                href: '/changelog',
+                href: 'https://github.com/BrickeVD/OSPI-APIdocs/blob/main/CHANGELOG.md',
               },
             ],
           },
