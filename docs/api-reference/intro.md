@@ -9,7 +9,7 @@ slug: /
 
 This is the reference for the real, implemented **OSPI Platform API** ([`ospi-platform`](https://github.com/BrickeVD/ospi-platform)) — a NestJS/PostgreSQL REST API covering identity, organizations, products, categories, documents, inventory, cross-organization sharing, search, ordering and the Digital Product Passport scaffold.
 
-A running instance also serves this same information as interactive OpenAPI/Swagger UI at `/api/docs` (JSON at `/api/docs-json`).
+A running instance also serves this same information as interactive OpenAPI/Swagger UI at `/api/docs` (JSON at `/api/docs-json`). Every endpoint below is also documented as an interactive page — with request/response schemas and a live "Try It" console — under **Endpoints** in the sidebar, generated directly from that same OpenAPI spec (see [Endpoints overview](/api-reference/reference/ospi-platform-api)).
 
 ## Base path
 

@@ -25,6 +25,8 @@ const docs = [
     id: 'api-reference',
     path: 'docs/api-reference',
     routeBasePath: '/api-reference',
+    docItemComponent: '@theme/ApiItem',
+    sidebarPath: require.resolve('./sidebars-api-reference.ts'),
   },
   {
     id: 'architecture',
@@ -68,9 +70,34 @@ const { webpackPlugin } = require('./plugins/webpack-plugin.cjs');
 const tailwindPlugin = require('./plugins/tailwind-plugin.cjs');
 const docs_plugins = docs.map((doc) => create_doc_plugin(doc));
 
+// Generates the API Reference's /reference/* pages (with a live "Try it out"
+// console) directly from the real OpenAPI spec exported by the ospi-platform
+// backend (`ospi-platform/scripts/generate-openapi.ts` -> openapi/ospi-platform.json).
+// Run `npm run gen-api-docs` after refreshing that spec to regenerate the pages.
+const openapiPlugin = [
+  'docusaurus-plugin-openapi-docs',
+  /** @type {import('docusaurus-plugin-openapi-docs').Options} */
+  ({
+    id: 'openapi',
+    docsPluginId: 'api-reference',
+    config: {
+      ospi: {
+        specPath: 'openapi/ospi-platform.json',
+        outputDir: 'docs/api-reference/reference',
+        sidebarOptions: {
+          groupPathsBy: 'tag',
+          categoryLinkSource: 'tag',
+        },
+        showSchemas: true,
+      },
+    },
+  }),
+];
+
 const plugins = [
   tailwindPlugin,
   ...docs_plugins,
+  openapiPlugin,
   webpackPlugin,
 ];
 
@@ -79,11 +106,17 @@ const config = {
   ...meta,
   plugins,
   future: {
-    experimental_faster: true,
+    faster: {
+      ssgWorkerThreads: false,
+    },
   },
 
   trailingSlash: false,
-  themes: ['@docusaurus/theme-live-codeblock', '@docusaurus/theme-mermaid'],
+  themes: [
+    '@docusaurus/theme-live-codeblock',
+    '@docusaurus/theme-mermaid',
+    'docusaurus-theme-openapi-docs',
+  ],
   markdown: {
     mermaid: true,
   },
