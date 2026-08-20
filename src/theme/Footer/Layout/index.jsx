@@ -12,20 +12,15 @@ export default function FooterLayout({ style, links, logo, copyright }) {
       <div className="container-fluid container">
         {logo && <div className="margin-bottom--sm">{logo}</div>}
         <p className="footer__description mb-8">
-          Dyte provides developer friendly live video SDKs that allows you to
-          easily add 1:1 calls, group calls and webinars right within your
-          platform. Our low code approach and user friendly documentation means
-          you are ready to go live with less lines of code. We support use cases
-          such as live classes, telehealth, online fitness, remote work, social
-          meetups, dating and B2B sales.
+          OSPI (Open Standard Product Identification) is an open standard and
+          API platform for product identity, master data and
+          cross-organization product data exchange — producer codes, OSPI
+          codes, product &amp; variant data, categories &amp; attributes,
+          inventory, sharing between organizations, search/resolution, and
+          ordering, built on a single documented REST API.
         </p>
         <div className="footer__row">
-          <div className="footer__data">
-            <div className="footer__cta">
-              <p>Signup to get 10,000 minutes free every month!</p>
-              <Link href="https://dev.dyte.in/signup">Sign Up</Link>
-            </div>
-          </div>
+          <div className="footer__data" />
           <div className="links">{links}</div>
         </div>
         {copyright && (

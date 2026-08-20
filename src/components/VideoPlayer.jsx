@@ -4,7 +4,7 @@ import clsx from 'clsx';
 export default function VideoPlayer({ src, mobile, className, ...rest }) {
   return (
     <video
-      className={clsx('dyte-video-showcase', className, mobile && 'mobile')}
+      className={clsx('ospi-video-showcase', className, mobile && 'mobile')}
       src={src}
       autoPlay
       loop
