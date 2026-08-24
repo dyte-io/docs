@@ -2,7 +2,12 @@ import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
-import { Hash, Share2, Search } from 'react-feather';
+import { CheckCircle, Lock, Zap } from 'react-feather';
+import {
+  IdentityIllustration,
+  SharingIllustration,
+  ResolverIllustration,
+} from '@site/src/components/HomeIllustrations';
 
 const sections = [
   {
@@ -28,39 +33,31 @@ const sections = [
   },
 ];
 
-// Every snippet below is real: the OSPI code is computed by the actual
+// Every caption below is real: the OSPI code is computed by the actual
 // checksum algorithm (src/identity/ospi-code.util.ts, ADR-004/ADR-008), and
-// the request bodies use the real DTO field names/enums the API validates
-// against (src/sharing/dto.ts, src/search/*).
+// the request/route shapes use the real field names, enums and paths the
+// API validates against (src/sharing/dto.ts, src/search/*).
 const capabilities = [
   {
-    icon: Hash,
+    Illustration: IdentityIllustration,
+    badge: { icon: CheckCircle, text: 'Checksum verified' },
     title: 'Product Identity',
     body: 'Every product and variant gets a single, checksum-verified global identifier — mintable in the same call that creates the product.',
-    codeLabel: 'A real OSPI code',
-    code: `OSPI-ACME-123456-00012345-0001-00000001-1-47J`,
+    caption: 'OSPI-ACME-123456-00012345-0001-00000001-1-47J',
   },
   {
-    icon: Share2,
+    Illustration: SharingIllustration,
+    badge: { icon: Lock, text: 'Scoped by Sharing Grant' },
     title: 'Cross-Organization Sharing',
     body: 'A Connection between two organizations plus a scoped Sharing Grant control exactly which products, categories and data a partner can see.',
-    codeLabel: 'POST /api/v1/sharing-grants',
-    code: `{
-  "connectionId": "conn_8f2a1c",
-  "targetType": "ALL_PRODUCTS",
-  "dataCategories": [
-    "PRODUCT_DATA",
-    "INVENTORY"
-  ]
-}`,
+    caption: 'dataCategories: ["PRODUCT_DATA", "INVENTORY"]',
   },
   {
-    icon: Search,
+    Illustration: ResolverIllustration,
+    badge: { icon: Zap, text: 'No auth required' },
     title: 'Public Code Resolver',
     body: 'Scan a code, no login: resolve an OSPI code to its product, manufacturer, variants and public documents without authentication.',
-    codeLabel: 'GET /api/v1/search/resolve/:code',
-    code: `GET /api/v1/search/resolve/\\
-  OSPI-ACME-123456-00012345-0001-00000001-1-47J`,
+    caption: 'GET /api/v1/search/resolve/:code',
   },
 ];
 
@@ -83,28 +80,25 @@ const pillars = [
   },
 ];
 
-function CapabilityCard({ icon: Icon, title, body, codeLabel, code }) {
+function CapabilityCard({ Illustration, badge, title, body, caption }) {
+  const BadgeIcon = badge.icon;
   return (
-    <div className="flex flex-col overflow-hidden rounded-xl border border-[var(--docs-color-border)] bg-[var(--docs-color-background-100)] transition hover:border-primary">
-      <div className="p-6 pb-5">
-        <div className="mb-4 flex items-center gap-2.5">
-          <Icon size={20} className="text-primary" />
-          <h3 className="text-lg font-semibold text-[var(--docs-color-text)]">
-            {title}
-          </h3>
+    <div className="group overflow-hidden rounded-2xl border border-[var(--docs-color-border)] bg-[var(--docs-color-background-100)] shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg">
+      <div className="relative h-44 w-full overflow-hidden">
+        <Illustration />
+        <div className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full border border-[var(--docs-color-border)] bg-[var(--docs-color-background-100)]/90 px-2.5 py-1 text-[11px] font-medium text-[var(--docs-color-text)] shadow-sm backdrop-blur">
+          <BadgeIcon size={12} className="text-primary" />
+          {badge.text}
         </div>
-        <p className="text-sm text-text-400">{body}</p>
       </div>
-      <div
-        className="border-t border-[var(--docs-color-border)] px-5 py-4"
-        style={{ background: '#0d1117' }}
-      >
-        <p className="mb-2 font-mono text-[11px] uppercase tracking-wide text-[#8b949e]">
-          {codeLabel}
+      <div className="p-6">
+        <h3 className="mb-2 text-lg font-semibold text-[var(--docs-color-text)]">
+          {title}
+        </h3>
+        <p className="text-sm text-text-400">{body}</p>
+        <p className="mt-4 truncate rounded-md bg-[var(--docs-color-secondary-800)] px-3 py-2 font-mono text-[11px] text-text-400">
+          {caption}
         </p>
-        <pre className="m-0 overflow-x-auto whitespace-pre-wrap break-all bg-transparent p-0 font-mono text-xs leading-relaxed text-[#c9d1d9]">
-          {code}
-        </pre>
       </div>
     </div>
   );
@@ -120,8 +114,21 @@ export default function Homepage() {
         <meta property="og:image" content="/img/ospi-docs-card.png" />
       </Head>
 
-      <header className="border-b border-[var(--docs-color-border)] bg-[var(--docs-color-background-100)]">
-        <div className="mx-auto max-w-5xl px-6 py-20 text-center">
+      <header className="relative overflow-hidden border-b border-[var(--docs-color-border)] bg-[var(--docs-color-background-100)]">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage:
+              'radial-gradient(circle, var(--docs-color-border) 1px, transparent 1px)',
+            backgroundSize: '24px 24px',
+            maskImage:
+              'radial-gradient(ellipse 70% 100% at 50% 0%, black 40%, transparent 100%)',
+            WebkitMaskImage:
+              'radial-gradient(ellipse 70% 100% at 50% 0%, black 40%, transparent 100%)',
+          }}
+        />
+        <div className="relative mx-auto max-w-5xl px-6 py-20 text-center">
           <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-primary">
             OSPI — Open Standard Product Identification
           </p>
@@ -143,7 +150,7 @@ export default function Homepage() {
             </Link>
             <Link
               to="/api-reference"
-              className="rounded-md border border-[var(--docs-color-border)] px-5 py-2.5 font-medium no-underline"
+              className="rounded-md border border-[var(--docs-color-border)] bg-[var(--docs-color-background-100)] px-5 py-2.5 font-medium no-underline"
             >
               API Reference
             </Link>
