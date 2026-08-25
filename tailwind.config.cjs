@@ -25,9 +25,9 @@ module.exports = {
       colors: {
         primary: {
           DEFAULT:
-            'rgb(var(--docs-color-primary-200, 33 96 253) / <alpha-value>)',
-          100: 'rgb(var(--docs-color-primary-100, 26 144 255) / <alpha-value>)',
-          200: 'rgb(var(--docs-color-primary-200, 33 96 253) / <alpha-value>)',
+            'rgb(var(--docs-color-primary-200, 199 0 114) / <alpha-value>)',
+          100: 'rgb(var(--docs-color-primary-100, 235 31 143) / <alpha-value>)',
+          200: 'rgb(var(--docs-color-primary-200, 199 0 114) / <alpha-value>)',
         },
         secondary: {
           DEFAULT:

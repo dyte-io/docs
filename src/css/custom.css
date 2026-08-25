@@ -54,8 +54,8 @@
 
 @layer base {
   :root {
-    --docs-color-primary-100: 26 144 255;
-    --docs-color-primary-200: 33 96 253;
+    --docs-color-primary-100: 235 31 143;
+    --docs-color-primary-200: 199 0 114;
 
     --docs-color-secondary-700: 232 232 236;
     --docs-color-secondary-800: 245 245 247;
@@ -108,7 +108,7 @@
   @apply mb-0;
 }
 
-.dyte-accordion img {
+.ospi-accordion img {
   @apply rounded-lg;
 }
 
@@ -126,7 +126,7 @@
     background-image: url('/static/landing-page/grid-dark.svg');
   }
 
-  .dyte-badge {
+  .ospi-badge {
     @apply mb-2 inline-block rounded-sm text-text-400;
     @apply tracking-wider;
   }
@@ -139,17 +139,12 @@ code {
   font-variant-ligatures: none;
 }
 
-/* UI Kit tokens */
-body {
-  --dyte-colors-video-bg: 50 50 50;
-}
-
-/* Dyte Docs Tokens */
+/* OSPI Docs Tokens */
 :root {
-  --docs-color-primary: #2160fd;
-  /* --docs-color-primary-100: #1a90ff; */
-  --docs-color-primary-tint: rgba(33, 96, 253, 0.16);
-  --docs-color-primary-tint-light: rgba(33 96 253/0.24);
+  --docs-color-primary: #e6007e;
+  /* --docs-color-primary-100: #eb1f8f; */
+  --docs-color-primary-tint: rgba(230, 0, 126, 0.16);
+  --docs-color-primary-tint-light: rgba(230 0 126/0.24);
 
   --docs-color-border: #dadde1;
 
@@ -199,13 +194,13 @@ body {
     Consolas, 'Liberation Mono', 'Courier New', monospace;
 
   /* Theme colors */
-  --ifm-color-primary: #2160fd;
-  --ifm-color-primary-dark: #1959fc;
-  --ifm-color-primary-darker: #0f51f8;
-  --ifm-color-primary-darkest: #0042e7;
-  --ifm-color-primary-light: #3d72f8;
-  --ifm-color-primary-lighter: #477af8;
-  --ifm-color-primary-lightest: #6791fc;
+  --ifm-color-primary: #e6007e;
+  --ifm-color-primary-dark: #cf0072;
+  --ifm-color-primary-darker: #c3006c;
+  --ifm-color-primary-darkest: #a10059;
+  --ifm-color-primary-light: #eb1f8f;
+  --ifm-color-primary-lighter: #ee2e97;
+  --ifm-color-primary-lightest: #f459af;
 
   --ifm-navbar-shadow: none;
   --ifm-toc-border-color: #dedede;
@@ -222,11 +217,11 @@ body {
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 html[data-theme='dark'] {
-  --ifm-link-color: #1a90ff;
-  --ifm-tabs-color-active-border: #1a90ff;
-  --ifm-tabs-color-active: #1a90ff;
+  --ifm-link-color: #ff5cae;
+  --ifm-tabs-color-active-border: #ff5cae;
+  --ifm-tabs-color-active: #ff5cae;
 
-  --ifm-color-primary: #1a90ff;
+  --ifm-color-primary: #ff5cae;
 
   --ifm-footer-background-color: #1c1c1c;
   --ifm-background-surface-color: #161616;
@@ -572,21 +567,7 @@ html[data-theme='dark']
   width: auto;
 }
 
-.loading-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  place-items: center;
-  justify-content: center;
-}
-
-.loading-container dyte-spinner {
-  width: 48px;
-  height: 48px;
-  color: theme('colors.primary.100');
-}
-
-.dyte-video-showcase {
+.ospi-video-showcase {
   margin: 3rem auto;
   display: block;
   width: 100%;
@@ -594,7 +575,7 @@ html[data-theme='dark']
   border-radius: 8px;
 }
 
-.dyte-video-showcase.mobile {
+.ospi-video-showcase.mobile {
   max-width: 240px;
   border-radius: 1.5rem;
 }
@@ -725,53 +706,9 @@ html[data-theme='dark'] .dropdown > .navbar__link:after {
 }
 
 .dropdown:hover > .navbar__link:after {
-  background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' fill='none' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.293 8.293a1 1 0 0 1 1.414 0L12 14.586l6.293-6.293a1 1 0 1 1 1.414 1.414l-7 7a1 1 0 0 1-1.414 0l-7-7a1 1 0 0 1 0-1.414Z' fill='%231a90ff'/%3E%3C/svg%3E") !important;
+  background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' fill='none' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.293 8.293a1 1 0 0 1 1.414 0L12 14.586l6.293-6.293a1 1 0 1 1 1.414 1.414l-7 7a1 1 0 0 1-1.414 0l-7-7a1 1 0 0 1 0-1.414Z' fill='%23e6007e'/%3E%3C/svg%3E") !important;
 }
 
-.dyte-dropdown + ul.dropdown__menu {
-  @apply bg-secondary-900 p-0;
-}
-
-.dyte-dropdown .sdk-link {
-  @apply -ml-1 flex items-center gap-1.5 rounded-md p-2 text-inherit hover:bg-secondary-700;
-  @apply text-xs;
-}
-
-.dyte-dropdown .sdk-ul > li {
-  flex-basis: 48%;
-}
-
-.dyte-dropdown .sdk-ul {
-  @apply mt-2 flex list-none flex-wrap gap-1 pl-0;
-}
-
-.dyte-dropdown .sdk-link > img {
-  @apply h-6 w-6;
-}
-
-.dyte-dropdown a {
-  @apply no-underline;
-}
-
-.dyte-dropdown :is(h1, h2, h3, h4, h5) {
-  @apply font-medium;
-}
-
-.dyte-dropdown h3 {
-  @apply !font-bold;
-}
-
-.sdks-dropdown h2 {
-  @apply text-lg;
-}
-
-.sdks-dropdown h3 {
-  @apply text-sm;
-}
-
-.resources-dropdown-menu h2 {
-  @apply text-sm font-semibold;
-}
 
 [data-dropdown-sdks] {
   display: none;

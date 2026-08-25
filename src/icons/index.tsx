@@ -401,7 +401,7 @@ export function XIcon(props: ComponentProps<'svg'>) {
   );
 }
 
-export function DyteAISearchIcon(props: ComponentProps<'svg'>) {
+export function AISearchIcon(props: ComponentProps<'svg'>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
